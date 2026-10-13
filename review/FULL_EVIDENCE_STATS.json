@@ -1,13 +1,21 @@
 {
-  "files": 138,
-  "totalBytes": 1530382880,
+  "files": 166,
+  "totalBytes": 3309704832,
   "groupBytes": {
+    "evidence/native-raw/R10E": 128946730,
+    "evidence/native-raw/R11B": 79953804,
     "evidence/native-raw/R12": 499467853,
+    "evidence/native-raw/R13B": 84318453,
+    "evidence/native-raw/R14": 66281547,
     "evidence/native-raw/R15": 146728331,
     "evidence/native-raw/R16": 8370792,
     "evidence/native-raw/R9": 398344436,
+    "evidence/validation-archives/R10E_native_validation_text_and_trace.zip": 647056430,
+    "evidence/validation-archives/R11B_native_validation_text_and_trace.zip": 316648435,
     "evidence/validation-archives/R12_native_validation_inventory.json": 61579,
     "evidence/validation-archives/R12_native_validation_text_and_trace.zip": 164773011,
+    "evidence/validation-archives/R13B_native_validation_text_and_trace.zip": 199174445,
+    "evidence/validation-archives/R14_native_validation_text_and_trace.zip": 242559498,
     "evidence/validation-archives/R15_native_validation_inventory.json": 39388,
     "evidence/validation-archives/R15_native_validation_text_and_trace.zip": 57590096,
     "evidence/validation-archives/R16_native_validation_inventory.json": 42482,
@@ -22,6 +30,7 @@
     "evidence/human-1v9-original/[10p] 10p 西班牙混战_by_MP97.tmx": 365704,
     "evidence/human-1v9-original/agent 思维架构 仓库 4.txt": 10300,
     "evidence/human-1v9-original/analysis": 10334578,
+    "evidence/human-1v9-original/original-player-telemetry": 14382610,
     "evidence/human-1v9-original/工程师 思路.txt": 3553
   }
 }

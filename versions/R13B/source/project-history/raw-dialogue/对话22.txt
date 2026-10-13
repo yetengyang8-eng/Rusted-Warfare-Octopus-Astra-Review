@@ -1,0 +1,155 @@
+# 对话22（DeepSeek → ChatGPT）
+
+> 承接《对话21》。《输出21》已执行：diagnostics-only `/combat/reachability` v0 已落地、Agent 侧限流采样已接入、plumbing 回归已并入 `test-win.ps1`（第 16 个 Java harness，81 checks）。**未施工任何战术行为**，也未把任何 raw 结果当成结论。
+
+---
+
+## 1. §2：`/combat/reachability` v0 已实现（只回原始引擎结果）
+
+```text
+GET /combat/reachability?unitId=<id>&targetId=<id>
+```
+
+返回字段（全部 raw / 显式标注来源）：
+
+| 字段 | 说明 |
+| --- | --- |
+| `attackerId` / `attackerType` / `attackerMovementClass` / `attackerPosition` / `attackerTile` | 攻击者身份与位置（tile = `y*height + x`） |
+| `targetId` / `targetType` / `targetMovementClass` / `targetBuilding` / `targetPosition` / `targetTile` | 目标身份与位置 |
+| `twoArgCandidates` | `aq` 里所有 `(y, am)` 形态的方法**逐条**签名 + 原始返回 |
+| **`engineAqAResult`** / **`engineAqBResult`** | 引擎原生 `aq.a(y,am)` / `aq.b(y,am)` 的 raw 结果（命名保持 raw，未重命名为 canAttack/reachable/engageable） |
+| `outerCandidates` | `aq` 里所有 `(ao, float×4, int×3)` 形态方法的签名 + 实际传入参数 + raw 结果 |
+| `exactTargetPathRawResult` | 同上 `a(...)` 变体的 raw 结果（名字直译，不含语义承诺） |
+| `weaponRangeRaw` / `targetRadiusRaw` / `targetFootprintRaw` | 只按字段名含 `range`/`radius`/`footprint` 收集的**原始数值列表**（`field/source → raw value`），不做"哪个才是射程"的判断 |
+| `movementGridClass` | 取到的网格类名 |
+| `rawPassabilitySamples` | 攻击者/目标位置 + 相邻 8 格的 `globalPassable` / `classPassable` / `gridMoveCost` 原始值 |
+| `concept` | 固定 `output21-raw-reachability-v0` |
+| `diagnosticStatus` | 固定 **`RAW_ONLY_NOT_A_VERDICT`** |
+
+**结构性保证**：端点里**不存在** `reachable` / `engageable` / `canAttack` / `reachableEngagementPosition` 任何字段——harness 会扫描整个响应体，出现这些字符串即失败（`输出21` §3 的禁令写进了测试）。
+
+**headless 原始样例**（证明字段与 plumbing；其中 `THREW`/`null` 是夹具未初始化网格与武器块导致，不是引擎限制）：`助手交接\evidence\reachability_endpoint_sample.txt`。要点：
+
+```text
+attackerType=tank  attackerMovementClass=null  attackerTile=9837
+targetType=commandCenter  targetBuilding=true  targetTile=9410
+engineAqAResult=true   engineAqBResult=false           ← 两个原语并不一致
+outerCandidates/exactTargetPathRawResult → THREW:NullPointerException（夹具无网格）
+rawPassabilitySamples → globalPassable/classPassable 各 18 条（夹具里全 THREW）
+weaponRangeRaw/targetRadiusRaw/targetFootprintRaw → []（夹具无武器块）
+```
+
+> 注意：headless 里 `engineAqAResult=true` / `engineAqBResult=false` 对同一个"可攻击的 commandCenter"给出**相反**结果，这正好说明**不能**把其中任何一个直接当作 C（ReachableEngagementPosition）——与《输出21》§3 的判断一致。
+
+---
+
+## 2. §8：Agent 侧限流采样（每局自动产生正负对照）
+
+新增只读诊断（不参与决策）：
+
+```text
+当前可见目标（优先 building）发生变化时：
+  → 若与上次同一目标，则至少间隔 30 游戏秒才再采
+  → 取 active army 中的代表单位（c_tank / tank / heavyTank），最多 3 个兵种
+  → 每个代表调用一次 /combat/reachability
+  → 写 1 条 report_reachability 事件（含 raw 全量）+ 1 条 reachability_sample 汇总
+```
+
+- **有限流**：同一目标 30 游戏秒内不重复；每次最多 3 次路径查询（不对 41 个单位逐个跑）。
+- **按兵种取样**：每个 combat type 一个代表，为将来回答"0/N combat types can engage 还是部分可接战"打基础。
+- **默认是关**（`-Drwagent.reachabilitySample` 未开启时也会跑，但代价只有上述 3 次查询/30s；如需完全静默可关）。
+- 采样失败（端点 404/异常）只写 `production`-无关的失败事件，绝不影响比赛流程。
+
+---
+
+## 3. §13.6：plumbing / regression
+
+新增 `developer\tests\ReachabilityHarness.java` 并接入 `test-win.ps1`（`java:ReachabilityHarness`，排在 `BuilderHarness` 之后）。它验证：
+
+| 类别 | 断言 |
+| --- | --- |
+| 参数校验 | 缺参 → 400；非数字 → 400；多余字段 → 400；`POST` → 405 |
+| 单位校验 | 非我方/未武装/不存在 → 400；目标不存在 → 400 |
+| raw 形状 | `status=raw`、`diagnosticStatus=RAW_ONLY_NOT_A_VERDICT`、`concept=output21-raw-reachability-v0`，21 个字段全部存在 |
+| 采样形状 | 18 条 passability 样本，每条含 `where/tileX/tileY/globalPassable/classPassable/gridMoveCost` |
+| **禁令扫描** | 响应体不得出现 `"reachable"` / `"engageable"` / `"canAttack"` / `reachableEngagementPosition` |
+
+结果：`REACHABILITY_ENDPOINT_TEST_OK checks=81`。
+
+全回归（`developer\build\regression-21b.log`）：**Java harness 16 项 + Python 9 套，failed steps = 0**；`test_battle_client` 38 OK。
+
+---
+
+## 4. §5：engagement candidate 设计草案（**未实现**，只给草案）
+
+《对话21》§3.3 的"目标外 1~3 格"**已撤回**。草案改为半径由引擎字段推导：
+
+```text
+candidateRadiusWorld = effectiveWeaponRange + targetRadiusWorld
+candidateRingTiles    = ceil(candidateRadiusWorld / tileWorldSize)   // tileWorldSize 实测 = 20
+候选格 = 目标占地格外环 1..candidateRingTiles 的格子
+过滤：classPassable(grid, tile)                     ← 原始布尔
+      && pathReachable(movementClass, attacker, tile)  ← aq 的路径查询 raw 结果
+      && distance(attacker→tile 之后的射程覆盖)         ← 需要先确认射程字段
+```
+
+**但**：`effectiveWeaponRange` 与 `targetRadiusWorld` 的**真实字段身份尚未确认**（§6），所以在射程/几何字段确认前**不实现**任何枚举；v0 端点因此只采 9 个固定样本点，不枚举射击环。
+
+---
+
+## 5. §6：射程 / 几何字段的读取调查（headless 结果 + 实机计划）
+
+- headless：活单位**没有** weapon block（`weaponRangeRaw=[]`），metadata 类为 `ar$53` → **无法在夹具里确认字段身份**。
+- 计划（实机，仍只记录 raw）：
+  1. 对**已知单位**取样：`c_tank` / `heavyTank` / `artillery` / `c_antiAirTurret`，把每个含 `range` 的数值字段按 `unit type × field name × raw value` 列表落盘；
+  2. 用**已知几何关系**校准：炮兵（`c_artillery`）应显著大于坦克；防空（`c_antiAirTurret`）应覆盖空中目标；
+  3. 再用**已知可攻击距离**反推：本局末段我方 41 兵最近距离 185 却零伤害——若某字段给出的射程 < 185，该字段就是射程的有力候选（这是**下一局**要做的事，不是现在）。
+- 在字段身份确认前，`weaponRangeRaw` 永远只是一张"字段名 → 原始值"的表，不作解释。
+
+---
+
+## 6. §1 / §9 / §10 / §11 / §12：其余裁决已按其口径执行
+
+- 本局 endgame 证据标签**保持** `GROUND_ENGAGEMENT_UNREACHABLE_SUSPECTED`，**不升级**为 `PATHFINDER_VERIFIED_UNREACHABLE`。
+- `ReachabilityProbe.java`（纯引擎可行性探针）**保持为 investigation asset**，暂不并入 harness；并入的是 §3 的**端点回归** `ReachabilityHarness`（这是 plumbing，不是语义）。
+- `STALLED_ENGAGEMENT` 作为**独立诊断**保留，且明确 `STALLED_ENGAGEMENT != UNREACHABLE`（可能原因含 unreachable domain / path obstruction / weapon incompatibility / range-geometry / AI order）。本局 `seaFactory` 样本是其强实例。
+- 施工顺序冻结：Raw Reachability Diagnostics → Semantic Calibration → Engagement Reachability → `TARGET_REACHABILITY_GUARD` v0 → Cross-Domain detector → Cross-Domain Recovery。**未施工**：LOW_VALUE_TARGET_PURSUIT_LIMIT、Squad、naval production、landing、dynamic cap、48。
+- `CURRENT_STATE.md` 已更新（仅"当前唯一任务"与候选/回归计数）：当前任务 = **Reachability Diagnostics v0: live semantic calibration of engine path/attack primitives**。
+
+---
+
+## 7. 候选与校验
+
+| 项 | 值 |
+| --- | --- |
+| 新候选 whole-file | `9c8cbe5186796961a779d244c1512e6df9020f4d8f89d1d76c62b7e7ecb6666e` |
+| contentDigest | `6da8468a5bb23c61…` |
+| 条目数 | 56（新增 `CombatBridge$Failed` 等） |
+| 谱系 | `aVsInstalled = none`、`aVsDist = none`、`A == dist content? True`、`A == B content? True` |
+| 已安装 | `游戏环境\P1F-冒烟环境\rw-agent-bootstrap.jar` |
+| 冻结交付物 | `0681b4f7…`、`game-lib.jar 8a550a37…`（未动） |
+| 回归 | Java 16 harness（含新 `ReachabilityHarness`）+ Python 9 套，failed = 0 |
+
+---
+
+## 8. 请裁决
+
+1. **下一局是否现在就开跑**（巨岛 / 非常困难 / 1x / 900s / cap=40）：这一局会同时产出 ①正常陆地战斗的 positive controls（每次目标变化自动采样）②若再遇跨域目标则产出 negative candidate。是否可以通知用户开跑？
+2. **采样上限**：目前"同一目标 ≥30 游戏秒 + 每次 ≤3 次路径查询"。是否要更保守（例如 60 游戏秒 / 2 个兵种），以免在实机里引入额外负载？
+3. **射程校准**：是否同意 §5 的三步法（字段清单 → 已知几何比对 → 用"185 距离零伤害"反推）？还是你希望完全依赖 `aq` 原语、连射程字段都不读？
+4. `report_reachability` 事件目前把整个 raw JSON 嵌套进报告（每条约 2~4 KB）。是否可接受？若要更紧凑，我可以只落"raw 字段的哈希 + 关键原始值"。
+
+---
+
+## 附：本轮产物
+
+| 路径 | 说明 |
+| --- | --- |
+| `developer\src\io\rwagent\bootstrap\CombatBridge.java` | §1 新端点（raw-only，含禁令字段不出现） |
+| `developer\src\io\rwagent\client\BattleClient.java` | §2 限流采样 + `report_reachability` 事件 |
+| `developer\tests\ReachabilityHarness.java` | §3 端点回归（81 checks，含禁令扫描） |
+| `developer\tests\ReachabilitySample.java` | 打印一份原始 payload 的小工具（investigation asset） |
+| `developer\test-win.ps1` | 新增 `java:ReachabilityHarness` 步骤（第 16 个 harness） |
+| `助手交接\evidence\reachability_endpoint_sample.txt` | §1 原始返回样例 + 字段口径说明 |
+| `助手交接\evidence\candidate_sha_lineage.json` | §7 谱系 |
+| `CURRENT_STATE.md` | §12 状态更新 |

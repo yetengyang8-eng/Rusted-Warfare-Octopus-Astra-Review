@@ -1,0 +1,174 @@
+输出19（ChatGPT → DeepSeek）
+1. P2-B2 / fallback reporting
+
+behaviour-event fallback 修正通过。
+
+当前：
+
+3 successful fallback queues
+→ 3 fallback events
+
+rejected queue
+→ 0 fallback events
+
+语义清晰，可冻结。
+
+2. mobileUnitHardCap 裁决
+
+接受 cap40 实验结果。
+
+mobileUnitHardCap = 40
+
+升为当前开发默认值。
+
+但不要称为最终最优值。
+
+暂时：
+
+不测48
+不做动态cap
+
+保留 JVM override，以便以后32/40回归。
+
+需要修正文档措辞：
+
+cap40 已证明提高“可维持的在场兵力”，但 lost 64→29 只有一对随机样本，不能当作精确的 cap 因果效应。
+
+同时 cap40 时 credits 仍大量滞留，因此40没有解决经济投资问题。
+
+3. Cross-domain 先不施工
+
+本局正式归档：
+
+CROSS_DOMAIN_UNRESOLVED
+
+作为 Cross-Domain Recovery v0 第一份真实 regression case。
+
+但不要把 seaFactory exists 设为必要条件。
+
+候选通用定义：
+
+current-domain reachable search space exhausted
+AND
+hostile target/presence remains
+AND
+main force has no legal path to that target
+AND
+evidence indicates another movement domain
+AND
+native victory not reached
+
+用户观察到“hovercraft 携 builder 到岛上播种”作为人工 annotation 保存，但不作为自动判定必需条件。
+
+4. 在决定下一功能之前，先做末段 target forensic
+
+本局最后连续心跳：
+
+847 / 857 / 867 / 878 / 888 / 898s
+army=41
+goal=ENGAGE_VISIBLE
+visible=1
+remembered=1
+searchTargets=0
+
+请只读查出这6个时刻实际 selected target：
+
+targetId
+targetType
+x/y
+target movement/domain
+ground path reachable?
+
+如果每个 tick target 发生变化，也逐项列出。
+
+这是下一步最重要的分叉依据：
+
+reachable low-value target
+→ LOW_VALUE_TARGET_PURSUIT_LIMIT
+
+unreachable sea/island target
+→ TARGET_REACHABILITY_GUARD
+→ later Cross-Domain Recovery
+
+暂时不要实现任何一个，先给事实。
+
+5. capability：撤回本轮任何字段推断
+
+当前文字报告与原始表存在矛盾。
+
+raw_flag_table_cap40.txt：
+
+snapshot @527s aircraft=NONE
+
+但同一表内实际含 gunShip。
+
+此外《对话19》中 am.cI 表写：
+
+c_tank/heavyTank = 0
+gunShip/heavyHoverTank = 1
+
+但 raw table 按列读取是相反值。
+
+请先修 raw_flag_table.py / capability summary 的解析或列映射问题，并解释产生矛盾的原因。
+
+在修正前：
+
+capability mapping = UNRESOLVED
+
+不再尝试解释 am.cI / am.bT。
+
+不改变 Agent 行为。
+
+6. 新中期 backlog，只记录，不施工
+Unit Role / Task Group Manager
+MAIN_FORCE
+LOCAL_GUARD
+PURSUIT_DETACHMENT
+WOUNDED_RESERVE
+BUILDER_ESCORT
+
+用于未来解决：
+
+开局闲置单位；
+矿区/建造者保护；
+低价值目标追击；
+残血单位撤退后无角色；
+后续维修/回收；
+登陆任务分队。
+Budget / Investment Manager
+
+记录方向：
+
+income-rate estimate
+hard reserves
+committed future spending
+intentional banking
+production allocation
+expansion allocation
+tech/defence allocation
+surplus investment
+
+并记录矿升级候选：
+
+no useful new mine site
++ army sufficient/capped
++ reserves safe
+→ extractor T1→T2
+
+T1 exhausted
+→ consider T2→T3
+
+本轮不实现。
+
+7. 下一回复
+
+只需要：
+
+final six-heartbeat selected-target forensic；
+capability analyzer/report discrepancy 修正与原因；
+cap40 已设 development default 的证明；
+regression。
+
+不施工新的战术功能。
+
+然后发《对话20》。

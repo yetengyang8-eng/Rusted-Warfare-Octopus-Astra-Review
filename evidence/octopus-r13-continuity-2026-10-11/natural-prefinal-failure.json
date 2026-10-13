@@ -1,0 +1,483 @@
+{
+  "partialSpoolPrefix": false,
+  "sources": [
+    {
+      "path": "G:\\deepseek 工作台\\_validation\\octopus-r13-continuity-20261011\\spain-veryhard\\work\\rw-agent-reports\\battle-1791723698587-c4fb3ed9.jsonl.gz",
+      "sha256": "54d8078ac7faad0ecb8a823367d47a82f93e883dbe08e27068e526545a450a29",
+      "bytes": 33255004
+    }
+  ],
+  "rows": 119024,
+  "malformed": 0,
+  "lastSourceGameTimeMs": 1704304,
+  "summary": {
+    "outcome": "PASS",
+    "reason": "Native result screen: DEFEAT",
+    "phase": "battle",
+    "matchOutcome": "DEFEAT",
+    "commands": 1358,
+    "observations": 4212,
+    "ownLosses": 119,
+    "newCombatUnits": 79,
+    "attackOrders": 390,
+    "attackOrdersConfirmed": 369,
+    "retreatOrders": 0,
+    "upgradesCompleted": 3,
+    "completedMines": 14,
+    "newMines": 14,
+    "mineTarget": 3,
+    "minesBeyondFloor": 2,
+    "expansionRefusals": 40,
+    "expansionBlocked": 83,
+    "completedFactories": 4,
+    "newFactories": 4,
+    "landFactoryTarget": 2,
+    "factoryBlocks": 48,
+    "builderTarget": 1,
+    "builderRecoveries": 12,
+    "builderOrders": 12,
+    "battleGameTimeMs": 1720320,
+    "gameSecondsPerWallSecond": 4.8,
+    "noProgressWindowMs": 20000,
+    "noProgressCooldownMs": 30000,
+    "targetNoProgressTriggers": 0,
+    "targetRetries": 0,
+    "targetSuppressionsStarted": 0,
+    "targetSuppressionsReleased": 0,
+    "targetSuppressedSelections": 0,
+    "targetSuppressionsAtEnd": 0,
+    "targetSwitches": 0,
+    "effectiveDecisionIntervalGameMs": 528,
+    "noProgressAttentionGapMs": 3000,
+    "maxObservedGameTimeJump": 4256,
+    "observationCount": 4212,
+    "spendTotal": 95700,
+    "spendByCategory": {
+      "BUILDER_RECOVERY": {
+        "orders": 12,
+        "cost": 6000
+      },
+      "NEW_FACTORY": {
+        "orders": 5,
+        "cost": 3500
+      },
+      "UNIT_PRODUCTION": {
+        "orders": 80,
+        "cost": 63800
+      },
+      "NEW_MINE": {
+        "orders": 14,
+        "cost": 9800
+      },
+      "FACTORY_UPGRADE": {
+        "orders": 3,
+        "cost": 6000
+      },
+      "STRATEGIC_CAPABILITY": {
+        "orders": 6,
+        "cost": 3000
+      },
+      "STRATEGIC_CONSTRUCTION": {
+        "orders": 4,
+        "cost": 3600
+      }
+    },
+    "measuredIncomePerGameSecond": 53.86,
+    "investmentIntentions": 4,
+    "investmentCompletions": 0,
+    "investmentCancellations": 4,
+    "investmentReserveAtEnd": 0,
+    "investmentPendingAtEnd": false,
+    "finalUrgency": "EMERGENCY",
+    "reconEnabled": true,
+    "reconTasksCreated": 5,
+    "reconOrdersQueued": 113,
+    "reconOrdersObserved": 113,
+    "reconMovesCompletedBetweenSamples": 0,
+    "frontierTasksSatisfiedByTeamVision": 1,
+    "reconResolvedAfterObservedMove": 0,
+    "reconReacquired": 1,
+    "reconSitesCleared": 0,
+    "reconBlocked": 2,
+    "reconTaskPendingAtEnd": true,
+    "reconFrontierEnabled": true,
+    "frontierTasksCreated": 1,
+    "frontierTasksRefreshed": 10,
+    "frontierTasksAdvanced": 11,
+    "frontierTasksBlocked": 1,
+    "frontierTasksPreempted": 0,
+    "expendableTransfers": 0,
+    "expendableScoutsAtEnd": 0,
+    "factoryTargetIncreases": 0,
+    "factoryTargetIncreaseBlocks": 11,
+    "landFactoryTargetAtEnd": 2,
+    "factoryTargetCommittedAtEnd": false,
+    "landFactoryTargetMax": 2147483647,
+    "factorySaturationPct": 39.91,
+    "factorySaturationMinPct": 80,
+    "economyBaseIncome": 26.9,
+    "economyIncomePerMine": 12.07,
+    "economyModelSource": "MEASURED_4_MATCHES_2_SPEEDS_T1_R2_0.999_T2_T3_ESTIMATED_FROM_FROZEN_GENERATION_RATIOS",
+    "minesReadyAtEnd": 0,
+    "productionConsumptionPerGameSecond": 10.7,
+    "sustainableSurplusPerGameSecond": 16.2,
+    "productionCapacity": {
+      "incomeEstimate": 26.9,
+      "productionConsumptionPerGameSecond": 10.7,
+      "recentSpendPerGameSecond": 30.0,
+      "sustainableSurplusPerGameSecond": 16.2,
+      "credits": 1047.0,
+      "strategyArmyTarget": 32,
+      "committedArmed": 0,
+      "hardSafetyCap": 2147483647,
+      "readyProducerCount": 0,
+      "producerUtilizationPct": 40.38,
+      "observedProducerGameMs": 94144,
+      "demand": "UNKNOWN",
+      "backlogSlots": 32,
+      "routeCount": 0,
+      "routes": [],
+      "selectedNativeCost": null,
+      "selectedNativeAffordable": false,
+      "builderReserve": 0,
+      "investmentReserve": 0,
+      "capabilityReserve": 0.0,
+      "allReserved": 0.0,
+      "recovery": false,
+      "factoryTarget": 2,
+      "factoryTargetCommitted": false,
+      "bottleneck": "UNKNOWN",
+      "militaryCapacityDecision": "HOLD",
+      "producerCapacityDecision": "HOLD",
+      "windowGameMs": 150000,
+      "coveredGameMs": 150000,
+      "surplusGameMs": 150000,
+      "usefulDemandGameMs": 92864,
+      "safeGameMs": 0,
+      "sustained": false,
+      "operationalCapacityStatus": "UNKNOWN",
+      "gameTimeMs": 1722960,
+      "intervalEstimateSource": "SAME_SOURCE_BOTH_ENDPOINTS_CONSERVATIVE_ESTIMATE",
+      "continuousNativeExecutionProven": false,
+      "maxBridgedIntervalGameMs": 30000,
+      "excludedIntervalGameMs": 0,
+      "maxSampleIntervalGameMs": 1520,
+      "producerCoveredGameMs": 150000,
+      "menuSourceTimeStatus": "UNKNOWN_CURRENT_CYCLE_READ",
+      "menuSourceCurrent": true,
+      "ownMissionDemand": 0,
+      "nativeUnitCapStatus": "UNKNOWN",
+      "hardSafetyCapSource": "SOFTWARE_POLICY_OR_EXPLICIT_PROPERTY",
+      "demandSource": "CURRENT_VISIBLE_NATIVE_ROUTE_ASSESSMENT",
+      "productionPolicy": "CONTINUOUS_WHILE_NATIVE_LEGAL_AND_COMMITTED_FUNDS_AVAILABLE",
+      "organizationTargetIsProductionLimit": false,
+      "militaryGrowthPolicyGoal": 32
+    },
+    "strategy": {
+      "enabled": true,
+      "armyTarget": 32,
+      "activeTarget": 24,
+      "reserveTarget": 8,
+      "hardSafetyCap": 2147483647,
+      "builderTarget": 1,
+      "militaryCapacityIncreases": 0,
+      "militaryCapacityFloor": 0,
+      "capabilityNeedsAtEnd": 0,
+      "needsResolvedByLegalEvidence": 0,
+      "investmentOrders": 10,
+      "mineUpgradesObserved": 0,
+      "constructionCompletionsObserved": 4,
+      "capabilityReservesStarted": 0,
+      "capabilityReservesReleased": 0,
+      "capabilityReserveAtEnd": 0.0,
+      "capabilityTasksAtEnd": 0,
+      "capabilityModeScope": "PER_UNIT",
+      "searchAreaPolicy": "LEGAL_AIR_FRONTIER_CURRENT_COVERAGE_SEARCH",
+      "g6": true,
+      "airGeneral": {
+        "airGeneralId": 1,
+        "owner": "air-general:1",
+        "roster": [],
+        "targetId": null,
+        "mission": "CONTINUING_AIR_MAP_SEARCH",
+        "searchLegKnown": false,
+        "searchLegX": null,
+        "searchLegY": null,
+        "routeCursor": 0,
+        "routeLegEnd": -1,
+        "routeTiles": 0,
+        "routeLeader": -1,
+        "routeFrontierTile": -1,
+        "routePotentialInfoScore": 0.0,
+        "routeInfoAuthority": "NATIVE_PLAYER_FOG_HISTORY",
+        "searchNeed": {
+          "status": "LEGAL_FRONTIER_EXPLORATION",
+          "coverageAuthority": "NATIVE_PLAYER_FOG_HISTORY",
+          "enemyPresence": "UNKNOWN"
+        },
+        "contactArea": null,
+        "searchLegsWitnessed": 0,
+        "attackReceipts": 0,
+        "specialistTransfers": 0,
+        "groundGeneral": false,
+        "formations": [
+          {
+            "airGeneralId": 1,
+            "owner": "air-general:1",
+            "roster": [],
+            "targetId": null,
+            "mission": "CONTINUING_AIR_MAP_SEARCH",
+            "searchLegKnown": false,
+            "searchLegX": null,
+            "searchLegY": null,
+            "routeCursor": 0,
+            "routeLegEnd": -1,
+            "routeTiles": 0,
+            "routeLeader": -1,
+            "routeFrontierTile": -1,
+            "routePotentialInfoScore": 0.0,
+            "routeInfoAuthority": "NATIVE_PLAYER_FOG_HISTORY",
+            "searchNeed": {
+              "status": "LEGAL_FRONTIER_EXPLORATION",
+              "coverageAuthority": "NATIVE_PLAYER_FOG_HISTORY",
+              "enemyPresence": "UNKNOWN"
+            },
+            "contactArea": null,
+            "searchLegsWitnessed": 0,
+            "attackReceipts": 0,
+            "specialistTransfers": 0,
+            "groundGeneral": false
+          }
+        ],
+        "formationCount": 1
+      },
+      "endgameReady": false,
+      "airTarget": 0,
+      "airProviderTarget": 0,
+      "airProviders": 0,
+      "pendingAirProviders": 0,
+      "capital": {
+        "covered": true,
+        "horizonGameMs": 120000,
+        "ownCreditsGrowth": 512.0,
+        "source": "CURRENT_OWN_CREDITS_SAMPLES",
+        "growing": true,
+        "wealthThreshold": null,
+        "hiddenEnemyAdvantage": "UNKNOWN",
+        "idleCapitalPerGameSecond": 4.266666666666667,
+        "observedAirServiceSamples": 0,
+        "airProviderNativeSpendPerGameSecond": null,
+        "airInvoicesAwaitingReadyWitness": 0,
+        "airThroughputSource": "ACCEPTED_NATIVE_INVOICE_TO_LATER_OWN_READY_PRODUCT",
+        "airProviderModel": "CURRENT_FUNDED_SPATIAL_DUTY_PLUS_OBSERVED_IDLE_CAPITAL_OVER_OBSERVED_PROVIDER_SERVICE"
+      },
+      "capitalUpgradesObserved": 0
+    }
+  },
+  "firstReady": {
+    "commandCenter": 3376,
+    "builder": 33600,
+    "landFactory": 33600,
+    "extractorT1": 63680,
+    "scout": 63680,
+    "heavyTank": 123920,
+    "repairbay": 1221296
+  },
+  "checkpoints": [
+    {
+      "frame": 18657,
+      "wallSeconds": 64.07800000000861,
+      "gameTimeMs": 298512,
+      "player": {
+        "teamId": 0,
+        "name": "Player",
+        "credits": 556.5
+      },
+      "types": {
+        "commandCenter": 1,
+        "landFactory": 2,
+        "extractorT1": 4,
+        "heavyTank": 8,
+        "builder": 1
+      }
+    },
+    {
+      "frame": 37545,
+      "wallSeconds": 127.03100000000268,
+      "gameTimeMs": 600720,
+      "player": {
+        "teamId": 0,
+        "name": "Player",
+        "credits": 985.0
+      },
+      "types": {
+        "commandCenter": 1,
+        "landFactory": 2,
+        "extractorT1": 3,
+        "heavyTank": 9,
+        "builder": 2
+      }
+    },
+    {
+      "frame": 56182,
+      "wallSeconds": 189.15600000000268,
+      "gameTimeMs": 898912,
+      "player": {
+        "teamId": 0,
+        "name": "Player",
+        "credits": 613.0
+      },
+      "types": {
+        "commandCenter": 1,
+        "landFactory": 2,
+        "heavyTank": 3,
+        "extractorT1": 2,
+        "scout": 1,
+        "builder": 1
+      }
+    },
+    {
+      "frame": 75078,
+      "wallSeconds": 252.13999999999942,
+      "gameTimeMs": 1201248,
+      "player": {
+        "teamId": 0,
+        "name": "Player",
+        "credits": 1625.5
+      },
+      "types": {
+        "commandCenter": 1,
+        "landFactory": 1,
+        "heavyTank": 10,
+        "scout": 1,
+        "extractorT1": 2,
+        "builder": 1
+      }
+    }
+  ],
+  "lastObservation": {
+    "time": 1704304,
+    "frame": 106519,
+    "credits": 1161.5,
+    "types": {
+      "commandCenter": 1,
+      "extractorT1": 1,
+      "builder": 1
+    },
+    "mines": 1,
+    "rawLine": 117906
+  },
+  "commandCounts": {
+    "/command/produce-builder": 12,
+    "/command/move": 844,
+    "/command/build-factory": 5,
+    "/command/queue": 89,
+    "/command/build-extractor": 17,
+    "/command/attack-move": 390,
+    "/command/construct": 1
+  },
+  "acceptedCommands": 1358,
+  "mineAccepted": 17,
+  "mineWithLaterReadySiteMatch": 16,
+  "localInterrupts": [
+    {
+      "time": 591408,
+      "rawLine": 37591,
+      "data": {
+        "unitId": 10206,
+        "oldState": "PROSPECT",
+        "newState": "IDLE",
+        "reason": "CURRENT_NATIVE_LOCAL_WORK_INTERRUPTS_SOFT_TRAVEL",
+        "resourceX": 4090.0,
+        "resourceY": 4810.0,
+        "costSourceObservationId": "b5e0c271-5a7a-4b14-8a43-f7ebf53d002f:o:8860",
+        "costSourceRequestPath": "/expansion/plan?unitId=10206",
+        "costSourceStatus": "VALIDATED_NATIVE_QUOTE_PACKET",
+        "gameTimeMs": 591408,
+        "sessionId": "01cf25cc-6a07-4600-8d57-4ecd70afd2a5",
+        "player": "team:0"
+      },
+      "laterBuild": {
+        "time": 597200,
+        "rawLine": 38085,
+        "accepted": true,
+        "kind": "/command/build-extractor",
+        "lane": "STRATEGY",
+        "owner": "strategy:1000005",
+        "actors": [
+          10206
+        ],
+        "query": {
+          "unitId": [
+            "10206"
+          ],
+          "x": [
+            "4090.0"
+          ],
+          "y": [
+            "4810.0"
+          ]
+        },
+        "credits": 700,
+        "cancel": null,
+        "frame": 37371,
+        "costSource": "b5e0c271-5a7a-4b14-8a43-f7ebf53d002f:o:8972",
+        "reason": null,
+        "laterReadySiteMatch": {
+          "id": 11044,
+          "type": "extractorT1",
+          "x": 4090.0,
+          "y": 4810.0,
+          "time": 647616,
+          "rawLine": 42323
+        }
+      }
+    }
+  ],
+  "scoutMotion": [
+    {
+      "id": 605,
+      "type": "scout",
+      "firstMs": 44880,
+      "lastMs": 137600,
+      "lastXY": [
+        3315.35,
+        7269.976
+      ],
+      "maxBaseDistance": 1966.674081559016,
+      "pathLowerBound": 2610.665110858175,
+      "observedIntervalMs": 92720,
+      "underOneWorldIntervalsMs": 34128,
+      "orderIntervalMs": {
+        "None": 39056,
+        "move": 53664
+      }
+    },
+    {
+      "id": 16667,
+      "type": "scout",
+      "firstMs": 786576,
+      "lastMs": 1679072,
+      "lastXY": [
+        4361.302,
+        5660.896
+      ],
+      "maxBaseDistance": 1504.571007757693,
+      "pathLowerBound": 7214.536668627269,
+      "observedIntervalMs": 892496,
+      "underOneWorldIntervalsMs": 663008,
+      "orderIntervalMs": {
+        "attackMove": 34176,
+        "move": 122208,
+        "None": 736112
+      }
+    }
+  ],
+  "limitations": [
+    "Five-game-second approximate own monitoring cannot prove continuous motion through every turn.",
+    "Absent actor is not a kill attribution.",
+    "Mine ready matching is own entity/site witness, not exclusive command-to-builder causal proof.",
+    "Player0 VeryHard 5x is not a controlled A/B against human player5.",
+    "Prefix excludes unsaved in-memory compressed tail if partialSpoolPrefix=true."
+  ]
+}

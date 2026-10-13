@@ -1,0 +1,170 @@
+输出15（ChatGPT → DeepSeek）
+
+审计结果确认了 P2-B2 第一版存在一个非常局部的问题，可以施工，但不要扩大范围。
+
+1. 事实判定
+
+本局 4 次 SECONDARY_INVESTMENT_DEFERRED 时：
+
+secondary=T1，空闲；
+upgrade=2000，均买不起；
+cheapest combat=c_tank(350)，均买得起；
+primary 当时 queue=1/busy；
+primaryReserve=0；
+所以 credits - 350 >= primaryReserve 四次全部成立。
+
+replay 共找到 7 个 secondary idle tick，其中 cheap combat 均同时满足：
+
+affordable by credits
++
+allowed by primary reserve
+
+因此副厂 0 单位产出并非“无 surplus”，而是：
+
+unaffordable secondary upgrade
+→ 阻止了 lower-cost legal combat action
+
+这个行为需要修。
+
+2. 修改原则
+
+明确定义：
+
+SECONDARY INVESTMENT
+= opportunistic surplus investment
+≠ long-term savings target
+
+即：
+
+第二生产者的 upgrade 只有在当前已经可以支付，且支付后不侵犯 primaryReserve时才允许执行。
+
+如果 secondary upgrade 当前不能执行：
+
+upgrade unavailable / unaffordable / violates reserve
+↓
+SECONDARY_INVESTMENT_DEFERRED
+↓
+继续检查 lower-cost combat actions
+
+不要立即结束该 factory 的决策。
+
+3. Secondary cheap fallback
+
+对 lower-cost combat action 继续使用：
+
+credits - combatCost >= primaryReserve
+
+成立才允许购买。
+
+因此例如：
+
+primary busy
+primaryReserve=0
+credits=469
+secondary upgrade=2000
+secondary c_tank=350
+
+应：
+
+upgrade deferred
+→ c_tank allowed
+
+但：
+
+primary idle
+primaryReserve=800
+credits=1000
+c_tank=350
+
+因为：
+
+1000-350 < 800
+
+所以仍然不得购买。
+
+4. 不得影响 Primary Tech
+
+此修正规则只适用于 SECONDARY INVESTMENT。
+
+保持：
+
+唯一/主生产者尚未解锁 mainline
+→ PRIMARY_TECH_BANKING
+
+这种真正决定主力科技路线的升级仍允许主动攒钱，不得 fallback 成廉价单位把升级一直拖延。
+
+同样保持：
+
+primary mainline 买不起
+→ RESERVED_FOR_PRIMARY_PRODUCTION
+
+主厂仍不得 cheap fallback。
+
+5. 不改变评分体系
+
+不修改当前：
+
+c_tank score 1
+heavyTank score 3
+upgrade score 5
+
+只改变：
+
+secondary preferred upgrade 当前无法合法执行时，是否允许继续检查 lower-priority legal action。
+
+6. 建议增加测试
+
+至少覆盖：
+
+primary busy / reserve=0 / 469 credits / upgrade2000 / c_tank350
+→ upgrade defer + c_tank 下单；
+primary idle / reserve800 / credits1000 / c_tank350
+→ cheap action 仍被 primary reserve 挡住；
+primary idle / reserve800 / credits1200 / c_tank350
+→ cheap action允许；
+secondary upgrade 当前可支付且支付后仍保留 primaryReserve
+→ 优先 upgrade；
+sole T1 / primary tech 尚未解锁
+→ 继续 PRIMARY_TECH_BANKING，不允许 cheap fallback。
+
+建议增加明确日志：
+
+SECONDARY_INVESTMENT_FALLBACK
+
+或等价事件，以便之后确认“upgrade 被 defer 后 secondary 买了什么”。
+
+7. SHA lineage
+
+当前审计已经证明：
+
+installed bb5f81...
+contentDigest =
+current source contentDigest =
+6e73b2cb...
+
+且 aVsInstalled=[]。
+
+因此本次实测 binary 与当前源码内容一致，可以继续。
+
+旧 C5A5967C... 没有直接出现在 lineage JSON 中，所以不必声称已经逐 artifact 证明 C5=bb5；只需在版本记录中注明 whole-file JAR SHA 会因 manifest/ZIP metadata/重打包改变。
+
+后续建议 provenance 同时保存：
+
+wholeJarSha256
+contentDigest
+8. 修完以后暂时不要再加其它功能
+
+仍冻结：
+
+mineTarget=3
+mobileUnitHardCap=32
+squad/targeting
+defence
+sea/cross-domain
+unit scoring
+
+完成这个最小修正 + 全回归后，输出下一份交接。
+
+然后再决定下一局 1x 长局条件。
+
+不要在本轮顺手施工其它 backlog。

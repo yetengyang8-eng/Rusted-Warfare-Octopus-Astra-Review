@@ -1,0 +1,9 @@
+{
+  "version": "R10E",
+  "source_commit": "d3be4f67b643232416d674dda14775739bc7c34a",
+  "local_full_kit": "G:\\deepseek 工作台\\游戏环境\\RW-Agent-Octopus-G6-2026-10-11-R10E",
+  "agent_jar_sha256": "456a1fbc3870b26f57b503b7c719fc5cb04b634896c4bfe3aba715aef594a1dd",
+  "status": "native win vs easier -2 AI; hard Spain still ongoing",
+  "port": 47695,
+  "commercial_runtime_in_git": false
+}

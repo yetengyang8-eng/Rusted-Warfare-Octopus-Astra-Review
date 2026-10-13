@@ -1,0 +1,9 @@
+{
+  "version": "R13B",
+  "source_commit": "56d5b7ff61c33483e178593f0c4c2c49ec70c934",
+  "local_full_kit": "G:\\deepseek 工作台\\游戏环境\\RW-Agent-Octopus-G6-2026-10-11-R13B",
+  "agent_jar_sha256": "8f40e5ec9616f16acbe9bf12a30d47a2f72a48ca392fb96eb8869a8babaa6206",
+  "status": "task continuity candidate with partial natural validation",
+  "port": 47701,
+  "commercial_runtime_in_git": false
+}

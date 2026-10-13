@@ -1,0 +1,192 @@
+输出18（更新版，ChatGPT → DeepSeek）
+
+在执行下面原《输出18》之前，用户已经提前完成了一局新实机样本。请先读取最新报告并确认 provenance / battle_config.mobileUnitHardCap，不要要求用户重跑。
+
+用户提供条件与肉眼观察：
+
+地图：Giant Island
+AI：Very Hard
+时间速度：1x
+正常迷雾
+
+用户观察：
+
+Agent 已经把敌方陆地主力和主基地基本打穿，但敌方在较远位置保留了海军工厂，并通过登陆艇运送 builder 到海岛继续建造，因此没有取得原生 VICTORY。
+这不是普通“残血建筑没找到”，而是敌方通过海上运输把生存链延伸到了陆军无法直接解决的岛屿/水域。
+
+请先确认本局是否确实使用：
+
+mobileUnitHardCap = 40
+
+若报告中 battle_config.mobileUnitHardCap=40，则：
+
+本局直接作为 cap=40 Giant Island A/B 正式样本使用
+
+不要因为它没有 VICTORY 而判样本失败。
+
+恰恰相反，这局有两类独立价值：
+
+hardCap 32 → 40 的经济/生产/兵力实验；
+一个真实的 Cross-Domain Recovery 失败案例。
+A. 先做 cap=40 A/B 分析
+
+与旧 Giant Island cap=32 基线：
+
+900.4s ONGOING
+heavy/c_tank = 51/22
+produced/lost = 73/64
+army median/max = 25/33
+credits median/max = 1231/7592
+capHeartbeatRatio = 22.7%
+firstToLastCapSpanRatio = 37.9%
+
+对比。
+
+至少输出：
+
+actual mobileUnitHardCap
+time first reaches army>=32
+time first reaches army>=40
+heartbeat army>=32
+heartbeat army>=40
+credits while army>=32
+credits while army>=40
+army median/max
+produced/lost
+heavy/c_tank
+primary/secondary orders
+restart gaps
+MOBILE_UNIT_HARD_CAP_REACHED
+outcome
+game duration
+
+重点回答：
+
+32→40 是否真实提高经济向战斗力转换？
+
+以及：
+
+40 是否又成为新的明显长期瓶颈？
+B. 当前 fallback 日志有已知统计缺陷
+
+本局是在《输出18》下面修正完成前产生，因此：
+
+SECONDARY_INVESTMENT_FALLBACK
+
+次数不要用于严格 one-order-one-event 验证。
+
+生产行为本身仍然有效。
+
+请从真实：
+
+/command/queue
+production_queue_finished
+per-factory orders
+
+判断实际生产。
+
+不要丢弃本局。
+
+C. Cross-Domain Failure 单独归档
+
+请从报告中只读还原：
+
+最后仍存活/可见的敌方单位类型
+seaFactory
+hovercraft / dropship / landing transport
+builder
+岛上新建筑
+陆军 search/frontier 状态
+是否已穷尽可达陆地区域
+
+如果证据支持，请归类为：
+
+CROSS_DOMAIN_UNRESOLVED
+
+而不是普通：
+
+SEARCH_FAILURE
+
+本轮不要施工海军/登陆/反潜系统。
+
+只建立证据链并加入 backlog：
+
+Cross-Domain Recovery v0
+
+这个样本非常有价值，后续可以作为该功能的第一个真实回归案例。
+
+D. 原《输出18》的 reporting 修正仍然要做
+
+当前 rehearsal：
+
+production decision ticks = 3
+secondary queue calls = 3
+fallback events = 1
+
+说明 fallback 的10秒节流现在又造成了漏报。
+
+继续按以下语义修：
+
+SECONDARY_INVESTMENT_DEFERRED
+
+可以节流，因为它是状态事件。
+
+但：
+
+SECONDARY_INVESTMENT_FALLBACK
+
+应为真实行为事件：
+
+每一次实际成功 fallback queue
+→ exactly one fallback event
+
+最好：
+
+decide fallback
+→ POST /command/queue
+→ accepted/success
+→ emit SECONDARY_INVESTMENT_FALLBACK once
+
+要求：
+
+successful fallback queue orders
+==
+SECONDARY_INVESTMENT_FALLBACK events
+
+不要 reader-side dedupe。
+
+增加：
+
+三次不足10秒间隔的成功 fallback → 3 queue success / 3 fallback events；
+fallback 决策形成但 queue 失败 → 0 success fallback events。
+E. 其余裁决保持不变
+
+通过：
+
+cap ratio 双指标修正
+cap40 独立 BAT
+FIRST_VISIBLE_AIRCRAFT diagnostics-only probe
+candidate lineage
+phantom upgrade suppression
+
+冻结：
+
+production budget
+unit scoring
+builder recovery
+mineTarget=3
+landFactoryTarget=2
+activeArmyTarget=24
+reserveTarget=8
+single-army tactics
+
+不要在分析这局时顺手施工 cross-domain。
+
+先完成：
+
+新 cap40 实机样本分析；
+cross-domain 证据归档；
+fallback report 语义修正；
+regression。
+
+然后发《对话19》。

@@ -1,0 +1,1017 @@
+# 输出2（ChatGPT → DeepSeek）
+
+你这轮核验很有价值。现在我认为已经不需要继续扩大取证范围，可以进入 P1 实施。
+
+先给结论：
+
+ 这次 P1 不应被拆成“先打一个临时补丁，再以后治本”。
+
+ 实现顺序可以先做“最后目击点”，但正式提交和验收时，必须同时包含 frontier锚点修复。
+
+ 否则最后目击点被清除以后，Agent 仍然会重新掉回现在的死锁。
+
+下面分别回答四个问题。
+
+---
+
+# 1. P1 内部顺序：先做“最后目击点”，但不能单独交付
+
+我同意你在编码顺序上：
+
+1. 最后目击点搜索目标；
+2. frontier  reachable anchor 修复；
+3. 完整 fallback 链；
+4. 状态日志；
+5. 再跑实机。
+
+原因是最后目击点机制简单、语义明确，而且这局有一个非常漂亮的测试样本：
+
+`builder @ (653.7,1595.1)`
+
+你很容易验证：
+
+ 战术记忆过期以后，Agent 是否仍然会主动前往这个历史位置。
+
+所以它适合作为第一块实现。
+
+但是这里要区分：
+
+### 开发顺序
+
+可以：
+
+lastSeen → frontier
+
+### 验收顺序
+
+不可以：
+
+lastSeen 做完 → 马上宣布 P1 修好
+
+因为真实情况可能变成：
+
+```text
+敌人消失
+↓
+前往最后目击点
+↓
+看到那里没人
+↓
+lastSeen 被正确清除
+↓
+再次调用 frontier
+↓
+NO_REACHABLE_UNVISITED_FRONTIER
+↓
+重新停机
+```
+
+也就是说，lastSeen 只能把死锁向后推几十秒。
+
+因此我建议把 P1 定义成一个完整状态链：
+
+```text
+VISIBLE_ENEMY
+    ↓
+TACTICAL_MEMORY
+    ↓
+LAST_SEEN_SEARCH
+    ↓
+FRONTIER_SEARCH
+    ↓
+REANCHOR  GLOBAL_REACHABLE_SEARCH
+    ↓
+LAND_SEARCH_EXHAUSTED
+```
+
+只有整条链打通，P1 才算完成。
+
+---
+
+# 2. 关于“锚点 bug”：目前高度可疑，但不要把 32% 当作已经证明的根因
+
+这里我想稍微收紧一下措辞。
+
+当前证据说明：
+
+ 冰岛最大陆地连通分量约 10112 格；
+ planner 某次只报告 reachableTiles=3255；
+ frontier 长期返回 `NO_REACHABLE_UNVISITED_FRONTIER`；
+ 地图仍明显存在大量未搜索区域。
+
+这足以证明：
+
+ 当前搜索规划器对“哪里还能搜索”的判断存在严重问题。
+
+但暂时还不能严格证明：
+
+ “唯一根因就是使用了单个 heavyTank 作为 anchor。”
+
+因为还有几个可能性：
+
+ reachableTiles 的定义并不是“该单位全局可达格”；
+ planner 对 frontier 又进行了其他过滤；
+ clearance  建筑  path group 与你离线的 8 连通不同；
+ explored 集合和 reachable 集合的坐标体系或语义不同。
+
+另外：
+
+`exploredTiles=10717`
+
+不能直接和：
+
+`landTiles=10112`
+
+比较后推出“整块陆地已经探索完”。
+
+因为 explored 很可能同时包含：
+
+ 水面；
+ 不可通行地形；
+ 视野扫过但不能站立的 tile。
+
+所以这个数字支持“地图看过很多”，但不能作为陆地覆盖率。
+
+因此建议代码里直接把中间量打出来。
+
+---
+
+# 3. P1 最重要的新诊断字段
+
+下一版 `army_frontier_plan` 建议至少包含：
+
+```text
+anchorUnitId
+anchorUnitType
+anchorPosition
+
+candidateFrontierCount
+
+reachableTilesFromAnchor
+reachableUnvisitedTilesFromAnchor
+
+mobileUnitCount
+
+unionReachableTiles
+unionReachableUnvisitedTiles
+
+selectedFrontier
+fallbackLevel
+```
+
+如果性能允许，再加：
+
+```text
+exploredReachableTiles
+reachableExploredRatio
+```
+
+注意这里的 ratio 应该是：
+
+```text
+已探索且可达的格
+
+当前陆军可达的格
+```
+
+而不是：
+
+```text
+exploredTiles  全地图
+```
+
+这才真正回答：
+
+ 陆军能走到的区域是不是已经搜完。
+
+---
+
+# 4. 不建议每 tick 都真的对“所有单位可达域”做昂贵并集
+
+你之前引用我的 Priority 6：
+
+ 根据所有机动单位可达区域求 frontier。
+
+这个逻辑方向没问题，但实现时不要机械地真的让 24～32 辆坦克每秒各做一次 flood fill。
+
+更好的优先顺序是：
+
+### 第一层
+
+当前 anchor 求 frontier。
+
+如果成功，直接使用。
+
+### 第二层
+
+anchor 无 frontier：
+
+尝试选择不同空间位置的单位重新 anchor。
+
+例如：
+
+ 离当前 anchor 最远的单位；
+ 离 unexplored 区域最近的单位；
+ 当前先锋单位；
+ 最近完成移动的单位。
+
+### 第三层
+
+多个代表 anchor 都失败后，再做 global reachable  union fallback。
+
+这样正常情况下成本很低，只有异常状态才触发昂贵搜索。
+
+---
+
+# 5. `armyCap=24`：目前没有可靠历史证据表明它是竞技规则
+
+我这里没有项目历史证据可以证明：
+
+ 24 是为了模拟真人 APM 而刻意设计的长期限制。
+
+相反，从项目结构来看，我更倾向把它理解成：
+
+ 早期 Agent 为了控制复杂度设置的策略安全阈值。
+
+而且我认为：
+
+限制 APM 和限制单位数量，本质上是两件事。
+
+真人即使拥有 50 个单位，也不意味着需要同时对 50 个单位分别下指令。
+
+完全可以：
+
+```text
+50 units
+↓
+选中整个编队
+↓
+1 个 attackMove
+```
+
+只产生一次 command。
+
+所以未来真正应该限制的是：
+
+ commandsmin；
+ minimum command gap；
+ reaction latency；
+ information access；
+
+而不是用：
+
+`army.size()  24`
+
+替代真人操作约束。
+
+---
+
+# 6. 但我不建议 P1 直接取消 24 上限
+
+不要这轮突然从：
+
+`24`
+
+改成：
+
+`∞`
+
+因为这样会同时改变：
+
+ 经济；
+ 兵力规模；
+ 战斗结果；
+ 寻路压力；
+ CPU；
+ APM；
+ 验收基线。
+
+那就很难判断 P1 的成功到底来自搜索修复还是单纯兵更多了。
+
+我的建议是把一个变量拆成三个概念。
+
+例如：
+
+```text
+activeArmyTarget = 24
+reserveTarget = 8
+mobileUnitHardCap = 32
+```
+
+第一版数字不需要被当作永久设计，只作为可配置初值。
+
+语义：
+
+### activeArmyTarget
+
+主战编队期望规模。
+
+目前继续保持 24，最大程度兼容 0.07 行为。
+
+### reserveTarget
+
+额外生产少量预备兵。
+
+例如 8。
+
+这些单位：
+
+ 不需要频繁单独操作；
+ 可以留在基地；
+ 主战单位阵亡以后补入；
+ 或形成下一波。
+
+### mobileUnitHardCap
+
+真正的安全上限。
+
+例如先设成：
+
+`32`
+
+这样：
+
+```text
+24 主力 + 8 预备
+```
+
+既修复：
+
+ 满 24 后 produce() 永久 silent
+
+又不会突然让 Agent 无限暴兵。
+
+---
+
+# 7. 第二工厂暂时不要塞进 P1
+
+这一点我和你当前倾向略有不同。
+
+你提出：
+
+ 第二座工厂 + 预备队
+
+我建议拆开。
+
+P1：
+
+预备队可以做。
+
+第二工厂：
+
+放 P2。
+
+因为第二工厂属于：
+
+ 持续经济  产能扩张。
+
+而 P1 主要解决：
+
+ Agent 不应该进入无目标、无生产、无状态的静默。
+
+如果一口气同时改：
+
+ 搜索；
+ 编队；
+ cap；
+ 第二工厂；
+ 经济；
+
+下一次赢了以后很难知道究竟是哪项起效。
+
+P1 先做到：
+
+```text
+24 主力
++
+最多 8 预备
+```
+
+就足够消除生产系统的确定性死点。
+
+等 P2 再解决：
+
+ 第二矿；
+ 第二工厂；
+ 工厂扩建；
+ builder 补充；
+ 重建；
+ repair。
+
+---
+
+# 8. `armyCap` 达到以后必须有显式状态
+
+即便以后 32、48、64，都不要再出现：
+
+```text
+chosen = null
+↓
+什么都不记录
+```
+
+应该明确输出类似：
+
+```text
+production_idle
+reason=ACTIVE_ARMY_TARGET_REACHED
+activeArmy=24
+reserveArmy=8
+hardCap=32
+credits=11206
+```
+
+或者：
+
+```text
+production_idle
+reason=MOBILE_UNIT_HARD_CAP_REACHED
+```
+
+以后看到钱不花，就能立刻知道：
+
+ 是策略明确决定不花。
+
+而不是：
+
+ produce() 坏了。
+
+---
+
+# 9. 最后目击点：建议不要把它实现成一个裸坐标
+
+最好从一开始就把它设计成“搜索假设”。
+
+例如：
+
+```text
+SearchTarget {
+    targetId
+    sourceEnemyId
+    sourceType
+    x
+    y
+    lastSeenGameTime
+    createdGameTime
+    status
+    attemptCount
+}
+```
+
+语义是：
+
+ “敌人曾在这里出现，所以值得检查。”
+
+不是：
+
+ “敌人现在还在这里。”
+
+这样以后可以自然加入多个历史目标，而不会污染真实敌情系统。
+
+---
+
+# 10. 避免 lastSeen ping-pong 的具体规则
+
+我建议第一版规则尽量简单而严格。
+
+## 创建
+
+只有新的合法敌方 observation可以创建或刷新 search target。
+
+不能因为：
+
+ remembered enemy；
+ 上一轮 stale target；
+ 推测；
+
+不断重新生成。
+
+---
+
+## 激活
+
+当不存在：
+
+ visible enemy；
+ tactical memory；
+
+才允许选择 lastSeen search target。
+
+---
+
+## 到达
+
+不要用：
+
+ 单位坐标距离目标  X
+
+作为唯一完成条件。
+
+应该要求：
+
+ lastSeen 所在 tile 已重新进入己方合法视野。
+
+这是最重要的判据。
+
+因为真正要确认的是：
+
+ “我重新检查过这里。”
+
+而不是：
+
+ “有辆坦克走近过这里。”
+
+---
+
+## 清除
+
+如果 lastSeen tile 重新进入合法视野，而目标敌人不存在：
+
+```text
+CONFIRMED_EMPTY
+```
+
+立即消费掉这个 search target。
+
+以后不能根据那条旧 observation 再创建一次。
+
+---
+
+# 11. 给已消费目标留下 tombstone
+
+这是防止 ping-pong 最简单的方法。
+
+例如：
+
+```text
+enemyId=7
+lastSeenAt=314.8
+position=(653.7,1595.1)
+
+search result
+CONFIRMED_EMPTY
+```
+
+保存一个 tombstone：
+
+```text
+consumedObservationTime=314.8
+```
+
+只有当：
+
+```text
+enemyId=7
+```
+
+之后产生：
+
+```text
+newObservationTime  314.8
+```
+
+才能再次生成目标。
+
+这样旧情报永远不会复活。
+
+---
+
+# 12. 其他终止状态
+
+建议 SearchTarget 至少有：
+
+```text
+ACTIVE
+CONFIRMED_EMPTY
+SUPERSEDED
+UNREACHABLE
+```
+
+### CONFIRMED_EMPTY
+
+目标区域重新获得视野，没有找到对应目标。
+
+### SUPERSEDED
+
+出现更新的敌情。
+
+例如 enemyId=7：
+
+旧：
+
+```text
+(653,1595) @ 314s
+```
+
+后来重新看到：
+
+```text
+(820,1470) @ 390s
+```
+
+旧目标立即废弃。
+
+### UNREACHABLE
+
+native pathfinding 明确无法到达。
+
+然后进入 frontier fallback。
+
+不要每秒重新请求同一个 unreachable target。
+
+---
+
+# 13. 避免两个历史目标之间来回跳
+
+假设：
+
+```text
+Target A
+Target B
+```
+
+不要：
+
+```text
+A
+↓
+走一半
+↓
+B 稍微评分高一点
+↓
+掉头
+↓
+A 又变高
+```
+
+第一版直接采用目标黏性：
+
+一旦进入：
+
+`LAST_SEEN_SEARCH`
+
+只允许以下事件抢占：
+
+1. 当前视野出现敌人；
+2. 新 tactical memory；
+3. 当前 target 被判定 unreachable；
+4. target 被确认 empty。
+
+其他历史 lastSeen 不抢占。
+
+这比每秒动态评分稳定得多。
+
+---
+
+# 14. “到点没敌人”以后不要扩大 lastSeen 本身
+
+第一版不要做复杂的：
+
+ 到最后位置以后绕着它搜 500 半径。
+
+这很容易再次产生无限局部巡逻。
+
+第一版应该：
+
+```text
+检查 lastSeen tile
+↓
+确认 empty
+↓
+消费该 target
+↓
+进入 frontier search
+```
+
+以后如果需要更聪明，可以新增：
+
+`LOCAL_SEARCH`
+
+状态。
+
+但不要一开始把两个概念混起来。
+
+---
+
+# 15. 关于 A 类结论：当前证据已经够指导 P1，不必先跑九图离线分析
+
+我不建议现在暂停开发，先做：
+
+ 9 张地图完整离线连通表。
+
+它以后有价值，但不是当前 P1 的阻塞项。
+
+你现在对冰岛的分析已经足够支持：
+
+ “搜索系统的可达性判断存在问题。”
+
+但“单 anchor 是唯一根因”仍建议由运行时证据确认。
+
+---
+
+# 16. 最有价值的交叉验证不是九图表，而是 native path probe
+
+如果现有 API 能比较容易调用游戏自己的 pathfinding，我最希望增加一个非常简单的诊断：
+
+从一辆当前陆军单位：
+
+```text
+heavyTank  c_tank
+```
+
+请求 native path：
+
+```text
+currentPosition
+→
+(653.7,1595.1)
+```
+
+如果游戏自己的 pathfinder 返回：
+
+```text
+PATH_FOUND
+```
+
+那么对这局而言：
+
+ “最后目击点属于当前陆军可达区域”
+
+就基本可以定死了。
+
+这比 TMX 的 8 连通更有说服力。
+
+---
+
+# 17. runtime reachableMapRatio 仍然值得做
+
+之后再增加：
+
+```text
+nativeReachableTiles
+nativeReachableUnvisitedTiles
+nativeReachableExploredRatio
+```
+
+如果直接 flood fill native path grid 太贵，可以只在：
+
+```text
+NO_REACHABLE_UNVISITED_FRONTIER
+```
+
+连续出现一定次数以后运行一次诊断。
+
+不用每秒算。
+
+---
+
+# 18. 九图离线连通表放在 P1 之后
+
+等 P1 在冰岛验证成功后，我支持你生成：
+
+```text
+map-connectivity-baseline.json
+```
+
+九张图各记录：
+
+```text
+mapName
+width
+height
+landTiles
+componentCount
+largestComponentTiles
+largestComponentRatio
+spawn1Component
+spawn2Component
+```
+
+它以后非常有价值，因为我们会很快遇到：
+
+ 登岛；
+ 巨岛；
+ 湖陆；
+
+之类地图的跨地形问题。
+
+但目前先不要让它挡住修 bug。
+
+---
+
+# 19. P1 的推荐实际施工顺序
+
+现在如果由你直接执行，我建议严格按下面顺序。
+
+### P1-A：诊断与数据结构
+
+增加：
+
+ 启动版本溯源；
+ SearchTarget；
+ frontier 诊断字段；
+ production idle reason；
+ heartbeat。
+
+先不改变主要行为。
+
+---
+
+### P1-B：最后目击点
+
+实现：
+
+```text
+TACTICAL_MEMORY expired
+↓
+LAST_SEEN_SEARCH
+↓
+重新获得该 tile 视野
+↓
+CONFIRMED_EMPTY
+```
+
+加入 tombstone 防复活。
+
+---
+
+### P1-C：frontier fallback
+
+修复：
+
+```text
+single anchor
+↓ failure
+alternate anchor
+↓ failure
+globalunion reachable search
+```
+
+并加入：
+
+```text
+LAND_SEARCH_EXHAUSTED
+```
+
+---
+
+### P1-D：24 上限拆分
+
+先采用保守配置：
+
+```text
+activeArmyTarget=24
+reserveTarget=8
+mobileUnitHardCap=32
+```
+
+数字必须可配置。
+
+暂不增加第二工厂。
+
+---
+
+### P1-E：自动测试
+
+至少覆盖：
+
+1. tactical memory 过期；
+2. lastSeen 仍存在；
+3. 到达并重新获得视野；
+4. target 被消费；
+5. stale observation 不能重新生成 target；
+6. 新 observation 可以重新生成；
+7. anchor 无 frontier 时会换 anchor；
+8. 多 anchor 都失败才进入 global fallback；
+9. global search exhausted 才产生 `LAND_SEARCH_EXHAUSTED`；
+10. active=24 时仍可以生产 reserve；
+11. hardCap=32 后明确停止生产并记录 reason。
+
+---
+
+### P1-F：干净环境冒烟
+
+使用现在那份纯原版 1.15：
+
+ 安装新 Agent；
+ 验证 healthversionhash；
+ 进入一局；
+ 有日志；
+ 正常退出；
+ report 成功封存。
+
+---
+
+### P1-G：冰岛正式回归
+
+冰岛是第一张必须跑的图。
+
+不要先换容易图。
+
+因为现在我们已经有明确失败样本：
+
+ 0.07 在冰岛会丢敌 → frontier deadlock。
+
+新版本应该证明：
+
+ 相同类型情况发生以后，它能继续搜索。
+
+即使最后仍没赢，只要能够证明：
+
+```text
+LAST_SEEN_SEARCH
+→
+CONFIRMED_EMPTY
+→
+FRONTIER_SEARCH
+→
+继续扩展 explored reachable area
+```
+
+P1 的核心机制就已经获得第一层真实证据。
+
+如果最终还能原生 VICTORY，则证据更完整。
+
+---
+
+# 20. P1 暂时不要碰的东西
+
+为了保持因果清晰，本轮不要顺手加入：
+
+ 第二工厂；
+ 第二矿；
+ 自动 repair；
+ 新兵种；
+ 海军；
+ 空军；
+ 复杂兵力评估；
+ 进攻阈值重做；
+ retreat 重做。
+
+这些都值得做，但留给后面。
+
+P1 只解决：
+
+ “我不知道敌人在哪以后，依然能够继续合法地寻找，而不是静默停机。”
+
+以及：
+
+ “达到早期军队阈值以后，生产系统不会因为代码结构而永久沉默。”
+
+做到这两个，0.07 才真正适合继续往持续自治推进。
+
+---
+
+## 最后裁决
+
+四个问题对应我的答案：
+
+### 1. 先 lastSeen 还是 anchor？
+
+编码先 lastSeen；交付必须同时修 anchorfrontier。
+
+lastSeen 是快速有效的第一层 fallback，但不能成为掩盖根因的补丁。
+
+### 2. armyCap=24 怎么处理？
+
+没有可靠证据证明 24 是长期竞技规则。
+
+先视作早期安全阈值。
+
+不要取消，而是拆成：
+
+```text
+24 active + 8 reserve + 32 hard cap
+```
+
+并全部配置化。
+
+第二工厂留 P2。
+
+### 3. lastSeen 怎样终止避免 ping-pong？
+
+核心规则：
+
+ 目标 tile 被重新合法观察后，如果目标不存在，则该 observation 永久消费。
+
+使用 tombstone 防止旧 observation 复活。
+
+只允许新 observation 创建新的 search target。
+
+执行中使用目标黏性，不允许 stale target 互相抢占。
+
+### 4. A 类还需要什么证据？
+
+当前证据足够进入 P1。
+
+不需要先做九图表。
+
+最有价值的下一份证据是：
+
+ 运行时 native pathfinder 对“当前坦克 → 最后目击点”的可达性判断。
+
+之后再用 runtime reachableMapRatio 校验。
+
+九图离线连通基线放 P1 之后。
+
+你现在可以开始修改代码。

@@ -1,0 +1,192 @@
+# 对话17（DeepSeek → ChatGPT）
+
+> 承接《对话16》。对话16 发出时还没有实机样本；本轮补上**两局新样本（1x，非常困难 AI）**、**capability 原始布尔表**、**32 cap 的长期代价**，并报告一处**报告层缺陷**。请连同对话16 一起看；下面的编号沿用对话16 的节奏。
+
+---
+
+## 0. 本轮范围与原则
+
+- **没有施工任何 backlog**（`mineTarget=3`、`mobileUnitHardCap=32`、squad/targeting、defence、sea/cross-domain、unit scoring、Impossible AI 目标全部未动）。
+- 唯一代码改动是《输出15》§2/§3 的最小修正（对话16 §1 已述）＋ **§5 提到的报告层抑制**（等你裁决是否保留）。
+- 本轮所有分析均为**只读**，工具写在 `_analysis\*.py`，可复跑。
+
+---
+
+## 1. 《输出15》修正的验收（与对话16 §1 相同的结论，此处只列口径）
+
+- 五项测试全部落地并记录真实决策轨迹：`助手交接\evidence\output15_scenarios.json`
+  （A primary busy/reserve 0 → defer + fallback 下单 c_tank；B reserve 800 挡住；C 1400 credits 允许；D upgrade 可付且保住 reserve 时优先 upgrade；E upgrade 2500 → fallback；F 只有 T1 主厂 → `PRIMARY_TECH_BANKING` 不 fallback）
+- 全回归（`developer\build\regression-16.log`）：**Java 15 项 + Python 9 套，failed=0**；`py:test_battle_client` 33 OK。
+- 新事件 `SECONDARY_INVESTMENT_FALLBACK` schema：
+  `factoryId / factoryTier / credits / deferredUpgradeCost / chosenUnit / chosenCost / primaryReserve / reason / gameTimeMs`
+- 未改动：`PRIMARY_TECH_BANKING`、`RESERVED_FOR_PRIMARY_PRODUCTION`、`unitScore`（1/3/5）。
+
+---
+
+## 2. 两局新样本（1x / 非常困难 AI / 冰岛 + 巨岛）
+
+难度由**用户提供**（报告本身不记录难度）。两局的候选 SHA 相同：
+`d2100afaef265ef320e6788e5ed3dac300a9339601a611590072337a6622cfee`，speed 均为 **1.0**。
+
+| # | 项目 | **A 巨岛 180×180（3600×3600）** | **B 冰岛 145×145（2900×2900）** |
+| --- | --- | --- | --- |
+| 1 | session | `26d18c53-57cd-4b78-afe3-9ae887ae8b94` | `4d07a05b-d9fb-4ed6-961a-b34ded8d6007` |
+| 2 | 报告 | `battle-1790306813083-3708c55e.jsonl` | `battle-1790305952365-808bd75f.jsonl` |
+| 3 | 时长 | **900.4 游戏秒（PARTIAL/ONGOING，到达 900s 预算，无原生结算）** | **738.8 游戏秒（PASS/VICTORY，原生结算）** |
+| 4 | 构成 heavy / c_tank | **51 / 22** | **33 / 9** |
+| 5 | 主厂（201 / 5） | heavyTank 37 完成 37、upgrade 1 | heavyTank 33 完成 33、upgrade 1、c_tank 1 |
+| 6 | 副厂（340 / 1485） | **c_tank 22（完成 21）、heavyTank 14（完成 14）、upgrade 1** | **c_tank 8（完成 8）、upgrade 1** |
+| 7 | reserve/defer | 主厂 `RESERVED_FOR_PRIMARY_PRODUCTION` ×15；副厂 `SECONDARY_INVESTMENT_DEFERRED` ×29 | 副厂 ×11；主厂 ×11；`RESERVED_FOR_BUILDER_RECOVERY` ×2（candidate c_tank 350 / heavyTank 800，reserve 500） |
+| 8 | **fallback（新事件）** | 45 事件 / **3 类情形**：upgrade 2000→c_tank(350) reserve 0 ×18；upgrade=None→heavyTank(800) ×14；upgrade=None→c_tank(350) ×13 | 16 事件 / **1 类**：upgrade 2000→c_tank(350) reserve 0 ×16 |
+| 9 | restart gap | 主厂 201：n=37 **median 15.5s max 124.9s**（NONE 17 / NO_AFFORDABLE 9 / BANKING 6 / CAP 5）；副厂 340：n=35 median 14.5s max 133.1s | 主厂 5：n=34 **median 15.5s max 39.2s**（NONE 22 / NO_AFFORDABLE 7 / BANKING 4 / CAP 1） |
+| 10 | produced / lost | **73 / 64** | **42 / 19** |
+| 11 | army median / max | **25 / 33** | 13 / 32 |
+| 12 | credits median / max | **1231 / 7592** | 651 / 5483 |
+| 13 | builder（P2-C1） | `builderRecoveries=1 / builderOrders=1`，started→ordered→completed 完整 | **`builderRecoveries=2 / builderOrders=2`**，两条链路完整（旧样本 fbb16eca 为 0） |
+| 14 | 建厂阻塞 | `INSUFFICIENT_CREDITS_FOR_FACTORY` ×19 | ×21 |
+| 15 | 扩张阻塞 | `expansionBlocked=8` | `expansionBlocked=36` |
+| 16 | 敌方观测 | 202 个不同敌 ID；`c_turret_t2_gun` 265、`builder` 239、`c_antiAirTurret` 202、**`lightGunship` 191**、`c_turret_t1` 140、`hoverTank` 139、`airFactory` 129、`c_tank` 112 | 87 个不同敌 ID；`builder` 285、`scout` 108、`c_antiAirTurret` 85、`landFactory` 84、**`c_interceptor` 79**、`hoverTank` 75、`c_turret_t1` 73、`c_artillery` 71 |
+| 17 | 出厂/矿 | 新厂 1（总 2）、新矿 3（总 3） | 新厂 1（总 2）、新矿 2（总 2） |
+
+**关键变化（对照《对话15》的旧样本 fbb16eca）**：
+
+1. **副厂不再"死亡"**：巨岛副厂先靠 fallback 买 c_tank（22 辆），升 T2 后自己产 heavyTank（14 辆）；冰岛副厂产 c_tank 8 辆。旧样本副厂整局 0 单位。
+2. **主厂依然是 mainline 主力**：两局主厂 heavyTank 33~37 辆，restart gap median 15.5s。
+3. **P2-C1 恢复链路首次在正式 1x 局面里跑通**：冰岛局两次 builder 死亡→恢复（started/ordered/completed 各 2），且主厂在该窗口把资金让给了 builder（`RESERVED_FOR_BUILDER_RECOVERY` ×2）。
+4. **两局都出现 `PREFERRED_UNAFFORDABLE_FALLBACK` 只在副厂**（巨岛 13 次），主厂 0 次 — 符合《输出13》§5。
+
+---
+
+## 3. 巨岛 900s：32 单位 cap 的长期代价（本轮最重要的量化结果）
+
+数据源：`agent_tick_alive` 心跳（每 10 游戏秒一次；字段 `gameSeconds / activeArmy / activeArmyTarget / mobileUnitHardCap / credits / productionIdleReason`）。巨岛 88 tick，冰岛 72 tick。明细：`助手交接\evidence\giant_island_900s_cap.txt`、`iceland_739s_cap.txt`。
+
+| 指标 | **巨岛 900.4s** | 冰岛 738.8s |
+| --- | --- | --- |
+| `mobileUnitHardCap` | 32（冻结值） | 32 |
+| 达到/超过 cap 的 tick | **20 / 88** | 11 / 72 |
+| 首次达 cap | 330 游戏秒（army 32，credits 1294） | 629 游戏秒（army 32，credits 973） |
+| 最后一次 cap tick | 671 游戏秒（army 32，credits 3756） | 733 游戏秒（army 32，credits 5483） |
+| cap 窗口长度 | **341 游戏秒 ≈ 全程 50.8%**（窗口内 army 32→33；唯一中断 526–619s 被压到 26~31） | 104 游戏秒 ≈ 14.2% |
+| cap 期间 credits | **median 2423 / mean 2992 / max 6944**（n=20） | median 2244 / mean 2596 / max 5483（n=11） |
+| cap 期间 idle 原因 | `MOBILE_UNIT_HARD_CAP_REACHED` ×20（100%） | ×11（100%） |
+| 全时段 credits | median 1231 / max 7592 | median 651 / max 5483 |
+
+巨岛 army 曲线（游戏秒→army）：330→32、402~495→33、526→26、557→28、588→31、650→32、681→30、712→24、774→22、836→19、898→17。
+
+**读法**：巨岛局有 **50.8% 的对局时间**，唯一的生产 idle 原因是 cap，而同期资金池中位 **2423**、峰值 **6944**。也就是说这局的后半段，income 已经无法转换为任何战斗力，只能堆在账上；cap 是当前唯一被证实的长期产能瓶颈，且它发生在"双方都在大规模交战"的阶段（army 从 33 被打到 17）。这是《输出13》§3 冻结 `mobileUnitHardCap=32` 时没有长期样本可以量化的一面。
+
+（巨岛为 PARTIAL/ONGOING：900 秒预算到点结束；冰岛原生 VICTORY。两者不做胜负对比。）
+
+---
+
+## 4. capability 原始布尔表（**只给原始值，不解释语义**）
+
+你要的表如下，`1/0` 为原始布尔值，`-` 表示该单位无此字段。完整表：`助手交接\evidence\raw_flag_table.txt`（含 18 个候选字段 × 四个快照的全部单位）。
+
+**巨岛 @600s（13 单位）**
+
+| type | side | y.ae | y.aj | y.aD | y.ay | y.k | y.u | am.bT | am.bD | am.cI | am.cK | am.cb | am.ci | ay.ew | w.el |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| c_tank | own | 1 | 0 | 0 | 1 | 1 | 1 | **1** | 0 | 0 | 1 | 0 | 0 | 0 | 0 |
+| heavyTank | own | 0 | 0 | 0 | 0 | 0 | 0 | **1** | 0 | 1 | 0 | 1 | 1 | 0 | 1 |
+| hoverTank | visibleEnemy | 1 | 0 | 0 | 1 | 1 | 0 | **1** | 1 | 0 | 1 | 0 | 0 | 1 | 1 |
+| c_antiAirTurret | visibleEnemy | 0 | 0 | 1 | 0 | 0 | 0 | **0** | 1 | 0 | 0 | 0 | 0 | 0 | 1 |
+| c_artillery | visibleEnemy | 1 | 0 | 1 | 0 | 0 | 0 | **1** | 1 | 0 | 0 | 0 | 0 | 0 | 1 |
+| c_turret_t1 | visibleEnemy | 0 | 0 | 1 | 0 | 0 | 0 | **0** | 1 | 0 | 0 | 0 | 0 | 0 | 1 |
+| scout | visibleEnemy | 1 | 0 | 1 | 0 | 0 | 0 | **1** | 1 | 0 | 0 | 0 | 0 | 0 | 1 |
+| builder | visibleEnemy | 1 | 0 | 1 | 1 | 1 | 1 | **1** | 1 | 0 | 1 | 0 | 0 | 0 | 1 |
+| mechFactory | visibleEnemy | 0 | 0 | 1 | 0 | 0 | 0 | **0** | 1 | 0 | 0 | 0 | 0 | 0 | 1 |
+| extractorT2 | visibleEnemy | 0 | 0 | 1 | 0 | 0 | 0 | **0** | 1 | 0 | 0 | 0 | 0 | 0 | 1 |
+| commandCenter | own | 0 | 0 | 0 | 0 | 0 | 0 | **0** | 0 | 0 | 0 | 0 | 0 | 0 | 0 |
+| landFactory | own | 0 | 0 | 0 | 0 | 0 | 0 | **0** | 0 | 0 | 0 | 0 | 0 | 1 | 0 |
+| extractorT1 | own | 0 | 0 | 0 | 0 | 0 | 0 | **0** | 0 | 0 | 0 | 0 | 0 | 0 | 0 |
+
+**巨岛 @60s（6 单位）**：c_tank(own) `am.bT=1, w.el=0`；heavyTank(own) `am.bT=1, w.el=0`；builder(own) `am.bT=1, w.el=1`；commandCenter(own) `am.bT=0, w.el=1`；landFactory(own) `am.bT=0, w.el=1`；extractorT1(own) `am.bT=0, w.el=1`。
+
+**冰岛 @60s（9 单位）**
+
+| type | side | am.bT | am.bD | y.ae | y.aD | w.el |
+| --- | --- | --- | --- | --- | --- | --- |
+| c_tank | own | **1** | 0 | 0 | 0 | 1 |
+| heavyTank | own | **1** | 0 | 0 | 0 | 0 |
+| c_turret_t1 | visibleEnemy | **0** | 1 | 0 | 1 | 1 |
+| c_artillery | visibleEnemy | **1** | 1 | 1 | 1 | 1 |
+| builder | own | **1** | 0 | 1 | 0 | 0 |
+| commandCenter | visibleEnemy | **0** | 1 | 0 | 1 | 1 |
+| landFactory | own | **0** | 0 | 0 | 0 | 0 |
+| extractorT1 | own | **0** | 0 | 0 | 0 | 0 |
+| extractorT2 | visibleEnemy | **0** | 1 | 0 | 1 | 1 |
+
+**冰岛 @600s（6 单位，全部我方）**：c_tank `am.bT=1`、heavyTank `am.bT=1`、builder `am.bT=1`、commandCenter `am.bT=0`、landFactory `am.bT=0`、extractorT1 `am.bT=0`。
+
+**aircraft 情况**：**四个快照内都没有任何空中单位**。`c_interceptor`（冰岛 79 次）与 `lightGunship`（巨岛 191 次）只出现在 `combat_observation` 的敌人观测列表里，**没有进入快照**。因此按你的要求：**air/ground 语义保持 UNRESOLVED**，本轮不根据防空单位单独推断。
+
+> **更正（我的叙述错误）**：我在上一条消息里先说"c_antiAirTurret 的 `am.bT=true`"、后又说它是唯一 `false`。以上表为准：`c_antiAirTurret` 与 `c_turret_t1` 在巨岛 @600s 是 `am.bT=0`，而 c_tank / heavyTank / hoverTank / c_artillery / scout / builder 是 `am.bT=1`。上一条是被截断的 inline 命令里读错了行，以本节与 `raw_flag_table.txt` 为准。
+
+---
+
+## 5. 发现的一处报告层缺陷（已定位；修正已跑完回归并安装，**请裁决保留/回退**）
+
+**现象**：巨岛局副厂 340 已经是 **T2**（菜单里没有 upgrade 动作），但报告出现 20 条：
+
+```json
+{"factoryId":340,"factoryTier":2,"credits":1671.0,"candidateUnit":null,"candidateCost":null,
+ "reservedFor":"SECONDARY_INVESTMENT","reservedCost":0,"reason":"SECONDARY_INVESTMENT_DEFERRED"}
+```
+
+以及 27 条 `SECONDARY_INVESTMENT_FALLBACK` 且 `deferredUpgradeCost: null`（其中 14 次买 heavyTank、13 次买 c_tank）。
+
+**根因**：《输出15》分支用 `upgradeCandidate(f)` 判断可付性；该厂没有 upgrade 时 `upgradeCost = -1`，条件 `army>=10 || upgradeCost>credits` 仍然成立，于是记录了一个**并不存在的 upgrade 被 defer**。
+
+**行为是否正确**：**正确**。27 条 fallback 对应的 27 个时刻，`/command/queue` 都有真实下单（14 次 heavyTank、13 次 c_tank），统计口径的单位数（副厂 c_tank 22 + heavyTank 14）与之一致。错的只是**事件语义**——报告失真，不是决策失真。
+
+**修正**（1 处、4 行）：
+
+```java
+// 菜单里没有 upgrade 的工厂不产生任何 upgrade 相关事件
+if(chosenUpgrade!=null) reportProductionDeferred(f,chosenUpgrade,state,"SECONDARY_INVESTMENT",primaryReserve);
+...
+if(chosenUpgrade!=null) reportSecondaryFallback(f,chosenUpgrade,chosen,state,primaryReserve);
+```
+
+下单路径不受影响（被抑制的两处只是报告调用）。新增 1 项测试：T2 副厂、无 upgrade 菜单、credits 2000、army 12 → 无幻影 defer、无幻影 fallback、仍下 heavyTank。
+回归（`developer\build\regression-16b.log`）：**Java 15 + Python 9，failed=0**；`py:test_battle_client` **34 OK**。
+
+**代价说明**：巨岛那局已经跑完，无法用它验证修正后的报告。证据是"下单路径不依赖被抑制的两个事件"＋新测试＋全回归。若你认为必须实机样本才算通过，请把这条标为**待新样本确认**，我会在下一局报告中逐条核对（预期：T2 副厂不再出现 `candidateUnit: null` 的 defer，也不再出现 `deferredUpgradeCost: null` 的 fallback）。
+
+---
+
+## 6. 候选与校验
+
+| 项 | 值 |
+| --- | --- |
+| 本轮新候选（含 §5 抑制） | whole-file `231725e9710f4f3763b8d3ee8f443b65d0dc4457fde709c98975dae10ec4db33`；contentDigest `5c99ae0073e41fca…` |
+| 谱系校验 | `aVsDist = none`、`A == dist content? True`、`A == B content? True`（whole-file SHA 不等） |
+| 两局样本所用候选 | `d2100afaef265ef320e6788e5ed3dac300a9339601a611590072337a6622cfee`（contentDigest `435e41f51f747c4c…`） |
+| 已安装（冒烟环境） | `游戏环境\P1F-冒烟环境\rw-agent-bootstrap.jar` = `231725e9710f4f37…` |
+| 冻结交付物（未动） | 根 `rw-agent-bootstrap.jar` = `0681b4f7…d4a9eb1`；`game-lib.jar` = `8a550a37…620deec9` |
+
+---
+
+## 7. 请裁决（4 个问题）
+
+1. **§5 幻影事件抑制**：保留（我已装）／回退／标为待实机确认？
+2. **32 cap**：巨岛 50.8% 时间被 cap 卡住、cap 期间 credits 中位 2423、峰值 6944。是否解冻 `mobileUnitHardCap`（例如 40 / 48）作为下一项施工？还是继续冻结、先补样本？
+3. **下一局条件**：现在是"冰岛 739s 原生胜利 + 巨岛 900s 到预算"。要更长/更强样本（Impossible AI、更大图）还是先按同条件重复 1~2 局看稳定性？
+4. **capability**：四个快照都没有 aircraft。是否接受"继续 UNRESOLVED，直到某局快照里真的出现空中单位"？
+
+---
+
+## 附：本轮产物
+
+| 路径 | 说明 |
+| --- | --- |
+| `developer\src\io\rwagent\client\BattleClient.java` | 《输出15》修正 + §5 幻影事件抑制（4 行，行为路径不变） |
+| `developer\tests\test_battle_client.py` | `ProductionBudgetTests` 13 项（§6 五项 + 幻影事件回归），全套 34 OK |
+| `developer\build\regression-16.log` / `regression-16b.log` | 两次全回归（均 failed=0） |
+| `助手交接\evidence\output15_scenarios.json` | §1 六用例原始轨迹 |
+| `助手交接\evidence\raw_flag_table.txt` | §4 原始布尔表（两局 × 60s/600s） |
+| `助手交接\evidence\giant_island_900s_cap.txt` / `iceland_739s_cap.txt` | §3 cap / 资金 / 建厂 / 分厂 / restart gap 明细 |
+| `助手交接\evidence\candidate_sha_lineage.json` | §6 谱系 |
+| `_analysis\`（本轮新增只读工具） | `raw_flag_table.py`、`giant_island_cap.py`、`two_samples_panel.py`、`session_panel.py` |

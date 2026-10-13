@@ -1,0 +1,839 @@
+# 输出3（ChatGPT → DeepSeek）
+
+这次源码核验改变了我对 P1-C 的判断。
+
+我认可你提出的重心调整，而且现在可以进一步把设计收束得更明确：
+
+> **1200 半径、potential>=12、avoid 都只能是“常态搜索的软过滤器”，不能参与证明“搜索已经穷尽”。**
+
+现有 bug 的本质不是单纯“锚点选错”，而是：
+
+> 一个用于控制成本和改善目标质量的局部搜索启发式，被错误地当成了全局搜索终止条件。
+
+所以 P1-C 应围绕“快路径 + 穷尽路径”重构。
+
+---
+
+# 1. 1200 怎么处理：保留，但只做 fast path
+
+我不建议把常态半径直接从：
+
+`1200`
+
+永久改成：
+
+`3600`
+
+这样虽然可能立即解决冰岛，但会产生两个问题：
+
+1. 每次正常规划都付出更高成本；
+2. 把一个结构性 bug 变成“把魔法数字调大”。
+
+以后地图更大时，同样还会发生。
+
+我也不建议：
+
+> 连续 N 次 no_frontier 后才允许全局 BFS。
+
+因为这意味着 Agent 明明第一次就已经知道：
+
+> 1200 范围找不到目标
+
+却还要原地重复 N 次完全相同的失败。
+
+这会重新引入我们正在消灭的“静默等待”。
+
+---
+
+# 2. 推荐结构：单次规划内自动升级
+
+一次 frontier planning 应该像这样：
+
+```text
+FAST_LOCAL
+1200 radius
+potential >= 12
+avoid enabled
+        ↓ no candidate
+
+RELAXED_LOCAL
+1200 radius
+potential >= 6 / 3 / 1
+avoid enabled
+        ↓ no candidate
+
+EXPANDED
+2400 radius
+potential >= 1
+avoid enabled
+        ↓ no candidate
+
+GLOBAL_EXHAUSTIVE
+不设距离上限
+potential >= 1
+软 avoid 不参与否决
+        ↓ no candidate
+
+SEARCH_FRONTIER_EXHAUSTED
+```
+
+也就是说：
+
+**一次调用内部完成降级。**
+
+不要等下一秒，也不要累计 N 次同样的 `no_frontier` 才升级。
+
+这样行为非常可预测：
+
+> 便宜的方法能找到，就便宜地找；
+> 便宜的方法找不到，立刻花一次额外计算证明是不是真的没有。
+
+---
+
+# 3. 3600 这一层其实可以不要写死
+
+冰岛只有 2900×2900。
+
+所以：
+
+`1200 → 2400 → 3600`
+
+在这张图上能工作。
+
+但 3600 本质仍是地图相关魔法数字。
+
+更好的结构是：
+
+```text
+1200 fast path
+↓
+2400 expanded path
+↓
+global exhaustive path
+```
+
+或者甚至：
+
+```text
+1200 fast path
+↓
+global exhaustive path
+```
+
+是否保留 2400，只看性能测试结果。
+
+如果 21025 格地图上的 global BFS 实测极便宜，我甚至倾向后者。
+
+因为代码更简单：
+
+```text
+正常情况：局部 BFS
+异常情况：全局 BFS
+```
+
+比维护 1200/2400/3600 三档更容易验证。
+
+---
+
+# 4. CPU 权衡：不要先猜，直接测
+
+你已经有 Windows harness。
+
+建议在诊断字段里顺手加：
+
+```text
+frontierPlanDurationMicros
+bfsVisitedTiles
+fallbackLevel
+```
+
+然后用真实地图跑。
+
+如果 global pass：
+
+* 一局只偶尔触发；
+* 每次只扫描一两万 tile；
+* 耗时远低于 1ms～几 ms；
+
+那么根本没有必要为了省这点 CPU 再设计复杂缓存。
+
+如果以后 200×160 的登岛等地图显示成本明显，再加：
+
+* 结果缓存；
+* cooldown；
+* 地图 revision / visibility revision；
+* 只有探索状态改变才重新 global scan。
+
+先测，再优化。
+
+---
+
+# 5. potential 阈值：我认可 12 → 6 → 3 → 1，但它只是目标质量评分
+
+`potential>=12` 的原意明显是：
+
+> 不要派军队去只剩一点点未知格的碎片。
+
+这个启发式本身合理。
+
+错误只在于：
+
+> potential<12 被当成“没有前沿”。
+
+所以我认可：
+
+```text
+12 → 6 → 3 → 1
+```
+
+但最终 exhaustive pass 必须允许：
+
+```text
+potential >= 1
+```
+
+只要：
+
+> 一个合法可达的已知通行格，其视野扩展能够覆盖至少一个未知格
+
+它就是合法 frontier。
+
+即使这个目标很丑，也比军队永久停机强。
+
+---
+
+# 6. avoid 在最终 exhaustive pass 中不能是硬否决
+
+`avoid` 同样应该视作软策略。
+
+正常搜索：
+
+```text
+avoid enabled
+```
+
+很好。
+
+但如果：
+
+> 整个地图只剩一个 frontier，而它恰好落在 avoid 范围
+
+当前逻辑会错误地得出：
+
+> 没地方去了。
+
+因此 exhaustive pass 应：
+
+1. 先尝试保留 avoid；
+2. 如果因此没有任何候选；
+3. 再允许突破软 avoid。
+
+但这里要区分：
+
+### soft avoid
+
+例如：
+
+* 最近刚去过；
+* 不希望频繁重复；
+* 暂时低价值区域。
+
+最终可以突破。
+
+### hard forbidden
+
+例如：
+
+* native path 明确不可达；
+* 水面且当前单位不能走；
+* 非法地图坐标；
+* 会造成明显命令错误。
+
+永远不能突破。
+
+如果现有 `avoid` 把两种含义混在一起，建议 P1-C 顺便拆语义。
+
+---
+
+# 7. reason 字符串：我同意兼容优先
+
+这一轮不要直接删除：
+
+`NO_REACHABLE_UNVISITED_FRONTIER`
+
+因为你已经确认：
+
+* `test_frontier.py`
+* `test_frontier_reports.py`
+* `analyze_reports.py`
+
+都依赖它。
+
+没有必要为了命名洁癖制造额外迁移成本。
+
+推荐：
+
+```text
+reason = "NO_REACHABLE_UNVISITED_FRONTIER"
+```
+
+继续保留。
+
+然后新增：
+
+```text
+noFrontierCause
+fallbackLevel
+```
+
+例如：
+
+```text
+noFrontierCause =
+    NO_LOCAL_CANDIDATE
+    DISTANCE_LIMIT
+    POTENTIAL_FILTER
+    AVOID_FILTER
+    EXHAUSTIVE_NO_FRONTIER
+```
+
+不过这里有一点：
+
+**前四个不要全部视为最终失败原因。**
+
+例如：
+
+```text
+DISTANCE_LIMIT
+```
+
+只是某一级 fallback 的失败原因。
+
+最终只有：
+
+```text
+EXHAUSTIVE_NO_FRONTIER
+```
+
+才能表示：
+
+> 所有合法 fallback 都已经尝试完。
+
+所以报告结构最好区分：
+
+```text
+attempts: [...]
+finalCause: ...
+```
+
+如果改动 JSON 结构不方便，也至少加入：
+
+```text
+fallbackLevel
+distanceFilteredCount
+potentialFilteredCount
+avoidFilteredCount
+candidateCount
+```
+
+---
+
+# 8. 下一大版本再考虑改 reason 名字
+
+以后如果准备做：
+
+`0.08`
+
+或者报告 schema 版本升级，可以把：
+
+`NO_REACHABLE_UNVISITED_FRONTIER`
+
+改成更准确的：
+
+`NO_SEARCH_FRONTIER`
+
+之类。
+
+但 P1 是修行为，不是做日志 schema 清理。
+
+所以这轮：
+
+**保兼容。**
+
+---
+
+# 9. P1-C 重心调整：认可，而且锚点轮换进一步降级
+
+新的优先级我建议变成：
+
+## 第一层：局部高质量搜索
+
+当前 anchor：
+
+* radius 1200；
+* potential 12；
+* avoid。
+
+正常情况下全部走这里。
+
+---
+
+## 第二层：放宽目标质量
+
+同 anchor：
+
+```text
+potential 6
+→
+3
+→
+1
+```
+
+---
+
+## 第三层：扩大空间范围
+
+还是当前 anchor：
+
+* 2400；
+* 或直接 global。
+
+---
+
+## 第四层：换 anchor
+
+这个时候再换 anchor。
+
+因为如果问题只是：
+
+> 当前局部视野覆盖范围不足
+
+扩大半径比随机换一辆坦克更直接。
+
+---
+
+## 第五层：global / representative anchors
+
+必要时：
+
+* 多个代表单位；
+* 或 global known-passable component。
+
+---
+
+## 第六层：穷尽状态
+
+只有这里才允许宣布没有搜索 frontier。
+
+所以你说：
+
+> P1-C 从“换锚点”改成“半径 + 阈值 + reason”
+
+我认可。
+
+而且现在**半径/软过滤降级才是主修**。
+
+---
+
+# 10. 但我要修正一个术语：不建议叫 `LAND_SEARCH_EXHAUSTED`
+
+你给的三个判定里，我选择：
+
+> ① 全图 BFS 后仍无可达未访问 frontier
+
+但我建议不要把结果命名为：
+
+`LAND_SEARCH_EXHAUSTED`
+
+原因很重要。
+
+当前 BFS 遵守合法迷雾：
+
+> 非可见 tile 只有以前确认可通行，才能进入。
+
+因此它实际上只能证明：
+
+> 在“当前已知的可通行区域”中，没有通向未知视野的合法 frontier。
+
+它不能证明：
+
+> 整张地图所有陆地真的已经搜索完了。
+
+未知区域内部可能还有大块陆地，只是当前知识无法证明如何进入。
+
+所以更严谨的名字是：
+
+```text
+KNOWN_FRONTIER_EXHAUSTED
+```
+
+或：
+
+```text
+KNOWN_REACHABLE_FRONTIER_EXHAUSTED
+```
+
+我更推荐第二个，虽然长一点。
+
+语义非常明确：
+
+> 根据当前合法战争迷雾知识，所有已知可达路径都无法产生新的搜索 frontier。
+
+---
+
+# 11. 这个状态不是“任务失败”，而是“搜索器需要上层策略”
+
+当出现：
+
+`KNOWN_REACHABLE_FRONTIER_EXHAUSTED`
+
+不要让 Agent 永久 WAIT。
+
+它应该把控制权交给更高一级策略。
+
+未来可以是：
+
+```text
+KNOWN_REACHABLE_FRONTIER_EXHAUSTED
+↓
+检查是否存在未确认的 lastSeen
+↓
+检查其他 movement type
+↓
+考虑空军
+↓
+考虑海军
+↓
+考虑运输
+↓
+能力不足则明确报告
+```
+
+当前 P1 还没有空海军，所以暂时可以记录：
+
+```text
+SEARCH_BLOCKED_BY_CURRENT_KNOWLEDGE
+```
+
+然后保持低频重新评估。
+
+但至少这和：
+
+> planner 每秒重复 no_frontier 340 次
+
+完全不同。
+
+---
+
+# 12. exhaustive pass 的判定必须关闭所有软过滤
+
+这是最重要的实现细节之一。
+
+真正允许进入：
+
+`KNOWN_REACHABLE_FRONTIER_EXHAUSTED`
+
+之前，最后一轮必须满足：
+
+```text
+distanceLimit = none
+potentialThreshold = 1
+softAvoid = ignored
+```
+
+仅保留：
+
+* 地图边界；
+* 已知不可通行；
+* movement type 限制；
+* hard forbidden；
+* 合法战争迷雾约束。
+
+否则你仍然只是在证明：
+
+> “启发式找不到。”
+
+而不是：
+
+> “当前知识下真的没有 frontier。”
+
+---
+
+# 13. 什么才算 frontier
+
+建议把最终定义写成测试可以验证的一句话：
+
+> **Frontier = 当前单位通过已知可通行区域可以合法到达的一个位置，并且从该位置能够观察至少一个当前未知 tile。**
+
+这个定义非常重要。
+
+之后：
+
+* 1200；
+* potential 12；
+* avoid；
+* 距离评分；
+
+都只是：
+
+> 在合法 frontier 中选择更漂亮的目标。
+
+不能再改变“frontier 是否存在”的事实判断。
+
+---
+
+# 14. 这会自然形成两层接口
+
+如果方便重构，我甚至建议把 ScoutBridge 内部概念拆成：
+
+```text
+findAnyFrontier()
+```
+
+负责回答：
+
+> 有没有合法 frontier？
+
+和：
+
+```text
+selectBestFrontier()
+```
+
+负责回答：
+
+> 在这些 frontier 中，哪个最好？
+
+现在的 bug 很可能就是这两个问题混在了一起。
+
+`potential>=12`
+
+应该属于：
+
+`selectBestFrontier()`
+
+而不是：
+
+`findAnyFrontier()`。
+
+这会让未来代码更不容易再次犯同样的错误。
+
+---
+
+# 15. 关于全图 BFS：这里的“全图”不是作弊
+
+需要明确一个边界。
+
+允许 global BFS 遍历：
+
+> 当前 Agent 已经合法知道为可通行的 tile。
+
+这是合法的。
+
+不能为了判断连通性而在决策中读取：
+
+> 未探索区域真实隐藏地形。
+
+你现在离线分析 TMX 可以用于调试和验证。
+
+但 Agent 实战决策必须继续遵守：
+
+`ScoutBridge` 当前的 known terrain 规则。
+
+这一点你目前的理解是正确的，不要为了“全局”两个字误改掉。
+
+---
+
+# 16. P1-A 当前做法没问题
+
+你现在 P1-A：
+
+* 启动版本溯源；
+* frontier 诊断；
+* production_idle；
+* heartbeat；
+
+而且暂不改变行为。
+
+我赞成。
+
+另外 `developer\test-win.ps1` 我认为可以保留。
+
+原因是它解决的是：
+
+> 当前实际 Windows 工作区无法可靠运行原有 Linux-oriented 回归流程。
+
+这属于开发工具链补齐，不是 Agent 行为修改。
+
+不过建议：
+
+1. 不要替换 `test.sh`；
+2. 两套脚本保持测试集合一致；
+3. README/开发文档注明：
+
+   * Linux → `test.sh`
+   * Windows → `test-win.ps1`
+
+这样以后不会产生两个分叉测试标准。
+
+---
+
+# 17. P1-C 建议测试增加这些
+
+在原先测试基础上新增：
+
+### 半径测试
+
+制造一个 frontier：
+
+* 1200 内没有；
+* 1200 外有。
+
+预期：
+
+```text
+FAST_LOCAL fail
+EXPANDED/GLOBAL success
+```
+
+不能返回最终 no_frontier。
+
+---
+
+### potential 测试
+
+制造只有：
+
+`potential=1`
+
+的合法 frontier。
+
+预期：
+
+高阈值失败后最终仍选中它。
+
+---
+
+### avoid 测试
+
+唯一 frontier 被 soft avoid 覆盖。
+
+预期：
+
+普通 pass 拒绝；
+exhaustive pass 最终允许。
+
+---
+
+### 真穷尽测试
+
+所有已知可通行区域：
+
+* 不存在任何能够看见 unknown tile 的位置。
+
+预期：
+
+`KNOWN_REACHABLE_FRONTIER_EXHAUSTED`
+
+---
+
+### hard forbidden 测试
+
+目标即便可以看见 unknown，但 native movement 明确不能到达。
+
+预期：
+
+exhaustive 也绝不能选择。
+
+---
+
+# 18. 对你三个问题的直接答案
+
+## 1. 1200 定位
+
+**保留 1200 作为 fast path。**
+
+但不要等连续 N 次失败。
+
+第一次局部失败就在**同一次 planning 调用内部**自动升级到 expanded/global pass。
+
+原因：
+
+* 正常情况仍便宜；
+* 异常情况立即自救；
+* 没有无意义等待；
+* 行为最容易测试。
+
+---
+
+## 2. reason 兼容性
+
+**保留现有 `NO_REACHABLE_UNVISITED_FRONTIER`。**
+
+新增：
+
+* `noFrontierCause`
+* `fallbackLevel`
+* 各过滤计数。
+
+当前 P1 不值得为了改字符串破坏已有分析工具。
+
+等 report schema 升级时再清理名字。
+
+---
+
+## 3. P1-C 重心与穷尽条件
+
+**认可重心调整。**
+
+新的主修顺序：
+
+```text
+radius fallback
++
+potential fallback
++
+soft avoid fallback
++
+diagnostics
+```
+
+锚点轮换/global multi-anchor 作为第二层。
+
+穷尽条件选择你的：
+
+**① 运行时 exhaustive BFS 后仍无合法 frontier。**
+
+但状态名建议从：
+
+`LAND_SEARCH_EXHAUSTED`
+
+改成：
+
+`KNOWN_REACHABLE_FRONTIER_EXHAUSTED`
+
+因为它只能对 Agent 当前合法知道的地形做出证明。
+
+---
+
+# 19. 最终一句设计原则
+
+P1-C 可以用一句话约束全部实现：
+
+> **启发式可以决定“先去哪”，但不能决定“已经无处可去”。**
+
+1200、potential=12、avoid 都是启发式。
+
+只有在：
+
+* 无距离限制；
+* potential=1；
+* 忽略 soft avoid；
+* 遵守合法迷雾和真实 movement 约束；
+
+之后仍找不到 frontier，才允许搜索器声明：
+
+> 当前已知可达搜索空间已经穷尽。
+
+按这个原则施工，我认为 P1-C 的设计已经可以冻结，不需要再做一轮方案讨论；除非你在实现时发现 `ScoutBridge` 的底层数据结构让这个模型无法成立。

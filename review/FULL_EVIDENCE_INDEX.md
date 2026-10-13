@@ -14,13 +14,22 @@ Do not confuse ONGOING, PARTIAL or truncated spool with verified VICTORY.
 - `evidence/human-1v9-original/[10p] 10p 西班牙混战_by_MP97.tmx/` : 0.3 MiB
 - `evidence/human-1v9-original/agent 思维架构 仓库 4.txt/` : 0.0 MiB
 - `evidence/human-1v9-original/analysis/` : 9.9 MiB
+- `evidence/human-1v9-original/original-player-telemetry/` : 13.7 MiB
 - `evidence/human-1v9-original/工程师 思路.txt/` : 0.0 MiB
+- `evidence/native-raw/R10E/` : 123.0 MiB
+- `evidence/native-raw/R11B/` : 76.2 MiB
 - `evidence/native-raw/R12/` : 476.3 MiB
+- `evidence/native-raw/R13B/` : 80.4 MiB
+- `evidence/native-raw/R14/` : 63.2 MiB
 - `evidence/native-raw/R15/` : 139.9 MiB
 - `evidence/native-raw/R16/` : 8.0 MiB
 - `evidence/native-raw/R9/` : 379.9 MiB
+- `evidence/validation-archives/R10E_native_validation_text_and_trace.zip/` : 617.1 MiB
+- `evidence/validation-archives/R11B_native_validation_text_and_trace.zip/` : 302.0 MiB
 - `evidence/validation-archives/R12_native_validation_inventory.json/` : 0.1 MiB
 - `evidence/validation-archives/R12_native_validation_text_and_trace.zip/` : 157.1 MiB
+- `evidence/validation-archives/R13B_native_validation_text_and_trace.zip/` : 189.9 MiB
+- `evidence/validation-archives/R14_native_validation_text_and_trace.zip/` : 231.3 MiB
 - `evidence/validation-archives/R15_native_validation_inventory.json/` : 0.0 MiB
 - `evidence/validation-archives/R15_native_validation_text_and_trace.zip/` : 54.9 MiB
 - `evidence/validation-archives/R16_native_validation_inventory.json/` : 0.0 MiB
@@ -32,6 +41,17 @@ Do not confuse ONGOING, PARTIAL or truncated spool with verified VICTORY.
 
 | File | Size (MiB) |
 |---|---:|
+| `evidence/native-raw/R10E/human-kit-runs/20261011-010215-11528/battle-client.log` | 0.00 |
+| `evidence/native-raw/R10E/human-kit-runs/20261011-010215-11528/human-launch.json` | 0.00 |
+| `evidence/native-raw/R10E/human-kit-runs/20261011-010215-11528/rw-agent-live.html` | 0.00 |
+| `evidence/native-raw/R10E/human-kit-runs/20261011-010215-11528/rw-agent-reports/battle-1791651736811-1d8a09ca.jsonl.gz.partial` | 122.97 |
+| `evidence/native-raw/R11B/human-kit-runs/20261011-023343-17624/human-launch.json` | 0.00 |
+| `evidence/native-raw/R11B/human-kit-runs/20261011-023343-17624/rw-agent-human-report.txt` | 0.00 |
+| `evidence/native-raw/R11B/human-kit-runs/20261011-023343-17624/rw-agent-live.html` | 0.00 |
+| `evidence/native-raw/R11B/human-kit-runs/20261011-023343-8804/battle-client.log` | 0.00 |
+| `evidence/native-raw/R11B/human-kit-runs/20261011-023343-8804/human-launch.json` | 0.00 |
+| `evidence/native-raw/R11B/human-kit-runs/20261011-023343-8804/rw-agent-live.html` | 0.00 |
+| `evidence/native-raw/R11B/human-kit-runs/20261011-023343-8804/rw-agent-reports/battle-1791657224802-b50600f4.jsonl.gz.partial` | 76.24 |
 | `evidence/native-raw/R12/human-kit-runs/20261011-101410-26004/battle-client.log` | 0.00 |
 | `evidence/native-raw/R12/human-kit-runs/20261011-101410-26004/human-launch.json` | 0.00 |
 | `evidence/native-raw/R12/human-kit-runs/20261011-101410-26004/rw-agent-human-report.txt` | 0.01 |
@@ -62,6 +82,16 @@ Do not confuse ONGOING, PARTIAL or truncated spool with verified VICTORY.
 | `evidence/native-raw/R12/human-kit-runs/20261012-163621-20336/rw-agent-human-report.txt` | 0.01 |
 | `evidence/native-raw/R12/human-kit-runs/20261012-163621-20336/rw-agent-live.html` | 0.00 |
 | `evidence/native-raw/R12/human-kit-runs/20261012-163621-20336/rw-agent-reports/battle-1791794183471-a91127c7.jsonl.gz` | 57.17 |
+| `evidence/native-raw/R13B/human-kit-runs/20261011-221046-27816/battle-client.log` | 0.00 |
+| `evidence/native-raw/R13B/human-kit-runs/20261011-221046-27816/human-launch.json` | 0.00 |
+| `evidence/native-raw/R13B/human-kit-runs/20261011-221046-27816/rw-agent-live.html` | 0.00 |
+| `evidence/native-raw/R13B/human-kit-runs/20261011-221046-27816/rw-agent-reports/battle-1791727848098-96858e1c.jsonl.gz` | 80.40 |
+| `evidence/native-raw/R14/human-kit-runs/20261012-001307-31880/battle-client.log` | 0.00 |
+| `evidence/native-raw/R14/human-kit-runs/20261012-001307-31880/human-launch.json` | 0.00 |
+| `evidence/native-raw/R14/human-kit-runs/20261012-001307-31880/rw-agent-human-report.txt` | 0.00 |
+| `evidence/native-raw/R14/human-kit-runs/20261012-001307-31880/rw-agent-live.html` | 0.00 |
+| `evidence/native-raw/R14/human-kit-runs/20261012-001307-31880/rw-agent-reports/battle-1791735188908-ebf9207f.jsonl.gz` | 62.60 |
+| `evidence/native-raw/R14/human-kit-runs/20261012-001307-31880/rw-agent-reports/battle-latest.json` | 0.60 |
 | `evidence/native-raw/R15/human-kit-runs/20261012-013746-24200/battle-client.log` | 0.00 |
 | `evidence/native-raw/R15/human-kit-runs/20261012-013746-24200/human-launch.json` | 0.00 |
 | `evidence/native-raw/R15/human-kit-runs/20261012-013746-24200/rw-agent-human-report.txt` | 0.00 |
@@ -98,8 +128,12 @@ Do not confuse ONGOING, PARTIAL or truncated spool with verified VICTORY.
 | `evidence/native-raw/R9/human-kit-runs/20261010-193513-26836/rw-agent-human-report.txt` | 0.01 |
 | `evidence/native-raw/R9/human-kit-runs/20261010-193513-26836/rw-agent-live.html` | 0.01 |
 | `evidence/native-raw/R9/human-kit-runs/20261010-193513-26836/rw-agent-reports/battle-1791632114897-0f1fed76.jsonl.gz` | 206.38 |
+| `evidence/validation-archives/R10E_native_validation_text_and_trace.zip` | 617.08 |
+| `evidence/validation-archives/R11B_native_validation_text_and_trace.zip` | 301.98 |
 | `evidence/validation-archives/R12_native_validation_inventory.json` | 0.06 |
 | `evidence/validation-archives/R12_native_validation_text_and_trace.zip` | 157.14 |
+| `evidence/validation-archives/R13B_native_validation_text_and_trace.zip` | 189.95 |
+| `evidence/validation-archives/R14_native_validation_text_and_trace.zip` | 231.32 |
 | `evidence/validation-archives/R15_native_validation_inventory.json` | 0.04 |
 | `evidence/validation-archives/R15_native_validation_text_and_trace.zip` | 54.92 |
 | `evidence/validation-archives/R16_native_validation_inventory.json` | 0.04 |
@@ -169,4 +203,7 @@ Do not confuse ONGOING, PARTIAL or truncated spool with verified VICTORY.
 | `evidence/human-1v9-original/analysis/trusted_early_0_70.csv` | 0.07 |
 | `evidence/human-1v9-original/analysis/verify_gui_sync.py` | 0.00 |
 | `evidence/human-1v9-original/analysis/z_thread_javap.txt` | 0.01 |
+| `evidence/human-1v9-original/original-player-telemetry/report.html` | 6.87 |
+| `evidence/human-1v9-original/original-player-telemetry/session.rwmetrics` | 6.84 |
+| `evidence/human-1v9-original/original-player-telemetry/summary.json` | 0.00 |
 | `evidence/human-1v9-original/工程师 思路.txt` | 0.00 |

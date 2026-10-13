@@ -1,4 +1,4 @@
-# Never commit proprietary game distributions, third-party fonts, personal settings, credentials or large native runs
+﻿# Never commit proprietary game distributions, third-party fonts, personal settings, credentials or large native runs
 **/runs/
 **/jvm64/
 **/game-lib.jar
@@ -11,9 +11,6 @@
 **/*token*
 **/*password*
 **/replays/
-**/*.replay
-**/*.jsonl.gz
-**/*.partial
 **/*.pyc
 **/__pycache__/
 **/*.log.bak

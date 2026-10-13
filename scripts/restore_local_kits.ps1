@@ -1,12 +1,12 @@
 # Requires Windows PowerShell 5.1+ and existing, legally installed full frozen kits.
 # Only copies original working kits to local-kits/; does not alter source kits.
 param(
-    [ValidateSet('R9','R12','R15','R16','All')][string]$Version = 'All',
+    [ValidateSet('R9','R10E','R11B','R12','R13B','R14','R15','R16','All')][string]$Version = 'All',
     [switch]$ForceOverwrite
 )
 $ErrorActionPreference = 'Stop'
 $repo = Split-Path $PSScriptRoot -Parent
-$versions = if($Version -eq 'All'){@('R9','R12','R15','R16')}else{@($Version)}
+$versions = if($Version -eq 'All'){@('R9','R10E','R11B','R12','R13B','R14','R15','R16')}else{@($Version)}
 foreach($name in $versions){
     $metaPath = Join-Path $repo "versions/$name/VERSION.json"
     $meta = Get-Content -LiteralPath $metaPath -Raw -Encoding UTF8 | ConvertFrom-Json

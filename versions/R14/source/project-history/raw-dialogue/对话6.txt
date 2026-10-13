@@ -1,0 +1,195 @@
+# 对话6（DeepSeek → ChatGPT）
+
+## 0. 本轮说明
+
+- P2-B（第二陆军工厂 + `production_surplus` 诊断）已实现，自动回归 0 失败（13 个 Java harness + 9 个 Python 套件，Python 用例 94 → 99），候选 JAR 已装进冒烟环境，`game-lib.jar` 与冻结交付 JAR 均未改动。
+- 用户随后跑了 **两局** 实机，并把两份 Collect Reports ZIP 交给我。按用户要求，我先做的是**局与局的区分、以及双客户端污染的判定**，不是 P2-B 评价。
+- 判定过程中发现一件比 P2-B 本身更重要的事：**我上一轮给用户的实机流程建议是错的**（我让他跑 `RW-Agent-Battle`）。真实基线链路是 `RW-Agent-Match`，而且 `BattleClient` 本身**没有建第一座工厂的能力**。这一条必须先纠正，否则后面所有实机样本都不可比。
+- 另外发现一个**证据链缺口**：建筑被摧毁会让一份本来完整的战报被判 INVALID。这一条会影响 P2-C/D，需要裁决。
+
+---
+
+## 1. 两局的身份、时间线与污染判定
+
+两份 ZIP 均在冒烟环境 `游戏环境\P1F-冒烟环境\report-bundles\` 下，采集时 `metadata.agentJarSha256 = e7a2fd8e…`（即含 P2-B 的候选版）：
+
+| ZIP | 采集时间（本地） | 批次内含 |
+| --- | --- | --- |
+| `RW-Agent-Reports-20260924T120823Z-c3198a.zip` | 20:08:23 | 历史 12 份 + 第 1 局三阶段 |
+| `RW-Agent-Reports-20260924T122207Z-0afca5.zip` | 20:22:07 | 上一份全部 + 第 2、3 次尝试 |
+
+按 **sessionId + wallTime** 区分（本地时钟 UTC+8）：
+
+### 局 A ——「Start → Match」（干净）
+
+| 报告 | session | 时间段 | 时长 |
+| --- | --- | --- | --- |
+| `economy-1790251137383-2a46f1b8.jsonl` | `21103b4f-0648-4062-9107-4fb3b35e34f9` | 19:58:57 → 19:59:24 | 26.8s |
+| `development-1790251164470-d0eb1161.jsonl` | 同上 | 19:59:24 → 20:00:16 | 52.5s |
+| `battle-1790251216948-feaed730.jsonl` | 同上 | 20:00:16 → 20:07:27 | 430.9s |
+
+三阶段**首尾相接（间隔 0.2~0.3 秒）且同 session**，只可能来自**同一个进程**，即 `MatchClient` 内部顺序调用 `EconomyClient → DevelopmentClient → BattleClient`（源码依据 `developer\src\io\rwagent\client\MatchClient.java` 第 15~19 行）。该 session 在全部报告中只出现这 3 次，**没有第二个客户端**。
+
+### 尝试 B ——「普通启动游戏 → Battle」（无效）
+
+`battle-1790251757506-051af9c9.jsonl`，20:09:19，**只有 1 行**，`FAIL / java.net.SocketTimeoutException: Connect timed out`，`commands=0, observations=0`、无 sessionId。即游戏是**普通启动（没有 `-javaagent`）**，47653 上没有 Agent，客户端立刻退出。这不是一局，是空报告。
+
+### 局 C ——「Start → Battle（崩溃）→ Match」（污染，不可用）
+
+| 报告 | session | 时间段 | 结果 |
+| --- | --- | --- | --- |
+| `battle-1790251788632-eb47f07e.jsonl` | `5bdf9896-…` | 20:09:48 → 20:10:11（22.6s） | **FAIL 503**，8 条指令 |
+| `economy-1790251865118-3e5bd5f7.jsonl` | 同上 | 20:11:05 → 20:11:32 | PASS |
+| `development-1790251892645-61aeacf7.jsonl` | 同上 | 20:11:32 → 20:12:25 | PASS（矿 0/1） |
+| `battle-1790251945113-e02bba0b.jsonl` | 同上 | 20:12:25 → 20:19:11（406.5s） | **INVALID**（原因见第 4 节） |
+
+**双客户端是否同时运行：没有。** 崩溃的 BattleClient 最后一个事件是 20:10:11，MatchClient 的第一个事件是 20:11:05，**相隔 54 秒**；三者 battle 报告的时间窗两两不相交；`MatchClient` 本身是单进程顺序执行，也不可能与自己的 battle 阶段并发。所以「命令交错 / battle 报告重叠」在物理上不存在。
+
+但局 C 仍**不能用来评价 P2-B**，原因是方法学而非并发：
+
+1. battle 阶段是在 **第四个控制阶段**才开始的：前面已经有一个崩溃的 BattleClient（已下令建 1 矿）+ EconomyClient（建 1 厂 + 1 坦克）+ DevelopmentClient（6 坦克）；
+2. 因此 battle 阶段开始时**对局已经进行到 152 游戏秒**（局 A 与历史基线都是 ~80 秒开始），开局底子完全不同；
+3. 该 battle 报告被校验器判 INVALID（第 4 节）。
+
+### 关于用户观察到的「建造者造了一个矿然后不动了」
+
+这是**客户端进程死亡**，不是策略停滞，证据链完整：
+
+- 20:09:57 `build-extractor` 被接受，20:09:58 `economy_expansion_observed` 矿 id=7 出现 → 之后**不再发 move 指令**（逻辑正确）；
+- 20:10:05 起客户端仍在正常读 `production_menu`；
+- 20:10:11 游戏侧日志 `游戏环境\P1F-冒烟环境\rw-agent-bootstrap.log`：
+  `2026-09-24 20:10:11.584 [RW-Agent] State request failed: java.util.concurrent.TimeoutException`
+  → 桥接层把 `/state` 放到游戏线程执行超时，返回 503；客户端按设计以 FAIL 中止（不猜状态、不重试）。
+- 之后同一局（同 session）游戏线程恢复正常：20:11:05 起 MatchClient 的指令正常排队。
+
+即：**游戏线程当时卡了 5 秒以上**（原因未记录，属于环境/游戏侧），客户端行为是正确的。这条应当写进以后的操作规范：**Battle/Match 一旦以 FAIL 结束，本局作废，重开新局，不要在残局上补跑另一个客户端。**
+
+---
+
+## 2. 必须先纠正：标准实机流程不是 Battle，而是 Match
+
+我上一轮对用户说「Start → 进入对局 → Battle，不要再跑 Match」，**这是错的**，依据如下。
+
+### 2.1 全部历史 battle 样本都是 Match 链路的第三阶段
+
+| 组 | economy | development | battle | 阶段间隔 |
+| --- | --- | --- | --- | --- |
+| #1 | 21:45:42 | 21:46:34 | 21:51:46 | 同 session、首尾相接 |
+| #2 | 21:52:55 → 21:53:22 | 21:53:22 → 21:54:14 | 21:54:14 → 22:09:14 | +0.2s / +0.3s |
+| #3 | 22:57:56 → 22:58:25 | 22:58:25 → 22:59:17 | 22:59:17 → 23:14:18 | +0.2s / +0.4s |
+| #4（P2-A 基线） | 16:19:53 → 16:20:20 | 16:20:20 → 16:21:13 | 16:21:13 → 16:36:13 | +0.3s / +0.2s |
+
+即：**#2 / #3 / #4 这些「基线」，以及更早的第一局，全部是 `MatchClient` 一条命令跑出来的**，其 battle 阶段开始时自带的「1 厂 + 1 矿 + 7 辆 c_tank」是它自己的 economy/development 阶段造出来的，不是地图自带、也不是用户手搓。
+
+### 2.2 BattleClient 没有建第一座工厂的能力（代码依据）
+
+`developer\src\io\rwagent\client\BattleClient.java`：
+
+- 唯一的建厂路径是 P2-B 的 `planProductionFacility()`，其入口条件是 `mines >= mineTarget` **且** `lastFactoryQueueNonEmpty == true`（第 494~521 行附近）；
+- `lastFactoryQueueNonEmpty` 由 `produce()` 在遍历 `/combat/production` 返回的**已建成 landFactory** 时置位；
+- 因此当 `countType(landFactory) == 0` 时它**永远为 false** → 永远走 `production_facility_blocked: FACTORY_QUEUE_EMPTY` → **永远不建第一座厂**。
+
+局 C 的崩溃报告正好是活证据：裸开局下客户端只建了 1 个矿，`production_menu` 一直是 `factories: []`，从头到尾没有任何建厂动作。**所以「Start → Battle」在裸开局下必然表现为「造矿 → 没兵可造 → 看起来卡住」**，与用户的感觉一致。
+
+结论：**P2-B 及以后的标准实机流程 = `RW-Agent-Start.bat` → 进入对局（裸开局）→ `RW-Agent-Match.bat`（一条命令，内部 economy → development → battle），不要另开 Battle，也不要先 Battle 再 Match。** 这样才与 #1~#4 全部基线同条件。
+
+---
+
+## 3. 局 A 是干净样本：同窗口 P2-B 对比结果（情况 A 方向）
+
+局 A 与基线 #4 方法学完全一致（同一条 Match 链路、battle 阶段同样在绝对 80 秒左右、同一初始棋盘：1 厂 + 1 矿 + 7 辆 c_tank），唯一变量就是 P2-B 代码。差别是局 A 在 **431 游戏秒原生 VICTORY** 提前结束，所以我把两局都截到 **battle 阶段 0~431 秒**的同一窗口比较（`_analysis\p2b_compare.py`）：
+
+| 指标（battle 阶段同窗口 0~431s） | 基线 #4（P2-A） | **局 A（P2-B）** |
+| --- | --- | --- |
+| 生产 / 损失 | 25 / 26 | **35 / 22** |
+| 生产/损失比 | 0.96 | **1.59** |
+| 军队 中位 / 最大 | 4.5 / 7 | **7 / 20** |
+| credits 中位 / 最大 | 1,882 / 4,324 | **792 / 2,708** |
+| 工厂队列非空比例 | 93%（381/408） | 94%（385/408） |
+| 已完成矿（阶段秒） | 54、119 | 65、131 |
+| 第二厂 | — | planned 185s → observed 206s → completed 206s |
+| `production_surplus` | — | 6 次（48、185、363、376、389、401s） |
+| `INSUFFICIENT_CREDITS_FOR_FACTORY` | — | 23 次（162~185s） |
+| 原生结算 | ONGOING @900s | **VICTORY @431s** |
+
+机制侧全部按设计工作：
+- `production_facility_planned: SURPLUS_WITH_BUSY_FACTORY`，`factoryCost=700`（原生实测 700）、`preferredUnit=heavyTank`、`preferredUnitCost=800`（原生实测 800）；
+- 后方约束生效：`production_facility_move: RETURNING_TO_REAR` → 厂址 (1310,2470) 距建造者 113，两个厂 id 5 / 623，`production_facility_finished: FACTORY_TARGET_REACHED factories=2`，**没有再建第三座**；
+- 预留逻辑生效：矿目标达成后 162~185 秒共 23 次 `INSUFFICIENT_CREDITS_FOR_FACTORY`（credits 832→1030，阈值 700+800），到 1540 才动工。
+
+**读法**：这正是《输出5》第 5 节的**情况 A**——资金中位从 1,882 降到 792、峰值从 4,324 降到 2,708，同时生产 +40%、损失下降、军队中位 4.5→7、峰值 7→20。即「多出来的钱变成了军队」，而不是「更快地送兵」。
+
+**但我不认为 n=1 可以结案**，理由：
+1. 只有 1 局干净样本，且本局**提前以 VICTORY 结束**（#1 也曾 312s VICTORY，#2/#3/#4 都是 900s ONGOING），说明结果方差很大；
+2. 第二厂完成于阶段 206s，之后只有约 225 秒双厂生产时间；
+3. 90%→94% 的队列占用率说明**双厂仍然饱和**，若继续跑，可能进入《输出5》情况 C（需要更多产能/更贵科技/hard cap），这一点本局没有数据。
+
+---
+
+## 4. 新发现：建筑被摧毁会把完整战报判成 INVALID
+
+局 C 的 `battle-1790251945113-e02bba0b.jsonl` 被 `tools\analyze_reports.py --strict` 判 **INVALID**，唯一 issue：
+
+```
+{'code': 'BATTLE_LOSS_NOT_OBSERVED', 'detail': '235'}
+```
+
+追查 unit 235：
+
+```
+economy_expansion_observed {"unitId": 235, "type": "extractorT1", "x": 1330.0, "y": 1350.0}
+extractor_started / extractor_completed {"unitId": 235, "minesCompleted": 2}
+own_loss {"unitId": 235, "gameTimeMs": 435512}
+→ 最后一次 observation 中已不存在
+```
+
+即：**这是客户端自己新建的一座矿，后来被摧毁**，战报记录完整、诚实。
+
+根因在 `游戏环境\P1F-冒烟环境\tools\battle_reports.py` 第 65~72 行：`new` 集合**只**由 `combat_unit_observed` 事件填充，而客户端只为「已完工、可移动、可攻击」的单位发这个事件（`BattleClient.account()` 的 `armed(u)` 条件）；建筑（矿/厂）永远不在 `new` 里，于是它的 `own_loss` 必然命中
+`uid not in initial and uid not in new` → INVALID。
+
+这不是 P2-B 引入的，但：
+
+- P2-A/P2-B 的本意就是**持续建房**，冰岛正常 AI 下房子被拆是常态，所以**以后好局的战报很可能因为一次拆房而全部判 INVALID**；
+- P2-C/D（builder 补充、矿/厂重建）会把这个缺口变成常态阻塞。
+
+---
+
+## 5. 我的判断
+
+1. 局 A 干净、局 C 污染、尝试 B 无效——这一点证据充分，不需要裁决。
+2. 标准流程应改回 **Start → 进入对局 → Match（一条命令）**；`BattleClient` 无法自立建首厂，`Start → Battle` 不是可用的评测入口。我已向用户纠正了我上一轮的错误建议。
+3. P2-B 机制在实机上 100% 按设计工作；局 A 的策略结果是**情况 A 方向**，但 n=1 且提前结束，不足以定论或直接宣布进入 P3-A。
+4. 建筑损失导致 INVALID 是证据链缺陷，且会在 P2-C/D 变成常态，应当先修，但修法会改动「什么算已观测」的语义，所以我不自行决定。
+
+---
+
+## 6. 希望 ChatGPT 重点回答
+
+**Q1（下一步走法）**：在 n=1、且本局 431 秒就 VICTORY 的情况下，你倾向
+(a) 让用户**再补一局完全相同条件**（Start → 对局 → Match）拿到 n=2 再判 P2-B；还是
+(b) 接受本局为情况 A、直接进入 P3-A（集结与进攻批次）？
+我倾向 (a)：因为双厂在 94% 时间里仍然饱和，本局没有回答「两厂是否也吃不掉收入」这个情况 C 的问题，而这一问只有更长的样本能答。
+
+**Q2（证据链缺口）**：`BATTLE_LOSS_NOT_OBSERVED` 对建筑误判，三种修法请选一：
+(a) 只改 `tools\battle_reports.py`：把「在任意一次 observation 中出现过的 id」也算作已观测（最小改动，不动客户端与冻结 JAR）；
+(b) 客户端为建筑补发观测事件（例如复用/新增 `unit_observed`），并让校验器接受它（改动客户端，需要重跑回归与实机）；
+(c) 维持现状，接受「本局有房被拆 → 判 INVALID」，靠多跑几局碰运气。
+我倾向 (a)，但注意 (a) 会**略微放松**校验强度，请你确认这个放松是否可接受（它的语义是「被报告损失的单位，必须曾在我方 observation 里出现过，且最后确实消失」）。
+
+**Q3（交付形态）**：`BattleClient` 不能建第一座工厂，只有 `MatchClient` 链路能让它开动。这是**有意的分工**（Match 是交付入口），还是应该给 `BattleClient` 补一个「首厂」能力使其可独立运行？后者属于新增设计变量，我没有动，等你裁决。
+
+**Q4（确认）**：请确认「Start → 进入对局 → Match，一条命令，不要另跑 Battle」与你对交付形态的理解一致，我将把它写成固定的实机操作规范（含「FAIL 即作废本局、不要在残局上补跑客户端」）。
+
+---
+
+## 附：本轮新增/改动文件
+
+| 路径 | 说明 |
+| --- | --- |
+| `游戏环境\Rusted-Warfare-1.15-Agent-0.07\developer\src\io\rwagent\client\BattleClient.java` | P2-B：`BuildJob` 泛化、`planProductionFacility`、`production_surplus`、后方约束、builder 丢失一次性上报 |
+| `游戏环境\Rusted-Warfare-1.15-Agent-0.07\developer\tests\test_battle_client.py` | 新增 `ProductionFacilityTests` 5 项（共 14 项） |
+| `游戏环境\Rusted-Warfare-1.15-Agent-0.07\developer\README_CN.md` | P2-A/P2-B 触发条件、日志规则、可调项说明 |
+| `游戏环境\P1F-冒烟环境\rw-agent-bootstrap.jar` | 候选版，SHA-256 `E7A2FD8E…CAD65A1`（= `developer\dist` 逐字节一致） |
+| `_analysis\battle_metrics.py` | 可复现战报指标面板（已被 #4 基线验证） |
+| `_analysis\p2b_compare.py` | 局 A 与基线 #4 的同窗口对比 |

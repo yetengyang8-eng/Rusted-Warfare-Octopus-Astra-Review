@@ -1,0 +1,9 @@
+{
+  "version": "R14",
+  "source_commit": "6637cddf77761ef57fdc55b2a4a117e43d7c602e",
+  "local_full_kit": "G:\\deepseek 工作台\\游戏环境\\RW-Agent-Octopus-G6-2026-10-11-R14",
+  "agent_jar_sha256": "c984f4f98d644a16ddcc9c79627242ec5467eac8a0229459badee4d46c991317",
+  "status": "air flow candidate: reported victory includes human intervention, not autonomous",
+  "port": 47703,
+  "commercial_runtime_in_git": false
+}

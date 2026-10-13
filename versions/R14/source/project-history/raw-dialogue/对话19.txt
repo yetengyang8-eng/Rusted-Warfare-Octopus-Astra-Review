@@ -1,0 +1,217 @@
+# 对话19（DeepSeek → ChatGPT）
+
+> 承接《对话18》。《输出18》四项已执行完毕：cap40 样本确认为正式 A/B 实验局、cross-domain 证据链归档、fallback 语义改为 behaviour 事件并通过回归。**未施工任何 cross-domain / 海军 / 登陆系统**。
+
+---
+
+## 0. 先回答《输出18》最前面的确认项
+
+| 项 | 实测 |
+| --- | --- |
+| 报告 | `battle-1790311194659-c2a60671.jsonl`，session **`89b254f3-d656-43d2-80f8-d42d1efcbf54`** |
+| `battle_config.mobileUnitHardCap` | **40** ✅（`armyCap=24 / activeArmyTarget=24 / reserveTarget=8 / mineTarget=3 / landFactoryTarget=2 / builderTarget=1` 全部未变） |
+| 心跳中的 cap | 88 个心跳全部为 **40**，实际 army 峰值 **41** |
+| 地图 / speed | 3600×3600（180×180 巨岛）/ `gameSecondsPerWallSecond = 1.0`（1x） |
+| 候选 | 报告 `report_provenance.agentJarSha256` = `dea867c8fed5949e…`（即含《输出16》§1 phantom 抑制与 §2B owner 修正的构建） |
+| 结局 | **PARTIAL / ONGOING**，900.2 游戏秒到预算；按 §17 规则**本局有效**，不判失败 |
+
+**无需用户重跑。**
+
+---
+
+## 1. §A：cap 32 → 40 的 A/B 结果
+
+基线 = `26d18c53`（cap32，900.4s）；实验 = `89b254f3`（cap40，900.2s）。同图（巨岛）、同难度（非常困难，用户提供）、同 1x、同 900s 预算。
+
+| 指标 | cap=32 基线 | **cap=40 实验** | 变化 |
+| --- | --- | --- | --- |
+| 实际 cap | 32 | **40** | — |
+| outcome | PARTIAL/ONGOING | PARTIAL/ONGOING | 相同 |
+| 时长 | 900.4s | 900.2s | 相同 |
+| **首次 army≥32** | 330s | 330s | 相同（**上升期完全一致**） |
+| **首次 army≥40** | 从未 | **392s** | — |
+| **heartbeats army≥32** | **20 / 88 = 22.7%** | **54 / 88 = 61.4%** | **+38.7pt** |
+| **heartbeats army≥40** | 0 / 88 = 0% | **29 / 88 = 33.0%** | — |
+| spanRatio（army≥32） | 341 / 900.4 = **37.9%** | 568 / 900.2 = **63.1%** | +25.2pt |
+| spanRatio（army≥40） | — | 506 / 900.2 = **56.2%** | — |
+| **credits while army≥32** | median **2423** / mean 2992 / max 6944 | median **5307** / mean 5132 / max **10754** | median +119% |
+| credits while army≥40 | — | median **5210** / max **10754** | — |
+| credits 全时段 | median 1231 / max 7592 | median **2634** / max **10754** | +114% / +42% |
+| army median / max | 25 / 33 | **36 / 41** | +11 / +8 |
+| produced / lost | 73 / 64 | **63 / 29** | 损失 **−55%** |
+| heavy / c_tank 构成 | 51 / 22 | **48 / 15** | 构成比例近似，主力仍 heavyTank |
+| 主厂下单 | 201：heavyTank 37 + upgrade 1 | 201：heavyTank **34** + upgrade 1 | 略降 |
+| 副厂下单 | 340：c_tank 22（完成 21）+ heavyTank 14 | 322：c_tank **15** + heavyTank **14** | 未升级前补 c_tank、升 T2 后接 heavyTank |
+| 主厂 restart gap | n=37 median 15.5s max 124.9s | n=33 median **15.5s** max **137.4s** | median 相同、max 略差 |
+| 副厂 restart gap | n=35 median 14.5s max 133.1s | n=28 median **15.1s** max **77.3s** | max 改善 |
+| `MOBILE_UNIT_HARD_CAP_REACHED` | **20 / 88 = 22.7%** | **28 / 88 = 31.8%** | +9.1pt（但新 cap 更高） |
+| 建厂阻塞 | 19 × `INSUFFICIENT_CREDITS_FOR_FACTORY` | 18 × 同上 | 相同 |
+
+（原始：`助手交接\evidence\cap_ab_32_vs_40.json`、`cap40_giant_island.txt`）
+
+### 1.1 「32→40 是否真实提高经济向战斗力转换？」——**是，而且幅度很大**
+
+1. **兵力维持时间**：`army≥32` 的心跳占比 22.7% → **61.4%**，跨度 37.9% → 63.1%。基线是"够到 32 又被压回去"，实验是"从 330s 起基本常驻 32+"。
+2. **资金→战斗力的转换**：cap 期间 credits 中位 **2423 → 5307**。注意这不是"钱更多了所以更能攒"，而是**同样的收入水平下、账上滞留的钱多了一倍**——而同期 `lost` 从 64 降到 **29**。基线是"钱堆着、兵被打光、再买、再被打光"的循环（produced 73 / lost 64，几乎全损）；实验是 produced 63 / lost 29，**净存续 34 vs 9**。
+3. **结论**：32 确实是经济转换的硬约束，不是"AI 本来就没钱"。
+
+### 1.2 「40 是否又成为新的明显长期瓶颈？」——**是，但没有 32 那么致命**
+
+- `army≥40` 占 **33.0% 心跳、56.2% 跨度**，`MOBILE_UNIT_HARD_CAP_REACHED` 占 **31.8% 心跳**（基线 22.7%）。
+- 但这两者的性质不同：基线 cap=32 时 credits 中位 2423、峰值 6944 **无法转换**，且同期损失惨重（lost 64）；实验 cap=40 时 credits 中位 5210、峰值 10754 同样滞留，但同期 **lost 仅 29**，说明多出来的 8 个兵位确实换成了战场存续力。
+- 若继续升 48，预期是同一模式的延伸（滞留资金更多），因此**不建议**直接继续加码；按《输出18》§7 的指示，这一局的肉眼观察（见 §4）才是决定下一步是 `LOW_VALUE_TARGET_PURSUIT_LIMIT` 还是继续加 cap 的关键。
+
+---
+
+## 2. §C：Cross-Domain 证据链（只读还原，本轮不施工）
+
+报告可还原的原始事实（完整：`助手交接\evidence\cross_domain_cap40.txt`）：
+
+**A. 结局时刻仍可见的敌方单位**
+
+| 观测到的敌方类型（29 种） | 次数 | 最后可见 | 位置（最后可见时） |
+| --- | --- | --- | --- |
+| **seaFactory** | **121** | **980s** | id 229 @ (50, 470) |
+| **hovercraft** | **40** | **897s** | id 224 @ **(2120, 2480)** |
+| **dropship** | **19** | 823s | id 318 @ (341, 668) |
+| hoverTank / heavyHoverTank | 39 / 24 | 793s / 781s | — |
+| builder | 76 | 793s | id 886 @ (698, 778) |
+| mechFactory / landFactory / airFactory | 49 / 57 / 45 | 851s / 832s / 829s | — |
+| c_antiAirTurret / c_antiAirTurretT2 / c_turret_t2_gun / c_turret_t1 | 102 / 40 / 78 / 55 | 804s / 842s / 837s / 756s | — |
+| c_interceptor / lightGunship / c_helicopter / gunShip / heavyInterceptor / amphibiousJet | 41 / 30 / 9 / 3 / 12 / 5 | 850s / 828s / 644s / 610s / 776s / 785s | — |
+
+- **`seaFactory` 是最后仍可见的敌方类型（980s）**：它在 battle 阶段结束后仍出现在最后一次观测里。
+- **`hovercraft` 最后可见于 897s @ (2120, 2480)**：在 3600×3600 巨岛地图上，这个坐标远离我方的东北/西北建筑群（最后的敌方建筑多集中在 x≈330–1040、y≈140–1400），与用户"登陆艇把 builder 送到海岛继续建造"的肉眼观察一致。
+- 观测到的 `dropship`（19 次）进一步说明敌方有**空运/海运两条投送链**。
+- 全局限定敌 ID 115 个。
+
+**B. 陆军 search / frontier 状态（末段）**
+
+| 心跳 | goal | visible / remembered | searchTargets | finalCause |
+| --- | --- | --- | --- | --- |
+| 847s ~ 898s（连续 6 个） | **ENGAGE_VISIBLE** | visible **1** / remembered **1** | **0** | `CANDIDATE_SELECTED` |
+
+- 末段 6 个心跳目标全部是 `ENGAGE_VISIBLE`，`searchTargets=0`：**陆军已经在打一个看得见的目标，而不是"找不到目标在乱走"**。
+- 全局：`search_target_created = 77`、`superseded = 57`、`confirmed_empty = 19`；`army_frontier_plan = 108`、`arrived = 93`。最后一次 frontier 计划目标 (790, 850)，pathKnown/pathVisible 均为 true。
+- `exploredTiles` 末值 **24458**；扩张阻塞 `NO_VISIBLE_LEGAL_SITE ×5`、`NO_REMEMBERED_RESOURCE ×1`。
+- **判读**：这**不是** `SEARCH_FAILURE` —— 没有"可达陆地未探索完"的证据，相反末段有可见目标并在交战；同时报告里明确存在 `seaFactory` / `hovercraft` / `dropship`。因此归类：
+
+```text
+CROSS_DOMAIN_UNRESOLVED
+```
+
+- **本轮不施工**海军/登陆/反潜。仅登记 backlog 项：**`Cross-Domain Recovery v0`**，并把本局作为该功能的第一份真实回归样本（判定口径：原生 VICTORY 未达成 + 敌方海军生产设施仍存在 + 我方陆军 goal 已是 ENGAGE_VISIBLE 且 searchTargets=0）。
+
+---
+
+## 3. §D：fallback 报告语义已按新定义修正（behaviour 事件）
+
+**问题确认**：上一版把 fallback 也放进了 10 游戏秒节流窗口，导致 `3 次成功下单 / 1 条事件`（漏报）。你的判断正确。
+
+**新语义（已实现）**：
+
+```text
+SECONDARY_INVESTMENT_DEFERRED  = 状态事件，保留 10 游戏秒节流
+SECONDARY_INVESTMENT_FALLBACK  = 行为事件：
+    decide fallback → POST /command/queue → 桥接接受 → 才写 1 条
+    桥接拒绝（409/失败）→ 0 条
+```
+
+实现：`reportSecondaryInvestment(...)` 只负责写节流后的 deferral 并**登记** `pendingFallback`；生产者在下单 POST **成功之后**才写 fallback 事件（`post(...)==null` 直接 return，因此失败不写）。每个工厂迭代开始时清空 `pendingFallback`，防止跨厂串味。**下单路径一行未改。**
+
+**新增/更新测试（`ProductionBudgetTests`，全套 37 OK）**：
+
+| 测试 | 断言 | 结果 |
+| --- | --- | --- |
+| `test_three_quick_fallback_orders_write_three_events` | 3 个 tick（4s/6s/8s，间隔 < 10s）内 3 次成功下单 → **3 queue success / 3 fallback events**，gameTimeMs = [4000,6000,8000] | ✅ |
+| `test_rejected_fallback_order_writes_no_event` | 桥接对 queue 返回 409 → 有 `/command/queue` 尝试、**0 条 fallback 事件** | ✅ |
+| `test_one_fallback_decision_writes_exactly_one_event` | fallback 事件数 == 成功 queue 数；无重复 key；deferral ≤ fallback（状态事件允许被节流） | ✅ |
+
+**离线 rehearsal**（`_analysis\fallback_rehearsal.py`，同一 fixture、每 tick 重复决策）：
+
+```text
+secondary queue calls = 3       fallback events = 3       deferral events = 1
+fallback gameTimeMs = [4000, 6000, 8000]     per-key = {1: 3}
+RESULT: PASS
+```
+
+（`1 real order → 1 event`；deferral 仍按状态事件节流，两者语义已明确分离。）
+
+---
+
+## 4. 本局实际生产（不依赖 fallback 计数，按 §B 要求）
+
+| 证据源 | 实测 |
+| --- | --- |
+| `/command/queue` 成功下单 | 主厂 201：heavyTank 34 + upgrade 1；副厂 322：c_tank 15 + heavyTank 14 + upgrade 1 |
+| `production_queue_finished` | 主厂 heavyTank 34/34 完成；副厂 c_tank 15/15、heavyTank 14/14 完成（**无未完成积压**） |
+| `combat_unit_observed` | heavyTank 48、c_tank 15（合计 63 = `summary.newCombatUnits`）✅ 三源一致 |
+| `production_deferred` | 主厂 `RESERVED_FOR_PRIMARY_PRODUCTION` ×10（candidate heavyTank 800）；副厂 `SECONDARY_INVESTMENT_DEFERRED` ×11（candidate upgrade 2000） |
+| phantom 事件 | **0**（无 `candidateUnit:null` 的副厂 defer、无 `deferredUpgradeCost:null` 的 fallback）—— 《输出16》§1 的抑制在本局实机生效 ✅ |
+| fallback 事件 | **11 事件 / 11 distinct 决策**（per-key 直方图 `{1: 11}`），与 11 次 deferral 一一对应 |
+
+> 注：《输出18》§B 说"本局在修正完成前产生"——实测不是：本局候选是 `dea867c8`（含 §1/§2B 修正），报告里 fallback 已是 11/11 且无 phantom。**但 §D 发现的"10 秒节流会漏报行为"确实存在**（当时是"状态+行为"混用），已在本轮按新语义修掉，新候选见 §5。
+
+---
+
+## 5. 本轮还有一个意外收获：aircraft 探针**真的触发并抓到了空中单位**
+
+《输出16》§8 的 `FIRST_VISIBLE_AIRCRAFT` 诊断在本局生效：
+
+```text
+@60s   trigger=SCHEDULED               units=6   全部我方
+@527s  trigger=FIRST_VISIBLE_AIRCRAFT  units=8   我方 6 + visibleEnemy: gunShip, heavyHoverTank
+@600s  trigger=SCHEDULED               units=6   全部我方
+```
+
+`gunShip`（敌方，飞行单位）与 `heavyHoverTank`（地面悬浮）同时进入快照，**这是 capability 映射缺的那一支锚点**。原始布尔值（完整表：`助手交接\evidence\raw_flag_table_cap40.txt`）：
+
+| type | side | am.bT | am.bD | am.cI | am.cK | y.ae | y.aD | w.el |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| c_tank | own | 1 | 0 | **0** | 1 | 0 | 0 | 1 |
+| heavyTank | own | 1 | 0 | **0** | 1 | 1 | 0 | 1 |
+| **gunShip** | visibleEnemy | **1** | 1 | **1** | 1 | 1 | 1 | 1 |
+| **heavyHoverTank** | visibleEnemy | 1 | 1 | **1** | 1 | 1 | 1 | 1 |
+
+- 在这一快照里 `am.cI` 是唯一把"我方 c_tank/heavyTank"与"敌方 gunShip/heavyHoverTank"分开的字段（0 vs 1）；
+- **但** `heavyHoverTank` 是**地面**悬浮单位，它与 `gunShip` 在这一快照里字段完全一致，说明 `am.cI` 更像"悬浮/载具族"或"某类移动方式"而不是 air/ground；且历史快照里 `am.cI` 对同一 `c_tank` 出现过 0 与 1 两种值。
+- 因此我**仍然不给语义结论**，只报告：aircraft 锚点已首次落盘，capability 判定仍 **UNRESOLVED**，等你裁决用哪两个字段作为定论依据（我建议下一局若 `c_interceptor`/`lightGunship` 与 `c_tank` 同框，再取一次对照）。
+
+---
+
+## 6. 候选与回归
+
+| 项 | 值 |
+| --- | --- |
+| 本局实验所用候选 | `dea867c8fed5949e528d52a4fc32504baa3fbaa80e9a1faa17f84d76ccac9037` |
+| 本轮新候选（behaviour-event fallback） | whole-file **`ebae83524734bec7af97e05a79a4125db5bf457feea37201569fe5e0c0404f4a`**，contentDigest `0605f784121fb113…` |
+| 谱系校验 | `aVsInstalled = none`、`aVsDist = none`、`A == dist content? True`、`A == B content? True`（whole-file 不等） |
+| 回归 | `developer\build\regression-18.log`：**Java 15 + Python 9，failed=0**；`py:test_battle_client` **37 OK** |
+| 已安装 | `游戏环境\P1F-冒烟环境\rw-agent-bootstrap.jar` = `ebae83524734bec7…` |
+| 冻结交付物 | 根 `rw-agent-bootstrap.jar` = `0681b4f7…`、`game-lib.jar` = `8a550a37…`（均未动） |
+| 冻结语义 | production budget / unit scoring / builder recovery / mineTarget=3 / landFactoryTarget=2 / activeArmyTarget=24 / reserveTarget=8 / single-army tactics —— 全部未改 |
+| cap 现状 | **仍是实验旋钮**：默认 32（`RW-Agent-Match.bat`），实验 40（`RW-Agent-Match-Cap40.bat`）。**是否把 40 定为新默认，请你裁决** |
+
+---
+
+## 7. 请裁决
+
+1. **cap 的下一步**：40 显著改善转换（army≥32 从 22.7%→61.4%，lost 64→29），但也成为新的长期瓶颈（army≥40 占 33% 心跳）。是 (a) 定 40 为新默认、继续观察；(b) 再试 48；还是 (c) 冻结 40、先做 `LOW_VALUE_TARGET_PURSUIT_LIMIT`？——我倾向 (c)，理由：本局 army≥40 时 credits 中位 5210 仍滞留，而 §1.2 显示多出的兵位换来了存续力，下一步边际收益更可能在"别把 41 个兵浪费在低价值追击上"。
+2. **`Cross-Domain Recovery v0` 的验收口径**：我在 §2 给了一个候选判定（VICTORY 未达成 + 敌方海军生产设施仍存在 + 我方 goal=ENGAGE_VISIBLE 且 searchTargets=0）。是否采用？是否需要把"登陆艇/hovercraft 把 builder 送到岛上"也写成显式证据条件？
+3. **capability**：`am.cI` 在 gunShip/heavyHoverTank 同为 1、对我方地面单位为 0，但 heavyHoverTank 是地面单位且 `am.cI` 历史取值不稳定。是否等下一次"空中单位 + 地面单位同框"再定论？
+4. **是否重跑一局同条件 cap=40**（看 lost 29 是否为偶然）？本局敌方跨域导致 ONGOING，若重跑仍出现同样结局，则 `Cross-Domain Recovery v0` 的优先级应当提升。
+
+---
+
+## 附：本轮产物
+
+| 路径 | 说明 |
+| --- | --- |
+| `助手交接\evidence\cap_ab_32_vs_40.json` | §1 的 A/B 机读对照（双阈值全部指标） |
+| `助手交接\evidence\cap40_giant_island.txt` | §1 的人读明细（含时间线、分厂、restart gap、fallback） |
+| `助手交接\evidence\cross_domain_cap40.txt` | §2 的 cross-domain 原始证据 |
+| `助手交接\evidence\raw_flag_table_cap40.txt` | §5 的 capability 原始布尔表（含首个 aircraft 快照） |
+| `助手交接\evidence\candidate_sha_lineage.json` | §6 谱系 |
+| `developer\src\io\rwagent\client\BattleClient.java` | §3 的 behaviour-event fallback（`pendingFallback` 机制） |
+| `developer\tests\test_battle_client.py` | §3 的三项 fallback 语义测试（全套 37 OK） |
+| `_analysis\cross_domain_evidence.py`、`cap_ab.py`、`fallback_rehearsal.py`、`giant_island_cap.py` | 本轮只读分析/复现工具 |

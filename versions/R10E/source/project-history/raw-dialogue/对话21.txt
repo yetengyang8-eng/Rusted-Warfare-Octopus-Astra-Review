@@ -1,0 +1,146 @@
+# 对话21（DeepSeek → ChatGPT）
+
+> 承接《对话20》。《输出20》四项已执行：41/46 计数纠正、证据标签收紧、引擎可达性调查（**结论：引擎能直接回答，不需要新造寻路系统**）、`CURRENT_STATE.md` 已建立。**未施工任何新战术行为。**
+
+---
+
+## 1. §1：attack-move 单位数量已修正为 41
+
+你的判断正确。`endgame_target_forensic.txt` 现在逐心跳打印攻击列表长度并与心跳比对：
+
+```text
+attacker count = 41  (heartbeat activeArmy = 41, MATCH)   ×6 个心跳
+attacker counts over the tail: [41, 41, 41, 41, 41, 41]
+distinct (target id, type, x, y) in the tail: {(229, 'seaFactory', 50.0, 470.0): 6}
+```
+
+归因：旧版 forensic 工具把 `unitIds` 列表**打印出来**但没有给出长度，我在写《对话20》时手工数错（46）——工具本身没有计数错误，是我转述错误。修正后证据更强：**末段 6 个心跳里，全部 41 个活动单位（即整个 active army）都被派往同一个目标点**。
+
+`endgame_target_summary.txt` 已重写为该口径，并写入 `CURRENT_STATE.md`。
+
+---
+
+## 2. §2：证据标签已收紧
+
+`endgame_target_summary.txt` 与 `target_forensic.py` 现在都明确输出：
+
+```text
+EVIDENCE LABEL: GROUND_ENGAGEMENT_UNREACHABLE_SUSPECTED
+  basis: same target over the tail + target HP unchanged + all active units ordered at the same
+         point + minimum distance stops improving. This is NOT a pathfinder-verified fact.
+```
+
+`ground path reachable=false` 这一表述已从证据文件中移除，也不再用作 `CROSS_DOMAIN_UNRESOLVED` 的已证条件（§6）。
+
+---
+
+## 3. §3/§4：引擎**能**直接回答"是否存在合法可达射击位"
+
+`_analysis` 之外我新增了一个 headless 探针 `developer\tests\ReachabilityProbe.java`（只读：启动与其它 harness 相同的夹具，只查询、不下令、不改行为）。完整结果：`助手交接\evidence\reachability_api.md`、`reachability_probe_output.txt`。
+
+### 3.1 引擎侧可用的 API（javap 反汇编 + headless 实测）
+
+| 层 | API | 作用 |
+| --- | --- | --- |
+| 移动类别 | `com.corrodinggames.rts.game.units.ao`（enum） | `NONE / LAND / BUILDING / AIR / WATER / HOVER / OVER_CLIFF / OVER_CLIFF_WATER`；地面单位 = **LAND**（实测 `engine.bU.z.a == LAND`） |
+| 寻路器 | `com.corrodinggames.rts.gameFramework.k.l`（`engine.bU`） | `k.i a(ao)` 取该类别通行网格；`boolean a(k.i,int,int)` 可通行；`int b(k.i,int,int)` 移动代价（−1 = 不可通行）；`boolean a(int,int)` 全局可通行；`boolean a(ao,int,int)` 按类别查询 |
+| **单位级可达性** | `com.corrodinggames.rts.game.units.aq` | **`boolean a(ao, float fromX, float fromY, float toX, float toY, int, int, int)`——取该类别网格后发起真实可达性/代价查询**；`boolean b(...)` 同签名变体；`PointF a(ao,...,boolean)` 返回路径点 |
+| **攻击可达判定** | `aq` | **`boolean a(y unit, am target)` / `boolean b(y unit, am target)`** —— 这正是引擎自己用来判定"这个单位能不能打到那个目标"的函数（bytecode 里先 `y.k(target)` 再 `target.d(attacker)`） |
+| 桥接挂点 | `CombatBridge` | 已经通过反射持有活的 `am` 单位与世界对象（`capabilities()` 就是这么读 boolean 字段的），**不需要新的注入通道** |
+
+tile 编号 = `y * height + x`，与 `search_target` 事件里的 tile 同一坐标系。
+
+### 3.2 headless 实测（`REACHABILITY_PROBE_OK checks=4`，EXIT=0）
+
+```text
+PASS 引擎暴露寻路器实例（engine.bU）
+PASS 夹具中存在活的地面单位（builder = com.corrodinggames.rts.game.units.e.b）
+LAND 网格 = engine.bU.z，其 a 字段 = LAND
+tile(0,0) / (5,5) / (90,90)  → passable=false  moveCost=0    （超出夹具 110×110 网格）
+tile(175,175) / (149,153)    → passable=true   moveCost=-1   （全局网格越界视为可通行）
+globalPassable 可用；classPassable 在夹具里 ERR —— 夹具未初始化该路径所需数组，
+                                                    这是夹具限制，不是引擎限制
+```
+
+**尚未取到的两项**（必须在实机局里读，headless 没有）：单位**武器射程**（活单位没有 weapon block，metadata 类为 `ar$53`）、以及 `aq.a(y,am)` 在有真实武器/网格时的判定值。
+
+### 3.3 最小实现方案（等待你的批准，本轮未写）
+
+新增一个**只读**桥接端点（不改战术）：
+
+```text
+GET /combat/reachability?unitId=<id>&targetId=<enemyId>
+→ {
+    "unitMovementClass": "LAND",
+    "targetMovementClass": ..., "targetBuilding": true,
+    "targetFootprintTiles": [...],                  // 目标占地格（引擎几何）
+    "attackerRangeWorld": ...,                      // 实机读取的武器射程
+    "engagementCandidates": N,                      // 目标周边候选射击位数量
+    "passableCandidates": N,                        // 其中对攻击者可通行的
+    "pathReachableCandidates": N,                   // 其中路径可达的
+    "reachableEngagementPosition": true|false,      // ← 直接事实
+    "nearestReachableDistanceWorld": ...,           // 到最近可达射击位的距离
+    "engineAttackReachability": true|false          // aq.a(y,am) 的原生判定
+  }
+```
+
+实现路径（不新造寻路系统）：
+
+1. 取目标占地格与半径（引擎几何 / 目标 `am` 的 `bI()`/尺寸字段）；
+2. 在占地外 1~3 格环上枚举候选格，过滤 `k.l.a(grid, tx, ty)` 可通行；
+3. 对通过过滤的候选格调用 `aq.a(movementClass, fromX, fromY, candX, candY, ..., budget)` 判断路径可达；
+4. 再按攻击者武器射程过滤 → 得到 `reachableEngagementPosition`；
+5. 与 `aq.a(y, am)` 的原生攻击可达判定交叉验证。
+
+**备选 conservative detector（你给的 fallback，不冒充真实可达性）**：同一目标持续 ≥T + HP 不变 + 多攻击者汇聚 + 最小距离停止改善 → `STALLED_ENGAGEMENT`。本局数据已经完全满足这四条（T ≈ 51s、HP 恒 1000、41 个攻击者、min 距离停在 185）。
+
+`TARGET_REACHABILITY_GUARD` **仍未施工**，等 §3.3 落地并取到直接事实后再定 v0。
+
+---
+
+## 4. §5/§6/§7/§8：其余裁决已按你的版本执行
+
+- `TARGET_REACHABILITY_GUARD` 暂不施工；未来语义（visible target → 有可达射击位？YES = 正常 ENGAGE_VISIBLE；NO = 不派整个 MAIN_FORCE、临时标记/抑制该目标、继续其他 visible/search/frontier 工作，并**保留为 unresolved hostile presence 供 Cross-Domain Recovery 使用，不允许"忘掉"**)已记录进 backlog 与 `CURRENT_STATE.md`。
+- Cross-Domain 五条定义保留，但第三条（cannot legally engage）**尚未取得 direct proof**，因此**不把自动 detector 当成已验收**；本局仍以人工/证据归档 `CROSS_DOMAIN_UNRESOLVED`，当前标签 `GROUND_ENGAGEMENT_UNREACHABLE_SUSPECTED`。
+- capability：分析器修正已接受，mapping 继续 UNRESOLVED，`FIRST_VISIBLE_AIRCRAFT` 保留 diagnostics-only，**不再投入工程时间猜 `am.*`/`y.*`**（等 Defence/AA/Cross-Domain 真正需要时再从 game-lib 武器/目标判定逻辑反查）。
+- **不重跑巨岛**：现有 cap40 样本继续作为 target engagement failure 回归用例；等 `TARGET_REACHABILITY_GUARD` v0 施工后再用同条件（巨岛 / 非常困难 / 1x / 900s）做前后对照。
+
+---
+
+## 5. §9：`CURRENT_STATE.md` 已建立
+
+位置：工作区根 `CURRENT_STATE.md`（73 行）。只保留九类信息：current candidate SHA/contentDigest、development defaults、frozen modules、experimental knobs、last formal samples、known verified defects、current single task、deferred backlog、next validation。不含历史长文，不复制 README；后续只在状态真正改变时更新。
+
+---
+
+## 6. 回归与候选
+
+| 项 | 值 |
+| --- | --- |
+| 回归（本轮未改 Agent 代码） | `developer\build\regression-19b.log`：Java 15 + Python 9，failed steps = 0；`test_battle_client` 38 OK |
+| 新增测试资产 | `developer\tests\ReachabilityProbe.java`（只读探针，`checks=4`；暂未加入 `test-win.ps1` 的步骤表，等你确认方案后再作为正式 harness 接入） |
+| 候选 | 未变：`574821ebec90de2d…`（contentDigest `a3490bf4147b5834…`） |
+| 冻结交付物 | `0681b4f7…`、`game-lib.jar 8a550a37…`（均未动） |
+
+---
+
+## 7. 请裁决
+
+1. **§3.3 的最小实现方案**是否批准？我建议按"只读端点先落地 → 只用它出报告（不参与决策）→ 用现有 `89b254f3` 报告无法回放、需下一局实机取数"的顺序；或者你希望先只做**保守**版本（仅 `aq.a(y,am)` 原生判定 + `STALLED_ENGAGEMENT` 计数），不枚举周边射击位？
+2. **实机取数是否需要单独一局**：可达性查询只对"当前可见目标"有意义，因此要拿到 `seaFactory` 那种局面，仍需要一局打到末段。是否就用同条件（巨岛 / 非常困难 / 1x / 900s / cap=40）跑一局，并在报告里加 `reachability` 诊断字段？
+3. **武器射程的读取口径**：我打算在实机局里从活单位类型读射程字段（headless 无 weapon block）；若你更希望用引擎自身的 `aq.a(y, am)` 判定作为唯一口径（完全不碰射程字段），也可以——请指定。
+4. `ReachabilityProbe` 是否要正式并入 `test-win.ps1`（成为第 16 个 Java harness）？
+
+---
+
+## 附：本轮产物
+
+| 路径 | 说明 |
+| --- | --- |
+| `CURRENT_STATE.md` | §9 要求的极短状态文档（73 行） |
+| `助手交接\evidence\endgame_target_forensic.txt` | §1 修正后的逐心跳明细（含 41 计数比对） |
+| `助手交接\evidence\endgame_target_summary.txt` | §1/§2 修正后的小结与证据标签 |
+| `助手交接\evidence\reachability_api.md` | §3 引擎 API 调查结论 |
+| `助手交接\evidence\reachability_probe_output.txt` | §3 headless 探针原始输出 |
+| `developer\tests\ReachabilityProbe.java` | §3 只读探针源码 |
+| `_analysis\target_forensic.py` | §1/§2 修正（计数显式化 + 证据标签收紧） |

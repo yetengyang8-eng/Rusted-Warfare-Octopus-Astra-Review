@@ -1,0 +1,104 @@
+{
+  "status": "READ_ONLY_FINAL_NATURAL_EVIDENCE",
+  "audit": "G:\\deepseek 工作台\\_validation\\octopus-r10-20261010\\spain-air-mode-diagnostic-4800\\r10-natural-multi-owner-final-audit.json",
+  "auditSha256": "1464d54ad0acd4a85c9fa334585b2de94bb3082c0981c7764c7e54b81ed85df3",
+  "analyzer": "G:\\deepseek 工作台\\_validation\\octopus-r10-20261010\\air\\analyze_natural_multi_owner.py",
+  "analyzerSha256": "fb88b10b6856d9e74028e8f2fed5483cf1f996af825871bd347fc0c3b5f28354",
+  "raw": {
+    "path": "G:\\deepseek 工作台\\_validation\\octopus-r10-20261010\\spain-air-mode-diagnostic-4800\\work\\rw-agent-reports\\battle-1791649883115-11012939.jsonl.gz",
+    "bytes": 37388853,
+    "sha256": "31f0433bb42521fc7778aa229cc8cbb390ddf94371b1a65f02e606646574dc3a",
+    "previousFrozenPrefixAllThreeSlicesMatch": true
+  },
+  "candidate": {
+    "product": "d3be4f6",
+    "declaredJarSha256": "456a1fbc3870b26f57b503b7c719fc5cb04b634896c4bfe3aba715aef594a1dd",
+    "actualJarSha256": "456a1fbc3870b26f57b503b7c719fc5cb04b634896c4bfe3aba715aef594a1dd",
+    "jarMatchesDeclared": true,
+    "difficulty": -2,
+    "speed": 5,
+    "fixture": false
+  },
+  "rows": 163277,
+  "malformed": 0,
+  "referenceExpansionFailures": 0,
+  "maxFormationCount": 18,
+  "maxConcurrentDistinctFrontiers": 18,
+  "creations": 17,
+  "attachedStrictLaterOwnTransitions": 218,
+  "searchArrivals": 621,
+  "searchArrivalsWithStrictLaterReceiptFrame": 621,
+  "ownersWithOwnArrival": 18,
+  "attackReceipts": 37,
+  "attackReceiptsWithCurrentLegalPacket": 37,
+  "clearClassifications": {
+    "CURRENT_LEGAL_G2_CONTACT_ABSENCE": 13,
+    "CURRENT_LEGAL_RAW_CONTACT_ABSENCE": 4
+  },
+  "selectedIntervals": [
+    {
+      "kind": "PARALLEL_SEARCH_WHILE_OWNER_ATTACKS",
+      "owner": "air-general:3",
+      "targetId": 10979,
+      "startRow": 112045,
+      "endRow": 114554,
+      "gameTimeMs": [
+        1843552,
+        1881744
+      ],
+      "otherOwnerArrivalCount": 5,
+      "sampleRows": [
+        112262,
+        112263,
+        112839
+      ]
+    },
+    {
+      "kind": "FRESH_LEGAL_CONTACT_ABSENCE_AND_RETAINED_ROUTE_RESUME",
+      "owner": "air-general:4",
+      "targetId": 9721,
+      "attackRow": 91891,
+      "combatRow": 91919,
+      "g2AbsenceRow": 91922,
+      "clearRow": 91959,
+      "queuedSearchRow": 92029,
+      "laterOwnArrivalRow": 92817,
+      "frontierTile": 63261,
+      "cursor": [
+        0,
+        53
+      ],
+      "sameRouteHash": "d07aa51efa2fadb6c2c511f63cc71374c833aaf90af4276a107bb196eff73f68"
+    },
+    {
+      "kind": "FRESH_LEGAL_CONTACT_ABSENCE_AND_RETAINED_ROUTE_RESUME",
+      "owner": "air-general:8",
+      "targetId": 11117,
+      "attackRow": 113009,
+      "combatRow": 114640,
+      "g2AbsenceRow": 114644,
+      "clearRow": 114672,
+      "queuedSearchRow": 114762,
+      "laterOwnArrivalRow": 116679,
+      "frontierTile": 9061,
+      "cursor": [
+        14,
+        60
+      ],
+      "sameRouteHash": "f358e88683f68d1587a1d833cc41e2b994c12ec1c459d1397ca15403c503da0b"
+    }
+  ],
+  "boundary": {
+    "noSourceEdits": true,
+    "noTestsOrNativeRunByAnalyzer": true,
+    "desktopTouched": false,
+    "nativeVictoryClaim": false,
+    "receiptIsArrivalOrKill": false,
+    "unknownClearNotCountedAsLegal": true,
+    "sourcePacketsNotAtomicAcrossEndpoints": true,
+    "compactOmittedContactArraysNotReconstructed": true,
+    "sourceCurrentNullClearLabelAloneIsNotLegalAbsenceProof": true,
+    "ordinaryOrHumanWinRateClaim": false,
+    "multiFormationCausalWinImprovementClaim": false
+  }
+}

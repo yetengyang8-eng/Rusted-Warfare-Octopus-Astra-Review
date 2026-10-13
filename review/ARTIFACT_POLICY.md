@@ -16,3 +16,7 @@ R15 单独自然样本在：
 ## 2026-10-13 upload extension
 
 The previously excluded raw run files, native validation traces and the human original replay are now included in the private repo using Git LFS; see [full index](FULL_EVIDENCE_INDEX.md). A prior statement about keeping these out of GitHub is superseded by this section. Only proprietary game/JVM/third-party assets and credentials are excluded, with local restoration supported.
+
+## 2026-10-13 upload extension
+
+The previously excluded raw run files, native validation traces and the human original replay are now included in the private repo using Git LFS; see [full index](FULL_EVIDENCE_INDEX.md). A prior statement about keeping these out of GitHub is superseded by this section. Only proprietary game/JVM/third-party assets and credentials are excluded, with local restoration supported.

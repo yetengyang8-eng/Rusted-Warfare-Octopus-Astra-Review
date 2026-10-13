@@ -1,0 +1,369 @@
+输出11（ChatGPT → DeepSeek）
+0. 总体判断
+本轮 P2-C1 recovery closeout 的实现方向与《输出10》一致。
+当前已经完成：
+STALLED_NO_BUILDER
+→ builder recovery
+→ new builder
+→ one-shot recovery probe
+→ accepted ≠ success
+→ 同一 candidate buildProgress 真正上涨
+→ ACTIVE
+
+并且拒绝路径已经具备：
+probe rejected
+→ 无其它 resume action
+→ ABANDONED_UNRECOVERABLE
+→ blockedSites
+→ replan
+
+没有假 ACTIVE，也没有 probe/replan 死循环。  对话11
+因此 P2-C1 目前只剩：
+实机证据 + 两个小验收点。
+
+1. Q1：认可“同名 build 是当前唯一 resume path”
+认可。
+原版 builder 动作清单已经证明：
+- 没有 repair
+- 没有 assist
+- 没有 reclaim
+- 没有 continue
+只有普通 build action。  对话11
+所以：
+hasResumeAction = 同名 build 可作为 recovery candidate
+
+在当前项目语义上可以接受。
+不过为了避免以后字段名让人误解，建议如果改动成本很低，把：
+hasResumeAction
+
+更名或补充为：
+hasRecoveryPath
+recoveryPath = SAME_BUILD_COMMAND
+
+因为严格说：
+原版没有“专门的 resume action”，而是复用了同名 build。
+
+如果不想改字段，也可以只在 README 明确这一语义，不作为阻塞项。
+2. 新增一个必须验证的点：续建不能再次完整收费
+当前测试已经确认：
+same candidate
+same site
+buildProgress 0.4 → 0.8
+
+很好。
+但还缺一个经济语义：
+对半成品重新下同名 build 时，是否再次扣除完整 building cost？
+
+这一点必须检查。
+例如矿：
+extractor cost = 700
+
+如果原来的 0.4 工地已经付过建造费用，而 recovery probe 又再次扣 700，那么虽然“能续建”，策略上却不能直接接受。
+因此请在：
+RecoveryProbeTests
+
+或实机诊断中记录：
+creditsBeforeProbe
+creditsAfterProbe
+candidateId
+buildProgressBefore
+buildProgressAfter
+
+希望看到：
+probe accepted
++
+same candidate progress rises
++
+没有发生第二次完整建造扣款
+
+3. 如果 recovery probe 会再次扣完整价格
+不要直接把它作为正常恢复行为。
+此时应重新评估：
+继续半成品的额外成本
+vs
+放弃并另建
+
+第一版甚至可以简单处理为：
+若 recovery probe 被证明会重复完整收费
+→ 不采用该路径
+→ ABANDONED_UNRECOVERABLE
+→ blockedSite
+→ replan
+
+不要为了“能续建”而接受明显错误的经济语义。
+4. Q2：批准下一步只跑实机验证，不并入 P2-B2
+确认。
+当前候选：
+D0B45A2E...
+
+已经包含：
+- P2-C1
+- recovery probe
+- blockedSites
+- capability endpoint
+且没有 P2-B2。  对话11
+这正适合作为 P2-C1 的最终实机候选。
+下一步不要再改生产预算。
+5. Q3：blockedSites 只在本局有效——批准
+同意：
+ABANDONED_UNRECOVERABLE
+→ 当前 match 内封锁该 tile
+
+不跨局持久化。
+并且：
+unfinished structure 消失
+→ blockedSites 中解除
+
+这是合理的最小语义。
+原因：
+这个 blocked 状态描述的是当前物理世界里存在的残留半成品，而不是地图永久属性。
+
+所以绝对不应该跨局保存。
+6. blockedSites 再补一个解除条件
+除了：
+structure disappeared
+
+建议也确认：
+structure completed
+
+时解除 blocked 状态。
+理论上 abandoned 以后一般不会自己完成，但如果：
+- 盟友/其它行为影响；
+- 某种原生机制完成；
+- 状态读取出现后续变化；
+最好不要让：
+buildProgress >= 1
+
+的正常建筑继续保留 UNUSABLE_UNFINISHED_SITE 标记。
+所以 prune 条件建议是：
+site 无 unfinished candidate
+→ remove blockedSite
+
+而不是只看 unitId 是否消失。
+7. 下一局条件确认
+确认：
+冰岛
+困难 AI
+正常战争迷雾
+900s
+Start → Match
+
+这一局重点不是输赢。
+重点是 P2-C1 的完整事件链。
+8. 若 builder 自然死亡
+必须采完整链：
+builder death
+↓
+STALLED_NO_BUILDER（如果已有半成品）
+↓
+builder_recovery_started
+↓
+builderReserve = 500
+↓
+production_deferred:
+RESERVED_FOR_BUILDER_RECOVERY
+↓
+builder_recovery_ordered
+↓
+builder_recovery_completed
+↓
+RECOVERY_PROBE
+↓
+accepted/rejected
+
+如果 accepted：
+same candidateId
+same site
+buildProgress increases
+credits economic semantics correct
+
+然后才：
+build_recovery_resumed
+
+9. 如果 builder 死亡时没有半成品
+这仍然可以验证 P2-C1-A：
+builder continuity
+
+即：
+builder dies
+→ reserve
+→ CC produces replacement
+→ new builder appears
+
+但不能算完整验证 P2-C1-B：
+unfinished economic task recovery
+
+要在报告中把 A/B 分开。
+10. 如果这局 builder 没死
+不要为了触发功能不断刷困难 AI。
+当前已经有：
+BuilderHarness
+RecoveryProbeTests
+
+覆盖完整模拟路径，而且严格验证了：
+- STALLED
+- replacement
+- probe
+- progress increase
+- reject
+- abandon
+- blocked site
+  对话11
+所以建议：
+跑这一局一次即可。
+
+如果 builder 没死：
+P2-C1 = harness validated
+live natural-death path = pending
+
+不必为了得到自然死亡连续刷很多局。
+可以继续进入 P2-B2，把自然实机恢复证据留给后续压力局顺带补齐。
+这样避免测试成本无限增长。
+11. capability endpoint：批准，但字段识别不要只用一个锚点
+当前：
+GET /combat/capabilities
+
+设计合理，而且仍遵守合法可见性。  对话11
+但混淆布尔字段的映射最好不要只靠：
+c_tank:
+air=false
+land=true
+
+一个单位。
+因为多个混淆布尔字段可能碰巧拥有相同真假组合。
+建议至少使用两个正交锚点：
+Anchor A
+c_tank
+air = false
+land = true
+
+Anchor B
+优先：
+antiAirTurret / c_antiAirTurret
+air = true
+land = false
+
+如果实机可获得。
+这样：
+字段X：
+c_tank=false
+AA=true
+→ air attack 候选
+
+字段Y：
+c_tank=true
+AA=false
+→ land attack 候选
+
+再读取：
+heavyTank
+hoverTank
+
+可信度会高很多。
+12. capability 仍不阻塞 P2-C1
+即使这一局：
+- 没碰到 AA turret；
+- heavyTank 字段仍然没完全映射成功；
+也不要阻塞 P2-C1。
+它属于生产/兵种设计证据，不属于 builder continuity。
+能采到就采。
+采不到继续标：
+UNPROBED / UNRESOLVED
+
+即可。
+13. 实机后 P2-C1 的冻结标准
+我建议正式拆成：
+P2-C1-A Builder continuity
+要求：
+builder == 0
+→ 自动保留500
+→ CC生产builder
+→ builder重新出现
+
+Harness 已通过，实机最好补证据。
+P2-C1-B Economic task continuity
+要求：
+unfinished job
+→ builder dies
+→ STALLED
+→ new builder
+→ recovery probe
+
+最终必须落到两个合法终态之一：
+SUCCESS
+same candidate
+buildProgress increases
+→ resume
+→ completed
+
+CLEAN FAILURE
+recovery impossible
+→ ABANDONED_UNRECOVERABLE
+→ blockedSite
+→ replan
+
+绝不能出现第三种：
+永久 STALLED
+假 ACTIVE
+重复 probe
+同 site 无限重规划
+
+14. 下一阶段仍然是 P2-B2
+P2-C1 实机检查完成以后：
+P2-B2 Global Production Budget
+
+不再延后。
+现有证据已经非常清楚：
+单厂：
+54 heavy / 1 c_tank
+
+双厂困难局：
+17 heavy / 103 c_tank
+
+所以 P2-B2 已经有充分立项依据。
+15. P2-B2 的核心目标保持不变
+下一阶段只解决：
+低优先级生产建筑不得消耗掉主力生产预算。
+
+资源层级：
+1. builder recovery reserve
+2. primary combat production reserve
+3. secondary surplus production
+
+P2-C1 现在实现的 builderReserve 正好已经成为这个全局预算体系的第一层。
+所以架构方向是连续的，不需要推倒重来。
+最终裁决
+Q1
+认可。
+同名 build 可以作为当前唯一的：
+recovery path
+
+但请额外验证：
+不会再次完整扣除 building cost。
+
+Q2
+确认。
+下一步只做一次：
+冰岛 / 困难AI / 900s
+
+P2-C1 实机验收 + capability 顺带采集。
+不要并入 P2-B2。
+Q3
+同意。
+blockedSites
+
+只在本局有效，不跨局持久化。
+建议按：
+site 不再存在 unfinished candidate
+
+解除封锁。
+当前顺序
+P2-C1 实机收尾
+↓
+P2-B2 Global Production Budget
+↓
+困难AI 900s 压力复测
+↓
+P3-A
+
+可以按以上范围进入实机。

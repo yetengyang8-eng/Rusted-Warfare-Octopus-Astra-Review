@@ -1,0 +1,219 @@
+# 对话13（DeepSeek → ChatGPT）
+
+## 0. 本轮范围与数据来源
+
+按《输出12》§1/§23 完成 P2-C1 正式收口。**未改任何 Agent 行为**，只做分析与产物整理。
+
+- 数据：本机 `游戏环境\P1F-冒烟环境\rw-agent-reports` 的 **71 份报告 / 113.2 MiB / 24 个 session**（用户连跑的一批 + 历史样本）。
+- 判定这批用的是哪一版：冒烟环境当前 JAR = `B0FE0A8E…`，其安装时间 `2026-09-24 23:29:53` **早于本批最早一局**，且报告里出现 `hasRecoveryPath` / `recoveryPath` 字段（只有 `B0FE0A8E` 才有）→ **本批全部由 输出11 那一版（含 double-charge 判定、blockedSites prune 的改名版）产生**。
+- 产物：`助手交接\evidence\session_catalog.json` / `session_catalog.csv`（§6 要求的轻量目录）、`_analysis\p2c1_closeout.json` / `.txt`（逐 session 明细）、`_analysis\post_abandon.py` 输出（§2 的后续链路）。
+
+---
+
+## 1. P2-C1-A 正式结论：**通过**
+
+共 **8 个 session** 实际触发恢复（2 个 1x FORMAL + 6 个 x5 STRESS），合计 **starts=16 / orders=16 / completed=15**（唯一缺口见 §3）：
+
+| session | 类别 | starts | orders | completed | waiting 原因 | `production_deferred` |
+| --- | --- | ---: | ---: | ---: | --- | ---: |
+| `cd795d34` | FORMAL 1x | 1 | 1 | 1 | INSUFFICIENT_CREDITS(407.5) | 1 |
+| `2cc6774b` | FORMAL 1x | 1 | 1 | 1 | — | 0 |
+| `fc0b3265` | X5 | 1 | 1 | 1 | — | 0 |
+| `790c0f44` | X5 | 1 | 1 | 1 | — | 1 |
+| `979b4bcb` | X5 | 2 | 2 | 2 | — | 0 |
+| `f0b220e6` | X5 | 3 | 3 | 3 | INSUFFICIENT_CREDITS(124.5) | 2 |
+| `f80e780f` | X5 | 2 | 2 | 2 | PRODUCER_BUSY(279.0, queue=1)、INSUFFICIENT_CREDITS(399.0) | 3 |
+| `b5e4a576` | X5 | 5 | 5 | 4 | INSUFFICIENT_CREDITS(112.0)、PRODUCER_BUSY(623.5, queue=1) | 2 |
+
+**完整链条（用户要求的真实例子，`cd795d34`，1x，VICTORY）**：
+
+```text
+gt=196627  builder_recovery_started   aliveBuilders=0
+gt=196627  builder_recovery_waiting   reason=INSUFFICIENT_CREDITS  builderCost=500  credits=407.5  queueCount=0
+gt=198670  builder_recovery_ordered   builderCost=500  credits=514.0  queueCount=0
+gt=205874  production_deferred        reservedFor=BUILDER_RECOVERY reservedCost=500
+                                      candidateUnit=c_tank candidateCost=350 credits=383.5 factoryTier=2
+gt=207930  builder_recovery_completed aliveBuilders=1 builderCost=500
+```
+
+即：**builder==0 → 记下原生价 500 → 钱不够就 waiting → 期间战斗生产被 deferred（credits 383.5 < 500+350 时拒绝买 c_tank）→ 钱够了下单 → 新 builder 出现 → 解除 recovery**。所有环节都有实机事件，不是推断。
+
+**最锋利的一条预留证据**（`790c0f44`，x5）：`production_deferred` 在 credits=**806.0** 时拒绝了 **heavyTank（800）** —— 原生买得起，但因为要留 500 给建造者，406 < 500 被拦。这正是「优先级 1 高于普通战斗生产」的直接证据。
+
+**汇总**：`production_deferred: RESERVED_FOR_BUILDER_RECOVERY` 共 **9 次**（cd795d34 ×1、790c0f44 ×1、f0b220e6 ×2、f80e780f ×3、b5e4a576 ×2）；waiting 原因分布 = `INSUFFICIENT_CREDITS ×5`、`PRODUCER_BUSY ×3`（**没有一次抢队**）。
+
+**判定：P2-C1-A 通过并建议冻结。**
+
+---
+
+## 2. P2-C1-B 正式结论：**CLEAN FAILURE + SUCCESSFUL REPLAN，可以冻结**
+
+两个真实半成品案例都走完了完整链路，而且**恰好覆盖了 abandon 之后的两种合法后续**：
+
+### 2.1 `f0b220e6`（x5，VICTORY）——工地仍被占用 → 换新工地
+
+```text
+STALLED_NO_BUILDER   unitId=913 @(1590,670) buildProgress=0.3588
+RECOVERY_PROBE       creditsBeforeProbe=555.0 buildCost=700
+probe_rejected       （原版拒绝对半成品重下同名 build）
+builder_actions      actionCount=14 hasRecoveryPath=true recoveryPath=SAME_BUILD_COMMAND
+ABANDONED_UNRECOVERABLE blockedSite="1590,670"
++3.1s / +6.2s / +9.4s  economy_expansion_blocked: NO_VISIBLE_LEGAL_SITE ×3   ← 封锁生效，不回到旧工地
++12.5s  economy_expansion_planned 新工地 (2030,1070)
++14.0s  economy_expansion_started → +14.5s observed → +17.6s extractor_completed
+结束时 3 座矿：1110,2190 / 1330,1350 / 2030,1070   credits=941.5
+```
+
+### 2.2 `790c0f44`（x5，ONGOING）——半成品被敌方摧毁 → 封锁自动解除后原地重建
+
+```text
+STALLED_NO_BUILDER   unitId=332 @(1330,1350) buildProgress=0.6021
+RECOVERY_PROBE       creditsBeforeProbe=715.5 buildCost=700
+probe_rejected → builder_actions → ABANDONED_UNRECOVERABLE blockedSite="1330,1350"
+（随后 own_loss(332)：敌方把这座半成品矿打掉了 → 按《输出11》§6，site 上不再有未完工结构 → 解除封锁）
++6.2s  economy_expansion_planned 同一 tile (1330,1350)
++7.8s  started → +11.4s extractor_completed
+结束时 3 座矿：1110,2190 / 2210,2290 / 1330,1350   credits=21541.5
+```
+
+**结论**：
+
+1. **没有假 ACTIVE**：两次都是 `probe_rejected`，从未写 `recovery_resumed`（SUCCESS 分支在实机不可达，因为原版拒绝对半成品重下同名 build）；
+2. **没有永久 stalled**：abandon 之后都在 6–13 秒内重新规划并**建成了新的矿**（一次换点、一次原地重建），两次都落到 `extractor_completed`；
+3. **没有同 site 死循环**：`790c0f44` 回到同一 tile 是**正确的**——半成品已被摧毁、封锁已按设计解除；`f0b220e6` 则证明封锁确实让 planner 避开了旧点；
+4. **不存在重复收费问题**：命令在收费前就被拒（`probe_rejected`），所以 输出11 §2 的经济语义在实机上不成立为风险；`probeCostDelta` 无需再等实机。
+
+**判定：P2-C1-B = CLEAN FAILURE + SUCCESSFUL REPLAN（两次），建议随 P2-C1-A 一并冻结。** 唯一保留说明：原生「续建半成品」路径在实机上不可用，SUCCESS-resume 分支只有 harness 证据。
+
+---
+
+## 3. x5 那局 5/5/4 的解释（不留计数差）
+
+`b5e4a576`（x5，**DEFEAT**，game=572.4s / wall=114.5s）：
+
+```text
+第5次：gt=653460 started → waiting PRODUCER_BUSY（credits=623.5, queueCount=1，不抢队）
+       gt=656060 ordered（credits=655.5, queueCount=0）
+       之后最后几条事件：production_menu → search_target_superseded → search_target_created
+                        → observation（墙钟 +10.4s）→ match_terminal（DEFEAT）→ summary
+```
+
+前 4 次 completed 的建造耗时分别为 **10.32s / 10.43s / 10.35s / 10.50s**（同一局的真实建造时长）。第 5 次下单后 **10.4s 就收到了 DEFEAT 结算**——正好是一个建造周期。因此答案是：
+
+> **不是失败，也不是又被杀，而是比赛在第 5 个 builder 完成前结束（DEFEAT 结算）**；第 5 个 builder 当时仍在指挥中心生产队列里。
+
+所以 5/5/4 是「started 5、ordered 5、completed 4 + 1 个被终局打断」，没有异常扣减。
+
+---
+
+## 4. Session catalog（《输出12》§6）
+
+已生成 `助手交接\evidence\session_catalog.json` + `session_catalog.csv`，字段：
+`classification, sessionId, map, speed, outcome, reason, durationGameSeconds, durationWallSeconds, builderDeaths, builderRecoveries, recoveryStarts, mines, factories, produced, lost, maxArmy, composition, p2c1Evidence, recoveryProbe, deferredReserved, opponentInferredHighPressure, distinctEnemies`。
+
+24 个 session 的分布：
+
+| 分类 | 数量 | 说明 |
+| --- | ---: | --- |
+| `FORMAL`（1x，三阶段完整） | 13 | 其中 2 个带 P2-C1 恢复证据 |
+| `STRESS_X5`（speed≈5.0） | 9 | 其中 6 个带 P2-C1 恢复证据、2 个带 probe 证据 |
+| `ABORTED`（桥接 503） | 1 | 历史失败样本，保留 |
+| `NOT_A_MATCH`（连接超时，未注入 agent） | 1 | 保留 |
+
+地图分布：145×145 / 110×110 / 130×130 / 180×180（多为冰岛与其它小图）。
+
+---
+
+## 5. 1x 与 x5 严格分离（§5）
+
+- **1x（speed 0.99–1.00）**：13 局，作为正式指标样本；
+- **x5（speed 4.97–5.00）**：9 局，判定依据 = `battleGameTimeMs / 墙钟秒 ≈ 5`（实测 4.97/5.00），**只作为 speed stress sample，不与 1x 混算**；
+- 无 `UNKNOWN_SPEED` 样本（每局都有 battle 段可算）；
+- 1x 正式样本里 P2-C1 只出现 2 次 builder 死亡，而 x5 里出现 19 次（16 starts 中的 14 次 + 额外的死亡未触发恢复）——**x5 确实是压力样本**，这也解释了为什么 P2-C1 的主要证据来自 x5。
+
+---
+
+## 6. AI 难度：事实与推断分离（§4）
+
+**日志事实（可核对）**：敌方兵种与目击次数、不同敌 ID 数、我方 outcome / 生产 / 损失。
+
+**推断（我的分类字段 `opponentInferredHighPressure`）**：判定条件为「敌方出现 `c_helicopter` 或 `experimental*`，或不同敌 ID ≥100」。22 个对战 session 中 **13 个**命中，例如：
+
+| session | 类别 | 不同敌 ID | 关键敌方兵种 |
+| --- | --- | ---: | --- |
+| `d4c2a430` | FORMAL 1x | 126 | lightGunship×981、c_helicopter、c_antiAirTurret |
+| `cd795d34` | FORMAL 1x | 46 | **c_helicopter×74**、c_interceptor |
+| `b5e4a576` | X5 | 123 | scout×169、c_antiAirTurret×108、hoverTank×107、c_artillery×83 |
+| `bf1958e1` | X5 | 123 | **lightSub×213**、hoverTank、gunBoat |
+| `979b4bcb` | X5 | 91 | **lightSub×55**、c_antiAirTurret |
+| `2cc6774b` | FORMAL 1x | 60 | **gunBoat×235**、c_artillery×89（海图） |
+| `528bb68e` | FORMAL 1x | 47 | **dropship×24**、c_turret_t2_gun |
+
+**用户已知条件（不能由日志证明）**：用户明确测试过「非常困难 AI / 不可能 AI / x5 / 多人」，但**报告本身不记录 AI difficulty**，因此我不会把任何 session 标成确定的「困难/不可能 AI」——只写 `inferred_high_pressure`。x5 是唯一可由日志证明的速度条件。
+
+**联机尝试**：本目录 **没有**任何 `networked=true` 或「network games are not supported」的报告 → 那次多人尝试没有留下报告（客户端在写入前就退出了）。按《输出12》§19 记为 backlog：`MULTIPLAYER_COMPATIBILITY_FAILURE`，当前不处理。
+
+**海域/跨域证据（§14-§18 的背景）**：本批已实际出现 `lightSub`、`gunBoat`、`seaFactory`、`dropship`，说明「隔海/水下剩余目标」的场景在这批里已经出现，backlog 立项有据。
+
+---
+
+## 7. `mobileUnitHardCap` 是否已能从现有日志确认（§8）
+
+**能，已确认：**
+
+| session | 类别 | maxArmy | cap | `production_idle` 原因 |
+| --- | --- | ---: | ---: | --- |
+| `528bb68e` | FORMAL 1x | **33** | 32 | `MOBILE_UNIT_HARD_CAP_REACHED` ×6、NO_AFFORDABLE_ACTION ×2、BANKING_FOR_UPGRADE ×6 |
+| `bf1958e1` | X5 | **32** | 32 | MOBILE_UNIT_HARD_CAP_REACHED ×1、BANKING_FOR_UPGRADE ×14、NO_AFFORDABLE_ACTION ×6 |
+| `790c0f44` | X5 | **33** | 32 | MOBILE_UNIT_HARD_CAP_REACHED ×11、BANKING_FOR_UPGRADE ×8、NO_AFFORDABLE_ACTION ×5 |
+| `979b4bcb` | X5 | **33** | 32 | MOBILE_UNIT_HARD_CAP_REACHED ×4 |
+| `5bdf9896` | ABORTED | **33** | 32 | MOBILE_UNIT_HARD_CAP_REACHED ×5（崩溃前） |
+
+结论：
+
+1. 用户观察到的「有钱 + 工厂空闲 + 不生产」**至少部分是** `DESIGN_CAP_REACHED`（32 上限），已按要求只记录、不提高上限；
+2. 观测到 maxArmy=33 而 cap=32：上限只阻止**新下单**，已在生产中的单位仍会完成，2 厂时最多可瞬时到 34——这是设计上的自然溢出，不是 bug；
+3. **第二个「有钱但停产」的原因是同为设计行为的 `BANKING_FOR_UPGRADE`**（`army>=10` 且该厂菜单里仍有 upgrade → 该厂主动攒钱不产兵）：本批出现 12/12/14/8/26/4/8/4/6/5 次，其中 `d4c2a430`（困难 AI，900s）的 95 次 idle 里 26 次是攒钱、69 次是没钱。**这一条以前被笼统读成「缺钱」，现在必须与 cap 区分开**；
+4. 没有发现其它未知的停产原因。
+
+---
+
+## 8. 新 backlog（全部记录、本轮不施工）
+
+| 项 | 来源 | 状态 |
+| --- | --- | --- |
+| `dynamic economy`（mineTarget 3→4→5） | 用户观察 A（只建 3 矿） | **冻结 mineTarget=3**，等 P2-B2 后再评估；不排除「用更多收入掩盖生产调度问题」 |
+| `army cap`（32→更高） | 用户观察 B | 已确认 `DESIGN_CAP_REACHED` 真实存在，但**不提高**：先做 P2-B2，否则只会放大单军团问题 |
+| `low-value pursuit`（1~2 单位追低价值目标） | 用户观察 C（全军追一个 builder） | `LOW_VALUE_TARGET_PURSUIT_LIMIT`，排在 P3 前，但**不是现在** |
+| `reactive defence v0`（防空塔最小版） | 用户观察 D（不造塔） | 桥接能力已具备（`b_turret 500` / `b_antiAirTurret 600`），缺的是 when/where/why；排在 P2-B2 + capability 事实确认之后 |
+| `cross-domain recovery v0`（跨海/跨域最低成本解法） | 用户观察 E | 本批已出现 `lightSub`/`gunBoat`/`dropship` 证据；触发条件保守化设计 |
+| `landing task group`（登陆艇 4 单位小任务组） | 用户提案 | 保留为未来首个「独立于主军团的小任务组」实验 |
+| `multiplayer compatibility` | 用户联机尝试（未留下报告） | `MULTIPLAYER_COMPATIBILITY_FAILURE`，不处理 |
+| `impossible AI` | 用户实测 | 定位为 out-of-scope stress ceiling，仅保留样本 |
+
+**DIAGNOSTIC ONLY（下一轮小改，不改任何行为）**：
+1. capability snapshot 采集点：`/combat/capabilities` 已就绪但**客户端尚无调用点**，计划战斗中调用 1~2 次（双锚点：c_tank + 可见的 `c_antiAirTurret`，本批里 AA turret 目击充足）；
+2. `builderTarget` 补进 `battle_config`（本批该字段为 null，分类时只能靠事件推断版本）；
+3. session provenance 增强（把候选 JAR SHA 直接写进报告头部，避免以后要靠安装时间去猜）。
+
+---
+
+## 9. 请裁决
+
+1. **P2-C1 是否可以正式冻结**？我的结论是：P2-C1-A 通过（8 局 16/16/15，零抢队，预留 9 次实拦）、P2-C1-B 通过（两次 CLEAN FAILURE + 两种合法后续，且不存在重复收费风险）。
+2. 若冻结，**下一轮直接进入 P2-B2 Global Production Budget**（`builder reserve` 之下再建 `primary combat production reserve`；本批已提供 `PREFERRED_UNAFFORDABLE_FALLBACK` 实机证据，如 `979b4bcb` ×10、`bf1958e1` ×28、`790c0f44` ×17）。
+3. 上面三条 DIAGNOSTIC ONLY 是否随 P2-B2 版本一起进（都不改行为）？
+4. `BANKING_FOR_UPGRADE` 是否要单独立项？它和 cap 是两种不同的「有钱不产兵」，本批数据里它比 cap 更常见（26 次 vs 6 次）。
+
+---
+
+## 附：本轮产物
+
+| 路径 | 说明 |
+| --- | --- |
+| `助手交接\evidence\session_catalog.json` / `session_catalog.csv` | 24 个 session 的轻量目录（§6 字段全） |
+| `_analysis\p2c1_closeout.json` / `.txt` | 逐 session 明细：恢复链、probe、deferred、idle 原因、敌方信号 |
+| `_analysis\post_abandon.py` | abandon 之后的逐事件后续链路（§2 证据） |
+| `_analysis\classify_sessions.py` | 通用分类器（可从分卷 ZIP 直接读） |
+| `tools\collect_reports.py`（+ 冒烟环境副本） | 按 session 自动分卷的采集工具（本轮唯一代码改动，Agent 未动） |
+| `developer\tests\test_frontier_reports.py` | 新增 4 项分卷测试；全量回归 15 Java harness + 9 Python 套件 0 失败 |

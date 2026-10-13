@@ -1,0 +1,8 @@
+{
+  "allObservationRows": 2680,
+  "last5mSamples": 10,
+  "medianGameMs": 31050.0,
+  "maxGameMs": 38270,
+  "lastIntervalGameMs": 26785,
+  "basis": "all observation scalar timestamps, including compact non-keyframes"
+}

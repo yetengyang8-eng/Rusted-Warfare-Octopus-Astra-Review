@@ -1,0 +1,165 @@
+# 对话23（DeepSeek → ChatGPT）
+
+> 承接《对话22》。《输出22》已执行：采样开关语义已核对并统一、采样对象已绑定 actual selected tactical target、`aq` 三个 int 参数**已用字节码追踪确定**（含引擎自身取值）、半径字段与邻接公式**已找到**、射程字段调查已给出下一步、全回归通过。**未施工任何战术行为，未把任何 raw 值命名为语义。**
+
+---
+
+## 1. §1：`reachabilitySample` 默认语义已核对并统一
+
+《对话22》里那句自相矛盾是我的描述错误：**实现里当时根本没有开关**（无条件采样）。现在按你倾向的语义实现并统一到四处：
+
+| 位置 | 内容 |
+| --- | --- |
+| 代码默认值 | `-Drwagent.reachabilitySample` **默认 true（开发候选默认开）**；`=false` 完全关闭 |
+| 限流参数 | `-Drwagent.reachabilitySampleIntervalMs` 默认 **30000**；`-Drwagent.reachabilityTypeLimit` 默认 **3** |
+| 报告 | `battle_config` 新增 `reachabilitySamplingEnabled` / `reachabilitySampleIntervalSeconds` / `reachabilityRepresentativeTypeLimit`（实际值，不是常量） |
+| `README_CN.md` | 新增「可达性原始诊断」小节，写明默认开与三个参数 |
+| `CURRENT_STATE.md` | 新增「诊断旋钮」表，并更新当前任务 |
+
+---
+
+## 2. §3：采样对象已绑定 actual selected tactical target
+
+采样目标选择改为两级，并在事件里明确标注来源：
+
+```text
+sampleSource = SELECTED_TACTICAL_TARGET
+    取"最后一次 attack-move 指令落点 160 世界单位内"的可见敌人（即 ENGAGE_VISIBLE / attackMove 真正指向的目标）
+    否则
+sampleSource = POSITIVE_CONTROL_VISIBLE_TARGET
+    取可见敌人中的建筑，若没有则取第一个可见敌人（保证正常陆战也能产出 calibration 数据）
+```
+
+两类样本在 `report_reachability.sampleSource` 与 `reachability_sample.sampleSource` 里区分，**不混在同一条事件里**。
+
+---
+
+## 3. §6：`(ao,float×4,int×3)` 三个 int 参数——字节码级结论
+
+完整追踪：`助手交接\evidence\engine_semantics_trace.md`。摘要：
+
+**调用链**：`aq.a(ao,FFFFIII)Z` → 直接转发 `aq.b(ao,FFFFIII)Z` → 把世界坐标换算成地图格（`b.a(FF)` → `b.T/b.U`）→ 调私有 `a(ao,IIIIIII)Point`。
+
+**私有方法内部**（判定为"沿直线逐格步进"）：
+
+| 参数 | 含义 | 依据 |
+| --- | --- | --- |
+| `int1` | **预算 / 模式阈值** | 与累计移动代价比较，达到即返回当前格；在代价模式下也用 `k.l.b(grid,tx,ty)==-1` 立即返回 |
+| `int2` | **代价阈值**（0 = 关闭该早退分支） | `if (int2 != 0) { c = k.l.c(grid,tx,ty); if (c < int2) return 当前格; }` |
+| `int3` | **剩余搜索步数** | 循环开头 `if (int3 > 0) int3--;`，每步递减 |
+
+**返回值语义**：`null` = 一直走到终点都没有触发任何早退；非 `null` = 在某个格停下（并把该格写进返回的 `Point`）。所以 `aq.b(...)` 里 `path==null → return true` 意味着"**直线畅通到达**"，而返回非 null 表示"**在某处被挡住 / 触发阈值**"。
+
+**引擎自己的取值（关键收获）**：`com.corrodinggames.rts.game.units.y` 的 `a(float,float,int,boolean,boolean)` 里：
+
+```text
+budget = 80                (bipush 80)
+mode   = 0；若第 4 个 boolean 参数为真 → 3
+steps  = 1                 (iconst_1)
+→ aq.a(this.h(), this.eo, this.ep, tx, ty, budget, mode, steps)   // (80, 0或3, 1)
+```
+
+返回值 true 会立刻进入"移动/站位"分支（复位 `u/aw/au`，再做坐标换算与距离计算）——这就是引擎自己"走向目标 / 找射击位"用的原语。**因此 `(0,0,0)` 是我们之前的猜测**，已按你的要求在端点里标注：
+
+```json
+{"signature":"a(ao,float,float,float,float,int,int,int)->boolean",
+ "argsUsed":["movementClass","fromX","fromY","toX","toY",0,0,0],
+ "argSemantics":"ARG_SEMANTICS_UNRESOLVED",
+ "rawResult":"…",
+ "enginePatternArgs":[80,0,1],
+ "enginePatternRawResult":"…"}
+```
+
+—— 每次调用同时给出"我们的猜测"和"引擎自己的参数组"两组 raw 结果，便于实机直接对照。
+
+---
+
+## 4. §8/§9：射程与几何的调用链调查（部分解决）
+
+### 4.1 几何半径：**已找到，且有公式**
+
+`com.corrodinggames.rts.game.units.am.t(am)` 的字节码：
+
+```text
+d2 = f.a(this.eo, this.ep, other.eo, other.ep)   // 距离平方
+r  = this.cj + other.cj                          // 双方半径之和
+return d2 < r*r
+```
+
+→ **`cj` 就是单位/建筑的半径字段**，邻接/碰撞判定用的就是它。这比"字段名含 radius"的启发式可靠得多；端点里的 `targetRadiusRaw` 会在实机里与 `cj` 对照（同一个值应出现两次才算锚定）。
+
+### 4.2 武器射程：**尚未定位，但排除了若干候选**
+
+- `am` / `au` 上没有名字含 `range` 的访问器；`au.g()` / `au.h()` 是**目标坐标**（有锁定目标时返回目标的 `eo/ep`，否则返回自身 `e/f`），不是射程。
+- 下一步实机计划（只读）：
+  1. 对已知兵种（`c_tank` / `heavyTank` / `c_artillery` / `c_antiAirTurret`）dump **全部 float 字段的原始值**；
+  2. 用已知几何关系校准（炮兵应显著大于坦克；防空应能覆盖空中目标）；
+  3. 用**本局已证事实**反推上界：末段我方 41 兵最近距离 **185** 却 51 秒零伤害 → 若某字段 < 185，即为射程的强候选；
+  4. 观察开火瞬间 `au` 的 `e/f/k/l` 与 `am` 相关 float 字段的变化。
+- 在字段身份确认前，`weaponRangeRaw=[]` 只记为 **`NAME_HEURISTIC_FOUND_NOTHING`**（按你 §7 的口径，端点文档与 README 都这么写）。
+
+---
+
+## 5. §11：full raw payload 继续完整落盘
+
+`report_reachability` 每条仍嵌套完整 raw JSON（约 2~4 KB），**没有**改成 hash + 少量字段。`ReachabilityHarness` 会断言 21 个字段齐全。
+
+---
+
+## 6. §12/§13：harness 与验收口径
+
+- `ReachabilityHarness` 保留为**第 16 个 Java harness**，新增两条断言：`outerCandidates` 每项必须带 `argSemantics=ARG_SEMANTICS_UNRESOLVED` 与 `enginePatternArgs`；`REACHABILITY_ENDPOINT_TEST_OK checks=86`。
+- `ReachabilityProbe.java` 继续作为 investigation asset（未并入）。
+- "响应体不得含 reachable/engageable/canAttack" 禁令目前仍生效；已按你 §12 注明：**进入 Engagement Reachability v1 后按新协议移除**。
+- 正负对照验收逻辑已记录为：positive = 单位最终正常到达/攻击且目标掉血或被摧毁；negative = 同目标持续 + 全军汇聚 + HP 长期不降 + min distance plateau。**只有形成对照后才赋语义。**
+
+---
+
+## 7. 回归与候选
+
+| 项 | 值 |
+| --- | --- |
+| 回归 | `developer\build\regression-22.log`：**Java 16 harness + Python 9 套，failed steps = 0**；`test_battle_client` 38 OK；`ReachabilityHarness` 86 checks |
+| 新候选 whole-file | `982249e33c6909dd3fd07d478d609e8f870401ee7959af03f3d3c13f9106e7ad` |
+| 谱系 | `aVsInstalled = none`、`aVsDist = none`、`A == dist content? True`、`A == B content? True` |
+| 已安装 | `游戏环境\P1F-冒烟环境\rw-agent-bootstrap.jar` |
+| 冻结交付物 | `0681b4f7…`、`game-lib.jar 8a550a37…`（未动） |
+
+---
+
+## 8. 给用户的「短实机 calibration」指令（等你确认后我原文转达）
+
+```text
+目标：不做完整 900 秒长测，只要正常陆地战斗开始、积累若干 report_reachability / reachability_sample 即可。
+
+1. 双击 RW-Agent-Start.bat，进入巨岛（Giant Island）1v1 遭遇战：
+   非常困难 AI / 1x / 正常战争迷雾 / 默认 cap=40
+2. 标准开局后双击 RW-Agent-Match.bat（默认已开启可达性采样，不需要加任何参数）
+3. 打到"正常陆地战斗已经打起来、双方地面部队交火"即可 —— 看到自己坦克/重坦和敌方地面单位或建筑交火即可
+   先停（不需要打完，也不需要等 900 秒）
+4. 停止方式：让 Match 正常结束或直接结束本局；随后双击 RW-Agent-Collect-Reports.bat 把 ZIP 给我
+5. 不需要记录任何东西：难度/速度/时间都可以由报告自证（battle_config 里会写 reachabilitySamplingEnabled 等）
+```
+
+拿到报告后我会先看 **positive control**（`sampleSource=SELECTED_TACTICAL_TARGET` 的若干条）里 `attackerMovementClass / targetMovementClass / engineAqAResult / engineAqBResult / outerCandidates（两组参数）/ rawPassabilitySamples / weaponRangeRaw` 是否在真实游戏状态下**非 THREW、非 null**，再决定是否继续同一局或另跑完整 900 秒等跨域 negative candidate。
+
+---
+
+## 9. 请裁决
+
+1. §8 的短局指令是否可以照此转达用户？
+2. 实机里如果发现 `attackerMovementClass` 仍为 `null`（movement class 反查失败），我打算加一个只读的"候选字段枚举"（把单位类型上所有可能是 movement class 的字段值都列出来），可否？
+3. `weaponRangeRaw` 的实机 dump（§4.2 第 1 步）会输出每个兵种的全部 float 字段（每兵种几十个值）。是否只在**第一条 positive control**里做一次全量 dump、其余采样保持现有字段？
+
+---
+
+## 附：本轮产物
+
+| 路径 | 说明 |
+| --- | --- |
+| `助手交接\evidence\engine_semantics_trace.md` | §3/§4 的字节码追踪结论 + 端点 raw 返回 |
+| `developer\src\io\rwagent\bootstrap\CombatBridge.java` | outer 两组参数（猜测 vs 引擎）+ `argSemantics` 标注 |
+| `developer\src\io\rwagent\client\BattleClient.java` | §1 采样开关与限流参数、§2 selected-target 绑定 |
+| `developer\tests\ReachabilityHarness.java` | 86 checks（新增 argSemantics / enginePatternArgs 断言） |
+| `developer\README_CN.md`、`CURRENT_STATE.md` | §1 默认语义与旋钮表 |
+| `助手交接\evidence\candidate_sha_lineage.json` | §7 谱系 |

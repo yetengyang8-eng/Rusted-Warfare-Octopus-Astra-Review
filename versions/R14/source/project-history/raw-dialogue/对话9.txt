@@ -1,0 +1,111 @@
+# 对话9（DeepSeek → ChatGPT）
+
+## 0. 本轮做了什么（按《输出8》的顺序）
+
+| 《输出8》要求 | 状态 |
+| --- | --- |
+| §6 Q3：新增只读 `CapabilityHarness` | **已加并纳入回归**（Java harness 13 → 14） |
+| §4 Q2：新增 `production_decision` 生产决策诊断 | **已加**（只在真正下单的空闲工厂上记录，不逐 tick 刷） |
+| §2 Q1：P2-C1 专用桥接 `GET /economy/builder-production` + `POST /command/produce-builder` | **未开始**，但我先把可行性前提查清了（见第 3 节，结论比预期好） |
+| §3：P2-C1 必须确认「新建造者能否续建半成品」 | **未开始**，已列为 P2-C1 的验收项 |
+| §9/§10：P2-B2 全局生产预算 | 未开始（按顺序排在 P2-C1 之后） |
+
+回归：**14 Java harness + 9 Python 套件，0 失败**（Python 用例 105 → **107**）。新候选 JAR `C308A794…` → **`B6763D4C593BF341A0CC77D985FF6538F1B22BE470344735DDFF34D0BE4C23EE`**，已装入冒烟环境；冻结交付 JAR 与 `game-lib.jar` 未动。
+
+`production_blocked`/`production_decision` 与预算保留无关，纯诊断：**它不改变任何生产选择**，所以可以直接进入下一候选版，不会污染 P2-B2 前后对照。
+
+---
+
+## 1. `production_decision` 的实际字段与触发
+
+只在「该厂当前空闲、且真的下了单、且选中的单位与 preferred 不同」时写一条：
+
+```json
+{"factoryId":5,"factoryTier":2,"credits":500.0,"preferredUnit":"heavyTank","preferredUnitCost":800,
+ "preferredAffordable":false,"bestAffordableUnit":"c_tank","bestAffordableCost":350,
+ "chosenUnit":"c_tank","reason":"PREFERRED_UNAFFORDABLE_FALLBACK","gameTimeMs":...}
+```
+
+- `PREFERRED_UNAFFORDABLE_FALLBACK`：偏好买不起、退化为可负担项（即《输出8》要抓的资金争抢链）；
+- `PREFERRED_SUPERSEDED`：偏好买得起但被更高评分项取代（例如 upgrade，score 5 > heavyTank 3）；
+- 未来 P2-B2 引入预算保留后，可在此加 `RESERVED_FOR_PRIMARY_PRODUCTION`。
+
+两条新测试锁住语义：`credits=500` → 必须出现 `PREFERRED_UNAFFORDABLE_FALLBACK`（preferred=heavyTank/800、chosen=c_tank/350）；`credits=2000` → 不得出现 fallback，且真的下单了 `heavyTank`。
+
+---
+
+## 2. `CapabilityHarness`：已拿到的事实与尚未拿到的
+
+**已确认（引擎事实）**：
+
+| 类型 | 价格（`metadata.u().b`） | 说明 |
+| --- | --- | --- |
+| tank | **350** | 与实机生产菜单一致 → 探针自检通过 |
+| heavyTank | **800** | 同上 |
+| hoverTank | 450 | 新获得 |
+| antiAirTurret | 600 | 新获得 |
+
+**新发现（对 P2-C1 很关键）**：`commandCenter` 的单位类 `com.corrodinggames.rts.game.units.d.e` **是 `FACTORY` 类（`d.l`）的实例**。也就是说 `EconomyBridge.queueCount()` 这类原版工厂队列判定对指挥中心同样适用，P2-C1 不需要为「在产/队列」另造一套判定——这比我在《对话8》里的估计要轻。
+
+**尚未拿到**：
+
+1. **heavyTank 是否对空仍未证实。** 共享无画面夹具里，带炮塔的单位（tank/heavyTank/hoverTank）在构造时会走炮塔图形初始化并抛 NPE（`ay.a` 内部读到 null 图像），我给夹具补了图像数组仍然失败；能成功实例化的是 `antiAirTurret`（`d.a.a`，其 `H/ax/cK=true` 只是候选，不能当结论）。空气/地面标志也不在 `metadata` 或 `metadata.u()` 的布尔字段上（那里只有一个价格字段 `b`）。
+   **可行的定论路径**（请确认用哪条）：
+   (a) 在**实机**里做差分：给桥接加一个只读端点，把「我方现役 c_tank 与 heavyTank 实例」的布尔字段并排打印——c_tank 的真值已由 ini 确认为 `flying=false/land=true`，逐字段比对即可锁定空气标志位，再读 heavyTank；这需要在用户跑一局时顺带采集。
+   (b) 继续在夹具里补图形/初始化（我估计要再摸 2~3 层未初始化字段，成本不确定）。
+   我倾向 (a)：一次实机就能定论，而且不猜。
+2. **`scout` / `lightGunship` 不是内置枚举名**（`ar.valueOf` 抛 `No enum constant`）——它们是 `assets/units/` 里的自定义单位，本夹具没有加载真实 assets，所以拿不到。若要走 (b) 路线，需要让夹具加载真实 assets。
+3. **指挥中心的动作列表在夹具里读不出**（`d.e.N()` 内部动作数组为 null，因为预览实例没有走完整初始化）。在实机里它一定是初始化好的，所以 P2-C1 端点的「builderActionAvailable/builderCost」应当**在实机取**，而不是靠夹具断言。
+
+---
+
+## 3. P2-C1 的可行性与我的实现计划（等确认后施工）
+
+按《输出8》§2 选 (a) 专用端点，最小化：
+
+```text
+GET  /economy/builder-production
+     -> { status, producerId, producerType, queueCount, builderActionId, builderActionAvailable,
+          builderCost, availableCredits, existingBuilders, builderOrderPending }
+POST /command/produce-builder?unitId=<producerId>&actionId=<...>&sessionId=&requestId=
+     -> 与既有命令相同的 receipt/去重/会话校验；ownership + allowlist + 队列为空 + 已有/已排建造者则拒绝
+```
+
+内部抽一个 producer helper（`buildAction` 同款），外部 API 保持专用；不改 `/combat/production` 语义。
+
+客户端侧（`BattleClient`）的最小闭环：
+
+```text
+builderTarget = 1
+1. 心跳/状态里统计 alive builder 数
+2. == 0 且没有在产建造者 -> 取 /economy/builder-production，若 available 且 affordable 且队列空 -> 下单
+3. 下单后用现有的 pending/观察机制确认新 builder 出现
+4. 工地续建（《输出8》§3 验收项）：
+   - 若原生能对半成品续建 -> STALLED_NO_BUILDER -> 派新 builder 去续建
+   - 若原生/桥接不能续建 -> STALLED_NO_BUILDER -> ABANDONED_UNRECOVERABLE，随后重新规划
+   - 绝不允许「状态回到 ACTIVE 但永远没有单位施工」
+```
+
+`STALLED` 状态与工地信息（`candidateId/site/buildProgress`）我上一轮已经实现并保留，P2-C1 直接复用；续建可行性的核查（第 2 节 §3 那条）会作为 P2-C1 的第一个验收项，若原生不支持则会显式走 `ABANDONED_UNRECOVERABLE`，不会留下假 ACTIVE。
+
+---
+
+## 4. 需要裁决的两点
+
+**Q1**：heavyTank 对空的定论路径选 (a) 实机差分（需要一次实机采集，我加只读端点）还是 (b) 继续补夹具？（我倾向 (a)。）
+
+**Q2**：P2-C1 的桥接端点形态确认：`GET /economy/builder-production` + `POST /command/produce-builder`，字段如第 3 节。另外请确认一条边界：**当指挥中心本身正在生产其它单位（队列非空）时，是否允许抢队**？我的默认做法是「不抢队，等它空」（与现有 `/command/queue` 语义一致），并把这个状态记进事件。
+
+其余按《输出8》的顺序继续：P2-C1 → P2-B2（primary/secondary 预算，价格全部从菜单取）→ 困难 AI 900s 压力复测 → P3-A。
+
+---
+
+## 附：本轮文件
+
+| 路径 | 说明 |
+| --- | --- |
+| `developer\tests\CapabilityHarness.java` | 新增只读能力探针（价格自检 + 尽力而为的探测，未探到的类型显式列为 UNPROBED） |
+| `developer\src\io\rwagent\client\BattleClient.java` | `production_decision` 诊断（`preferredAction` / `bestAffordableUnit` / `decisionJson`） |
+| `developer\tests\test_battle_client.py` | 新增 `ProductionDecisionTests` 2 项（共 18 项） |
+| `developer\test-win.ps1` / `developer\test.sh` | 两个 runner 同步加入 `java:CapabilityHarness` |
+| `游戏环境\P1F-冒烟环境\rw-agent-bootstrap.jar` | 新候选 `B6763D4C…` |

@@ -1,0 +1,599 @@
+{
+  "schemaVersion": 1,
+  "baselineId": "RW-BASELINE-2026-09-30-GS-v1",
+  "establishedDate": "2026-09-30",
+  "timezone": "Asia/Shanghai",
+  "status": "ENGINEERING_REFERENCE_WITH_KNOWN_LIMITATIONS",
+  "localCheckpointTag": "baseline/2026-09-30-gs-v1",
+  "source": {
+    "commit": "6214f073d1b76429c0b827268db918e1e90e9f5f",
+    "importCommit": "21d307b",
+    "claimedOriginalSourceCommit": "2f310ec46a4225eb1ef77efe68d1823904e52717",
+    "claimedOriginalSourceObjectPresent": false,
+    "paths": [
+      "agent/src",
+      "agent/resources",
+      "agent/tests",
+      "agent/MANIFEST.MF",
+      "agent/build.bat",
+      "agent/build.sh",
+      "agent/test-win.ps1",
+      "agent/test.sh",
+      "tools",
+      "docs",
+      ".gitattributes"
+    ],
+    "treeIds": {
+      "agent/src": "b39d65229098d2edfd772bd579b3416312da2795",
+      "agent/resources": "3c227aa62f26e8404226645e23901a8ee79fa3f4",
+      "agent/tests": "cdbbf321a94f4480aa193f792afb6ca732d41163",
+      "tools": "33dbf999dd56b2e4f008f05f1b3bdd228e0c1640"
+    }
+  },
+  "runtime": {
+    "candidate": "Global Strategy / Feasibility / Combat Engineer",
+    "jar": "astra-deliveries/global-strategy-2026-09-30/rw-agent-bootstrap.jar",
+    "sha256": "76711a8ee2716af5d5b0b66d5c53b159ae28f4f744dcbb24cae492d96f0342ed",
+    "contentDigest": "8092b61130c3497b370e12ce249d3ec17e6331d502fefbcb50bbd95a32f03120",
+    "contentDigestAlgorithm": "Sorted ZIP entry names plus entry SHA256, directory entries included, META-INF/MANIFEST.MF excluded",
+    "gameJarSha256": "8a550a37e2d8a5430866090d4e7d5892f9010b47f52a5a09350fc66c620deec9",
+    "catalogSha256": "263cdaaa3e923e8307c37f059e50bee529b8ecd7c3e215937ce2adf615a0e236",
+    "catalogPath": "agent/resources/knowledge/UNIT_CATALOG_CANDIDATES.json"
+  },
+  "evidence": {
+    "linuxRegression": "evidence/global-strategy-2026-09-30/regression-summary.json",
+    "finalNative": "evidence/global-strategy-2026-09-30/native-summary.json",
+    "desktop": "evidence/global-strategy-desktop-2026-09-30/README.md",
+    "baselineValidation": "evidence/baseline-2026-09-30/VALIDATION.md",
+    "desktopBattles": [
+      "1790741949748-c01f222f",
+      "1790742800972-4064cebd",
+      "1790743783098-ae01b65e"
+    ],
+    "desktopOutcome": "All PARTIAL/ONGOING",
+    "spainBootstrap": "one operator-produced builder before Match; autonomous afterward",
+    "causalWinRateImprovementVerified": false,
+    "windowsRegression": "evidence/baseline-2026-09-30/windows/validation-summary.json",
+    "windowsStatus": "PASS_COMBINED_MATRIX",
+    "windowsInitialFailedSteps": 1,
+    "windowsEffectiveFailedSteps": 0,
+    "windowsPythonPassed": 281,
+    "windowsPythonSkipped": 0,
+    "rebuildContentEqualsDelivery": true
+  },
+  "artifacts": [
+    {
+      "path": "astra-deliveries/global-strategy-2026-09-30/rw-agent-bootstrap.jar",
+      "bytes": 255840,
+      "sha256": "76711a8ee2716af5d5b0b66d5c53b159ae28f4f744dcbb24cae492d96f0342ed",
+      "contentDigest": "8092b61130c3497b370e12ce249d3ec17e6331d502fefbcb50bbd95a32f03120"
+    },
+    {
+      "path": "agent/resources/knowledge/UNIT_CATALOG_CANDIDATES.json",
+      "bytes": 108801,
+      "sha256": "263cdaaa3e923e8307c37f059e50bee529b8ecd7c3e215937ce2adf615a0e236"
+    },
+    {
+      "path": "evidence/global-strategy-2026-09-30/candidate-intermediate-audit.json",
+      "bytes": 14267,
+      "sha256": "493176ec95b796e64e0b6c893d27fb707ad152a67618468f31f1b4a352cb2031"
+    },
+    {
+      "path": "evidence/global-strategy-2026-09-30/candidate-manifest.json",
+      "bytes": 1490,
+      "sha256": "c0c5ae5bf261fc7ffaded668911c9cf3de079cfb23159c1f9b2a9bbf53472582"
+    },
+    {
+      "path": "evidence/global-strategy-2026-09-30/desktop-input-analysis.json",
+      "bytes": 745,
+      "sha256": "204f7c57807862efbf14fc577c82060a6c47642748f4b2d0015ff4af2e86ca23"
+    },
+    {
+      "path": "evidence/global-strategy-2026-09-30/final-native-audit.json",
+      "bytes": 7479,
+      "sha256": "3c2421245228369a5697d27b849a60a6244b7e9b51000b05c0506a627b172882"
+    },
+    {
+      "path": "evidence/global-strategy-2026-09-30/intermediate-coordinate-scoped-audit.json",
+      "bytes": 14157,
+      "sha256": "bded28f7397bc99573bc4fc341f103d2f0e265e9da7371f904be62a0cf1b4475"
+    },
+    {
+      "path": "evidence/global-strategy-2026-09-30/intermediate-native-summary.json",
+      "bytes": 16703,
+      "sha256": "42d037e9b78ec5457a98d784f442ee4826e58e6b9f65618afbc4fee98db608c0"
+    },
+    {
+      "path": "evidence/global-strategy-2026-09-30/intermediate-report-integrity.json",
+      "bytes": 2564,
+      "sha256": "35161c93bfe03e4ce868f92b34e8983b230f7c5de52c8e3cae4a7df51c6e187f"
+    },
+    {
+      "path": "evidence/global-strategy-2026-09-30/intermediate-seaFactory-2610-events.jsonl",
+      "bytes": 33802,
+      "sha256": "f0aa29c98fbef24bbbb733527597d1f055775c260d59674c0f8284a8babfe41f"
+    },
+    {
+      "path": "evidence/global-strategy-2026-09-30/native-range-excerpts.txt",
+      "bytes": 1234,
+      "sha256": "13e0b1727c5fde0162b84f9a0329e3c8179225863c4f0b325d2f75cae296d1e4"
+    },
+    {
+      "path": "evidence/global-strategy-2026-09-30/native-summary.json",
+      "bytes": 5775,
+      "sha256": "f14a2f39372b4d3707dcede0ba786feedcc90963c1dcef0045273f5f49d870f2"
+    },
+    {
+      "path": "evidence/global-strategy-2026-09-30/prefinal-native-audit.json",
+      "bytes": 9216,
+      "sha256": "7c1890fef2ba485a2905a7bf580c17a0b9df3d7e6be0aedf90d7f59f992b09e2"
+    },
+    {
+      "path": "evidence/global-strategy-2026-09-30/prototype-audit.json",
+      "bytes": 8240,
+      "sha256": "7f309ab3cee52279d923e6926310c23f07dd94e2514818502694994c381f63fc"
+    },
+    {
+      "path": "evidence/global-strategy-2026-09-30/raw-evidence-manifest.json",
+      "bytes": 15893,
+      "sha256": "e67efd822daa9ec23ba2479526ee36ea49f4a817e4940bf93cae930523d968ea"
+    },
+    {
+      "path": "evidence/global-strategy-2026-09-30/raw-evidence.zip",
+      "bytes": 19110673,
+      "sha256": "976f8728d1a94b4b9453763cfe93ed9ab10314e1b40e9412726ce0e7659b1372"
+    },
+    {
+      "path": "evidence/global-strategy-2026-09-30/README.md",
+      "bytes": 5542,
+      "sha256": "d0f0912eca9129fd54e53f0763a14b0d74b3c3a088b0348d43afa654b7f3b664"
+    },
+    {
+      "path": "evidence/global-strategy-2026-09-30/regression-summary.json",
+      "bytes": 4046,
+      "sha256": "188742fb8be9a29e5f61a9f9d291c958e36bb015798aec7263e24d9179fcb6e2"
+    },
+    {
+      "path": "evidence/global-strategy-2026-09-30/writeback-status.json",
+      "bytes": 422,
+      "sha256": "0c63b96d55f3db73710aed6792e65b81fa5323e739c23416ef86c3942339d686"
+    },
+    {
+      "path": "evidence/global-strategy-desktop-2026-09-30/battle-1790741949748-c01f222f.json",
+      "bytes": 10112,
+      "sha256": "3cf5b54b4b575fff740ed93d26f52a7fcc5d2bcfbafd802ab08f5e3e7a449fa6"
+    },
+    {
+      "path": "evidence/global-strategy-desktop-2026-09-30/battle-1790742800972-4064cebd.json",
+      "bytes": 7999,
+      "sha256": "75329e300ad50285f17714932d988fe20938718aa75e22b5f516e4b324dce7e4"
+    },
+    {
+      "path": "evidence/global-strategy-desktop-2026-09-30/battle-1790743783098-ae01b65e.json",
+      "bytes": 8284,
+      "sha256": "222b0a42f5b09d1c4986a538a8d4a2e53890a4ef1195c6d7dc29330c2039ee51"
+    },
+    {
+      "path": "evidence/global-strategy-desktop-2026-09-30/bundle_index.csv",
+      "bytes": 1578,
+      "sha256": "eea17dd7abebe53e231dc9ce5a92d5d9cc0988cbd162c9e3a811cf50f1b24544"
+    },
+    {
+      "path": "evidence/global-strategy-desktop-2026-09-30/bundle_index.json",
+      "bytes": 4815,
+      "sha256": "10d9371bc8c5f41a4a9863d4b08de3d0c4c5cb3c49556ed05a96910ec1e3961c"
+    },
+    {
+      "path": "evidence/global-strategy-desktop-2026-09-30/README.md",
+      "bytes": 4864,
+      "sha256": "7c72cb8759f7386991fe0e4378c6b53b24bf3bad7280d5a91b7e66ed46bb3a39"
+    },
+    {
+      "path": "evidence/global-strategy-desktop-2026-09-30/reports.json",
+      "bytes": 62588,
+      "sha256": "905e1def6f8387eddce071120fd8a0ed643493ef1f3894c3368e5e56c2ed68bf"
+    },
+    {
+      "path": "evidence/global-strategy-desktop-2026-09-30/reports.md",
+      "bytes": 16535,
+      "sha256": "a680a43f72da1afacdfa527583a212c3c31bb80b0dcbfe99d5d56358629fbe34"
+    },
+    {
+      "path": "evidence/global-strategy-desktop-2026-09-30/RW-Agent-Reports-20260930T045820Z-e5f55c-p1of3-oversize.zip",
+      "bytes": 8865733,
+      "sha256": "f04a09d278790482339d3d157d4d382ba59714a24c25f44670b2cfa16a6d0df8"
+    },
+    {
+      "path": "evidence/global-strategy-desktop-2026-09-30/RW-Agent-Reports-20260930T045820Z-e5f55c-p2of3.zip",
+      "bytes": 7511765,
+      "sha256": "81a9be8b185fff3e2fc3526e91bb3d7fb7432e8ae6d40189f1b888ac496b54fb"
+    },
+    {
+      "path": "evidence/global-strategy-desktop-2026-09-30/RW-Agent-Reports-20260930T045820Z-e5f55c-p3of3-oversize.zip",
+      "bytes": 9733399,
+      "sha256": "8803ea22276938716f1fef34b5a3b68a9c567b49ce70eb49bb5325dbd57b1f3e"
+    },
+    {
+      "path": "evidence/global-strategy-desktop-2026-09-30/SHA256SUMS.txt",
+      "bytes": 1085,
+      "sha256": "5b3bd00cf5df8573602269340e3d9f3ce276088b9bdfa101c4524718ca0a4370"
+    },
+    {
+      "path": "evidence/baseline-2026-09-30/.gitattributes",
+      "bytes": 69,
+      "sha256": "7c3264746d32dbbf28d1ce8dee2fd5ecbb1c1ad51c8c904583482fd76d68bcda"
+    },
+    {
+      "path": "evidence/baseline-2026-09-30/integrity-summary.json",
+      "bytes": 1390,
+      "sha256": "ec1478bee74c8e879011650f2813014db81da0a7969697cace128ad1c263f888"
+    },
+    {
+      "path": "evidence/baseline-2026-09-30/line-ending-audit.json",
+      "bytes": 8882,
+      "sha256": "aeea0444da949eb037e5dcd40ceadb9803193989c46cddc5442bb0ee1e03d1de"
+    },
+    {
+      "path": "evidence/baseline-2026-09-30/VALIDATION.md",
+      "bytes": 4985,
+      "sha256": "89eab322aeccfc686aaf8ad0fc1f936cb08e6fc6058c88913922870a5bbd2937"
+    },
+    {
+      "path": "evidence/baseline-2026-09-30/windows/dependency-hashes.json",
+      "bytes": 4650,
+      "sha256": "a1707b56e36c80a4cf6cd2cc96dfbbb3e4b63fb4572104517604fbc35fc5c326"
+    },
+    {
+      "path": "evidence/baseline-2026-09-30/windows/dependency-recheck.json",
+      "bytes": 4702,
+      "sha256": "7d5709f37c3761207802d9263866def9f97978a5592f8b0835ea22fe6665cebc"
+    },
+    {
+      "path": "evidence/baseline-2026-09-30/windows/environment.json",
+      "bytes": 2074,
+      "sha256": "7ae4b25cc9d1110e2a803ea82431c6fefde6aade98149a02a9f0adbc68c1e885"
+    },
+    {
+      "path": "evidence/baseline-2026-09-30/windows/jar-lineage.json",
+      "bytes": 2401,
+      "sha256": "eb4d1424cc23304813ede09205432fee384f07ccf609fe9a63f1af58ed2510bb"
+    },
+    {
+      "path": "evidence/baseline-2026-09-30/windows/README.md",
+      "bytes": 2958,
+      "sha256": "b1a6a6427be29a1114cc93ead51acb4d6a808cf04a9cfb9cb3e69521b189bb6d"
+    },
+    {
+      "path": "evidence/baseline-2026-09-30/windows/regression-summary.json",
+      "bytes": 30088,
+      "sha256": "a150198d3fd52ea271497cf75da285ac73b42c00662d66774ae657d55ad2722b"
+    },
+    {
+      "path": "evidence/baseline-2026-09-30/windows/runner-coverage.json",
+      "bytes": 2589,
+      "sha256": "b844b0131a56de5c077ba9180fdbe12ac1c245a4214ff23cc19c3949c8f86f4a"
+    },
+    {
+      "path": "evidence/baseline-2026-09-30/windows/runner-exit-code.txt",
+      "bytes": 3,
+      "sha256": "f1b2f662800122bed0ff255693df89c4487fbdcf453d3524a42d4ec20c3d9c04"
+    },
+    {
+      "path": "evidence/baseline-2026-09-30/windows/test_reports-fixtures-restored-exit-code.txt",
+      "bytes": 3,
+      "sha256": "13bf7b3039c63bf5a50491fa3cfd8eb4e699d1ba1436315aef9cbe5711530354"
+    },
+    {
+      "path": "evidence/baseline-2026-09-30/windows/test_reports-fixtures-restored.log",
+      "bytes": 1604,
+      "sha256": "6e03f14e010822b602a51b691214bcdb5f6b0f294b4782195bfacf5d965bff88"
+    },
+    {
+      "path": "evidence/baseline-2026-09-30/windows/validation-summary.json",
+      "bytes": 51541,
+      "sha256": "313d06b765095ebca9972ac9114967bf1d6d26f25740d1ada27a09ae8800dfd4"
+    },
+    {
+      "path": "evidence/baseline-2026-09-30/windows/windows-regression-transcript.txt",
+      "bytes": 402112,
+      "sha256": "f2f6b138f02c91426fe42ce73c5684c61c42ba1516de4aeb854c5b508b214b84"
+    },
+    {
+      "path": "evidence/baseline-2026-09-30/windows/raw-logs/build_compile.log",
+      "bytes": 247,
+      "sha256": "5f4a1217b53a61ba4c05f20f0add48886003fca20297bbcfbe521498eee68f51"
+    },
+    {
+      "path": "evidence/baseline-2026-09-30/windows/raw-logs/build_jar.log",
+      "bytes": 108,
+      "sha256": "91bba8682bdacc4c675b1dfbb937e620f97e0c7c7567d82cfc35dbc61a9d91ca"
+    },
+    {
+      "path": "evidence/baseline-2026-09-30/windows/raw-logs/build_test-classes.log",
+      "bytes": 1394,
+      "sha256": "50df7e649ab55db5295e6d4778e089bf2c271ced3b1f08530a1efe93e770ed0c"
+    },
+    {
+      "path": "evidence/baseline-2026-09-30/windows/raw-logs/java_BridgeHarness-disabled.log",
+      "bytes": 2308,
+      "sha256": "5e2317fac12a4767ad965aecb4021029635c25bd37ded5ba4f642ee203c867d7"
+    },
+    {
+      "path": "evidence/baseline-2026-09-30/windows/raw-logs/java_BridgeHarness.log",
+      "bytes": 10764,
+      "sha256": "5f2052079f0d82f2bdf78f3049d2b971c67075da07b0d24df1915fcd83baff2a"
+    },
+    {
+      "path": "evidence/baseline-2026-09-30/windows/raw-logs/java_BuilderHarness.log",
+      "bytes": 23673,
+      "sha256": "9d5aabe4ab6a8caf95c1d52fd5d9716cf4e42d81db7ef25505738273c6d19e25"
+    },
+    {
+      "path": "evidence/baseline-2026-09-30/windows/raw-logs/java_CapabilityHarness.log",
+      "bytes": 28067,
+      "sha256": "80e22862f0d8ce13a7582b14768ffa2a487a286a942ada338de91a48a2a8614a"
+    },
+    {
+      "path": "evidence/baseline-2026-09-30/windows/raw-logs/java_CombatHarness.log",
+      "bytes": 43504,
+      "sha256": "df8324fc8e7cfec3ed1ee2c7516172aab91dfbe58a79e8f928bdb086a18cc1bf"
+    },
+    {
+      "path": "evidence/baseline-2026-09-30/windows/raw-logs/java_DiagnosticsHarness.log",
+      "bytes": 19519,
+      "sha256": "dc1f09befcfd4309ecdec770b7f0f55ecaed32d747f97c3253eb5dda1eb4a14b"
+    },
+    {
+      "path": "evidence/baseline-2026-09-30/windows/raw-logs/java_EconomyHarness.log",
+      "bytes": 8710,
+      "sha256": "c872b987099ddf8ecaeeda132de8845bc69e19cbee6b4cb12a7b0a62ff091ed3"
+    },
+    {
+      "path": "evidence/baseline-2026-09-30/windows/raw-logs/java_ExecutionContractHarness.log",
+      "bytes": 171,
+      "sha256": "72e8f194e4f987bac25d3f78d5d3aab012908966fd43eeed64d36b9ba3dd234d"
+    },
+    {
+      "path": "evidence/baseline-2026-09-30/windows/raw-logs/java_GuardHarness.log",
+      "bytes": 22263,
+      "sha256": "13b07bf006646843c9a9362f2897e9513b4f72c4b3cc1e551df8fd600e69e9cb"
+    },
+    {
+      "path": "evidence/baseline-2026-09-30/windows/raw-logs/java_OpeningHarness-replacement.log",
+      "bytes": 15489,
+      "sha256": "7ef6a687d37081063e2001a3a072a951cbd27eae558f6125a003d6a114314bc0"
+    },
+    {
+      "path": "evidence/baseline-2026-09-30/windows/raw-logs/java_OpeningHarness.log",
+      "bytes": 15412,
+      "sha256": "2dd9c6969d370ce050a6ea814b53803b3c3fb879a013edaebed661368bfe07c4"
+    },
+    {
+      "path": "evidence/baseline-2026-09-30/windows/raw-logs/java_PreflightHarness.log",
+      "bytes": 12372,
+      "sha256": "c207a8b2c2262f0904e4552c3ac303b50ddf229ef4107a2f8c17bcc951e8f8e7"
+    },
+    {
+      "path": "evidence/baseline-2026-09-30/windows/raw-logs/java_ProductionPlanHarness.log",
+      "bytes": 10189,
+      "sha256": "aa771dfdee9959ff1589dbd32de186696544852445cd6beaebb1fd2d9d41c75c"
+    },
+    {
+      "path": "evidence/baseline-2026-09-30/windows/raw-logs/java_ReachabilityHarness-sandbox.log",
+      "bytes": 35745,
+      "sha256": "a0b7c3ae45a1f1ff6465ec132888e0452967975e86ccdc923408d2982e6b1739"
+    },
+    {
+      "path": "evidence/baseline-2026-09-30/windows/raw-logs/java_ReachabilityHarness.log",
+      "bytes": 21959,
+      "sha256": "9bef106266a2599c50cf0aa23cce04d63095b2df7aa82784453116d120334d88"
+    },
+    {
+      "path": "evidence/baseline-2026-09-30/windows/raw-logs/java_ReportCommitHarness.log",
+      "bytes": 371,
+      "sha256": "7f21de88f68cc75ecd3d2ecd061a56e40006152eae93694222bfaa20a59b8d3a"
+    },
+    {
+      "path": "evidence/baseline-2026-09-30/windows/raw-logs/java_ScoutHarness.log",
+      "bytes": 54365,
+      "sha256": "3d585274836f6f1846f7ae517ea24f512cac751e705222754c4ad19a95d3ae16"
+    },
+    {
+      "path": "evidence/baseline-2026-09-30/windows/raw-logs/java_SmokeHarness.log",
+      "bytes": 2185,
+      "sha256": "687ab07e11c40538b7734d79260ae43b08228b4d2e4de37e2e848fd6c674ec3e"
+    },
+    {
+      "path": "evidence/baseline-2026-09-30/windows/raw-logs/java_StrategyContractHarness.log",
+      "bytes": 145,
+      "sha256": "9a28e7414ea05b9d85d9d7947bf23072b7e315ba47a6f35f8ab6aa0845dcaaa1"
+    },
+    {
+      "path": "evidence/baseline-2026-09-30/windows/raw-logs/java_TargetCompatibilityHarness.log",
+      "bytes": 141,
+      "sha256": "534f7496e2dbcd59b9b2d4b37523c2e0d8603b3aa4078185a6fec0087357f2c9"
+    },
+    {
+      "path": "evidence/baseline-2026-09-30/windows/raw-logs/java_TerrainMemoryHarness.log",
+      "bytes": 26157,
+      "sha256": "2083792775c08a589379825a5d387d3de03f3372c7adff191db4a8ec6694ff72"
+    },
+    {
+      "path": "evidence/baseline-2026-09-30/windows/raw-logs/py_test_ab_aggregate.log",
+      "bytes": 256,
+      "sha256": "6fd1fee4da188a4801ec8fca1989707d1c85d1faa7e5aa6a675d81868d2b68ab"
+    },
+    {
+      "path": "evidence/baseline-2026-09-30/windows/raw-logs/py_test_ab_campaign.log",
+      "bytes": 2631,
+      "sha256": "61b744cf0ff232838a18588f6fffc45f3ed4877919d5acf507c82c1a6b477817"
+    },
+    {
+      "path": "evidence/baseline-2026-09-30/windows/raw-logs/py_test_battle_client.log",
+      "bytes": 184,
+      "sha256": "23e7343b9d201e3d6a2258813c21d4011f7eebf64b0e35c49f3275193bf15967"
+    },
+    {
+      "path": "evidence/baseline-2026-09-30/windows/raw-logs/py_test_battle_reports.log",
+      "bytes": 119,
+      "sha256": "94020f9b379fdf44ed145150fc58d11bc665b35114ee88f758f293a631ed5a49"
+    },
+    {
+      "path": "evidence/baseline-2026-09-30/windows/raw-logs/py_test_client.log",
+      "bytes": 1106,
+      "sha256": "0c5bb073a79ac0fd4959b3f51bb5ec1e8e5bd65e01167c671ca9a4b5f1784613"
+    },
+    {
+      "path": "evidence/baseline-2026-09-30/windows/raw-logs/py_test_development.log",
+      "bytes": 1589,
+      "sha256": "2abfa8dce958d53402208233a82e46052b66a802173ecdd80602780fd34cdfcb"
+    },
+    {
+      "path": "evidence/baseline-2026-09-30/windows/raw-logs/py_test_economy.log",
+      "bytes": 1235,
+      "sha256": "6e187785cf0e027193d1231cfb9bde2a2dcb0e2568c538e4cb9696bf35890d59"
+    },
+    {
+      "path": "evidence/baseline-2026-09-30/windows/raw-logs/py_test_frontier_reports.log",
+      "bytes": 1356,
+      "sha256": "776b1c46a8621e4da7694ac43478c6fead15aab9d22c5db7d1f540f83749fabc"
+    },
+    {
+      "path": "evidence/baseline-2026-09-30/windows/raw-logs/py_test_frontier.log",
+      "bytes": 1156,
+      "sha256": "7f7e10caef46389a65a7b95375e217b309f69a993ba953f9ff4559fbc8b6125b"
+    },
+    {
+      "path": "evidence/baseline-2026-09-30/windows/raw-logs/py_test_global_strategy_audit.log",
+      "bytes": 111,
+      "sha256": "0d876ee050a15f59f3d76c001a796e34104d826503c2d5ef6018f4c91342eea1"
+    },
+    {
+      "path": "evidence/baseline-2026-09-30/windows/raw-logs/py_test_headless_parallel.log",
+      "bytes": 3161,
+      "sha256": "5a246fef56174b6d6162ef0b56e5701d2948d72cfa0de35889cbddaf38b572da"
+    },
+    {
+      "path": "evidence/baseline-2026-09-30/windows/raw-logs/py_test_opening.log",
+      "bytes": 986,
+      "sha256": "17e280daa1bca3867bebefe31607a18ac7d31b9641b796fb90959a603ea180e3"
+    },
+    {
+      "path": "evidence/baseline-2026-09-30/windows/raw-logs/py_test_recon_client.log",
+      "bytes": 111,
+      "sha256": "f326e5d68e4b86f3257279d1a82414c8dd74481efb71e944e1a699453df9ca5f"
+    },
+    {
+      "path": "evidence/baseline-2026-09-30/windows/raw-logs/py_test_recon_frontier_client.log",
+      "bytes": 127,
+      "sha256": "eaf53bcfb99e1c43b23647933dedb12db7321d646ae0c852b9ea36119e389768"
+    },
+    {
+      "path": "evidence/baseline-2026-09-30/windows/raw-logs/py_test_reports.log",
+      "bytes": 3666,
+      "sha256": "c92ae7ba036bc2f57a9d6067a27f5b80465ee4e08a3e727d8a9d878a839c5e71"
+    },
+    {
+      "path": "evidence/baseline-2026-09-30/windows/raw-logs/py_test_target_compatibility.log",
+      "bytes": 2531,
+      "sha256": "01d557863ba7ba8655e755c41bbab9f2030ef3b00ad1be00efe0f259e1ef8139"
+    },
+    {
+      "path": "project-state/archive/2026-09-30-pre-baseline/.gitattributes",
+      "bytes": 69,
+      "sha256": "7c3264746d32dbbf28d1ce8dee2fd5ecbb1c1ad51c8c904583482fd76d68bcda"
+    },
+    {
+      "path": "project-state/archive/2026-09-30-pre-baseline/archive-manifest.json",
+      "bytes": 1866,
+      "sha256": "6a341bfa2bdba3e4eb03cc687e2484d38a02433d8f881cefcd08755f8fb2e986"
+    },
+    {
+      "path": "project-state/archive/2026-09-30-pre-baseline/README.md",
+      "bytes": 615,
+      "sha256": "eea4fbe29965501ff1980f1c41c040af1e0aab39ee57580703e200654b039ef1"
+    },
+    {
+      "path": "project-state/archive/2026-09-30-pre-baseline/repository-agent-README_CN.md",
+      "bytes": 28410,
+      "sha256": "73c98ea1773a061cde3581ba61b53c6177e59a9e579b24c720ae2b89ba4c16ad"
+    },
+    {
+      "path": "project-state/archive/2026-09-30-pre-baseline/repository-ASTRA_START_HERE.md",
+      "bytes": 3793,
+      "sha256": "9ef59163cb25c5042335ae261c6b0cce4960779f2d9eb06c6bc21ae9093a9209"
+    },
+    {
+      "path": "project-state/archive/2026-09-30-pre-baseline/repository-CURRENT_STATE.md",
+      "bytes": 70602,
+      "sha256": "417ea79074b5dd40c88eaf79069e28a9f1b7965c9593f59b203e278cbbe6626b"
+    },
+    {
+      "path": "project-state/archive/2026-09-30-pre-baseline/repository-HANDOFF_FOR_CODEX.md",
+      "bytes": 23627,
+      "sha256": "8412d5eac6f27726f096bbd82b51e0a2529ae072f19cb023599f10e8d3bf92ad"
+    },
+    {
+      "path": "project-state/archive/2026-09-30-pre-baseline/repository-README.md",
+      "bytes": 1554,
+      "sha256": "f956f7041da52c3f2bf250b2d9af67d246cf0358a09dba4e9593d9a33294a5b5"
+    },
+    {
+      "path": "project-state/archive/2026-09-30-pre-baseline/workspace-CURRENT_STATE.md",
+      "bytes": 65264,
+      "sha256": "3ec3c61bf791fd21281539ba10d59cfec894fae6c9e91450ed736ab4126887fe"
+    },
+    {
+      "path": "project-state/archive/2026-09-30-pre-baseline/workspace-evidence-CURRENT_STATE.md",
+      "bytes": 63896,
+      "sha256": "e4a6a3ba37045b9a6f9503e6ecf7eaf69456b998dff0bb115bf4922f1fd8658f"
+    },
+    {
+      "path": "project-state/archive/2026-09-30-pre-baseline/workspace-HANDOFF_FOR_CODEX.md",
+      "bytes": 23026,
+      "sha256": "1aeeb9efb667ac26e22b0703f75f9608e95bf3deacb8ba52d1d3776be0d303a7"
+    },
+    {
+      "path": "evidence/global-strategy-2026-09-30/.gitattributes",
+      "bytes": 757,
+      "sha256": "8b2da524a556494cf7f9413c2d7fa4471048082a29414447a84466c9f226ddc6"
+    },
+    {
+      "path": "evidence/global-strategy-desktop-2026-09-30/.gitattributes",
+      "bytes": 605,
+      "sha256": "9f355c046628f1d660053b8b9b02fc3763f92de85456353c307b00a3b2253c0f"
+    }
+  ],
+  "localEnvironmentArtifacts": [
+    {
+      "path": "游戏环境/P1F-Astra-GlobalStrategy-2026-09-30/rw-agent-bootstrap.jar",
+      "role": "current-desktop-baseline",
+      "sha256": "76711a8ee2716af5d5b0b66d5c53b159ae28f4f744dcbb24cae492d96f0342ed"
+    },
+    {
+      "path": "游戏环境/P1F-Astra-GlobalStrategy-2026-09-30/game-lib.jar",
+      "role": "current-desktop-engine",
+      "sha256": "8a550a37e2d8a5430866090d4e7d5892f9010b47f52a5a09350fc66c620deec9"
+    },
+    {
+      "path": "游戏环境/P1F-冒烟环境/rw-agent-bootstrap.jar",
+      "role": "historical-knowledge-backed",
+      "sha256": "5741e241ce8ec1b921f36ed3274087609d0430f9281c44f6f62c096de84c5f54"
+    },
+    {
+      "path": "游戏环境/Rusted-Warfare-1.15-Agent-0.07/developer/dist/rw-agent-bootstrap.jar",
+      "role": "historical-developer-dist",
+      "sha256": "5741e241ce8ec1b921f36ed3274087609d0430f9281c44f6f62c096de84c5f54"
+    },
+    {
+      "path": "游戏环境/Rusted-Warfare-1.15-Agent-0.07/rw-agent-bootstrap.jar",
+      "role": "frozen-historical-agent",
+      "sha256": "0681b4f7ef632a9c9372fff418fec591f240894fd99373ff6c7ca3b72d4a9eb1"
+    },
+    {
+      "path": "游戏环境/Rusted-Warfare-1.15-Agent-0.07/game-lib.jar",
+      "role": "frozen-engine",
+      "sha256": "8a550a37e2d8a5430866090d4e7d5892f9010b47f52a5a09350fc66c620deec9"
+    }
+  ]
+}

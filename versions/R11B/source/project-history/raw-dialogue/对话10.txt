@@ -1,0 +1,106 @@
+# 对话10（DeepSeek → ChatGPT）
+
+## 0. 本轮完成：《输出9》批准的 P2-C1 已施工并回归通过
+
+| 《输出9》要求 | 状态 |
+| --- | --- |
+| §2 专用桥接 `GET /economy/builder-production` + `POST /command/produce-builder` | **已实现**，12 项原生校验见第 1 节 |
+| §3 指挥中心队列非空时**不抢队不取消** | **已实现**（`builder_recovery_waiting: PRODUCER_BUSY`） |
+| §4/§5 builder recovery reserve（优先级 1） | **已实现**：`builderReserve = builderCost`，战斗生产必须先尊重它 |
+| §6 CC 忙时保持 recovery 状态与预留 | **已实现** |
+| §7 四个 builder recovery 事件 | **已实现**（`started / waiting / ordered / completed`，节流） |
+| §8/§9 `production_deferred`（节流，支持 `RESERVED_FOR_BUILDER_RECOVERY`） | **已实现**（同厂同因 10 游戏秒最多一条） |
+| §10/§11 半成品真实续建验收 | **未完成**（下一节说明：需要一次实机，且我已把状态机准备好） |
+| Q1 heavyTank 对空 | 按裁决选实机差分，**不阻塞**，随下一次 P2-C1 实机采集 |
+
+回归：**15 Java harness + 9 Python 套件，0 失败**（Python 用例 107 → **108**；新增 `BuilderHarness` 与 `BuilderRecoveryTests`）。新候选 JAR `B6763D4C…` → **`0606313BFBB13F811A7A06A5367919A8FDE89D5010127F6EFDEFC0227A20EFF9`**，已装入冒烟环境；冻结交付 JAR 与 `game-lib.jar` 未动。
+
+---
+
+## 1. P2-C1 的第一个技术检查已由引擎回答（不需要猜）
+
+`BuilderHarness` + `CapabilityHarness` 在原生夹具里直接读到：
+
+```text
+UNIT commandCenter
+  action class=l type=builder id=ActionId(u_builder) cost=500 available=true affordable=true   <== BUILDER
+UNIT builder
+  action class=v type=turret          id=ActionId(b_turret)          cost=500
+  action class=v type=antiAirTurret   id=ActionId(b_antiAirTurret)   cost=600
+  action class=v type=landFactory     id=ActionId(b_landFactory)     cost=700
+  action class=v type=airFactory      id=ActionId(b_airFactory)      cost=1000
+  action class=v type=laserDefence    id=ActionId(b_laserDefence)    cost=1200
+  action class=v type=repairbay       id=ActionId(b_repairbay)       cost=1500
+  action class=v type=fabricator      id=ActionId(b_fabricator)      cost=1500
+```
+
+**结论**：建造者由**指挥中心**生产，动作 `u_builder`、**原生价格 500**、动作类 `d.l` 属原生 FACTORY 族 → 队列语义可直接复用（与《输出9》的推断一致）。建造者自身可造 `antiAirTurret 600`（这对将来 AA 议题是可用数据，本轮不动）。
+
+`BuilderHarness` 的 12 项断言全部通过，含：生产者选择、`builderCost=500` 来自原生动作、`existingBuilders` 计数、`queueCount`、**下单后原生队列真的出现 1 个建造者、且 credits 真的从 10000 扣到 9500**（证明价格真实而非硬编码）、已有建造者时拒绝、已在产时拒绝、外来单位 / 过期 session / 多余查询字段 / 钱不够四类拒绝。
+
+---
+
+## 2. 客户端恢复闭环（`BattleClient.builderRecovery`）
+
+```text
+aliveBuilders == 0 且无在产        -> builder_recovery_started
+GET /economy/builder-production    -> builderCost 记入 builderReserve（优先级高于一切战斗生产）
+生产者队列非空                     -> builder_recovery_waiting: PRODUCER_BUSY
+credits < builderCost              -> builder_recovery_waiting: INSUFFICIENT_CREDITS
+动作不可用 / 无生产者              -> builder_recovery_waiting: ACTION_UNAVAILABLE
+队列空闲且钱够                     -> POST -> builder_recovery_ordered（builderOrderPending=true）
+新建造者出现                       -> builder_recovery_completed（释放 reserve）
+```
+
+- 预留语义：`wouldBreachMineReserve` 现在同时计入 **builderReserve** 与在建工地预留；因此「builder 已死但工厂还在花钱」不会再把钱花光——这正是《输出9》§4 要防的情形。
+- 诊断区分：被预留挡下的购买写 `production_deferred {reason: RESERVED_FOR_BUILDER_RECOVERY, reservedFor: BUILDER_RECOVERY, reservedCost: 500, candidateUnit, candidateCost, credits, factoryTier}`；「钱不够只能买便宜货」仍是 `production_decision: PREFERRED_UNAFFORDABLE_FALLBACK`。两者语义不再混淆。
+- 心跳新增 `aliveBuilders / builderRecovery / builderOrderPending / builderReserve / builderCost / builderProducerId`；汇总新增 `builderTarget / builderRecoveries / builderOrders`。
+- `BuilderRecoveryTests` 用一条时间线覆盖：CC 忙 → 等待；钱不足 → 等待；钱到位 → 下单；建造者出现 → 完成；并断言**在下单之前没有任何战斗单位被购买**（预留真的挡住了）。
+
+---
+
+## 3. 唯一未完成项：半成品续建（《输出9》§10/§11 的验收项）
+
+目前状态机是：
+
+```text
+工地 buildProgress < 1 + builder 死亡 -> STALLED_NO_BUILDER（只报一次，保留候选/工地/进度）
+```
+
+**但「新 builder 出现后能否实际续建」尚未验证**，因为需要实机确认原生是否接受对半成品重新下达建造命令。我不会用「状态切回 ACTIVE」冒充恢复——《输出9》§11 明确禁止。
+
+我的实现计划（下一步，属于 P2-C1 收尾）：
+
+1. 实机采一局，观察 `STALLED_NO_BUILDER` 出现后新 builder 的行为；
+2. 若原生可续建（例如对同一 tile 重新下 `build-extractor`/`build-factory` 被接受，或存在 repair/assist 类动作）→ 派新 builder 续建，`buildProgress` 必须真的继续上涨才写 `ACTIVE`；
+3. 若原生不可续建 → 明确写 `ABANDONED_UNRECOVERABLE` 并清掉逻辑任务、重新规划合法工地；
+4. 无论哪种，都要有对应事件与断言。
+
+另外，**只读能力端点**（heavyTank/c_tank/hoverTank 的 `canAttackFlyingUnits`/`canAttackLandUnits`/`price`）我打算和这一局一起加：一次实机同时回答「续建可行性」与「重坦是否对空」。
+
+---
+
+## 4. 请你裁决
+
+**Q1（范围）**：是否允许我把「半成品续建」的候选动作做成**先探测、后决议**的形式——即在实机里对 `STALLED` 工地按顺序尝试：
+(a) 原生命令重新下达建造（同名 build 命令）；
+(b) 若 (a) 被 409 拒绝，则写 `ABANDONED_UNRECOVERABLE` 并立即重新规划；
+每次尝试都记录事件（接受/拒绝与原因）。这是《输出9》§11 的落地方式，但会引入「对同一工地重试一次」的行为——它是否算新变量，需要你确认。
+
+**Q2（顺序）**：如果 Q1 批准，我打算**下一步只做这一件事**（续建验证 + 只读能力端点），然后再进入 P2-B2；如果你认为续建可以直接并入下一候选版而不必单独一轮，也请说明。
+
+**Q3（下一局条件）**：按《输出9》§16，下一局用 **冰岛 / 困难 AI / 正常迷雾 / 900s / Start → Match**。若你确认，我会在下一局同时收：`builder_recovery_*` 全链路、`production_deferred`、`production_decision` 的 fallback 计数、`STALLED_NO_BUILDER` 之后的行为、以及只读能力快照。
+
+---
+
+## 附：本轮文件
+
+| 路径 | 说明 |
+| --- | --- |
+| `developer\src\io\rwagent\bootstrap\EconomyBridge.java` | 新增 `/economy/builder-production`、`/command/produce-builder`，以及 `builderAction` / `countBuilders` / `queuedCount` 助手 |
+| `developer\src\io\rwagent\client\BattleClient.java` | `builderRecovery` 状态机、`builderReserve` 预留、`production_deferred`、心跳/汇总字段 |
+| `developer\tests\BuilderHarness.java` | 新增：原生端点 12 项校验（含 500 扣款实证） |
+| `developer\tests\test_battle_client.py` | 新增 `BuilderRecoveryTests`（共 19 项） |
+| `developer\test-win.ps1` / `test.sh` | 两套 runner 同步加入 `java:BuilderHarness` |
+| `developer\README_CN.md` | P2-C1 端点、优先级、事件与验收项说明 |
+| `游戏环境\P1F-冒烟环境\rw-agent-bootstrap.jar` | 新候选 `0606313B…` |

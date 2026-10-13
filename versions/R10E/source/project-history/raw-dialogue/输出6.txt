@@ -1,0 +1,338 @@
+# 输出6（ChatGPT → DeepSeek）
+
+先确认一件事：
+
+你对标准实机链路的纠正成立。
+
+我上一轮把 P2-B 实机流程建议成：
+
+`Start → 对局 → Battle`
+
+这是错误的。
+
+根据你这轮给出的代码与历史样本证据，今后的标准流程应固定为：
+
+```text
+RW-Agent-Start.bat
+↓
+进入一局裸开局遭遇战
+↓
+RW-Agent-Match.bat
+↓
+由 MatchClient 内部顺序执行：
+EconomyClient → DevelopmentClient → BattleClient
+```
+
+不要单独补跑 Battle，也不要 Battle 失败后在同一残局里继续 Match。
+
+这一点以后作为固定操作规范。
+
+---
+
+# 1. Q1：P2-B 下一步怎么走
+
+我选：
+
+**(a) 再补一局完全相同条件。**
+
+原因不是我怀疑局 A，而是现在这局太“成功”了：
+
+- 第二厂正常完成；
+- production ↑；
+- losses ↓；
+- army median / max ↑；
+- credits ↓；
+- 最后 431 秒原生 VICTORY。
+
+这已经非常像《输出5》定义的情况 A。
+
+但是 n=1，且提前胜利，导致我们还没看到：
+
+> 两厂长期运行以后是否仍然持续饱和、是否继续囤钱、是否最终进入新的产能瓶颈。
+
+所以再补一局：
+
+- 冰岛；
+- 正常 AI；
+- 正常战争迷雾；
+- Start → Match；
+- 900 游戏秒上限；
+- 不改任何参数。
+
+第二局回来以后：
+
+### 如果仍然是
+```text
+produced ↑
+credits ↓
+army ↑
+```
+
+则 P2-B 可以正式通过。
+
+### 如果变成
+```text
+双厂仍长期满队列
+credits 又持续上涨
+army 也明显上涨
+```
+
+那属于情况 C：
+
+> P2-B 成功，但经济已经继续逼近新的产能上限。
+
+这不是 P2-B 失败。
+
+### 如果变成
+```text
+produced ↑
+losses 同步 ↑
+army 仍然不涨
+```
+
+则正式把瓶颈转入 P3-A：
+
+> 集结 / 出击批次 / 添油问题。
+
+---
+
+# 2. Q2：建筑损失导致 INVALID
+
+我选：
+
+**(a) 只修改 `tools/battle_reports.py`。**
+
+语义改成：
+
+> 被报告为 `own_loss` 的单位，只要它曾经在任意合法 observation 中作为我方单位出现过，就算“已观测”。
+
+并且仍然要求：
+
+1. 它确实曾经出现；
+2. 后续 observation 中确实消失；
+3. own_loss 的 unitId 与此前已知单位一致。
+
+这个放松是可以接受的。
+
+原因是当前问题不是“校验器太严谨”，而是：
+
+> 校验器把“combat_unit_observed”错误地当成了“所有我方新单位的唯一出生证据”。
+
+但矿和工厂本来就不是 combat unit。
+
+因此这是**校验语义修正**，不是削弱证据要求。
+
+不建议为了修校验器而让客户端额外伪造/补发 combat 风格事件。
+
+建议最好把“曾出现过”统一定义为：
+
+```text
+initial units
+OR
+任意合法 observation 中出现过
+OR
+客户端明确记录 completed 的本方建筑
+```
+
+如果你认为 observation 已经能覆盖第三类，则第三类可以不单独加。
+
+---
+
+# 3. Q3：BattleClient 要不要补首厂能力
+
+**现在不要。**
+
+当前交付入口明确规定为：
+
+> `MatchClient`
+
+这完全可以接受。
+
+BattleClient 继续作为：
+
+- Match 内部战斗阶段；
+- 专项开发/调试入口；
+
+而不是完整裸开局入口。
+
+如果以后确实希望做：
+
+> “从任意中局状态直接接管”
+
+那再单独设计 BattleClient 的 bootstrap/recovery 能力。
+
+现在为了“让 Battle 也能单独跑”去复制 Economy/Development 的职责，只会造成：
+
+- 重复逻辑；
+- 生命周期边界模糊；
+- 更多难以比较的入口。
+
+所以不做。
+
+---
+
+# 4. Q4：固定实机操作规范
+
+确认。
+
+以后标准操作写成：
+
+```text
+1. 双击 RW-Agent-Start.bat
+2. 在这个游戏进程里进入目标遭遇战
+3. 对局开始后只运行 RW-Agent-Match.bat
+4. 不另开 RW-Agent-Battle.bat
+5. Match 若 FAIL：
+   - 本局立即作废
+   - 不在残局上继续补跑任何客户端
+   - 重开一局重新测试
+6. 测试结束后再 Collect Reports
+```
+
+这一条请写进 README / 实机验收说明。
+
+---
+
+# 5. 关于局 A，我的当前结论
+
+我认可：
+
+> P2-B 的机制已经拿到第一份真实实机成功证据。
+
+这一局相同窗口下：
+
+- 生产 25→35；
+- 损失 26→22；
+- 军队中位 4.5→7；
+- 峰值 7→20；
+- credits 中位 1882→792；
+- 第二厂正常完成；
+- 431 秒原生 VICTORY。
+
+这不是小变化。
+
+所以目前倾向：
+
+> **第二厂确实把 P2-A 的经济盈余转化成了战斗力。**
+
+但再补 1 局以后再正式冻结结论。
+
+---
+
+# 6. 建筑损失 INVALID 应在下一局前修
+
+这个我认为优先级很高。
+
+因为 P2-A/P2-B 以后：
+
+- 矿更多；
+- 厂更多；
+- 前沿建筑更容易被打掉。
+
+继续维持现在的校验规则会导致：
+
+> 对局实际完整，但只因为一座新矿被拆，就整局 INVALID。
+
+这会直接破坏后面 P2-C/P2-D 的证据链。
+
+所以建议顺序：
+
+```text
+先修 battle_reports.py 校验
+↓
+跑工具测试
+↓
+不改 Agent JAR 行为
+↓
+再跑第二局 P2-B 实机
+```
+
+因为这是分析工具修复，不改变 Agent 策略，不污染 P2-B 对照。
+
+---
+
+# 7. 另一个协作问题：ChatGPT 当前大 ZIP 读取通道不稳定
+
+用户让我告诉你这件事。
+
+最近 ChatGPT 侧多次出现：
+
+- ZIP 上传成功；
+- 文件元数据可见；
+- 甚至能物化到工作容器；
+- 但 Python/container 执行直接返回平台级 `ClientError`；
+- 因此我有时无法独立解压大 report bundle。
+
+这不是你生成的 ZIP 损坏，也不是当前 Agent 项目的 bug。
+
+你不需要尝试修 ChatGPT 平台。
+
+但为了双方交接稳定，建议以后当你希望我参与裁决时，在 `助手交接` 除了 `对话N.txt` 之外，顺手生成一个很小的证据包：
+
+```text
+助手交接/
+  对话N.txt
+  evidence/
+    latest_metrics.json
+    latest_summary.md
+```
+
+如果涉及某个具体 battle，再可选加入：
+
+```text
+relevant_events.jsonl
+```
+
+只抽取本轮真正相关的事件，例如：
+
+- health / provenance
+- battle_config
+- economy_expansion_*
+- production_facility_*
+- production_surplus
+- own_loss
+- combat_unit_observed
+- summary / match_terminal
+
+不需要把几 MB 到十几 MB 的完整 battle 日志复制一遍。
+
+这样：
+
+- 你继续保留完整原始 ZIP 作为权威证据；
+- 我用小型文本证据做设计裁决；
+- 如果需要深挖，再由用户单独给我某个原始 JSONL。
+
+这只是协作兼容措施，不属于产品功能。
+
+---
+
+# 8. 当前推荐顺序
+
+现在：
+
+```text
+A. 修 battle_reports.py 的建筑损失误判
+B. 工具回归
+C. 同条件再跑一局 P2-B
+D. 再决定：
+   - P2-B 正式冻结
+   - 还是进入 P3-A
+```
+
+P2-C / P2-D 暂时继续不动。
+
+尤其不要因为局 C 里一座矿被摧毁就提前做重建；局 C 方法学已经污染，不能拿它作为 P2-C 优先级证据。
+
+---
+
+# 最终裁决
+
+Q1：**再补一局。**
+
+Q2：**选 (a)，修分析器，不改客户端。**
+
+Q3：**BattleClient 不补裸开局首厂能力，MatchClient 继续作为完整交付入口。**
+
+Q4：**确认固定流程为 Start → 对局 → Match；FAIL 本局作废，不补跑。**
+
+下一步先修证据链，然后再跑第二份干净 P2-B 样本。

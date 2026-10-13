@@ -1,0 +1,361 @@
+输出26（ChatGPT → DeepSeek）
+
+《对话26》总体通过。Q1/Q2 已经把事故从“live diagnostics 可疑”推进到了全局 live-unit 解析语义 + 事故候选首请求完整执行路径，可以继续做沙盒隔离。
+
+但在执行前请做以下收紧。
+
+1. Q1 的硬结论措辞再收紧一级
+
+anyUnit()：
+
+am[] units=am.bE.a();
+for(int i=0;i<am.bE.size();i++){
+    am u=units[i];
+    if(u!=null
+       && u.eh==id
+       && !u.ej
+       && !u.bV
+       && !u.cW())
+        return u;
+}
+return null;
+
+已足够证明：
+
+target unit not found
+≠ visibility miss
+≠ remembered/visible cache miss
+
+但严格语义应写为：
+
+TARGET_NOT_RESOLVABLE_AS_LIVE_WORLD_UNIT
+
+即该 ID：
+
+不在 am.bE
+OR ej=true
+OR bV=true
+OR cW()=true
+
+因此请不要把 400 单独表述成：
+
+对象一定已从 am.bE 删除
+
+或无条件：
+
+对象已经离开世界集合
+
+推荐正式措辞：
+
+目标已经不再能从全局 world-unit registry
+解析为 live/completed unit；
+该现象不是视野或 remembered-cache 假象。
+
+如果后续快照证明 identity 确实从 am.bE 消失，再升级成 physical removal。
+
+2. 批准沙盒二分，但必须测试“事故等价路径”
+
+事故发生在：
+
+0beaf504
+
+而不是当前已经重构成 A-only 默认的实现。
+
+因此沙盒测试必须明确区分：
+
+CURRENT_SAFE_PATH
+INCIDENT_EQUIVALENT_PATH
+
+优先方案：
+
+在 headless fixture 中使用 QUARANTINED 0beaf504
+只用于沙盒，不进入真实比赛。
+
+若不方便直接载入旧 jar，则由 harness 精确重放事故候选 A1→B9 的原始调用顺序。
+
+不能因为当前 21cbb24f 某组不复现，就直接宣称事故候选中的对应路径无副作用。
+
+3. snapshot 不只看 am.bE membership
+
+每个沙盒 arm 调用前后至少记录：
+
+registrySize
+registryIndex(attacker)
+registryIndex(target)
+
+containsAttackerIdentity
+containsTargetIdentity
+sameAttackerIdentity
+sameTargetIdentity
+
+attacker.ej
+attacker.bV
+target.ej
+target.bV
+
+construction/live-complete raw state
+attacker.cu / cv
+target.cu / cv
+
+attacker.eh
+target.eh
+owner/team
+
+目的：
+
+区分：
+
+A. 真的从 am.bE remove
+B. 仍在 am.bE，但 dead/destroyed flag 改变
+C. live-complete 状态改变
+D. HP 发生变化
+E. 完全无变化
+
+anyUnit() 的 400 本身不能区分 A/B/C。
+
+4. 沙盒臂不要只做 A/B/C/D/E，再加 first-call lazy arm
+
+事故有强烈 first-request 结构。
+
+因此额外单独测试：
+
+L0: Field.get only
+
+L1: movementObject COLD
+    首次接触该 attacker type
+
+L2: movementObject WARM
+    同类型第二次调用
+
+B: passability / movement-class group
+C: outer query
+D: aq.a(y,am)
+E: aq.b(y,am)
+
+尤其记录 movementObject()：
+
+unit.h()
+fallback r()
+9 个 single-letter type accessors
+
+到底 cold/warm 分别执行了什么。
+
+不要把它只埋在 B 组总结果里。
+
+5. C 组 headless NPE 的结论必须是 INCONCLUSIVE
+
+如果 fixture 网格未初始化导致：
+
+C → NPE
+
+则：
+
+C = INCONCLUSIVE_FIXTURE_LIMITATION
+
+不能写：
+
+C clean
+
+也不能因为其他组 clean 就写：
+
+culprit = C
+
+可以先尝试低成本建立最小有效 grid fixture。
+
+若代价明显变大，就停止，不扩散工程，后续由受控实机隔离兜底。
+
+6. 沙盒输出要求
+
+下一份结果不要只给文字总结。
+
+给一个统一表：
+
+arm
+cold/warm
+requestResult
+
+attackerPresentBefore
+attackerPresentAfter
+attackerEjBefore/After
+attackerBvBefore/After
+attackerHpBefore/After
+
+targetPresentBefore
+targetPresentAfter
+targetEjBefore/After
+targetBvBefore/After
+targetHpBefore/After
+
+registrySizeBefore/After
+
+exception
+verdict
+
+verdict 只能用：
+
+NO_CHANGE_OBSERVED
+STATE_MUTATION_OBSERVED
+OBJECT_REMOVED
+LIVE_FLAG_CHANGED
+HP_CHANGED
+INCONCLUSIVE_EXCEPTION
+NOT_EXECUTED
+
+不要提前写“安全/凶手”。
+
+7. 当前 C-group 写入仍只作为嫌疑点
+
+继续保持：
+
+k.l.a(k.i, boolean)
+→ 2 × putfield k.i.k
+
+是目前唯一确认的直接状态写入。
+
+但不要把：
+
+k.i.k mutation
+
+直接等价成：
+
+attacker/target destruction
+
+因果尚未建立。
+
+D/E 深层调用与 movementObject cold path 仍然开放。
+
+8. 批准加入纯报告序号字段
+
+未来 report_reachability 可新增：
+
+sampleBatchId
+representativeIndex
+requestOrdinal
+requestWallTime
+
+要求：
+
+纯 Agent-side metadata
+不改变 representative 顺序
+不改变 HTTP 请求次数
+不改变 endpoint 参数
+不改变任何 tactical behavior
+
+本轮沙盒完成前仍不实机。
+
+9. 当前归档继续冻结
+
+确认：
+
+0beaf504 = QUARANTINED
+
+只允许：
+
+offline/headless forensic use
+
+禁止真实比赛。
+
+56ba2eff =
+LIVE_DIAGNOSTIC_SIDE_EFFECT_SUSPECTED
+
+不是 calibration 样本。
+
+当前安装：
+
+21cbb24f
+
+继续保持不做战术施工。
+
+10. 从下一轮开始启用“增量交接制”
+
+用户已经开始承担明显的重复文件搬运成本。
+
+从《对话27》开始：
+
+必发
+对话N.txt
+状态变化才发
+CURRENT_STATE.md
+evidence 只发本轮：
+NEW
+UPDATED
+
+已经给过 ChatGPT 且 SHA 未变化的文件：
+
+不要再次要求用户上传
+
+只引用：
+
+evidenceId
+filename
+sha256
+
+新增：
+
+EVIDENCE_INDEX.md
+
+字段至少：
+
+evidenceId
+filename
+sha256
+status = NEW / UPDATED / FROZEN / SUPERSEDED
+introducedIn
+supersedes
+shortPurpose
+
+manifest 改为 delta manifest：
+
+SEND
+UPDATED
+REFERENCE_ONLY_DO_NOT_RESEND
+
+正常每轮文件预算：
+
+3–5 个
+
+超过 5 个时必须说明为什么每个都是本轮新增/修改证据。
+
+原始事故 JSONL：
+
+sha256 fd1c547106e140eb45e7d839932785e88f2493327e7b226cdf466479cc6ef465
+
+ChatGPT 已独立复算；除非内容变化，不要再次要求用户上传。
+
+文件名出现 (1)/(2)/(3) 不作为版本身份。
+
+以后以：
+
+canonical filename + SHA256
+
+识别版本。
+
+11. 下一份《对话27》
+
+只需要汇报：
+
+1. sandbox bisect 结果
+2. incident-equivalent path 是否成功建立
+3. cold/warm movementObject 结果
+4. C 是否仍受 fixture 限制
+5. 调用前后 world-unit snapshot 差异
+6. 新增 request ordinal metadata 的回归
+7. EVIDENCE_INDEX / delta manifest
+
+没有必要重新打包事故旧证据。
+
+在结果出来以前：
+
+不实机
+不900s
+不施工 reachability guard
+不施工 cross-domain recovery
+不扩散到其他战术系统
+
+当前唯一问题仍然是：
+
+定位 live reachability diagnostic
+为何在事故候选中导致 first-request pair
+失去 live-world 状态。
+
+这版《输出26》你可以直接发给 DeepSeek。

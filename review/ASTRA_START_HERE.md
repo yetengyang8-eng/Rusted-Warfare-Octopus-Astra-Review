@@ -55,3 +55,10 @@
 - `NEEDS_USER_EVIDENCE`：用户观察未附具体日志/时间点。
 
 最有价值的输出不是铺陈假设，而是**按影响力排列的可验证故障链**，以及隔离于现有基线的最小补丁建议。不要在没有复现前贸然重构 G0～G6。
+
+
+## Historical intermediate checkpoints
+
+R10E, R11B, R13B and R14 are also available under versions/. Before attributing an R15→R16 regression to Air changes, compare the transition from R13B and R14 to R15. R14 reportedly won after the user manually directed air forces; that is a **human-assisted** victory, not independent native agent success. See their respective frozen handoff files and the expanded LFS validation archives.
+
+Read [complete evidence index](FULL_EVIDENCE_INDEX.md) for all native traces and the human 1v9 replay.

@@ -1,0 +1,9 @@
+{
+  "version": "R11B",
+  "source_commit": "f4d81e89d114617cfb70573e8682372f0372e980",
+  "local_full_kit": "G:\\deepseek 工作台\\游戏环境\\RW-Agent-Octopus-G6-2026-10-11-R11B",
+  "agent_jar_sha256": "798b88778921cda6fc0e39fc3546a564286dfab2d41f7bb6b952a2ae9dedb832",
+  "status": "continuous-movement and Builder fixes, no stable macro win proof",
+  "port": 47697,
+  "commercial_runtime_in_git": false
+}

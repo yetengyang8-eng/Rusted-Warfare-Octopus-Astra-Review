@@ -1,0 +1,516 @@
+输出12（ChatGPT → DeepSeek）
+0. 先明确当前主线，不扩散
+用户这轮连续实机测试很多，提出了若干新的策略问题，但不要因此改变当前主线。
+当前顺序仍然是：
+1. P2-C1 正式收口
+2. P2-B2 Global Production Budget
+3. 压力复测
+4. 再进入 P3 战术层
+
+这轮新增的经济、军团、防御塔、海域问题，大部分先作为：
+observed limitation / backlog
+
+保存，不立即施工。
+1. 先完成 P2-C1 的正式分析
+你已经能直接读取本机这批 71 份报告，不需要用户重新打包，也不需要用户人工筛选。
+请基于当前原始 reports 和 _analysis\session_classification.json 完成本轮正式收口。
+P2-C1-A：Builder continuity
+汇总所有实际触发 builder recovery 的 session：
+builder_recovery_started
+builder_recovery_waiting
+builder_recovery_ordered
+builder_recovery_completed
+
+确认：
+builder == 0
+→ builderReserve=500
+→ combat production 被必要时 deferred
+→ CC 补 builder
+→ builder重新出现
+
+尤其保留真实例子：
+credits < 500
+→ waiting
+→ credits够
+→ ordered
+→ completed
+
+以及：
+production_deferred:
+RESERVED_FOR_BUILDER_RECOVERY
+
+这部分如果证据完整，可正式判断 P2-C1-A 是否通过。
+2. P2-C1-B：Economic continuity 还要补最后一个判断
+当前已经拿到两次真实半成品恢复证据：
+STALLED_NO_BUILDER
+→ recovery probe
+→ 原版拒绝同名 build
+→ ABANDONED_UNRECOVERABLE
+→ blockedSite
+
+因此实机已经回答：
+原版并不接受对半成品重新下同名 build。
+
+所以不存在实机重复收费问题；命令在收费前已经被拒。
+但请继续确认最后一步：
+abandon 以后，经济链有没有重新向前推进？
+
+即查看：
+新 builder 出现
+→ 原半成品 abandon
+→ planner 选择新的合法 site
+→ 新建设任务开始
+→ 最好能看到 completed
+
+如果有：
+可以把 P2-C1-B 判定为：
+CLEAN FAILURE + SUCCESSFUL REPLAN
+
+这是我们之前允许的合法终态。
+如果只有：
+ABANDONED_UNRECOVERABLE
+
+但之后没有新的经济推进，则不要把 P2-C1-B 完整冻结。
+3. x5 那局 5/5/4 请解释清楚
+已有一局 x5 压力样本出现：
+5 started
+5 ordered
+4 completed
+
+请说明第 5 次为什么没有 completed：
+- 比赛已经结束？
+- builder 仍在队列？
+- 新 builder 又死亡？
+- session 被终止？
+- 其它原因？
+不要留下不解释的计数差。
+4. 这批 session 的分类要区分“日志事实”和“推断”
+你现在把部分局分类为：
+困难 / 不可能 AI
+
+依据包括：
+- c_helicopter
+- experimental
+- enemy ID >= 100
+这些可以作为：
+inferred_high_pressure
+
+但如果报告本身没有直接记录 AI difficulty，就不要把它写成确定事实。
+用户确实知道自己测试过：
+- 非常困难 AI
+- 不可能 AI
+但这属于：
+user-provided condition
+
+和：
+log-derived classification
+
+请分开。
+以后若能直接从引擎读取 AI difficulty，再加入 provenance。
+5. x5 倍速继续单列
+你用：
+battleGameTimeMs / wallTime ≈ 5
+
+识别 x5 是合理的。
+继续把：
+1x
+x5
+UNKNOWN_SPEED
+
+分开。
+x5 局作为：
+speed stress sample
+
+使用，不和 1x 正式指标直接混算。
+6. 建议生成一个轻量 session catalog
+不要求复杂 UI。
+至少输出：
+sessionId
+map
+speed
+outcome
+duration
+builderDeaths
+builderRecoveries
+mines
+factories
+composition
+formal/exploratory/stress
+
+以后用户连续随便跑十几局，也不需要自己记哪局是哪局。
+7. 新观察 A：Agent 只建 3 个矿
+用户观察：
+即便发现额外矿点，Agent 也不会继续扩张。
+
+这目前不是 bug。
+因为我们明确保持：
+mineTarget = 3
+
+这是当前人为策略上限。
+当前裁决
+不要改。
+P2-B2 还没做完。
+我们必须先看：
+3矿 + 正确的生产预算
+
+是否已经足够支持：
+T2 primary production
++
+T1 secondary surplus production
+
+如果现在把 mineTarget 改成 4/5，会重新混入经济变量，甚至可能用更多收入掩盖 production scheduler 的问题。
+所以：
+mineTarget = 3
+
+继续冻结。
+后续再考虑：
+dynamic mine target
+3 → 4 → 5
+
+但不是现在。
+8. 新观察 B：军队似乎存在上限
+用户观察：
+场上还有大量军队巡游，工厂也有钱，但停止生产。
+
+当前已有设计里存在类似：
+activeArmyTarget
+reserveTarget
+mobileUnitHardCap
+
+历史上 hard cap 大约在 32 左右。
+当前只做诊断
+请确认用户看到的：
+有钱 + 工厂空闲 + 不生产
+
+是否正是：
+mobileUnitHardCap
+
+触发。
+如果是：
+记录为：
+DESIGN_CAP_REACHED
+
+不要现在提高上限。
+如果不是：
+再找实际 production blocked 原因。
+当前不要做
+不要直接：
+32 → 50 / 80
+
+因为用户同时观察到当前军队仍然只有单一军团控制。
+如果现在只扩大军队规模，很可能只是把：
+“几十个单位一起追一个 builder”
+
+放大。
+9. 新观察 C：所有军队实际上只有一个军团
+用户观察：
+所有军队经常被一次选中，然后一起进攻同一个目标。
+
+极端例子：
+很大一支主力军为了追一个价值 500 的 builder，全部改变方向。
+
+这是真实的战术层结构问题。
+当前裁决
+记录，但不要现在做完整 Squad System。
+因为真正做多军团会牵涉：
+- unit ownership by task
+- squad membership
+- target assignment
+- persistent mission
+- regroup
+- parallel commands
+- target priority
+这属于 P3 战术架构，不应插入当前 P2 主线。
+10. 这个问题以后优先考虑一个轻量版本
+未来不必一上来做完整多军团。
+可以先做：
+LOW_VALUE_TARGET_PURSUIT_LIMIT
+
+例如：
+builder / 单个低威胁单位
+→ 只派少量最近且合适的单位
+
+比如：
+1~2 units
+
+主力军继续执行当前主要任务。
+这会比：
+full Squad System v1
+
+安全很多。
+但现在仍然：
+BACKLOG ONLY
+
+11. 新观察 D：Agent 不会主动使用防御塔
+这也是事实，但它和前面几项不同：
+当前 builder 本身已经拥有造塔的原生能力。
+
+我们之前已经确认 builder action 中存在：
+turret
+antiAirTurret
+
+以及各种 factory。  对话11
+所以这里缺的不是桥接能力，而是：
+when
+where
+why
+
+也就是防御决策。
+当前裁决
+现在不要做完整防御体系。
+后续优先考虑一个非常小的：
+Reactive Defence v0
+
+12. Reactive Defence v0 的未来方向
+第一版只考虑：
+明确存在无法由当前机动部队有效处理的持续威胁时，建一个最低限度防御。
+
+最可能先做：
+antiAirTurret
+
+例如：
+敌方空军持续进入基地/矿区
++
+当前机动单位无法有效处理
+→ builder 在安全区域附近补 1 座防空塔
+
+暂时不要做：
+- 塔阵；
+- 前压塔；
+- 火力覆盖算法；
+- 多塔协同；
+- 地形塔位优化。
+这一项建议排在：
+P2-B2
++
+capability 事实确认
+
+之后。
+13. heavyTank / hoverTank 对空能力仍然顺带采
+/combat/capabilities 已经就绪，但当前客户端没有调用点。
+可以在下一轮加：
+只读采集
+战斗中调用 1~2 次
+
+不改任何行为。
+用双锚点：
+c_tank:
+air=false
+land=true
+
+以及若可见：
+antiAirTurret:
+air=true
+land=false
+
+再映射：
+heavyTank
+hoverTank
+
+这个结果会直接影响以后：
+- 防空塔；
+- 兵种搭配；
+- 海空 counter。
+14. 新观察 E：当前 Agent 存在“跨域无解”问题
+用户提出了一个很重要的能力边界：
+如果敌方：
+- 用运输机把 builder 运到隔海区域；
+- 生产海军 builder；
+- 留下潜艇 / 海军单位；
+- 把最后目标留在陆军无法到达的区域；
+那么当前 Agent 可能：
+陆地已经探索完
++
+游戏没有结束
++
+当前陆军没有合法可达目标
+
+最后只能停滞。
+这不是普通寻路 bug。
+它属于：
+MOVEMENT DOMAIN / CROSS-DOMAIN CAPABILITY
+
+问题。
+15. 海域问题不要现在写成“完整海军 AI”
+当前只记录一个未来模块：
+Cross-Domain Recovery v0
+
+触发条件应该非常保守。
+例如：
+已知陆地可达区域基本探索完
++
+长期找不到可达目标
++
+游戏仍未结束
++
+存在目标/未知区域位于其它 movement domain 的证据
+
+此时才允许进入跨域恢复。
+不要每局提前造船厂。
+16. 用户提出的跨海第一条候选链
+用户思路：
+Scout / 探索单位
+→ 发现隔海陆地
+→ Landing Craft
+→ 搭载少量单位
+→ 登陆
+→ 继续进攻/探索
+
+并建议登陆艇容量可作为很小的 task group：
+例如 4 个单位
+
+可能组合：
+1 builder + 3 combat
+
+或者：
+4 combat
+
+这是一个很有价值的未来方向。
+因为它甚至可以作为：
+Agent 第一个真正独立于主军团的小任务组。
+
+这样可以在不先重构完整 Squad System 的前提下测试：
+small persistent task group
+
+17. 第二条候选链：发现海军 / 潜艇
+用户思路：
+Scout 探路
+→ 发现潜艇 / 海军
+→ T2陆军基地生产工程师
+→ 工程师承担反潜 / 建造两栖或相关单位
+
+这个方向可以保留。
+但不要现在写死：
+工程师一定反潜
+某某单位一定能打潜艇
+
+因为目前 capability tree 还没查完整。
+未来应先确认：
+engineer capabilities
+hover/amphibious capabilities
+anti-submarine units
+seaFactory actions
+airFactory actions
+production tree
+
+再决定最低成本 counter。
+18. 跨域系统未来应该解决“最低成本解法”
+不要把目标定义成：
+建一个完整海军。
+
+应该定义成：
+当前 domain 无法结束游戏时，找到能够解决剩余目标的最低成本跨域能力。
+
+例如：
+隔海 builder
+→ 小型登陆队
+
+而不是：
+造 20 艘战舰
+
+如果：
+潜艇
+
+则选择真正能处理潜艇的最低成本 counter。
+19. 多人联机失败样本继续保留
+用户测试了一次多人服务器：
+Agent 无法进入。
+
+不要删除这份报告。
+分类为：
+MULTIPLAYER_COMPATIBILITY_FAILURE
+
+当前不处理。
+它不是 P2-B2 / P3 主线问题。
+以后如果项目决定支持真实联机，再单独开 compatibility branch。
+20. 不可能 AI 暂时不作为目标
+用户这批测试显示：
+很多地图上脚本可以稳定战胜非常困难 AI。
+
+但：
+不可能 AI 仍然明显打不过。
+
+用户描述其经济增速大约达到近 4 倍量级。
+当前 Agent：
+- 生产系统尚未完成；
+- 交换效率低；
+- 单军团；
+- 不会复杂配兵；
+- 不会高效分兵；
+- 没有完整海空 counter。
+所以现在没必要为了打赢不可能 AI 修改整个 Agent。
+暂时定位：
+Impossible AI = out-of-scope stress ceiling
+
+保留样本即可。
+21. 当前优先级重新明确
+NOW
+P2-C1 正式分析并冻结
+↓
+P2-B2 Global Production Budget
+
+DIAGNOSTIC ONLY
+确认 mobileUnitHardCap 是否导致有钱停产
+采集 capability snapshot
+补 builderTarget 到 battle_config
+增强 session provenance
+
+NEAR-FUTURE
+低价值目标追击人数限制
+Reactive Defence v0
+
+LATER
+完整多军团
+Cross-Domain Recovery v0
+Landing Task Group
+海军 / 反潜生产链
+dynamic mineTarget
+更高 army cap
+
+22. P2-B2 目标不要改变
+下一阶段仍然只解决：
+低优先级生产不能破坏高优先级预算。
+
+目前全局资源优先级：
+1. builder recovery reserve
+2. primary combat production reserve
+3. secondary surplus production
+
+不要把：
+- 第4矿；
+- 第3工厂；
+- 防空塔；
+- 登陆艇；
+- 多军团；
+一起塞进 P2-B2。
+23. 当前最好先输出一份正式收口结果
+请先基于已有本地 reports 输出下一份交接：
+对话13
+
+至少包含：
+1. P2-C1-A 正式结论；
+2. P2-C1-B 是否完成 CLEAN FAILURE → replan 的完整链；
+3. x5 5/5/4 的解释；
+4. session catalog；
+5. 1x / x5 分离；
+6. AI difficulty：事实与推断分离；
+7. mobileUnitHardCap 是否已经能从现有日志确认；
+8. 新 backlog：
+   - dynamic economy
+   - army cap
+   - low-value pursuit
+   - reactive defence
+   - cross-domain recovery
+   - multiplayer compatibility
+然后交给 ChatGPT 决定是否正式冻结 P2-C1 并进入 P2-B2。
+最终裁决
+目前不要因为用户的新观察重构 Agent。
+这批反馈很有价值，但大部分属于：
+Agent 已经开始“能打赢”，所以新的策略质量与能力边界开始暴露。
+
+这是正常的成熟过程。
+当前最重要的是：
+先把已经开始的系统一层一层做完整，
+而不是看到每一个新问题就立刻横向扩展。
+
+先完成 P2-C1 正式收口，然后进入 P2-B2。其他问题全部记录，不丢，但按上述优先级延期。

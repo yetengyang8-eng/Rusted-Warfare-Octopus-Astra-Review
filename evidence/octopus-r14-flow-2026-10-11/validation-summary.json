@@ -1,0 +1,62 @@
+{
+  "status": "ENGINEERING_CANDIDATE_HUMAN_VALIDATION_PENDING",
+  "productCommit": "1c0a98d",
+  "testCalibrationCommit": "de2b02b",
+  "candidateSha256": "c984f4f98d644a16ddcc9c79627242ec5467eac8a0229459badee4d46c991317",
+  "kit": "G:\\deepseek 工作台\\游戏环境\\RW-Agent-Octopus-G6-2026-10-11-R14",
+  "port": 47703,
+  "full": {
+    "status": "PASS_COMBINED_MATRIX",
+    "steps": 134,
+    "javaRuns": 99,
+    "pythonSuites": 32,
+    "pythonTests": 508,
+    "failedSteps": 0,
+    "initialFullFailedSteps": 2,
+    "initialFailed": [
+      "py:test_g1_trace",
+      "py:test_g2_world_state"
+    ],
+    "initialRun": "G:\\deepseek 工作台\\_validation\\octopus-r14-flow-20261011\\final-candidate\\final-full\\transcript.txt",
+    "correction": "G:\\deepseek 工作台\\_validation\\octopus-r14-flow-20261011\\trace-comparison-correction-v2",
+    "correctionReason": "Exact additive original-catalog actor sourceId normalization only; wire behavior and decision fields stay strict. Supplementary/unknown sources remain compared.",
+    "productJarUnchanged": true,
+    "failedRerunEnvironment": "G:\\deepseek 工作台\\_validation\\octopus-r14-flow-20261011\\trace-comparison-correction"
+  },
+  "newFocusedChecks": 1872,
+  "supplementaryProfileNegativeChecks": 12,
+  "nativeFixtures": {
+    "heavyArtilleryChecks": 14,
+    "airChecks": 65,
+    "builderScoutBridgeChecks": 26,
+    "simulationTicks": 0,
+    "naturalMotionProven": false
+  },
+  "naturalEvidence": "spain-normal.json",
+  "nativeEvidencePaths": [
+    "G:\\deepseek 工作台\\_validation\\octopus-r14-flow-20261011\\ground\\validation-summary.json",
+    "G:\\deepseek 工作台\\_validation\\octopus-r14-flow-20261011\\air\\HANDOFF.md",
+    "G:\\deepseek 工作台\\_validation\\octopus-r14-flow-20261011\\root-final-focused"
+  ],
+  "integrity": {
+    "productSourceDrift": [],
+    "kitFilesChecked": 1895,
+    "kitDrift": [],
+    "userInputs": {
+      "tools/RW-Agent-Octopus-Test.ps1": "7f5974f7da4ef53d8f6ca8a13277a40eb78a8392e7c904f0e9276b56aa9d01e6",
+      "tools/rw-agent-human.py": "3cb3b18a9ba0170782bfdfa02c481845dc04b6a35943ab5e6b5a605bbf1f2e4d",
+      "tools/rw-agent-human.py.bak-20261003": "84cc4f2fcf379fbf79bcd147286fb4da22883e7840f9ffa8604fcc7dabdb36e8"
+    },
+    "oldR13BJarSha256": "8f40e5ec9616f16acbe9bf12a30d47a2f72a48ca392fb96eb8869a8babaa6206",
+    "backupTag": "backup/r13b-before-r14-20261011"
+  },
+  "desktopTouched": false,
+  "pushed": false,
+  "deployed": false,
+  "knownOpen": [
+    "Primary AirGeneral retains 539 members on unresolved region; blocked-duty handoff not implemented",
+    "All observation timestamps: last5min median6.648 game seconds at ~546 ready jets; not a same-load A/B. Full own snapshots sample every30s.",
+    "Natural budget120min remainsONGOING; cash~1.02million",
+    "Long-lived Scout/replacement remainsunproven; no enemy lock-on field added"
+  ]
+}

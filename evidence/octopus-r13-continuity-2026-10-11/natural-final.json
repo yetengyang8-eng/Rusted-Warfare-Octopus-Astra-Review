@@ -1,0 +1,411 @@
+{
+  "partialSpoolPrefix": true,
+  "sources": [
+    {
+      "path": "G:\\deepseek 工作台\\_validation\\octopus-r13-continuity-20261011\\final-candidate\\spain-veryhard\\work\\rw-agent-reports\\battle-1791726375201-c6b97a81.jsonl.gz.partial.spool\\000001.snapshot",
+      "sha256": "d0c0987ef0d0bbae008efc60aa1c89f42c5c46cd38592639106761dbb301755e",
+      "bytes": 8388608
+    },
+    {
+      "path": "G:\\deepseek 工作台\\_validation\\octopus-r13-continuity-20261011\\final-candidate\\spain-veryhard\\work\\rw-agent-reports\\battle-1791726375201-c6b97a81.jsonl.gz.partial.spool\\000002.snapshot",
+      "sha256": "d1cb87667ee3034f13660a4f846ff2aa26b918828159335f3fd5441f4d7fb5a0",
+      "bytes": 8388608
+    },
+    {
+      "path": "G:\\deepseek 工作台\\_validation\\octopus-r13-continuity-20261011\\final-candidate\\spain-veryhard\\work\\rw-agent-reports\\battle-1791726375201-c6b97a81.jsonl.gz.partial.spool\\000003.snapshot",
+      "sha256": "ce92b76d3ad71cbc9927b6142f1ea1cf1717dab0c4224d76aaefc638aba3c548",
+      "bytes": 8388608
+    },
+    {
+      "path": "G:\\deepseek 工作台\\_validation\\octopus-r13-continuity-20261011\\final-candidate\\spain-veryhard\\work\\rw-agent-reports\\battle-1791726375201-c6b97a81.jsonl.gz.partial.spool\\000004.snapshot",
+      "sha256": "2b10529a04803f5f159247a923ddd40d811afe35f98b26c621d2a0385c762cb1",
+      "bytes": 8388608
+    },
+    {
+      "path": "G:\\deepseek 工作台\\_validation\\octopus-r13-continuity-20261011\\final-candidate\\spain-veryhard\\work\\rw-agent-reports\\battle-1791726375201-c6b97a81.jsonl.gz.partial.spool\\000005.snapshot",
+      "sha256": "2cf49a8171cbcfaf1f3ed6f979e8d87f36dcfa86fbd9ea1487712f060227e5b4",
+      "bytes": 8388608
+    },
+    {
+      "path": "G:\\deepseek 工作台\\_validation\\octopus-r13-continuity-20261011\\final-candidate\\spain-veryhard\\work\\rw-agent-reports\\battle-1791726375201-c6b97a81.jsonl.gz.partial.spool\\000006.snapshot",
+      "sha256": "0cf5b05c9e65fc451d8cc619d894686e5cdf0ae2e72e9986fb4c78793e2594ec",
+      "bytes": 8388608
+    },
+    {
+      "path": "G:\\deepseek 工作台\\_validation\\octopus-r13-continuity-20261011\\final-candidate\\spain-veryhard\\work\\rw-agent-reports\\battle-1791726375201-c6b97a81.jsonl.gz.partial.spool\\000007.snapshot",
+      "sha256": "50d7203511234db59c99b688788d916477b05ea349b03d4d5b4124bd3336c021",
+      "bytes": 8388608
+    },
+    {
+      "path": "G:\\deepseek 工作台\\_validation\\octopus-r13-continuity-20261011\\final-candidate\\spain-veryhard\\work\\rw-agent-reports\\battle-1791726375201-c6b97a81.jsonl.gz.partial.spool\\000008.snapshot",
+      "sha256": "31f2b88699e9f3984c4800c9b956263c10cd6d8fa5fe6f95dbca755c928e89be",
+      "bytes": 8388608
+    },
+    {
+      "path": "G:\\deepseek 工作台\\_validation\\octopus-r13-continuity-20261011\\final-candidate\\spain-veryhard\\work\\rw-agent-reports\\battle-1791726375201-c6b97a81.jsonl.gz.partial.spool\\000009.snapshot",
+      "sha256": "d19195d18ecae90a6ca3fb4028d8d9ab1546e753a400c782d638962d9d6a6117",
+      "bytes": 8388608
+    },
+    {
+      "path": "G:\\deepseek 工作台\\_validation\\octopus-r13-continuity-20261011\\final-candidate\\spain-veryhard\\work\\rw-agent-reports\\battle-1791726375201-c6b97a81.jsonl.gz.partial.spool\\000010.snapshot",
+      "sha256": "ec7910fdb5d9197c5446c8fc92a9fb84c4ebaa443dced71ef53d61fcec915609",
+      "bytes": 8388608
+    }
+  ],
+  "rows": 271346,
+  "malformed": 0,
+  "lastSourceGameTimeMs": 3204240,
+  "summary": null,
+  "firstReady": {
+    "commandCenter": 3072,
+    "builder": 33136,
+    "landFactory": 33136,
+    "extractorT1": 63488,
+    "scout": 63488,
+    "heavyTank": 123984,
+    "repairbay": 333280
+  },
+  "checkpoints": [
+    {
+      "frame": 18730,
+      "wallSeconds": 64.40699999999197,
+      "gameTimeMs": 299680,
+      "player": {
+        "teamId": 0,
+        "name": "Player",
+        "credits": 384.5
+      },
+      "types": {
+        "commandCenter": 1,
+        "landFactory": 2,
+        "extractorT1": 2,
+        "heavyTank": 7,
+        "builder": 1,
+        "repairbay": 1
+      }
+    },
+    {
+      "frame": 37416,
+      "wallSeconds": 126.68799999999464,
+      "gameTimeMs": 598656,
+      "player": {
+        "teamId": 0,
+        "name": "Player",
+        "credits": 98.5
+      },
+      "types": {
+        "commandCenter": 1,
+        "landFactory": 2,
+        "extractorT1": 3,
+        "heavyTank": 7,
+        "repairbay": 2,
+        "builder": 1
+      }
+    },
+    {
+      "frame": 56134,
+      "wallSeconds": 189.0789999999979,
+      "gameTimeMs": 898144,
+      "player": {
+        "teamId": 0,
+        "name": "Player",
+        "credits": 154.5
+      },
+      "types": {
+        "commandCenter": 1,
+        "landFactory": 2,
+        "repairbay": 2,
+        "extractorT1": 2,
+        "heavyTank": 4,
+        "builder": 1
+      }
+    },
+    {
+      "frame": 75132,
+      "wallSeconds": 252.40699999999197,
+      "gameTimeMs": 1202112,
+      "player": {
+        "teamId": 0,
+        "name": "Player",
+        "credits": 396.5
+      },
+      "types": {
+        "commandCenter": 1,
+        "landFactory": 2,
+        "repairbay": 2,
+        "extractorT1": 3,
+        "heavyTank": 4
+      }
+    },
+    {
+      "frame": 112517,
+      "wallSeconds": 377.06299999999464,
+      "gameTimeMs": 1800272,
+      "player": {
+        "teamId": 0,
+        "name": "Player",
+        "credits": 489.5
+      },
+      "types": {
+        "commandCenter": 1,
+        "landFactory": 2,
+        "repairbay": 2,
+        "extractorT1": 2,
+        "heavyTank": 3,
+        "builder": 1
+      }
+    },
+    {
+      "frame": 149919,
+      "wallSeconds": 501.7039999999979,
+      "gameTimeMs": 2398704,
+      "player": {
+        "teamId": 0,
+        "name": "Player",
+        "credits": 647.5
+      },
+      "types": {
+        "commandCenter": 1,
+        "landFactory": 2,
+        "repairbay": 2,
+        "extractorT1": 2,
+        "heavyTank": 5,
+        "builder": 1
+      }
+    }
+  ],
+  "lastObservation": {
+    "time": 3204240,
+    "frame": 200265,
+    "credits": 713.0,
+    "types": {
+      "commandCenter": 1,
+      "landFactory": 2,
+      "repairbay": 2,
+      "extractorT1": 4,
+      "heavyTank": 11,
+      "builder": 2
+    },
+    "mines": 4,
+    "rawLine": 270964
+  },
+  "commandCounts": {
+    "/command/produce-builder": 40,
+    "/command/move": 1961,
+    "/command/build-factory": 2,
+    "/command/queue": 172,
+    "/command/build-extractor": 24,
+    "/command/attack-move": 796,
+    "/command/construct": 3
+  },
+  "acceptedCommands": 2998,
+  "mineAccepted": 24,
+  "mineWithLaterReadySiteMatch": 23,
+  "localInterrupts": [
+    {
+      "time": 1536752,
+      "rawLine": 98469,
+      "data": {
+        "unitId": 43685,
+        "oldState": "PROSPECT",
+        "newState": "IDLE",
+        "reason": "CURRENT_NATIVE_LOCAL_WORK_INTERRUPTS_SOFT_TRAVEL",
+        "resourceX": 5290.0,
+        "resourceY": 5390.0,
+        "costSourceObservationId": "2296781f-91db-46e3-8155-d9b65650443a:o:24767",
+        "costSourceRequestPath": "/expansion/plan?unitId=43685",
+        "costSourceStatus": "VALIDATED_NATIVE_QUOTE_PACKET",
+        "gameTimeMs": 1536752,
+        "sessionId": "44ef9927-d114-4fbc-8ce9-6715e84c2c91",
+        "player": "team:0"
+      },
+      "laterBuild": {
+        "time": 1542928,
+        "rawLine": 98864,
+        "accepted": true,
+        "kind": "/command/build-extractor",
+        "lane": "STRATEGY",
+        "owner": "strategy:1000029",
+        "actors": [
+          43685
+        ],
+        "query": {
+          "unitId": [
+            "43685"
+          ],
+          "x": [
+            "5290.0"
+          ],
+          "y": [
+            "5390.0"
+          ]
+        },
+        "credits": 700,
+        "cancel": null,
+        "frame": 96460,
+        "costSource": "2296781f-91db-46e3-8155-d9b65650443a:o:24869",
+        "reason": null,
+        "laterReadySiteMatch": {
+          "id": 45058,
+          "type": "extractorT1",
+          "x": 5290.0,
+          "y": 5390.0,
+          "time": 1581792,
+          "rawLine": 101998
+        }
+      }
+    },
+    {
+      "time": 2338192,
+      "rawLine": 172618,
+      "data": {
+        "unitId": 83072,
+        "oldState": "PROSPECT",
+        "newState": "IDLE",
+        "reason": "CURRENT_NATIVE_LOCAL_WORK_INTERRUPTS_SOFT_TRAVEL",
+        "resourceX": 4210.0,
+        "resourceY": 5650.0,
+        "costSourceObservationId": "2296781f-91db-46e3-8155-d9b65650443a:o:39051",
+        "costSourceRequestPath": "/expansion/plan?unitId=83072",
+        "costSourceStatus": "VALIDATED_NATIVE_QUOTE_PACKET",
+        "gameTimeMs": 2338192,
+        "sessionId": "44ef9927-d114-4fbc-8ce9-6715e84c2c91",
+        "player": "team:0"
+      },
+      "laterBuild": {
+        "time": 2338192,
+        "rawLine": 172645,
+        "accepted": true,
+        "kind": "/command/build-extractor",
+        "lane": "STRATEGY",
+        "owner": "strategy:1000031",
+        "actors": [
+          83072
+        ],
+        "query": {
+          "unitId": [
+            "83072"
+          ],
+          "x": [
+            "4210.0"
+          ],
+          "y": [
+            "5650.0"
+          ]
+        },
+        "credits": 700,
+        "cancel": null,
+        "frame": 146167,
+        "costSource": "2296781f-91db-46e3-8155-d9b65650443a:o:39052",
+        "reason": null,
+        "laterReadySiteMatch": {
+          "id": 83541,
+          "type": "extractorT1",
+          "x": 4210.0,
+          "y": 5650.0,
+          "time": 2365280,
+          "rawLine": 175290
+        }
+      }
+    },
+    {
+      "time": 2400720,
+      "rawLine": 178766,
+      "data": {
+        "unitId": 83072,
+        "oldState": "PROSPECT",
+        "newState": "IDLE",
+        "reason": "CURRENT_NATIVE_LOCAL_WORK_INTERRUPTS_SOFT_TRAVEL",
+        "resourceX": 5290.0,
+        "resourceY": 5390.0,
+        "costSourceObservationId": "2296781f-91db-46e3-8155-d9b65650443a:o:40132",
+        "costSourceRequestPath": "/expansion/plan?unitId=83072",
+        "costSourceStatus": "VALIDATED_NATIVE_QUOTE_PACKET",
+        "gameTimeMs": 2400720,
+        "sessionId": "44ef9927-d114-4fbc-8ce9-6715e84c2c91",
+        "player": "team:0"
+      },
+      "laterBuild": {
+        "time": 2400720,
+        "rawLine": 178823,
+        "accepted": true,
+        "kind": "/command/build-extractor",
+        "lane": "STRATEGY",
+        "owner": "strategy:1000031",
+        "actors": [
+          83072
+        ],
+        "query": {
+          "unitId": [
+            "83072"
+          ],
+          "x": [
+            "5290.0"
+          ],
+          "y": [
+            "5390.0"
+          ]
+        },
+        "credits": 700,
+        "cancel": null,
+        "frame": 150095,
+        "costSource": "2296781f-91db-46e3-8155-d9b65650443a:o:40133",
+        "reason": null,
+        "laterReadySiteMatch": {
+          "id": 86578,
+          "type": "extractorT1",
+          "x": 5290.0,
+          "y": 5390.0,
+          "time": 2437648,
+          "rawLine": 182629
+        }
+      }
+    },
+    {
+      "time": 2850544,
+      "rawLine": 228991,
+      "data": {
+        "unitId": 107067,
+        "oldState": "PROSPECT",
+        "newState": "IDLE",
+        "reason": "CURRENT_NATIVE_LOCAL_WORK_INTERRUPTS_SOFT_TRAVEL",
+        "resourceX": 4090.0,
+        "resourceY": 4810.0,
+        "costSourceObservationId": "2296781f-91db-46e3-8155-d9b65650443a:o:48686",
+        "costSourceRequestPath": "/expansion/plan?unitId=107067",
+        "costSourceStatus": "VALIDATED_NATIVE_QUOTE_PACKET",
+        "gameTimeMs": 2850544,
+        "sessionId": "44ef9927-d114-4fbc-8ce9-6715e84c2c91",
+        "player": "team:0"
+      },
+      "laterBuild": null
+    }
+  ],
+  "scoutMotion": [
+    {
+      "id": 603,
+      "type": "scout",
+      "firstMs": 44720,
+      "lastMs": 94144,
+      "lastXY": [
+        3810.003,
+        7106.189
+      ],
+      "maxBaseDistance": 1597.553806208104,
+      "pathLowerBound": 2044.6598140811232,
+      "observedIntervalMs": 49424,
+      "underOneWorldIntervalsMs": 4976,
+      "orderIntervalMs": {
+        "move": 34656,
+        "None": 14768
+      }
+    }
+  ],
+  "limitations": [
+    "Five-game-second approximate own monitoring cannot prove continuous motion through every turn.",
+    "Absent actor is not a kill attribution.",
+    "Mine ready matching is own entity/site witness, not exclusive command-to-builder causal proof.",
+    "Player0 VeryHard 5x is not a controlled A/B against human player5.",
+    "Prefix excludes unsaved in-memory compressed tail if partialSpoolPrefix=true."
+  ]
+}

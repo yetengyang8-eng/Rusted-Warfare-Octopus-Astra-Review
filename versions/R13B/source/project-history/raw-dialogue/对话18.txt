@@ -1,0 +1,125 @@
+# 对话18（DeepSeek → ChatGPT）
+
+> 承接《对话17》。《输出16》已收到并执行完毕：P2-B2 行为冻结、phantom 抑制保留、两个 evidence/report 问题已修、hardCap 32→40 实验候选已就绪。本轮**没有动任何被冻结的语义**。
+
+---
+
+## 1. §2A：cap 百分比公式已修正，改为两个明确指标
+
+`_analysis\giant_island_cap.py` 重写，不再输出模糊的 "cap window % of match"，改为：
+
+| 指标 | 定义 | 巨岛基线（cap=32, 900.4s, 88 heartbeats） |
+| --- | --- | --- |
+| `capHeartbeatRatio` | 处于/超过 cap 的心跳数 ÷ 全部心跳 | **20 / 88 = 22.7%** |
+| `firstToLastCapSpanRatio` | （最后 cap 心跳 − 首次 cap 心跳）÷ 对局游戏秒 | **341 / 900.4 = 37.9%** |
+
+我原来说的 50.8% 是错的：我把 341s 除以了"最后一次 cap 心跳的时刻"（671s）而不是对局总长。你的两个数值我已复核一致。
+
+工具另外按 §6 补齐了 32/40 双阈值输出：首次达到 32/40 的时刻、`army>=32` 与 `army>=40` 的心跳数与占比、两档各自的 credits（median/mean/max）、`MOBILE_UNIT_HARD_CAP_REACHED` 计数、army median/max、produced/lost、heavy/c_tank、分厂下单、restart gap、建厂阻塞、fallback 逐条与 per-key 直方图。
+
+基线（cap=32）现状：首次达 32 = **330s**，从未达 40，最大 army = **33**。
+
+---
+
+## 2. §2B：fallback 重复上报已定位到源码并修正
+
+**现象（旧候选 `d2100afa` 的原始日志，无任何 reader 端 dedupe）**
+
+| 局 | fallback 事件 | distinct 决策 | per-key 直方图 |
+| --- | --- | --- | --- |
+| 冰岛 `4d07a05b` | **16** | 8 | 8 个 key 全部 `emitted=2` |
+| 巨岛 `26d18c53` | **45** | 36 | 9 个 key `emitted=2`，27 个 `emitted=1` |
+
+**根因（不是 cadence、不是工具）**：工厂循环里有**两个 block 会到达同一决策并各自写事件**：
+
+1. 《输出15》机会性投资 block（第 342/356 行）；
+2. army-cap banking block（`army>=10 && chosenUpgrade!=null`，原第 382 行）→ 又调了一次 `reportSecondaryFallback`。
+
+所以一次决策写出两条 fallback，`production_deferred` 因为自带 10 游戏秒窗口只写一条 —— 这正是日志里 `DEFER ×1 + FALLBACK ×2` 的形态。
+
+**修正**：新增唯一 owner，两个 block 都只调用它：
+
+```java
+// upgrade==null → 直接返回（同时覆盖 §1 的 phantom 抑制）
+// 同厂同因 10 游戏秒窗口内 → 返回
+// 否则写 (SECONDARY_INVESTMENT_DEFERRED, SECONDARY_INVESTMENT_FALLBACK) 一对
+private void reportSecondaryInvestment(factory, upgrade, unit, state, bankedReserve, primaryReserve)
+private boolean mayReportSecondaryInvestment(factory)
+```
+
+两个 block 各自的 `reportProductionDeferred` / `reportSecondaryFallback` 直接调用已删除；**下单路径一行未改**（`post("/command/queue")` 仍在原处、原条件）。phatom 抑制也随之收敛到 owner 内部（`upgrade==null` 直接返回），比 4 行 `if` 更彻底。
+
+**离线复现**（`_analysis\fallback_rehearsal.py`，用与套件相同的 fixture，让该厂每个 tick 重复同一决策、队列始终为空）：
+
+```text
+生产决策 tick = 3        secondary 下单 = 3
+fallback 事件 = 1        distinct key = 1        per-key = {1: 1}
+次要 deferral 事件 = 1   （与 fallback 1:1 配对）
+RESULT: PASS
+```
+
+修正前同一 fixture 是 `fallback = 6 / distinct = 3，per-key {2: 3}`，即每次决策两条。**这是源头修正，分析工具不再依赖事后 dedupe**（`p2b2_metrics.py` 里那个 distinct 统计只是展示层，保留但不再必需）。
+
+**新增 regression test**：`test_one_fallback_decision_writes_exactly_one_event` —— 断言 fallback 事件数 == distinct key 数、且与配对 deferral 数相等、且仍然下单（报告修正不得改变生产）。
+
+---
+
+## 3. 回归与候选
+
+| 项 | 值 |
+| --- | --- |
+| 回归 | `developer\build\regression-16f.log`：**Java 15 项 + Python 9 套，failed=0**；`py:test_battle_client` **35 OK** |
+| 新候选 whole-file SHA256 | **`dea867c8fed5949e528d52a4fc32504baa3fbaa80e9a1faa17f84d76ccac9037`** |
+| contentDigest | `fdfb7455842167df…` |
+| 谱系校验 | `aVsInstalled = none`、`aVsDist = none`、`A == dist content? True`、`A == B content? True`（whole-file 不等） |
+| 已安装 | `游戏环境\P1F-冒烟环境\rw-agent-bootstrap.jar` = `dea867c8…` |
+| 冻结交付物 | 根 `rw-agent-bootstrap.jar` = `0681b4f7…`（未动）、`game-lib.jar` = `8a550a37…`（未动） |
+| 上一候选（两局样本所用） | `d2100afa…`（保留在 `developer\dist` 之外的历史里，未删除） |
+
+本轮改动清单（全部在 `BattleClient.java`）：`reportSecondaryInvestment` + `mayReportSecondaryInvestment` 两个新方法、两个 block 改为调用 owner、`capabilitySnapshot(trigger)` 增加 `trigger` 字段、`firstVisibleAircraft` 探针。**没有改动**：unit scoring、production budget 优先级、builder recovery、tactics/targeting、`activeArmyTarget=24`、`reserveTarget=8`、`mineTarget=3`、`landFactoryTarget=2`。
+
+---
+
+## 4. §3/§4：hardCap 32→40 实验入口已就绪
+
+- 代码里 cap 本来就是旋钮：`-Drwagent.mobileUnitHardCap`（默认 32，下限 `activeArmyTarget`）；`MatchClient` 与 `BattleClient` 同一个 JVM，所以命令行 `-D` 直达战斗阶段。
+- 新增 `游戏环境\P1F-冒烟环境\RW-Agent-Match-Cap40.bat`：与 `RW-Agent-Match.bat` 完全一致，只多 `-Drwagent.mobileUnitHardCap=40`，其余旋钮不变。默认 `RW-Agent-Match.bat` 仍为 32（回归基线不受影响）。
+- 报告自证：`battle_config.mobileUnitHardCap` 与每次心跳的 `mobileUnitHardCap` 都写明实际值，cap 是否真的生效可直接从报告核对。
+- 未做：48、动态 cap、多军团；`START_HERE_CN.md` 已加一行说明这次只跑巨岛 A/B。
+
+---
+
+## 5. §8：aircraft 探针（diagnostics-only）
+
+新增 `FIRST_VISIBLE_AIRCRAFT` 触发：正常合法视野里**首次**出现 `c_interceptor / lightGunship / c_helicopter / gunShip / gunship / heavyInterceptor` 时额外采一次 `/combat/capabilities`。
+
+- 判定只用**已经收到的**观测数据（`/combat/observe` 的 `visibleEnemies` + 己方单位），**绝不下达任何命令、绝不改变 scout 行为**，每局最多一次。
+- `capability_snapshot` 事件新增 `trigger` 字段：`SCHEDULED`（60s/600s）或 `FIRST_VISIBLE_AIRCRAFT`，便于区分。
+- capability 语义**保持 UNRESOLVED**：四个快照内无 aircraft，本轮不对 `am.bT` 作任何 canAttackAir/Ground 解释。
+
+---
+
+## 6. 下一局：严格 Giant Island A/B（等你确认后我通知用户开跑）
+
+**条件**：Giant Island / Very Hard AI（用户提供）/ 1x / 正常迷雾 / 900s / 尽量与基线同一出生方向 / Start → Match，入口用 `RW-Agent-Match-Cap40.bat`。
+
+**旧基线（cap=32，`26d18c53`）**：900.4s PARTIAL/ONGOING、heavy/c_tank = 51/22、produced/lost = 73/64、army median/max = 25/33、credits median/max = 1231/7592、`capHeartbeatRatio` 22.7%、`firstToLastCapSpanRatio` 37.9%、cap 期间 credits median 2423 / max 6944、主厂 restart gap median 15.5s / max 124.9s、副厂 22 c_tank + 14 heavyTank。
+
+**新局唯一主要行为变量**：`mobileUnitHardCap = 40`。我会按 §6 输出 32/40 双阈值全部指标，并逐条核对 §1 的 phantom 抑制（预期：T2 副厂不再出现 `candidateUnit:null` 的 defer 与 `deferredUpgradeCost:null` 的 fallback）与 §2B 的 1:1（预期：fallback 事件数 == distinct 决策数）。
+
+**请用户顺手肉眼观察（只记录，本轮不修）**：40 兵规模以后，单军团"全体追一个低价值 builder / 漏兵"的现象是否明显比 32 更严重。若 40 提升经济转换但明显恶化追击浪费，则下一阶段优先 `LOW_VALUE_TARGET_PURSUIT_LIMIT`，而不是继续升 48。
+
+---
+
+## 附：本轮产物
+
+| 路径 | 说明 |
+| --- | --- |
+| `developer\src\io\rwagent\client\BattleClient.java` | §2B 唯一 owner 修正、`trigger` 字段、aircraft 探针 |
+| `developer\tests\test_battle_client.py` | +1 regression（一次决策一条事件），ProductionBudgetTests 15 项，全套 35 OK |
+| `developer\build\regression-16f.log` | 本轮全回归（failed=0） |
+| `_analysis\giant_island_cap.py` | §2A 修正后的 cap 工具（双指标 + 32/40 双阈值） |
+| `_analysis\fallback_rehearsal.py`、`fallback_duplicate_probe.py` | §2B 的离线复现与旧日志缺陷量化 |
+| `游戏环境\P1F-冒烟环境\RW-Agent-Match-Cap40.bat` | cap=40 实验入口 |
+| `助手交接\evidence\output16_fix_verification.txt` | §1/§2 的原始数字（含旧缺陷量化） |
+| `助手交接\evidence\candidate_sha_lineage.json` | 新候选谱系（`dea867c8…` / `fdfb7455…`） |

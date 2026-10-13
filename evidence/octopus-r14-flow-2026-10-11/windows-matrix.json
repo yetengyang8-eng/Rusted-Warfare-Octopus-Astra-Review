@@ -1,0 +1,824 @@
+{
+  "status": "PASS_COMBINED_MATRIX",
+  "steps": 134,
+  "javaRuns": 99,
+  "pythonSuites": 32,
+  "pythonTests": 508,
+  "failedSteps": 0,
+  "initialFullFailedSteps": 2,
+  "initialFailed": [
+    "py:test_g1_trace",
+    "py:test_g2_world_state"
+  ],
+  "initialRun": "G:\\deepseek 工作台\\_validation\\octopus-r14-flow-20261011\\final-candidate\\final-full\\transcript.txt",
+  "correction": "G:\\deepseek 工作台\\_validation\\octopus-r14-flow-20261011\\trace-comparison-correction-v2",
+  "correctionReason": "Exact additive original-catalog actor sourceId normalization only; wire behavior and decision fields stay strict. Supplementary/unknown sources remain compared.",
+  "productJarUnchanged": true,
+  "failedRerunEnvironment": "G:\\deepseek 工作台\\_validation\\octopus-r14-flow-20261011\\trace-comparison-correction",
+  "rows": [
+    {
+      "step": "build:compile",
+      "exit": 0,
+      "pass_": true,
+      "finalExit": 0
+    },
+    {
+      "step": "build:jar",
+      "exit": 0,
+      "pass_": true,
+      "finalExit": 0
+    },
+    {
+      "step": "build:test-classes",
+      "exit": 0,
+      "pass_": true,
+      "finalExit": 0
+    },
+    {
+      "step": "java:SmokeHarness",
+      "exit": 0,
+      "pass_": true,
+      "finalExit": 0
+    },
+    {
+      "step": "java:G54ExecutionFlowHarness",
+      "exit": 0,
+      "pass_": true,
+      "finalExit": 0
+    },
+    {
+      "step": "java:G55OperationsHarness",
+      "exit": 0,
+      "pass_": true,
+      "finalExit": 0
+    },
+    {
+      "step": "java:R7BuilderDemandHarness",
+      "exit": 0,
+      "pass_": true,
+      "finalExit": 0
+    },
+    {
+      "step": "java:R8BuilderWorkHarness",
+      "exit": 0,
+      "pass_": true,
+      "finalExit": 0
+    },
+    {
+      "step": "java:R12BuilderWorkHarness",
+      "exit": 0,
+      "pass_": true,
+      "finalExit": 0
+    },
+    {
+      "step": "java:R12BuilderNativeHarness",
+      "exit": 0,
+      "pass_": true,
+      "finalExit": 0
+    },
+    {
+      "step": "java:R13BuilderOpportunityHarness",
+      "exit": 0,
+      "pass_": true,
+      "finalExit": 0
+    },
+    {
+      "step": "java:R13MineQuoteNativeHarness",
+      "exit": 0,
+      "pass_": true,
+      "finalExit": 0
+    },
+    {
+      "step": "java:R13ScoutNavigationHarness",
+      "exit": 0,
+      "pass_": true,
+      "finalExit": 0
+    },
+    {
+      "step": "java:R13MarginalProductionHarness",
+      "exit": 0,
+      "pass_": true,
+      "finalExit": 0
+    },
+    {
+      "step": "java:R13ThreatDetachmentHarness",
+      "exit": 0,
+      "pass_": true,
+      "finalExit": 0
+    },
+    {
+      "step": "java:R13AirLifecycleHarness",
+      "exit": 0,
+      "pass_": true,
+      "finalExit": 0
+    },
+    {
+      "step": "java:R13AirNativeHarness",
+      "exit": 0,
+      "pass_": true,
+      "finalExit": 0
+    },
+    {
+      "step": "java:R14BuilderFlowHarness",
+      "exit": 0,
+      "pass_": true,
+      "finalExit": 0
+    },
+    {
+      "step": "java:R14LiveReportHarness",
+      "exit": 0,
+      "pass_": true,
+      "finalExit": 0
+    },
+    {
+      "step": "java:R14HeavyArtilleryHarness",
+      "exit": 0,
+      "pass_": true,
+      "finalExit": 0
+    },
+    {
+      "step": "java:R14HeavyArtilleryNativeHarness",
+      "exit": 0,
+      "pass_": true,
+      "finalExit": 0
+    },
+    {
+      "step": "java:R14AirFlowHarness",
+      "exit": 0,
+      "pass_": true,
+      "finalExit": 0
+    },
+    {
+      "step": "java:R14AirNativeHarness",
+      "exit": 0,
+      "pass_": true,
+      "finalExit": 0
+    },
+    {
+      "step": "java:R8ExecutionAdmissionHarness",
+      "exit": 0,
+      "pass_": true,
+      "finalExit": 0
+    },
+    {
+      "step": "java:R8BaseAdmissionHarness",
+      "exit": 0,
+      "pass_": true,
+      "finalExit": 0
+    },
+    {
+      "step": "java:R8FrontierContinuationHarness",
+      "exit": 0,
+      "pass_": true,
+      "finalExit": 0
+    },
+    {
+      "step": "java:R8AirSearchHarness",
+      "exit": 0,
+      "pass_": true,
+      "finalExit": 0
+    },
+    {
+      "step": "java:R9ProductionTimeoutHarness",
+      "exit": 0,
+      "pass_": true,
+      "finalExit": 0
+    },
+    {
+      "step": "java:R9SiegeLifecycleHarness",
+      "exit": 0,
+      "pass_": true,
+      "finalExit": 0
+    },
+    {
+      "step": "java:R9BuilderCoverageHarness",
+      "exit": 0,
+      "pass_": true,
+      "finalExit": 0
+    },
+    {
+      "step": "java:R9AirInvestmentHarness",
+      "exit": 0,
+      "pass_": true,
+      "finalExit": 0
+    },
+    {
+      "step": "java:R10TemporaryResponseHarness",
+      "exit": 0,
+      "pass_": true,
+      "finalExit": 0
+    },
+    {
+      "step": "java:R10AirFormationsHarness",
+      "exit": 0,
+      "pass_": true,
+      "finalExit": 0
+    },
+    {
+      "step": "java:R10ScoutContinuityHarness",
+      "exit": 0,
+      "pass_": true,
+      "finalExit": 0
+    },
+    {
+      "step": "java:R10ScoutBridgeHarness",
+      "exit": 0,
+      "pass_": true,
+      "finalExit": 0
+    },
+    {
+      "step": "java:R10FrontierFundingHarness",
+      "exit": 0,
+      "pass_": true,
+      "finalExit": 0
+    },
+    {
+      "step": "java:R10MilitaryInvestmentHarness",
+      "exit": 0,
+      "pass_": true,
+      "finalExit": 0
+    },
+    {
+      "step": "java:R11FrontlineContinuityHarness",
+      "exit": 0,
+      "pass_": true,
+      "finalExit": 0
+    },
+    {
+      "step": "java:R11GeneralMotionHarness",
+      "exit": 0,
+      "pass_": true,
+      "finalExit": 0
+    },
+    {
+      "step": "java:R11AirContinuityHarness",
+      "exit": 0,
+      "pass_": true,
+      "finalExit": 0
+    },
+    {
+      "step": "java:R11ScoutMotionHarness",
+      "exit": 0,
+      "pass_": true,
+      "finalExit": 0
+    },
+    {
+      "step": "java:R11ScoutBridgeSafetyHarness",
+      "exit": 0,
+      "pass_": true,
+      "finalExit": 0
+    },
+    {
+      "step": "java:G7ScoutMissionHarness",
+      "exit": 0,
+      "pass_": true,
+      "finalExit": 0
+    },
+    {
+      "step": "java:G6EndgameHarness",
+      "exit": 0,
+      "pass_": true,
+      "finalExit": 0
+    },
+    {
+      "step": "java:G6CapitalPolicyHarness",
+      "exit": 0,
+      "pass_": true,
+      "finalExit": 0
+    },
+    {
+      "step": "java:AirReconTerrainHarness",
+      "exit": 0,
+      "pass_": true,
+      "finalExit": 0
+    },
+    {
+      "step": "java:BridgeHarness",
+      "exit": 0,
+      "pass_": true,
+      "finalExit": 0
+    },
+    {
+      "step": "java:BridgeHarness-disabled",
+      "exit": 0,
+      "pass_": true,
+      "finalExit": 0
+    },
+    {
+      "step": "java:EconomyHarness",
+      "exit": 0,
+      "pass_": true,
+      "finalExit": 0
+    },
+    {
+      "step": "java:OpeningHarness",
+      "exit": 0,
+      "pass_": true,
+      "finalExit": 0
+    },
+    {
+      "step": "java:OpeningHarness-replacement",
+      "exit": 0,
+      "pass_": true,
+      "finalExit": 0
+    },
+    {
+      "step": "java:ProductionPlanHarness",
+      "exit": 0,
+      "pass_": true,
+      "finalExit": 0
+    },
+    {
+      "step": "py:test_development",
+      "exit": 0,
+      "pass_": true,
+      "finalExit": 0
+    },
+    {
+      "step": "py:test_opening",
+      "exit": 0,
+      "pass_": true,
+      "finalExit": 0
+    },
+    {
+      "step": "py:test_economy",
+      "exit": 0,
+      "pass_": true,
+      "finalExit": 0
+    },
+    {
+      "step": "py:test_client",
+      "exit": 0,
+      "pass_": true,
+      "finalExit": 0
+    },
+    {
+      "step": "py:test_match_bootstrap",
+      "exit": 0,
+      "pass_": true,
+      "finalExit": 0
+    },
+    {
+      "step": "java:DiagnosticsHarness",
+      "exit": 0,
+      "pass_": true,
+      "finalExit": 0
+    },
+    {
+      "step": "java:PreflightHarness",
+      "exit": 0,
+      "pass_": true,
+      "finalExit": 0
+    },
+    {
+      "step": "py:test_reports",
+      "exit": 0,
+      "pass_": true,
+      "finalExit": 0
+    },
+    {
+      "step": "java:ScoutHarness",
+      "exit": 0,
+      "pass_": true,
+      "finalExit": 0
+    },
+    {
+      "step": "java:TerrainMemoryHarness",
+      "exit": 0,
+      "pass_": true,
+      "finalExit": 0
+    },
+    {
+      "step": "java:GuardHarness",
+      "exit": 0,
+      "pass_": true,
+      "finalExit": 0
+    },
+    {
+      "step": "java:CapabilityHarness",
+      "exit": 0,
+      "pass_": true,
+      "finalExit": 0
+    },
+    {
+      "step": "java:TargetCompatibilityHarness",
+      "exit": 0,
+      "pass_": true,
+      "finalExit": 0
+    },
+    {
+      "step": "java:BuilderHarness",
+      "exit": 0,
+      "pass_": true,
+      "finalExit": 0
+    },
+    {
+      "step": "java:ReachabilityHarness",
+      "exit": 0,
+      "pass_": true,
+      "finalExit": 0
+    },
+    {
+      "step": "java:ReachabilityHarness-sandbox",
+      "exit": 0,
+      "pass_": true,
+      "finalExit": 0
+    },
+    {
+      "step": "py:test_frontier",
+      "exit": 0,
+      "pass_": true,
+      "finalExit": 0
+    },
+    {
+      "step": "py:test_frontier_reports",
+      "exit": 0,
+      "pass_": true,
+      "finalExit": 0
+    },
+    {
+      "step": "java:CombatHarness",
+      "exit": 0,
+      "pass_": true,
+      "finalExit": 0
+    },
+    {
+      "step": "py:test_battle_reports",
+      "exit": 0,
+      "pass_": true,
+      "finalExit": 0
+    },
+    {
+      "step": "py:test_battle_client",
+      "exit": 0,
+      "pass_": true,
+      "finalExit": 0
+    },
+    {
+      "step": "py:test_production_capacity",
+      "exit": 0,
+      "pass_": true,
+      "finalExit": 0
+    },
+    {
+      "step": "py:test_strategy_funding",
+      "exit": 0,
+      "pass_": true,
+      "finalExit": 0
+    },
+    {
+      "step": "py:test_specialist_lifecycle",
+      "exit": 0,
+      "pass_": true,
+      "finalExit": 0
+    },
+    {
+      "step": "py:test_local_army",
+      "exit": 0,
+      "pass_": true,
+      "finalExit": 0
+    },
+    {
+      "step": "py:test_surplus_spending",
+      "exit": 0,
+      "pass_": true,
+      "finalExit": 0
+    },
+    {
+      "step": "py:test_engineer_provider",
+      "exit": 0,
+      "pass_": true,
+      "finalExit": 0
+    },
+    {
+      "step": "py:test_target_compatibility",
+      "exit": 0,
+      "pass_": true,
+      "finalExit": 0
+    },
+    {
+      "step": "py:test_recon_client",
+      "exit": 0,
+      "pass_": true,
+      "finalExit": 0
+    },
+    {
+      "step": "py:test_recon_frontier_client",
+      "exit": 0,
+      "pass_": true,
+      "finalExit": 0
+    },
+    {
+      "step": "py:test_g1_trace",
+      "exit": 1,
+      "pass_": false,
+      "finalExit": 0
+    },
+    {
+      "step": "py:test_g2_world_state",
+      "exit": 1,
+      "pass_": false,
+      "finalExit": 0
+    },
+    {
+      "step": "py:test_g3_execution",
+      "exit": 0,
+      "pass_": true,
+      "finalExit": 0
+    },
+    {
+      "step": "py:test_g4_runtime",
+      "exit": 0,
+      "pass_": true,
+      "finalExit": 0
+    },
+    {
+      "step": "py:test_g41_runtime",
+      "exit": 0,
+      "pass_": true,
+      "finalExit": 0
+    },
+    {
+      "step": "py:test_g5_runtime",
+      "exit": 0,
+      "pass_": true,
+      "finalExit": 0
+    },
+    {
+      "step": "py:test_human_observer",
+      "exit": 0,
+      "pass_": true,
+      "finalExit": 0
+    },
+    {
+      "step": "py:test_native_clock_display",
+      "exit": 0,
+      "pass_": true,
+      "finalExit": 0
+    },
+    {
+      "step": "py:test_headless_parallel",
+      "exit": 0,
+      "pass_": true,
+      "finalExit": 0
+    },
+    {
+      "step": "py:test_ab_aggregate",
+      "exit": 0,
+      "pass_": true,
+      "finalExit": 0
+    },
+    {
+      "step": "py:test_ab_campaign",
+      "exit": 0,
+      "pass_": true,
+      "finalExit": 0
+    },
+    {
+      "step": "java:ReportCommitHarness",
+      "exit": 0,
+      "pass_": true,
+      "finalExit": 0
+    },
+    {
+      "step": "java:CompactBattleLogHarness",
+      "exit": 0,
+      "pass_": true,
+      "finalExit": 0
+    },
+    {
+      "step": "java:ExecutionContractHarness",
+      "exit": 0,
+      "pass_": true,
+      "finalExit": 0
+    },
+    {
+      "step": "java:ExecutionSchedulerHarness",
+      "exit": 0,
+      "pass_": true,
+      "finalExit": 0
+    },
+    {
+      "step": "java:CapabilityLifecycleHarness",
+      "exit": 0,
+      "pass_": true,
+      "finalExit": 0
+    },
+    {
+      "step": "java:NativeCreditWitnessHarness",
+      "exit": 0,
+      "pass_": true,
+      "finalExit": 0
+    },
+    {
+      "step": "java:StrategyQuoteProvenanceHarness",
+      "exit": 0,
+      "pass_": true,
+      "finalExit": 0
+    },
+    {
+      "step": "java:GeneralRegistryHarness",
+      "exit": 0,
+      "pass_": true,
+      "finalExit": 0
+    },
+    {
+      "step": "java:ForceControllerHarness",
+      "exit": 0,
+      "pass_": true,
+      "finalExit": 0
+    },
+    {
+      "step": "java:GeneralFormationHarness",
+      "exit": 0,
+      "pass_": true,
+      "finalExit": 0
+    },
+    {
+      "step": "java:ForceFormationHarness",
+      "exit": 0,
+      "pass_": true,
+      "finalExit": 0
+    },
+    {
+      "step": "java:G5CommanderHarness",
+      "exit": 0,
+      "pass_": true,
+      "finalExit": 0
+    },
+    {
+      "step": "java:CommanderBudgetHarness",
+      "exit": 0,
+      "pass_": true,
+      "finalExit": 0
+    },
+    {
+      "step": "java:G52FightZonesHarness",
+      "exit": 0,
+      "pass_": true,
+      "finalExit": 0
+    },
+    {
+      "step": "java:G53FreeResponseHarness",
+      "exit": 0,
+      "pass_": true,
+      "finalExit": 0
+    },
+    {
+      "step": "java:G53OutwardMissionHarness",
+      "exit": 0,
+      "pass_": true,
+      "finalExit": 0
+    },
+    {
+      "step": "java:G53ContinuingOperationsHarness",
+      "exit": 0,
+      "pass_": true,
+      "finalExit": 0
+    },
+    {
+      "step": "java:R4ConstructionHarness",
+      "exit": 0,
+      "pass_": true,
+      "finalExit": 0
+    },
+    {
+      "step": "java:GlobalStrategyPolicyHarness",
+      "exit": 0,
+      "pass_": true,
+      "finalExit": 0
+    },
+    {
+      "step": "java:RecoveryPoolHarness",
+      "exit": 0,
+      "pass_": true,
+      "finalExit": 0
+    },
+    {
+      "step": "java:LocalCoverageHarness",
+      "exit": 0,
+      "pass_": true,
+      "finalExit": 0
+    },
+    {
+      "step": "java:GeneralRosterRefreshHarness",
+      "exit": 0,
+      "pass_": true,
+      "finalExit": 0
+    },
+    {
+      "step": "java:G5CombatHarness",
+      "exit": 0,
+      "pass_": true,
+      "finalExit": 0
+    },
+    {
+      "step": "java:G51OperationsHarness",
+      "exit": 0,
+      "pass_": true,
+      "finalExit": 0
+    },
+    {
+      "step": "java:G51TacticalHarness",
+      "exit": 0,
+      "pass_": true,
+      "finalExit": 0
+    },
+    {
+      "step": "java:G51LogisticsHarness",
+      "exit": 0,
+      "pass_": true,
+      "finalExit": 0
+    },
+    {
+      "step": "java:G51ProspectIntegrationHarness",
+      "exit": 0,
+      "pass_": true,
+      "finalExit": 0
+    },
+    {
+      "step": "java:RuntimeAccelerationHarness",
+      "exit": 0,
+      "pass_": true,
+      "finalExit": 0
+    },
+    {
+      "step": "java:G1TraceHarness",
+      "exit": 0,
+      "pass_": true,
+      "finalExit": 0
+    },
+    {
+      "step": "java:WorldStateHarness",
+      "exit": 0,
+      "pass_": true,
+      "finalExit": 0
+    },
+    {
+      "step": "java:StrategyContractHarness",
+      "exit": 0,
+      "pass_": true,
+      "finalExit": 0
+    },
+    {
+      "step": "java:ProductionCapacityHarness",
+      "exit": 0,
+      "pass_": true,
+      "finalExit": 0
+    },
+    {
+      "step": "java:LocalArmyContractHarness",
+      "exit": 0,
+      "pass_": true,
+      "finalExit": 0
+    },
+    {
+      "step": "java:LocalCrisisContractHarness",
+      "exit": 0,
+      "pass_": true,
+      "finalExit": 0
+    },
+    {
+      "step": "java:SurplusSpendingHarness",
+      "exit": 0,
+      "pass_": true,
+      "finalExit": 0
+    },
+    {
+      "step": "java:MineInvestmentHarness",
+      "exit": 0,
+      "pass_": true,
+      "finalExit": 0
+    },
+    {
+      "step": "java:EngineerProviderHarness",
+      "exit": 0,
+      "pass_": true,
+      "finalExit": 0
+    },
+    {
+      "step": "java:NativeMorphHarness",
+      "exit": 0,
+      "pass_": true,
+      "finalExit": 0
+    },
+    {
+      "step": "java:StrategyNativeHarness",
+      "exit": 0,
+      "pass_": true,
+      "finalExit": 0
+    },
+    {
+      "step": "py:test_feedback_progress_audit",
+      "exit": 0,
+      "pass_": true,
+      "finalExit": 0
+    },
+    {
+      "step": "py:test_global_strategy_audit",
+      "exit": 0,
+      "pass_": true,
+      "finalExit": 0
+    }
+  ]
+}

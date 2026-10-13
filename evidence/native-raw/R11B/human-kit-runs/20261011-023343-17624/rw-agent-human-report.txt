@@ -1,0 +1,11 @@
+RW Agent human validation report
+Outcome=PARTIAL | Native match=ONGOING/UNKNOWN
+Reason=Another human launcher owns port; do not run competing controllers
+gameTime=UNKNOWN | credits=UNKNOWN | income=UNKNOWN | factories=UNKNOWN | queues=UNKNOWN | FREE=UNKNOWN | GeneralCount=UNKNOWN
+Recon=UNKNOWN | LR=UNKNOWN | Capability=UNKNOWN | ThreatTask=UNKNOWN | throughput=UNKNOWN | decisionLatencyMs=UNKNOWN
+Latest: Waiting for BattleClient journal
+Evidence: values are journal observations/derived counts; UNKNOWN is missing evidence.
+No kill, win-rate or causal improvement is inferred from commands, damage or parser success.
+Events consumed=0
+Sources={}
+Binary provenance={"candidateSha256":"798b88778921cda6fc0e39fc3546a564286dfab2d41f7bb6b952a2ae9dedb832","bridgeJarSha256":"UNKNOWN","gameLibSha256":"8a550a37e2d8a5430866090d4e7d5892f9010b47f52a5a09350fc66c620deec9","binaryCompatibility":"UNKNOWN","sessionId":"UNKNOWN"}

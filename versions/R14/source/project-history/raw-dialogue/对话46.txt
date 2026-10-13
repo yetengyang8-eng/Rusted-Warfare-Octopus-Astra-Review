@@ -1,0 +1,76 @@
+# 对话46（DeepSeek → ChatGPT/Codex）：orchestrator crash recovery v0 完成
+
+依据 `助手交接\请DeepSeek继续_crash_recovery_v0_2026-09-27.md`。
+**只改了 Python 编排器**（`tools/run_headless.py` + 冒烟环境副本）与测试/文档；
+**Java 源码、候选 JAR、策略语义、冻结件一律未动**（环境根 `0681b4f7…`、`game-lib 8a550a37…`、安装件 `cd586ff4…` 复核未变）。
+
+## 0. 结论
+
+五项验收全部通过：**Ctrl+C 路径不回归** → **强杀编排器后两引擎确实残留** → **`--reap` 只清理本批（killed=2，端口全释放）**
+→ **重复 reap 幂等（killed=0）** → **新批次 2/2 PASS**。回归 **17 Java + 10 套 Python，failed steps = 0**。
+
+## 1. 实现（全部在编排器内，最小改动）
+
+- **`live-claims.json`（本批进程登记簿）**：`class LiveClaims`，编排器启动即写、**进程创建时登记、退出时更新**
+  （原子写）。每条含 `role`（orchestrator/engine/client）、`pid`、`port`、`workDirectory`、`episode`、
+  `sessionId`、`commandMarker`、`state`（RUNNING → EXITED/GONE/REAPED）、时间戳与 `exitCode`。
+  批次收尾做一次对账：**只有查得到进程表时才判断**；查不到就保持 RUNNING（不把"查不到"当成"已退出"，
+  否则会掩盖真实泄漏）。若该 PID 已属于别的进程（PID 复用）或确实消失，则标记退出。
+- **`--reap <run 目录>`**：只读登记簿，**逐条复核身份后才杀**——
+  engine 需命令行含 `io.rwagent.headless.HeadlessRunner` 且含 `--port <登记端口>` 且该端口的 LISTEN 拥有者是本 PID；
+  client 需含 `io.rwagent.client.` 且含 `-Drwagent.port=<登记端口>`；**orchestrator 角色一律拒绝**
+  （PID 被复用也不会误当成编排器）。用 `taskkill /PID <pid> /F`（不带 `/T`）。之后复核 PID 消失与端口释放，
+  **只有"确实杀过"的条目才计入失败**（身份不符而跳过的进程不算失败）。幂等：状态写回登记簿，二次执行 `killed=0` 仍 PASS。
+  产物 `reap-report.json`（`killed` / `skipped` / `verified` / `status`）。
+- `--game-dir` 改为可选（`--reap` 不需要游戏目录）；不带 `--reap` 时行为与之前完全一致。
+
+## 2. 故障注入验收（端到端，原始 JSON 在 `headless-runs\ds-crash-recovery\crash_recovery_result.json`）
+
+| 要求 | 实测 |
+| --- | --- |
+| ② 强杀后引擎残留 | 注入前 / +1s / +10s 三次采样：A pid=20992、B pid=4724 **都存活**，端口 14900/14901 **都仍 LISTEN** |
+| ③ reap 只清本批 | `killed=2`（正好两个引擎）、`skipped=5`（编排器条目 + 已自行退出的客户端）、exit 0、`verified=["every claimed pid is gone and every claimed engine port is released"]`；再采样两个 PID 都没了、两个端口都不再 LISTEN |
+| ④ 幂等 | 第二次 `killed=0`、`skipped=7`、exit 0、PASS |
+| ⑤ 新批次可跑 | 紧接着 `--mode smoke --episodes 2 --parallel-pair`：`completed=2 passed=2 proof=PASS`、exit 0 |
+| 附带 | 注入时登记簿已有 `engine,orchestrator,engine` 三条（按 pid 升序） |
+
+## 3. 回归用例（E2，套件 7 → 12）
+
+`developer/tests/test_headless_parallel.py` → 新增 `LiveClaimsAndReapTests`：
+无登记簿时 PASS 不报错；幂等 + 状态落 `GONE`；**真实存活但无关的进程冒充 engine 被拒绝且事后仍存活**；
+命令行像引擎但端口属于别的 PID 被拒绝 / 端口不符被拒绝 / 全符合才通过 / orchestrator 永不回收；
+登记簿字段正确且**首次退出码是权威值**。既有双实例用例补了登记簿断言。
+
+## 4. 剩余风险（诚实清单）
+
+1. **引擎刚 Popen 就被杀的瞬间**可能少写一条记录（写入本身原子）：最坏是漏清理**一个**进程，**不会误杀**；
+   reap 报告会列出端口未释放，可再次复查。
+2. **`--reap` 依赖 Windows PowerShell 查询**（`Get-CimInstance` / `Get-NetTCPConnection`）：查不到身份时
+   **一律跳过而不杀**——这是"绝不误杀"的取舍，代价是那种环境下 reap 不生效（日志可见）。
+3. 端口 TOCTOU 窗口（上一轮已登记，本轮未处理）。
+4. reap **不做跨批次清理**：一次只认一个 run 目录的登记簿（有意为之，避免越权）。
+
+## 5. 顺手修正的状态文档（裁决「文档顺手收尾」）
+
+1. 「下一次验证」原写 `NO_PROGRESS_TARGET_HANDLING v0` 待实机验收 —— 它**已 E4 收官**
+   （276.7 → 21.7 游戏秒）。现改为：真正待补 E4 的是**当前候选 `6fec7a0c…`（v1b.1）**。
+2. Builder Utilization v0 的 E4 原有一处写「巨岛 5x + 冰岛 5x」——**回原始报告核对：是 5x + 1x**
+   （`battle-1790444931065` 自证倍速 **5.0**、`battle-1790445226048` 自证 **1.0**，候选均为 `f3d63e75`）；
+   巨岛/冰岛两局（都是 5.0、候选 `73a09229`）属 **Economy v1b**。已统一，并把 Economy v0 的验收局改回
+   它自己的 `1663738e` 巨岛局。
+
+## 6. 下一步：只提建议，不施工
+
+**建议「固定条件 A/B 对比能力 v0」**：① 每实例规则 profile 注入；② seed 控制与复现验证
+（若 seed 不可设——需写引擎内部状态、触及 Lab 禁区——则改为「重复 N 局 + 配对同条件 + 报方差」，**需裁决**）；
+③ 跨批聚合器。同局双 Agent 的 self-play 仍不在近期范围（`HeadlessRunner` 明确 `Only local matches are supported`）。
+
+## 7. 本轮产物
+
+| 文件 | 内容 |
+| --- | --- |
+| `助手交接\evidence\crash_recovery_v0.txt` | 本轮的实现/注入/回归/风险证据（正式凭证） |
+| `游戏环境\Rusted-Warfare-1.15-Agent-0.07\tools\run_headless.py` | `LiveClaims` + `reap_run` + `--reap`；冒烟环境副本同步（两处 SHA256 相同 `1121df0833aa12a2…`） |
+| `游戏环境\...\developer\tests\test_headless_parallel.py` | 新增 5 用例（套件 12 个） |
+| `_analysis\crash_recovery_probe.ps1` | 端到端故障注入探针 |
+| `助手交接\evidence\CURRENT_STATE.md` | 强杀残留改为"已修"+剩余风险；两处表述按原始报告修正 |

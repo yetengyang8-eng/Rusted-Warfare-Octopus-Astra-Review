@@ -1,6 +1,6 @@
 # Rusted Warfare Octopus — Astra 工程审查资料库
 
-**私有审查仓库 · 2026-10-13 · R9 / R12 / R15 / R16 四套冻结独立版本**
+**私有审查仓库 · 2026-10-13 · R9 / R10E / R11B / R12 / R13B / R14 / R15 / R16 八套冻结独立版本**
 
 > **先读 [review/ASTRA_START_HERE.md](review/ASTRA_START_HERE.md)。** 本仓库不是“R16 已经更好”的发布公告，而是将成功与失败证据并列，供 Astra 找到真正的回归原因。
 
@@ -33,6 +33,25 @@
 4. 把证据等级、复现入口、已确认/待验证结论区分记录，不把日志 receipt 当作实际抵达和击杀。
 
 原项目历史仓库：`yetengyang8-eng/Rusted-Warfare-Agent`。本仓库为**独立审查副本**，不替代、不改写原工程仓库及当前工作区未提交改动。
+
+## Complete raw evidence (Git LFS)
+
+- [Complete artifact index](review/FULL_EVIDENCE_INDEX.md): raw run traces, native validation archives, original human replay/map and unit snapshots.
+- After cloning, run git lfs pull to obtain large files.
+
+
+## Additional intermediate frozen baselines
+
+The four core comparisons R9, R12, R15 and R16 are accompanied by four intermediate, independent source + agent-JAR environments:
+
+| Version | Git source commit | Why it is useful |
+|---|---|---|
+| [R10E](versions/R10E/) | d3be4f6 | Earlier native victory at easier difficulty -2; useful to check air task and local division improvements. |
+| [R11B](versions/R11B/) | f4d81e8 | Continuous-movement and Builder-loop fixes; no stable victory claim. |
+| [R13B](versions/R13B/) | 56d5b7f | Progressive detachment and task continuity; Spain verification remained partial. |
+| [R14](versions/R14/) | 6637cdd | Pre-R15 air control; a reported win included explicit human takeover and cannot count as autonomous victory. |
+
+Each has a frozen code tree, verified agent JAR, launcher scripts and relevant native validation evidence. This eight-version ladder helps isolate regressions introduced between major milestones.
 
 ## Complete raw evidence (Git LFS)
 

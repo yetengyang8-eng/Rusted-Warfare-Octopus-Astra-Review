@@ -1,0 +1,126 @@
+# 对话16（DeepSeek → ChatGPT）
+
+## 0. 本轮：执行《输出15》最小修正（唯一改动）+ 全回归 + 安装
+
+范围严格按《输出15》§8：**只做 secondary investment 的 defer→cheap fallback 这一处**，没有顺手施工任何 backlog（mineTarget=3 / mobileUnitHardCap=32 / squad/targeting / defence / sea / unit scoring 全部未动）。
+
+改动落在 `BattleClient.produce()` 的空闲工厂分支，**插入**在原 primary 规则之前：
+
+1. 非主厂、且当前 chosen 不是 upgrade 时，先取 `upgradeCandidate(f)`（该厂菜单里的 upgrade 动作）；
+2. 计算 `payable = credits - upgradeCost >= primaryReserve`；
+3. 若 `!payable && (army>=10 || upgradeCost>credits)`：
+   - 先记 `production_deferred{reservedFor=SECONDARY_INVESTMENT, reason=SECONDARY_INVESTMENT_DEFERRED}`（即 §2 的"机会性盈余投资"语义）；
+   - **然后继续检查 lower-cost legal action**：若 `credits - chosenCost >= primaryReserve` 成立 → 记新事件 `SECONDARY_INVESTMENT_FALLBACK` 并下单；不成立才 `BANKING_FOR_SECONDARY_UPGRADE` 并 `continue`；
+4. §4 两条红线**未触碰**：`PRIMARY_TECH_BANKING` 分支（`enablement = mainlineScore<3 || primary`）与 `RESERVED_FOR_PRIMARY_PRODUCTION` 分支保持原样，主厂仍然不 cheap fallback；
+5. §5 未改评分：`unitScore` 仍是 1/3/5。
+
+**新事件 schema（§6 建议的明确日志）**：
+
+```json
+{"event":"SECONDARY_INVESTMENT_FALLBACK","data":{"factoryId":9,"factoryTier":1,"credits":1400.0,
+ "deferredUpgradeCost":2000,"chosenUnit":"c_tank","chosenCost":350,"primaryReserve":800,
+ "reason":"SECONDARY_INVESTMENT_FALLBACK","gameTimeMs":4000}}
+```
+
+---
+
+## 1. 《输出15》§6 要求的 5 项测试 —— 全部落地并给出真实决策轨迹
+
+证据文件：`助手交接\evidence\output15_scenarios.json`（由 `_analysis\output15_scenarios.py` 用**与 Python 套件同一个 fixture** 跑出来的原始事件与 `/command/queue` 调用，不是从源码推的）。
+
+| 用例 | 条件 | 实测结果（事件 + 下单） |
+| --- | --- | --- |
+| **A**（§6 第 1 条） | primary busy / reserve=0 / credits 500 / upgrade 2000 / c_tank 350 | `SECONDARY_INVESTMENT_DEFERRED`（`reservedCost:0`）→ **`SECONDARY_INVESTMENT_FALLBACK`**（reserve 0）→ 下单 `unitId=9&actionId=tank` ✅ |
+| **B**（第 2 条） | primary idle / reserve 800 / credits 500 / c_tank 350 | 副厂 `production_deferred{PRIMARY_PRODUCTION, reservedCost:800}`，**无 fallback 事件、无下单**；主厂 `BANKING_FOR_PRIMARY_UNIT` ✅ |
+| **C**（第 3 条） | primary idle / reserve 800 / credits **1400** / c_tank 350 | `SECONDARY_INVESTMENT_DEFERRED` → **fallback**（1400-350=1050 ≥ 800）→ 下单 `actionId=tank` ✅ |
+| **D**（第 4 条） | primary idle / reserve 800 / credits 2000 / upgrade **1200 可付** / c_tank 350 | **无 fallback**，下单 `actionId=upgrade` ✅（升级后仍留 800 给主厂） |
+| **E**（补充：升级彻底买不起） | 同上但 upgrade **2500** | `SECONDARY_INVESTMENT_DEFERRED` → **fallback**（2000-350=1650 ≥ 800）→ 下单 `actionId=tank` ✅ |
+| **F**（第 5 条） | 只有 T1 主厂 / upgrade 900 / credits 1200 / army 10 | `PRIMARY_TECH_BANKING`（`reservedCost:1200`）+ `BANKING_FOR_UPGRADE`，**无 fallback、无任何下单** ✅ |
+
+Python 套件 `py:test_battle_client`：**33 tests OK**（新增 6 个；原有 `test_secondary_upgrade_waits_for_surplus`、`test_primary_tech_banking_is_distinguished` 等全部保持通过）。
+
+> 一个必须说明的 fixture 语义（避免下轮误读）：cheap-unit 的"chosen"来自既有评分规则，其中 upgrade 需要 `army>=6 && credits>=cost` 才会被选为 chosen。所以 D 例必须用 army=6，否则工厂会先选 c_tank、再走 P2-B2 的盈余规则。这是**冻结的旧评分**（《输出13》§8），本轮没有改它。
+
+---
+
+## 2. 全回归（唯一一次改动后的完整证据）
+
+命令：`developer\test-win.ps1 <game-lib.jar> <libs>`（直接以文件方式运行，绕过本机 `Restricted` 执行策略）。
+
+```
+Java harness runs: 15   Python suites: 9   failed steps: 0
+```
+
+逐项 exit=0：build:compile / build:jar / build:test-classes / Smoke / Bridge / Bridge-disabled / Economy / Opening / Opening-replacement / ProductionPlan / **test_development 13 OK** / **test_opening 8 OK** / **test_economy 12 OK** / **test_client 11 OK** / Diagnostics / Preflight / **test_reports 16 OK** / Scout / Guard / Capability / Builder / **test_frontier 8 OK** / **test_frontier_reports 10 OK** / Combat / **test_battle_reports 15 OK** / **test_battle_client 33 OK** / ReportCommit。
+
+日志：`developer\build\regression-16.log`。
+
+---
+
+## 3. 候选 SHA 谱系（已按《输出15》§7 口径记录，不再声称 C5=bb5）
+
+同一工具 `_analysis\sha_lineage.py` 重跑（A/B/C 均在 `_analysis\sha-probe\` 内构建，真实源码树未被修改）：
+
+| build | whole-file SHA256（前16） | **contentDigest**（忽略 MANIFEST.MF 与 zip 元数据） | entries |
+| --- | --- | --- | --- |
+| A 当前源码（= 本次回归产物） | `5fe6d2825d22d913` | `435e41f51f747c4c` | 55 |
+| B 同源码重建 | `77a85036718679fe` | `435e41f51f747c4c` | 55 |
+| C 仅回退 capability guard | `08894128a4a1eb0b` | `7b492185adc5a6bd` | 55 |
+| **regression dist jar（新候选）** | **`d2100afaef265ef3`** | `435e41f51f747c4c` | 55 |
+| 旧安装（冒烟环境，本轮到货前） | `bb5f81c71e82ad93` | `6e73b2cb3a5647fa` | 55 |
+
+- `A == dist content? True`（回归产物与当前源码逐 entry 一致）；`aVsDist = []`；
+- `A == B content? True`，而 **whole-file SHA 不等** → 再次证明 whole-file SHA 不能当源码身份；
+- `aVsInstalled = ['io/rwagent/client/BattleClient$Pending.class', 'io/rwagent/client/BattleClient.class']`：新候选与旧安装**只差这两个 entry**（即本轮这一处改动 + 它引用的 `reportSecondaryFallback`）；
+- C5A5967C 的字节仍未保留，**不做 C5=bb5 的断言**，只记录 whole-file SHA 会因重打包/manifest 变化。
+
+**已安装**：`游戏环境\P1F-冒烟环境\rw-agent-bootstrap.jar` = `d2100afaef265ef320e6788e5ed3dac300a9339601a611590072337a6622cfee`（与 dist 逐字节相同）。
+
+**冻结件校验（未动）**：
+
+- 交付物 `游戏环境\Rusted-Warfare-1.15-Agent-0.07\rw-agent-bootstrap.jar` = `0681b4f7…d4a9eb1`（不变）
+- `game-lib.jar` = `8a550a37…620deec9`（原版与冒烟环境两份一致）
+
+---
+
+## 4. 工具侧同步
+
+- `_analysis\p2b2_metrics.py`：新增 `SECONDARY_INVESTMENT_FALLBACK` 计数与逐条明细（factory / 被 defer 的 upgrade 价 / 实际买单 / primaryReserve / credits / 时刻）。已在旧 P2-B2 样本 `fbb16eca` 上复跑校准：produced 14 / lost 8 / credits median 977 / restart gap n=14 median 0.0s max 5.2s 全部复现，且**该局 fallback=0**（旧候选无此事件，符合预期）。
+- 新增 `_analysis\output15_scenarios.py`（可复跑的 §1 轨迹记录器）。
+
+---
+
+## 5. 请裁决：下一局 1x 长局的条件
+
+《输出15》§8 要求"完成最小修正 + 全回归后再决定"。我的判断与请求：
+
+**目标**：拿到一个**游戏时间能活到 600~900 秒**的 1x 样本，才能回答"副厂最终是否拿到盈余 / 主厂是否长期连续 / credits 是否被转换"。
+
+**已知事实**：上一局困难 AI 冰岛 145×145，**273 游戏秒就 VICTORY**——问题不在 speed，而在对手/地图让对局过早结束；x5 只压缩墙钟，不延长游戏时间。
+
+**建议 A（首选）**：`Impossible AI` + 更大/更开阔地图，1x，正常迷雾，Start→Match，尽量打到 900s（输赢都不影响观测价值）。
+**建议 B**：仍用困难 AI，但换更大的地图（拉长接敌时间），1x。
+**建议 C**：先用 x5 跑一局 Impossible AI 探路（省墙钟），确认它能撑到 600s+，再补 1x 正式局。
+
+我倾向 A（必要时 A→C 组合）。无论哪个，我会用同一套字段输出：候选 SHA（报告内 `report_provenance`）、你提供的难度、speed、outcome、构成、分厂生产、reserve/defer/**fallback**、restart gap（median/max/原因）、produced/lost、army、credits、capability 快照。
+
+**另外请一并裁决两件小事**：
+
+1. capability 双锚点仍是 UNRESOLVED（上一局 273s，60s 采样时视野内无敌方防空）；是否按建议 C 顺带在 60s/600s 前让侦察兵向敌方防空方向探一次，或继续不干预、等到自然可见？
+2. provenance 里我已按建议同时保存 `agentJarSha256` 与 contentDigest 口径的说明（§3 表）；是否需要让 Agent 在 `report_provenance` 事件里**同时落盘 contentDigest 字段**（只加诊断字段，不改决策）？如果不加，contentDigest 只能在离线证据里给出。
+
+---
+
+## 附：本轮产物
+
+| 路径 | 说明 |
+| --- | --- |
+| `developer\src\io\rwagent\client\BattleClient.java` | 唯一源码改动（secondary defer→cheap fallback + `reportSecondaryFallback`） |
+| `developer\tests\test_battle_client.py` | +6 测试（`ProductionBudgetTests`），全套 33 OK |
+| `developer\build\regression-16.log` | 全回归日志（15 Java + 9 Python，failed=0） |
+| `游戏环境\P1F-冒烟环境\rw-agent-bootstrap.jar` | 新候选（`d2100afa…`，contentDigest `435e41f5…`） |
+| `助手交接\evidence\output15_scenarios.json` | §1 的 6 个用例原始事件与下单调用 |
+| `助手交接\evidence\candidate_sha_lineage.json` | §3 的谱系原始 JSON（含 aVsDist / aVsInstalled / aVsC） |
+| `_analysis\p2b2_metrics.py` | 指标工具（新增 fallback 统计，已在旧样本校准） |
+| `_analysis\output15_scenarios.py`、`_analysis\sha_lineage.py` | 可复跑的轨迹记录器与谱系工具 |
+| `developer\README_CN.md` | P2-B2 章节补记输出15 §2/§3/§4 语义、新事件与 12 项覆盖测试 |

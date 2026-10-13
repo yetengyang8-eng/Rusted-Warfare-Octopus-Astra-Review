@@ -1,0 +1,674 @@
+{
+  "schema": "r13-detachment-natural-review-v1",
+  "scope": "INITIAL_R13_SPAIN_VERYHARD_PLAYER0_5X_NOT_FINAL_SCOUT_OWNER_FIX",
+  "source": {
+    "path": "G:\\deepseek 工作台\\_validation\\octopus-r13-continuity-20261011\\spain-veryhard\\work\\rw-agent-reports\\battle-1791723698587-c4fb3ed9.jsonl.gz",
+    "sha256": "54d8078ac7faad0ecb8a823367d47a82f93e883dbe08e27068e526545a450a29",
+    "bytes": 33255004,
+    "rows": 119024,
+    "malformed": 0,
+    "agentJarSha256": "4876284b3e788c188a1d43c5e74624a6594ff1add36b1916020bd8031ae4f99e",
+    "nativeMatchOutcome": "DEFEAT"
+  },
+  "triggered": true,
+  "counts": {
+    "nativeAcceptedDetachment": 278,
+    "nativeAcceptedReacquire": 246,
+    "responseOwnersWithAcceptedThreatCommands": 52,
+    "actorCountHistogram": {
+      "1": 416,
+      "2": 62,
+      "3": 35,
+      "4": 4,
+      "5": 1,
+      "6": 4,
+      "7": 2
+    },
+    "maxActorsPerAcceptedCommand": 7,
+    "temporaryBorrowsForTheseOwners": 101,
+    "borrowOriginMembership": {
+      "ATTACHED": 20,
+      "JOINING": 14,
+      "UNATTACHED": 67
+    },
+    "restorationEventsForTheseOwners": {
+      "SMALL_THREAT_RESPONSE_RESTORED_FREE": 31,
+      "SMALL_THREAT_RESPONSE_RESTORED_JOINING": 4,
+      "SMALL_THREAT_RESPONSE_RESTORED_GENERAL": 6
+    },
+    "reacquireCommandsAreMove": true
+  },
+  "examples": [
+    {
+      "taskId": 3,
+      "owner": "local-response:61",
+      "startTask": {
+        "rawLine": 8366,
+        "timeMs": 192432,
+        "taskId": 3,
+        "status": "CURRENT",
+        "enemyIds": [
+          591,
+          950
+        ],
+        "unarmedContactKnown": true,
+        "reason": "CURRENT_LEGAL_VISIBLE_CLUSTER",
+        "lastKnownX": 3307.6655,
+        "lastKnownY": 5380.9955,
+        "attackAuthorized": true,
+        "localResponderIds": [],
+        "assignedGeneralIds": [],
+        "sourceFrame": 12031,
+        "sourceGameTimeMs": 192496
+      },
+      "startBorrow": [
+        {
+          "rawLine": 8344,
+          "timeMs": 192432,
+          "actor": 830,
+          "reason": null,
+          "beforeOwner": "general:1",
+          "beforeGeneration": 5,
+          "afterOwner": "local-response:61",
+          "afterGeneration": 6
+        },
+        {
+          "rawLine": 8428,
+          "timeMs": 193120,
+          "actor": 708,
+          "reason": null,
+          "beforeOwner": "general:1",
+          "beforeGeneration": 3,
+          "afterOwner": "local-response:61",
+          "afterGeneration": 4
+        },
+        {
+          "rawLine": 8430,
+          "timeMs": 193120,
+          "actor": 764,
+          "reason": null,
+          "beforeOwner": "general:1",
+          "beforeGeneration": 5,
+          "afterOwner": "local-response:61",
+          "afterGeneration": 6
+        },
+        {
+          "rawLine": 8900,
+          "timeMs": 200112,
+          "actor": 969,
+          "reason": null,
+          "beforeOwner": "join:1",
+          "beforeGeneration": 8,
+          "afterOwner": "local-response:61",
+          "afterGeneration": 9
+        },
+        {
+          "rawLine": 11340,
+          "timeMs": 238752,
+          "actor": 1462,
+          "reason": null,
+          "beforeOwner": "force:free",
+          "beforeGeneration": 1,
+          "afterOwner": "local-response:61",
+          "afterGeneration": 2
+        }
+      ],
+      "firstCommand": {
+        "rawLine": 8358,
+        "time": 192432,
+        "owner": "local-response:61",
+        "lane": "THREAT_DETACHMENT",
+        "actors": [
+          830
+        ],
+        "kind": "/command/attack-move",
+        "path": "/command/attack-move?unitIds=830&x=3315.2&y=5387.711",
+        "accepted": true,
+        "ownerGenerations": {
+          "830": 6
+        }
+      },
+      "reinforcementCommand": {
+        "rawLine": 8457,
+        "time": 193120,
+        "owner": "local-response:61",
+        "lane": "THREAT_DETACHMENT",
+        "actors": [
+          830,
+          708,
+          764
+        ],
+        "kind": "/command/attack-move",
+        "path": "/command/attack-move?unitIds=830,708,764&x=3315.2&y=5387.711",
+        "accepted": true,
+        "ownerGenerations": {
+          "830": 6,
+          "708": 4,
+          "764": 6
+        }
+      },
+      "laterCurrentVisibleCluster": {
+        "rawLine": 8478,
+        "timeMs": 193120,
+        "taskId": 3,
+        "status": "CURRENT",
+        "enemyIds": [
+          591,
+          616,
+          635,
+          722,
+          805,
+          909,
+          950
+        ],
+        "unarmedContactKnown": false,
+        "reason": "CURRENT_LEGAL_VISIBLE_CLUSTER",
+        "lastKnownX": 3318.240142857143,
+        "lastKnownY": 5363.847714285715,
+        "attackAuthorized": true,
+        "localResponderIds": [],
+        "assignedGeneralIds": [],
+        "sourceFrame": 12074,
+        "sourceGameTimeMs": 193184
+      },
+      "mainGeneralAfterBorrow": {
+        "rawLine": 8480,
+        "timeMs": 193120,
+        "members": [
+          678,
+          808,
+          919
+        ],
+        "reservations": [
+          830,
+          708,
+          764
+        ],
+        "phase": "ACTIVE",
+        "centroidX": 3653.2783333333336,
+        "centroidY": 5553.076333333333,
+        "goalX": 3330.0,
+        "goalY": 5530.0,
+        "tacticalChoice": "FRONTIER",
+        "tacticalReason": "RESUME_ACCEPTED_NATIVE_OUTWARD_FRONTIER_DYNAMIC_SAFETY_UNKNOWN"
+      },
+      "maxActors": 4,
+      "lossOfContact": {
+        "rawLine": 12018,
+        "timeMs": 248608,
+        "taskId": 3,
+        "status": "UNKNOWN",
+        "enemyIds": [
+          1143,
+          1277,
+          1291,
+          1295,
+          1397
+        ],
+        "unarmedContactKnown": false,
+        "reason": "LOST_CONTACT_RESPONSE_RECHECKS_LAST_KNOWN_REGION",
+        "lastKnownX": 3508.732,
+        "lastKnownY": 5521.6416,
+        "attackAuthorized": false,
+        "localResponderIds": [],
+        "assignedGeneralIds": [],
+        "sourceFrame": 15499,
+        "sourceGameTimeMs": 247984
+      },
+      "reacquireMove": {
+        "rawLine": 12011,
+        "time": 248608,
+        "owner": "local-response:61",
+        "lane": "THREAT_REACQUIRE",
+        "actors": [
+          1462
+        ],
+        "kind": "/command/move",
+        "path": "/command/move?unitId=1462&x=3508.732&y=5521.6416",
+        "accepted": true,
+        "ownerGenerations": {
+          "1462": 2
+        }
+      },
+      "laterCurrentContact": {
+        "rawLine": 12270,
+        "timeMs": 252800,
+        "taskId": 3,
+        "status": "CURRENT",
+        "enemyIds": [
+          1397
+        ],
+        "unarmedContactKnown": false,
+        "reason": "CURRENT_LEGAL_VISIBLE_CLUSTER",
+        "lastKnownX": 3804.773,
+        "lastKnownY": 5295.172,
+        "attackAuthorized": true,
+        "localResponderIds": [],
+        "assignedGeneralIds": [],
+        "sourceFrame": 15802,
+        "sourceGameTimeMs": 252832
+      },
+      "laterAttackMove": {
+        "rawLine": 12263,
+        "time": 252800,
+        "owner": "local-response:61",
+        "lane": "THREAT_DETACHMENT",
+        "actors": [
+          1462
+        ],
+        "kind": "/command/attack-move",
+        "path": "/command/attack-move?unitIds=1462&x=3804.773&y=5295.172",
+        "accepted": true,
+        "ownerGenerations": {
+          "1462": 2
+        }
+      },
+      "finalReacquire": {
+        "rawLine": 12862,
+        "time": 261488,
+        "owner": "local-response:61",
+        "lane": "THREAT_REACQUIRE",
+        "actors": [
+          1462
+        ],
+        "kind": "/command/move",
+        "path": "/command/move?unitId=1462&x=3818.591&y=5180.553",
+        "accepted": true,
+        "ownerGenerations": {
+          "1462": 2
+        }
+      },
+      "returnEvents": [
+        {
+          "rawLine": 13068,
+          "timeMs": 264576,
+          "actor": 1462,
+          "reason": "SMALL_THREAT_RESPONSE_RESTORED_FREE",
+          "beforeOwner": "local-response:61",
+          "beforeGeneration": 2,
+          "afterOwner": "force:free",
+          "afterGeneration": 3
+        }
+      ],
+      "laterTaskClear": {
+        "rawLine": 13113,
+        "timeMs": 265024,
+        "taskId": 3,
+        "status": "CLEAR",
+        "enemyIds": [
+          682
+        ],
+        "unarmedContactKnown": false,
+        "reason": "CURRENT_VISIBILITY_DISAPPEARED_NOT_KILL",
+        "lastKnownX": 3818.591,
+        "lastKnownY": 5180.553,
+        "attackAuthorized": false,
+        "localResponderIds": [
+          1462
+        ],
+        "assignedGeneralIds": [],
+        "sourceFrame": 16314,
+        "sourceGameTimeMs": 261024
+      },
+      "otherBorrowedActorsLeaveForOwnSevereHealthRecovery": [
+        {
+          "rawLine": 9110,
+          "timeMs": 204368,
+          "actor": 830,
+          "reason": "SEVERE_OWN_HEALTH_RECOVERY_POOL",
+          "beforeOwner": "local-response:61",
+          "beforeGeneration": 6,
+          "afterOwner": "force:recovery",
+          "afterGeneration": 7
+        },
+        {
+          "rawLine": 9669,
+          "timeMs": 213120,
+          "actor": 708,
+          "reason": "SEVERE_OWN_HEALTH_RECOVERY_POOL",
+          "beforeOwner": "local-response:61",
+          "beforeGeneration": 4,
+          "afterOwner": "force:recovery",
+          "afterGeneration": 5
+        },
+        {
+          "rawLine": 10656,
+          "timeMs": 228176,
+          "actor": 764,
+          "reason": "SEVERE_OWN_HEALTH_RECOVERY_POOL",
+          "beforeOwner": "local-response:61",
+          "beforeGeneration": 6,
+          "afterOwner": "force:recovery",
+          "afterGeneration": 7
+        },
+        {
+          "rawLine": 11575,
+          "timeMs": 242464,
+          "actor": 969,
+          "reason": "SEVERE_OWN_HEALTH_RECOVERY_POOL",
+          "beforeOwner": "local-response:61",
+          "beforeGeneration": 9,
+          "afterOwner": "force:recovery",
+          "afterGeneration": 10
+        }
+      ]
+    },
+    {
+      "taskId": 7,
+      "owner": "local-response:95",
+      "currentBudget": {
+        "rawLine": 12393,
+        "timeMs": 254224,
+        "taskId": 7,
+        "status": "CURRENT",
+        "enemyIds": [
+          1368,
+          1477
+        ],
+        "unarmedContactKnown": false,
+        "reason": "CURRENT_LEGAL_VISIBLE_CLUSTER",
+        "lastKnownX": 3083.315,
+        "lastKnownY": 5814.6415,
+        "attackAuthorized": true,
+        "localResponderIds": [
+          1771
+        ],
+        "assignedGeneralIds": [],
+        "sourceFrame": 15892,
+        "sourceGameTimeMs": 254272
+      },
+      "startBorrow": [
+        {
+          "rawLine": 12362,
+          "timeMs": 254224,
+          "actor": 1771,
+          "reason": null,
+          "beforeOwner": "force:free",
+          "beforeGeneration": 1,
+          "afterOwner": "local-response:95",
+          "afterGeneration": 2
+        }
+      ],
+      "firstCommand": {
+        "rawLine": 12379,
+        "time": 254224,
+        "owner": "local-response:95",
+        "lane": "THREAT_DETACHMENT",
+        "actors": [
+          1771
+        ],
+        "kind": "/command/attack-move",
+        "path": "/command/attack-move?unitIds=1771&x=3094.659&y=5797.535",
+        "accepted": true,
+        "ownerGenerations": {
+          "1771": 2
+        }
+      },
+      "lossOfContact": {
+        "rawLine": 12921,
+        "timeMs": 262096,
+        "taskId": 7,
+        "status": "UNKNOWN",
+        "enemyIds": [
+          1143
+        ],
+        "unarmedContactKnown": false,
+        "reason": "LOST_CONTACT_RESPONSE_RECHECKS_LAST_KNOWN_REGION",
+        "lastKnownX": 2966.17,
+        "lastKnownY": 5859.89,
+        "attackAuthorized": false,
+        "localResponderIds": [
+          1771
+        ],
+        "assignedGeneralIds": [],
+        "sourceFrame": 16347,
+        "sourceGameTimeMs": 261552
+      },
+      "reacquireMove": {
+        "rawLine": 12908,
+        "time": 262096,
+        "owner": "local-response:95",
+        "lane": "THREAT_REACQUIRE",
+        "actors": [
+          1771
+        ],
+        "kind": "/command/move",
+        "path": "/command/move?unitId=1771&x=2966.17&y=5859.89",
+        "accepted": true,
+        "ownerGenerations": {
+          "1771": 2
+        }
+      },
+      "returnEvents": [
+        {
+          "rawLine": 12938,
+          "timeMs": 262704,
+          "actor": 1771,
+          "reason": "SMALL_THREAT_RESPONSE_RESTORED_FREE",
+          "beforeOwner": "local-response:95",
+          "beforeGeneration": 2,
+          "afterOwner": "force:free",
+          "afterGeneration": 3
+        }
+      ],
+      "laterTaskClear": {
+        "rawLine": 12985,
+        "timeMs": 263152,
+        "taskId": 7,
+        "status": "CLEAR",
+        "enemyIds": [
+          1143
+        ],
+        "unarmedContactKnown": false,
+        "reason": "CURRENT_VISIBILITY_DISAPPEARED_NOT_KILL",
+        "lastKnownX": 2966.17,
+        "lastKnownY": 5859.89,
+        "attackAuthorized": false,
+        "localResponderIds": [
+          1771
+        ],
+        "assignedGeneralIds": [],
+        "sourceFrame": 16347,
+        "sourceGameTimeMs": 261552
+      },
+      "laterFreshTaskReborrow": [
+        {
+          "rawLine": 13029,
+          "timeMs": 264048,
+          "actor": 1771,
+          "reason": null,
+          "beforeOwner": "force:free",
+          "beforeGeneration": 5,
+          "afterOwner": "local-response:98",
+          "afterGeneration": 6
+        }
+      ]
+    }
+  ],
+  "mainGeneralAssessment": {
+    "attachedBorrowEventsChecked": 20,
+    "minAttachedRemainingImmediatelyAfterBorrow": 3,
+    "wholeRosterEmptiedByBorrowEvents": [],
+    "firstChainRemainingMembers": [
+      678,
+      808,
+      919
+    ],
+    "actualMovingOwnSample": {
+      "rawLine": 8650,
+      "timeMs": 197408,
+      "frame": 12338,
+      "actors": [
+        {
+          "id": 678,
+          "x": 3585.909,
+          "y": 5461.592,
+          "hp": 600.0,
+          "orderType": "move"
+        },
+        {
+          "id": 808,
+          "x": 3430.574,
+          "y": 5574.207,
+          "hp": 600.0,
+          "orderType": "move"
+        },
+        {
+          "id": 919,
+          "x": 3518.6,
+          "y": 5601.867,
+          "hp": 600.0,
+          "orderType": "move"
+        }
+      ]
+    },
+    "boundedStationaryInterval": {
+      "start": {
+        "rawLine": 10347,
+        "timeMs": 223664,
+        "members": [
+          678,
+          808,
+          919
+        ],
+        "reservations": [
+          764,
+          969
+        ],
+        "phase": "ACTIVE",
+        "centroidX": 3784.6800000000003,
+        "centroidY": 5890.678666666667,
+        "goalX": 3793.562273617739,
+        "goalY": 5898.75848818409,
+        "tacticalChoice": "STANDOFF",
+        "tacticalReason": "LEGAL_BASE_ZONE_TRAVEL_VETO"
+      },
+      "end": {
+        "rawLine": 10897,
+        "timeMs": 231456,
+        "members": [
+          678,
+          808,
+          919
+        ],
+        "reservations": [
+          969
+        ],
+        "phase": "ACTIVE",
+        "centroidX": 3784.6800000000003,
+        "centroidY": 5890.678666666667,
+        "goalX": 3350.0,
+        "goalY": 5890.0,
+        "tacticalChoice": "FRONTIER",
+        "tacticalReason": "NATIVE_KNOWN_ANCHOR_FRONTIER"
+      },
+      "sampledIntervalMs": 7792,
+      "currentOwnOrdersAtMiddle": {
+        "rawLine": 10487,
+        "timeMs": 226672,
+        "frame": 14167,
+        "actors": [
+          {
+            "id": 678,
+            "x": 3789.361,
+            "y": 5887.329,
+            "hp": 532.241,
+            "orderType": null
+          },
+          {
+            "id": 808,
+            "x": 3763.256,
+            "y": 5869.909,
+            "hp": 552.561,
+            "orderType": null
+          },
+          {
+            "id": 919,
+            "x": 3801.423,
+            "y": 5914.798,
+            "hp": 512.501,
+            "orderType": null
+          }
+        ]
+      },
+      "interpretation": "DIRECT_SAMPLED_TEMPORARY_STATIONARY_EVIDENCE_WITH_ACTIVE_PHASE; NOT_PROOF_OF_PERMANENT_ORPHAN_OR_CAUSATION_BY_DETACHMENT"
+    },
+    "resumeAcceptedCommand": {
+      "rawLine": 10886,
+      "time": 231456,
+      "owner": "general:1",
+      "lane": "GENERAL",
+      "actors": [
+        678,
+        808,
+        919
+      ],
+      "kind": "/command/attack-move",
+      "path": "/command/attack-move?unitIds=678,808,919&x=3350.0&y=5890.0",
+      "accepted": true,
+      "ownerGenerations": {
+        "678": 3,
+        "808": 3,
+        "919": 5
+      }
+    },
+    "laterPosition": {
+      "rawLine": 11052,
+      "timeMs": 234384,
+      "members": [
+        678,
+        808,
+        919
+      ],
+      "reservations": [
+        969
+      ],
+      "phase": "ACTIVE",
+      "centroidX": 3701.554666666667,
+      "centroidY": 5880.342666666666,
+      "goalX": 3605.325,
+      "goalY": 6037.207,
+      "tacticalChoice": "ADVANCE",
+      "tacticalReason": "ADMITTED_CURRENT_NATIVE_ELIGIBLE_UNKNOWN_PROFILE_FALLBACK"
+    },
+    "laterOwnOrders": {
+      "rawLine": 12566,
+      "timeMs": 256992,
+      "frame": 16062,
+      "actors": [
+        {
+          "id": 678,
+          "x": 2988.547,
+          "y": 5846.649,
+          "hp": 279.29,
+          "orderType": "attackMove"
+        },
+        {
+          "id": 808,
+          "x": 3005.547,
+          "y": 5888.2,
+          "hp": 552.561,
+          "orderType": "attackMove"
+        },
+        {
+          "id": 919,
+          "x": 3019.418,
+          "y": 5921.239,
+          "hp": 337.109,
+          "orderType": "attackMove"
+        }
+      ]
+    },
+    "permanentActiveStallProven": false
+  },
+  "limitations": [
+    "Native queued receipts prove acceptance, not continuous execution or arrival.",
+    "CURRENT reacquisition is fresh legal contact, not proof the detachment alone supplied the vision.",
+    "Return and CLEAR transitions are observed controller/ownership evidence; omitted scout tile payload cannot independently reconstruct complete regional visibility.",
+    "Absent actors and disappearing contacts are not kill evidence.",
+    "ACTIVE describes lifecycle phase; the sampled stationary interval had STANDOFF/LEGAL_BASE_ZONE_TRAVEL_VETO or conservative fallback reasons and later resumed.",
+    "Whole-roster check replays logged force ownership/membership transitions; it does not attribute roster loss from other causes to borrowing.",
+    "DEFEAT is the initial-run native outcome; no causal claim against new R13 code or final candidate is made.",
+    "No source/test changes, new simulation, full regression, deployment, desktop game action, commit, or push during this review."
+  ]
+}

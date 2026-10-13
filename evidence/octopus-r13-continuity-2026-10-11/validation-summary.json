@@ -1,0 +1,188 @@
+{
+  "schema": "r13-continuity-validation-v1",
+  "baseline": "eef352fafdf1392a588a1b7be41d8003c2512531",
+  "branch": "codex/octopus-g3-execution-20261002",
+  "implementationCommits": [
+    "3b518cc",
+    "907bb85",
+    "f1e4ad0",
+    "36c9fa6"
+  ],
+  "fixtureCommit": "29ffc0f",
+  "candidateJarSha256": "8f40e5ec9616f16acbe9bf12a30d47a2f72a48ca392fb96eb8869a8babaa6206",
+  "finalFull": {
+    "javaHarnessRuns": 93,
+    "pythonSuites": 32,
+    "pythonTests": 506,
+    "buildSteps": 3,
+    "totalSteps": 128,
+    "failedSteps": 0,
+    "exitCode": 0,
+    "log": "G:\\deepseek 工作台\\_validation\\octopus-r13-continuity-20261011\\final-candidate\\full-console.log",
+    "transcript": "G:\\deepseek 工作台\\_validation\\octopus-r13-continuity-20261011\\final-candidate\\final-full\\transcript.txt"
+  },
+  "focused": {
+    "R13BuilderOpportunityHarness": {
+      "checks": 14,
+      "log": "G:\\deepseek 工作台\\_validation\\octopus-r13-continuity-20261011\\final-candidate\\final-source\\agent\\build\\logs\\java_R13BuilderOpportunityHarness.log",
+      "fullRegressionStepPassed": true,
+      "fixture": true,
+      "native": false
+    },
+    "R13MineQuoteNativeHarness": {
+      "checks": 4,
+      "log": "G:\\deepseek 工作台\\_validation\\octopus-r13-continuity-20261011\\final-candidate\\final-source\\agent\\build\\logs\\java_R13MineQuoteNativeHarness.log",
+      "fullRegressionStepPassed": true,
+      "fixture": true,
+      "native": true
+    },
+    "R13ScoutNavigationHarness": {
+      "checks": 9,
+      "log": "G:\\deepseek 工作台\\_validation\\octopus-r13-continuity-20261011\\final-candidate\\final-source\\agent\\build\\logs\\java_R13ScoutNavigationHarness.log",
+      "fullRegressionStepPassed": true,
+      "fixture": true,
+      "native": false
+    },
+    "R13MarginalProductionHarness": {
+      "checks": 4,
+      "log": "G:\\deepseek 工作台\\_validation\\octopus-r13-continuity-20261011\\final-candidate\\final-source\\agent\\build\\logs\\java_R13MarginalProductionHarness.log",
+      "fullRegressionStepPassed": true,
+      "fixture": true,
+      "native": false
+    },
+    "R13ThreatDetachmentHarness": {
+      "checks": 405,
+      "log": "G:\\deepseek 工作台\\_validation\\octopus-r13-continuity-20261011\\final-candidate\\final-source\\agent\\build\\logs\\java_R13ThreatDetachmentHarness.log",
+      "fullRegressionStepPassed": true,
+      "fixture": true,
+      "native": false
+    },
+    "R13AirLifecycleHarness": {
+      "checks": 41,
+      "log": "G:\\deepseek 工作台\\_validation\\octopus-r13-continuity-20261011\\final-candidate\\final-source\\agent\\build\\logs\\java_R13AirLifecycleHarness.log",
+      "fullRegressionStepPassed": true,
+      "fixture": true,
+      "native": false
+    },
+    "R13AirNativeHarness": {
+      "checks": 14,
+      "log": "G:\\deepseek 工作台\\_validation\\octopus-r13-continuity-20261011\\final-candidate\\final-source\\agent\\build\\logs\\java_R13AirNativeHarness.log",
+      "fullRegressionStepPassed": true,
+      "fixture": true,
+      "native": true
+    }
+  },
+  "failedAttempts": [
+    {
+      "path": "G:\\deepseek 工作台\\_validation\\octopus-r13-continuity-20261011\\final-full",
+      "failedSteps": 6,
+      "reason": "One actor-conflict product defect affecting two Scout harnesses; two missing-stage-resource failures; two obsolete fixture expectations."
+    },
+    {
+      "path": "G:\\deepseek 工作台\\_validation\\octopus-r13-continuity-20261011\\corrected",
+      "status": "INTERRUPTED",
+      "reason": "Stopped to investigate suspected Scout RECHECK issue. Full event review disproved same-actor overwrite: independent actor and obsolete repeated route fixture. Unconditional reset was reverted; no natural result claimed."
+    },
+    {
+      "path": "G:\\deepseek 工作台\\_validation\\octopus-r13-continuity-20261011\\scout-resume-final",
+      "status": "FAILED_FOCUSED",
+      "reason": "Rejected unconditional Explore reset broke independently moving Scout. Product change reverted."
+    },
+    {
+      "path": "G:\\deepseek 工作台\\_validation\\octopus-r13-continuity-20261011\\scout-recheck-calibrated-suite.log",
+      "status": "FAILED_INTERMEDIATE_FIXTURE",
+      "reason": "Always-available new route avoided the intended RECHECK scenario; fixture now explicitly models no new frontier until legal region refresh, then a current-anchor route."
+    },
+    {
+      "path": "G:\\deepseek 工作台\\_validation\\octopus-r13-continuity-20261011\\verified",
+      "fullStatus": "INTERRUPTED",
+      "naturalStatus": "FAIL_ONGOING",
+      "nativeJarSha256": "a35ebbca3efa0e33a8b9f30c73d4510e9b534b93560d7a30edc757c6080b4be0",
+      "reason": "Typed no-current-work entered arrived regional backlog and was dereferenced as quoted coordinates. Natural fatal at state716768ms; focused reproduced NPE at StrategyDirector.actPolicy; fixed in36c9fa6. Missing-own capacity duplication also reproduced red then fixed. Old R13 kit is not final."
+    }
+  ],
+  "naturalFinal": {
+    "path": "G:\\deepseek 工作台\\_validation\\octopus-r13-continuity-20261011\\final-candidate\\spain-veryhard",
+    "input": {
+      "jarSha256": "8f40e5ec9616f16acbe9bf12a30d47a2f72a48ca392fb96eb8869a8babaa6206",
+      "mapSource": "G:\\deepseek 工作台\\游戏环境\\P1F-GPTSol61-Operations-2026-10-01\\mods\\maps\\[10p] 10p 西班牙混战_by_MP97.tmx",
+      "mapSha256": "342db6d8a8b8320b6a271b9e3c8a4c29c96a203e206c4be690c44bbef5882746",
+      "loadedMap": "maps/skirmish/[10p] Spain MP97.tmx",
+      "speed": 5,
+      "difficulty": 2,
+      "durationGameSeconds": 7200,
+      "wallSafetySeconds": 2580,
+      "nativePositionMutation": false,
+      "fixture": false,
+      "desktopTouched": false
+    },
+    "result": {
+      "status": "PARTIAL_USER_REDIRECTED_TO_MANUAL",
+      "reason": "User requested normal AI for future full-process testing or packaged manual candidate; stopped isolated VeryHard run only",
+      "clientExit": null,
+      "nativeOutcome": "NOT_CLAIMED",
+      "rawEvidence": "saved gzip spool prefix; unsaved tail may be absent",
+      "jarSha256": "8f40e5ec9616f16acbe9bf12a30d47a2f72a48ca392fb96eb8869a8babaa6206",
+      "noDesktopTouched": true
+    },
+    "summary": null,
+    "nativeOutcome": null,
+    "partialSpoolPrefix": true,
+    "lastMonitor": {
+      "observedUnits": [],
+      "frame": 208252,
+      "wallSeconds": 696.1879999999946,
+      "gameTimeMs": 3332032,
+      "player": {
+        "teamId": 0,
+        "name": "Player",
+        "credits": 604.5
+      },
+      "types": {
+        "commandCenter": 1,
+        "landFactory": 2,
+        "repairbay": 2,
+        "extractorT1": 3,
+        "heavyTank": 10
+      }
+    }
+  },
+  "inputIntegrity": {
+    "testedAgentToolsKnowledgeFiles": 286,
+    "drift": [],
+    "protectedInputs": {
+      "tools/RW-Agent-Octopus-Test.ps1": "7f5974f7da4ef53d8f6ca8a13277a40eb78a8392e7c904f0e9276b56aa9d01e6",
+      "tools/rw-agent-human.py": "3cb3b18a9ba0170782bfdfa02c481845dc04b6a35943ab5e6b5a605bbf1f2e4d",
+      "tools/rw-agent-human.py.bak-20261003": "84cc4f2fcf379fbf79bcd147286fb4da22883e7840f9ffa8604fcc7dabdb36e8"
+    },
+    "kitFiles": 1896,
+    "kitDrift": [],
+    "engineSha256": "8a550a37e2d8a5430866090d4e7d5892f9010b47f52a5a09350fc66c620deec9"
+  },
+  "humanKit": {
+    "path": "G:\\deepseek 工作台\\游戏环境\\RW-Agent-Octopus-G6-2026-10-11-R13B",
+    "manifest": "G:\\deepseek 工作台\\游戏环境\\RW-Agent-Octopus-G6-2026-10-11-R13B\\KIT_MANIFEST.json",
+    "port": 47701,
+    "preparationOnly": true,
+    "gameLaunched": false,
+    "clock": {
+      "defaultEnabled": true,
+      "source": "/state gameTimeMs/frame",
+      "html": "runs/<run-id>/rw-agent-live.html",
+      "wallTimeEstimate": false
+    }
+  },
+  "boundaries": [
+    "Native fixture has zero simulation ticks and explicit setup; no natural travel/TTK/victory claim.",
+    "Natural player0 VeryHard 5x is not a controlled comparison with prior player5 human run.",
+    "Native accepted receipt is not arrival, spending effect, kill or region-clear proof.",
+    "Absent enemy/own unit never supplies kill attribution.",
+    "No new global command quota, no desktop operation, no push or deployment."
+  ],
+  "hardeningFocused": {
+    "builderReproduction": "G:\\deepseek 工作台\\_validation\\octopus-r13-continuity-20261011\\native-failure-reproduction",
+    "builderFixed": "G:\\deepseek 工作台\\_validation\\octopus-r13-continuity-20261011\\native-failure-fixed",
+    "detachmentRedGreen": "G:\\deepseek 工作台\\_validation\\octopus-r13-continuity-20261011\\detachment-missing-own-fix\\results.json"
+  },
+  "userTestingDirection": "Package final R13B for human now. Future natural full-process runs use Normal difficulty=0 first; VeryHard only subsequent pressure evidence."
+}

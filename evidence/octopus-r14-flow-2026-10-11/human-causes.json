@@ -1,0 +1,50 @@
+{
+  "sourceRun": "G:\\deepseek 工作台\\游戏环境\\RW-Agent-Octopus-G6-2026-10-11-R13B\\runs\\20261011-221046-27816",
+  "raw": "rw-agent-reports/battle-1791727848098-96858e1c.jsonl.gz",
+  "rawSha256": "70a789a96581b3bee7c497345d723cf64765d0b6302496efdcb21c1beafad7f4",
+  "rows": 458007,
+  "malformed": 0,
+  "player": 5,
+  "difficultyNative": 0,
+  "userExit": "USER_CONFIRMED_GAME_CLOSED_FIRST; trailing Bridge connection timeout is not evidence of an in-match crash",
+  "diagnosisRoot": "G:\\deepseek 工作台\\_audit\\r13b-human-20261011",
+  "causes": [
+    {
+      "chain": "BUILDER",
+      "evidence": "1497 of 1499 same-worker/resource continuation pairs <=150 world; native resourceApproach capped to6 tiles. ID1489 old anchor7650,970 has no fixed mine within600; accepted local mine7370,370 lies662 away; 216 retained empty UNKNOWN assessments through83min.",
+      "fix": "Final work approach separated from leg; farthest safe known chord; accepted local mine replaces obsolete prospect; empty soft region no longer vetoes lawful other work."
+    },
+    {
+      "chain": "MIXED_LAND",
+      "evidence": "6 native heavyArtillery units ATTACHED gen3 lacked catalog movement and native eligibility prefilter. Long stationary sampled positions and missing General commands. Nearby enemy25209 at frames81627/81704/81886 was c_helicopter AIR: native INCOMPATIBLE was correct.",
+      "fix": "Independent SHA-bound heavyArtillery profile; existing mixed LAND and native target guard become reachable; no anti-air permission fabricated."
+    },
+    {
+      "chain": "AIR_LATENCY",
+      "evidence": "49705 single-mode events; last814/823 member cycles spent3450/3265ms wall in mode reads. Last serviceOperations6746ms. All2680 observation scalar timestamps verify last5min median31.050game seconds; full-payload keyframes alone are not cycle evidence.",
+      "fix": "1..48 own identity mode batch with per-member UNKNOWN; 847-member focused case18requests. No claim42x whole-controller speedup."
+    },
+    {
+      "chain": "AIR_AREA",
+      "evidence": "Old contacts retained43min onward inside rememberedAA danger; old detour must reconnect to same forbidden center, while clear query requirednearcenter.1277 FRONTIER_RESERVED deferrals include repeated softAvoid=false reselects.",
+      "fix": "Native safe observation route and current area visibility; hard frontier leases enforced at every fallback. Blocked inter-owner handoff remains unimplemented."
+    },
+    {
+      "chain": "AIR_INVESTMENT",
+      "evidence": "29:03 cash~72000 to36:01 cash~250000 while endgameReady=false and target0.36:21 ground92 but >=75percentHP79 vsactiveTarget80..84. First ready36:48, first new long-term jet purchase37:29.",
+      "fix": "Complementary air role no longer requires full planned activeTarget as75percentHP troops. Ground marginal-allocation decision still uses current lawful demand; no mainland-clear claim."
+    },
+    {
+      "chain": "DISPLAY",
+      "evidence": "Screenshots bridge clock vsgzip-tail sample lag14m08.7 and23m11.5. 1.85GB decompressed evidence exceeded bounded display drain; controller does not read this UI.",
+      "fix": "Atomic latest snapshot display alongside complete archive; show Bridge clock and Agent sample separately."
+    }
+  ],
+  "boundaries": [
+    "No enemy hidden orders or red-line lock field added",
+    "No lost contact counted as killed",
+    "Native fixtures are not natural motion or human improvement",
+    "No global command-frequency increase",
+    "Old R13B remains runnable backup"
+  ]
+}

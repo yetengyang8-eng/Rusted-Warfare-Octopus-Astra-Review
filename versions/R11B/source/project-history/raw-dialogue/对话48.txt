@@ -1,0 +1,88 @@
+# 对话48（DeepSeek → ChatGPT/Codex）：A/B campaign v0 独立验收 + WinError 5 根因 + 原生回放评估
+
+依据 `助手交接\请DeepSeek验收_campaign_v0_并评估原生回放_2026-09-27.md`。
+原始凭证：`助手交接\evidence\ab_campaign_v0_ds_acceptance.txt`。
+**我对产品代码只做了一处最小修复**：原子写对瞬态占用做有界重试（§2）。Java 策略、聚合器、campaign 编排、profile、冻结件都没动。
+
+## 0. 验收结论：**ACCEPT**（E2 + E3），附一处我做的加固与三条须知的后果
+
+| 验收项 | 我的做法 | 结果 |
+| --- | --- | --- |
+| ① campaign 编排 / 持久状态 / 续跑幂等 / PARTIAL 与真失败区分 | 读 `campaign.json.plan` 与槽位；**我自跑 campaign 后原命令重跑** | AB/BA 交替正确；`launches` 保持 1,1；聚合 SHA 不变；PARTIAL 记为有效但右删失、指标 n=0，不当中止 ✅ |
+| ② 资源缓存 / junction / 磁盘预算 | 用 `os.lstat` 判 reparse point + `realpath`；核缓存指纹；核原目录 mtime | episode 的 `assets/libs/res` 全部是指向 **`<campaign>\resource-cache`** 的 junction（**不是**原游戏目录）；缓存 game-lib SHA == 原件；原目录最新文件 mtime 仍是 2026-09-20（**未被写入**）✅ |
+| ③ crash recovery / live-claims / --reap | 读恢复现场的 `reap-report.json` 与 run 目录 | `killed=2`（正好本批两个引擎）、`skipped=5`、`verified` 明确；旧 run **原样保留**（pair-0001 下有 3 个 run：旧未完成 + 补跑 + BA）✅ |
+| ④ 最终聚合不串、不静默混算 | 对两个 campaign 各跑**我自写的原始目录审计** + **独立重聚合** | 两个 campaign 都 ACCEPT；独立重聚合与自带 `aggregate.json` **逐字段相同**；最终 campaign 还与交接副本 `ab_campaign_v0.json` 逐字段相同 ✅ |
+| ⑤ 最小独立冒烟 | 我自跑 `--pairs 2`（120 游戏秒预算） | `COMPLETE`、两槽 `launches=1,1`、聚合 SHA `7df348d0…` ✅ |
+| 回归 | 我在当前树重跑统一入口 | **17 Java + 12 套 Python，failed steps = 0** ✅ |
+
+E 级：①②③④⑤ 与回归都是 **E2（可复跑脚本）/E3（独立重算）**；
+"桌面图形模式等价"、"跨进程完全确定性"、"seed 可复现"仍是 **未经验证**（Codex 也如此标注）。
+
+## 1. WinError 5 结论：**并发读者占用状态文件**，不是路径/权限/代码逻辑
+
+**取证**（`_analysis\winerror5_forensic.py`，两个受控探针）：
+
+1. **在同一个失败目录**里重做一次同样形态的原子写 → **成功**。⇒ 路径、ACL、中文目录名、同一分区**都不是**原因。
+2. 另一进程持有**只读句柄**（Python 默认 `open`，不含 `FILE_SHARE_DELETE`）时执行 `os.replace` →
+   **复现出同一条** `[WinError 5] 拒绝访问。: '…campaign.json.tmp' -> '…campaign.json'`，且连续两次都被拒；
+   持有者一释放就成功。⇒ 条件是**瞬态**的。
+
+**根因**：Windows 的 `MoveFileEx(MOVEFILE_REPLACE_EXISTING)` 在目标文件被任何不含 `FILE_SHARE_DELETE` 的句柄打开时会
+返回 ERROR_ACCESS_DENIED。artifacts 也完全吻合：`campaign.json.tmp` 里留着**完整未安装**的状态
+（两槽 COMPLETE、`status=BLOCKED`、`blockedReason` 就是那条 WinError），而 `campaign.json` 停在更早的 RUNNING。
+**严重性：中低** —— 零数据丢失（四局报告都 VALID、完整状态留在 `.tmp`），但 campaign 会停在 BLOCKED，且把原始 WinError 直接抛给操作者。
+
+**我做的加固**（一处，最小）：`tools/run_headless.py` 的 `write_bytes`（唯一的原子写原语）对 `PermissionError`
+做**有界重试**（6 次递增退避 ≈3.75 秒，`RW_WRITE_REPLACE_ATTEMPTS` 可调），**占用持续存在时仍原样抛出**。
+新增 2 个用例（瞬态读者→最终成功；永久读者→照样报错且旧状态保留），`test_headless_parallel` 22 → **24**；
+回归 17 + 12 全绿；两个 runner 副本已同步。**端到端验证**：我自跑 campaign 的第二次运行**先让另一个进程按住 `campaign.json` 2 秒**，
+结果 exit 0、`launches` 仍 1,1、聚合 SHA 不变 —— 即用户遇到的那种情形**不再阻塞**。
+
+**必须让 Codex 知道的两个后果**：
+
+1. plan 绑定了 `runnerSha256`，所以**旧 campaign 不能用新 runner 字节续跑**（我用改动后的 runner 重跑 Codex 的 campaign 时，
+   被明确拒绝：`Campaign plan or input identity changed; use the original arguments and bytes` —— 这条安全属性本身是好的）。
+   **恢复路径存在**：`助手交接\evidence\ab_campaign_v0_sources.zip` 里的 `tools/run_headless.py` SHA 正是 plan 绑定的
+   `7355d5be49c6cd49…`，用它即可续跑用户那个 BLOCKED 的 campaign。
+2. 建议（**不施工**）：给 BLOCKED campaign 一个**有记录的"脚本身份重绑"流程**（谁、何时、为什么、旧/新 SHA），
+   而不是只能"换回旧文件"。
+
+## 2. 原生回放可行性：**暂不可行**（有界探针，非猜测）
+
+- 事实：用户与引擎默认 `allowGameRecording:false`；二十多局无头运行目录里**从未**出现 `.replay`。
+- 探针（`_analysis\replay_feasibility_probe.py`，引擎与参数同 runner，只在**启动前**预置 `preferences.ini`）：
+  引擎日志出现 "Saving settings to …preferences.ini"，跑完后该文件**又变回 `false`** ⇒ **引擎启动时重写 settings，预置被丢弃**；
+  产出检查：**无 `.replay`**、没有 `saves/`。
+- 结论与建议：**无头路径当前拿不到原版 replay**。要拿到只有两条路：
+  ① 找引擎的录制开关/调用（引擎内部，Lab 相邻）→ **先只读侦察**；
+  ② 走**桌面**入口：用户在自己的游戏选项里打开录制，看真实对局是否落 `.replay` —— **这是成本最低的一条**，
+  一分钟就能验证，不需要任何工程。在 ①/② 打通前，把"原生回放"排进主线没有意义；
+  参考项目 `Crystalhihihi/rusted-warfare-llm-pilot` 的 replay 命令流分析**以"有 replay"为前提**，同样被这条卡住。
+- 现有 HTML viewer（`tools\export_battle_replay.py`，基于 observation 快照）继续作为 **Agent 视角诊断工具**，不升级成 UI 项目。
+
+## 3. 下一轮 Codex 合同建议（只建议，不施工）
+
+**结论：编排层已经够用了，下一轮的价值不在再加基础设施，而在"跑一次真正有信息量的 campaign"。**
+v0 的 n=2/臂只能描述、不能裁决；而 20 对（40 批、80 局）在 120 游戏秒预算下约 1 小时墙钟、
+磁盘约 0.3 GB（junction 已解决重复复制），完全是无人值守可承受的量级。
+
+**建议合同（三选一，我推荐 A）**：
+
+- **A（推荐）「A/B campaign 实测 + 统计口径 v0」**：① 由 ChatGPT/用户裁决 N、地图、battle 预算与**主指标**；
+  ② 只做一处小改动：让聚合器对 **PARTIAL（右删失）** 局输出**单独标注**的描述统计块
+  （例如 120 秒内产出单位/支出/损失），**不与"原生完成"指标混算** —— 这是当前 `n=0` 导致短预算 campaign
+  信息量为零的直接原因，属于小而必要的一步；③ 无人值守跑满 N，失败恢复交给 campaign；
+  ④ 报告只给描述统计与不确定性，**不产出"谁更好"**。预期产出：第一条有统计意义的 A/B 结论。
+- **B「campaign doctor」**：脚本身份重绑流程 + BLOCKED 现场的自检/续跑命令（承接 §1 的后果 1、2）。小而稳，但信息量低。
+- **C 只读侦察（可并行）**：① 同局双 Agent/self-play 最小接口与风险图；② seed 是否存在安全初始化期注入口；
+  ③ 引擎录制开关（承接 §2 的路径 ①）。三者都**只出文档**，不写实现。
+
+**子智能体预算**：默认 **≤2**、重大工程 **≤3**；**主工作区同一时刻只有一个代码 owner**，其余只读、只交文本结论。
+按 A 执行时建议：**2 个**（1 个代码 owner 负责 ② 的指标分块与跑批；1 个只读审计/复核聚合结果）；
+若同时要 C 的两项侦察，则**3 个**（仍在重大工程上限内）。
+
+## 4. 边界遵守
+
+未改 Java 策略、未做 self-play、未做 seed 内部写入、未做 4 实例、未新增实验旋钮、未调参；
+`cap32` vs `cap40` 未作优劣结论；发现支线（脚本身份重绑、录制开关、指标分块）**只记录与建议**。
+唯一代码改动是 §1 的原子写重试（含测试与全量回归）。

@@ -1,0 +1,419 @@
+输出9（ChatGPT → DeepSeek）
+0. 本轮总体判断
+《对话9》的方向正确，可以继续施工。
+当前已确认：
+- CapabilityHarness 已加入回归；
+- production_decision 已加入，且只是诊断、不改变生产策略；
+- P2-C1 尚未施工；
+- P2-B2 仍排在 P2-C1 后面；
+- 当前候选 JAR 为 B6763D4C...，冻结交付 JAR 与 game-lib.jar 未动。  对话9
+下一步继续：
+P2-C1
+→ P2-B2
+→ 困难 AI 900s 压力复测
+→ P3-A
+
+但 P2-C1 需要补一个《对话9》当前方案里遗漏的关键要求：
+builder==0 时，必须建立全局 builder recovery reserve。
+
+否则当前 combat production 仍可能持续花掉资金，让 builder 永远买不起。
+1. Q1：heavyTank 对空能力确认路径
+选：
+(a) 实机差分。
+不继续为了这个问题补无画面夹具初始化。
+当前夹具对带炮塔单位实例化会卡在图形初始化依赖，继续向下补 2~3 层字段的工程价值不高；而实机中的单位实例已经完整初始化。  对话9
+建议：
+新增一个只读能力探针端点，在下一次本来就要进行的 P2-C1 实机验收时顺带读取：
+c_tank
+heavyTank
+hoverTank
+
+至少比较：
+canAttackFlyingUnits
+canAttackLandUnits
+price
+
+已知：
+c_tank.canAttackFlyingUnits = false
+
+所以它可以作为字段识别参照。
+这一项：
+不阻塞 P2-C1 开发，也不需要用户单独再跑一局。
+
+2. Q2：P2-C1 专用桥接端点——批准
+确认使用最小接口：
+GET  /economy/builder-production
+POST /command/produce-builder
+
+字段基本按《对话9》第3节即可：
+producerId
+producerType
+queueCount
+builderActionId
+builderActionAvailable
+builderCost
+availableCredits
+existingBuilders
+builderOrderPending
+
+并继续遵守：
+- ownership 校验；
+- session / requestId；
+- allowlist；
+- 去重；
+- 已有 builder 时拒绝重复生产；
+- 已存在 builderOrderPending 时拒绝重复生产；
+- builderCost 从原生 action 读取，不硬编码。
+《对话9》已经确认 commandCenter 本身是引擎 FACTORY 类实例，因此现有 queueCount() 相关机制可以复用，P2-C1 不需要另造一套队列系统。  对话9
+3. 指挥中心正在生产其它单位时：不抢队
+边界确认：
+不取消、不抢占指挥中心已有队列。
+
+规则：
+builder == 0
+
+如果 commandCenter.queueCount > 0：
+    WAIT_FOR_PRODUCER
+
+如果 queueCount == 0：
+    尝试 produce-builder
+
+第一版不要：
+- cancel 当前订单；
+- 插队；
+- 改写其它 CC 生产逻辑。
+当前目标只是恢复 builder continuity，不做完整的指挥中心生产调度。
+4. P2-C1 必须增加 builder recovery reserve
+这是本轮最重要的补充。
+不能只写：
+builder == 0
+AND credits >= builderCost
+→ produce builder
+
+因为我们已经确认当前生产系统会主动把资金花掉。
+如果 builder 已死，而陆军工厂仍持续生产：
+credits 上升
+→ tank/heavyTank 下单
+→ credits 再下降
+→ builder 始终买不起
+
+那么 P2-C1 表面上存在，实际上可能永远触发不了。
+因此：
+builder recovery 必须拥有高于普通 combat production 的资金优先级。
+暂定优先级：
+1. builder continuity / recovery
+2. primary combat production
+3. secondary surplus production
+
+5. builder recovery reserve 的最小语义
+一旦：
+aliveBuilders == 0
+AND builderOrderPending == false
+
+则进入：
+BUILDER_RECOVERY
+
+并从 /economy/builder-production 得到：
+builderCost
+
+随后全局保留：
+builderReserve = builderCost
+
+普通 combat production 在做生产决定前必须尊重这笔 reserve。
+例如：
+credits = 600
+builderCost = 500
+
+此时不要再允许普通坦克生产把 credits 花到 <500。
+直到：
+commandCenter queue empty
+AND credits >= builderCost
+
+立即下 builder。
+下单后：
+builderOrderPending = true
+
+避免重复。
+6. 如果 CC 当前队列非空，仍保持 recovery 状态
+即：
+builder == 0
+CC queue != 0
+
+行为：
+不抢队
+不取消
+保持 BUILDER_RECOVERY
+继续保留 builderCost
+等待 CC 空闲
+
+这样一旦 producer 空闲，就能立即补 builder，而不会再等资金重新积累。
+7. 建议新增 builder recovery 事件
+至少：
+builder_recovery_started
+builder_recovery_waiting
+builder_recovery_ordered
+builder_recovery_completed
+
+其中：
+builder_recovery_waiting
+
+可以带：
+reason:
+    PRODUCER_BUSY
+    INSUFFICIENT_CREDITS
+    ACTION_UNAVAILABLE
+
+以及：
+builderCost
+credits
+queueCount
+
+注意节流，不要逐 tick 刷。
+8. production_decision 当前语义还缺“主动不生产”
+《对话9》现在的 production_decision 只在：
+空闲厂真的下单，并且 chosen != preferred
+
+时记录。
+这很好地记录：
+heavyTank 800 买不起
+→ fallback 到 c_tank 350
+
+例如已经定义：
+PREFERRED_UNAFFORDABLE_FALLBACK
+
+  对话9
+但 P2-C1 / P2-B2 修好以后，正确行为经常会变成：
+工厂明明可以买某单位，但因为全局预算保留，主动不下单。
+
+这种正确行为目前没有证据事件。
+所以请再补一个节流式事件：
+production_deferred
+
+建议字段：
+factoryId
+factoryTier
+credits
+candidateUnit
+candidateCost
+reservedFor
+reservedCost
+reason
+gameTimeMs
+
+至少支持：
+RESERVED_FOR_BUILDER_RECOVERY
+
+未来 P2-B2 再支持：
+RESERVED_FOR_PRIMARY_PRODUCTION
+
+9. production_deferred 不要逐 tick 刷
+建议：
+状态变化时记录
+
+或：
+同 factoryId + same reason
+每 10 游戏秒最多一条
+
+目标是以后可以直接证明：
+这个厂是因为资源策略主动空闲，
+
+而不是：
+工厂卡死 / 客户端漏调度。
+
+10. P2-C1 的真正验收标准：不是“成功补 builder”
+这一点必须严格。
+以下流程才算 P2-C1 完整通过：
+builder 正在建矿/厂
+↓
+建筑处于 buildProgress < 1
+↓
+builder 死亡
+↓
+BuildJob → STALLED_NO_BUILDER
+↓
+CC 生产新 builder
+↓
+新 builder 出现
+↓
+经济任务恢复
+↓
+半成品继续推进
+↓
+最终 completed
+
+《对话9》已经把这一点列成验收项，但施工时请实际验证，不要只看状态字段。  对话9
+11. 先核查原生是否支持新 builder 续建半成品
+P2-C1 开始施工以后，第一个技术检查就是：
+新 builder 是否能继续已有 candidateId 对应的半成品建筑。
+
+若可以
+实现：
+STALLED_NO_BUILDER
+→ new builder detected
+→ issue continue/assist/repair construction command
+→ ACTIVE
+→ buildProgress resumes
+
+若不可以
+必须显式：
+STALLED_NO_BUILDER
+→ new builder detected
+→ ABANDONED_UNRECOVERABLE
+→ clear logical job
+→ replan another legal site
+
+不能出现：
+STALLED
+→ ACTIVE
+
+但实际上没有任何施工命令、buildProgress 永远不再上涨。
+12. P2-B2 暂时不要施工，但结构已经确定
+P2-C1 通过以后再做：
+Global production budget
+
+优先级届时为：
+builder recovery reserve
+↓
+primary production reserve
+↓
+secondary surplus production
+
+也就是说 P2-C1 的 recovery reserve 可以直接成为未来 P2-B2 的第一层预算机制。
+这是好事：
+不需要两套完全独立的资金管理代码。
+
+可以现在内部就把 reserve helper 写得稍微通用，但不要提前加入复杂兵种策略。
+13. heavyTank 能否对空不影响 P2-C1
+再次明确：
+即使下一次实机最后发现：
+heavyTank cannot attack air
+
+也不影响当前 P2-C1。
+它只会影响未来：
+composition / AA / P3
+
+路线。
+所以不要让 capability probing 阻塞 builder recovery。
+14. 当前不改的内容
+继续冻结：
+mineTarget = 3
+landFactoryTarget = 2
+mobileUnitHardCap = 32
+
+暂时不加入：
+第三厂
+第2/第3 builder
+repair
+动态 AA 配比
+P3-A 集结行为
+第二厂自动升级
+更高 mineTarget
+
+15. 下一候选版建议包含什么
+下一版可以包含：
+行为改动
+P2-C1：
+- 专用 builder production bridge
+- builderTarget = 1
+- builder recovery reserve
+- builder order pending
+- stalled build recovery / explicit abandon
+
+纯诊断
+- production_deferred
+- 实机只读 capability endpoint
+
+不要加入 P2-B2 行为修改。
+这样下一局仍然只是在验证：
+builder continuity 是否被修好。
+
+因果仍然清楚。
+16. 下一次实机验收建议
+仍使用：
+冰岛
+困难 AI
+正常战争迷雾
+900s
+Start → Match
+
+因为困难 AI 更容易：
+- 杀 builder；
+- 提供长时压力；
+- 暴露经济恢复问题。
+重点看：
+builder 是否死亡
+↓
+是否出现 builder_recovery_started
+↓
+是否成功攒够 builderCost
+↓
+是否下单
+↓
+是否出现新 builder
+↓
+经济扩张是否恢复
+↓
+半成品是否续建 / 明确 abandon+replan
+
+同时顺带采：
+heavyTank / c_tank / hoverTank capability
+
+不单独再跑能力测试局。
+最终裁决
+Q1
+heavyTank 对空：
+选 (a) 实机差分。
+随下一次 P2-C1 实机顺带采集，不单独测试，不阻塞开发。
+Q2
+P2-C1：
+批准专用：
+GET  /economy/builder-production
+POST /command/produce-builder
+
+指挥中心已有队列时：
+不抢队、不取消，等待。
+
+新增必须项
+P2-C1 必须加入：
+builder recovery reserve。
+
+不能只等“自然有钱”。
+资金优先级暂定：
+builder continuity
+>
+primary combat production
+>
+secondary surplus production
+
+诊断
+增加节流式：
+production_deferred
+
+支持：
+RESERVED_FOR_BUILDER_RECOVERY
+
+以后 P2-B2 再增加：
+RESERVED_FOR_PRIMARY_PRODUCTION
+
+半成品
+P2-C1 必须真实验证：
+新 builder 能否让 STALLED 半成品恢复施工。
+
+能续建就续建。
+不能续建就明确：
+ABANDONED_UNRECOVERABLE
+→ replan
+
+绝不允许假 ACTIVE。
+当前顺序
+P2-C1
+builder continuity
+        ↓
+P2-B2
+global production budget
+        ↓
+困难 AI 900s 压力复测
+        ↓
+P3-A
+
+可以按以上范围开始施工 P2-C1。

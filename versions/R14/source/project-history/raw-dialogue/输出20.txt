@@ -1,0 +1,219 @@
+输出20（ChatGPT → DeepSeek）
+
+《对话20》主体通过：
+
+fallback behaviour-event：继续冻结；
+cap40 development default：通过；
+capability analyzer 修正：通过，mapping继续 UNRESOLVED；
+Cross-Domain regression case：保留；
+暂不施工 LOW_VALUE_TARGET_PURSUIT_LIMIT。
+
+但 target forensic 有两点需要先纠正。
+
+1. attack-move 单位数量修正
+
+原始 forensic 中末段 /command/attack-move 的 ID 列表实际有 41个单位，不是46个。
+
+它与：
+
+heartbeat army=41
+
+正好一致。
+
+请修正 endgame_target_summary / 对话20 中“同一组46个单位”的表述。
+
+不影响结论：这实际上更清楚地证明了整个 active army=41 都被派往同一目标。
+
+2. 当前还不能把 ground path reachable=false 当成直接事实
+
+现有事实是：
+
+target = seaFactory 229 @ (50,470)
+same target for ~51s
+army = 41
+all active army receives attackMove
+32 units within 400
+minimum distance = 185
+target HP stays 1000
+damage = 0
+
+这非常强烈地支持：
+
+target is not effectively engageable by current ground army
+
+但：
+
+distance plateau + zero damage
+
+本身不能严格证明：
+
+no legal ground path
+
+因此当前证据标签先改为：
+
+GROUND_ENGAGEMENT_UNREACHABLE_SUSPECTED
+
+不要把 ground path reachable=false 当成已经由 pathfinder 直接验证的字段。
+
+3. 下一项只做只读 Target Engagement Reachability Probe
+
+先检查现有 game-lib / bridge / pathfinder 能否回答：
+
+对给定 ground combat unit / movement class
+是否存在一个合法可达位置
+使其能够对 target 进入有效攻击距离
+
+注意不是简单测试：
+
+canPathTo(targetX,targetY)
+
+因为 seaFactory 本体位于水域，但理论上可能存在岸边可达射击位。
+
+我们真正需要：
+
+reachable engagement position
+
+候选逻辑：
+
+target geometry/perimeter
++ attacker weapon range
++ ground passability
++ path reachability
+
+检查目标周围是否存在至少一个：
+
+passable for attacker
+AND path reachable
+AND within legal attack range
+
+的位置。
+
+当前先只读分析/探针，不改变战术。
+
+4. 如果现有引擎无法低成本直接回答
+
+不要硬造完整新寻路系统。
+
+请先报告：
+
+engine/path APIs available
+movement-class information available
+weapon range available
+target footprint available
+
+然后给一个最小实现方案。
+
+备选 conservative detector 可以使用：
+
+same target persists >= T
+AND target HP unchanged
+AND many attackers converge
+AND minimum distance stops improving
+
+标记：
+
+STALLED_ENGAGEMENT
+
+但这是 fallback heuristic，不应冒充真正 path reachability。
+
+5. TARGET_REACHABILITY_GUARD 暂不施工
+
+等 §3 得到直接事实后，再决定 v0。
+
+预计未来语义：
+
+visible target
+↓
+current main force has reachable engagement position?
+
+YES → normal ENGAGE_VISIBLE
+NO  → do not send entire MAIN_FORCE
+      mark/suppress target temporarily
+      continue other visible/search/frontier work
+
+同时必须保留该目标作为：
+
+unresolved hostile presence
+
+供未来 Cross-Domain Recovery 使用。
+
+不允许简单“忘掉”目标。
+
+6. Cross-Domain 判定暂时同步调整
+
+五条定义保持：
+
+current-domain reachable search space exhausted
+AND hostile target/presence remains
+AND main force cannot legally engage that target
+AND evidence indicates another movement domain
+AND native victory not reached
+
+但第三条目前还缺 direct reachability proof。
+
+所以先不要把完整自动 detector 当成已验收。
+
+本局仍然保留人工/证据归档：
+
+CROSS_DOMAIN_UNRESOLVED
+7. capability
+
+修正后的 analyzer 接受。
+
+当前：
+
+capability mapping = UNRESOLVED
+
+FIRST_VISIBLE_AIRCRAFT 保留 diagnostics-only。
+
+暂时不要继续主动投入工程时间猜 am.* / y.* 字段语义。
+
+等以后 Defence / AA / Cross-Domain 真正需要 capability 时，再考虑从 game-lib 武器/目标判定逻辑直接反查。
+
+8. 不需要立即重跑巨岛
+
+当前 cap40 Giant Island 样本已经足够作为：
+
+target engagement failure regression case
+
+先把现有报告利用干净。
+
+等未来 TARGET_REACHABILITY_GUARD v0 真正施工后，再用同条件：
+
+Giant Island
+Very Hard
+1x
+900s
+
+做前后对照。
+
+9. 增加一个极短 CURRENT_STATE.md
+
+鉴于 Harness 已经历长期上下文滚动，请现在建立：
+
+CURRENT_STATE.md
+
+控制在约50–80行，只保存：
+
+current candidate SHA/contentDigest
+development defaults
+frozen modules
+experimental knobs
+last formal samples
+known verified defects
+current single task
+deferred backlog
+next validation
+
+不写历史长文，不复制 README。
+
+后续每轮只在状态真正改变时更新。
+
+下一份《对话21》只需要：
+
+修正41/46统计；
+调查现有引擎能否直接判断 reachable engagement position；
+若能，给现有 cap40 样本的只读结果；
+若不能，给最小可行探针方案；
+CURRENT_STATE.md；
+不施工新战术行为。

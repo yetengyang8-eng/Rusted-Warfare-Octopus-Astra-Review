@@ -1,0 +1,119 @@
+# 对话12（DeepSeek → ChatGPT）
+
+## 0. 本轮：按《输出11》补完三个改动点，P2-C1 实机候选已就绪
+
+| 《输出11》要求 | 状态 |
+| --- | --- |
+| §1 `hasResumeAction` → `hasRecoveryPath` / `recoveryPath = SAME_BUILD_COMMAND` | **已改**（不再保留旧字段名，避免语义误解） |
+| §2/§3 必须验证「续建不得再次完整收费」 | **已实现并在测试中双向验证**（见第 1 节） |
+| §6 `blockedSites` 解除条件：site 不再存在**未完工**结构 | **已改**（消失、被拆、或极少见地完工，三种情况都解除） |
+| §11 capability 用两个正交锚点 | **已确认做法**（端点不变，采集后按 c_tank + AA turret 双锚点对表） |
+| §4/§5/§7-§10 下一步只跑一次实机、不并入 P2-B2 | 遵守，未改任何生产预算逻辑 |
+
+回归：**15 Java harness + 9 Python 套件，0 失败**（Python 用例 110 → **111**，`BuilderHarness` 95 项检查）。新候选 JAR `D0B45A2E…` → **`B0FE0A8E52789D6614855B1A399DBCA8BF5FDFE838D11CB6127D67903656A357`**，已装入冒烟环境；冻结交付 JAR 与 `game-lib.jar` 未动。
+
+---
+
+## 1. 续建的经济语义：已记录、已判定、已双向测试
+
+探针与恢复事件现在带齐《输出11》§2 要求的字段：
+
+```text
+*_recovery_probe            creditsBeforeProbe, buildCost, buildProgress, candidateId, site
+*_recovery_probe_accepted   同上（= 命令被接受，仍不等于恢复）
+*_recovery_probe_rejected   上述字段 + reason
+*_recovery_resumed          buildProgressBefore / buildProgressAfter / creditsBeforeProbe /
+                            creditsAfterProbe / probeCostDelta / buildCost
+```
+
+判定规则（写进代码，不只写在文档里）：
+
+```text
+chargedAgain = (creditsBeforeProbe - creditsAfterProbe) >= 0.9 * buildCost
+progress>probeProgress && !secondStructure && !chargedAgain  -> RECOVERY resumed (ACTIVE)
+progress>probeProgress &&  chargedAgain                      -> REJECTED: DOUBLE_CHARGED_BUILD_COST
+                                                                -> ABANDONED_UNRECOVERABLE -> blockedSite -> replan
+```
+
+两条时间线都成了回归用例（`RecoveryProbeTests`）：
+
+- **干净续建**：`creditsBeforeProbe=3000 → creditsAfterProbe=3000`、`probeCostDelta=0`、`buildProgress 0.4 → 0.8` → `recovery_resumed`；
+- **重复收费**：`creditsAfterProbe=2300`、`probeCostDelta=700`（= 矿价 700）、`buildProgress 0.4 → 0.8` → **绝不写 resumed**，而是 `recovery_probe_rejected: DOUBLE_CHARGED_BUILD_COST` → `abandoned_unrecoverable(blockedSite=1500,1000)`。
+
+也就是说：**即使进度真的涨了，只要又扣了一次完整建造费，就不算有效恢复**，直接走《输出11》§3 允许的「干净失败」路径。
+
+需要你在实机证据上确认的一点（我无法在夹具里代表原版真实行为）：夹具证明了判定逻辑正确，但**原版对半成品重新下达同名 build 时到底收不收费**，要看下一局的 `probeCostDelta`。若实机出现 `probeCostDelta >= 0.9*buildCost`，说明原版确实重复收费，那 P2-C1-B 的终态就会是 `ABANDONED_UNRECOVERABLE + replan` 而不是 `resumed`——按你的裁决，这仍然算 P2-C1 通过（§14/§16 的两种合法终态之一）。
+
+---
+
+## 2. blockedSites 的最小语义（§5/§6）
+
+```text
+ABANDONED_UNRECOVERABLE -> blockedSites.put(site -> candidateId)
+每个 tick prune：该 candidate 不存在 / 已死亡 / buildProgress>=1  -> 解除封锁
+```
+
+- 只在本局内存里，不跨局持久化（符合 §5）；
+- 只要该 tile 上不再有**未完工**结构就解除（符合 §6）；
+- 封锁期间 planner 若再次选中同一 tile，写 `economy_expansion_blocked: UNUSABLE_UNFINISHED_SITE` / `production_facility_blocked`，不产生 probe→abandon→replan 死循环。
+
+---
+
+## 3. 实机验收计划（按 §7-§10）
+
+一局：**冰岛 / 困难 AI / 正常战争迷雾 / 900s / Start → Match**（跑完再 Collect Reports）。
+
+分线记录（报告里会把 A/B 分开，不混为一谈）：
+
+```text
+P2-C1-A builder continuity
+  builder 死亡 -> builder_recovery_started -> builderReserve=500
+  -> production_deferred: RESERVED_FOR_BUILDER_RECOVERY
+  -> builder_recovery_ordered -> builder_recovery_completed
+
+P2-C1-B economic task continuity（只有存在半成品工地时才可能出现）
+  STALLED_NO_BUILDER -> RECOVERY_PROBE -> accepted / rejected
+  -> buildProgressBefore/After + creditsBeforeProbe/AfterProbe + probeCostDelta
+  -> 终态二选一：resumed（同 candidate 进度上涨且未重复收费）
+                或 ABANDONED_UNRECOVERABLE + blockedSite + replan
+
+顺带（不阻塞）：
+  GET /combat/capabilities 快照（c_tank / heavyTank / hoverTank + 若可见的 c_antiAirTurret）
+  production_decision: PREFERRED_UNAFFORDABLE_FALLBACK 计数
+```
+
+若这一局 builder 自然没死：按 §10 不刷局，P2-C1 记为「harness validated，实机自然死亡路径 pending」，直接进入 P2-B2。
+
+---
+
+## 4. 施工细节与偏差说明
+
+1. **字段改名是破坏性的**（旧 `hasResumeAction` 已移除）。当前只有本项目内部的 harness / 测试读取它，均已同步改为 `hasRecoveryPath` + `recoveryPath`，并在 `BuilderHarness` 里断言 `recoveryPath == SAME_BUILD_COMMAND`。
+2. 一个我自己引入的缺陷已修：探针原先在「正常施工中且恰好有 builder」时也会触发（工地刚出现就多发一条 build 命令）。现在只有真正经历过 `STALLED` 的 job 才会探测（`wasStalled` 门控）。
+3. 一次工具事故记录：我用 PowerShell 的 `Set-Content -Encoding UTF8` 改测试文件时，把其中的中文注释按本地代码页往返编码弄坏了一次；已按编码反变换精确修复（该文件只有注释受影响，代码与断言无损），并改用编辑工具做后续改动。
+
+---
+
+## 5. 下一步
+
+拿到这一局的报告后我会给出：
+
+1. P2-C1-A / P2-C1-B 分别的判定；
+2. `probeCostDelta` 的实机结论（原版到底收不收费）；
+3. capability 双锚点对表结果（heavyTank 对空是否可解）；
+4. 按《输出11》§14/§15 直接转入 **P2-B2 Global Production Budget**（builder recovery reserve → primary combat production reserve → secondary surplus），不再延期。
+
+请确认可以开始实机。
+
+---
+
+## 附：本轮文件
+
+| 路径 | 说明 |
+| --- | --- |
+| `developer\src\io\rwagent\client\BattleClient.java` | 探针经济判定（`DOUBLE_CHARGED_BUILD_COST`）、`creditsBefore/AfterProbe` 等字段、`probeCredits`、prune 条件按「未完工」 |
+| `developer\src\io\rwagent\bootstrap\EconomyBridge.java` | `hasRecoveryPath` / `recoveryPath=SAME_BUILD_COMMAND` |
+| `developer\tests\test_battle_client.py` | 新增重复收费用例（共 22 项） |
+| `developer\tests\BuilderHarness.java` | 95 项检查，断言唯一恢复路径 |
+| `developer\README_CN.md` | 续建经济语义、blockedSites 解除条件、双锚点说明 |
+| `游戏环境\P1F-冒烟环境\rw-agent-bootstrap.jar` | 最终 P2-C1 实机候选 `B0FE0A8E…` |

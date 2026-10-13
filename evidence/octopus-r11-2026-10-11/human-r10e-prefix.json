@@ -1,0 +1,97 @@
+{
+  "status": "FROZEN_PARTIAL_PREFIX_NOT_FULL_MATCH",
+  "raw": {
+    "source": "G:\\deepseek 工作台\\游戏环境\\RW-Agent-Octopus-G6-2026-10-11-R10E\\runs\\20261011-010215-11528\\rw-agent-reports\\battle-1791651736811-1d8a09ca.jsonl.gz.partial",
+    "frozen": "G:\\deepseek 工作台\\_validation\\octopus-r11-20261011\\human-input.jsonl.gz.partial",
+    "bytes": 128940394,
+    "sha256": "4d4042a87d5c1cf0db7c970536822ddb30b90022d8c4c07c6756b295715841d9",
+    "rows": 506094,
+    "malformed": 0,
+    "expectedGzipEOF": true
+  },
+  "lastOwn": {
+    "gameTimeMs": 5433431,
+    "frame": 191497,
+    "player": {
+      "teamId": 5,
+      "name": "Player",
+      "credits": 2405.5
+    },
+    "readyTypes": {
+      "commandCenter": 1,
+      "landFactory": 3,
+      "extractorT2": 1,
+      "repairbay": 5,
+      "extractorT1": 4,
+      "combatEngineer": 4,
+      "heavyTank": 120,
+      "builder": 20,
+      "amphibiousJet": 3
+    }
+  },
+  "reasonCounts": {
+    "g5_commander_transition": {
+      "COMMANDER_THREAT_TASK": 5165,
+      "COMMANDER_THREAT_BUDGET": 6025,
+      "COMMANDER_REINFORCEMENT_RESERVED": 621,
+      "VISIBLE_DEFICIT_BUDGET": 714,
+      "BUDGET_OR_GENERAL_INELIGIBLE": 160,
+      "COMMANDER_ATTENTION_HOLD": 312,
+      "VISIBLE_CLEAR_NOT_KILL": 218,
+      "COMMANDER_OVERFLOW_FORMATION": 4
+    },
+    "strategy_prospect_cluster_released": {
+      "TWO_CURRENT_EMPTY_LOCAL_ASSESSMENTS": 895,
+      "CURRENT_OR_CONSERVATIVE_LOCAL_THREAT": 74
+    },
+    "strategy_frontier_funding_committed": {
+      "CURRENT_NATIVE_LOCAL_SITE_AND_LATER_OWN_CLUSTER_ARRIVAL": 13
+    },
+    "strategy_frontier_funding_released": {
+      "NATIVE_CONSTRUCTION_ACCEPTED_SPENDING_WITNESS_PENDING": 12,
+      "CURRENT_NATIVE_SITE_CHANGED": 1
+    }
+  },
+  "eventCounts": {
+    "recon_takeover_queued": 1,
+    "recon_takeover_observed": 1,
+    "recon_frontier_plan": 27,
+    "recon_task_created": 23,
+    "recon_deferred": 167,
+    "recon_assigned": 248,
+    "recon_order_queued": 322,
+    "recon_order_observed": 322,
+    "recon_frontier_route_planned": 24,
+    "recon_frontier_route_renewed": 24,
+    "recon_progress": 202,
+    "recon_waypoint_reached": 99,
+    "recon_frontier_memory_update": 23,
+    "g5_commander_transition": 13219,
+    "recon_attempt_blocked": 3,
+    "recon_frontier_blocked": 3,
+    "recon_recall_queued": 256,
+    "strategy_prospect_ordered": 1037,
+    "strategy_prospect_cluster_committed": 1034,
+    "strategy_prospect_observed": 1034,
+    "strategy_prospect_cluster_retained": 2263,
+    "strategy_prospect_cluster_released": 969,
+    "recon_unassigned": 216,
+    "recon_recheck_yielded": 1,
+    "strategy_frontier_funding_quote": 3619,
+    "strategy_frontier_funding_committed": 13,
+    "strategy_frontier_funding_waiting": 26,
+    "strategy_frontier_funding_released": 13,
+    "recon_frontier_suspended": 4,
+    "recon_blocked": 10,
+    "recon_frontier_resumed": 4,
+    "recon_frontier_satisfied": 1,
+    "recon_reacquired": 8
+  },
+  "fullDerivedEvidence": "G:\\deepseek 工作台\\_validation\\octopus-r11-20261011\\human-derived.json",
+  "boundary": {
+    "partialPrefixNotCompleteMatch": true,
+    "nativeDifficultyIndependentlyProven": false,
+    "eventCountNotUniqueWorkerTaskOrLoss": true,
+    "ownAbsenceNotDeath": true
+  }
+}

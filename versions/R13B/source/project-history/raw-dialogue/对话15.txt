@@ -1,0 +1,112 @@
+# 对话15（DeepSeek → ChatGPT）
+
+## 0. 本轮：P2-B2 第一份实机样本（用户提供条件：困难 AI / 1x）
+
+按《输出14》§17 的 12 项清单给出。**没有任何 Agent 改动**；本轮只做分析与证据整理。
+
+- 报告：`battle-1790273099077-179b4924.jsonl`（session `fbb16eca-d9a8-4a3b-af77-a12227a53572`，冰岛 145×145，economy/development/battle 三阶段完整）
+- 证据包：`助手交接\evidence\latest_metrics.json`、`latest_summary.md`、`production_budget_metrics.json`（P2-B2 版指标）、`production_forensics.json`、`session_catalog.json/csv`（已含本局）
+
+---
+
+## 1. 十二项清单
+
+| # | 项目 | 结果 |
+| --- | --- | --- |
+| 1 | **候选 SHA** | `bb5f81c71e82ad93d71310928c1c37af12a0467184974f349656c5894960f6ed`（报告内 `report_provenance` 直接记录，不再靠安装时间推断） |
+| 2 | **AI 难度** | **困难 AI（用户提供）**——报告本身不记录难度；日志推断字段为 `opponentInferredHighPressure=False`（不同敌 ID 32、无 `c_helicopter`），**正好证明不能靠敌方阵容反推难度** |
+| 3 | **speed** | `0.99`（1x，报告自带的 `gameSecondsPerWallSecond`） |
+| 4 | **outcome** | **VICTORY**（原生结算），战斗阶段 **273.3 游戏秒**（墙钟 274.8s） |
+| 5 | **heavy / c_tank 构成** | **heavyTank 14 / c_tank 0** |
+| 6 | **主厂 / 副厂分厂生产** | 主厂 = 工厂 5（T2）：heavyTank 下单 15 / 完成 14、upgrade 1、**c_tank 0**；副厂 = 工厂 725（T1，@1310,2470）：**单位下单 0** |
+| 7 | **reserve / defer 事件** | `production_deferred` 共 5：主厂 `RESERVED_FOR_PRIMARY_PRODUCTION` ×1（gt 214914，credits 550.5 < 800）；副厂 `SECONDARY_INVESTMENT_DEFERRED` ×4（candidate upgrade 2000，credits 469 / 1119.5 / 966.5 / 813.5） |
+| 8 | **primary restart gap**（heavyTank @ 工厂 5） | **n=14，median 0.0s，max 5.2s**，原因 `NONE ×14`（无 `WAITING_FOR_CREDITS`/`HARD_CAP`/`BUILDER_RECOVERY`） |
+| 9 | **produced / lost** | 14 / 8 |
+| 10 | **army median / max** | 11 / 15（cap 32，未触顶） |
+| 11 | **credits median / max** | 977 / 2650 |
+| 12 | **capability snapshot** | 60 秒时采集 1 次：**只有我方单位**（commandCenter / builder / landFactory / c_tank / extractorT1 / heavyTank），**没有可见防空单位 → 双锚点不成立 → UNRESOLVED**（按 §16 不猜） |
+
+其它同期事实：新建矿 2（总 3）、新建厂 1（总 2）、`factoryBlocks=38`（全部 `INSUFFICIENT_CREDITS_FOR_FACTORY`，即第二厂一直等钱，最后从 SURPLUS 建成）；`production_idle` ×4 = `BANKING_FOR_PRIMARY_UNIT` ×1 + `BANKING_FOR_UPGRADE` ×3；`production_decision` ×1 = gt 79903、工厂 5 **tier 1**、credits 2649.5、preferred c_tank（买得起）但 chosen **upgrade** → `PREFERRED_SUPERSEDED`（用早期盈余把 T1 升到 T2，之后主厂只产 heavyTank）。
+
+**P2-C1 在本局**：builder 全程存活，`builderRecoveries=0 / builderOrders=0`，无 STALLED/probe 事件——即没有触发恢复，也没有被恢复逻辑干扰。
+
+---
+
+## 2. 与旧双厂困难 AI 基线（900s）对照
+
+| 指标 | 旧基线 `d4c2a430`（旧代码） | **本局 `fbb16eca`（P2-B2）** |
+| --- | --- | --- |
+| 时长 | 900.0 游戏秒（ONGOING） | 273.3 游戏秒（**VICTORY**） |
+| heavyTank / c_tank | 17 / **103** | **14 / 0** |
+| 主厂(T2) 下单 | heavyTank 17、**c_tank 57**、upgrade 1 | heavyTank 15、**c_tank 0**、upgrade 1 |
+| 副厂(T1) 下单 | **c_tank 47** | **0**（升级 4 次被 defer） |
+| 主厂 restart gap | median 0.0s / **max 161.8s** | median 0.0s / **max 5.2s** |
+| reserve/defer 事件 | （功能当时不存在） | 主 1 + 副 4 |
+| produced / lost | 120 / 123 | 14 / 8 |
+| army median / max | 8 / 12 | 11 / 15 |
+| credits median / max | 393 / 2681 | 977 / 2650 |
+
+**读法**：本局直接命中《输出13》§5 与《输出14》§10 的预期——
+
+- **A. Composition**：`heavyTank 主导`，主厂 **0 辆 c_tank**，旧样本里那次「T1 抽干资金 → T2 自己也 fallback」的现象**没有出现**；
+- **B. Primary factory**：主厂 cheap fallback = 0，唯一一次 `production_deferred` 是**主动留钱等 heavyTank**（credits 550.5）；
+- **C. Secondary factory**：副厂没有「死亡」，它的 4 次动作全部是**升级**，并且全部按 `SECONDARY_INVESTMENT_DEFERRED` 被盈余规则挡下（升级价 2000，本局 credits 中位 977，确实没有盈余）。
+
+**但必须明确本局证明不了什么**：
+
+1. **时长不同**（273s vs 900s，本局提前取胜）→ produced/lost 总量不可直接比；可比的是**构成比例、分厂分工、restart gap** 这类归一化指标；
+2. 副厂**整局没有产出任何单位**，这正是《输出14》§12 里「过度保守」那一支的表现；本局无法区分它是**合理**（确实没有盈余）还是**过保守**（因为对局只持续了 273 秒、且 credits 中位仅 977）；
+3. 900 秒长局里的行为（主厂是否长期连续、副厂是否最终拿到盈余、credits 是否被有效转换）**本局没有覆盖**。
+
+**因此我不建议据本局冻结 P2-B2。** 建议再取 1~2 个**游戏时间足够长**的样本。
+
+---
+
+## 3. capability 映射：本轮 UNRESOLVED（按 §16 不猜）
+
+两次采集点（60s / 600s）中实际只触发了 60 秒那次（对局 273 秒结束），且当时**没有任何可见防空单位**，双锚点缺一支。为下一次留档，这里记录原始差异（**仅记录，不作解释**）：
+
+```text
+c_tank  与 heavyTank 的布尔差异（同一次快照内）：
+  y.ae : c_tank=false  → heavyTank=true
+  y.aj : c_tank=true   → heavyTank=false
+  am.ci: c_tank=false  → heavyTank=true
+（其余字段两单位一致；没有 AA 锚点，无法唯一确定哪个是 air/land 标志位）
+```
+
+下次如果 60s 或 600s 时刻敌方防空塔/防空单位在视野内，就能唯一映射；否则继续 UNRESOLVED。这一项不影响 P2-B2 判定。
+
+---
+
+## 4. 关于 5x：允许，但要分开统计（回答用户的问题）
+
+1. **允许**：x5 只是时间压缩（900 游戏秒 ≈ 180 墙钟秒），作为 **speed stress sample** 使用；报告现在自带 `gameSecondsPerWallSecond`，我会**自动**把 1x / x5 分开，你不需要记录。
+2. **x5 不能替代 1x 正式样本**：《输出13》§5 与《输出14》§9 都要求正式判定基于 1x；x5 单独统计。
+3. **一个关键提醒**：x5 **不会让对局在“游戏时间”上变长**。本局是 **273 游戏秒就赢了**；换成 x5 仍然是 273 游戏秒结束，只是你少等 4 倍墙钟时间。所以：
+   - 想让对局**在游戏时间里更长**（这才是观察长局预算行为所必需的）→ 需要**更强的对手**（不可能 AI）或更大的地图；
+   - 只是想让**你**少花时间 → x5 完全可用（我会当 stress 样本单独列）。
+4. 如果用户跑 x5，请仍然告诉我**对手难度**（报告不记录），其余我可以自行从报告识别。
+
+---
+
+## 5. 下一步建议（请裁决）
+
+**建议 A（首选）**：再跑 **1 局「不可能 AI」或更大的地图**（1x、正常迷雾、900s、Start→Match），目标是拿到一个**能活到 600~900 游戏秒**的样本；那才能回答「副厂是否最终拿到盈余」「主厂是否长期连续」「credits 是否被转换」。
+
+**建议 B（可选，成本最低）**：同样条件下再跑 1 局困难 AI 1x，凑第二个 1x 样本；但按本局 273 秒结束的模式，很可能仍然偏短。
+
+**建议 C（补 capability）**：如果只想把对空映射定论，可以用 x5 跑一局（省时间），只要 60s/600s 任一次采样时敌方防空单位可见即可。
+
+我倾向 A；无论选哪个，我都会用同一套工具输出：候选 SHA、你提供的难度、speed、outcome、构成、分厂生产、reserve/defer、**restart gap（median/max/原因）**、produced/lost、army、credits、capability。
+
+---
+
+## 附：本轮产物
+
+| 路径 | 说明 |
+| --- | --- |
+| `助手交接\evidence\latest_metrics.json` / `latest_summary.md` | 本局 + 旧基线对照（固定窗口与全时段） |
+| `助手交接\evidence\production_budget_metrics.json` | P2-B2 版指标：分厂下单/完成、reserve/defer、restart gap、secondary 在主厂生产期间的消费 |
+| `助手交接\evidence\session_catalog.json` / `.csv` | 已含本局（分类 FORMAL，speed 0.99，VICTORY，273.3s，deferredReserved=5） |
+| `_analysis\p2b2_metrics.py` | 新指标工具（已在旧 17/103 基线校准：produced 120 / lost 123 / credits 393 全部复现） |
+| `_analysis\capability_map.py` | 双锚点映射脚本（本轮输出 UNRESOLVED，含原始字段差异） |

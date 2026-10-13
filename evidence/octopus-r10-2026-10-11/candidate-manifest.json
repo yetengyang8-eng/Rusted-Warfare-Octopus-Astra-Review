@@ -1,0 +1,17 @@
+{
+  "schemaVersion": 1,
+  "productCommit": "d3be4f67b643232416d674dda14775739bc7c34a",
+  "candidateJarSha256": "456a1fbc3870b26f57b503b7c719fc5cb04b634896c4bfe3aba715aef594a1dd",
+  "candidateJarPath": "G:\\deepseek 工作台\\_validation\\octopus-r10-20261010\\rw-agent-bootstrap.jar",
+  "kitPath": "G:\\deepseek 工作台\\游戏环境\\RW-Agent-Octopus-G6-2026-10-11-R10E",
+  "validationSummary": "evidence/octopus-r10-2026-10-11/validation-summary.json",
+  "testedInputs": 272,
+  "kitFilesChecked": 1895,
+  "jarContentEntries": 210,
+  "protectedUserFiles": {
+    "tools/RW-Agent-Octopus-Test.ps1": "7f5974f7da4ef53d8f6ca8a13277a40eb78a8392e7c904f0e9276b56aa9d01e6",
+    "tools/rw-agent-human.py": "3cb3b18a9ba0170782bfdfa02c481845dc04b6a35943ab5e6b5a605bbf1f2e4d",
+    "tools/rw-agent-human.py.bak-20261003": "84cc4f2fcf379fbf79bcd147286fb4da22883e7840f9ffa8604fcc7dabdb36e8"
+  },
+  "desktopAcceptance": "PENDING"
+}

@@ -1,0 +1,1526 @@
+{
+  "raw": {
+    "path": "G:\\deepseek 工作台\\_validation\\octopus-r11-20261011\\spain-hard-runtime-final\\work\\rw-agent-reports\\battle-1791655938319-4eac8132.jsonl.gz",
+    "sha256": "0f951ed6b3698cd6142aab3f74d51f3f84839ceb4e709c9a34e2790429b014bd",
+    "rows": 394441,
+    "malformed": 0,
+    "closedGzip": true
+  },
+  "input": {
+    "jarSha256": "798b88778921cda6fc0e39fc3546a564286dfab2d41f7bb6b952a2ae9dedb832",
+    "mapSource": "G:\\deepseek 工作台\\游戏环境\\P1F-GPTSol61-Operations-2026-10-01\\mods\\maps\\[10p] 10p 西班牙混战_by_MP97.tmx",
+    "mapSha256": "342db6d8a8b8320b6a271b9e3c8a4c29c96a203e206c4be690c44bbef5882746",
+    "loadedMap": "maps/skirmish/[10p] Spain MP97.tmx",
+    "speed": 5,
+    "difficulty": 1,
+    "durationGameSeconds": 4800,
+    "wallSafetySeconds": 1380,
+    "nativePositionMutation": false,
+    "fixture": false,
+    "desktopTouched": false
+  },
+  "summary": {
+    "outcome": "PASS",
+    "reason": "Native result screen: DEFEAT",
+    "phase": "battle",
+    "matchOutcome": "DEFEAT",
+    "commands": 8281,
+    "observations": 7754,
+    "ownLosses": 287,
+    "newCombatUnits": 185,
+    "attackOrders": 1765,
+    "attackOrdersConfirmed": 1458,
+    "retreatOrders": 0,
+    "upgradesCompleted": 4,
+    "completedMines": 17,
+    "newMines": 17,
+    "mineTarget": 3,
+    "minesBeyondFloor": 1,
+    "expansionRefusals": 107,
+    "expansionBlocked": 232,
+    "completedFactories": 3,
+    "newFactories": 3,
+    "landFactoryTarget": 2,
+    "factoryBlocks": 73,
+    "builderTarget": 1,
+    "builderRecoveries": 46,
+    "builderOrders": 41,
+    "battleGameTimeMs": 4112672,
+    "gameSecondsPerWallSecond": 4.8,
+    "noProgressWindowMs": 20000,
+    "noProgressCooldownMs": 30000,
+    "targetNoProgressTriggers": 0,
+    "targetRetries": 0,
+    "targetSuppressionsStarted": 15,
+    "targetSuppressionsReleased": 0,
+    "targetSuppressedSelections": 0,
+    "targetSuppressionsAtEnd": 15,
+    "targetSwitches": 0,
+    "effectiveDecisionIntervalGameMs": 512,
+    "noProgressAttentionGapMs": 3000,
+    "maxObservedGameTimeJump": 3152,
+    "observationCount": 7754,
+    "spendTotal": 242000,
+    "spendByCategory": {
+      "BUILDER_RECOVERY": {
+        "orders": 41,
+        "cost": 20500
+      },
+      "NEW_FACTORY": {
+        "orders": 4,
+        "cost": 2800
+      },
+      "UNIT_PRODUCTION": {
+        "orders": 185,
+        "cost": 147700
+      },
+      "NEW_MINE": {
+        "orders": 19,
+        "cost": 13300
+      },
+      "FACTORY_UPGRADE": {
+        "orders": 4,
+        "cost": 8000
+      },
+      "STRATEGIC_CAPABILITY": {
+        "orders": 21,
+        "cost": 16500
+      },
+      "STRATEGIC_CONSTRUCTION": {
+        "orders": 21,
+        "cost": 33200
+      }
+    },
+    "measuredIncomePerGameSecond": 58.03,
+    "investmentIntentions": 4,
+    "investmentCompletions": 0,
+    "investmentCancellations": 4,
+    "investmentReserveAtEnd": 0,
+    "investmentPendingAtEnd": false,
+    "finalUrgency": "EMERGENCY",
+    "reconEnabled": true,
+    "reconTasksCreated": 11,
+    "reconOrdersQueued": 206,
+    "reconOrdersObserved": 206,
+    "reconMovesCompletedBetweenSamples": 0,
+    "frontierTasksSatisfiedByTeamVision": 1,
+    "reconResolvedAfterObservedMove": 0,
+    "reconReacquired": 2,
+    "reconSitesCleared": 0,
+    "reconBlocked": 7,
+    "reconTaskPendingAtEnd": true,
+    "reconFrontierEnabled": true,
+    "frontierTasksCreated": 1,
+    "frontierTasksRefreshed": 8,
+    "frontierTasksAdvanced": 9,
+    "frontierTasksBlocked": 1,
+    "frontierTasksPreempted": 0,
+    "expendableTransfers": 0,
+    "expendableScoutsAtEnd": 0,
+    "factoryTargetIncreases": 0,
+    "factoryTargetIncreaseBlocks": 13,
+    "landFactoryTargetAtEnd": 2,
+    "factoryTargetCommittedAtEnd": false,
+    "landFactoryTargetMax": 2147483647,
+    "factorySaturationPct": 41.88,
+    "factorySaturationMinPct": 80,
+    "economyBaseIncome": 26.9,
+    "economyIncomePerMine": 12.07,
+    "economyModelSource": "MEASURED_4_MATCHES_2_SPEEDS_T1_R2_0.999_T2_T3_ESTIMATED_FROM_FROZEN_GENERATION_RATIOS",
+    "minesReadyAtEnd": 0,
+    "productionConsumptionPerGameSecond": 14.7,
+    "sustainableSurplusPerGameSecond": 12.2,
+    "productionCapacity": {
+      "incomeEstimate": 26.9,
+      "productionConsumptionPerGameSecond": 14.7,
+      "recentSpendPerGameSecond": 27.3,
+      "sustainableSurplusPerGameSecond": 12.2,
+      "credits": 708.0,
+      "strategyArmyTarget": 32,
+      "committedArmed": 3,
+      "hardSafetyCap": 2147483647,
+      "readyProducerCount": 0,
+      "producerUtilizationPct": 41.61,
+      "observedProducerGameMs": 84432,
+      "demand": "UNKNOWN",
+      "backlogSlots": 29,
+      "routeCount": 0,
+      "routes": [],
+      "selectedNativeCost": null,
+      "selectedNativeAffordable": false,
+      "builderReserve": 500,
+      "investmentReserve": 0,
+      "capabilityReserve": 0.0,
+      "allReserved": 500.0,
+      "recovery": false,
+      "factoryTarget": 2,
+      "factoryTargetCommitted": false,
+      "bottleneck": "UNKNOWN",
+      "militaryCapacityDecision": "HOLD",
+      "producerCapacityDecision": "HOLD",
+      "windowGameMs": 150000,
+      "coveredGameMs": 150000,
+      "surplusGameMs": 79600,
+      "usefulDemandGameMs": 83776,
+      "safeGameMs": 5408,
+      "sustained": false,
+      "operationalCapacityStatus": "UNKNOWN",
+      "gameTimeMs": 4114128,
+      "intervalEstimateSource": "SAME_SOURCE_BOTH_ENDPOINTS_CONSERVATIVE_ESTIMATE",
+      "continuousNativeExecutionProven": false,
+      "maxBridgedIntervalGameMs": 30000,
+      "excludedIntervalGameMs": 0,
+      "maxSampleIntervalGameMs": 1520,
+      "producerCoveredGameMs": 150000,
+      "menuSourceTimeStatus": "UNKNOWN_CURRENT_CYCLE_READ",
+      "menuSourceCurrent": true,
+      "ownMissionDemand": 24,
+      "nativeUnitCapStatus": "UNKNOWN",
+      "hardSafetyCapSource": "SOFTWARE_POLICY_OR_EXPLICIT_PROPERTY",
+      "demandSource": "CURRENT_VISIBLE_NATIVE_ROUTE_ASSESSMENT",
+      "productionPolicy": "CONTINUOUS_WHILE_NATIVE_LEGAL_AND_COMMITTED_FUNDS_AVAILABLE",
+      "organizationTargetIsProductionLimit": false,
+      "militaryGrowthPolicyGoal": 32
+    },
+    "strategy": {
+      "enabled": true,
+      "armyTarget": 32,
+      "activeTarget": 24,
+      "reserveTarget": 8,
+      "hardSafetyCap": 2147483647,
+      "builderTarget": 1,
+      "militaryCapacityIncreases": 0,
+      "militaryCapacityFloor": 0,
+      "capabilityNeedsAtEnd": 15,
+      "needsResolvedByLegalEvidence": 0,
+      "investmentOrders": 42,
+      "mineUpgradesObserved": 0,
+      "constructionCompletionsObserved": 19,
+      "capabilityReservesStarted": 7,
+      "capabilityReservesReleased": 7,
+      "capabilityReserveAtEnd": 0.0,
+      "capabilityTasksAtEnd": 0,
+      "capabilityModeScope": "PER_UNIT",
+      "searchAreaPolicy": "LEGAL_AIR_FRONTIER_CURRENT_COVERAGE_SEARCH",
+      "g6": true,
+      "airGeneral": {
+        "airGeneralId": 1,
+        "owner": "air-general:1",
+        "roster": [],
+        "targetId": null,
+        "mission": "CONTINUING_AIR_MAP_SEARCH",
+        "searchLegKnown": false,
+        "searchLegX": null,
+        "searchLegY": null,
+        "routeCursor": 0,
+        "routeLegEnd": -1,
+        "routeTiles": 0,
+        "routeLeader": -1,
+        "routeFrontierTile": -1,
+        "routePotentialInfoScore": 0.0,
+        "routeInfoAuthority": "NATIVE_PLAYER_FOG_HISTORY",
+        "searchNeed": {
+          "status": "LEGAL_FRONTIER_EXPLORATION",
+          "coverageAuthority": "NATIVE_PLAYER_FOG_HISTORY",
+          "enemyPresence": "UNKNOWN"
+        },
+        "searchLegsWitnessed": 0,
+        "attackReceipts": 0,
+        "specialistTransfers": 0,
+        "groundGeneral": false,
+        "formations": [
+          {
+            "airGeneralId": 1,
+            "owner": "air-general:1",
+            "roster": [],
+            "targetId": null,
+            "mission": "CONTINUING_AIR_MAP_SEARCH",
+            "searchLegKnown": false,
+            "searchLegX": null,
+            "searchLegY": null,
+            "routeCursor": 0,
+            "routeLegEnd": -1,
+            "routeTiles": 0,
+            "routeLeader": -1,
+            "routeFrontierTile": -1,
+            "routePotentialInfoScore": 0.0,
+            "routeInfoAuthority": "NATIVE_PLAYER_FOG_HISTORY",
+            "searchNeed": {
+              "status": "LEGAL_FRONTIER_EXPLORATION",
+              "coverageAuthority": "NATIVE_PLAYER_FOG_HISTORY",
+              "enemyPresence": "UNKNOWN"
+            },
+            "searchLegsWitnessed": 0,
+            "attackReceipts": 0,
+            "specialistTransfers": 0,
+            "groundGeneral": false
+          }
+        ],
+        "formationCount": 1
+      },
+      "endgameReady": false,
+      "airTarget": 0,
+      "airProviderTarget": 0,
+      "airProviders": 0,
+      "pendingAirProviders": 0,
+      "capital": {
+        "covered": true,
+        "horizonGameMs": 120000,
+        "ownCreditsGrowth": 22.5,
+        "source": "CURRENT_OWN_CREDITS_SAMPLES",
+        "growing": true,
+        "wealthThreshold": null,
+        "hiddenEnemyAdvantage": "UNKNOWN",
+        "idleCapitalPerGameSecond": 0.1875,
+        "observedAirServiceSamples": 0,
+        "airProviderNativeSpendPerGameSecond": null,
+        "airInvoicesAwaitingReadyWitness": 0,
+        "airThroughputSource": "ACCEPTED_NATIVE_INVOICE_TO_LATER_OWN_READY_PRODUCT",
+        "airProviderModel": "CURRENT_FUNDED_SPATIAL_DUTY_PLUS_OBSERVED_IDLE_CAPITAL_OVER_OBSERVED_PROVIDER_SERVICE"
+      },
+      "capitalUpgradesObserved": 0
+    }
+  },
+  "lastOwn": {
+    "gameTimeMs": 4086704,
+    "frame": 255419,
+    "player": {
+      "teamId": 0,
+      "name": "Player",
+      "credits": 666.0
+    },
+    "readyTypes": {
+      "combatEngineer": 1,
+      "amphibiousJet": 2,
+      "scout": 1
+    }
+  },
+  "eventCounts": {
+    "report_log_config": 1,
+    "health": 1,
+    "report_provenance": 1,
+    "observation": 7754,
+    "g2_world_update": 60748,
+    "g2_event": 133775,
+    "battle_config": 1,
+    "combat_observation": 7341,
+    "scout_visibility": 7341,
+    "g3_batch": 7341,
+    "endgame_air_provider_demand": 1,
+    "strategic_marginal_investment": 9,
+    "strategy_static_construction_map": 1,
+    "strategy_capacity": 135,
+    "builder_recovery_started": 46,
+    "builder_production": 292,
+    "g3_intent": 8370,
+    "g1_command_attempt": 8459,
+    "action": 8320,
+    "command_result": 8281,
+    "g3_execution": 8370,
+    "spend": 295,
+    "builder_recovery_ordered": 41,
+    "production_capacity_menu": 3632,
+    "production_capacity_assessment": 343,
+    "production_facility_blocked": 73,
+    "production_route_observed": 139,
+    "g51_air_capability_need": 662,
+    "g4_force_state": 7341,
+    "g5_runtime_state": 3080,
+    "agent_tick_alive": 398,
+    "g3_credit_settled": 295,
+    "production_menu": 3709,
+    "builder_recovery_completed": 45,
+    "strategy_current_construction_demand": 87,
+    "strategy_current_facility_demand": 93,
+    "production_facility_plan": 4,
+    "production_facility_planned": 4,
+    "production_facility_move": 5,
+    "production_facility_started": 4,
+    "production_facility_observed": 4,
+    "g51_tech_conversion": 13,
+    "opening_scout_ordered": 1,
+    "g1_production_witness": 376,
+    "factory_started": 3,
+    "factory_completed": 3,
+    "strategy_static_construction_domain": 36,
+    "economy_expansion_plan": 27,
+    "economy_expansion_planned": 21,
+    "economy_expansion_move": 20,
+    "strategy_construction_capacity": 107,
+    "economy_expansion_started": 19,
+    "economy_expansion_observed": 19,
+    "combat_unit_observed": 185,
+    "production_queue_finished": 187,
+    "g4_force_transition": 9493,
+    "g4_force_transition_witness": 9493,
+    "g1_recon_owner": 288,
+    "task_ownership_acquired": 174,
+    "native_tech_funding_selected": 4,
+    "investment_released": 4,
+    "recon_takeover_queued": 1,
+    "g1_recon_witness": 218,
+    "recon_takeover_observed": 1,
+    "recon_frontier_plan": 10,
+    "recon_task_created": 11,
+    "recon_deferred": 192,
+    "recon_assigned": 144,
+    "recon_order_queued": 206,
+    "recon_order_observed": 206,
+    "recon_progress": 177,
+    "recon_waypoint_reached": 13,
+    "recon_frontier_memory_update": 8,
+    "recon_route_progress": 114,
+    "extractor_started": 17,
+    "extractor_completed": 17,
+    "recon_frontier_route_planned": 9,
+    "recon_frontier_route_renewed": 9,
+    "plan_unavailable": 6538,
+    "capability_snapshot": 6,
+    "economy_expansion_blocked": 232,
+    "static_map_knowledge": 1,
+    "early_expansion_approach": 201,
+    "early_expansion_transition": 209,
+    "early_expansion_transition_witness": 209,
+    "g4_force_collected": 7475,
+    "military_urgency": 231,
+    "g5_commander_transition": 11282,
+    "upgrade_completed": 4,
+    "surplus_spending_evaluated": 614,
+    "recon_frontier_satisfied": 1,
+    "production_idle": 208,
+    "g41_forming_expansion_approach": 2,
+    "engagement_observation": 6203,
+    "engagement_assessment": 6089,
+    "recon_attempt_blocked": 1,
+    "recon_frontier_blocked": 1,
+    "task_ownership_released": 184,
+    "recon_recall_queued": 120,
+    "own_loss": 287,
+    "engagement_assessment_deferred": 202,
+    "economy_expansion_finished": 1,
+    "local_crisis_engagement": 12987,
+    "reachability_raw": 123,
+    "report_reachability": 125,
+    "reachability_sample": 125,
+    "g5_general_transition": 9504,
+    "tactical_intent": 1767,
+    "g4_force_order": 1765,
+    "attack_order_confirmed": 1458,
+    "production_surplus": 17,
+    "strategy_investment_menu": 422,
+    "mine_income_investment_evaluated": 993,
+    "mine_income_investment_deferred": 211,
+    "recon_unassigned": 119,
+    "g5_general_frontier_plan": 2375,
+    "production_deferred": 3436,
+    "production_facility_finished": 1,
+    "factory_target_increase_blocked": 13,
+    "builder_recovery_waiting": 28,
+    "strategy_allocation": 21,
+    "g1_strategy_state_transition": 2989,
+    "strategy_production_queue_finished": 21,
+    "strategy_resource_approach": 21,
+    "strategy_prospect_ordered": 19,
+    "strategy_resource_journey_approach": 206,
+    "strategy_prospect_danger_cancelled": 10,
+    "strategy_task_lost": 20,
+    "strategy_prospect_cluster_committed": 26,
+    "strategy_resource_journey_continued": 150,
+    "strategy_prospect_current_work": 24,
+    "strategy_prospect_observed": 6,
+    "strategy_frontier_funding_quote": 72,
+    "strategy_frontier_funding_committed": 5,
+    "strategy_frontier_funding_waiting": 67,
+    "strategy_income_alternative_plan": 11,
+    "strategy_construction_ordered": 21,
+    "strategy_frontier_funding_released": 5,
+    "g1_strategy_ready_match_witness": 19,
+    "strategy_construction_observed": 19,
+    "strategy_local_cluster_visibility": 4,
+    "strategy_prospect_cluster_retained": 4,
+    "strategy_prospect_cluster_released": 5,
+    "strategy_recovery_builder_rally": 10,
+    "production_reserve_started": 1,
+    "strategy_recovery_plan": 97,
+    "strategy_support_reserve_started": 55,
+    "target_suppression_started": 15,
+    "capability_need_created": 15,
+    "command_rejected": 39,
+    "strategy_recovery_capacity_committed": 2,
+    "strategy_support_reserve_released": 55,
+    "strategy_capability_reserve_started": 7,
+    "strategy_capability_reserve_released": 7,
+    "economy_expansion_deferred": 5,
+    "strategy_purchase_committed": 2,
+    "g1_strategy_purchase_ready_match_witness": 2,
+    "strategy_worker_committed": 27,
+    "strategy_construction_plan": 1523,
+    "recon_blocked": 7,
+    "strategy_provider_repositioned": 922,
+    "strategy_support_construction": 13,
+    "strategy_task_blocked": 2,
+    "strategy_worker_commitment_released": 13,
+    "strategy_support_transferred": 12,
+    "response_engagement_observation": 780,
+    "strategy_unit_modes": 874,
+    "g1_strategy_mode_evidence_witness": 1654,
+    "strategy_task_preempted": 13,
+    "recon_reacquired": 2,
+    "economy_expansion_state": 3,
+    "production_interrupted": 2,
+    "economy_expansion_lost": 2,
+    "g51_air_response_selected": 2,
+    "g3_admission_rejected": 89,
+    "production_facility_state": 1,
+    "production_facility_lost": 1,
+    "match_terminal": 1,
+    "g3_cost_summary": 1,
+    "report_log_summary": 1,
+    "summary": 1
+  },
+  "admissionRejections": {
+    "CRITICAL_RETREAT:NATIVE_REJECTED": 27,
+    "RECON:ACTOR_CONFLICT_IN_OBSERVATION": 49,
+    "BUILDER_RECOVERY:NATIVE_REJECTED": 2,
+    "EARLY_EXPANSION:NATIVE_REJECTED": 4,
+    "GENERAL:NATIVE_REJECTED": 4,
+    "STRATEGY:NATIVE_REJECTED": 2,
+    "EARLY_EXPANSION:STALE_OWNER_GENERATION": 1
+  },
+  "builders": {
+    "distinctObserved": 58,
+    "journeyContinuedCount": 150,
+    "lastJourneys": [
+      {
+        "unitId": 74166,
+        "tile": 97949,
+        "resourceX": 5290.0,
+        "resourceY": 5390.0,
+        "waypointX": 4890.0,
+        "waypointY": 5510.0,
+        "reason": "RESOURCE_JOURNEY_CONTINUES_NOT_MINERAL_ARRIVAL",
+        "arrivalClaim": false,
+        "gameTimeMs": 2901072,
+        "sessionId": "7012f193-08cb-435a-a00e-446724e103e9",
+        "player": "team:0"
+      },
+      {
+        "unitId": 74166,
+        "tile": 97949,
+        "resourceX": 5290.0,
+        "resourceY": 5390.0,
+        "waypointX": 4930.0,
+        "waypointY": 5490.0,
+        "reason": "RESOURCE_JOURNEY_CONTINUES_NOT_MINERAL_ARRIVAL",
+        "arrivalClaim": false,
+        "gameTimeMs": 2902288,
+        "sessionId": "7012f193-08cb-435a-a00e-446724e103e9",
+        "player": "team:0"
+      },
+      {
+        "unitId": 74166,
+        "tile": 97949,
+        "resourceX": 5290.0,
+        "resourceY": 5390.0,
+        "waypointX": 5010.0,
+        "waypointY": 5490.0,
+        "reason": "RESOURCE_JOURNEY_CONTINUES_NOT_MINERAL_ARRIVAL",
+        "arrivalClaim": false,
+        "gameTimeMs": 2903328,
+        "sessionId": "7012f193-08cb-435a-a00e-446724e103e9",
+        "player": "team:0"
+      },
+      {
+        "unitId": 74166,
+        "tile": 97949,
+        "resourceX": 5290.0,
+        "resourceY": 5390.0,
+        "waypointX": 5070.0,
+        "waypointY": 5490.0,
+        "reason": "RESOURCE_JOURNEY_CONTINUES_NOT_MINERAL_ARRIVAL",
+        "arrivalClaim": false,
+        "gameTimeMs": 2904368,
+        "sessionId": "7012f193-08cb-435a-a00e-446724e103e9",
+        "player": "team:0"
+      },
+      {
+        "unitId": 74166,
+        "tile": 97949,
+        "resourceX": 5290.0,
+        "resourceY": 5390.0,
+        "waypointX": 5150.0,
+        "waypointY": 5490.0,
+        "reason": "RESOURCE_JOURNEY_CONTINUES_NOT_MINERAL_ARRIVAL",
+        "arrivalClaim": false,
+        "gameTimeMs": 2906096,
+        "sessionId": "7012f193-08cb-435a-a00e-446724e103e9",
+        "player": "team:0"
+      },
+      {
+        "unitId": 91393,
+        "tile": 60540,
+        "resourceX": 3270.0,
+        "resourceY": 4610.0,
+        "waypointX": 4110.0,
+        "waypointY": 5730.0,
+        "reason": "RESOURCE_JOURNEY_CONTINUES_NOT_MINERAL_ARRIVAL",
+        "arrivalClaim": false,
+        "gameTimeMs": 3521696,
+        "sessionId": "7012f193-08cb-435a-a00e-446724e103e9",
+        "player": "team:0"
+      },
+      {
+        "unitId": 91393,
+        "tile": 60540,
+        "resourceX": 3270.0,
+        "resourceY": 4610.0,
+        "waypointX": 4010.0,
+        "waypointY": 5730.0,
+        "reason": "RESOURCE_JOURNEY_CONTINUES_NOT_MINERAL_ARRIVAL",
+        "arrivalClaim": false,
+        "gameTimeMs": 3524016,
+        "sessionId": "7012f193-08cb-435a-a00e-446724e103e9",
+        "player": "team:0"
+      },
+      {
+        "unitId": 91393,
+        "tile": 60540,
+        "resourceX": 3270.0,
+        "resourceY": 4610.0,
+        "waypointX": 3910.0,
+        "waypointY": 5730.0,
+        "reason": "RESOURCE_JOURNEY_CONTINUES_NOT_MINERAL_ARRIVAL",
+        "arrivalClaim": false,
+        "gameTimeMs": 3525872,
+        "sessionId": "7012f193-08cb-435a-a00e-446724e103e9",
+        "player": "team:0"
+      },
+      {
+        "unitId": 91393,
+        "tile": 60540,
+        "resourceX": 3270.0,
+        "resourceY": 4610.0,
+        "waypointX": 3990.0,
+        "waypointY": 5650.0,
+        "reason": "CURRENT_KNOWN_DANGER_REDIRECT",
+        "arrivalClaim": false,
+        "gameTimeMs": 3526640,
+        "sessionId": "7012f193-08cb-435a-a00e-446724e103e9",
+        "player": "team:0"
+      },
+      {
+        "unitId": 91393,
+        "tile": 60540,
+        "resourceX": 3270.0,
+        "resourceY": 4610.0,
+        "waypointX": 3990.0,
+        "waypointY": 5550.0,
+        "reason": "RESOURCE_JOURNEY_CONTINUES_NOT_MINERAL_ARRIVAL",
+        "arrivalClaim": false,
+        "gameTimeMs": 3528784,
+        "sessionId": "7012f193-08cb-435a-a00e-446724e103e9",
+        "player": "team:0"
+      },
+      {
+        "unitId": 91393,
+        "tile": 60540,
+        "resourceX": 3270.0,
+        "resourceY": 4610.0,
+        "waypointX": 3970.0,
+        "waypointY": 5510.0,
+        "reason": "RESOURCE_JOURNEY_CONTINUES_NOT_MINERAL_ARRIVAL",
+        "arrivalClaim": false,
+        "gameTimeMs": 3531504,
+        "sessionId": "7012f193-08cb-435a-a00e-446724e103e9",
+        "player": "team:0"
+      },
+      {
+        "unitId": 91393,
+        "tile": 60540,
+        "resourceX": 3270.0,
+        "resourceY": 4610.0,
+        "waypointX": 3970.0,
+        "waypointY": 5410.0,
+        "reason": "RESOURCE_JOURNEY_CONTINUES_NOT_MINERAL_ARRIVAL",
+        "arrivalClaim": false,
+        "gameTimeMs": 3533152,
+        "sessionId": "7012f193-08cb-435a-a00e-446724e103e9",
+        "player": "team:0"
+      }
+    ],
+    "nativeMineAcceptedCount": 24,
+    "mineAcceptedReceipts": [
+      {
+        "detectedGameMs": 2215584,
+        "actors": [
+          53704
+        ],
+        "path": "/command/build-extractor?unitId=53704&x=5290.0&y=5390.0",
+        "costSourceObservationId": "bd53fe93-ee82-4c78-b55e-54cf28dc8289:o:28740",
+        "costSourceRequestPath": "/expansion/plan?unitId=53704",
+        "receipt": {
+          "status": "queued",
+          "requestId": "03327e14-339f-4a9c-8f4a-48db47bc6971",
+          "sessionId": "7012f193-08cb-435a-a00e-446724e103e9",
+          "unitId": 53704,
+          "frame": 138510,
+          "targetX": 5290.0,
+          "targetY": 5390.0,
+          "type": "extractorT1"
+        },
+        "acceptedIsCompleted": false
+      },
+      {
+        "detectedGameMs": 2471472,
+        "actors": [
+          62789
+        ],
+        "path": "/command/build-extractor?unitId=62789&x=4490.0&y=5510.0",
+        "costSourceObservationId": "bd53fe93-ee82-4c78-b55e-54cf28dc8289:o:32050",
+        "costSourceRequestPath": "/expansion/plan?unitId=62789",
+        "receipt": {
+          "status": "queued",
+          "requestId": "70b42805-0f0c-42c8-9e8d-974c1d9a5757",
+          "sessionId": "7012f193-08cb-435a-a00e-446724e103e9",
+          "unitId": 62789,
+          "frame": 154520,
+          "targetX": 4490.0,
+          "targetY": 5510.0,
+          "type": "extractorT1"
+        },
+        "acceptedIsCompleted": false
+      },
+      {
+        "detectedGameMs": 2548080,
+        "actors": [
+          64534
+        ],
+        "path": "/command/build-extractor?unitId=64534&x=3270.0&y=5310.0",
+        "costSourceObservationId": "bd53fe93-ee82-4c78-b55e-54cf28dc8289:o:33042",
+        "costSourceRequestPath": "/expansion/plan?unitId=64534",
+        "receipt": {
+          "status": "queued",
+          "requestId": "c0bbfabc-c8a4-45c6-aedc-b18e2504a724",
+          "sessionId": "7012f193-08cb-435a-a00e-446724e103e9",
+          "unitId": 64534,
+          "frame": 159306,
+          "targetX": 3270.0,
+          "targetY": 5310.0,
+          "type": "extractorT1"
+        },
+        "acceptedIsCompleted": false
+      },
+      {
+        "detectedGameMs": 2656160,
+        "actors": [
+          64534
+        ],
+        "path": "/command/build-extractor?unitId=64534&x=3070.0&y=5510.0",
+        "costSourceObservationId": "bd53fe93-ee82-4c78-b55e-54cf28dc8289:o:34595",
+        "costSourceRequestPath": "/expansion/plan?unitId=64534",
+        "receipt": {
+          "status": "queued",
+          "requestId": "35f30f4d-5ce5-40d6-855b-6730d9c802b5",
+          "sessionId": "7012f193-08cb-435a-a00e-446724e103e9",
+          "unitId": 64534,
+          "frame": 166065,
+          "targetX": 3070.0,
+          "targetY": 5510.0,
+          "type": "extractorT1"
+        },
+        "acceptedIsCompleted": false
+      },
+      {
+        "detectedGameMs": 2666928,
+        "actors": [
+          66893
+        ],
+        "path": "/command/build-extractor?unitId=66893&x=4090.0&y=4810.0",
+        "costSourceObservationId": "bd53fe93-ee82-4c78-b55e-54cf28dc8289:o:34774",
+        "costSourceRequestPath": "/expansion/plan?unitId=66893",
+        "receipt": {
+          "status": "queued",
+          "requestId": "1443fd3f-5bdd-4f04-8db1-1d9ac8e9cedb",
+          "sessionId": "7012f193-08cb-435a-a00e-446724e103e9",
+          "unitId": 66893,
+          "frame": 166708,
+          "targetX": 4090.0,
+          "targetY": 4810.0,
+          "type": "extractorT1"
+        },
+        "acceptedIsCompleted": false
+      },
+      {
+        "detectedGameMs": 2753440,
+        "actors": [
+          70438
+        ],
+        "path": "/command/build-extractor?unitId=70438&x=4090.0&y=4810.0",
+        "costSourceObservationId": "bd53fe93-ee82-4c78-b55e-54cf28dc8289:o:35843",
+        "costSourceRequestPath": "/expansion/plan?unitId=70438",
+        "receipt": {
+          "status": "queued",
+          "requestId": "8fbca24b-47e9-4cd5-86b6-950e86e043e6",
+          "sessionId": "7012f193-08cb-435a-a00e-446724e103e9",
+          "unitId": 70438,
+          "frame": 172136,
+          "targetX": 4090.0,
+          "targetY": 4810.0,
+          "type": "extractorT1"
+        },
+        "acceptedIsCompleted": false
+      },
+      {
+        "detectedGameMs": 2761600,
+        "actors": [
+          70438
+        ],
+        "path": "/command/build-extractor?unitId=70438&x=4090.0&y=4810.0",
+        "costSourceObservationId": "bd53fe93-ee82-4c78-b55e-54cf28dc8289:o:36050",
+        "costSourceRequestPath": "/expansion/plan?unitId=70438",
+        "receipt": {
+          "status": "queued",
+          "requestId": "a0e25c40-66e8-4e84-9764-2e7c67cbc21b",
+          "sessionId": "7012f193-08cb-435a-a00e-446724e103e9",
+          "unitId": 70438,
+          "frame": 172652,
+          "targetX": 4090.0,
+          "targetY": 4810.0,
+          "type": "extractorT1"
+        },
+        "acceptedIsCompleted": false
+      },
+      {
+        "detectedGameMs": 2833280,
+        "actors": [
+          72732
+        ],
+        "path": "/command/build-extractor?unitId=72732&x=4090.0&y=4810.0",
+        "costSourceObservationId": "bd53fe93-ee82-4c78-b55e-54cf28dc8289:o:36890",
+        "costSourceRequestPath": "/expansion/plan?unitId=72732",
+        "receipt": {
+          "status": "queued",
+          "requestId": "71b2554c-8ed5-4432-9a30-4c71a0407ae5",
+          "sessionId": "7012f193-08cb-435a-a00e-446724e103e9",
+          "unitId": 72732,
+          "frame": 177130,
+          "targetX": 4090.0,
+          "targetY": 4810.0,
+          "type": "extractorT1"
+        },
+        "acceptedIsCompleted": false
+      },
+      {
+        "detectedGameMs": 3199040,
+        "actors": [
+          84237
+        ],
+        "path": "/command/build-extractor?unitId=84237&x=4090.0&y=4810.0",
+        "costSourceObservationId": "bd53fe93-ee82-4c78-b55e-54cf28dc8289:o:41988",
+        "costSourceRequestPath": "/expansion/plan?unitId=84237",
+        "receipt": {
+          "status": "queued",
+          "requestId": "fb1b7445-32f3-4ddd-8f64-cf4a4453a492",
+          "sessionId": "7012f193-08cb-435a-a00e-446724e103e9",
+          "unitId": 84237,
+          "frame": 199988,
+          "targetX": 4090.0,
+          "targetY": 4810.0,
+          "type": "extractorT1"
+        },
+        "acceptedIsCompleted": false
+      },
+      {
+        "detectedGameMs": 3235712,
+        "actors": [
+          84237
+        ],
+        "path": "/command/build-extractor?unitId=84237&x=4210.0&y=5650.0",
+        "costSourceObservationId": "bd53fe93-ee82-4c78-b55e-54cf28dc8289:o:42612",
+        "costSourceRequestPath": "/expansion/plan?unitId=84237",
+        "receipt": {
+          "status": "queued",
+          "requestId": "55fd6353-da50-436c-be92-1157b09376bb",
+          "sessionId": "7012f193-08cb-435a-a00e-446724e103e9",
+          "unitId": 84237,
+          "frame": 202259,
+          "targetX": 4210.0,
+          "targetY": 5650.0,
+          "type": "extractorT1"
+        },
+        "acceptedIsCompleted": false
+      },
+      {
+        "detectedGameMs": 3446064,
+        "actors": [
+          89422
+        ],
+        "path": "/command/build-extractor?unitId=89422&x=4490.0&y=5510.0",
+        "costSourceObservationId": "bd53fe93-ee82-4c78-b55e-54cf28dc8289:o:45836",
+        "costSourceRequestPath": "/expansion/plan?unitId=89422",
+        "receipt": {
+          "status": "queued",
+          "requestId": "abd1c0ac-b7a6-4214-ab5f-32e4de415a95",
+          "sessionId": "7012f193-08cb-435a-a00e-446724e103e9",
+          "unitId": 89422,
+          "frame": 215415,
+          "targetX": 4490.0,
+          "targetY": 5510.0,
+          "type": "extractorT1"
+        },
+        "acceptedIsCompleted": false
+      },
+      {
+        "detectedGameMs": 3634560,
+        "actors": [
+          93919
+        ],
+        "path": "/command/build-extractor?unitId=93919&x=4090.0&y=4810.0",
+        "costSourceObservationId": "bd53fe93-ee82-4c78-b55e-54cf28dc8289:o:48668",
+        "costSourceRequestPath": "/expansion/plan?unitId=93919",
+        "receipt": {
+          "status": "queued",
+          "requestId": "74760444-519e-4626-b79c-bb1fde715b01",
+          "sessionId": "7012f193-08cb-435a-a00e-446724e103e9",
+          "unitId": 93919,
+          "frame": 227196,
+          "targetX": 4090.0,
+          "targetY": 4810.0,
+          "type": "extractorT1"
+        },
+        "acceptedIsCompleted": false
+      },
+      {
+        "detectedGameMs": 3739632,
+        "actors": [
+          96291
+        ],
+        "path": "/command/build-extractor?unitId=96291&x=4210.0&y=5650.0",
+        "costSourceObservationId": "bd53fe93-ee82-4c78-b55e-54cf28dc8289:o:50161",
+        "costSourceRequestPath": "/expansion/plan?unitId=96291",
+        "receipt": {
+          "status": "queued",
+          "requestId": "62ea4ff7-86f5-49c2-8002-7fba0e079b33",
+          "sessionId": "7012f193-08cb-435a-a00e-446724e103e9",
+          "unitId": 96291,
+          "frame": 233770,
+          "targetX": 4210.0,
+          "targetY": 5650.0,
+          "type": "extractorT1"
+        },
+        "acceptedIsCompleted": false
+      },
+      {
+        "detectedGameMs": 3863584,
+        "actors": [
+          98783
+        ],
+        "path": "/command/build-extractor?unitId=98783&x=4490.0&y=5510.0",
+        "costSourceObservationId": "bd53fe93-ee82-4c78-b55e-54cf28dc8289:o:52132",
+        "costSourceRequestPath": "/expansion/plan?unitId=98783",
+        "receipt": {
+          "status": "queued",
+          "requestId": "bcff5bf3-b571-4dc3-b9ab-249ebf0d7706",
+          "sessionId": "7012f193-08cb-435a-a00e-446724e103e9",
+          "unitId": 98783,
+          "frame": 241483,
+          "targetX": 4490.0,
+          "targetY": 5510.0,
+          "type": "extractorT1"
+        },
+        "acceptedIsCompleted": false
+      },
+      {
+        "detectedGameMs": 4040432,
+        "actors": [
+          103636
+        ],
+        "path": "/command/build-extractor?unitId=103636&x=4210.0&y=5650.0",
+        "costSourceObservationId": "bd53fe93-ee82-4c78-b55e-54cf28dc8289:o:55017",
+        "costSourceRequestPath": "/expansion/plan?unitId=103636",
+        "receipt": {
+          "status": "queued",
+          "requestId": "b5b2ca31-aeeb-43af-ae91-c20f96859598",
+          "sessionId": "7012f193-08cb-435a-a00e-446724e103e9",
+          "unitId": 103636,
+          "frame": 252550,
+          "targetX": 4210.0,
+          "targetY": 5650.0,
+          "type": "extractorT1"
+        },
+        "acceptedIsCompleted": false
+      }
+    ],
+    "lastPositions": {
+      "569": [
+        3362.201,
+        4817.452,
+        224416
+      ],
+      "1345": [
+        5752.972,
+        5047.055,
+        421536
+      ],
+      "1990": [
+        3543.948,
+        6065.404,
+        314688
+      ],
+      "3340": [
+        4209.992,
+        4636.751,
+        566496
+      ],
+      "6626": [
+        3286.639,
+        6027.795,
+        698080
+      ],
+      "11889": [
+        4198.25,
+        3510.146,
+        796144
+      ],
+      "14941": [
+        4001.033,
+        5221.011,
+        856304
+      ],
+      "17788": [
+        4022.791,
+        5242.767,
+        918000
+      ],
+      "18856": [
+        4034.106,
+        5254.079,
+        948064
+      ],
+      "19075": [
+        3466.112,
+        2910.454,
+        1094640
+      ],
+      "22595": [
+        5444.153,
+        4155.063,
+        1247728
+      ],
+      "27731": [
+        3649.676,
+        5222.344,
+        1306560
+      ],
+      "28461": [
+        3913.363,
+        5917.986,
+        1306560
+      ],
+      "29579": [
+        4355.906,
+        5640.2,
+        1336736
+      ],
+      "30466": [
+        4250.719,
+        5470.771,
+        1370544
+      ],
+      "31389": [
+        3925.496,
+        5145.47,
+        1410864
+      ],
+      "32712": [
+        3977.537,
+        5197.513,
+        1441328
+      ],
+      "33433": [
+        3832.174,
+        5297.922,
+        1474576
+      ],
+      "34564": [
+        3963.396,
+        5183.371,
+        1504992
+      ],
+      "35260": [
+        3999.598,
+        5219.575,
+        1533824
+      ],
+      "36351": [
+        4046.551,
+        5266.523,
+        1564880
+      ],
+      "36757": [
+        3881.78,
+        5381.757,
+        1595232
+      ],
+      "36888": [
+        4769.799,
+        5448.068,
+        1600528
+      ],
+      "39315": [
+        2628.728,
+        5052.005,
+        1679232
+      ],
+      "40002": [
+        2520.515,
+        5709.99,
+        1738272
+      ],
+      "44027": [
+        4070.172,
+        4761.031,
+        1820768
+      ],
+      "45234": [
+        5070.011,
+        4451.607,
+        1949936
+      ],
+      "49062": [
+        4244.745,
+        4828.596,
+        2009296
+      ],
+      "50677": [
+        4409.952,
+        5559.416,
+        2039360
+      ],
+      "51469": [
+        4484.627,
+        4862.771,
+        2103056
+      ],
+      "53704": [
+        4983.622,
+        4725.359,
+        2272544
+      ],
+      "58334": [
+        3469.03,
+        4456.147,
+        2339248
+      ],
+      "59941": [
+        4410.008,
+        5404.334,
+        2369584
+      ],
+      "60807": [
+        4278.172,
+        4309.344,
+        2436560
+      ],
+      "62789": [
+        4463.994,
+        5545.837,
+        2481952
+      ],
+      "64534": [
+        2854.075,
+        4988.022,
+        2690704
+      ],
+      "66893": [
+        4130.012,
+        4952.985,
+        2659312
+      ],
+      "70438": [
+        4042.126,
+        4781.306,
+        2760688
+      ],
+      "72732": [
+        3926.339,
+        4666.312,
+        2858400
+      ],
+      "73146": [
+        3617.489,
+        4429.988,
+        2913712
+      ],
+      "74166": [
+        5146.908,
+        5490.024,
+        2913712
+      ],
+      "75968": [
+        3418.256,
+        4449.989,
+        2985328
+      ],
+      "77970": [
+        4330.008,
+        4742.803,
+        3025648
+      ],
+      "80082": [
+        4169.549,
+        4274.639,
+        3082160
+      ],
+      "82469": [
+        4450.822,
+        4913.773,
+        3132768
+      ],
+      "84237": [
+        4097.653,
+        4685.225,
+        3274944
+      ],
+      "87069": [
+        4329.966,
+        5036.465,
+        3331984
+      ],
+      "88145": [
+        4330.011,
+        5110.703,
+        3392160
+      ],
+      "89422": [
+        4258.27,
+        4426.702,
+        3489712
+      ],
+      "91011": [
+        3915.648,
+        4249.987,
+        3550496
+      ],
+      "91393": [
+        4309.294,
+        5738.438,
+        3520272
+      ],
+      "92950": [
+        4368.998,
+        5697.08,
+        3575904
+      ],
+      "93919": [
+        4130.013,
+        4455.268,
+        3692432
+      ],
+      "96291": [
+        4310.009,
+        4907.909,
+        3819888
+      ],
+      "98783": [
+        4252.348,
+        4396.055,
+        3905904
+      ],
+      "100906": [
+        4290.009,
+        5442.336,
+        3935952
+      ],
+      "102033": [
+        4330.007,
+        4724.812,
+        3996160
+      ],
+      "103636": [
+        4236.581,
+        5708.569,
+        4056480
+      ]
+    },
+    "lastActualCoordinateChange": {
+      "569": 224416,
+      "1345": 421536,
+      "3340": 566496,
+      "6626": 698080,
+      "11889": 796144,
+      "19075": 1094640,
+      "22595": 1247728,
+      "27731": 1306560,
+      "30466": 1370544,
+      "31389": 1410864,
+      "33433": 1474576,
+      "36888": 1600528,
+      "39315": 1679232,
+      "40002": 1738272,
+      "44027": 1820768,
+      "45234": 1949936,
+      "51469": 2103056,
+      "53704": 2272544,
+      "58334": 2339248,
+      "60807": 2436560,
+      "64534": 2690704,
+      "66893": 2659312,
+      "70438": 2760688,
+      "72732": 2858400,
+      "73146": 2913712,
+      "74166": 2913712,
+      "75968": 2985328,
+      "77970": 3025648,
+      "80082": 3082160,
+      "82469": 3132768,
+      "84237": 3274944,
+      "89422": 3489712,
+      "91011": 3550496,
+      "93919": 3692432,
+      "96291": 3819888,
+      "98783": 3905904
+    }
+  },
+  "recon": {
+    "assignedActors": [
+      601,
+      770,
+      838,
+      891,
+      961,
+      996,
+      1663,
+      1943,
+      2227,
+      3000,
+      3250,
+      3727,
+      3894,
+      4301,
+      5367,
+      5764,
+      6551,
+      7143,
+      10673,
+      11473,
+      12966,
+      19676,
+      20509,
+      22612,
+      32697,
+      34514,
+      34885,
+      35210,
+      35862,
+      36334,
+      43224,
+      45113,
+      46204,
+      47665,
+      48132,
+      51194,
+      51829,
+      52043,
+      52903,
+      54329,
+      67845,
+      70178,
+      70413,
+      71518,
+      73493,
+      73618,
+      73894,
+      77102,
+      82205,
+      83623,
+      85044,
+      85649,
+      88910
+    ],
+    "scoutObservationMotion": {
+      "601": {
+        "firstGameMs": 62320,
+        "firstX": 4410.009,
+        "firstY": 6446.265,
+        "maxDistance": 982.2281789747226,
+        "lastGameMs": 92384
+      },
+      "103443": {
+        "firstGameMs": 4026256,
+        "firstX": 4491.68,
+        "firstY": 5405.249,
+        "maxDistance": 0,
+        "lastGameMs": 4026256
+      },
+      "103633": {
+        "firstGameMs": 4056480,
+        "firstX": 4330.217,
+        "firstY": 5612.398,
+        "maxDistance": 252.54294211678155,
+        "lastGameMs": 4086704
+      }
+    },
+    "moveReceipts": 206,
+    "lastOrders": [
+      {
+        "gameMs": 2844176,
+        "unitId": 48132,
+        "cursor": null,
+        "end": null,
+        "x": 3712.138154712841,
+        "y": 6316.105277399966,
+        "ownX": 4233.075,
+        "ownY": 5573.079,
+        "ownOrder": null,
+        "acceptedFrame": 177788
+      },
+      {
+        "gameMs": 2862992,
+        "unitId": 73894,
+        "cursor": null,
+        "end": null,
+        "x": 3755.858134762936,
+        "y": 6337.602488606178,
+        "ownX": null,
+        "ownY": null,
+        "ownOrder": null,
+        "acceptedFrame": 178972
+      },
+      {
+        "gameMs": 2973488,
+        "unitId": 77102,
+        "cursor": null,
+        "end": null,
+        "x": 3755.082279547239,
+        "y": 6337.167155152252,
+        "ownX": null,
+        "ownY": null,
+        "ownOrder": null,
+        "acceptedFrame": 185894
+      },
+      {
+        "gameMs": 2974400,
+        "unitId": 77102,
+        "cursor": null,
+        "end": null,
+        "x": 3763.487163675205,
+        "y": 6341.994263576331,
+        "ownX": null,
+        "ownY": null,
+        "ownOrder": null,
+        "acceptedFrame": 185960
+      },
+      {
+        "gameMs": 2986304,
+        "unitId": 35210,
+        "cursor": null,
+        "end": null,
+        "x": 3712.1777751784157,
+        "y": 6316.122107994402,
+        "ownX": 4229.901,
+        "ownY": 5569.989,
+        "ownOrder": null,
+        "acceptedFrame": 186699
+      },
+      {
+        "gameMs": 3232272,
+        "unitId": 85649,
+        "cursor": null,
+        "end": null,
+        "x": 3817.5813789723984,
+        "y": 4468.488981263073,
+        "ownX": null,
+        "ownY": null,
+        "ownOrder": null,
+        "acceptedFrame": 202049
+      },
+      {
+        "gameMs": 3310912,
+        "unitId": 82205,
+        "cursor": null,
+        "end": null,
+        "x": 3810.182097190772,
+        "y": 4470.079871133932,
+        "ownX": 4232.843,
+        "ownY": 5569.138,
+        "ownOrder": null,
+        "acceptedFrame": 206969
+      },
+      {
+        "gameMs": 3343968,
+        "unitId": 85044,
+        "cursor": null,
+        "end": null,
+        "x": 3809.4210758526037,
+        "y": 4470.235921585491,
+        "ownX": 4253.989,
+        "ownY": 5629.994,
+        "ownOrder": null,
+        "acceptedFrame": 209030
+      },
+      {
+        "gameMs": 3345216,
+        "unitId": 85044,
+        "cursor": null,
+        "end": null,
+        "x": 3808.600909977049,
+        "y": 4470.402525239175,
+        "ownX": 4253.989,
+        "ownY": 5629.994,
+        "ownOrder": null,
+        "acceptedFrame": 209104
+      },
+      {
+        "gameMs": 3409776,
+        "unitId": 88910,
+        "cursor": null,
+        "end": null,
+        "x": 3824.718274071245,
+        "y": 4466.826984579409,
+        "ownX": null,
+        "ownY": null,
+        "ownOrder": null,
+        "acceptedFrame": 213128
+      },
+      {
+        "gameMs": 3411408,
+        "unitId": 88910,
+        "cursor": null,
+        "end": null,
+        "x": 3823.319271344235,
+        "y": 4467.162712577105,
+        "ownX": null,
+        "ownY": null,
+        "ownOrder": null,
+        "acceptedFrame": 213249
+      },
+      {
+        "gameMs": 3412160,
+        "unitId": 88910,
+        "cursor": null,
+        "end": null,
+        "x": 3819.942504513322,
+        "y": 4467.953069240968,
+        "ownX": null,
+        "ownY": null,
+        "ownOrder": null,
+        "acceptedFrame": 213282
+      }
+    ]
+  },
+  "air": {
+    "lookaheadEvents": 0,
+    "lastLookahead": [],
+    "groundTargetDutyTransfers": 0
+  },
+  "groundLookaheadTransitionRows": 109,
+  "boundary": {
+    "fixture": false,
+    "positionMutation": false,
+    "desktopTouched": false,
+    "notControlledAB": true,
+    "ownAbsenceNotDeath": true,
+    "receiptNotExecutionOrCompletion": true
+  }
+}

@@ -1,0 +1,275 @@
+{
+  "schemaVersion": 1,
+  "candidate": "R11B",
+  "baseline": "d776f442215bb1b7e253c2bd67feff781eeda511",
+  "branch": "codex/octopus-g3-execution-20261002",
+  "productCommit": "197310aca8afade588d68524aae7ec4439c338ff",
+  "candidateSha256": "798b88778921cda6fc0e39fc3546a564286dfab2d41f7bb6b952a2ae9dedb832",
+  "status": "ENGINEERING_CANDIDATE_HUMAN_ACCEPTANCE_PENDING_NOT_PROVEN_HARD_IMPROVEMENT",
+  "commits": [
+    "1eae27d",
+    "fe790f3",
+    "3d829fa",
+    "197310a"
+  ],
+  "focused": {
+    "newChecks": 160,
+    "suites": {
+      "FrontlineContinuity": 18,
+      "GeneralMotion": 10,
+      "AirContinuity": 82,
+      "ScoutMotion": 42,
+      "ScoutBridgeSafety": 8
+    },
+    "evidence": "G:\\deepseek 工作台\\_validation\\octopus-r11-20261011\\focused-final.log",
+    "fixtureOnly": true
+  },
+  "fullWindows": {
+    "status": "PASS",
+    "steps": 119,
+    "javaHarnesses": 84,
+    "pythonSuites": 32,
+    "pythonTests": 506,
+    "buildSteps": 3,
+    "failedSteps": 0,
+    "exitCode": 0,
+    "runnerLog": "G:\\deepseek 工作台\\_validation\\octopus-r11-20261011\\final-verification-runtime\\runner.log",
+    "snapshot": "G:\\deepseek 工作台\\_validation\\octopus-r11-20261011\\final-verification-runtime\\final-source",
+    "sourceCommit": "197310aca8afade588d68524aae7ec4439c338ff"
+  },
+  "native": {
+    "status": "PASS_BOUNDED",
+    "stages": [
+      {
+        "stage": "r10-scout-bridge",
+        "status": "PASS",
+        "checksOrIndependentCommands": 26,
+        "log": "G:\\deepseek 工作台\\_validation\\octopus-r11-20261011\\native-validation\\native-r11-runtime-final\\r10-scout-bridge.log"
+      },
+      {
+        "stage": "g53",
+        "status": "PASS",
+        "checksOrIndependentCommands": 15,
+        "log": "G:\\deepseek 工作台\\_validation\\octopus-r11-20261011\\native-validation\\native-r11-runtime-final\\g53.log"
+      },
+      {
+        "stage": "order-reuse",
+        "status": "PASS",
+        "checksOrIndependentCommands": 47,
+        "log": "G:\\deepseek 工作台\\_validation\\octopus-r11-20261011\\native-validation\\native-r11-runtime-final\\order-reuse.log"
+      },
+      {
+        "stage": "g51",
+        "status": "PASS",
+        "checksOrIndependentCommands": 311,
+        "log": "G:\\deepseek 工作台\\_validation\\octopus-r11-20261011\\native-validation\\native-r11-runtime-final\\g51.log"
+      },
+      {
+        "stage": "closure",
+        "status": "PASS",
+        "checksOrIndependentCommands": 12,
+        "log": "G:\\deepseek 工作台\\_validation\\octopus-r11-20261011\\native-validation\\native-r11-runtime-final\\closure.log"
+      },
+      {
+        "stage": "production",
+        "status": "PASS",
+        "checksOrIndependentCommands": 168,
+        "log": "G:\\deepseek 工作台\\_validation\\octopus-r11-20261011\\native-validation\\native-r11-runtime-final\\production.log"
+      },
+      {
+        "stage": "modes",
+        "status": "PASS",
+        "checksOrIndependentCommands": 30,
+        "log": "G:\\deepseek 工作台\\_validation\\octopus-r11-20261011\\native-validation\\native-r11-runtime-final\\modes.log"
+      },
+      {
+        "stage": "competition",
+        "status": "PASS",
+        "checksOrIndependentCommands": 31,
+        "log": "G:\\deepseek 工作台\\_validation\\octopus-r11-20261011\\native-validation\\native-r11-runtime-final\\competition.log"
+      },
+      {
+        "stage": "g54",
+        "status": "PASS",
+        "checksOrIndependentCommands": 69,
+        "log": "G:\\deepseek 工作台\\_validation\\octopus-r11-20261011\\native-validation\\native-r11-runtime-final\\g54.log"
+      },
+      {
+        "stage": "g55",
+        "status": "PASS",
+        "checksOrIndependentCommands": 7,
+        "log": "G:\\deepseek 工作台\\_validation\\octopus-r11-20261011\\native-validation\\native-r11-runtime-final\\g55.log"
+      },
+      {
+        "stage": "G6NativeEndgameHarness",
+        "status": "PASS",
+        "checksOrIndependentCommands": 42,
+        "log": "G:\\deepseek 工作台\\_validation\\octopus-r11-20261011\\native-validation\\native-r11-runtime-final\\G6NativeEndgameHarness.log"
+      },
+      {
+        "stage": "G3SpainTerrainNativeHarness",
+        "status": "PASS_BOUNDED_ACCESSORS",
+        "checksOrIndependentCommands": 9,
+        "log": "G:\\deepseek 工作台\\_validation\\octopus-r11-20261011\\native-validation\\native-r11-runtime-final\\G3SpainTerrainNativeHarness.log"
+      },
+      {
+        "stage": "R9NativeLongRunHarness",
+        "status": "PASS",
+        "checksOrIndependentCommands": 25,
+        "log": "G:\\deepseek 工作台\\_validation\\octopus-r11-20261011\\native-validation\\native-r11-runtime-final\\R9NativeLongRunHarness.log"
+      }
+    ],
+    "stageCount": 13,
+    "exitCode": 0,
+    "simulationTicks": 0,
+    "naturalMovementOrCombatProven": false
+  },
+  "naturalSpain": {
+    "input": {
+      "jarSha256": "798b88778921cda6fc0e39fc3546a564286dfab2d41f7bb6b952a2ae9dedb832",
+      "mapSource": "G:\\deepseek 工作台\\游戏环境\\P1F-GPTSol61-Operations-2026-10-01\\mods\\maps\\[10p] 10p 西班牙混战_by_MP97.tmx",
+      "mapSha256": "342db6d8a8b8320b6a271b9e3c8a4c29c96a203e206c4be690c44bbef5882746",
+      "loadedMap": "maps/skirmish/[10p] Spain MP97.tmx",
+      "speed": 5,
+      "difficulty": 1,
+      "durationGameSeconds": 4800,
+      "wallSafetySeconds": 1380,
+      "nativePositionMutation": false,
+      "fixture": false,
+      "desktopTouched": false
+    },
+    "raw": {
+      "path": "G:\\deepseek 工作台\\_validation\\octopus-r11-20261011\\spain-hard-runtime-final\\work\\rw-agent-reports\\battle-1791655938319-4eac8132.jsonl.gz",
+      "sha256": "0f951ed6b3698cd6142aab3f74d51f3f84839ceb4e709c9a34e2790429b014bd",
+      "rows": 394441,
+      "malformed": 0,
+      "closedGzip": true
+    },
+    "clientExit": 0,
+    "agentSummaryOutcome": "PASS",
+    "nativeMatchOutcome": "DEFEAT",
+    "finalGameTimeMs": 4136592,
+    "finalFrame": 258537,
+    "lastCompleteOwnSample": {
+      "gameTimeMs": 4086704,
+      "frame": 255419,
+      "player": {
+        "teamId": 0,
+        "name": "Player",
+        "credits": 666.0
+      },
+      "readyTypes": {
+        "combatEngineer": 1,
+        "amphibiousJet": 2,
+        "scout": 1
+      }
+    },
+    "resourceJourneyContinuationEvents": 150,
+    "nativeMineAcceptedReceipts": 24,
+    "groundPreArrivalTransitionEvents": 109,
+    "airLookaheadEvents": 0,
+    "airGroundDutyTransferEvents": 0,
+    "admissionRejections": {
+      "CRITICAL_RETREAT:NATIVE_REJECTED": 27,
+      "RECON:ACTOR_CONFLICT_IN_OBSERVATION": 49,
+      "BUILDER_RECOVERY:NATIVE_REJECTED": 2,
+      "EARLY_EXPANSION:NATIVE_REJECTED": 4,
+      "GENERAL:NATIVE_REJECTED": 4,
+      "STRATEGY:NATIVE_REJECTED": 2,
+      "EARLY_EXPANSION:STALE_OWNER_GENERATION": 1
+    },
+    "scoutOwnPositionSamples": {
+      "601": {
+        "firstGameMs": 62320,
+        "firstX": 4410.009,
+        "firstY": 6446.265,
+        "maxDistance": 982.2281789747226,
+        "lastGameMs": 92384
+      },
+      "103443": {
+        "firstGameMs": 4026256,
+        "firstX": 4491.68,
+        "firstY": 5405.249,
+        "maxDistance": 0,
+        "lastGameMs": 4026256
+      },
+      "103633": {
+        "firstGameMs": 4056480,
+        "firstX": 4330.217,
+        "firstY": 5612.398,
+        "maxDistance": 252.54294211678155,
+        "lastGameMs": 4086704
+      }
+    },
+    "loggedRuntimeWindowGameMs": {
+      "count": 3079,
+      "min": 1008,
+      "median": 1264,
+      "p95": 1952,
+      "max": 3984
+    },
+    "parsedUnsettledCredits": {
+      "settlementEvents": 295,
+      "parsedUnsettled": 0,
+      "parsedUnsettledTotal": 0,
+      "duplicateUnsettledSameExactPath": []
+    },
+    "notControlledAB": true,
+    "fixture": false,
+    "positionHPFundsFogMutation": false,
+    "behaviorQualityImprovementProven": false,
+    "receiptIsArrivalOrCompletedMine": false,
+    "ownAbsenceIsDeath": false
+  },
+  "delivery": {
+    "productCommit": "197310aca8afade588d68524aae7ec4439c338ff",
+    "testedInputs": 277,
+    "inputDrift": [],
+    "kitFiles": 1895,
+    "kitDrift": [],
+    "jarEntries": 210,
+    "candidateSha256": "798b88778921cda6fc0e39fc3546a564286dfab2d41f7bb6b952a2ae9dedb832",
+    "fullSha256": "798b88778921cda6fc0e39fc3546a564286dfab2d41f7bb6b952a2ae9dedb832",
+    "deliverySha256": "798b88778921cda6fc0e39fc3546a564286dfab2d41f7bb6b952a2ae9dedb832",
+    "protected": {
+      "tools/RW-Agent-Octopus-Test.ps1": "7f5974f7da4ef53d8f6ca8a13277a40eb78a8392e7c904f0e9276b56aa9d01e6",
+      "tools/rw-agent-human.py": "3cb3b18a9ba0170782bfdfa02c481845dc04b6a35943ab5e6b5a605bbf1f2e4d",
+      "tools/rw-agent-human.py.bak-20261003": "84cc4f2fcf379fbf79bcd147286fb4da22883e7840f9ffa8604fcc7dabdb36e8"
+    },
+    "kit": "G:\\deepseek 工作台\\游戏环境\\RW-Agent-Octopus-G6-2026-10-11-R11B",
+    "clock": {
+      "defaultEnabled": true,
+      "source": "/state gameTimeMs/frame",
+      "html": "runs/<run-id>/rw-agent-live.html",
+      "wallTimeEstimate": false
+    }
+  },
+  "boundaries": {
+    "desktopTouched": false,
+    "push": false,
+    "deploy": false,
+    "g5NoGlobalArtificialAPMQuota": true,
+    "forceActuallyCollected": true,
+    "economicStrategyStillImmediate": true,
+    "airNaturalLookaheadNeedsEvidence": true,
+    "scoutLongSurvivalNeedsEvidence": true,
+    "hardEconomicFrontierStillWeak": true,
+    "thousandUnitLatePerformanceNeedsEvidence": true,
+    "olderConstructionPaymentUnknownsUnresolved": true
+  },
+  "retainedDiagnosticFailures": [
+    {
+      "folder": "G:\\deepseek 工作台\\_validation\\octopus-r11-20261011\\spain-hard-final",
+      "strategyStaleBatch": 1573,
+      "journeyAccepted": 0,
+      "intentionallyStoppedIsNotNativeDefeat": true
+    },
+    {
+      "folder": "G:\\deepseek 工作台\\_validation\\octopus-r11-20261011\\spain-hard-corrected",
+      "strategyStaleBatch": 388,
+      "journeyAccepted": 0,
+      "intentionallyStoppedIsNotNativeDefeat": true
+    }
+  ],
+  "humanInput": "G:\\deepseek 工作台\\_validation\\octopus-r11-20261011\\human-derived.json"
+}

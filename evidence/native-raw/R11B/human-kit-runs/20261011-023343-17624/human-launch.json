@@ -1,0 +1,32 @@
+{
+  "schemaVersion": 1,
+  "createdUtc": "2026-10-10T18:33:43.425585+00:00",
+  "gameDirectoryReadOnly": "G:\\deepseek 工作台\\游戏环境\\RW-Agent-Octopus-G6-2026-10-11-R11B\\game",
+  "candidateJar": "G:\\deepseek 工作台\\游戏环境\\RW-Agent-Octopus-G6-2026-10-11-R11B\\game\\rw-agent-bootstrap.jar",
+  "candidateSha256": "798b88778921cda6fc0e39fc3546a564286dfab2d41f7bb6b952a2ae9dedb832",
+  "gameLibSha256": "8a550a37e2d8a5430866090d4e7d5892f9010b47f52a5a09350fc66c620deec9",
+  "workDirectory": "G:\\deepseek 工作台\\游戏环境\\RW-Agent-Octopus-G6-2026-10-11-R11B\\runs\\20261011-023343-17624",
+  "cli": {
+    "game_dir": "G:\\deepseek 工作台\\游戏环境\\RW-Agent-Octopus-G6-2026-10-11-R11B\\game",
+    "jar": "G:\\deepseek 工作台\\游戏环境\\RW-Agent-Octopus-G6-2026-10-11-R11B\\game\\rw-agent-bootstrap.jar",
+    "seconds": 7200,
+    "wall_seconds": 14400,
+    "port": 47697,
+    "wait": 0,
+    "no_wait": false,
+    "start_game": false,
+    "require_same_bridge": true,
+    "java": "G:\\deepseek 工作台\\游戏环境\\RW-Agent-Octopus-G6-2026-10-11-R11B\\jvm64\\bin\\java.exe",
+    "output_root": "G:\\deepseek 工作台\\游戏环境\\RW-Agent-Octopus-G6-2026-10-11-R11B\\runs",
+    "html": true,
+    "property": [
+      "rwagent.reportMode=compact",
+      "rwagent.reportGzip=true",
+      "rwagent.g6=true"
+    ]
+  },
+  "mode": "attach-existing-game",
+  "clientClass": "io.rwagent.client.BattleClient",
+  "launcherExitCode": 1,
+  "stopReason": "Another human launcher owns port; do not run competing controllers"
+}

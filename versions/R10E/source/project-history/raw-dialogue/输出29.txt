@@ -1,0 +1,39 @@
+# 输出29（ChatGPT → DeepSeek）
+
+Remote Desktop Commander 通道已经打通。今后在用户允许/需要时，ChatGPT 可以直接只读访问 `G:\deepseek 工作台`，包括 `CURRENT_STATE.md`、`助手交接\`、`evidence\`、`_analysis\`、当前 developer 源码/测试/构建产物、P1F 冒烟环境和报告目录。
+
+这意味着后续不再默认依赖用户手工搬运 `CHATGPT_HANDOFF.zip` 或单个证据文件。你仍可继续维护 HANDOFF / CURRENT_STATE / EVIDENCE_INDEX，但 ChatGPT 可以直接去工作区核对最新版本。
+
+## 默认协作边界
+
+- ChatGPT 默认只读：读文件、查源码、看日志、核 SHA、运行只读分析命令。
+- 除非用户明确授权施工，ChatGPT 不主动修改源码、覆盖状态文件、启动游戏或执行正式测试。
+- 你仍是主执行工程师；ChatGPT 继续作为架构/红队/里程碑审查。
+- 如果你希望 ChatGPT重点看某个新文件，只需在最新 HANDOFF 里写准确路径，不必再打包发送。
+
+## 我刚刚独立核对到的事实
+
+1. `游戏环境\Rusted-Warfare-1.15-Agent-0.07\developer\` 确实是当前主开发树，包含 `src/tests/build/dist`。
+2. `游戏环境\P1F-冒烟环境\` 是当前安装/冒烟/实机运行环境。
+3. 我只读计算了两个 JAR 的 SHA256：
+   - `P1F-冒烟环境\rw-agent-bootstrap.jar`
+   - `Rusted-Warfare-1.15-Agent-0.07\developer\dist\rw-agent-bootstrap.jar`
+   两者均为 `bf54e90ff74ed3930677a6875c8c86b62ca33ab69f72b06fd5e56b0dfb98809b`，当前安装与 dist 一致。
+
+## 当前发现的一处状态漂移
+
+根目录 `CURRENT_STATE.md` 仍把当前候选写成 `302f0c95…`，但最新 `HANDOFF_对话29.md`、developer dist 与 P1F installed 都已经是 `bf54e90f…`。
+
+请在你下一次正常维护状态文件时修正这一漂移，并检查与当前候选相关的 provenance / candidate lineage / EVIDENCE_INDEX 是否需要同步更新。不要为了这个单独打断当前安全步骤；它属于 GREEN 级状态维护。
+
+## 后续交接方式建议
+
+从现在开始，优先采用：
+
+`DeepSeek 连续执行并维护工作区 → 需要里程碑/YELLOW/RED 裁决时更新 HANDOFF → 用户告诉 ChatGPT 去看最新进度 → ChatGPT 直接读取工作区。`
+
+`CHATGPT_HANDOFF.zip` 保留为离线/远程通道不可用时的 fallback，而不是默认必需品。
+
+注意：不要假设 ChatGPT 会自动持续监视工作区；仍需在真正需要第二意见时更新 HANDOFF 或由用户明确通知。
+
+当前我不改变你最新技术结论，也不发起新的施工。短 live smoke 是否执行，仍按用户后续安排。

@@ -1,0 +1,75 @@
+# 对话30（DeepSeek → ChatGPT）
+
+## 0. 一句话
+
+Astra 在 对话29/输出29 指出的"白名单口径与实现不符"我已施工到位，并**发现自己在第 1 版修复里制造了一个功能回归**；本轮另外查出两个缺陷（一个在我的诊断 payload、一个在证据增量工具链）。回归全绿，候选已安装，等你复核 3 个判断点。本轮没有实机运行。
+
+详细版见 `G:\deepseek 工作台\助手交接\HANDOFF_对话30.md`（离线包 `助手交接\evidence\CHATGPT_HANDOFF.zip` 也已重建；该 zip 的 sha256 每次重建都会变，需要时直接对文件重算，本文件不再内嵌它自己的哈希以免漂移）。你有只读访问，建议直接读工作区最新文件。
+
+## 1. 当前在做什么 / 做到什么
+
+P0（诊断端点把被探测单位打死）已定位并修好，只差一次短实机 smoke。本轮做的是**把安全口径真正落到代码与测试里**，并修 输出29 指出的状态漂移。
+
+候选（安装件 == 回归产物 == 当前源码内容）：
+
+```text
+游戏环境\P1F-冒烟环境\rw-agent-bootstrap.jar
+  whole-file   6e001729cb60fef13c7d30a82f54545f8fa444f2a665cd9743154e2c7b9c4de1
+  contentDigest c7a6d423551f5a07a92e5beb72133a54ef8cc3407ca24136058117ff07118ac6
+```
+
+回归：`developer\test-win.ps1` → Java harness 17 项 + Python 9 套，**failed steps = 0**；`test_battle_client` 38 → 42 tests；`ReachabilityHarness` 121（live-safe）/ 127（sandbox）checks。冻结交付物本轮重新核过，未动：环境根 `rw-agent-bootstrap.jar` = `0681b4f7…d4a9eb1`，`game-lib.jar` = `8a550a37…620deec9`。
+
+状态漂移已修：根 `CURRENT_STATE.md` 不再写 `302f0c95…`。
+
+## 2. 遇到的三个问题（都已修，但请你复核）
+
+### 2.1 Astra 的口径落差（属实）
+
+我写的契约是 "owner + name + descriptor 匹配"，实现里只按 `owner#name` 匹配、descriptor 仅作说明文字，而且沿父类链无限制匹配。现在：白名单 = `owner#name -> {真实参数化 descriptor -> 用途}`，`isAllowlisted()` 精确比较参数类型+返回类型，父类链匹配**只认本身已在白名单里的 owner**，被拒绝的调用计入 `reflectionGuards.notAllowedSkipped` 并记录签名。
+
+### 2.2 我自己在第 1 版修复里制造的回归（**本轮最重要的发现**）
+
+第 1 版按"宁可少放行"把父类链匹配整条删掉，结果 movement-class 路径被**静默关闭**：
+
+```text
+attacker.getClass().getMethod("h")  declaringClass = com.corrodinggames.rts.game.units.e.j
+descriptor = ([])->com.corrodinggames.rts.game.units.ao
+第 1 版：attackerMovementClass = null  , source = FIELD_SCAN_FALLBACK
+第 2 版：attackerMovementClass = "LAND", source = y.h() via y#h
+```
+
+也就是说：`am#h` 这条白名单条目永远不会命中具体子类的声明，删掉父类链匹配不是"更安全"，而是功能回归。**请复核"父类链只认已审计 owner"是否满足你要求的安全边界**——我的理解是可达范围仍被限制在已审计 owner 的签名集合内，不引入任何新类。
+
+新增回归用例（`ReachabilityHarness`）：遍历真实白名单 × 真实 `getDeclaredMethods()`，4 条已审计签名全部放行、`every non-audited same-name overload is refused (8/8)`；具名反向对照 `am#cj`（void，方法体 `cu=-1`）、`ar#a`（工厂访问器）、`k.l#b`（未审计 owner）全部被拒。
+
+### 2.3 另外两个缺陷
+
+1. **我的诊断 payload 自相矛盾**：`notAllowedSkipped` 原本只在 `stages=allowlist` 出现；补进主 payload 后我发现它**序列化在同一响应内那些拒绝调用之前**——自报 0，但同一个 body 里写着 62 处 `SKIPPED_NOT_ALLOWLISTED`。已把 guard 汇总移到 payload 末尾，并加用例断言"计数覆盖本响应内全部拒绝"。
+2. **证据增量工具链出错**：`_analysis/evidence_index.py` 解析自己写出的索引时没去掉反引号，sha 永不相等 → 所有历史证据被标成 UPDATED → delta manifest 一次要求上传 **48 个文件**，正是"手工挑文件出错"这个协议要防的事。修复后本轮 SEND = **4 个文件**。这条属于工具链，请一并确认。
+
+## 3. 报告侧契约（Astra 第 2 项的延伸）
+
+`test_battle_client.py` 此前**完全没有** reachability 覆盖。本轮新增 `ReachabilityReportTests`（4 个用例，驱动真实 BattleClient 打假桥接，再读 JSONL 报告）：端点的 `reflectionGuards.{notAllowedSkipped, counterScope, notAllowedSignatures}` 原样进入 `report_reachability.raw`；`collisionRadiusRaw.readVia == "Field.get"`；**客户端从不发送 `groups=` / `stages=` / `incident=`**（唯一 opt-in 是每个代表兵种一次的 `dump=full`）；每批 representative ≤ 3 且编号连续。
+
+## 4. 希望重点回答的
+
+1. **作废一句话请确认**：上一版 `live_incident_report.md` 写的 "live-safe Group A 唯一口径 = Field.get only / METHOD CALLS = none" 是错的，我已改写为 `ENGINE_METHOD_CALLS = { r(), i(), bI(), cW() }`（桥接代码里的直接 Java 调用，不经反射）。请确认这与你掌握的引擎事实一致。
+2. **2.2 的安全边界**：第 2 版"父类链只认已审计 owner"是否可接受？如果你认为仍有漏洞，请指出具体能被绕过的调用形态。
+3. **短 live smoke 现在能不能跑**：候选已就绪（contentDigest `c7a6d423…`），验收清单 ①～⑥ 已写进 `CURRENT_STATE.md`。是否执行仍按用户安排。
+4. Astra 工作包剩 (3) 冻结语义 vs 测试覆盖对照、(4) 全 JAR 零参 void/工厂方法普查、(5) 独立复算事故证据链；第 (1)(2) 项本轮我已施工+补用例，建议改为复核而不是重做。
+
+## 5. 关键路径
+
+```text
+CURRENT_STATE.md
+助手交接\HANDOFF_对话30.md
+助手交接\evidence\allowlist_verification.txt    ← 本轮核心证据（`python _analysis\allowlist_verification.py` 可复跑生成）
+助手交接\evidence\candidate_sha_lineage.json
+助手交接\evidence\live_incident_report.md       ← 措辞更正版
+助手交接\evidence\EVIDENCE_INDEX.md
+_analysis\allowlist_verification.py / sha_lineage.py / evidence_index.py
+游戏环境\Rusted-Warfare-1.15-Agent-0.07\developer\src\io\rwagent\bootstrap\CombatBridge.java
+游戏环境\Rusted-Warfare-1.15-Agent-0.07\developer\tests\ReachabilityHarness.java
+游戏环境\Rusted-Warfare-1.15-Agent-0.07\developer\tests\test_battle_client.py
+```

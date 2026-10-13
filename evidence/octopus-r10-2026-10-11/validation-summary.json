@@ -1,0 +1,2306 @@
+{
+  "schemaVersion": 1,
+  "status": "ENGINEERING_CANDIDATE_HUMAN_ACCEPTANCE_PENDING",
+  "baselineCommit": "56a059831cc69dc8f2cf83ef8685e5369fe4dfa2",
+  "branch": "codex/octopus-g3-execution-20261002",
+  "productCommit": "d3be4f67b643232416d674dda14775739bc7c34a",
+  "candidateJarSha256": "456a1fbc3870b26f57b503b7c719fc5cb04b634896c4bfe3aba715aef594a1dd",
+  "productCommits": [
+    "be26150",
+    "8678317",
+    "f824560",
+    "09e4fc7",
+    "b8bcc31",
+    "6d0fc7f",
+    "769735e",
+    "d0d4f9e",
+    "d3be4f6"
+  ],
+  "humanInput": {
+    "path": "G:\\deepseek 工作台\\游戏环境\\RW-Agent-Octopus-G6-2026-10-05-R9\\runs\\20261010-193513-26836\\rw-agent-reports\\battle-1791632114897-0f1fed76.jsonl.gz",
+    "sha256": "414446c4e9d883c0d04976a5c9d4bbe7f6c5d2c399ea5a850f630a104e932c25",
+    "bytes": 216405806,
+    "rows": 852949,
+    "malformed": 0
+  },
+  "userReportedR9Victory": {
+    "status": "HUMAN_REPORTED_NATIVE_VICTORY",
+    "winningRunInspected": false,
+    "selectedHumanInputIsReportedWinningRun": false
+  },
+  "focused": {
+    "newJavaChecks": 610,
+    "newPythonClockTests": 3,
+    "airSchemaChecks": 405,
+    "log": "G:\\deepseek 工作台\\_validation\\octopus-r10-20261010\\air-mode-final-r10-focused.log",
+    "nativeScoutBridgeChecks": 25,
+    "fixtureNotNaturalBehaviour": true
+  },
+  "fullWindows": {
+    "productCommit": "d3be4f67b643232416d674dda14775739bc7c34a",
+    "candidateJarSha256": "456a1fbc3870b26f57b503b7c719fc5cb04b634896c4bfe3aba715aef594a1dd",
+    "fullJarSha256": "6d16320bc421b0882b62b7028a884d8099bdd172c038503dda13965be16bdfd8",
+    "windows": {
+      "steps": 114,
+      "passed": 114,
+      "failedStepsZero": true,
+      "java": 79,
+      "pythonSuites": 32,
+      "pythonTests": 506
+    },
+    "testedInputs": 272,
+    "inputDrift": [],
+    "kitFilesChecked": 1895,
+    "kitDrift": [],
+    "fullJarEntryMatches": 210,
+    "jarEntryDrift": [],
+    "protectedUserFiles": {
+      "tools/RW-Agent-Octopus-Test.ps1": "7f5974f7da4ef53d8f6ca8a13277a40eb78a8392e7c904f0e9276b56aa9d01e6",
+      "tools/rw-agent-human.py": "3cb3b18a9ba0170782bfdfa02c481845dc04b6a35943ab5e6b5a605bbf1f2e4d",
+      "tools/rw-agent-human.py.bak-20261003": "84cc4f2fcf379fbf79bcd147286fb4da22883e7840f9ffa8604fcc7dabdb36e8"
+    },
+    "protectedDrift": [],
+    "desktopTouched": false,
+    "pushed": false,
+    "deployed": false
+  },
+  "native": {
+    "stages": 13,
+    "exitCode": 0,
+    "evidence": "G:\\deepseek 工作台\\_validation\\octopus-r10-20261010\\native-validation\\native-air-mode-final",
+    "controlledFixtureNotNaturalMovementOrVictory": true
+  },
+  "natural": [
+    {
+      "label": "spain-air-mode-normal-4800",
+      "input": {
+        "jarSha256": "456a1fbc3870b26f57b503b7c719fc5cb04b634896c4bfe3aba715aef594a1dd",
+        "mapSource": "G:\\deepseek 工作台\\游戏环境\\P1F-GPTSol61-Operations-2026-10-01\\mods\\maps\\[10p] 10p 西班牙混战_by_MP97.tmx",
+        "mapSha256": "342db6d8a8b8320b6a271b9e3c8a4c29c96a203e206c4be690c44bbef5882746",
+        "loadedMap": "maps/skirmish/[10p] Spain MP97.tmx",
+        "speed": 5,
+        "difficulty": 0,
+        "durationGameSeconds": 4800,
+        "wallSafetySeconds": 1380,
+        "nativePositionMutation": false,
+        "fixture": false,
+        "desktopTouched": false
+      },
+      "processResult": {
+        "clientExit": 2,
+        "engineExit": null,
+        "jarSha256": "456a1fbc3870b26f57b503b7c719fc5cb04b634896c4bfe3aba715aef594a1dd",
+        "noDesktopTouched": true
+      },
+      "raw": {
+        "path": "G:\\deepseek 工作台\\_validation\\octopus-r10-20261010\\spain-air-mode-normal-4800\\work\\rw-agent-reports\\battle-1791649883115-aeb879ec.jsonl.gz",
+        "bytes": 124013863,
+        "sha256": "c5e833abbe64e0874a95dbbe280dad34b3823b44904d5a2020195d422c1e27e7",
+        "rows": 461357,
+        "malformed": 0
+      },
+      "nativeFinalMatch": {
+        "outcome": "ONGOING",
+        "nativeVictory": false,
+        "nativeDefeat": false,
+        "ownTeamVictory": false,
+        "ownTeamDefeated": false,
+        "ownTeamWipedOut": false,
+        "source": "native_result_screen"
+      },
+      "nativeFinalGameTimeMs": 4810096,
+      "summary": {
+        "outcome": "PARTIAL",
+        "reason": "Game-time budget reached without native result",
+        "phase": "battle",
+        "matchOutcome": "ONGOING",
+        "commands": 12616,
+        "observations": 6524,
+        "ownLosses": 320,
+        "newCombatUnits": 276,
+        "attackOrders": 2589,
+        "attackOrdersConfirmed": 1954,
+        "retreatOrders": 0,
+        "upgradesCompleted": 2,
+        "completedMines": 12,
+        "newMines": 12,
+        "mineTarget": 3,
+        "minesBeyondFloor": 2,
+        "expansionRefusals": 178,
+        "expansionBlocked": 285,
+        "completedFactories": 2,
+        "newFactories": 2,
+        "landFactoryTarget": 2,
+        "factoryBlocks": 55,
+        "builderTarget": 1,
+        "builderRecoveries": 22,
+        "builderOrders": 20,
+        "battleGameTimeMs": 4800176,
+        "gameSecondsPerWallSecond": 4.8,
+        "noProgressWindowMs": 20000,
+        "noProgressCooldownMs": 30000,
+        "targetNoProgressTriggers": 0,
+        "targetRetries": 0,
+        "targetSuppressionsStarted": 21,
+        "targetSuppressionsReleased": 0,
+        "targetSuppressedSelections": 0,
+        "targetSuppressionsAtEnd": 21,
+        "targetSwitches": 0,
+        "effectiveDecisionIntervalGameMs": 1536,
+        "noProgressAttentionGapMs": 4608,
+        "maxObservedGameTimeJump": 4032,
+        "observationCount": 6524,
+        "spendTotal": 304100,
+        "spendByCategory": {
+          "BUILDER_RECOVERY": {
+            "orders": 20,
+            "cost": 10000
+          },
+          "NEW_FACTORY": {
+            "orders": 2,
+            "cost": 1400
+          },
+          "UNIT_PRODUCTION": {
+            "orders": 275,
+            "cost": 219900
+          },
+          "NEW_MINE": {
+            "orders": 13,
+            "cost": 9100
+          },
+          "FACTORY_UPGRADE": {
+            "orders": 2,
+            "cost": 4000
+          },
+          "STRATEGIC_CAPABILITY": {
+            "orders": 39,
+            "cost": 25500
+          },
+          "STRATEGIC_CONSTRUCTION": {
+            "orders": 20,
+            "cost": 32800
+          },
+          "MINE_UPGRADE": {
+            "orders": 1,
+            "cost": 1400
+          }
+        },
+        "measuredIncomePerGameSecond": 62.61,
+        "investmentIntentions": 2,
+        "investmentCompletions": 0,
+        "investmentCancellations": 2,
+        "investmentReserveAtEnd": 0,
+        "investmentPendingAtEnd": false,
+        "finalUrgency": "EMERGENCY",
+        "reconEnabled": true,
+        "reconTasksCreated": 16,
+        "reconOrdersQueued": 292,
+        "reconOrdersObserved": 292,
+        "reconMovesCompletedBetweenSamples": 0,
+        "frontierTasksSatisfiedByTeamVision": 1,
+        "reconResolvedAfterObservedMove": 5,
+        "reconReacquired": 4,
+        "reconSitesCleared": 2,
+        "reconBlocked": 8,
+        "reconTaskPendingAtEnd": true,
+        "reconFrontierEnabled": true,
+        "frontierTasksCreated": 1,
+        "frontierTasksRefreshed": 6,
+        "frontierTasksAdvanced": 7,
+        "frontierTasksBlocked": 1,
+        "frontierTasksPreempted": 0,
+        "expendableTransfers": 0,
+        "expendableScoutsAtEnd": 0,
+        "factoryTargetIncreases": 0,
+        "factoryTargetIncreaseBlocks": 40,
+        "landFactoryTargetAtEnd": 2,
+        "factoryTargetCommittedAtEnd": false,
+        "landFactoryTargetMax": 2147483647,
+        "factorySaturationPct": 58.8,
+        "factorySaturationMinPct": 80,
+        "economyBaseIncome": 26.9,
+        "economyIncomePerMine": 12.07,
+        "economyModelSource": "MEASURED_4_MATCHES_2_SPEEDS_T1_R2_0.999_T2_T3_ESTIMATED_FROM_FROZEN_GENERATION_RATIOS",
+        "minesReadyAtEnd": 3,
+        "productionConsumptionPerGameSecond": 64.0,
+        "sustainableSurplusPerGameSecond": -0.9,
+        "productionCapacity": {
+          "incomeEstimate": 63.1,
+          "productionConsumptionPerGameSecond": 69.3,
+          "recentSpendPerGameSecond": 72.7,
+          "sustainableSurplusPerGameSecond": -6.2,
+          "credits": 407.0,
+          "strategyArmyTarget": 43,
+          "committedArmed": 40,
+          "hardSafetyCap": 2147483647,
+          "readyProducerCount": 2,
+          "producerUtilizationPct": 58.5,
+          "observedProducerGameMs": 300000,
+          "demand": "KNOWN",
+          "backlogSlots": 3,
+          "routeCount": 2,
+          "routes": [
+            {
+              "producerId": 569,
+              "producerType": "landFactory",
+              "product": "heavyTank",
+              "nativeActionId": "u_heavyTank",
+              "nativeCost": 800.0,
+              "observedTech": 2,
+              "nativeQueue": 1,
+              "nativeAffordable": false,
+              "quoteSource": "LEGAL_NATIVE_MENU",
+              "expectedDurationGameMs": null,
+              "expectedThroughput": null,
+              "durationStatus": "UNKNOWN",
+              "fallbackScope": "EXISTING_ORDINARY_PRODUCTION_POLICY"
+            },
+            {
+              "producerId": 1101,
+              "producerType": "landFactory",
+              "product": "heavyTank",
+              "nativeActionId": "u_heavyTank",
+              "nativeCost": 800.0,
+              "observedTech": 2,
+              "nativeQueue": 1,
+              "nativeAffordable": false,
+              "quoteSource": "LEGAL_NATIVE_MENU",
+              "expectedDurationGameMs": null,
+              "expectedThroughput": null,
+              "durationStatus": "UNKNOWN",
+              "fallbackScope": "EXISTING_ORDINARY_PRODUCTION_POLICY"
+            }
+          ],
+          "selectedNativeCost": 800.0,
+          "selectedNativeAffordable": false,
+          "builderReserve": 0,
+          "investmentReserve": 0,
+          "capabilityReserve": 0.0,
+          "allReserved": 0.0,
+          "recovery": false,
+          "factoryTarget": 2,
+          "factoryTargetCommitted": false,
+          "bottleneck": "MONEY_LIMITED",
+          "militaryCapacityDecision": "HOLD",
+          "producerCapacityDecision": "HOLD",
+          "windowGameMs": 150000,
+          "coveredGameMs": 150000,
+          "surplusGameMs": 15920,
+          "usefulDemandGameMs": 150000,
+          "safeGameMs": 0,
+          "sustained": false,
+          "operationalCapacityStatus": "UNKNOWN",
+          "gameTimeMs": 4801264,
+          "intervalEstimateSource": "SAME_SOURCE_BOTH_ENDPOINTS_CONSERVATIVE_ESTIMATE",
+          "continuousNativeExecutionProven": false,
+          "maxBridgedIntervalGameMs": 30000,
+          "excludedIntervalGameMs": 0,
+          "maxSampleIntervalGameMs": 2768,
+          "producerCoveredGameMs": 150000,
+          "menuSourceTimeStatus": "UNKNOWN_CURRENT_CYCLE_READ",
+          "menuSourceCurrent": true,
+          "ownMissionDemand": 48,
+          "nativeUnitCapStatus": "UNKNOWN",
+          "hardSafetyCapSource": "SOFTWARE_POLICY_OR_EXPLICIT_PROPERTY",
+          "demandSource": "CONTINUING_ORDINARY_NATIVE_ROUTE_NOT_ORGANIZATION_QUOTA",
+          "productionPolicy": "CONTINUOUS_WHILE_NATIVE_LEGAL_AND_COMMITTED_FUNDS_AVAILABLE",
+          "organizationTargetIsProductionLimit": false,
+          "militaryGrowthPolicyGoal": 43
+        },
+        "strategy": {
+          "enabled": true,
+          "armyTarget": 43,
+          "activeTarget": 35,
+          "reserveTarget": 8,
+          "hardSafetyCap": 2147483647,
+          "builderTarget": 3,
+          "militaryCapacityIncreases": 0,
+          "militaryCapacityFloor": 0,
+          "capabilityNeedsAtEnd": 23,
+          "needsResolvedByLegalEvidence": 0,
+          "investmentOrders": 60,
+          "mineUpgradesObserved": 1,
+          "constructionCompletionsObserved": 20,
+          "capabilityReservesStarted": 6,
+          "capabilityReservesReleased": 6,
+          "capabilityReserveAtEnd": 0.0,
+          "capabilityTasksAtEnd": 0,
+          "capabilityModeScope": "PER_UNIT",
+          "searchAreaPolicy": "LEGAL_AIR_FRONTIER_CURRENT_COVERAGE_SEARCH",
+          "g6": true,
+          "airGeneral": {
+            "airGeneralId": 1,
+            "owner": "air-general:1",
+            "roster": [],
+            "targetId": null,
+            "mission": "CONTINUING_AIR_MAP_SEARCH",
+            "searchLegKnown": false,
+            "searchLegX": null,
+            "searchLegY": null,
+            "routeCursor": 0,
+            "routeLegEnd": -1,
+            "routeTiles": 0,
+            "routeLeader": 37226,
+            "routeFrontierTile": -1,
+            "routePotentialInfoScore": 0.0,
+            "routeInfoAuthority": "NATIVE_PLAYER_FOG_HISTORY",
+            "searchNeed": {
+              "status": "LEGAL_FRONTIER_EXPLORATION",
+              "coverageAuthority": "NATIVE_PLAYER_FOG_HISTORY",
+              "enemyPresence": "UNKNOWN"
+            },
+            "searchLegsWitnessed": 18,
+            "attackReceipts": 120,
+            "specialistTransfers": 7,
+            "groundGeneral": false,
+            "formations": [
+              {
+                "airGeneralId": 1,
+                "owner": "air-general:1",
+                "roster": [],
+                "targetId": null,
+                "mission": "CONTINUING_AIR_MAP_SEARCH",
+                "searchLegKnown": false,
+                "searchLegX": null,
+                "searchLegY": null,
+                "routeCursor": 0,
+                "routeLegEnd": -1,
+                "routeTiles": 0,
+                "routeLeader": 37226,
+                "routeFrontierTile": -1,
+                "routePotentialInfoScore": 0.0,
+                "routeInfoAuthority": "NATIVE_PLAYER_FOG_HISTORY",
+                "searchNeed": {
+                  "status": "LEGAL_FRONTIER_EXPLORATION",
+                  "coverageAuthority": "NATIVE_PLAYER_FOG_HISTORY",
+                  "enemyPresence": "UNKNOWN"
+                },
+                "searchLegsWitnessed": 18,
+                "attackReceipts": 120,
+                "specialistTransfers": 7,
+                "groundGeneral": false
+              }
+            ],
+            "formationCount": 1
+          },
+          "endgameReady": false,
+          "airTarget": 0,
+          "airProviderTarget": 0,
+          "airProviders": 0,
+          "pendingAirProviders": 0,
+          "capital": {
+            "covered": true,
+            "horizonGameMs": 120000,
+            "ownCreditsGrowth": -197.5,
+            "source": "CURRENT_OWN_CREDITS_SAMPLES",
+            "growing": false,
+            "wealthThreshold": null,
+            "hiddenEnemyAdvantage": "UNKNOWN",
+            "idleCapitalPerGameSecond": -1.6458333333333333,
+            "observedAirServiceSamples": 0,
+            "airProviderNativeSpendPerGameSecond": null,
+            "airInvoicesAwaitingReadyWitness": 0,
+            "airThroughputSource": "ACCEPTED_NATIVE_INVOICE_TO_LATER_OWN_READY_PRODUCT",
+            "airProviderModel": "CURRENT_FUNDED_SPATIAL_DUTY_PLUS_OBSERVED_IDLE_CAPITAL_OVER_OBSERVED_PROVIDER_SERVICE"
+          },
+          "capitalUpgradesObserved": 0
+        }
+      },
+      "lastOwn": {
+        "gameTimeMs": 4793376,
+        "frame": 299586,
+        "readyOwnTypes": {
+          "commandCenter": 1,
+          "landFactory": 2,
+          "combatEngineer": 2,
+          "repairbay": 2,
+          "amphibiousJet": 4,
+          "extractorT1": 3,
+          "heavyTank": 32,
+          "builder": 2
+        },
+        "credits": 375.0
+      },
+      "arrivedMining": {
+        "acceptedEpisodes": [
+          {
+            "startGameMs": 2058800,
+            "nativeCost": 700.0,
+            "x": 4090.0,
+            "y": 4810.0,
+            "acceptedGameMs": 2062608,
+            "unitId": 32239,
+            "delayGameMs": 3808
+          },
+          {
+            "startGameMs": 2972944,
+            "nativeCost": 700.0,
+            "x": 4090.0,
+            "y": 4810.0,
+            "acceptedGameMs": 2975776,
+            "unitId": 43370,
+            "delayGameMs": 2832
+          },
+          {
+            "startGameMs": 3439648,
+            "nativeCost": 700.0,
+            "x": 4210.0,
+            "y": 5650.0,
+            "acceptedGameMs": 3490528,
+            "unitId": 68427,
+            "delayGameMs": 50880
+          },
+          {
+            "startGameMs": 4507440,
+            "nativeCost": 700.0,
+            "x": 4490.0,
+            "y": 5510.0,
+            "acceptedGameMs": 4516784,
+            "unitId": 83159,
+            "delayGameMs": 9344
+          }
+        ],
+        "readyEpisodes": [
+          {
+            "startGameMs": 2058800,
+            "nativeCost": 700.0,
+            "x": 4090.0,
+            "y": 4810.0,
+            "acceptedGameMs": 2062608,
+            "unitId": 32239,
+            "readyGameMs": 2084528,
+            "delayGameMs": 25728,
+            "witness": {
+              "taskId": 1000053,
+              "builderId": 32239,
+              "product": "extractorT1",
+              "unit": {
+                "id": 37835,
+                "type": "extractorT1",
+                "x": 4090.0,
+                "y": 4810.0,
+                "hp": 800.0,
+                "maxHp": 800.0,
+                "buildProgress": 1.0,
+                "productionQueue": 0,
+                "dead": false,
+                "mobile": false,
+                "canAttack": false,
+                "building": true,
+                "techLevel": 1,
+                "orderType": null,
+                "guardTargetId": null
+              },
+              "gameTimeMs": 2084528,
+              "sessionId": "4ae6c909-c430-4384-8387-33aacb4e8845",
+              "player": "team:0"
+            }
+          },
+          {
+            "startGameMs": 2972944,
+            "nativeCost": 700.0,
+            "x": 4090.0,
+            "y": 4810.0,
+            "acceptedGameMs": 2975776,
+            "unitId": 43370,
+            "readyGameMs": 3002832,
+            "delayGameMs": 29888,
+            "witness": {
+              "taskId": 1000064,
+              "builderId": 43370,
+              "product": "extractorT1",
+              "unit": {
+                "id": 59099,
+                "type": "extractorT1",
+                "x": 4090.0,
+                "y": 4810.0,
+                "hp": 800.0,
+                "maxHp": 800.0,
+                "buildProgress": 1.0,
+                "productionQueue": 0,
+                "dead": false,
+                "mobile": false,
+                "canAttack": false,
+                "building": true,
+                "techLevel": 1,
+                "orderType": null,
+                "guardTargetId": null
+              },
+              "gameTimeMs": 3002832,
+              "sessionId": "4ae6c909-c430-4384-8387-33aacb4e8845",
+              "player": "team:0"
+            }
+          },
+          {
+            "startGameMs": 3439648,
+            "nativeCost": 700.0,
+            "x": 4210.0,
+            "y": 5650.0,
+            "acceptedGameMs": 3490528,
+            "unitId": 68427,
+            "readyGameMs": 3499680,
+            "delayGameMs": 60032,
+            "witness": {
+              "taskId": 1000070,
+              "builderId": 68427,
+              "product": "extractorT1",
+              "unit": {
+                "id": 69310,
+                "type": "extractorT1",
+                "x": 4210.0,
+                "y": 5650.0,
+                "hp": 800.0,
+                "maxHp": 800.0,
+                "buildProgress": 1.0,
+                "productionQueue": 0,
+                "dead": false,
+                "mobile": false,
+                "canAttack": false,
+                "building": true,
+                "techLevel": 1,
+                "orderType": null,
+                "guardTargetId": null
+              },
+              "gameTimeMs": 3499680,
+              "sessionId": "4ae6c909-c430-4384-8387-33aacb4e8845",
+              "player": "team:0"
+            }
+          },
+          {
+            "startGameMs": 4507440,
+            "nativeCost": 700.0,
+            "x": 4490.0,
+            "y": 5510.0,
+            "acceptedGameMs": 4516784,
+            "unitId": 83159,
+            "readyGameMs": 4545808,
+            "delayGameMs": 38368,
+            "witness": {
+              "taskId": 1000075,
+              "builderId": 83159,
+              "product": "extractorT1",
+              "unit": {
+                "id": 86761,
+                "type": "extractorT1",
+                "x": 4490.0,
+                "y": 5510.0,
+                "hp": 800.0,
+                "maxHp": 800.0,
+                "buildProgress": 1.0,
+                "productionQueue": 0,
+                "dead": false,
+                "mobile": false,
+                "canAttack": false,
+                "building": true,
+                "techLevel": 1,
+                "orderType": null,
+                "guardTargetId": null
+              },
+              "gameTimeMs": 4545808,
+              "sessionId": "4ae6c909-c430-4384-8387-33aacb4e8845",
+              "player": "team:0"
+            }
+          }
+        ],
+        "acceptedDelayGameMs": {
+          "count": 4,
+          "median": 9344,
+          "p95": 50880,
+          "max": 50880
+        },
+        "readyDelayGameMs": {
+          "count": 4,
+          "median": 38368,
+          "p95": 60032,
+          "max": 60032
+        },
+        "waitEventsByActor": {
+          "32239": 3,
+          "43370": 4,
+          "68427": 41,
+          "83159": 15
+        }
+      },
+      "militaryAllocationReasons": {
+        "CURRENT_GROUND_COVERAGE_NEEDS_REPLACEMENT": 10,
+        "NO_UNFINISHED_SPATIAL_DUTY": 17,
+        "CURRENT_GROUND_COVERED_UNFINISHED_AIR_SPACE": 8
+      },
+      "acceptedCommittedCreditsByCategory": {
+        "BUILDER_RECOVERY": 10000,
+        "NEW_FACTORY": 1400,
+        "UNIT_PRODUCTION": 219900,
+        "NEW_MINE": 9100,
+        "FACTORY_UPGRADE": 4000,
+        "STRATEGIC_CAPABILITY": 25500,
+        "STRATEGIC_CONSTRUCTION": 32800,
+        "MINE_UPGRADE": 1400
+      },
+      "air": {
+        "formationCreations": [],
+        "formationCountMax": 1,
+        "searchLegsByOwner": {
+          "air-general:1": 31
+        },
+        "laterOwnWitnessesByOwner": {
+          "air-general:1": 18
+        },
+        "attackReceiptsByOwner": {
+          "air-general:1": 120
+        }
+      },
+      "forceTransitionReasons": {
+        "ORDINARY_ADMITTED_FREE": 274,
+        "EXTERNAL_BORROWED_FREE": 305,
+        "EXTERNAL_RELEASED_FREE": 305,
+        "GENERAL_FORMATION_CREATED": 1,
+        "JOIN_RESERVED": 371,
+        "JOINING_STARTED": 371,
+        "JOIN_MOVE_ACCEPTED_NOT_ARRIVED": 3315,
+        "JOIN_ARRIVAL_OWN_POSITION_WITNESSED": 340,
+        "SMALL_THREAT_TEMPORARY_RESPONSE_STARTED": 721,
+        "SMALL_THREAT_RESPONSE_RESTORED_GENERAL": 369,
+        "HEALTH_ROLE_UPDATED": 308,
+        "SEVERE_OWN_HEALTH_RECOVERY_POOL": 308,
+        "ORDINARY_REMOVED": 242,
+        "GENERAL_FORMATION_ACTIVE": 2,
+        "GENERAL_GOAL_NATIVE_ACCEPTED": 6533,
+        "SMALL_THREAT_RESPONSE_RESTORED_JOINING": 260,
+        "CURRENT_OWN_HEALTH_RECOVERED_FREE": 99,
+        "SMALL_THREAT_RESPONSE_RESTORED_FREE": 82,
+        "GENERAL_ADDITIONAL_FORMATION_CREATED": 1
+      },
+      "lastExecutionBudget": {
+        "observationId": "b3af20cc-ec1e-4a4c-bbaa-a8d48c246c76:o:53547",
+        "gameTimeMs": 4802080,
+        "availableTokens": 2147483647,
+        "executionAdmission": "INDEPENDENT_ACTORS_AND_COMMITTED_RESOURCES",
+        "effectiveCredits": 469,
+        "unsettledCreditCount": 0,
+        "unsettledCredits": 0,
+        "militarySlots": 2147483607
+      },
+      "loggedRuntimeIntervalGameMs": {
+        "count": 3365,
+        "min": 512,
+        "median": 1296,
+        "p95": 2240,
+        "max": 4032
+      },
+      "lateLoggedRuntimeIntervalGameMs": {
+        "count": 1655,
+        "min": 512,
+        "median": 1344,
+        "p95": 2256,
+        "max": 4032
+      },
+      "boundary": {
+        "nativePositionMutation": false,
+        "fixture": false,
+        "desktopTouched": false,
+        "reportedIntervalsAreLoggedRuntimeWindowsNotAllDecisions": true,
+        "sourceOwnAbsenceIsNotDeath": true,
+        "legacyOwnLossCounterIsNotConfirmedDeathOrKD": true,
+        "summaryAirRosterMayBeAfterIntentionalShutdown": true,
+        "nativeVictoryProven": false
+      }
+    },
+    {
+      "label": "spain-air-mode-diagnostic-4800",
+      "input": {
+        "jarSha256": "456a1fbc3870b26f57b503b7c719fc5cb04b634896c4bfe3aba715aef594a1dd",
+        "mapSource": "G:\\deepseek 工作台\\游戏环境\\P1F-GPTSol61-Operations-2026-10-01\\mods\\maps\\[10p] 10p 西班牙混战_by_MP97.tmx",
+        "mapSha256": "342db6d8a8b8320b6a271b9e3c8a4c29c96a203e206c4be690c44bbef5882746",
+        "loadedMap": "maps/skirmish/[10p] Spain MP97.tmx",
+        "speed": 5,
+        "difficulty": -2,
+        "durationGameSeconds": 4800,
+        "wallSafetySeconds": 1380,
+        "nativePositionMutation": false,
+        "fixture": false,
+        "desktopTouched": false
+      },
+      "processResult": {
+        "clientExit": 0,
+        "engineExit": null,
+        "jarSha256": "456a1fbc3870b26f57b503b7c719fc5cb04b634896c4bfe3aba715aef594a1dd",
+        "noDesktopTouched": true
+      },
+      "raw": {
+        "path": "G:\\deepseek 工作台\\_validation\\octopus-r10-20261010\\spain-air-mode-diagnostic-4800\\work\\rw-agent-reports\\battle-1791649883115-11012939.jsonl.gz",
+        "bytes": 37388853,
+        "sha256": "31f0433bb42521fc7778aa229cc8cbb390ddf94371b1a65f02e606646574dc3a",
+        "rows": 163277,
+        "malformed": 0
+      },
+      "nativeFinalMatch": {
+        "outcome": "VICTORY",
+        "nativeVictory": true,
+        "nativeDefeat": false,
+        "ownTeamVictory": false,
+        "ownTeamDefeated": false,
+        "ownTeamWipedOut": false,
+        "source": "native_result_screen"
+      },
+      "nativeFinalGameTimeMs": 2838176,
+      "summary": {
+        "outcome": "PASS",
+        "reason": "Native result screen: VICTORY",
+        "phase": "battle",
+        "matchOutcome": "VICTORY",
+        "commands": 9899,
+        "observations": 2230,
+        "ownLosses": 33,
+        "newCombatUnits": 219,
+        "attackOrders": 808,
+        "attackOrdersConfirmed": 522,
+        "retreatOrders": 0,
+        "upgradesCompleted": 2,
+        "completedMines": 4,
+        "newMines": 4,
+        "mineTarget": 3,
+        "minesBeyondFloor": 1,
+        "expansionRefusals": 156,
+        "expansionBlocked": 157,
+        "completedFactories": 2,
+        "newFactories": 2,
+        "landFactoryTarget": 2,
+        "factoryBlocks": 64,
+        "builderTarget": 1,
+        "builderRecoveries": 3,
+        "builderOrders": 3,
+        "battleGameTimeMs": 2805200,
+        "gameSecondsPerWallSecond": 4.8,
+        "noProgressWindowMs": 20000,
+        "noProgressCooldownMs": 30000,
+        "targetNoProgressTriggers": 0,
+        "targetRetries": 0,
+        "targetSuppressionsStarted": 0,
+        "targetSuppressionsReleased": 0,
+        "targetSuppressedSelections": 0,
+        "targetSuppressionsAtEnd": 0,
+        "targetSwitches": 0,
+        "effectiveDecisionIntervalGameMs": 9488,
+        "noProgressAttentionGapMs": 28464,
+        "maxObservedGameTimeJump": 10736,
+        "observationCount": 2230,
+        "spendTotal": 498400,
+        "spendByCategory": {
+          "BUILDER_RECOVERY": {
+            "orders": 3,
+            "cost": 1500
+          },
+          "NEW_FACTORY": {
+            "orders": 2,
+            "cost": 1400
+          },
+          "UNIT_PRODUCTION": {
+            "orders": 212,
+            "cost": 174100
+          },
+          "NEW_MINE": {
+            "orders": 4,
+            "cost": 2800
+          },
+          "FACTORY_UPGRADE": {
+            "orders": 2,
+            "cost": 4000
+          },
+          "STRATEGIC_CAPABILITY": {
+            "orders": 33,
+            "cost": 28500
+          },
+          "STRATEGIC_CONSTRUCTION": {
+            "orders": 142,
+            "cost": 260900
+          },
+          "MINE_UPGRADE": {
+            "orders": 15,
+            "cost": 25200
+          }
+        },
+        "measuredIncomePerGameSecond": 235.35,
+        "investmentIntentions": 2,
+        "investmentCompletions": 0,
+        "investmentCancellations": 2,
+        "investmentReserveAtEnd": 0,
+        "investmentPendingAtEnd": false,
+        "finalUrgency": "OPEN_EXPANSION",
+        "reconEnabled": true,
+        "reconTasksCreated": 9,
+        "reconOrdersQueued": 150,
+        "reconOrdersObserved": 150,
+        "reconMovesCompletedBetweenSamples": 0,
+        "frontierTasksSatisfiedByTeamVision": 0,
+        "reconResolvedAfterObservedMove": 6,
+        "reconReacquired": 7,
+        "reconSitesCleared": 1,
+        "reconBlocked": 0,
+        "reconTaskPendingAtEnd": false,
+        "reconFrontierEnabled": true,
+        "frontierTasksCreated": 1,
+        "frontierTasksRefreshed": 7,
+        "frontierTasksAdvanced": 7,
+        "frontierTasksBlocked": 1,
+        "frontierTasksPreempted": 0,
+        "expendableTransfers": 0,
+        "expendableScoutsAtEnd": 0,
+        "factoryTargetIncreases": 0,
+        "factoryTargetIncreaseBlocks": 34,
+        "landFactoryTargetAtEnd": 2,
+        "factoryTargetCommittedAtEnd": false,
+        "landFactoryTargetMax": 2147483647,
+        "factorySaturationPct": 27.8,
+        "factorySaturationMinPct": 80,
+        "economyBaseIncome": 26.9,
+        "economyIncomePerMine": 12.07,
+        "economyModelSource": "MEASURED_4_MATCHES_2_SPEEDS_T1_R2_0.999_T2_T3_ESTIMATED_FROM_FROZEN_GENERATION_RATIOS",
+        "minesReadyAtEnd": 16,
+        "productionConsumptionPerGameSecond": 186.7,
+        "sustainableSurplusPerGameSecond": 117.8,
+        "productionCapacity": {
+          "incomeEstimate": 304.5,
+          "productionConsumptionPerGameSecond": 186.7,
+          "recentSpendPerGameSecond": 186.7,
+          "sustainableSurplusPerGameSecond": 117.8,
+          "credits": 0.0,
+          "strategyArmyTarget": 315,
+          "committedArmed": 321,
+          "hardSafetyCap": 2147483647,
+          "readyProducerCount": 2,
+          "producerUtilizationPct": 26.89,
+          "observedProducerGameMs": 300000,
+          "demand": "KNOWN",
+          "backlogSlots": 0,
+          "routeCount": 2,
+          "routes": [
+            {
+              "producerId": 570,
+              "producerType": "landFactory",
+              "product": "heavyTank",
+              "nativeActionId": "u_heavyTank",
+              "nativeCost": 800.0,
+              "observedTech": 2,
+              "nativeQueue": 1,
+              "nativeAffordable": true,
+              "quoteSource": "LEGAL_NATIVE_MENU",
+              "expectedDurationGameMs": null,
+              "expectedThroughput": null,
+              "durationStatus": "UNKNOWN",
+              "fallbackScope": "EXISTING_ORDINARY_PRODUCTION_POLICY"
+            },
+            {
+              "producerId": 833,
+              "producerType": "landFactory",
+              "product": "heavyTank",
+              "nativeActionId": "u_heavyTank",
+              "nativeCost": 800.0,
+              "observedTech": 2,
+              "nativeQueue": 1,
+              "nativeAffordable": true,
+              "quoteSource": "LEGAL_NATIVE_MENU",
+              "expectedDurationGameMs": null,
+              "expectedThroughput": null,
+              "durationStatus": "UNKNOWN",
+              "fallbackScope": "EXISTING_ORDINARY_PRODUCTION_POLICY"
+            }
+          ],
+          "selectedNativeCost": 800.0,
+          "selectedNativeAffordable": true,
+          "builderReserve": 0,
+          "investmentReserve": 0,
+          "capabilityReserve": 2000.0,
+          "allReserved": 2000.0,
+          "recovery": false,
+          "factoryTarget": 2,
+          "factoryTargetCommitted": false,
+          "bottleneck": "MONEY_LIMITED",
+          "militaryCapacityDecision": "HOLD",
+          "producerCapacityDecision": "HOLD",
+          "windowGameMs": 150000,
+          "coveredGameMs": 150000,
+          "surplusGameMs": 150000,
+          "usefulDemandGameMs": 150000,
+          "safeGameMs": 22512,
+          "sustained": false,
+          "operationalCapacityStatus": "UNKNOWN",
+          "gameTimeMs": 2798288,
+          "intervalEstimateSource": "SAME_SOURCE_BOTH_ENDPOINTS_CONSERVATIVE_ESTIMATE",
+          "continuousNativeExecutionProven": false,
+          "maxBridgedIntervalGameMs": 30000,
+          "excludedIntervalGameMs": 0,
+          "maxSampleIntervalGameMs": 10688,
+          "producerCoveredGameMs": 150000,
+          "menuSourceTimeStatus": "UNKNOWN_CURRENT_CYCLE_READ",
+          "menuSourceCurrent": true,
+          "ownMissionDemand": 196,
+          "nativeUnitCapStatus": "UNKNOWN",
+          "hardSafetyCapSource": "SOFTWARE_POLICY_OR_EXPLICIT_PROPERTY",
+          "demandSource": "CONTINUING_ORDINARY_NATIVE_ROUTE_NOT_ORGANIZATION_QUOTA",
+          "productionPolicy": "CONTINUOUS_WHILE_NATIVE_LEGAL_AND_COMMITTED_FUNDS_AVAILABLE",
+          "organizationTargetIsProductionLimit": false,
+          "militaryGrowthPolicyGoal": 229
+        },
+        "strategy": {
+          "enabled": true,
+          "armyTarget": 315,
+          "activeTarget": 80,
+          "reserveTarget": 235,
+          "hardSafetyCap": 2147483647,
+          "builderTarget": 24,
+          "militaryCapacityIncreases": 0,
+          "militaryCapacityFloor": 0,
+          "capabilityNeedsAtEnd": 2,
+          "needsResolvedByLegalEvidence": 3,
+          "investmentOrders": 190,
+          "mineUpgradesObserved": 15,
+          "constructionCompletionsObserved": 139,
+          "capabilityReservesStarted": 1,
+          "capabilityReservesReleased": 1,
+          "capabilityReserveAtEnd": 2000.0,
+          "capabilityTasksAtEnd": 0,
+          "capabilityModeScope": "PER_UNIT",
+          "searchAreaPolicy": "LEGAL_AIR_FRONTIER_CURRENT_COVERAGE_SEARCH",
+          "g6": true,
+          "airGeneral": {
+            "airGeneralId": 1,
+            "owner": "air-general:1",
+            "roster": [],
+            "targetId": null,
+            "mission": "CONTINUING_AIR_MAP_SEARCH",
+            "searchLegKnown": false,
+            "searchLegX": null,
+            "searchLegY": null,
+            "routeCursor": 0,
+            "routeLegEnd": -1,
+            "routeTiles": 38,
+            "routeLeader": 7865,
+            "routeFrontierTile": 3033,
+            "routePotentialInfoScore": 802.0,
+            "routeInfoAuthority": "NATIVE_PLAYER_FOG_HISTORY",
+            "searchNeed": {
+              "status": "LEGAL_FRONTIER_EXPLORATION",
+              "coverageAuthority": "NATIVE_PLAYER_FOG_HISTORY",
+              "enemyPresence": "UNKNOWN"
+            },
+            "searchLegsWitnessed": 70,
+            "attackReceipts": 13,
+            "specialistTransfers": 121,
+            "groundGeneral": false,
+            "formations": [
+              {
+                "airGeneralId": 1,
+                "owner": "air-general:1",
+                "roster": [],
+                "targetId": null,
+                "mission": "CONTINUING_AIR_MAP_SEARCH",
+                "searchLegKnown": false,
+                "searchLegX": null,
+                "searchLegY": null,
+                "routeCursor": 0,
+                "routeLegEnd": -1,
+                "routeTiles": 38,
+                "routeLeader": 7865,
+                "routeFrontierTile": 3033,
+                "routePotentialInfoScore": 802.0,
+                "routeInfoAuthority": "NATIVE_PLAYER_FOG_HISTORY",
+                "searchNeed": {
+                  "status": "LEGAL_FRONTIER_EXPLORATION",
+                  "coverageAuthority": "NATIVE_PLAYER_FOG_HISTORY",
+                  "enemyPresence": "UNKNOWN"
+                },
+                "searchLegsWitnessed": 70,
+                "attackReceipts": 13,
+                "specialistTransfers": 121,
+                "groundGeneral": false
+              }
+            ],
+            "formationCount": 1
+          },
+          "endgameReady": true,
+          "airTarget": 130,
+          "airProviderTarget": 4,
+          "airProviders": 0,
+          "pendingAirProviders": 0,
+          "capital": {
+            "covered": true,
+            "horizonGameMs": 120000,
+            "ownCreditsGrowth": 16748.0,
+            "source": "CURRENT_OWN_CREDITS_SAMPLES",
+            "growing": true,
+            "wealthThreshold": null,
+            "hiddenEnemyAdvantage": "UNKNOWN",
+            "idleCapitalPerGameSecond": 139.56666666666666,
+            "observedAirServiceSamples": 8,
+            "airProviderNativeSpendPerGameSecond": 120.86052695189751,
+            "airInvoicesAwaitingReadyWitness": 2,
+            "airThroughputSource": "ACCEPTED_NATIVE_INVOICE_TO_LATER_OWN_READY_PRODUCT",
+            "airProviderModel": "CURRENT_FUNDED_SPATIAL_DUTY_PLUS_OBSERVED_IDLE_CAPITAL_OVER_OBSERVED_PROVIDER_SERVICE"
+          },
+          "capitalUpgradesObserved": 0
+        }
+      },
+      "lastOwn": {
+        "gameTimeMs": 2798288,
+        "frame": 174893,
+        "readyOwnTypes": {
+          "commandCenter": 1,
+          "landFactory": 2,
+          "extractorT3_reinforced": 1,
+          "extractorT2": 11,
+          "heavyTank": 188,
+          "builder": 24,
+          "repairbay": 2,
+          "combatEngineer": 4,
+          "amphibiousJet": 121,
+          "heavyArtillery": 2,
+          "extractorT1": 4
+        },
+        "credits": 162851.5
+      },
+      "arrivedMining": {
+        "acceptedEpisodes": [
+          {
+            "startGameMs": 128912,
+            "nativeCost": 700.0,
+            "x": 5290.0,
+            "y": 5390.0,
+            "acceptedGameMs": 128912,
+            "unitId": 716,
+            "delayGameMs": 0
+          },
+          {
+            "startGameMs": 190304,
+            "nativeCost": 700.0,
+            "x": 6030.0,
+            "y": 4770.0,
+            "acceptedGameMs": 190304,
+            "unitId": 716,
+            "delayGameMs": 0
+          },
+          {
+            "startGameMs": 389856,
+            "nativeCost": 700.0,
+            "x": 3070.0,
+            "y": 5510.0,
+            "acceptedGameMs": 391328,
+            "unitId": 1880,
+            "delayGameMs": 1472
+          },
+          {
+            "startGameMs": 413776,
+            "nativeCost": 700.0,
+            "x": 3270.0,
+            "y": 5310.0,
+            "acceptedGameMs": 450064,
+            "unitId": 1880,
+            "delayGameMs": 36288
+          },
+          {
+            "startGameMs": 447344,
+            "nativeCost": 700.0,
+            "x": 4090.0,
+            "y": 4810.0,
+            "acceptedGameMs": 450064,
+            "unitId": 2450,
+            "delayGameMs": 2720
+          },
+          {
+            "startGameMs": 513040,
+            "nativeCost": 700.0,
+            "x": 5190.0,
+            "y": 4170.0,
+            "acceptedGameMs": 513040,
+            "unitId": 2612,
+            "delayGameMs": 0
+          },
+          {
+            "startGameMs": 533392,
+            "nativeCost": 700.0,
+            "x": 3610.0,
+            "y": 3950.0,
+            "acceptedGameMs": 533392,
+            "unitId": 2364,
+            "delayGameMs": 0
+          },
+          {
+            "startGameMs": 808272,
+            "nativeCost": 700.0,
+            "x": 3270.0,
+            "y": 4610.0,
+            "acceptedGameMs": 808272,
+            "unitId": 1880,
+            "delayGameMs": 0
+          },
+          {
+            "startGameMs": 992400,
+            "nativeCost": 700.0,
+            "x": 3710.0,
+            "y": 2050.0,
+            "acceptedGameMs": 992400,
+            "unitId": 3368,
+            "delayGameMs": 0
+          },
+          {
+            "startGameMs": 996272,
+            "nativeCost": 700.0,
+            "x": 1810.0,
+            "y": 1870.0,
+            "acceptedGameMs": 996272,
+            "unitId": 5925,
+            "delayGameMs": 0
+          },
+          {
+            "startGameMs": 1029568,
+            "nativeCost": 700.0,
+            "x": 2650.0,
+            "y": 1090.0,
+            "acceptedGameMs": 1029568,
+            "unitId": 2694,
+            "delayGameMs": 0
+          },
+          {
+            "startGameMs": 1073200,
+            "nativeCost": 700.0,
+            "x": 3890.0,
+            "y": 990.0,
+            "acceptedGameMs": 1073200,
+            "unitId": 3368,
+            "delayGameMs": 0
+          },
+          {
+            "startGameMs": 1281312,
+            "nativeCost": 700.0,
+            "x": 3330.0,
+            "y": 6610.0,
+            "acceptedGameMs": 1281312,
+            "unitId": 6083,
+            "delayGameMs": 0
+          },
+          {
+            "startGameMs": 1345728,
+            "nativeCost": 700.0,
+            "x": 3590.0,
+            "y": 6590.0,
+            "acceptedGameMs": 1345728,
+            "unitId": 6083,
+            "delayGameMs": 0
+          },
+          {
+            "startGameMs": 1677008,
+            "nativeCost": 700.0,
+            "x": 5950.0,
+            "y": 90.0,
+            "acceptedGameMs": 1677008,
+            "unitId": 6785,
+            "delayGameMs": 0
+          }
+        ],
+        "readyEpisodes": [
+          {
+            "startGameMs": 128912,
+            "nativeCost": 700.0,
+            "x": 5290.0,
+            "y": 5390.0,
+            "acceptedGameMs": 128912,
+            "unitId": 716,
+            "readyGameMs": 147648,
+            "delayGameMs": 18736,
+            "witness": {
+              "taskId": 1000001,
+              "builderId": 716,
+              "product": "extractorT1",
+              "unit": {
+                "id": 749,
+                "type": "extractorT1",
+                "x": 5290.0,
+                "y": 5390.0,
+                "hp": 800.0,
+                "maxHp": 800.0,
+                "buildProgress": 1.0,
+                "productionQueue": 0,
+                "dead": false,
+                "mobile": false,
+                "canAttack": false,
+                "building": true,
+                "techLevel": 1,
+                "orderType": null,
+                "guardTargetId": null
+              },
+              "gameTimeMs": 147648,
+              "sessionId": "8714efdc-2605-4a2d-9e88-a5a957b88288",
+              "player": "team:0"
+            }
+          },
+          {
+            "startGameMs": 190304,
+            "nativeCost": 700.0,
+            "x": 6030.0,
+            "y": 4770.0,
+            "acceptedGameMs": 190304,
+            "unitId": 716,
+            "readyGameMs": 211040,
+            "delayGameMs": 20736,
+            "witness": {
+              "taskId": 1000001,
+              "builderId": 716,
+              "product": "extractorT1",
+              "unit": {
+                "id": 843,
+                "type": "extractorT1",
+                "x": 6030.0,
+                "y": 4770.0,
+                "hp": 800.0,
+                "maxHp": 800.0,
+                "buildProgress": 1.0,
+                "productionQueue": 0,
+                "dead": false,
+                "mobile": false,
+                "canAttack": false,
+                "building": true,
+                "techLevel": 1,
+                "orderType": null,
+                "guardTargetId": null
+              },
+              "gameTimeMs": 211040,
+              "sessionId": "8714efdc-2605-4a2d-9e88-a5a957b88288",
+              "player": "team:0"
+            }
+          },
+          {
+            "startGameMs": 389856,
+            "nativeCost": 700.0,
+            "x": 3070.0,
+            "y": 5510.0,
+            "acceptedGameMs": 391328,
+            "unitId": 1880,
+            "readyGameMs": 413776,
+            "delayGameMs": 23920,
+            "witness": {
+              "taskId": 1000003,
+              "builderId": 1880,
+              "product": "extractorT1",
+              "unit": {
+                "id": 2391,
+                "type": "extractorT1",
+                "x": 3070.0,
+                "y": 5510.0,
+                "hp": 800.0,
+                "maxHp": 800.0,
+                "buildProgress": 1.0,
+                "productionQueue": 0,
+                "dead": false,
+                "mobile": false,
+                "canAttack": false,
+                "building": true,
+                "techLevel": 1,
+                "orderType": null,
+                "guardTargetId": null
+              },
+              "gameTimeMs": 413776,
+              "sessionId": "8714efdc-2605-4a2d-9e88-a5a957b88288",
+              "player": "team:0"
+            }
+          },
+          {
+            "startGameMs": 447344,
+            "nativeCost": 700.0,
+            "x": 4090.0,
+            "y": 4810.0,
+            "acceptedGameMs": 450064,
+            "unitId": 2450,
+            "readyGameMs": 468944,
+            "delayGameMs": 21600,
+            "witness": {
+              "taskId": 1000005,
+              "builderId": 2450,
+              "product": "extractorT1",
+              "unit": {
+                "id": 2692,
+                "type": "extractorT1",
+                "x": 4090.0,
+                "y": 4810.0,
+                "hp": 800.0,
+                "maxHp": 800.0,
+                "buildProgress": 1.0,
+                "productionQueue": 0,
+                "dead": false,
+                "mobile": false,
+                "canAttack": false,
+                "building": true,
+                "techLevel": 1,
+                "orderType": null,
+                "guardTargetId": null
+              },
+              "gameTimeMs": 468944,
+              "sessionId": "8714efdc-2605-4a2d-9e88-a5a957b88288",
+              "player": "team:0"
+            }
+          },
+          {
+            "startGameMs": 413776,
+            "nativeCost": 700.0,
+            "x": 3270.0,
+            "y": 5310.0,
+            "acceptedGameMs": 450064,
+            "unitId": 1880,
+            "readyGameMs": 473504,
+            "delayGameMs": 59728,
+            "witness": {
+              "taskId": 1000003,
+              "builderId": 1880,
+              "product": "extractorT1",
+              "unit": {
+                "id": 2704,
+                "type": "extractorT1",
+                "x": 3270.0,
+                "y": 5310.0,
+                "hp": 800.0,
+                "maxHp": 800.0,
+                "buildProgress": 1.0,
+                "productionQueue": 0,
+                "dead": false,
+                "mobile": false,
+                "canAttack": false,
+                "building": true,
+                "techLevel": 1,
+                "orderType": null,
+                "guardTargetId": null
+              },
+              "gameTimeMs": 473504,
+              "sessionId": "8714efdc-2605-4a2d-9e88-a5a957b88288",
+              "player": "team:0"
+            }
+          },
+          {
+            "startGameMs": 513040,
+            "nativeCost": 700.0,
+            "x": 5190.0,
+            "y": 4170.0,
+            "acceptedGameMs": 513040,
+            "unitId": 2612,
+            "readyGameMs": 531488,
+            "delayGameMs": 18448,
+            "witness": {
+              "taskId": 1000006,
+              "builderId": 2612,
+              "product": "extractorT1",
+              "unit": {
+                "id": 3329,
+                "type": "extractorT1",
+                "x": 5190.0,
+                "y": 4170.0,
+                "hp": 800.0,
+                "maxHp": 800.0,
+                "buildProgress": 1.0,
+                "productionQueue": 0,
+                "dead": false,
+                "mobile": false,
+                "canAttack": false,
+                "building": true,
+                "techLevel": 1,
+                "orderType": null,
+                "guardTargetId": null
+              },
+              "gameTimeMs": 531488,
+              "sessionId": "8714efdc-2605-4a2d-9e88-a5a957b88288",
+              "player": "team:0"
+            }
+          },
+          {
+            "startGameMs": 808272,
+            "nativeCost": 700.0,
+            "x": 3270.0,
+            "y": 4610.0,
+            "acceptedGameMs": 808272,
+            "unitId": 1880,
+            "readyGameMs": 834224,
+            "delayGameMs": 25952,
+            "witness": {
+              "taskId": 1000003,
+              "builderId": 1880,
+              "product": "extractorT1",
+              "unit": {
+                "id": 6237,
+                "type": "extractorT1",
+                "x": 3270.0,
+                "y": 4610.0,
+                "hp": 800.0,
+                "maxHp": 800.0,
+                "buildProgress": 1.0,
+                "productionQueue": 0,
+                "dead": false,
+                "mobile": false,
+                "canAttack": false,
+                "building": true,
+                "techLevel": 1,
+                "orderType": null,
+                "guardTargetId": null
+              },
+              "gameTimeMs": 834224,
+              "sessionId": "8714efdc-2605-4a2d-9e88-a5a957b88288",
+              "player": "team:0"
+            }
+          },
+          {
+            "startGameMs": 992400,
+            "nativeCost": 700.0,
+            "x": 3710.0,
+            "y": 2050.0,
+            "acceptedGameMs": 992400,
+            "unitId": 3368,
+            "readyGameMs": 1012816,
+            "delayGameMs": 20416,
+            "witness": {
+              "taskId": 1000012,
+              "builderId": 3368,
+              "product": "extractorT1",
+              "unit": {
+                "id": 6946,
+                "type": "extractorT1",
+                "x": 3710.0,
+                "y": 2050.0,
+                "hp": 800.0,
+                "maxHp": 800.0,
+                "buildProgress": 1.0,
+                "productionQueue": 0,
+                "dead": false,
+                "mobile": false,
+                "canAttack": false,
+                "building": true,
+                "techLevel": 1,
+                "orderType": null,
+                "guardTargetId": null
+              },
+              "gameTimeMs": 1012816,
+              "sessionId": "8714efdc-2605-4a2d-9e88-a5a957b88288",
+              "player": "team:0"
+            }
+          },
+          {
+            "startGameMs": 996272,
+            "nativeCost": 700.0,
+            "x": 1810.0,
+            "y": 1870.0,
+            "acceptedGameMs": 996272,
+            "unitId": 5925,
+            "readyGameMs": 1022016,
+            "delayGameMs": 25744,
+            "witness": {
+              "taskId": 1000017,
+              "builderId": 5925,
+              "product": "extractorT1",
+              "unit": {
+                "id": 7001,
+                "type": "extractorT1",
+                "x": 1810.0,
+                "y": 1870.0,
+                "hp": 800.0,
+                "maxHp": 800.0,
+                "buildProgress": 1.0,
+                "productionQueue": 0,
+                "dead": false,
+                "mobile": false,
+                "canAttack": false,
+                "building": true,
+                "techLevel": 1,
+                "orderType": null,
+                "guardTargetId": null
+              },
+              "gameTimeMs": 1022016,
+              "sessionId": "8714efdc-2605-4a2d-9e88-a5a957b88288",
+              "player": "team:0"
+            }
+          },
+          {
+            "startGameMs": 1029568,
+            "nativeCost": 700.0,
+            "x": 2650.0,
+            "y": 1090.0,
+            "acceptedGameMs": 1029568,
+            "unitId": 2694,
+            "readyGameMs": 1054304,
+            "delayGameMs": 24736,
+            "witness": {
+              "taskId": 1000007,
+              "builderId": 2694,
+              "product": "extractorT1",
+              "unit": {
+                "id": 7176,
+                "type": "extractorT1",
+                "x": 2650.0,
+                "y": 1090.0,
+                "hp": 800.0,
+                "maxHp": 800.0,
+                "buildProgress": 1.0,
+                "productionQueue": 0,
+                "dead": false,
+                "mobile": false,
+                "canAttack": false,
+                "building": true,
+                "techLevel": 1,
+                "orderType": null,
+                "guardTargetId": null
+              },
+              "gameTimeMs": 1054304,
+              "sessionId": "8714efdc-2605-4a2d-9e88-a5a957b88288",
+              "player": "team:0"
+            }
+          },
+          {
+            "startGameMs": 1073200,
+            "nativeCost": 700.0,
+            "x": 3890.0,
+            "y": 990.0,
+            "acceptedGameMs": 1073200,
+            "unitId": 3368,
+            "readyGameMs": 1092192,
+            "delayGameMs": 18992,
+            "witness": {
+              "taskId": 1000012,
+              "builderId": 3368,
+              "product": "extractorT1",
+              "unit": {
+                "id": 7532,
+                "type": "extractorT1",
+                "x": 3890.0,
+                "y": 990.0,
+                "hp": 800.0,
+                "maxHp": 800.0,
+                "buildProgress": 1.0,
+                "productionQueue": 0,
+                "dead": false,
+                "mobile": false,
+                "canAttack": false,
+                "building": true,
+                "techLevel": 1,
+                "orderType": null,
+                "guardTargetId": null
+              },
+              "gameTimeMs": 1092192,
+              "sessionId": "8714efdc-2605-4a2d-9e88-a5a957b88288",
+              "player": "team:0"
+            }
+          },
+          {
+            "startGameMs": 1281312,
+            "nativeCost": 700.0,
+            "x": 3330.0,
+            "y": 6610.0,
+            "acceptedGameMs": 1281312,
+            "unitId": 6083,
+            "readyGameMs": 1310048,
+            "delayGameMs": 28736,
+            "witness": {
+              "taskId": 1000019,
+              "builderId": 6083,
+              "product": "extractorT1",
+              "unit": {
+                "id": 8299,
+                "type": "extractorT1",
+                "x": 3330.0,
+                "y": 6610.0,
+                "hp": 800.0,
+                "maxHp": 800.0,
+                "buildProgress": 1.0,
+                "productionQueue": 0,
+                "dead": false,
+                "mobile": false,
+                "canAttack": false,
+                "building": true,
+                "techLevel": 1,
+                "orderType": null,
+                "guardTargetId": null
+              },
+              "gameTimeMs": 1310048,
+              "sessionId": "8714efdc-2605-4a2d-9e88-a5a957b88288",
+              "player": "team:0"
+            }
+          },
+          {
+            "startGameMs": 1345728,
+            "nativeCost": 700.0,
+            "x": 3590.0,
+            "y": 6590.0,
+            "acceptedGameMs": 1345728,
+            "unitId": 6083,
+            "readyGameMs": 1365904,
+            "delayGameMs": 20176,
+            "witness": {
+              "taskId": 1000019,
+              "builderId": 6083,
+              "product": "extractorT1",
+              "unit": {
+                "id": 8559,
+                "type": "extractorT1",
+                "x": 3590.0,
+                "y": 6590.0,
+                "hp": 800.0,
+                "maxHp": 800.0,
+                "buildProgress": 1.0,
+                "productionQueue": 0,
+                "dead": false,
+                "mobile": false,
+                "canAttack": false,
+                "building": true,
+                "techLevel": 1,
+                "orderType": null,
+                "guardTargetId": null
+              },
+              "gameTimeMs": 1365904,
+              "sessionId": "8714efdc-2605-4a2d-9e88-a5a957b88288",
+              "player": "team:0"
+            }
+          },
+          {
+            "startGameMs": 1677008,
+            "nativeCost": 700.0,
+            "x": 5950.0,
+            "y": 90.0,
+            "acceptedGameMs": 1677008,
+            "unitId": 6785,
+            "readyGameMs": 1699632,
+            "delayGameMs": 22624,
+            "witness": {
+              "taskId": 1000024,
+              "builderId": 6785,
+              "product": "extractorT1",
+              "unit": {
+                "id": 10522,
+                "type": "extractorT1",
+                "x": 5950.0,
+                "y": 90.0,
+                "hp": 800.0,
+                "maxHp": 800.0,
+                "buildProgress": 1.0,
+                "productionQueue": 0,
+                "dead": false,
+                "mobile": false,
+                "canAttack": false,
+                "building": true,
+                "techLevel": 1,
+                "orderType": null,
+                "guardTargetId": null
+              },
+              "gameTimeMs": 1699632,
+              "sessionId": "8714efdc-2605-4a2d-9e88-a5a957b88288",
+              "player": "team:0"
+            }
+          }
+        ],
+        "acceptedDelayGameMs": {
+          "count": 15,
+          "median": 0,
+          "p95": 36288,
+          "max": 36288
+        },
+        "readyDelayGameMs": {
+          "count": 14,
+          "median": 22624,
+          "p95": 59728,
+          "max": 59728
+        },
+        "waitEventsByActor": {
+          "1880": 11,
+          "2450": 3
+        }
+      },
+      "militaryAllocationReasons": {
+        "CURRENT_GROUND_COVERAGE_NEEDS_REPLACEMENT": 1,
+        "NO_UNFINISHED_SPATIAL_DUTY": 4,
+        "CURRENT_GROUND_COVERED_UNFINISHED_AIR_SPACE": 103
+      },
+      "acceptedCommittedCreditsByCategory": {
+        "BUILDER_RECOVERY": 1500,
+        "NEW_FACTORY": 1400,
+        "UNIT_PRODUCTION": 174100,
+        "NEW_MINE": 2800,
+        "FACTORY_UPGRADE": 4000,
+        "STRATEGIC_CAPABILITY": 28500,
+        "STRATEGIC_CONSTRUCTION": 260900,
+        "MINE_UPGRADE": 25200
+      },
+      "air": {
+        "formationCreations": [
+          {
+            "newOwner": "air-general:2",
+            "donorOwner": "air-general:1",
+            "gameTimeMs": 1387456,
+            "frontierTile": 105808,
+            "unitIds": [
+              8398,
+              8538,
+              8539,
+              8560,
+              8567,
+              8576
+            ],
+            "nativePlan": {
+              "sessionId": "8714efdc-2605-4a2d-9e88-a5a957b88288",
+              "frame": 86824,
+              "gameTimeMs": 1389184,
+              "routeScope": "air-search",
+              "routeComplete": true,
+              "potentialInfoScore": 544,
+              "targetX": 5710.0,
+              "targetY": 7170.0
+            }
+          },
+          {
+            "newOwner": "air-general:3",
+            "donorOwner": "air-general:1",
+            "gameTimeMs": 1395376,
+            "frontierTile": 129746,
+            "unitIds": [
+              8087,
+              8213,
+              8226,
+              8301,
+              8313,
+              8397
+            ],
+            "nativePlan": {
+              "sessionId": "8714efdc-2605-4a2d-9e88-a5a957b88288",
+              "frame": 87322,
+              "gameTimeMs": 1397152,
+              "routeScope": "air-search",
+              "routeComplete": true,
+              "potentialInfoScore": 1150,
+              "targetX": 7010.0,
+              "targetY": 4930.0
+            }
+          },
+          {
+            "newOwner": "air-general:4",
+            "donorOwner": "air-general:1",
+            "gameTimeMs": 1451136,
+            "frontierTile": 63261,
+            "unitIds": [
+              8592,
+              8675,
+              8941,
+              9115,
+              9116,
+              9332
+            ],
+            "nativePlan": {
+              "sessionId": "8714efdc-2605-4a2d-9e88-a5a957b88288",
+              "frame": 90816,
+              "gameTimeMs": 1453056,
+              "routeScope": "air-search",
+              "routeComplete": true,
+              "potentialInfoScore": 1050,
+              "targetX": 3410.0,
+              "targetY": 7230.0
+            }
+          },
+          {
+            "newOwner": "air-general:5",
+            "donorOwner": "air-general:1",
+            "gameTimeMs": 1558672,
+            "frontierTile": 46611,
+            "unitIds": [
+              9584,
+              9616,
+              9690,
+              9702,
+              9711,
+              9719
+            ],
+            "nativePlan": {
+              "sessionId": "8714efdc-2605-4a2d-9e88-a5a957b88288",
+              "frame": 97485,
+              "gameTimeMs": 1559760,
+              "routeScope": "air-search",
+              "routeComplete": true,
+              "potentialInfoScore": 1156,
+              "targetX": 2510.0,
+              "targetY": 7230.0
+            }
+          },
+          {
+            "newOwner": "air-general:6",
+            "donorOwner": "air-general:1",
+            "gameTimeMs": 1594320,
+            "frontierTile": 29961,
+            "unitIds": [
+              9342,
+              9354,
+              9583,
+              9742,
+              9843,
+              9852
+            ],
+            "nativePlan": {
+              "sessionId": "8714efdc-2605-4a2d-9e88-a5a957b88288",
+              "frame": 99742,
+              "gameTimeMs": 1595872,
+              "routeScope": "air-search",
+              "routeComplete": true,
+              "potentialInfoScore": 1136,
+              "targetX": 1610.0,
+              "targetY": 7230.0
+            }
+          },
+          {
+            "newOwner": "air-general:7",
+            "donorOwner": "air-general:1",
+            "gameTimeMs": 1687312,
+            "frontierTile": 8064,
+            "unitIds": [
+              9919,
+              9920,
+              9936,
+              10012,
+              10032,
+              10459
+            ],
+            "nativePlan": {
+              "sessionId": "8714efdc-2605-4a2d-9e88-a5a957b88288",
+              "frame": 105600,
+              "gameTimeMs": 1689600,
+              "routeScope": "air-search",
+              "routeComplete": true,
+              "potentialInfoScore": 1144,
+              "targetX": 430.0,
+              "targetY": 5890.0
+            }
+          },
+          {
+            "newOwner": "air-general:8",
+            "donorOwner": "air-general:1",
+            "gameTimeMs": 1766592,
+            "frontierTile": 3189,
+            "unitIds": [
+              10460,
+              10475,
+              10479,
+              10514,
+              10570,
+              10571
+            ],
+            "nativePlan": {
+              "sessionId": "8714efdc-2605-4a2d-9e88-a5a957b88288",
+              "frame": 110553,
+              "gameTimeMs": 1768848,
+              "routeScope": "air-search",
+              "routeComplete": true,
+              "potentialInfoScore": 1105,
+              "targetX": 170.0,
+              "targetY": 4590.0
+            }
+          },
+          {
+            "newOwner": "air-general:9",
+            "donorOwner": "air-general:1",
+            "gameTimeMs": 1824544,
+            "frontierTile": 3124,
+            "unitIds": [
+              10604,
+              10605,
+              10622,
+              10623,
+              10636,
+              10645
+            ],
+            "nativePlan": {
+              "sessionId": "8714efdc-2605-4a2d-9e88-a5a957b88288",
+              "frame": 114131,
+              "gameTimeMs": 1826096,
+              "routeScope": "air-search",
+              "routeComplete": true,
+              "potentialInfoScore": 1156,
+              "targetX": 170.0,
+              "targetY": 3290.0
+            }
+          },
+          {
+            "newOwner": "air-general:10",
+            "donorOwner": "air-general:1",
+            "gameTimeMs": 2030784,
+            "frontierTile": 14454,
+            "unitIds": [
+              11220,
+              11221,
+              11245,
+              11313,
+              11330,
+              11331
+            ],
+            "nativePlan": {
+              "sessionId": "8714efdc-2605-4a2d-9e88-a5a957b88288",
+              "frame": 127002,
+              "gameTimeMs": 2032032,
+              "routeScope": "air-search",
+              "routeComplete": true,
+              "potentialInfoScore": 412,
+              "targetX": 790.0,
+              "targetY": 490.0
+            }
+          },
+          {
+            "newOwner": "air-general:11",
+            "donorOwner": "air-general:1",
+            "gameTimeMs": 2156752,
+            "frontierTile": 145401,
+            "unitIds": [
+              10998,
+              11137,
+              11340,
+              11357,
+              11359,
+              11437
+            ],
+            "nativePlan": {
+              "sessionId": "8714efdc-2605-4a2d-9e88-a5a957b88288",
+              "frame": 134870,
+              "gameTimeMs": 2157920,
+              "routeScope": "air-search",
+              "routeComplete": true,
+              "potentialInfoScore": 817,
+              "targetX": 7850.0,
+              "targetY": 7230.0
+            }
+          },
+          {
+            "newOwner": "air-general:12",
+            "donorOwner": "air-general:1",
+            "gameTimeMs": 2250192,
+            "frontierTile": 118881,
+            "unitIds": [
+              11450,
+              11460,
+              11464,
+              11475,
+              11477,
+              11479
+            ],
+            "nativePlan": {
+              "sessionId": "8714efdc-2605-4a2d-9e88-a5a957b88288",
+              "frame": 140715,
+              "gameTimeMs": 2251440,
+              "routeScope": "air-search",
+              "routeComplete": true,
+              "potentialInfoScore": 785,
+              "targetX": 6430.0,
+              "targetY": 2230.0
+            }
+          },
+          {
+            "newOwner": "air-general:13",
+            "donorOwner": "air-general:1",
+            "gameTimeMs": 2281760,
+            "frontierTile": 125129,
+            "unitIds": [
+              11444,
+              11446,
+              11449,
+              11503,
+              11504,
+              11537
+            ],
+            "nativePlan": {
+              "sessionId": "8714efdc-2605-4a2d-9e88-a5a957b88288",
+              "frame": 142697,
+              "gameTimeMs": 2283152,
+              "routeScope": "air-search",
+              "routeComplete": true,
+              "potentialInfoScore": 843,
+              "targetX": 6770.0,
+              "targetY": 1390.0
+            }
+          },
+          {
+            "newOwner": "air-general:14",
+            "donorOwner": "air-general:1",
+            "gameTimeMs": 2288272,
+            "frontierTile": 116990,
+            "unitIds": [
+              10807,
+              10808,
+              10874,
+              10995,
+              11441,
+              11442
+            ],
+            "nativePlan": {
+              "sessionId": "8714efdc-2605-4a2d-9e88-a5a957b88288",
+              "frame": 143109,
+              "gameTimeMs": 2289744,
+              "routeScope": "air-search",
+              "routeComplete": true,
+              "potentialInfoScore": 846,
+              "targetX": 6330.0,
+              "targetY": 1410.0
+            }
+          },
+          {
+            "newOwner": "air-general:15",
+            "donorOwner": "air-general:1",
+            "gameTimeMs": 2332224,
+            "frontierTile": 93320,
+            "unitIds": [
+              9882,
+              10675,
+              11540,
+              11541,
+              11543,
+              11544
+            ],
+            "nativePlan": {
+              "sessionId": "8714efdc-2605-4a2d-9e88-a5a957b88288",
+              "frame": 145847,
+              "gameTimeMs": 2333552,
+              "routeScope": "air-search",
+              "routeComplete": true,
+              "potentialInfoScore": 840,
+              "targetX": 5050.0,
+              "targetY": 1610.0
+            }
+          },
+          {
+            "newOwner": "air-general:16",
+            "donorOwner": "air-general:1",
+            "gameTimeMs": 2442624,
+            "frontierTile": 49979,
+            "unitIds": [
+              11549,
+              11567,
+              11568,
+              11571,
+              11574,
+              11575
+            ],
+            "nativePlan": {
+              "sessionId": "8714efdc-2605-4a2d-9e88-a5a957b88288",
+              "frame": 152761,
+              "gameTimeMs": 2444176,
+              "routeScope": "air-search",
+              "routeComplete": true,
+              "potentialInfoScore": 512,
+              "targetX": 2710.0,
+              "targetY": 590.0
+            }
+          },
+          {
+            "newOwner": "air-general:17",
+            "donorOwner": "air-general:1",
+            "gameTimeMs": 2544000,
+            "frontierTile": 33702,
+            "unitIds": [
+              11581,
+              11585,
+              11586,
+              11589,
+              11590,
+              11596
+            ],
+            "nativePlan": {
+              "sessionId": "8714efdc-2605-4a2d-9e88-a5a957b88288",
+              "frame": 159078,
+              "gameTimeMs": 2545248,
+              "routeScope": "air-search",
+              "routeComplete": true,
+              "potentialInfoScore": 738,
+              "targetX": 1830.0,
+              "targetY": 650.0
+            }
+          },
+          {
+            "newOwner": "air-general:18",
+            "donorOwner": "air-general:1",
+            "gameTimeMs": 2711552,
+            "frontierTile": 6301,
+            "unitIds": [
+              11629,
+              11630,
+              11633,
+              11636,
+              11637,
+              11639
+            ],
+            "nativePlan": {
+              "sessionId": "8714efdc-2605-4a2d-9e88-a5a957b88288",
+              "frame": 169556,
+              "gameTimeMs": 2712896,
+              "routeScope": "air-search",
+              "routeComplete": true,
+              "potentialInfoScore": 849,
+              "targetX": 350.0,
+              "targetY": 230.0
+            }
+          }
+        ],
+        "formationCountMax": 18,
+        "searchLegsByOwner": {
+          "air-general:1": 71,
+          "air-general:2": 74,
+          "air-general:3": 74,
+          "air-general:4": 45,
+          "air-general:5": 50,
+          "air-general:6": 36,
+          "air-general:7": 39,
+          "air-general:8": 29,
+          "air-general:9": 28,
+          "air-general:10": 34,
+          "air-general:11": 27,
+          "air-general:12": 27,
+          "air-general:13": 24,
+          "air-general:14": 27,
+          "air-general:15": 22,
+          "air-general:16": 13,
+          "air-general:17": 11,
+          "air-general:18": 3
+        },
+        "laterOwnWitnessesByOwner": {
+          "air-general:1": 70,
+          "air-general:2": 73,
+          "air-general:3": 73,
+          "air-general:4": 44,
+          "air-general:5": 50,
+          "air-general:6": 36,
+          "air-general:7": 38,
+          "air-general:8": 29,
+          "air-general:9": 27,
+          "air-general:10": 33,
+          "air-general:11": 27,
+          "air-general:12": 26,
+          "air-general:13": 23,
+          "air-general:14": 26,
+          "air-general:15": 21,
+          "air-general:16": 13,
+          "air-general:17": 10,
+          "air-general:18": 2
+        },
+        "attackReceiptsByOwner": {
+          "air-general:1": 13,
+          "air-general:2": 13,
+          "air-general:3": 4,
+          "air-general:4": 4,
+          "air-general:8": 3
+        }
+      },
+      "forceTransitionReasons": {
+        "ORDINARY_ADMITTED_FREE": 210,
+        "EXTERNAL_BORROWED_FREE": 153,
+        "EXTERNAL_RELEASED_FREE": 153,
+        "GENERAL_FORMATION_CREATED": 1,
+        "JOIN_RESERVED": 214,
+        "JOINING_STARTED": 214,
+        "JOIN_MOVE_ACCEPTED_NOT_ARRIVED": 1520,
+        "JOIN_ARRIVAL_OWN_POSITION_WITNESSED": 212,
+        "SMALL_THREAT_TEMPORARY_RESPONSE_STARTED": 92,
+        "SMALL_THREAT_RESPONSE_RESTORED_FREE": 16,
+        "HEALTH_ROLE_UPDATED": 19,
+        "SEVERE_OWN_HEALTH_RECOVERY_POOL": 19,
+        "ORDINARY_REMOVED": 20,
+        "SMALL_THREAT_RESPONSE_RESTORED_GENERAL": 42,
+        "GENERAL_FORMATION_ACTIVE": 8,
+        "GENERAL_GOAL_NATIVE_ACCEPTED": 1909,
+        "SMALL_THREAT_RESPONSE_RESTORED_JOINING": 34,
+        "GENERAL_ADDITIONAL_FORMATION_CREATED": 7,
+        "CURRENT_OWN_HEALTH_RECOVERED_FREE": 5
+      },
+      "lastExecutionBudget": {
+        "observationId": "dbd7c5d2-6cf4-4b5f-b55f-8ac56dbbcbda:o:20440",
+        "gameTimeMs": 2798288,
+        "availableTokens": 2147483647,
+        "executionAdmission": "INDEPENDENT_ACTORS_AND_COMMITTED_RESOURCES",
+        "effectiveCredits": 0,
+        "unsettledCreditCount": 82,
+        "unsettledCredits": 164000,
+        "militarySlots": 2147483326
+      },
+      "loggedRuntimeIntervalGameMs": {
+        "count": 1099,
+        "min": 1008,
+        "median": 1504,
+        "p95": 7184,
+        "max": 10736
+      },
+      "lateLoggedRuntimeIntervalGameMs": {
+        "count": 51,
+        "min": 5424,
+        "median": 8096,
+        "p95": 9824,
+        "max": 10688
+      },
+      "boundary": {
+        "nativePositionMutation": false,
+        "fixture": false,
+        "desktopTouched": false,
+        "reportedIntervalsAreLoggedRuntimeWindowsNotAllDecisions": true,
+        "sourceOwnAbsenceIsNotDeath": true,
+        "legacyOwnLossCounterIsNotConfirmedDeathOrKD": true,
+        "summaryAirRosterMayBeAfterIntentionalShutdown": true,
+        "nativeVictoryProven": true
+      }
+    }
+  ],
+  "nativeClock": {
+    "source": "/state",
+    "nativeClock": {
+      "gameTimeMs": 921248,
+      "frame": 57578,
+      "sessionId": "8714efdc-2605-4a2d-9e88-a5a957b88288",
+      "source": "/state"
+    },
+    "display": "Game 15:21.2 | Frame 57578",
+    "html": "G:\\deepseek 工作台\\_validation\\octopus-r10-20261010\\native-clock-final-candidate-live\\rw-agent-live.html",
+    "gameChanged": false,
+    "decisionInputChanged": false,
+    "wallTimeEstimate": false
+  },
+  "kit": {
+    "path": "G:\\deepseek 工作台\\游戏环境\\RW-Agent-Octopus-G6-2026-10-11-R10E",
+    "port": 47695,
+    "preparedOnly": true,
+    "desktopGameLaunched": false,
+    "entries": [
+      "1-Start-Game.bat",
+      "2-Run-Agent-7200.bat",
+      "2-Run-Agent-1200.bat",
+      "2-Run-Agent-2400.bat"
+    ],
+    "nativeClockDefault": true,
+    "liveHtml": "runs/<run-id>/rw-agent-live.html",
+    "wallSafetySeconds": 14400
+  },
+  "preservedFailureEvidence": {
+    "independentEndpoint": "G:\\deepseek 工作台\\_validation\\octopus-r10-20261010\\response\\endpoint-freshness",
+    "fundingContinuity": "G:\\deepseek 工作台\\_validation\\octopus-r10-20261010\\bank-continuity-before-failure.log",
+    "airSchema": "G:\\deepseek 工作台\\_validation\\octopus-r10-20261010\\air\\schema-before-fix.log",
+    "airRawDiagnostic": "G:\\deepseek 工作台\\_validation\\octopus-r10-20261010\\spain-endgame-diagnostic-4800\\r10-air-split-prefix-audit.json",
+    "olderCandidateFull": "G:\\deepseek 工作台\\_validation\\octopus-r10-20261010\\delivery-verification-d0d4f9e.json",
+    "scoutNaturalDiagnostic": "G:\\deepseek 工作台\\_validation\\octopus-r10-20261010\\scout\\natural-scout-diagnostic.json"
+  },
+  "boundaries": {
+    "noPush": true,
+    "noDeploy": true,
+    "noDesktopGameControl": true,
+    "receiptNotArrivalSpendingKill": true,
+    "missingNotDead": true,
+    "clearedNotKilled": true,
+    "mainlandCleared": "UNKNOWN",
+    "fullGlobalBatch": false,
+    "forceCollectArbitrate": true,
+    "otherMatureLanesImmediate": true,
+    "oneLocalResponseController": true,
+    "nuclearImplemented": false,
+    "t2CheapAirScoutImplemented": false,
+    "nativePopulationApi": "NEEDS_EVIDENCE",
+    "ambiguousHistoricalConstructionPayments": "UNKNOWN_RETAINED_NOT_TIMEOUT_REFUNDED",
+    "naturalWinRateOrControlledAB": "NEEDS_EVIDENCE",
+    "scoutLongSurvivalAndReplacement": "NEEDS_EVIDENCE",
+    "underwaterFirstDiscoveryAndSearchEfficiency": "NEEDS_EVIDENCE"
+  },
+  "airNaturalContinuity": {
+    "report": "evidence/octopus-r10-2026-10-11/air-natural-continuity.json",
+    "reportSha256": "9bd883b1ed583ec218a71cf2af81f0e05d63ba3811783d3a8caba24851f7c39d",
+    "completeAudit": "G:\\deepseek 工作台\\_validation\\octopus-r10-20261010\\spain-air-mode-diagnostic-4800\\r10-natural-multi-owner-final-audit.json",
+    "completeAuditSha256": "1464d54ad0acd4a85c9fa334585b2de94bb3082c0981c7764c7e54b81ed85df3",
+    "strictLaterSearchArrivals": 621,
+    "independentOwnersWithArrival": 18,
+    "noHumanOrControlledCausalImprovementClaim": true
+  }
+}
