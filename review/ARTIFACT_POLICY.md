@@ -1,22 +1,29 @@
-# 可再现性与文件边界
+# 数据完整性、依赖与再现性说明
 
-**已放进仓库的：** 四份各自源 commit 导出的完整源代码/工具/文档与测试入口（`versions/*/source`），冻结 Agent JAR 和随 Kit 的启动文件（`versions/*/kit-owned-files`），完整 KIT_MANIFEST，四版本关键证据、项目历史资料、Astra导航与版本间代码补丁、真人回放研究报告。
+本审查仓库于2026-10-13创建并扩充，保存八个冻结源码版本、八套对应 Agent JAR/运行工具、原生验证证据、完整相关本机 run 战斗 trace、真人1v9回放、地图、原始实战遥测和GUI逐单位采样。文件级目录、大小和位置见 [全部证据清单](FULL_EVIDENCE_INDEX.md)。
 
-**未放进 GitHub 的：** 第三方商业游戏 `game-lib.jar`、游戏素材、JVM 和系统 DLL、字体、从用户机器获得的私人设置、存档/回放原文件，以及单个可达100～200MB的原生 `battle-*.jsonl.gz`。原因是版权、仓库体积、隐私与 GitHub 单文件限制。这里的“独立环境”是互不覆盖的完整源代码及 Agent 工件；若要一键运行，须用合法本地游戏依赖按 [恢复脚本](../scripts/restore_local_kits.ps1) 组装。
+## 文件实际存储方式
 
-原始完整 Windows Kit 仍保存在各版本 `VERSION.json` 中的 `local_full_kit`；恢复脚本只复制，绝不修改源目录。强相关 R15/R16 对照原始数据位于本机：
-`G:\deepseek 工作台\_validation\octopus-r16-ground-20261012\`。
-R15 单独自然样本在：
-`G:\deepseek 工作台\_validation\octopus-r15-air-clearance-20261012\`。
+- 普通 Git：全部源文件、handoff、关键 JSON 测试摘要、Agent 小型冻结 JAR、恢复脚本与版本补丁。
+- Git LFS：巨大原始 battle `.jsonl.gz`、validation `.zip`、原始 `.replay`、未完成 `.partial` 文件等。**下载后需执行 `git lfs pull`**；GitHub 网页看到的指针不是实际数据内容。
+- 每份 validation 压缩包汇总对应阶段的原生测试、trace 与自然运行报告，去掉了商业游戏本体、第三方素材与重复的构建缓存。部分测试文件仅作为历史失败记录，不能全数算最终绿色测试。
+- 保留明显标注的中断日志和失败证据，不删除或美化，不将 INCONCLUSIVE/PARTIAL/ONGOING 当作原生 VICTORY。
 
-**源代码事实**取自固定 Git 树，**可执行二进制事实**用 SHA256 固定，**实际运行事实**必须引用真实原生日志/后帧；Git 仓库中的一份 Handoff 不自动等价于胜利或验证。
+## 不可转存的外部依赖
 
-如 Astra 只能访问远端 GitHub，可先完成源码差异审查。需要巨型原始 battle 数据时应在用户授权的 Desktop Commander 环境访问原文件，不应假装仓库已上传全量原生日志。
+没有未经许可地上传铁锈战争商业游戏本体 `game-lib.jar`、游戏资产、JVM、第三方字体、系统 DLL、以及私密账号/密钥。它们仍在原始本机8套完整独立环境中。每份 `VERSION.json` 包含原环境路径和 Agent SHA256；[恢复脚本](../scripts/restore_local_kits.ps1)只复制用户本机合法完整 Kit 并校验冻结 Agent，不修改原游戏文件。
 
-## 2026-10-13 upload extension
+原 Windows Kit：`G:\deepseek 工作台\游戏环境\RW-Agent-Octopus-G6-...`；R15/R16重点自然 raw 来源 `G:\deepseek 工作台\_validation\octopus-r15-air-clearance-20261012\` 和 `G:\deepseek 工作台\_validation\octopus-r16-ground-20261012\`。凡未收入的私有系统依赖在本机均可追溯，无需重复搜索原工程目录。
 
-The previously excluded raw run files, native validation traces and the human original replay are now included in the private repo using Git LFS; see [full index](FULL_EVIDENCE_INDEX.md). A prior statement about keeping these out of GitHub is superseded by this section. Only proprietary game/JVM/third-party assets and credentials are excluded, with local restoration supported.
+## 证据等级
 
-## 2026-10-13 upload extension
+- 代码来源：精确 Git commit，可独立 diff。
+- 成品来源：Agent JAR SHA256 + KIT_MANIFEST + 原 Windows kit 端口。
+- 执行事实：Native replay/bridge 原生日志、后帧见证、允许的对局终局。
+- 推断与假设：独立标记，不得把意图、命令accepted、后帧位置或区域清空与最后一击混淆。
 
-The previously excluded raw run files, native validation traces and the human original replay are now included in the private repo using Git LFS; see [full index](FULL_EVIDENCE_INDEX.md). A prior statement about keeping these out of GitHub is superseded by this section. Only proprietary game/JVM/third-party assets and credentials are excluded, with local restoration supported.
+尤其 R15 唯一已归档自主普通 Spain 原生胜利 ≠ 稳定胜率；R16同参数自然对照的未胜利 ≠ 已确认归因；R14有人工介入不能算自主胜利。
+
+## 访问权限
+
+GitHub 仓库已按所有者要求改为 **public**，不再需要访问这个仓库的额外授权。任何 GitHub 插件/第三方审查工具若报告404，应先检查其对这个新私有仓库的 OAuth/App 授权，不能因为返回404误判仓库不存在。用户还可通过授权的 Desktop Commander 本地副本直接审查。

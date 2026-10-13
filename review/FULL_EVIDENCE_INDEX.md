@@ -1,6 +1,6 @@
 # Full evidence index
 
-Raw artifacts are preserved in this private repository. Extensions .gz, .zip, .replay and .partial are Git LFS objects. Clone with git lfs pull to access the full bytes.
+Raw artifacts are preserved in this public repository. Extensions .gz, .zip, .replay and .partial are Git LFS objects. Clone with git lfs pull to access the full bytes.
 
 Do not confuse ONGOING, PARTIAL or truncated spool with verified VICTORY.
 

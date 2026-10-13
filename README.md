@@ -1,59 +1,53 @@
-# Rusted Warfare Octopus — Astra 工程审查资料库
+# Rusted Warfare Octopus — Astra 独立工程审查资料库
 
-**私有审查仓库 · 2026-10-13 · R9 / R10E / R11B / R12 / R13B / R14 / R15 / R16 八套冻结独立版本**
+**2026-10-13 · 公开审查仓库 · 八套版本独立冻结 · 原始实验数据与真实对局证据**
 
-> **先读 [review/ASTRA_START_HERE.md](review/ASTRA_START_HERE.md)。** 本仓库不是“R16 已经更好”的发布公告，而是将成功与失败证据并列，供 Astra 找到真正的回归原因。
+**Astra 请从 [审查任务书](review/ASTRA_START_HERE.md) 开始，再阅读 [回归问题](review/REGRESSION_QUESTIONS.md)、[全部证据清单](review/FULL_EVIDENCE_INDEX.md)。** 本仓库不是 R16 的成功公告，而是让真实效果、失败记录与代码差异可以复核。
 
-## 版本与证据
+## 版本和可核查成绩
 
-| 冻结版本 | 代码快照 | 现有可靠结论 | 状态 |
-|---|---|---|---|
-| [R9](versions/R9/) | `56a0598` | 早期多角色/生产能力较好的阶段，部分 Spain 原生报告仍 ONGOING | 历史参照，不是证实胜率 |
-| [R12](versions/R12/) | `eef352f` | Builder、资金链相关原生证据；Hard Spain 未清图，仍 ONGOING | Builder 工程基线 |
-| [R15](versions/R15/) | `1311f2a` | 普通 Spain / player5 / 5×，**一次自主原生 VICTORY，约42:43.664** | 当前最有力的自主胜利参照 |
-| [R16](versions/R16/) | `0ada07a` | 同条件一次自然对照：R15 ~45:32胜利；R16 ~60:14仍ONGOING。139/139 工程矩阵通过 | **最新有问题的候选，禁止默认替换R15** |
-
-**重要**：R15 的一次胜利不能代表稳定胜率；R16 的一次失败对照也不足以独立确认因果根因。用户明确反馈“最新版本问题很大”，但未附新的具体人工测试证据，作为待补证的用户观察单列。
-
-## 资料组织
-
-- `versions/R9|R12|R15|R16/source/`：分别从精确 Git commit 导出的完整 `agent`、工具、工程文档、知识与交接资料，**互不覆盖**。
-- `versions/*/kit-owned-files/`：各版本冻结的 Agent 成品 JAR、启动脚本、运行工具与完整 KIT_MANIFEST，**不含商业游戏本体**。
-- `versions/*/VERSION.json`：来源 commit、二进制 SHA256、对应本地完整环境及端口。
-- `evidence/`：四个版本的原生验证摘要、矩阵、失败与对照记录，以及本地验证文件索引。
-- `review/diffs/`：R9→R12、R12→R15、**R15→R16** 的逐文件源码补丁和变更统计。
-- `review/human_reference/`：真人西班牙1v9实验战术/遥测分析；**不是同难度或同地图受控 Agent 对照**。
-- `scripts/restore_local_kits.ps1`：可选；在拥有本机独立合法游戏 Kit 的 Windows 上恢复完整运行副本。GitHub 不包含 JVM/商业游戏资源/超大 raw 日志。
-
-## Astra 应当做什么
-
-1. 阅读 [审查任务书](review/ASTRA_START_HERE.md) 和 [问题登记](review/REGRESSION_QUESTIONS.md)，以 R15 为证据基线，先区分 **代码没改** 与 **实战行为没有受其他模块影响**。
-2. 针对 R15→R16 `GeneralCombatDirector` 局部攻城准入、Builder 保留远端区域职责改动，检查如何通过任务顺序、战线节奏、预算与资源间接影响 Air 清岛。
-3. 根据真实失败样本提出最小可验证机制假说，设计 native 对照，**不靠固定分队数量、盲目提高全局操作频率或扩大防御阈值**。
-4. 把证据等级、复现入口、已确认/待验证结论区分记录，不把日志 receipt 当作实际抵达和击杀。
-
-原项目历史仓库：`yetengyang8-eng/Rusted-Warfare-Agent`。本仓库为**独立审查副本**，不替代、不改写原工程仓库及当前工作区未提交改动。
-
-## Complete raw evidence (Git LFS)
-
-- [Complete artifact index](review/FULL_EVIDENCE_INDEX.md): raw run traces, native validation archives, original human replay/map and unit snapshots.
-- After cloning, run git lfs pull to obtain large files.
-
-
-## Additional intermediate frozen baselines
-
-The four core comparisons R9, R12, R15 and R16 are accompanied by four intermediate, independent source + agent-JAR environments:
-
-| Version | Git source commit | Why it is useful |
+| 版本 | 冻结源提交 | 目前证据地位 |
 |---|---|---|
-| [R10E](versions/R10E/) | d3be4f6 | Earlier native victory at easier difficulty -2; useful to check air task and local division improvements. |
-| [R11B](versions/R11B/) | f4d81e8 | Continuous-movement and Builder-loop fixes; no stable victory claim. |
-| [R13B](versions/R13B/) | 56d5b7f | Progressive detachment and task continuity; Spain verification remained partial. |
-| [R14](versions/R14/) | 6637cdd | Pre-R15 air control; a reported win included explicit human takeover and cannot count as autonomous victory. |
+| [R9](versions/R9/) | `56a0598` | 较早的攻城、生产与空军多编队参照；不要用单次测试声称稳定胜率。 |
+| [R10E](versions/R10E/) | `d3be4f6` | 有较易 difficulty -2 的原生自主胜利；较难 Spain 仍有未结束对局。 |
+| [R11B](versions/R11B/) | `f4d81e8` | 移动连续性、Builder 避免卡死的工程参照，未证明稳定总体更强。 |
+| [R12](versions/R12/) | `eef352f` | Builder 与经济工程基线；Hard Spain 自然运行没有证明清图。 |
+| [R13B](versions/R13B/) | `56d5b7f` | 分兵与任务连续性候选，原生自然测试仍 PARTIAL。 |
+| [R14](versions/R14/) | `6637cdd` | 清剿责任过渡版本；**胜局有真人干预，不计为自主胜利**。 |
+| [R15](versions/R15/) | `1311f2a` | **目前最有说服力的自主胜利参照**：普通 Spain、player5、5倍速，单次原生胜利检测 Game42:43.664。 |
+| [R16](versions/R16/) | `0ada07a` | **最新、用户反馈问题严重的候选**。同参数单次自然对照 R15 在约45:32获胜、R16 在60:14仍ONGOING；工程回归139/139通过。 |
 
-Each has a frozen code tree, verified agent JAR, launcher scripts and relevant native validation evidence. This eight-version ladder helps isolate regressions introduced between major milestones.
+**不能过度推断**：R15只有一次单局原生成功验证；R16的单次对照也没有固定随机种子，不能据此量化稳定胜率或确认唯一原因。前后局时长不同，命令数与兵力存量不能机械直接比较。
 
-## Complete raw evidence (Git LFS)
+## 完整材料布局
 
-- [Complete artifact index](review/FULL_EVIDENCE_INDEX.md): raw run traces, native validation archives, original human replay/map and unit snapshots.
-- After cloning, run git lfs pull to obtain large files.
+- `versions/<version>/source/`：从精确原始提交完整导出的**八套互不覆盖源码、测试、工具、工程交接与知识库**。
+- `versions/<version>/kit-owned-files/`：对应 Agent JAR、原启动器与实际运行工具，含 KIT_MANIFEST。
+- `versions/<version>/VERSION.json`：冻结提交、二进制 SHA-256、Windows 本地原始 kit 路径与端口（R9 到 R16 每套端口不同）。
+- `review/diffs/`：源版本差异汇总及完整补丁，尤其 R15→R16；中间版本可直接对照独立源码。
+- `evidence/native-raw/`：版本 Kit 的**完整相关原生 run 文本与压缩战斗日志**，包括未完成的 `.partial` 文件。
+- `evidence/validation-archives/`：八阶段原生验证的测试、日志、失败结果与 trace 压缩归档；已过滤重复商业资源、编译缓存等。
+- `evidence/human-1v9-original/`：真人西班牙1v9的原始回放、地图、原始实战遥测、逐单位 GUI 回放采样与分析代码。
+- `evidence/octopus-*/`：源码仓库已有的可读验证摘要、自然运行核查及交接证据。
+- `review/FULL_EVIDENCE_INDEX.md`：文件级完整清单与大小。不要把原生命令 receipt 当作实际击杀、抵达或胜利。
+- `scripts/restore_local_kits.ps1`：在有合法完整游戏依赖的原 Windows 电脑上**复制并校验**八套独立运行环境；不改原文件。
+
+## 大型资料下载
+
+**Git LFS 已上传原始数据**：`.gz`、`.zip`、`.replay`、`.partial` 文件在 Git 仓库中对应 LFS pointer。取得完整字节时，请在本地运行：
+
+```powershell
+git clone https://github.com/yetengyang8-eng/Rusted-Warfare-Octopus-Astra-Review.git
+cd Rusted-Warfare-Octopus-Astra-Review
+git lfs pull
+```
+
+如果只需审查核心问题，可以直接看普通 Git 中的源码、回归问题和 R15/R16 原生测试摘要，而不必先下载全部大型证据。
+
+**不重新分发**未经许可的商业游戏文件、JVM、第三方字体和账号密钥。本机完整 Kit 保持独立，恢复脚本仅在合法本地游戏依赖存在时使用。详见 [文件边界](review/ARTIFACT_POLICY.md)。
+
+## 审查优先级
+
+首先研究 R15→R16 的基地接近与 Builder 区域保留改动，分析它们如何间接导致 Air 清岛效率下降；检查内外 General 分兵、领地任务所有权、合法重获视野、Builder/Scout 连续性、真实对空威胁、经济产能与终局清图。**代码未改，不等于运行行为未被其他模块改变。**
+
+原始开发历史仓库仍为 `yetengyang8-eng/Rusted-Warfare-Agent`。本审查仓库完全独立，不重写原提交、没有合并用户本地未提交的工具改动。
