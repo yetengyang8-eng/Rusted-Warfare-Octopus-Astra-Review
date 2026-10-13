@@ -1,0 +1,2833 @@
+{
+  "raw": {
+    "path": "G:\\deepseek 工作台\\_validation\\octopus-r12-builder-20261011\\spain-hard-final\\work\\rw-agent-reports\\battle-1791659212982-bcb85ed8.jsonl.gz",
+    "bytes": 74731604,
+    "sha256": "3351bd2201a1233d85a468c1de9ca94f034343e06e6211c971d87dd59e50447b",
+    "rows": 310386,
+    "malformed": 0,
+    "closedGzip": true
+  },
+  "input": {
+    "jarSha256": "61d8a341b3fff0445e67978d7deb2a6d4e349589e683a1f35afc35c9317b98cf",
+    "mapSource": "G:\\deepseek 工作台\\游戏环境\\P1F-GPTSol61-Operations-2026-10-01\\mods\\maps\\[10p] 10p 西班牙混战_by_MP97.tmx",
+    "mapSha256": "342db6d8a8b8320b6a271b9e3c8a4c29c96a203e206c4be690c44bbef5882746",
+    "loadedMap": "maps/skirmish/[10p] Spain MP97.tmx",
+    "speed": 5,
+    "difficulty": 1,
+    "durationGameSeconds": 3600,
+    "wallSafetySeconds": 1080,
+    "nativePositionMutation": false,
+    "fixture": false,
+    "desktopTouched": false
+  },
+  "summary": {
+    "outcome": "PARTIAL",
+    "reason": "Game-time budget reached without native result",
+    "phase": "battle",
+    "matchOutcome": "ONGOING",
+    "commands": 13933,
+    "observations": 3698,
+    "ownLosses": 441,
+    "newCombatUnits": 469,
+    "attackOrders": 1746,
+    "attackOrdersConfirmed": 1041,
+    "retreatOrders": 0,
+    "upgradesCompleted": 4,
+    "completedMines": 7,
+    "newMines": 7,
+    "mineTarget": 3,
+    "minesBeyondFloor": 3,
+    "expansionRefusals": 190,
+    "expansionBlocked": 202,
+    "completedFactories": 4,
+    "newFactories": 4,
+    "landFactoryTarget": 4,
+    "factoryBlocks": 78,
+    "builderTarget": 1,
+    "builderRecoveries": 6,
+    "builderOrders": 6,
+    "battleGameTimeMs": 3603456,
+    "gameSecondsPerWallSecond": 4.8,
+    "noProgressWindowMs": 20000,
+    "noProgressCooldownMs": 30000,
+    "targetNoProgressTriggers": 0,
+    "targetRetries": 0,
+    "targetSuppressionsStarted": 11,
+    "targetSuppressionsReleased": 0,
+    "targetSuppressedSelections": 0,
+    "targetSuppressionsAtEnd": 11,
+    "targetSwitches": 0,
+    "effectiveDecisionIntervalGameMs": 7216,
+    "noProgressAttentionGapMs": 21648,
+    "maxObservedGameTimeJump": 7600,
+    "observationCount": 3698,
+    "spendTotal": 534500,
+    "spendByCategory": {
+      "BUILDER_RECOVERY": {
+        "orders": 6,
+        "cost": 3000
+      },
+      "NEW_FACTORY": {
+        "orders": 4,
+        "cost": 2800
+      },
+      "UNIT_PRODUCTION": {
+        "orders": 470,
+        "cost": 389700
+      },
+      "NEW_MINE": {
+        "orders": 7,
+        "cost": 4900
+      },
+      "FACTORY_UPGRADE": {
+        "orders": 4,
+        "cost": 8000
+      },
+      "STRATEGIC_CAPABILITY": {
+        "orders": 49,
+        "cost": 33500
+      },
+      "STRATEGIC_CONSTRUCTION": {
+        "orders": 72,
+        "cost": 70200
+      },
+      "MINE_UPGRADE": {
+        "orders": 16,
+        "cost": 22400
+      }
+    },
+    "measuredIncomePerGameSecond": 152.77,
+    "investmentIntentions": 4,
+    "investmentCompletions": 0,
+    "investmentCancellations": 4,
+    "investmentReserveAtEnd": 0,
+    "investmentPendingAtEnd": false,
+    "finalUrgency": "EMERGENCY",
+    "reconEnabled": true,
+    "reconTasksCreated": 14,
+    "reconOrdersQueued": 117,
+    "reconOrdersObserved": 117,
+    "reconMovesCompletedBetweenSamples": 0,
+    "frontierTasksSatisfiedByTeamVision": 1,
+    "reconResolvedAfterObservedMove": 2,
+    "reconReacquired": 8,
+    "reconSitesCleared": 0,
+    "reconBlocked": 4,
+    "reconTaskPendingAtEnd": true,
+    "reconFrontierEnabled": true,
+    "frontierTasksCreated": 1,
+    "frontierTasksRefreshed": 4,
+    "frontierTasksAdvanced": 4,
+    "frontierTasksBlocked": 1,
+    "frontierTasksPreempted": 0,
+    "expendableTransfers": 0,
+    "expendableScoutsAtEnd": 0,
+    "factoryTargetIncreases": 2,
+    "factoryTargetIncreaseBlocks": 53,
+    "landFactoryTargetAtEnd": 4,
+    "factoryTargetCommittedAtEnd": false,
+    "landFactoryTargetMax": 2147483647,
+    "factorySaturationPct": 61.04,
+    "factorySaturationMinPct": 80,
+    "economyBaseIncome": 26.9,
+    "economyIncomePerMine": 12.07,
+    "economyModelSource": "MEASURED_4_MATCHES_2_SPEEDS_T1_R2_0.999_T2_T3_ESTIMATED_FROM_FROZEN_GENERATION_RATIOS",
+    "minesReadyAtEnd": 14,
+    "productionConsumptionPerGameSecond": 234.7,
+    "sustainableSurplusPerGameSecond": -2.6,
+    "productionCapacity": {
+      "incomeEstimate": 232.1,
+      "productionConsumptionPerGameSecond": 240.0,
+      "recentSpendPerGameSecond": 300.7,
+      "sustainableSurplusPerGameSecond": -7.9,
+      "credits": 18069.0,
+      "strategyArmyTarget": 132,
+      "committedArmed": 132,
+      "hardSafetyCap": 2147483647,
+      "readyProducerCount": 4,
+      "producerUtilizationPct": 61.22,
+      "observedProducerGameMs": 600000,
+      "demand": "KNOWN",
+      "backlogSlots": 0,
+      "routeCount": 4,
+      "routes": [
+        {
+          "producerId": 570,
+          "producerType": "landFactory",
+          "product": "heavyTank",
+          "nativeActionId": "u_heavyTank",
+          "nativeCost": 800.0,
+          "observedTech": 2,
+          "nativeQueue": 1,
+          "nativeAffordable": true,
+          "quoteSource": "LEGAL_NATIVE_MENU",
+          "expectedDurationGameMs": null,
+          "expectedThroughput": null,
+          "durationStatus": "UNKNOWN",
+          "fallbackScope": "EXISTING_ORDINARY_PRODUCTION_POLICY"
+        },
+        {
+          "producerId": 967,
+          "producerType": "landFactory",
+          "product": "heavyTank",
+          "nativeActionId": "u_heavyTank",
+          "nativeCost": 800.0,
+          "observedTech": 2,
+          "nativeQueue": 1,
+          "nativeAffordable": true,
+          "quoteSource": "LEGAL_NATIVE_MENU",
+          "expectedDurationGameMs": null,
+          "expectedThroughput": null,
+          "durationStatus": "UNKNOWN",
+          "fallbackScope": "EXISTING_ORDINARY_PRODUCTION_POLICY"
+        },
+        {
+          "producerId": 32425,
+          "producerType": "landFactory",
+          "product": "heavyTank",
+          "nativeActionId": "u_heavyTank",
+          "nativeCost": 800.0,
+          "observedTech": 2,
+          "nativeQueue": 1,
+          "nativeAffordable": true,
+          "quoteSource": "LEGAL_NATIVE_MENU",
+          "expectedDurationGameMs": null,
+          "expectedThroughput": null,
+          "durationStatus": "UNKNOWN",
+          "fallbackScope": "EXISTING_ORDINARY_PRODUCTION_POLICY"
+        },
+        {
+          "producerId": 35477,
+          "producerType": "landFactory",
+          "product": "heavyTank",
+          "nativeActionId": "u_heavyTank",
+          "nativeCost": 800.0,
+          "observedTech": 2,
+          "nativeQueue": 1,
+          "nativeAffordable": true,
+          "quoteSource": "LEGAL_NATIVE_MENU",
+          "expectedDurationGameMs": null,
+          "expectedThroughput": null,
+          "durationStatus": "UNKNOWN",
+          "fallbackScope": "EXISTING_ORDINARY_PRODUCTION_POLICY"
+        }
+      ],
+      "selectedNativeCost": 800.0,
+      "selectedNativeAffordable": true,
+      "builderReserve": 0,
+      "investmentReserve": 0,
+      "capabilityReserve": 0.0,
+      "allReserved": 0.0,
+      "recovery": false,
+      "factoryTarget": 4,
+      "factoryTargetCommitted": false,
+      "bottleneck": "UNKNOWN",
+      "militaryCapacityDecision": "HOLD",
+      "producerCapacityDecision": "HOLD",
+      "windowGameMs": 150000,
+      "coveredGameMs": 150000,
+      "surplusGameMs": 79408,
+      "usefulDemandGameMs": 150000,
+      "safeGameMs": 150000,
+      "sustained": false,
+      "operationalCapacityStatus": "UNKNOWN",
+      "gameTimeMs": 3600208,
+      "intervalEstimateSource": "SAME_SOURCE_BOTH_ENDPOINTS_CONSERVATIVE_ESTIMATE",
+      "continuousNativeExecutionProven": false,
+      "maxBridgedIntervalGameMs": 30000,
+      "excludedIntervalGameMs": 0,
+      "maxSampleIntervalGameMs": 7216,
+      "producerCoveredGameMs": 150000,
+      "menuSourceTimeStatus": "UNKNOWN_CURRENT_CYCLE_READ",
+      "menuSourceCurrent": true,
+      "ownMissionDemand": 120,
+      "nativeUnitCapStatus": "UNKNOWN",
+      "hardSafetyCapSource": "SOFTWARE_POLICY_OR_EXPLICIT_PROPERTY",
+      "demandSource": "CONTINUING_ORDINARY_NATIVE_ROUTE_NOT_ORGANIZATION_QUOTA",
+      "productionPolicy": "CONTINUOUS_WHILE_NATIVE_LEGAL_AND_COMMITTED_FUNDS_AVAILABLE",
+      "organizationTargetIsProductionLimit": false,
+      "militaryGrowthPolicyGoal": 96
+    },
+    "strategy": {
+      "enabled": true,
+      "armyTarget": 132,
+      "activeTarget": 88,
+      "reserveTarget": 44,
+      "hardSafetyCap": 2147483647,
+      "builderTarget": 9,
+      "militaryCapacityIncreases": 0,
+      "militaryCapacityFloor": 0,
+      "capabilityNeedsAtEnd": 10,
+      "needsResolvedByLegalEvidence": 0,
+      "investmentOrders": 137,
+      "mineUpgradesObserved": 15,
+      "constructionCompletionsObserved": 64,
+      "capabilityReservesStarted": 5,
+      "capabilityReservesReleased": 5,
+      "capabilityReserveAtEnd": 0.0,
+      "capabilityTasksAtEnd": 0,
+      "capabilityModeScope": "PER_UNIT",
+      "searchAreaPolicy": "LEGAL_AIR_FRONTIER_CURRENT_COVERAGE_SEARCH",
+      "g6": true,
+      "airGeneral": {
+        "airGeneralId": 1,
+        "owner": "air-general:1",
+        "roster": [],
+        "targetId": 80738,
+        "mission": "CONTINUING_AIR_MAP_SEARCH",
+        "searchLegKnown": false,
+        "searchLegX": null,
+        "searchLegY": null,
+        "routeCursor": 0,
+        "routeLegEnd": -1,
+        "routeTiles": 31,
+        "routeLeader": 18441,
+        "routeFrontierTile": 97107,
+        "routePotentialInfoScore": 320.0,
+        "routeInfoAuthority": "NATIVE_PLAYER_FOG_HISTORY",
+        "searchNeed": {
+          "status": "LEGAL_FRONTIER_EXPLORATION",
+          "coverageAuthority": "NATIVE_PLAYER_FOG_HISTORY",
+          "enemyPresence": "UNKNOWN"
+        },
+        "searchLegsWitnessed": 0,
+        "attackReceipts": 23,
+        "specialistTransfers": 6,
+        "groundGeneral": false,
+        "formations": [
+          {
+            "airGeneralId": 1,
+            "owner": "air-general:1",
+            "roster": [],
+            "targetId": 80738,
+            "mission": "CONTINUING_AIR_MAP_SEARCH",
+            "searchLegKnown": false,
+            "searchLegX": null,
+            "searchLegY": null,
+            "routeCursor": 0,
+            "routeLegEnd": -1,
+            "routeTiles": 31,
+            "routeLeader": 18441,
+            "routeFrontierTile": 97107,
+            "routePotentialInfoScore": 320.0,
+            "routeInfoAuthority": "NATIVE_PLAYER_FOG_HISTORY",
+            "searchNeed": {
+              "status": "LEGAL_FRONTIER_EXPLORATION",
+              "coverageAuthority": "NATIVE_PLAYER_FOG_HISTORY",
+              "enemyPresence": "UNKNOWN"
+            },
+            "searchLegsWitnessed": 0,
+            "attackReceipts": 23,
+            "specialistTransfers": 6,
+            "groundGeneral": false
+          }
+        ],
+        "formationCount": 1
+      },
+      "endgameReady": false,
+      "airTarget": 7,
+      "airProviderTarget": 1,
+      "airProviders": 0,
+      "pendingAirProviders": 0,
+      "capital": {
+        "covered": true,
+        "horizonGameMs": 120000,
+        "ownCreditsGrowth": -12531.5,
+        "source": "CURRENT_OWN_CREDITS_SAMPLES",
+        "growing": false,
+        "wealthThreshold": null,
+        "hiddenEnemyAdvantage": "UNKNOWN",
+        "idleCapitalPerGameSecond": -104.42916666666666,
+        "observedAirServiceSamples": 3,
+        "airProviderNativeSpendPerGameSecond": 245.09803921568627,
+        "airInvoicesAwaitingReadyWitness": 0,
+        "airThroughputSource": "ACCEPTED_NATIVE_INVOICE_TO_LATER_OWN_READY_PRODUCT",
+        "airProviderModel": "CURRENT_FUNDED_SPATIAL_DUTY_PLUS_OBSERVED_IDLE_CAPITAL_OVER_OBSERVED_PROVIDER_SERVICE"
+      },
+      "capitalUpgradesObserved": 0
+    }
+  },
+  "lastOwn": {
+    "gameTimeMs": 3575984,
+    "frame": 223499,
+    "player": {
+      "teamId": 0,
+      "name": "Player",
+      "credits": 17596.5
+    },
+    "readyTypes": {
+      "commandCenter": 1,
+      "landFactory": 4,
+      "extractorT2": 6,
+      "combatEngineer": 3,
+      "repairbay": 5,
+      "amphibiousJet": 7,
+      "heavyTank": 113,
+      "builder": 8,
+      "heavyArtillery": 6,
+      "extractorT1": 6,
+      "fabricatorT1": 1
+    }
+  },
+  "fiveMinuteSamples": [
+    {
+      "gameTimeMs": 1952,
+      "frame": 122,
+      "player": {
+        "teamId": 0,
+        "name": "Player",
+        "credits": 4054.0
+      },
+      "readyTypes": {
+        "commandCenter": 1
+      }
+    },
+    {
+      "gameTimeMs": 308960,
+      "frame": 19310,
+      "player": {
+        "teamId": 0,
+        "name": "Player",
+        "credits": 2169.5
+      },
+      "readyTypes": {
+        "commandCenter": 1,
+        "builder": 2,
+        "landFactory": 2,
+        "extractorT1": 5,
+        "heavyTank": 11
+      }
+    },
+    {
+      "gameTimeMs": 609088,
+      "frame": 38068,
+      "player": {
+        "teamId": 0,
+        "name": "Player",
+        "credits": 586.0
+      },
+      "readyTypes": {
+        "commandCenter": 1,
+        "landFactory": 2,
+        "extractorT1": 3,
+        "heavyTank": 10,
+        "combatEngineer": 1,
+        "amphibiousJet": 2,
+        "builder": 1,
+        "repairbay": 1
+      }
+    },
+    {
+      "gameTimeMs": 915808,
+      "frame": 57238,
+      "player": {
+        "teamId": 0,
+        "name": "Player",
+        "credits": 471.5
+      },
+      "readyTypes": {
+        "commandCenter": 1,
+        "landFactory": 2,
+        "extractorT1": 2,
+        "heavyTank": 25,
+        "combatEngineer": 1,
+        "repairbay": 2,
+        "builder": 1
+      }
+    },
+    {
+      "gameTimeMs": 1222784,
+      "frame": 76424,
+      "player": {
+        "teamId": 0,
+        "name": "Player",
+        "credits": 710.0
+      },
+      "readyTypes": {
+        "commandCenter": 1,
+        "landFactory": 2,
+        "extractorT1": 7,
+        "heavyTank": 31,
+        "combatEngineer": 1,
+        "repairbay": 2,
+        "amphibiousJet": 3,
+        "builder": 3
+      }
+    },
+    {
+      "gameTimeMs": 1540400,
+      "frame": 96275,
+      "player": {
+        "teamId": 0,
+        "name": "Player",
+        "credits": 2207.5
+      },
+      "readyTypes": {
+        "commandCenter": 1,
+        "landFactory": 3,
+        "extractorT2": 2,
+        "heavyTank": 40,
+        "combatEngineer": 1,
+        "repairbay": 3,
+        "extractorT1": 6,
+        "amphibiousJet": 3,
+        "builder": 1
+      }
+    },
+    {
+      "gameTimeMs": 1841616,
+      "frame": 115101,
+      "player": {
+        "teamId": 0,
+        "name": "Player",
+        "credits": 723.0
+      },
+      "readyTypes": {
+        "commandCenter": 1,
+        "landFactory": 4,
+        "extractorT2": 2,
+        "combatEngineer": 1,
+        "repairbay": 4,
+        "heavyTank": 62,
+        "extractorT1": 9,
+        "amphibiousJet": 4,
+        "builder": 4
+      }
+    },
+    {
+      "gameTimeMs": 2142320,
+      "frame": 133895,
+      "player": {
+        "teamId": 0,
+        "name": "Player",
+        "credits": 1396.5
+      },
+      "readyTypes": {
+        "commandCenter": 1,
+        "landFactory": 4,
+        "extractorT2": 2,
+        "combatEngineer": 2,
+        "repairbay": 4,
+        "heavyTank": 88,
+        "extractorT1": 10,
+        "amphibiousJet": 4,
+        "builder": 5
+      }
+    },
+    {
+      "gameTimeMs": 2469440,
+      "frame": 154340,
+      "player": {
+        "teamId": 0,
+        "name": "Player",
+        "credits": 2317.0
+      },
+      "readyTypes": {
+        "commandCenter": 1,
+        "landFactory": 4,
+        "extractorT2": 3,
+        "combatEngineer": 2,
+        "repairbay": 5,
+        "heavyTank": 98,
+        "extractorT1": 7,
+        "amphibiousJet": 4,
+        "builder": 5
+      }
+    },
+    {
+      "gameTimeMs": 2785280,
+      "frame": 174080,
+      "player": {
+        "teamId": 0,
+        "name": "Player",
+        "credits": 1303.0
+      },
+      "readyTypes": {
+        "commandCenter": 1,
+        "landFactory": 4,
+        "extractorT2": 2,
+        "combatEngineer": 2,
+        "repairbay": 5,
+        "heavyTank": 97,
+        "amphibiousJet": 4,
+        "extractorT1": 9,
+        "builder": 7
+      }
+    },
+    {
+      "gameTimeMs": 3090784,
+      "frame": 193174,
+      "player": {
+        "teamId": 0,
+        "name": "Player",
+        "credits": 3528.5
+      },
+      "readyTypes": {
+        "commandCenter": 1,
+        "landFactory": 4,
+        "extractorT2": 9,
+        "combatEngineer": 2,
+        "repairbay": 5,
+        "amphibiousJet": 3,
+        "extractorT1": 6,
+        "heavyTank": 86,
+        "builder": 9
+      }
+    },
+    {
+      "gameTimeMs": 3401440,
+      "frame": 212590,
+      "player": {
+        "teamId": 0,
+        "name": "Player",
+        "credits": 23821.5
+      },
+      "readyTypes": {
+        "commandCenter": 1,
+        "landFactory": 4,
+        "extractorT2": 11,
+        "combatEngineer": 3,
+        "repairbay": 5,
+        "amphibiousJet": 4,
+        "heavyTank": 115,
+        "builder": 6,
+        "heavyArtillery": 2,
+        "extractorT1": 5
+      }
+    }
+  ],
+  "eventCounts": {
+    "report_log_config": 1,
+    "health": 1,
+    "report_provenance": 1,
+    "observation": 3698,
+    "g2_world_update": 38844,
+    "g2_event": 57405,
+    "battle_config": 1,
+    "combat_observation": 3442,
+    "scout_visibility": 3442,
+    "g3_batch": 3442,
+    "endgame_air_provider_demand": 14,
+    "strategic_marginal_investment": 21,
+    "strategy_static_construction_map": 1,
+    "strategy_capacity": 115,
+    "builder_recovery_started": 6,
+    "builder_production": 38,
+    "g3_intent": 14158,
+    "g1_command_attempt": 14158,
+    "action": 14111,
+    "command_result": 13933,
+    "g3_execution": 14158,
+    "spend": 628,
+    "builder_recovery_ordered": 6,
+    "production_capacity_menu": 2045,
+    "production_capacity_assessment": 397,
+    "production_facility_blocked": 78,
+    "production_route_observed": 119,
+    "g51_air_capability_need": 611,
+    "g4_force_state": 3442,
+    "g5_runtime_state": 1835,
+    "agent_tick_alive": 323,
+    "g3_credit_settled": 627,
+    "production_menu": 1392,
+    "builder_recovery_completed": 6,
+    "production_facility_plan": 4,
+    "production_facility_planned": 4,
+    "production_facility_move": 11,
+    "production_facility_started": 4,
+    "production_facility_observed": 4,
+    "strategy_current_construction_demand": 37,
+    "factory_started": 4,
+    "factory_completed": 4,
+    "g51_tech_conversion": 10,
+    "opening_scout_ordered": 1,
+    "g1_production_witness": 944,
+    "economy_expansion_plan": 23,
+    "economy_expansion_planned": 7,
+    "economy_expansion_move": 7,
+    "strategy_static_construction_domain": 36,
+    "strategy_current_facility_demand": 39,
+    "economy_expansion_started": 7,
+    "economy_expansion_observed": 7,
+    "strategy_construction_capacity": 108,
+    "combat_unit_observed": 469,
+    "production_queue_finished": 470,
+    "g4_force_transition": 14748,
+    "g4_force_transition_witness": 14748,
+    "g1_recon_owner": 120,
+    "task_ownership_acquired": 119,
+    "native_tech_funding_selected": 4,
+    "investment_released": 4,
+    "recon_takeover_queued": 1,
+    "g1_recon_witness": 126,
+    "extractor_started": 7,
+    "extractor_completed": 7,
+    "plan_unavailable": 6385,
+    "capability_snapshot": 6,
+    "recon_takeover_cancelled": 1,
+    "task_ownership_released": 118,
+    "economy_expansion_blocked": 202,
+    "static_map_knowledge": 1,
+    "early_expansion_approach": 87,
+    "early_expansion_transition": 130,
+    "early_expansion_transition_witness": 130,
+    "g4_force_collected": 11420,
+    "recon_frontier_plan": 6,
+    "recon_task_created": 14,
+    "recon_deferred": 112,
+    "recon_assigned": 59,
+    "recon_order_queued": 117,
+    "recon_order_observed": 117,
+    "recon_progress": 102,
+    "recon_route_progress": 86,
+    "recon_waypoint_reached": 14,
+    "recon_frontier_memory_update": 4,
+    "upgrade_completed": 4,
+    "production_surplus": 130,
+    "surplus_spending_evaluated": 603,
+    "recon_frontier_route_planned": 4,
+    "recon_frontier_route_renewed": 4,
+    "production_idle": 129,
+    "g5_commander_transition": 10136,
+    "g41_forming_expansion_approach": 33,
+    "economy_expansion_finished": 1,
+    "reachability_raw": 100,
+    "report_reachability": 110,
+    "reachability_sample": 110,
+    "engagement_observation": 7347,
+    "engagement_assessment": 4385,
+    "local_crisis_engagement": 7483,
+    "capability_need_created": 14,
+    "g1_strategy_state_transition": 4158,
+    "recon_frontier_satisfied": 1,
+    "recon_frontier_route_waiting": 1,
+    "recon_attempt_blocked": 1,
+    "recon_frontier_blocked": 1,
+    "recon_recall_queued": 78,
+    "own_loss": 441,
+    "military_urgency": 100,
+    "g5_general_frontier_plan": 329,
+    "tactical_intent": 1783,
+    "g4_force_order": 1719,
+    "g5_general_transition": 8257,
+    "attack_order_confirmed": 1041,
+    "strategy_capability_reserve_started": 5,
+    "strategy_investment_menu": 367,
+    "mine_income_investment_evaluated": 3102,
+    "mine_income_investment_deferred": 212,
+    "production_deferred": 896,
+    "production_facility_finished": 3,
+    "factory_target_increase_blocked": 53,
+    "strategy_capability_reserve_released": 5,
+    "recon_unassigned": 48,
+    "engagement_assessment_deferred": 321,
+    "strategy_allocation": 65,
+    "strategy_production_queue_finished": 49,
+    "strategy_recovery_plan": 118,
+    "strategy_support_reserve_started": 31,
+    "production_facility_native_quote": 28,
+    "strategy_support_reserve_released": 31,
+    "strategy_resource_approach": 136,
+    "strategy_prospect_ordered": 106,
+    "strategy_resource_journey_approach": 1670,
+    "strategy_prospect_danger_cancelled": 29,
+    "strategy_purchase_committed": 2,
+    "g1_strategy_purchase_ready_match_witness": 3,
+    "strategy_worker_committed": 17,
+    "response_engagement_observation": 2068,
+    "strategy_construction_plan": 103,
+    "strategy_construction_ordered": 72,
+    "strategy_support_construction": 8,
+    "g1_strategy_ready_match_witness": 64,
+    "strategy_construction_observed": 64,
+    "strategy_worker_commitment_released": 8,
+    "strategy_support_transferred": 7,
+    "strategy_unit_modes": 1837,
+    "g1_strategy_mode_evidence_witness": 3681,
+    "command_rejected": 178,
+    "strategy_recovery_builder_rally": 7,
+    "strategy_prospect_cluster_committed": 273,
+    "strategy_resource_journey_continued": 1543,
+    "strategy_recovery_capacity_committed": 5,
+    "strategy_task_assigned": 2,
+    "strategy_response_ordered": 4,
+    "strategy_response_progress": 24,
+    "strategy_response_replanned": 4,
+    "strategy_task_preempted": 15,
+    "strategy_task_lost": 31,
+    "capability_need_released": 4,
+    "builder_recovery_waiting": 3,
+    "recon_reacquired": 8,
+    "recon_blocked": 4,
+    "production_reserve_started": 1,
+    "economy_expansion_deferred": 1,
+    "target_suppression_started": 11,
+    "strategy_prospect_current_work": 90,
+    "strategy_prospect_observed": 55,
+    "strategy_frontier_funding_quote": 119,
+    "strategy_frontier_funding_committed": 55,
+    "strategy_frontier_funding_waiting": 27,
+    "strategy_frontier_funding_released": 55,
+    "strategy_local_cluster_visibility": 68,
+    "strategy_prospect_cluster_retained": 44,
+    "strategy_income_alternative_plan": 8,
+    "strategy_prospect_cluster_released": 42,
+    "mine_upgrade_observed": 15,
+    "strategy_task_blocked": 9,
+    "factory_target_increased": 2,
+    "production_facility_committed": 2,
+    "production_facility_order_accepted": 2,
+    "production_facility_ready": 2,
+    "strategy_home_construction_deferred": 5,
+    "production_capacity_after_expansion": 1,
+    "strategy_responder_mode_planned": 2,
+    "strategy_responder_water_approach_ordered": 2,
+    "strategy_responder_mode_ordered": 2,
+    "strategy_expansion_plan": 4,
+    "strategy_provider_repositioned": 20,
+    "surplus_role_ordered": 6,
+    "strategy_purchase_lost": 1,
+    "surplus_role_commitment_update": 6,
+    "air_general_member_transition": 12,
+    "strategy_specialist_handover": 6,
+    "endgame_provider_funding_quote": 5,
+    "endgame_provider_funding_committed": 4,
+    "air_general_engagement": 54,
+    "air_general_attack": 23,
+    "air_general_search_reroute": 11,
+    "air_general_search_plan": 11,
+    "air_general_target_clear": 23,
+    "air_general_search_leg": 10,
+    "strategy_rear_air_provider_assigned": 1,
+    "air_general_search_lookahead": 2,
+    "air_general_unit_mode": 27,
+    "air_general_mode_requested": 6,
+    "endgame_air_funding_quote": 6,
+    "endgame_air_funding_committed": 6,
+    "endgame_air_investment": 3,
+    "endgame_capital_menu": 3,
+    "endgame_capital_construction_plan": 1,
+    "endgame_capital_investment": 1,
+    "g3_cost_summary": 1,
+    "report_log_summary": 1,
+    "summary": 1
+  },
+  "admissionRejections": {
+    "RECON:ACTOR_CONFLICT_IN_OBSERVATION": 42,
+    "CRITICAL_RETREAT:NATIVE_REJECTED": 91,
+    "STRATEGY:ACTOR_CONFLICT_IN_OBSERVATION": 5,
+    "STRATEGY:NATIVE_REJECTED": 8,
+    "GENERAL:NATIVE_REJECTED": 76,
+    "JOINING:NATIVE_REJECTED": 2,
+    "RECON:NATIVE_REJECTED": 1
+  },
+  "builders": {
+    "569": {
+      "firstObservedGameMs": 31968,
+      "lastMovementGameMs": 308960,
+      "lastPosition": [
+        6090.009,
+        4186.424
+      ],
+      "orders": {
+        "move": 6,
+        "repair": 3,
+        "None": 2
+      },
+      "mineAccepted": 5,
+      "states": {},
+      "lastObservedGameMs": 308960,
+      "nativeOrder": "move"
+    },
+    "2308": {
+      "firstObservedGameMs": 308960,
+      "lastMovementGameMs": 399328,
+      "lastPosition": [
+        3727.721,
+        3815.264
+      ],
+      "orders": {
+        "move": 5
+      },
+      "mineAccepted": 0,
+      "states": {
+        "IDLE": 1
+      },
+      "lastObservedGameMs": 399328,
+      "nativeOrder": "move"
+    },
+    "3943": {
+      "firstObservedGameMs": 429536,
+      "lastMovementGameMs": 462496,
+      "lastPosition": [
+        4187.245,
+        5086.802
+      ],
+      "orders": {
+        "None": 2,
+        "move": 1
+      },
+      "mineAccepted": 0,
+      "states": {
+        "IDLE": 2,
+        "RETURN": 1
+      },
+      "lastObservedGameMs": 462496,
+      "nativeOrder": "move"
+    },
+    "4147": {
+      "firstObservedGameMs": 429536,
+      "lastMovementGameMs": 682016,
+      "lastPosition": [
+        4776.707,
+        5230.049
+      ],
+      "orders": {
+        "None": 6,
+        "move": 6
+      },
+      "mineAccepted": 0,
+      "states": {
+        "PROSPECT": 8,
+        "IDLE": 4,
+        "RETURN": 2,
+        "BUILD": 1
+      },
+      "lastObservedGameMs": 682016,
+      "nativeOrder": "move"
+    },
+    "12003": {
+      "firstObservedGameMs": 722832,
+      "lastMovementGameMs": 816384,
+      "lastPosition": [
+        2168.942,
+        3852.898
+      ],
+      "orders": {
+        "move": 3,
+        "None": 2
+      },
+      "mineAccepted": 0,
+      "states": {},
+      "lastObservedGameMs": 816384,
+      "nativeOrder": null
+    },
+    "14976": {
+      "firstObservedGameMs": 846768,
+      "lastMovementGameMs": 954656,
+      "lastPosition": [
+        2410.668,
+        5349.678
+      ],
+      "orders": {
+        "None": 2,
+        "move": 4
+      },
+      "mineAccepted": 1,
+      "states": {},
+      "lastObservedGameMs": 954656,
+      "nativeOrder": "move"
+    },
+    "17771": {
+      "firstObservedGameMs": 985120,
+      "lastMovementGameMs": 985120,
+      "lastPosition": [
+        4410.011,
+        5020.348
+      ],
+      "orders": {
+        "move": 1
+      },
+      "mineAccepted": 0,
+      "states": {},
+      "lastObservedGameMs": 985120,
+      "nativeOrder": "move"
+    },
+    "18742": {
+      "firstObservedGameMs": 1015408,
+      "lastMovementGameMs": 1222784,
+      "lastPosition": [
+        2867.199,
+        5395.763
+      ],
+      "orders": {
+        "None": 3,
+        "move": 5,
+        "repair": 1
+      },
+      "mineAccepted": 1,
+      "states": {},
+      "lastObservedGameMs": 1222784,
+      "nativeOrder": "move"
+    },
+    "19686": {
+      "firstObservedGameMs": 1065328,
+      "lastMovementGameMs": 1489584,
+      "lastPosition": [
+        4228.252,
+        4229.475
+      ],
+      "orders": {
+        "move": 11,
+        "build": 1,
+        "None": 6,
+        "repair": 1
+      },
+      "mineAccepted": 3,
+      "states": {
+        "PROSPECT": 46,
+        "IDLE": 7,
+        "MINE": 3
+      },
+      "lastObservedGameMs": 1489584,
+      "nativeOrder": "move"
+    },
+    "21824": {
+      "firstObservedGameMs": 1125696,
+      "lastMovementGameMs": 1394256,
+      "lastPosition": [
+        3446.476,
+        4726.488
+      ],
+      "orders": {
+        "None": 4,
+        "move": 5,
+        "repair": 2,
+        "build": 2
+      },
+      "mineAccepted": 3,
+      "states": {
+        "PROSPECT": 40,
+        "IDLE": 7,
+        "MINE": 3,
+        "RETURN": 1
+      },
+      "lastObservedGameMs": 1394256,
+      "nativeOrder": "move"
+    },
+    "30276": {
+      "firstObservedGameMs": 1378800,
+      "lastMovementGameMs": 1394256,
+      "lastPosition": [
+        5232.735,
+        5446.729
+      ],
+      "orders": {
+        "move": 1,
+        "repair": 1
+      },
+      "mineAccepted": 1,
+      "states": {
+        "PROSPECT": 1,
+        "IDLE": 1,
+        "MINE": 1,
+        "RETURN": 1
+      },
+      "lastObservedGameMs": 1394256,
+      "nativeOrder": "repair"
+    },
+    "32071": {
+      "firstObservedGameMs": 1459552,
+      "lastMovementGameMs": 1489584,
+      "lastPosition": [
+        4129.766,
+        4881.386
+      ],
+      "orders": {
+        "move": 1,
+        "None": 2
+      },
+      "mineAccepted": 1,
+      "states": {
+        "PROSPECT": 10,
+        "IDLE": 2,
+        "MINE": 1,
+        "RETURN": 1
+      },
+      "lastObservedGameMs": 1510048,
+      "nativeOrder": null
+    },
+    "32343": {
+      "firstObservedGameMs": 1459552,
+      "lastMovementGameMs": 1590288,
+      "lastPosition": [
+        4250.827,
+        4717.474
+      ],
+      "orders": {
+        "move": 3,
+        "None": 2,
+        "repair": 1
+      },
+      "mineAccepted": 0,
+      "states": {
+        "PROSPECT": 1,
+        "IDLE": 1
+      },
+      "lastObservedGameMs": 1590288,
+      "nativeOrder": "move"
+    },
+    "36325": {
+      "firstObservedGameMs": 1621776,
+      "lastMovementGameMs": 1954592,
+      "lastPosition": [
+        6037.423,
+        3082.605
+      ],
+      "orders": {
+        "build": 1,
+        "repair": 2,
+        "None": 8,
+        "move": 6
+      },
+      "mineAccepted": 1,
+      "states": {
+        "IDLE": 4,
+        "PROSPECT": 15,
+        "MINE": 1
+      },
+      "lastObservedGameMs": 1954592,
+      "nativeOrder": "move"
+    },
+    "38235": {
+      "firstObservedGameMs": 1671248,
+      "lastMovementGameMs": 1880816,
+      "lastPosition": [
+        1935.013,
+        4397.182
+      ],
+      "orders": {
+        "move": 3,
+        "None": 7,
+        "repair": 2
+      },
+      "mineAccepted": 2,
+      "states": {
+        "PROSPECT": 30,
+        "IDLE": 5,
+        "MINE": 2,
+        "RETURN": 1
+      },
+      "lastObservedGameMs": 1911232,
+      "nativeOrder": null
+    },
+    "39808": {
+      "firstObservedGameMs": 1695040,
+      "lastMovementGameMs": 2178512,
+      "lastPosition": [
+        3253.983,
+        3757.493
+      ],
+      "orders": {
+        "None": 10,
+        "move": 9,
+        "build": 1,
+        "repair": 3
+      },
+      "mineAccepted": 3,
+      "states": {
+        "PROSPECT": 85,
+        "IDLE": 8,
+        "MINE": 3
+      },
+      "lastObservedGameMs": 2178512,
+      "nativeOrder": "move"
+    },
+    "42420": {
+      "firstObservedGameMs": 1802416,
+      "lastMovementGameMs": 1963136,
+      "lastPosition": [
+        2230.032,
+        4409.642
+      ],
+      "orders": {
+        "None": 5,
+        "build": 2,
+        "move": 2
+      },
+      "mineAccepted": 2,
+      "states": {
+        "PROSPECT": 29,
+        "IDLE": 4,
+        "MINE": 2,
+        "RETURN": 1
+      },
+      "lastObservedGameMs": 1963136,
+      "nativeOrder": "move"
+    },
+    "43760": {
+      "firstObservedGameMs": 1874224,
+      "lastMovementGameMs": 2145616,
+      "lastPosition": [
+        3070.011,
+        3638.357
+      ],
+      "orders": {
+        "None": 8,
+        "move": 5,
+        "build": 1
+      },
+      "mineAccepted": 2,
+      "states": {
+        "PROSPECT": 53,
+        "IDLE": 7,
+        "MINE": 2
+      },
+      "lastObservedGameMs": 2145616,
+      "nativeOrder": "move"
+    },
+    "44606": {
+      "firstObservedGameMs": 1911232,
+      "lastMovementGameMs": 2023088,
+      "lastPosition": [
+        5830.152,
+        3308.503
+      ],
+      "orders": {
+        "move": 5,
+        "None": 2
+      },
+      "mineAccepted": 1,
+      "states": {
+        "PROSPECT": 31,
+        "IDLE": 3,
+        "MINE": 1
+      },
+      "lastObservedGameMs": 2053120,
+      "nativeOrder": null
+    },
+    "45544": {
+      "firstObservedGameMs": 1923648,
+      "lastMovementGameMs": 2107440,
+      "lastPosition": [
+        3289.102,
+        4670.016
+      ],
+      "orders": {
+        "None": 3,
+        "move": 4,
+        "repair": 1
+      },
+      "mineAccepted": 1,
+      "states": {
+        "IDLE": 4,
+        "PROSPECT": 36,
+        "MINE": 1
+      },
+      "lastObservedGameMs": 2107440,
+      "nativeOrder": "move"
+    },
+    "49395": {
+      "firstObservedGameMs": 2053120,
+      "lastMovementGameMs": 2402016,
+      "lastPosition": [
+        5848.212,
+        4913.726
+      ],
+      "orders": {
+        "move": 8,
+        "None": 10
+      },
+      "mineAccepted": 2,
+      "states": {
+        "PROSPECT": 60,
+        "IDLE": 6,
+        "MINE": 2,
+        "RETURN": 2
+      },
+      "lastObservedGameMs": 2402016,
+      "nativeOrder": null
+    },
+    "50695": {
+      "firstObservedGameMs": 2107440,
+      "lastMovementGameMs": 2610608,
+      "lastPosition": [
+        3292.068,
+        3469.989
+      ],
+      "orders": {
+        "move": 11,
+        "None": 13
+      },
+      "mineAccepted": 0,
+      "states": {
+        "PROSPECT": 61,
+        "IDLE": 5,
+        "RETURN": 1,
+        "BUILD": 1
+      },
+      "lastObservedGameMs": 2610608,
+      "nativeOrder": "move"
+    },
+    "51813": {
+      "firstObservedGameMs": 2142320,
+      "lastMovementGameMs": 2668336,
+      "lastPosition": [
+        4121.434,
+        3848.491
+      ],
+      "orders": {
+        "None": 16,
+        "move": 8,
+        "repair": 1
+      },
+      "mineAccepted": 2,
+      "states": {
+        "PROSPECT": 68,
+        "IDLE": 9,
+        "RETURN": 1,
+        "MINE": 2
+      },
+      "lastObservedGameMs": 2668336,
+      "nativeOrder": "move"
+    },
+    "53771": {
+      "firstObservedGameMs": 2211600,
+      "lastMovementGameMs": 2290016,
+      "lastPosition": [
+        3390.022,
+        4958.543
+      ],
+      "orders": {
+        "None": 3,
+        "move": 3
+      },
+      "mineAccepted": 0,
+      "states": {
+        "PROSPECT": 21,
+        "RETURN": 1
+      },
+      "lastObservedGameMs": 2290016,
+      "nativeOrder": "move"
+    },
+    "56589": {
+      "firstObservedGameMs": 2361856,
+      "lastMovementGameMs": 2826592,
+      "lastPosition": [
+        2910.787,
+        3260.484
+      ],
+      "orders": {
+        "None": 14,
+        "repair": 1,
+        "move": 5,
+        "build": 1
+      },
+      "mineAccepted": 2,
+      "states": {
+        "PROSPECT": 26,
+        "IDLE": 7,
+        "MINE": 2
+      },
+      "lastObservedGameMs": 2826592,
+      "nativeOrder": "move"
+    },
+    "57960": {
+      "firstObservedGameMs": 2392208,
+      "lastMovementGameMs": 2469440,
+      "lastPosition": [
+        2793.132,
+        5750.003
+      ],
+      "orders": {
+        "move": 2,
+        "None": 3
+      },
+      "mineAccepted": 0,
+      "states": {
+        "IDLE": 2,
+        "PROSPECT": 14
+      },
+      "lastObservedGameMs": 2474784,
+      "nativeOrder": null
+    },
+    "58303": {
+      "firstObservedGameMs": 2436416,
+      "lastMovementGameMs": 2474784,
+      "lastPosition": [
+        3310.011,
+        5152.764
+      ],
+      "orders": {
+        "None": 2,
+        "move": 1
+      },
+      "mineAccepted": 1,
+      "states": {
+        "PROSPECT": 12,
+        "IDLE": 1,
+        "MINE": 1
+      },
+      "lastObservedGameMs": 2474784,
+      "nativeOrder": null
+    },
+    "60040": {
+      "firstObservedGameMs": 2474784,
+      "lastMovementGameMs": 2518864,
+      "lastPosition": [
+        3867.044,
+        5370.06
+      ],
+      "orders": {
+        "move": 1,
+        "None": 2
+      },
+      "mineAccepted": 0,
+      "states": {
+        "IDLE": 1,
+        "PROSPECT": 11,
+        "RETURN": 1
+      },
+      "lastObservedGameMs": 2518864,
+      "nativeOrder": null
+    },
+    "60902": {
+      "firstObservedGameMs": 2507984,
+      "lastMovementGameMs": 2668336,
+      "lastPosition": [
+        4947.468,
+        5490.686
+      ],
+      "orders": {
+        "move": 4,
+        "None": 4
+      },
+      "mineAccepted": 1,
+      "states": {
+        "IDLE": 3,
+        "PROSPECT": 27,
+        "MINE": 1
+      },
+      "lastObservedGameMs": 2668336,
+      "nativeOrder": null
+    },
+    "62685": {
+      "firstObservedGameMs": 2610608,
+      "lastMovementGameMs": 2644928,
+      "lastPosition": [
+        4973.913,
+        5410.015
+      ],
+      "orders": {
+        "move": 1,
+        "build": 2
+      },
+      "mineAccepted": 1,
+      "states": {
+        "PROSPECT": 5,
+        "IDLE": 1,
+        "MINE": 1
+      },
+      "lastObservedGameMs": 2644928,
+      "nativeOrder": "build"
+    },
+    "62977": {
+      "firstObservedGameMs": 2610608,
+      "lastMovementGameMs": 2668336,
+      "lastPosition": [
+        3008.236,
+        5951.754
+      ],
+      "orders": {
+        "None": 1,
+        "move": 2,
+        "build": 1
+      },
+      "mineAccepted": 1,
+      "states": {
+        "PROSPECT": 9,
+        "IDLE": 1,
+        "MINE": 1
+      },
+      "lastObservedGameMs": 2668336,
+      "nativeOrder": "build"
+    },
+    "65200": {
+      "firstObservedGameMs": 2668336,
+      "lastMovementGameMs": 3473136,
+      "lastPosition": [
+        5467.75,
+        1648.655
+      ],
+      "orders": {
+        "move": 10,
+        "None": 25,
+        "repair": 3
+      },
+      "mineAccepted": 3,
+      "states": {
+        "PROSPECT": 110,
+        "IDLE": 9,
+        "MINE": 3
+      },
+      "lastObservedGameMs": 3476032,
+      "nativeOrder": null
+    },
+    "66864": {
+      "firstObservedGameMs": 2716208,
+      "lastMovementGameMs": 3245632,
+      "lastPosition": [
+        5110.01,
+        3633.004
+      ],
+      "orders": {
+        "None": 20,
+        "move": 1,
+        "build": 1,
+        "repair": 1
+      },
+      "mineAccepted": 2,
+      "states": {
+        "PROSPECT": 80,
+        "IDLE": 4,
+        "MINE": 2
+      },
+      "lastObservedGameMs": 3245632,
+      "nativeOrder": null
+    },
+    "67234": {
+      "firstObservedGameMs": 2746880,
+      "lastMovementGameMs": 2898528,
+      "lastPosition": [
+        1929.766,
+        4401.232
+      ],
+      "orders": {
+        "None": 6,
+        "move": 1,
+        "repair": 2
+      },
+      "mineAccepted": 1,
+      "states": {
+        "PROSPECT": 25,
+        "IDLE": 1,
+        "MINE": 1
+      },
+      "lastObservedGameMs": 2912304,
+      "nativeOrder": "repair"
+    },
+    "67324": {
+      "firstObservedGameMs": 2746880,
+      "lastMovementGameMs": 3327824,
+      "lastPosition": [
+        5830.019,
+        3308.448
+      ],
+      "orders": {
+        "move": 7,
+        "None": 18,
+        "repair": 6
+      },
+      "mineAccepted": 1,
+      "states": {
+        "PROSPECT": 86,
+        "IDLE": 7,
+        "MINE": 1
+      },
+      "lastObservedGameMs": 3405776,
+      "nativeOrder": "repair"
+    },
+    "67552": {
+      "firstObservedGameMs": 2746880,
+      "lastMovementGameMs": 2991312,
+      "lastPosition": [
+        5268.417,
+        4752.397
+      ],
+      "orders": {
+        "None": 11,
+        "move": 2
+      },
+      "mineAccepted": 0,
+      "states": {
+        "IDLE": 3,
+        "PROSPECT": 37,
+        "RETURN": 1
+      },
+      "lastObservedGameMs": 3007824,
+      "nativeOrder": null
+    },
+    "67919": {
+      "firstObservedGameMs": 2785280,
+      "lastMovementGameMs": 3401440,
+      "lastPosition": [
+        1768.387,
+        2929.751
+      ],
+      "orders": {
+        "None": 22,
+        "move": 6,
+        "repair": 1
+      },
+      "mineAccepted": 3,
+      "states": {
+        "PROSPECT": 70,
+        "IDLE": 8,
+        "MINE": 3
+      },
+      "lastObservedGameMs": 3405776,
+      "nativeOrder": null
+    },
+    "68497": {
+      "firstObservedGameMs": 2816688,
+      "lastMovementGameMs": 3210832,
+      "lastPosition": [
+        5349.929,
+        3967.229
+      ],
+      "orders": {
+        "None": 15,
+        "move": 1,
+        "repair": 2
+      },
+      "mineAccepted": 2,
+      "states": {
+        "PROSPECT": 54,
+        "IDLE": 4,
+        "MINE": 2,
+        "RETURN": 1
+      },
+      "lastObservedGameMs": 3210832,
+      "nativeOrder": null
+    },
+    "68806": {
+      "firstObservedGameMs": 2816688,
+      "lastMovementGameMs": 3333648,
+      "lastPosition": [
+        5213.105,
+        5289.988
+      ],
+      "orders": {
+        "move": 10,
+        "None": 14
+      },
+      "mineAccepted": 1,
+      "states": {
+        "PROSPECT": 78,
+        "IDLE": 5,
+        "MINE": 1,
+        "RETURN": 1
+      },
+      "lastObservedGameMs": 3333648,
+      "nativeOrder": "move"
+    },
+    "68932": {
+      "firstObservedGameMs": 2826592,
+      "lastMovementGameMs": 3192016,
+      "lastPosition": [
+        1847.053,
+        4090.635
+      ],
+      "orders": {
+        "None": 10,
+        "move": 5,
+        "repair": 1
+      },
+      "mineAccepted": 1,
+      "states": {
+        "IDLE": 4,
+        "PROSPECT": 57,
+        "MINE": 1
+      },
+      "lastObservedGameMs": 3192016,
+      "nativeOrder": null
+    },
+    "72633": {
+      "firstObservedGameMs": 3039392,
+      "lastMovementGameMs": 3287632,
+      "lastPosition": [
+        6295.855,
+        4176.371
+      ],
+      "orders": {
+        "None": 10,
+        "move": 1
+      },
+      "mineAccepted": 1,
+      "states": {
+        "PROSPECT": 33,
+        "IDLE": 4,
+        "MINE": 1
+      },
+      "lastObservedGameMs": 3287632,
+      "nativeOrder": null
+    },
+    "73002": {
+      "firstObservedGameMs": 3058784,
+      "lastMovementGameMs": 3575984,
+      "lastPosition": [
+        3996.751,
+        4889.464
+      ],
+      "orders": {
+        "None": 14,
+        "move": 9,
+        "repair": 1,
+        "build": 1
+      },
+      "mineAccepted": 2,
+      "states": {
+        "PROSPECT": 68,
+        "IDLE": 7,
+        "MINE": 2
+      },
+      "lastObservedGameMs": 3575984,
+      "nativeOrder": "move"
+    },
+    "74845": {
+      "firstObservedGameMs": 3161536,
+      "lastMovementGameMs": 3363952,
+      "lastPosition": [
+        5278.498,
+        4350.025
+      ],
+      "orders": {
+        "None": 6,
+        "move": 2,
+        "repair": 2
+      },
+      "mineAccepted": 1,
+      "states": {
+        "IDLE": 4,
+        "PROSPECT": 22,
+        "MINE": 1,
+        "RETURN": 1
+      },
+      "lastObservedGameMs": 3363952,
+      "nativeOrder": "move"
+    },
+    "75616": {
+      "firstObservedGameMs": 3192016,
+      "lastMovementGameMs": 3297776,
+      "lastPosition": [
+        2327.948,
+        5729.974
+      ],
+      "orders": {
+        "move": 4,
+        "None": 2
+      },
+      "mineAccepted": 0,
+      "states": {
+        "IDLE": 1,
+        "PROSPECT": 19,
+        "RETURN": 1
+      },
+      "lastObservedGameMs": 3297776,
+      "nativeOrder": "move"
+    },
+    "76707": {
+      "firstObservedGameMs": 3287632,
+      "lastMovementGameMs": 3575984,
+      "lastPosition": [
+        1892.489,
+        4349.89
+      ],
+      "orders": {
+        "move": 6,
+        "None": 8,
+        "repair": 1,
+        "build": 1
+      },
+      "mineAccepted": 3,
+      "states": {
+        "PROSPECT": 34,
+        "IDLE": 7,
+        "MINE": 3
+      },
+      "lastObservedGameMs": 3575984,
+      "nativeOrder": "move"
+    },
+    "78498": {
+      "firstObservedGameMs": 3363952,
+      "lastMovementGameMs": 3575984,
+      "lastPosition": [
+        2249.993,
+        3868.765
+      ],
+      "orders": {
+        "None": 8,
+        "move": 3,
+        "repair": 1
+      },
+      "mineAccepted": 1,
+      "states": {
+        "IDLE": 4,
+        "PROSPECT": 38,
+        "MINE": 1
+      },
+      "lastObservedGameMs": 3575984,
+      "nativeOrder": "repair"
+    },
+    "79704": {
+      "firstObservedGameMs": 3405776,
+      "lastMovementGameMs": 3575984,
+      "lastPosition": [
+        1230.713,
+        5250.721
+      ],
+      "orders": {
+        "None": 5,
+        "move": 3,
+        "repair": 1
+      },
+      "mineAccepted": 1,
+      "states": {
+        "IDLE": 4,
+        "PROSPECT": 26,
+        "MINE": 1
+      },
+      "lastObservedGameMs": 3575984,
+      "nativeOrder": "repair"
+    },
+    "81035": {
+      "firstObservedGameMs": 3473136,
+      "lastMovementGameMs": 3575984,
+      "lastPosition": [
+        5286.77,
+        5433.156
+      ],
+      "orders": {
+        "move": 3,
+        "None": 3
+      },
+      "mineAccepted": 1,
+      "states": {
+        "PROSPECT": 6,
+        "IDLE": 2,
+        "MINE": 1
+      },
+      "lastObservedGameMs": 3575984,
+      "nativeOrder": "move"
+    },
+    "81489": {
+      "firstObservedGameMs": 3516672,
+      "lastMovementGameMs": 3575984,
+      "lastPosition": [
+        3650.086,
+        5672.931
+      ],
+      "orders": {
+        "repair": 1,
+        "move": 1,
+        "None": 1
+      },
+      "mineAccepted": 0,
+      "states": {
+        "IDLE": 1,
+        "PROSPECT": 11
+      },
+      "lastObservedGameMs": 3575984,
+      "nativeOrder": null
+    },
+    "81664": {
+      "firstObservedGameMs": 3544816,
+      "lastMovementGameMs": 3575984,
+      "lastPosition": [
+        4809.943,
+        5432.774
+      ],
+      "orders": {
+        "None": 2
+      },
+      "mineAccepted": 0,
+      "states": {
+        "PROSPECT": 8,
+        "IDLE": 1
+      },
+      "lastObservedGameMs": 3575984,
+      "nativeOrder": null
+    },
+    "82853": {
+      "firstObservedGameMs": 3575984,
+      "lastMovementGameMs": 3575984,
+      "lastPosition": [
+        4309.299,
+        5750.832
+      ],
+      "orders": {
+        "None": 1
+      },
+      "mineAccepted": 0,
+      "states": {
+        "IDLE": 1,
+        "PROSPECT": 3
+      },
+      "lastObservedGameMs": 3575984,
+      "nativeOrder": null
+    }
+  },
+  "peakReadyMineCount": 16,
+  "peakReadyBuilderCount": 11,
+  "observedBuilderAcceptedCommandKinds": {
+    "/command/build-extractor": 61,
+    "/command/move": 1680,
+    "/command/build-factory": 3,
+    "/command/construct": 2
+  },
+  "mineAcceptedWithPosition": 62,
+  "mineReadyLaterWitness": 54,
+  "mineReceipts": [
+    {
+      "actor": 569,
+      "x": 4490.0,
+      "y": 5510.0,
+      "acceptedDetectedGameMs": 34224,
+      "receiptFrame": 2153,
+      "rawLine": 1096,
+      "quoteSourceObservation": "fd55b833-3cd5-4c11-ac5d-d44395845d56:o:346",
+      "quoteSourcePath": "/expansion/plan?unitId=569",
+      "readyWitness": {
+        "id": 594,
+        "observedGameMs": 62096,
+        "frame": 3881,
+        "acceptedToReadyObservedMs": 27872
+      }
+    },
+    {
+      "actor": 569,
+      "x": 4210.0,
+      "y": 5650.0,
+      "acceptedDetectedGameMs": 57664,
+      "receiptFrame": 3618,
+      "rawLine": 1859,
+      "quoteSourceObservation": "fd55b833-3cd5-4c11-ac5d-d44395845d56:o:598",
+      "quoteSourcePath": "/expansion/plan?unitId=569",
+      "readyWitness": {
+        "id": 651,
+        "observedGameMs": 92128,
+        "frame": 5758,
+        "acceptedToReadyObservedMs": 34464
+      }
+    },
+    {
+      "actor": 569,
+      "x": 4090.0,
+      "y": 4810.0,
+      "acceptedDetectedGameMs": 92720,
+      "receiptFrame": 5809,
+      "rawLine": 3246,
+      "quoteSourceObservation": "fd55b833-3cd5-4c11-ac5d-d44395845d56:o:1062",
+      "quoteSourcePath": "/expansion/plan?unitId=569",
+      "readyWitness": {
+        "id": 707,
+        "observedGameMs": 122368,
+        "frame": 7648,
+        "acceptedToReadyObservedMs": 29648
+      }
+    },
+    {
+      "actor": 569,
+      "x": 5290.0,
+      "y": 5390.0,
+      "acceptedDetectedGameMs": 224848,
+      "receiptFrame": 14082,
+      "rawLine": 9703,
+      "quoteSourceObservation": "fd55b833-3cd5-4c11-ac5d-d44395845d56:o:2712",
+      "quoteSourcePath": "/expansion/plan?unitId=569",
+      "readyWitness": {
+        "id": 1403,
+        "observedGameMs": 243232,
+        "frame": 15202,
+        "acceptedToReadyObservedMs": 18384
+      }
+    },
+    {
+      "actor": 569,
+      "x": 6030.0,
+      "y": 4770.0,
+      "acceptedDetectedGameMs": 274992,
+      "receiptFrame": 17205,
+      "rawLine": 12465,
+      "quoteSourceObservation": "fd55b833-3cd5-4c11-ac5d-d44395845d56:o:3402",
+      "quoteSourcePath": "/expansion/plan?unitId=569",
+      "readyWitness": {
+        "id": 2104,
+        "observedGameMs": 308960,
+        "frame": 19310,
+        "acceptedToReadyObservedMs": 33968
+      }
+    },
+    {
+      "actor": 14976,
+      "x": 3070.0,
+      "y": 5510.0,
+      "acceptedDetectedGameMs": 921152,
+      "receiptFrame": 57594,
+      "rawLine": 58964,
+      "quoteSourceObservation": "fd55b833-3cd5-4c11-ac5d-d44395845d56:o:12986",
+      "quoteSourcePath": "/expansion/plan?unitId=14976",
+      "readyWitness": {
+        "id": 16644,
+        "observedGameMs": 946032,
+        "frame": 59127,
+        "acceptedToReadyObservedMs": 24880
+      }
+    },
+    {
+      "actor": 19686,
+      "x": 2850.0,
+      "y": 6190.0,
+      "acceptedDetectedGameMs": 1094144,
+      "receiptFrame": 68406,
+      "rawLine": 70840,
+      "quoteSourceObservation": "fd55b833-3cd5-4c11-ac5d-d44395845d56:o:15922",
+      "quoteSourcePath": "/expansion/plan?unitId=19686",
+      "readyWitness": {
+        "id": 21119,
+        "observedGameMs": 1125696,
+        "frame": 70356,
+        "acceptedToReadyObservedMs": 31552
+      }
+    },
+    {
+      "actor": 21824,
+      "x": 3270.0,
+      "y": 5310.0,
+      "acceptedDetectedGameMs": 1153584,
+      "receiptFrame": 72117,
+      "rawLine": 75312,
+      "quoteSourceObservation": "fd55b833-3cd5-4c11-ac5d-d44395845d56:o:16871",
+      "quoteSourcePath": "/expansion/plan?unitId=21824",
+      "readyWitness": {
+        "id": 22977,
+        "observedGameMs": 1205648,
+        "frame": 75353,
+        "acceptedToReadyObservedMs": 52064
+      }
+    },
+    {
+      "actor": 19686,
+      "x": 3590.0,
+      "y": 6590.0,
+      "acceptedDetectedGameMs": 1162160,
+      "receiptFrame": 72669,
+      "rawLine": 76019,
+      "quoteSourceObservation": "fd55b833-3cd5-4c11-ac5d-d44395845d56:o:17038",
+      "quoteSourcePath": "/expansion/plan?unitId=19686&excludeSites=3330.0%2C6610.0",
+      "readyWitness": {
+        "id": 23552,
+        "observedGameMs": 1205648,
+        "frame": 75353,
+        "acceptedToReadyObservedMs": 43488
+      }
+    },
+    {
+      "actor": 18742,
+      "x": 3330.0,
+      "y": 6610.0,
+      "acceptedDetectedGameMs": 1173888,
+      "receiptFrame": 73409,
+      "rawLine": 76953,
+      "quoteSourceObservation": "fd55b833-3cd5-4c11-ac5d-d44395845d56:o:17206",
+      "quoteSourcePath": "/expansion/plan?unitId=18742",
+      "readyWitness": {
+        "id": 23686,
+        "observedGameMs": 1205648,
+        "frame": 75353,
+        "acceptedToReadyObservedMs": 31760
+      }
+    },
+    {
+      "actor": 21824,
+      "x": 2150.0,
+      "y": 4950.0,
+      "acceptedDetectedGameMs": 1237552,
+      "receiptFrame": 77398,
+      "rawLine": 82101,
+      "quoteSourceObservation": "fd55b833-3cd5-4c11-ac5d-d44395845d56:o:18121",
+      "quoteSourcePath": "/expansion/plan?unitId=21824",
+      "readyWitness": {
+        "id": 26187,
+        "observedGameMs": 1279984,
+        "frame": 79999,
+        "acceptedToReadyObservedMs": 42432
+      }
+    },
+    {
+      "actor": 19686,
+      "x": 1930.0,
+      "y": 5830.0,
+      "acceptedDetectedGameMs": 1256528,
+      "receiptFrame": 78579,
+      "rawLine": 83608,
+      "quoteSourceObservation": "fd55b833-3cd5-4c11-ac5d-d44395845d56:o:18398",
+      "quoteSourcePath": "/expansion/plan?unitId=19686",
+      "readyWitness": {
+        "id": 26953,
+        "observedGameMs": 1279984,
+        "frame": 79999,
+        "acceptedToReadyObservedMs": 23456
+      }
+    },
+    {
+      "actor": 21824,
+      "x": 3270.0,
+      "y": 4610.0,
+      "acceptedDetectedGameMs": 1342624,
+      "receiptFrame": 83942,
+      "rawLine": 90843,
+      "quoteSourceObservation": "fd55b833-3cd5-4c11-ac5d-d44395845d56:o:19549",
+      "quoteSourcePath": "/expansion/plan?unitId=21824",
+      "readyWitness": {
+        "id": 30272,
+        "observedGameMs": 1378800,
+        "frame": 86175,
+        "acceptedToReadyObservedMs": 36176
+      }
+    },
+    {
+      "actor": 30276,
+      "x": 5290.0,
+      "y": 5390.0,
+      "acceptedDetectedGameMs": 1380752,
+      "receiptFrame": 86333,
+      "rawLine": 94149,
+      "quoteSourceObservation": "fd55b833-3cd5-4c11-ac5d-d44395845d56:o:20023",
+      "quoteSourcePath": "/expansion/plan?unitId=30276",
+      "readyWitness": {
+        "id": 30976,
+        "observedGameMs": 1425728,
+        "frame": 89108,
+        "acceptedToReadyObservedMs": 44976
+      }
+    },
+    {
+      "actor": 32071,
+      "x": 4090.0,
+      "y": 4810.0,
+      "acceptedDetectedGameMs": 1466048,
+      "receiptFrame": 91684,
+      "rawLine": 101352,
+      "quoteSourceObservation": "fd55b833-3cd5-4c11-ac5d-d44395845d56:o:21151",
+      "quoteSourcePath": "/expansion/plan?unitId=32071",
+      "readyWitness": {
+        "id": 33335,
+        "observedGameMs": 1489584,
+        "frame": 93099,
+        "acceptedToReadyObservedMs": 23536
+      }
+    },
+    {
+      "actor": 36325,
+      "x": 5290.0,
+      "y": 5390.0,
+      "acceptedDetectedGameMs": 1610016,
+      "receiptFrame": 100687,
+      "rawLine": 114618,
+      "quoteSourceObservation": "fd55b833-3cd5-4c11-ac5d-d44395845d56:o:22928",
+      "quoteSourcePath": "/expansion/plan?unitId=36325",
+      "readyWitness": {
+        "id": 36783,
+        "observedGameMs": 1649392,
+        "frame": 103087,
+        "acceptedToReadyObservedMs": 39376
+      }
+    },
+    {
+      "actor": 36325,
+      "x": 5190.0,
+      "y": 4170.0,
+      "acceptedDetectedGameMs": 1711168,
+      "receiptFrame": 107028,
+      "rawLine": 123879,
+      "quoteSourceObservation": "fd55b833-3cd5-4c11-ac5d-d44395845d56:o:24006",
+      "quoteSourcePath": "/expansion/plan?unitId=36325",
+      "readyWitness": {
+        "id": 40476,
+        "observedGameMs": 1753136,
+        "frame": 109571,
+        "acceptedToReadyObservedMs": 41968
+      }
+    },
+    {
+      "actor": 39808,
+      "x": 3270.0,
+      "y": 4610.0,
+      "acceptedDetectedGameMs": 1751136,
+      "receiptFrame": 109500,
+      "rawLine": 127509,
+      "quoteSourceObservation": "fd55b833-3cd5-4c11-ac5d-d44395845d56:o:24374",
+      "quoteSourcePath": "/expansion/plan?unitId=39808",
+      "readyWitness": {
+        "id": 41499,
+        "observedGameMs": 1786928,
+        "frame": 111683,
+        "acceptedToReadyObservedMs": 35792
+      }
+    },
+    {
+      "actor": 38235,
+      "x": 3270.0,
+      "y": 5310.0,
+      "acceptedDetectedGameMs": 1775520,
+      "receiptFrame": 111045,
+      "rawLine": 129832,
+      "quoteSourceObservation": "fd55b833-3cd5-4c11-ac5d-d44395845d56:o:24620",
+      "quoteSourcePath": "/expansion/plan?unitId=38235",
+      "readyWitness": {
+        "id": 42234,
+        "observedGameMs": 1802416,
+        "frame": 112651,
+        "acceptedToReadyObservedMs": 26896
+      }
+    },
+    {
+      "actor": 42420,
+      "x": 2150.0,
+      "y": 4950.0,
+      "acceptedDetectedGameMs": 1870416,
+      "receiptFrame": 117017,
+      "rawLine": 138843,
+      "quoteSourceObservation": "fd55b833-3cd5-4c11-ac5d-d44395845d56:o:25432",
+      "quoteSourcePath": "/expansion/plan?unitId=42420",
+      "readyWitness": {
+        "id": 44572,
+        "observedGameMs": 1911232,
+        "frame": 119452,
+        "acceptedToReadyObservedMs": 40816
+      }
+    },
+    {
+      "actor": 38235,
+      "x": 1890.0,
+      "y": 4330.0,
+      "acceptedDetectedGameMs": 1876560,
+      "receiptFrame": 117376,
+      "rawLine": 139376,
+      "quoteSourceObservation": "fd55b833-3cd5-4c11-ac5d-d44395845d56:o:25473",
+      "quoteSourcePath": "/expansion/plan?unitId=38235",
+      "readyWitness": {
+        "id": 44531,
+        "observedGameMs": 1911232,
+        "frame": 119452,
+        "acceptedToReadyObservedMs": 34672
+      }
+    },
+    {
+      "actor": 39808,
+      "x": 6030.0,
+      "y": 4770.0,
+      "acceptedDetectedGameMs": 1911232,
+      "receiptFrame": 119554,
+      "rawLine": 142484,
+      "quoteSourceObservation": "fd55b833-3cd5-4c11-ac5d-d44395845d56:o:25754",
+      "quoteSourcePath": "/expansion/plan?unitId=39808",
+      "readyWitness": {
+        "id": 45494,
+        "observedGameMs": 1954592,
+        "frame": 122162,
+        "acceptedToReadyObservedMs": 43360
+      }
+    },
+    {
+      "actor": 43760,
+      "x": 6250.0,
+      "y": 4110.0,
+      "acceptedDetectedGameMs": 1933232,
+      "receiptFrame": 120892,
+      "rawLine": 144458,
+      "quoteSourceObservation": "fd55b833-3cd5-4c11-ac5d-d44395845d56:o:25910",
+      "quoteSourcePath": "/expansion/plan?unitId=43760",
+      "readyWitness": {
+        "id": 45754,
+        "observedGameMs": 1954592,
+        "frame": 122162,
+        "acceptedToReadyObservedMs": 21360
+      }
+    },
+    {
+      "actor": 42420,
+      "x": 2270.0,
+      "y": 3790.0,
+      "acceptedDetectedGameMs": 1972352,
+      "receiptFrame": 123356,
+      "rawLine": 148538,
+      "quoteSourceObservation": "fd55b833-3cd5-4c11-ac5d-d44395845d56:o:26217",
+      "quoteSourcePath": "/expansion/plan?unitId=42420",
+      "readyWitness": {
+        "id": 72548,
+        "observedGameMs": 3039392,
+        "frame": 189962,
+        "acceptedToReadyObservedMs": 1067040
+      }
+    },
+    {
+      "actor": 45544,
+      "x": 2850.0,
+      "y": 6190.0,
+      "acceptedDetectedGameMs": 1974448,
+      "receiptFrame": 123499,
+      "rawLine": 148762,
+      "quoteSourceObservation": "fd55b833-3cd5-4c11-ac5d-d44395845d56:o:26241",
+      "quoteSourcePath": "/expansion/plan?unitId=45544",
+      "readyWitness": {
+        "id": 47304,
+        "observedGameMs": 2023088,
+        "frame": 126443,
+        "acceptedToReadyObservedMs": 48640
+      }
+    },
+    {
+      "actor": 44606,
+      "x": 5850.0,
+      "y": 3230.0,
+      "acceptedDetectedGameMs": 1994656,
+      "receiptFrame": 124763,
+      "rawLine": 150829,
+      "quoteSourceObservation": "fd55b833-3cd5-4c11-ac5d-d44395845d56:o:26447",
+      "quoteSourcePath": "/expansion/plan?unitId=44606",
+      "readyWitness": {
+        "id": 48233,
+        "observedGameMs": 2023088,
+        "frame": 126443,
+        "acceptedToReadyObservedMs": 28432
+      }
+    },
+    {
+      "actor": 39808,
+      "x": 3330.0,
+      "y": 6610.0,
+      "acceptedDetectedGameMs": 2060464,
+      "receiptFrame": 128853,
+      "rawLine": 157903,
+      "quoteSourceObservation": "fd55b833-3cd5-4c11-ac5d-d44395845d56:o:26911",
+      "quoteSourcePath": "/expansion/plan?unitId=39808",
+      "readyWitness": {
+        "id": 50158,
+        "observedGameMs": 2107440,
+        "frame": 131715,
+        "acceptedToReadyObservedMs": 46976
+      }
+    },
+    {
+      "actor": 43760,
+      "x": 3270.0,
+      "y": 4610.0,
+      "acceptedDetectedGameMs": 2073072,
+      "receiptFrame": 129637,
+      "rawLine": 159224,
+      "quoteSourceObservation": "fd55b833-3cd5-4c11-ac5d-d44395845d56:o:27010",
+      "quoteSourcePath": "/expansion/plan?unitId=43760",
+      "readyWitness": {
+        "id": 50527,
+        "observedGameMs": 2107440,
+        "frame": 131715,
+        "acceptedToReadyObservedMs": 34368
+      }
+    },
+    {
+      "actor": 49395,
+      "x": 3610.0,
+      "y": 3950.0,
+      "acceptedDetectedGameMs": 2115072,
+      "receiptFrame": 132276,
+      "rawLine": 163641,
+      "quoteSourceObservation": "fd55b833-3cd5-4c11-ac5d-d44395845d56:o:27344",
+      "quoteSourcePath": "/expansion/plan?unitId=49395",
+      "readyWitness": {
+        "id": 51503,
+        "observedGameMs": 2142320,
+        "frame": 133895,
+        "acceptedToReadyObservedMs": 27248
+      }
+    },
+    {
+      "actor": 51813,
+      "x": 2150.0,
+      "y": 4950.0,
+      "acceptedDetectedGameMs": 2367408,
+      "receiptFrame": 148037,
+      "rawLine": 189495,
+      "quoteSourceObservation": "fd55b833-3cd5-4c11-ac5d-d44395845d56:o:29125",
+      "quoteSourcePath": "/expansion/plan?unitId=51813",
+      "readyWitness": {
+        "id": 57635,
+        "observedGameMs": 2392208,
+        "frame": 149513,
+        "acceptedToReadyObservedMs": 24800
+      }
+    },
+    {
+      "actor": 56589,
+      "x": 4090.0,
+      "y": 4810.0,
+      "acceptedDetectedGameMs": 2371680,
+      "receiptFrame": 148323,
+      "rawLine": 189977,
+      "quoteSourceObservation": "fd55b833-3cd5-4c11-ac5d-d44395845d56:o:29142",
+      "quoteSourcePath": "/expansion/plan?unitId=56589",
+      "readyWitness": {
+        "id": 57708,
+        "observedGameMs": 2402016,
+        "frame": 150126,
+        "acceptedToReadyObservedMs": 30336
+      }
+    },
+    {
+      "actor": 49395,
+      "x": 6030.0,
+      "y": 4770.0,
+      "acceptedDetectedGameMs": 2402016,
+      "receiptFrame": 150233,
+      "rawLine": 192886,
+      "quoteSourceObservation": "fd55b833-3cd5-4c11-ac5d-d44395845d56:o:29327",
+      "quoteSourcePath": "/expansion/plan?unitId=49395",
+      "readyWitness": {
+        "id": 58247,
+        "observedGameMs": 2436416,
+        "frame": 152276,
+        "acceptedToReadyObservedMs": 34400
+      }
+    },
+    {
+      "actor": 58303,
+      "x": 3270.0,
+      "y": 4610.0,
+      "acceptedDetectedGameMs": 2486352,
+      "receiptFrame": 155537,
+      "rawLine": 201036,
+      "quoteSourceObservation": "fd55b833-3cd5-4c11-ac5d-d44395845d56:o:29824",
+      "quoteSourcePath": "/expansion/plan?unitId=58303",
+      "readyWitness": {
+        "id": 61446,
+        "observedGameMs": 2579744,
+        "frame": 161234,
+        "acceptedToReadyObservedMs": 93392
+      }
+    },
+    {
+      "actor": 51813,
+      "x": 3270.0,
+      "y": 4610.0,
+      "acceptedDetectedGameMs": 2529936,
+      "receiptFrame": 158246,
+      "rawLine": 205261,
+      "quoteSourceObservation": "fd55b833-3cd5-4c11-ac5d-d44395845d56:o:30077",
+      "quoteSourcePath": "/expansion/plan?unitId=51813",
+      "readyWitness": null
+    },
+    {
+      "actor": 60902,
+      "x": 3070.0,
+      "y": 5510.0,
+      "acceptedDetectedGameMs": 2547344,
+      "receiptFrame": 159320,
+      "rawLine": 207086,
+      "quoteSourceObservation": "fd55b833-3cd5-4c11-ac5d-d44395845d56:o:30192",
+      "quoteSourcePath": "/expansion/plan?unitId=60902",
+      "readyWitness": {
+        "id": 62021,
+        "observedGameMs": 2579744,
+        "frame": 161234,
+        "acceptedToReadyObservedMs": 32400
+      }
+    },
+    {
+      "actor": 62685,
+      "x": 5290.0,
+      "y": 5390.0,
+      "acceptedDetectedGameMs": 2637712,
+      "receiptFrame": 165011,
+      "rawLine": 216526,
+      "quoteSourceObservation": "fd55b833-3cd5-4c11-ac5d-d44395845d56:o:30781",
+      "quoteSourcePath": "/expansion/plan?unitId=62685",
+      "readyWitness": {
+        "id": 68012,
+        "observedGameMs": 2785280,
+        "frame": 174080,
+        "acceptedToReadyObservedMs": 147568
+      }
+    },
+    {
+      "actor": 62977,
+      "x": 2850.0,
+      "y": 6190.0,
+      "acceptedDetectedGameMs": 2661536,
+      "receiptFrame": 166469,
+      "rawLine": 218971,
+      "quoteSourceObservation": "fd55b833-3cd5-4c11-ac5d-d44395845d56:o:30944",
+      "quoteSourcePath": "/expansion/plan?unitId=62977",
+      "readyWitness": null
+    },
+    {
+      "actor": 65200,
+      "x": 3330.0,
+      "y": 6610.0,
+      "acceptedDetectedGameMs": 2742656,
+      "receiptFrame": 171552,
+      "rawLine": 227892,
+      "quoteSourceObservation": "fd55b833-3cd5-4c11-ac5d-d44395845d56:o:31412",
+      "quoteSourcePath": "/expansion/plan?unitId=65200",
+      "readyWitness": {
+        "id": 67596,
+        "observedGameMs": 2785280,
+        "frame": 174080,
+        "acceptedToReadyObservedMs": 42624
+      }
+    },
+    {
+      "actor": 56589,
+      "x": 3350.0,
+      "y": 3930.0,
+      "acceptedDetectedGameMs": 2746880,
+      "receiptFrame": 171838,
+      "rawLine": 228367,
+      "quoteSourceObservation": "fd55b833-3cd5-4c11-ac5d-d44395845d56:o:31442",
+      "quoteSourcePath": "/expansion/plan?unitId=56589",
+      "readyWitness": {
+        "id": 67806,
+        "observedGameMs": 2785280,
+        "frame": 174080,
+        "acceptedToReadyObservedMs": 38400
+      }
+    },
+    {
+      "actor": 66864,
+      "x": 5290.0,
+      "y": 5390.0,
+      "acceptedDetectedGameMs": 2760992,
+      "receiptFrame": 172702,
+      "rawLine": 229723,
+      "quoteSourceObservation": "fd55b833-3cd5-4c11-ac5d-d44395845d56:o:31518",
+      "quoteSourcePath": "/expansion/plan?unitId=66864",
+      "readyWitness": {
+        "id": 81590,
+        "observedGameMs": 3544816,
+        "frame": 221551,
+        "acceptedToReadyObservedMs": 783824
+      }
+    },
+    {
+      "actor": 65200,
+      "x": 3590.0,
+      "y": 6590.0,
+      "acceptedDetectedGameMs": 2785280,
+      "receiptFrame": 174205,
+      "rawLine": 232148,
+      "quoteSourceObservation": "fd55b833-3cd5-4c11-ac5d-d44395845d56:o:31670",
+      "quoteSourcePath": "/expansion/plan?unitId=65200",
+      "readyWitness": {
+        "id": 68453,
+        "observedGameMs": 2816688,
+        "frame": 176043,
+        "acceptedToReadyObservedMs": 31408
+      }
+    },
+    {
+      "actor": 67234,
+      "x": 1890.0,
+      "y": 4330.0,
+      "acceptedDetectedGameMs": 2884608,
+      "receiptFrame": 180464,
+      "rawLine": 241689,
+      "quoteSourceObservation": "fd55b833-3cd5-4c11-ac5d-d44395845d56:o:32233",
+      "quoteSourcePath": "/expansion/plan?unitId=67234",
+      "readyWitness": {
+        "id": 74241,
+        "observedGameMs": 3141152,
+        "frame": 196322,
+        "acceptedToReadyObservedMs": 256544
+      }
+    },
+    {
+      "actor": 68497,
+      "x": 3610.0,
+      "y": 3950.0,
+      "acceptedDetectedGameMs": 2884608,
+      "receiptFrame": 180469,
+      "rawLine": 241697,
+      "quoteSourceObservation": "fd55b833-3cd5-4c11-ac5d-d44395845d56:o:32234",
+      "quoteSourcePath": "/expansion/plan?unitId=68497",
+      "readyWitness": {
+        "id": 70694,
+        "observedGameMs": 2943136,
+        "frame": 183946,
+        "acceptedToReadyObservedMs": 58528
+      }
+    },
+    {
+      "actor": 68497,
+      "x": 2270.0,
+      "y": 3790.0,
+      "acceptedDetectedGameMs": 3007824,
+      "receiptFrame": 188168,
+      "rawLine": 253852,
+      "quoteSourceObservation": "fd55b833-3cd5-4c11-ac5d-d44395845d56:o:32852",
+      "quoteSourcePath": "/expansion/plan?unitId=68497",
+      "readyWitness": null
+    },
+    {
+      "actor": 66864,
+      "x": 2530.0,
+      "y": 3210.0,
+      "acceptedDetectedGameMs": 3031680,
+      "receiptFrame": 189643,
+      "rawLine": 256049,
+      "quoteSourceObservation": "fd55b833-3cd5-4c11-ac5d-d44395845d56:o:32978",
+      "quoteSourcePath": "/expansion/plan?unitId=66864",
+      "readyWitness": {
+        "id": 73008,
+        "observedGameMs": 3090784,
+        "frame": 193174,
+        "acceptedToReadyObservedMs": 59104
+      }
+    },
+    {
+      "actor": 68932,
+      "x": 1890.0,
+      "y": 4330.0,
+      "acceptedDetectedGameMs": 3104064,
+      "receiptFrame": 194191,
+      "rawLine": 262623,
+      "quoteSourceObservation": "fd55b833-3cd5-4c11-ac5d-d44395845d56:o:33336",
+      "quoteSourcePath": "/expansion/plan?unitId=68932",
+      "readyWitness": {
+        "id": 81552,
+        "observedGameMs": 3544816,
+        "frame": 221551,
+        "acceptedToReadyObservedMs": 440752
+      }
+    },
+    {
+      "actor": 67919,
+      "x": 3570.0,
+      "y": 2850.0,
+      "acceptedDetectedGameMs": 3119152,
+      "receiptFrame": 195134,
+      "rawLine": 263984,
+      "quoteSourceObservation": "fd55b833-3cd5-4c11-ac5d-d44395845d56:o:33415",
+      "quoteSourcePath": "/expansion/plan?unitId=67919",
+      "readyWitness": {
+        "id": 74542,
+        "observedGameMs": 3161536,
+        "frame": 197596,
+        "acceptedToReadyObservedMs": 42384
+      }
+    },
+    {
+      "actor": 67919,
+      "x": 2530.0,
+      "y": 3210.0,
+      "acceptedDetectedGameMs": 3210832,
+      "receiptFrame": 200885,
+      "rawLine": 272521,
+      "quoteSourceObservation": "fd55b833-3cd5-4c11-ac5d-d44395845d56:o:33865",
+      "quoteSourcePath": "/expansion/plan?unitId=67919",
+      "readyWitness": {
+        "id": 76304,
+        "observedGameMs": 3245632,
+        "frame": 202852,
+        "acceptedToReadyObservedMs": 34800
+      }
+    },
+    {
+      "actor": 68806,
+      "x": 6030.0,
+      "y": 4770.0,
+      "acceptedDetectedGameMs": 3216288,
+      "receiptFrame": 201191,
+      "rawLine": 273060,
+      "quoteSourceObservation": "fd55b833-3cd5-4c11-ac5d-d44395845d56:o:33891",
+      "quoteSourcePath": "/expansion/plan?unitId=68806",
+      "readyWitness": {
+        "id": 76283,
+        "observedGameMs": 3245632,
+        "frame": 202852,
+        "acceptedToReadyObservedMs": 29344
+      }
+    },
+    {
+      "actor": 72633,
+      "x": 6250.0,
+      "y": 4110.0,
+      "acceptedDetectedGameMs": 3261792,
+      "receiptFrame": 204019,
+      "rawLine": 277313,
+      "quoteSourceObservation": "fd55b833-3cd5-4c11-ac5d-d44395845d56:o:34129",
+      "quoteSourcePath": "/expansion/plan?unitId=72633",
+      "readyWitness": {
+        "id": 76823,
+        "observedGameMs": 3287632,
+        "frame": 205477,
+        "acceptedToReadyObservedMs": 25840
+      }
+    },
+    {
+      "actor": 65200,
+      "x": 3710.0,
+      "y": 2050.0,
+      "acceptedDetectedGameMs": 3265440,
+      "receiptFrame": 204225,
+      "rawLine": 277639,
+      "quoteSourceObservation": "fd55b833-3cd5-4c11-ac5d-d44395845d56:o:34151",
+      "quoteSourcePath": "/expansion/plan?unitId=65200",
+      "readyWitness": {
+        "id": 76918,
+        "observedGameMs": 3297776,
+        "frame": 206111,
+        "acceptedToReadyObservedMs": 32336
+      }
+    },
+    {
+      "actor": 67324,
+      "x": 5850.0,
+      "y": 3230.0,
+      "acceptedDetectedGameMs": 3303712,
+      "receiptFrame": 206627,
+      "rawLine": 281133,
+      "quoteSourceObservation": "fd55b833-3cd5-4c11-ac5d-d44395845d56:o:34419",
+      "quoteSourcePath": "/expansion/plan?unitId=67324",
+      "readyWitness": {
+        "id": 77399,
+        "observedGameMs": 3327824,
+        "frame": 207989,
+        "acceptedToReadyObservedMs": 24112
+      }
+    },
+    {
+      "actor": 74845,
+      "x": 5190.0,
+      "y": 4170.0,
+      "acceptedDetectedGameMs": 3307408,
+      "receiptFrame": 206854,
+      "rawLine": 281495,
+      "quoteSourceObservation": "fd55b833-3cd5-4c11-ac5d-d44395845d56:o:34448",
+      "quoteSourcePath": "/expansion/plan?unitId=74845",
+      "readyWitness": {
+        "id": 77624,
+        "observedGameMs": 3363952,
+        "frame": 210247,
+        "acceptedToReadyObservedMs": 56544
+      }
+    },
+    {
+      "actor": 73002,
+      "x": 1930.0,
+      "y": 5830.0,
+      "acceptedDetectedGameMs": 3336176,
+      "receiptFrame": 208643,
+      "rawLine": 284279,
+      "quoteSourceObservation": "fd55b833-3cd5-4c11-ac5d-d44395845d56:o:34666",
+      "quoteSourcePath": "/expansion/plan?unitId=73002",
+      "readyWitness": {
+        "id": 78233,
+        "observedGameMs": 3366640,
+        "frame": 210415,
+        "acceptedToReadyObservedMs": 30464
+      }
+    },
+    {
+      "actor": 67919,
+      "x": 1690.0,
+      "y": 2910.0,
+      "acceptedDetectedGameMs": 3366640,
+      "receiptFrame": 210545,
+      "rawLine": 287242,
+      "quoteSourceObservation": "fd55b833-3cd5-4c11-ac5d-d44395845d56:o:34877",
+      "quoteSourcePath": "/expansion/plan?unitId=67919",
+      "readyWitness": {
+        "id": 79141,
+        "observedGameMs": 3401440,
+        "frame": 212590,
+        "acceptedToReadyObservedMs": 34800
+      }
+    },
+    {
+      "actor": 76707,
+      "x": 2150.0,
+      "y": 4950.0,
+      "acceptedDetectedGameMs": 3453600,
+      "receiptFrame": 216003,
+      "rawLine": 296251,
+      "quoteSourceObservation": "fd55b833-3cd5-4c11-ac5d-d44395845d56:o:35368",
+      "quoteSourcePath": "/expansion/plan?unitId=76707",
+      "readyWitness": {
+        "id": 81055,
+        "observedGameMs": 3476032,
+        "frame": 217252,
+        "acceptedToReadyObservedMs": 22432
+      }
+    },
+    {
+      "actor": 73002,
+      "x": 4090.0,
+      "y": 4810.0,
+      "acceptedDetectedGameMs": 3510704,
+      "receiptFrame": 219503,
+      "rawLine": 301099,
+      "quoteSourceObservation": "fd55b833-3cd5-4c11-ac5d-d44395845d56:o:35729",
+      "quoteSourcePath": "/expansion/plan?unitId=73002",
+      "readyWitness": {
+        "id": 81558,
+        "observedGameMs": 3544816,
+        "frame": 221551,
+        "acceptedToReadyObservedMs": 34112
+      }
+    },
+    {
+      "actor": 76707,
+      "x": 1890.0,
+      "y": 4330.0,
+      "acceptedDetectedGameMs": 3510704,
+      "receiptFrame": 219508,
+      "rawLine": 301107,
+      "quoteSourceObservation": "fd55b833-3cd5-4c11-ac5d-d44395845d56:o:35730",
+      "quoteSourcePath": "/expansion/plan?unitId=76707",
+      "readyWitness": null
+    },
+    {
+      "actor": 81035,
+      "x": 5290.0,
+      "y": 5390.0,
+      "acceptedDetectedGameMs": 3516672,
+      "receiptFrame": 219899,
+      "rawLine": 301721,
+      "quoteSourceObservation": "fd55b833-3cd5-4c11-ac5d-d44395845d56:o:35786",
+      "quoteSourcePath": "/expansion/plan?unitId=81035",
+      "readyWitness": null
+    },
+    {
+      "actor": 79704,
+      "x": 1230.0,
+      "y": 5170.0,
+      "acceptedDetectedGameMs": 3559760,
+      "receiptFrame": 222653,
+      "rawLine": 305851,
+      "quoteSourceObservation": "fd55b833-3cd5-4c11-ac5d-d44395845d56:o:36087",
+      "quoteSourcePath": "/expansion/plan?unitId=79704",
+      "readyWitness": null
+    },
+    {
+      "actor": 78498,
+      "x": 2270.0,
+      "y": 3790.0,
+      "acceptedDetectedGameMs": 3571104,
+      "receiptFrame": 223319,
+      "rawLine": 307031,
+      "quoteSourceObservation": "fd55b833-3cd5-4c11-ac5d-d44395845d56:o:36149",
+      "quoteSourcePath": "/expansion/plan?unitId=78498",
+      "readyWitness": null
+    },
+    {
+      "actor": 76707,
+      "x": 1190.0,
+      "y": 4130.0,
+      "acceptedDetectedGameMs": 3594640,
+      "receiptFrame": 224805,
+      "rawLine": 309469,
+      "quoteSourceObservation": "fd55b833-3cd5-4c11-ac5d-d44395845d56:o:36274",
+      "quoteSourcePath": "/expansion/plan?unitId=76707",
+      "readyWitness": null
+    }
+  ],
+  "boundary": {
+    "fixture": false,
+    "nativePositionMutation": false,
+    "desktopTouched": false,
+    "notControlledAB": true,
+    "receiptNotCompletion": true,
+    "absenceNotDeath": true,
+    "latency": "detected accepted receipt to later sampled native ready own-position witness; not exact construction duration"
+  }
+}

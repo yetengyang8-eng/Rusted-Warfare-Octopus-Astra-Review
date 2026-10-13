@@ -1,0 +1,299 @@
+diff --git a/agent/src/io/rwagent/client/CombatLedger.java b/agent/src/io/rwagent/client/CombatLedger.java
+index 824ab3d..a0a47ee 100644
+--- a/agent/src/io/rwagent/client/CombatLedger.java
++++ b/agent/src/io/rwagent/client/CombatLedger.java
+@@ -34,6 +34,7 @@ public final class CombatLedger {
+     boolean airCoverageKnown,airCapabilityNeed,escapeDamageWitness;
+     final List<Long> currentAirThreatIds=new ArrayList<Long>();
+     String tacticalChoice="NONE",tacticalReason="NONE";
++    Map<String,Object> baseApproach=Collections.emptyMap();
+     double targetExposureRatio;
+     Map<String,Object> fightEstimate=Collections.emptyMap(),localFightEstimate=Collections.emptyMap();List<Map<String,Object>> baseThreatZones=Collections.emptyList();Long blockedBaseZone;int filteredUnassignedTargets;String pressureEvidence="UNKNOWN_PROFILE_HP_FALLBACK";
+     boolean commandPointKnown;double commandX,commandY;String commandMode="NONE";
+@@ -69,6 +70,7 @@ public final class CombatLedger {
+         out.put("retreatDistance",retreatDistance);out.put("nearbySupportHp",supportHp);
+         out.put("exposureEvidence","VISIBLE_ARMED_HP_STATIC_WEIGHT_SUPPORT_ESCAPE_PROXY_NOT_DPS_OR_NATIVE_PERMISSION");
+         out.put("fightEstimate",fightEstimate);out.put("localFightEstimate",localFightEstimate);out.put("pressureEvidence",pressureEvidence);out.put("baseThreatZones",baseThreatZones);out.put("blockedBaseZone",blockedBaseZone);out.put("filteredUnassignedTargets",filteredUnassignedTargets);
++        out.put("baseApproach",baseApproach);
+         out.put("lastOrderReuseEvidence",lastOrderReuseEvidence);out.put("destinationUnknownDeferCount",destinationUnknownDeferCount);
+         out.put("destinationUnknownDeferSemantics","SHORT_SCHEDULING_DEFER_NOT_NATIVE_DESTINATION_OR_EXECUTION_WITNESS");
+         return Collections.unmodifiableMap(out);
+diff --git a/agent/src/io/rwagent/client/GeneralCombatDirector.java b/agent/src/io/rwagent/client/GeneralCombatDirector.java
+index eb3c6cf..793ee6f 100644
+--- a/agent/src/io/rwagent/client/GeneralCombatDirector.java
++++ b/agent/src/io/rwagent/client/GeneralCombatDirector.java
+@@ -242,6 +242,7 @@ public final class GeneralCombatDirector {
+                 }continue;
+             }
+             if(general.phase!=GeneralRegistry.Phase.ACTIVE||!combatCurrent(state,enemies,now))continue; // UNKNOWN keeps existing orders only.
++            ledger.baseApproach=Collections.emptyMap();
+             List<Map<String,Object>> hazards=new ArrayList<Map<String,Object>>(visible(enemies));List<Map<String,Object>> targets=new ArrayList<Map<String,Object>>();ledger.filteredUnassignedTargets=0;
+             // Entry admission belongs to the accepted objective lifecycle. A later current own
+             // position inside its fire range witnesses entry, not a kill or a native shot.
+@@ -273,27 +274,7 @@ public final class GeneralCombatDirector {
+                 double damageCost=continuingSiege?0:ledger.recentOwnDamage/Math.max(1,ledger.ownMaxHp);
+                 if((fight.known?fight.expectedLossFraction+damageCost>=FightEstimate.MAX_EXPECTED_LOSS_FRACTION:risk.ratio+damageCost*2>=TacticalOpportunity.MAX_APPROACH_EXPOSURE)||risk.airBlocksAdvance()){
+                     if(refused==null){refused=target;ledger.targetExposureRatio=fight.known?fight.expectedLossFraction:risk.ratio;ledger.tacticalReason=risk.airBlocksAdvance()?"OBJECTIVE_CURRENT_AIR_COVERAGE_DEFICIT":fight.reason;}continue;}
+-                Long blocked=baseZones.blocks(general.x,general.y,number(target,"x"),number(target,"y"),healthyGround(actors));
+-                // A remembered travel exclusion cannot veto a current, separately affordable siege.
+-                // Evaluate the blocking BASE, not a cheap target standing beside it. Lost contacts
+-                // retain the ordinary memory exclusion and never grant attack permission.
+-                if(blocked!=null)for(Map<String,Object> base:hazards)if(id(base)==blocked&&"commandCenter".equals(base.get("type"))){
+-                    List<Map<String,Object>> baseEligible=id(base)==id(target)?eligible:host.eligible(actors,base,enemies);
+-                    FightEstimate siege=baseEligible==null?null:FightEstimate.estimate(baseEligible,base,hazards,enemies);
+-                    TacticalOpportunity.Exposure baseRisk=baseEligible==null?null:TacticalOpportunity.assess(baseEligible,items(state,"ownUnits"),hazards,enemies,number(base,"x"),number(base,"y"),ledger.homeX,ledger.homeY);
+-                    // A current native-eligible siege uses the same known exchange or
+-                    // UNKNOWN-defender exposure admission as the ordinary objective.
+-                    // Memory is a travel veto; it cannot impose a second known-only
+-                    // fight gate. Unverified mechanics and lost contacts retain it.
+-                    boolean affordable=siege!=null&&!baseEligible.isEmpty()&&!baseRisk.airBlocksAdvance()
+-                            &&(siege.known?siege.expectedLossFraction+damageCost<FightEstimate.MAX_EXPECTED_LOSS_FRACTION
+-                            :CombatProfiles.trusted(enemies)&&siege.unknownActors==0&&siege.knownActors>0
+-                                &&baseRisk.ratio+damageCost*2<TacticalOpportunity.MAX_APPROACH_EXPOSURE);
+-                    if(affordable){
+-                        blocked=null;ledger.tacticalReason="CURRENT_BLOCKING_BASE_EXCHANGE_ADMITTED";
+-                    }
+-                    break;
+-                }
++                Long blocked=baseApproachBlock(actors,state,enemies,hazards,ledger,number(target,"x"),number(target,"y"),engagedBase);
+                 if(blocked!=null){ledger.blockedBaseZone=blocked;if(refused==null){refused=target;ledger.tacticalReason="LEGAL_BASE_ZONE_TRAVEL_VETO";}continue;}
+                 if(!Objects.equals(ledger.lastTarget,id(target))){ledger.lastTarget=id(target);ledger.commandRevision++;ledger.event("CURRENT_VISIBLE_TASK_CHANGED",now);}
+                 setTacticalChoice(ledger,"ADVANCE",continuingSiege?"CURRENT_BASE_SIEGE_POST_RECEIPT_OWN_ENTRY_CONTINUATION":fight.known?fight.reason:"ADMITTED_CURRENT_NATIVE_ELIGIBLE_UNKNOWN_PROFILE_FALLBACK",fight.known?fight.expectedLossFraction:risk.ratio,now);
+@@ -361,7 +342,7 @@ public final class GeneralCombatDirector {
+             }
+             boolean arrival=frame>mission.acceptedFrame&&arrived>=Math.max(1,(int)Math.ceil(compatible*.75));
+             boolean lookahead=!arrival&&frame>mission.acceptedFrame&&compatible>0&&distance(anchor,mission.x,mission.y)<=140
+-                &&baseZones.blocks(general.x,general.y,mission.x,mission.y,ground)==null
++                &&baseApproachBlock(actors,state,enemies,targets,ledger,mission.x,mission.y,null)==null
+                 &&frontierPermitted(actors,state,enemies,targets,general,ledger,mission.x,mission.y,cautious);
+             if(arrival||lookahead||compatible==0){
+                 // Own arrival covers the accepted waypoint only. The planner's
+@@ -371,7 +352,7 @@ public final class GeneralCombatDirector {
+                 mission.event=arrival?"CURRENT_OWN_LATER_FRONTIER_ARRIVAL":lookahead?"CURRENT_OWN_FRONTIER_LOOKAHEAD_NOT_ARRIVAL":"ANCHOR_TYPE_NO_LONGER_ATTACHED";
+                 ledger.event(mission.event,now);
+             }else{
+-                Long blocked=baseZones.blocks(general.x,general.y,mission.x,mission.y,ground);
++                Long blocked=baseApproachBlock(actors,state,enemies,targets,ledger,mission.x,mission.y,null);
+                 if(blocked==null&&frontierPermitted(actors,state,enemies,targets,general,ledger,mission.x,mission.y,cautious)){
+                     if(ledger.lastTarget!=null){ledger.lastTarget=null;ledger.commandRevision++;}
+                     String reason="RESUME_ACCEPTED_NATIVE_OUTWARD_FRONTIER_DYNAMIC_SAFETY_UNKNOWN";
+@@ -414,12 +395,12 @@ public final class GeneralCombatDirector {
+             boolean near=Math.hypot(dx,dy)<=180;
+             boolean backward=mission.directionKnown&&dx*mission.directionX+dy*mission.directionY < -140;
+             boolean chosenDetour=attempt==2&&plan==detour;
+-            if(backward&&!near&&!avoid.containsKey(tile)&&!avoid.containsKey(frontierTile)&&baseZones.blocks(general.x,general.y,x,y,ground)==null
++            if(backward&&!near&&!avoid.containsKey(tile)&&!avoid.containsKey(frontierTile)&&baseApproachBlock(actors,state,enemies,targets,ledger,x,y,null)==null
+                     &&frontierPermitted(actors,state,enemies,targets,general,ledger,x,y,cautious))detour=plan;
+             if(near||backward&&attempt<2||!chosenDetour&&(avoid.containsKey(tile)||avoid.containsKey(frontierTile))){
+                 avoidFrontier(avoid,tile,-1L);mission.event=near?"NATIVE_NEAR_FRONTIER_SKIPPED":backward?"NATIVE_BACKTRACK_FRONTIER_SKIPPED":"NATIVE_COMPLETED_FRONTIER_SKIPPED";continue;
+             }
+-            blocked=baseZones.blocks(general.x,general.y,x,y,ground);
++            blocked=baseApproachBlock(actors,state,enemies,targets,ledger,x,y,null);
+             if(blocked!=null){ledger.blockedBaseZone=blocked;avoidFrontier(avoid,tile,blocked);avoidFrontier(avoid,frontierTile,blocked);continue;}
+             if(!frontierPermitted(actors,state,enemies,targets,general,ledger,x,y,cautious)){avoidFrontier(avoid,tile,-1L);avoidFrontier(avoid,frontierTile,-1L);continue;}
+             if(ledger.lastTarget!=null){ledger.lastTarget=null;ledger.commandRevision++;}
+@@ -439,6 +420,41 @@ public final class GeneralCombatDirector {
+         if(!cautious)return true;TacticalOpportunity.Exposure risk=TacticalOpportunity.assess(actors,items(state,"ownUnits"),targets,enemies,x,y,ledger.homeX,ledger.homeY);
+         return !risk.airBlocksAdvance()&&risk.ratio<TacticalOpportunity.MAX_APPROACH_EXPOSURE&&TacticalOpportunity.excludesVisibleHazards(targets,general.x,general.y,x,y);
+     }
++    /** Ground-only admission at the actual approach, including ordinary frontier travel.
++     * Remote ATTACHED reinforcements are not simultaneous firepower for the leading group.
++     * Reuse the existing formation radius and exchange policy; AirGeneral remains independent. */
++    private Long baseApproachBlock(List<Map<String,Object>> actors,Map<String,Object> state,Map<String,Object> enemies,
++                                   List<Map<String,Object>> visible,CombatLedger ledger,double x,double y,Long engagedBase)throws Exception{
++        List<Map<String,Object>> zones=baseZones.view();
++        for(Map<String,Object> zone:zones){
++            long baseId=((Number)zone.get("enemyId")).longValue();double bx=number(zone,"x"),by=number(zone,"y");
++            Set<Long> otherZones=new HashSet<Long>();for(Map<String,Object> other:zones)if(!Objects.equals(zone.get("enemyId"),other.get("enemyId")))otherZones.add(((Number)other.get("enemyId")).longValue());
++            boolean crosses=false;for(Map<String,Object> actor:actors)if(baseZones.blocks(number(actor,"x"),number(actor,"y"),x,y,otherZones)!=null){crosses=true;break;}
++            if(!crosses)continue;
++            Map<String,Object> lead=null;for(Map<String,Object> actor:actors)if(lead==null||distance(actor,bx,by)<distance(lead,bx,by))lead=actor;
++            List<Map<String,Object>> local=new ArrayList<Map<String,Object>>();if(lead!=null)for(Map<String,Object> actor:actors)
++                if(distance(actor,number(lead,"x"),number(lead,"y"))<=LocalArmyDirector.FORM_RADIUS)local.add(actor);
++            Map<String,Object> base=null;for(Map<String,Object> target:visible)if(id(target)==baseId)base=target;
++            boolean allowed=false;Map<String,Object> estimate=Collections.emptyMap();String evidence="REMEMBERED_BASE_LOCAL_SMALL_FORCE_PROTECTION";
++            if(base==null)allowed=healthyGround(local)>BaseThreatZones.SMALL_FORCE_MAXIMUM;
++            else {
++                List<Map<String,Object>> eligible=host.eligible(local,base,enemies);
++                // Hosts/native guards may narrow the list, never add foreign or distant actors.
++                List<Map<String,Object>> fighting=new ArrayList<Map<String,Object>>();if(eligible!=null)for(Map<String,Object> actor:eligible)if(contains(local,id(actor)))fighting.add(actor);
++                FightEstimate fight=FightEstimate.estimate(fighting,base,visible,enemies);estimate=fight.view();
++                TacticalOpportunity.Exposure risk=TacticalOpportunity.assess(fighting,items(state,"ownUnits"),visible,enemies,bx,by,ledger.homeX,ledger.homeY);
++                double damageCost=Objects.equals(engagedBase,baseId)?0:ledger.recentOwnDamage/Math.max(1,ledger.ownMaxHp);
++                allowed=!fighting.isEmpty()&&!risk.airBlocksAdvance()&&(fight.known?fight.expectedLossFraction+damageCost<FightEstimate.MAX_EXPECTED_LOSS_FRACTION
++                    :CombatProfiles.trusted(enemies)&&fight.unknownActors==0&&fight.knownActors>0&&risk.ratio+damageCost*2<TacticalOpportunity.MAX_APPROACH_EXPOSURE);
++                evidence=allowed?"CURRENT_BASE_LOCAL_FORCE_ADMITTED":"CURRENT_BASE_LOCAL_FORCE_INSUFFICIENT";
++            }
++            List<Long> ids=new ArrayList<Long>();for(Map<String,Object> actor:local)ids.add(id(actor));
++            ledger.baseApproach=fields("enemyId",baseId,"reason",evidence,"admitted",allowed,"rosterCount",actors.size(),"localActorIds",ids,
++                "formationRadius",LocalArmyDirector.FORM_RADIUS,"fightEstimate",estimate,"geometry","CURRENT_OWN_POSITIONS_NOT_NATIVE_PATH_OR_SIMULTANEOUS_FIRE_WITNESS");
++            if(!allowed)return baseId;
++        }
++        return null;
++    }
+     private static void avoidFrontier(LinkedHashMap<Integer,Long> avoid,int tile,long zone){if(tile<0)return;avoid.remove(tile);avoid.put(tile,zone);while(avoid.size()>48)avoid.remove(avoid.keySet().iterator().next());}
+     /** Same movement domain keeps ordinary mixed tank rosters moving. An anchor
+      * plan is still only anchor evidence; native guards handle each real actor. */
+diff --git a/agent/src/io/rwagent/client/StrategyDirector.java b/agent/src/io/rwagent/client/StrategyDirector.java
+index 52103d5..5444a23 100644
+--- a/agent/src/io/rwagent/client/StrategyDirector.java
++++ b/agent/src/io/rwagent/client/StrategyDirector.java
+@@ -1664,12 +1664,14 @@ final class StrategyDirector {
+         if(worker.prospect.tile()>=0||"PROSPECT".equals(worker.job))return true;
+         Map<String,Object> actor=find(state,worker.unit);
+         if(actor==null||!"builder".equals(actor.get("type"))||distance(actor,homeX,homeY)<=650)return false;
+-        for(Map<String,Object> resource:items(scout,"resources"))if(Boolean.TRUE.equals(resource.get("currentlyVisible"))
+-                &&distance(actor,n(resource,"x"),n(resource,"y"))<=ProspectCommitment.CLUSTER_RADIUS
+-                &&!occupiedResource(resource)&&!constructionSiteRisk(n(resource,"x"),n(resource,"y")))return true;
+-        return false;
++        // Completing a mine releases its invoice, not the worker's deployed region.
++        // Fog or the interval between two local jobs cannot make that worker a home spare.
++        // Explicit danger/retreat still uses its existing separate return-home lifecycle.
++        return true;
+     }
+     private boolean homeConstructionAvailable(Worker worker){
++        Map<String,Object> actor=find(state,worker.unit);if(actor==null)return false;
++        Object order=actor.get("orderType");if(order!=null&&!"idle".equals(order)&&!"none".equals(order))return false;
+         return "IDLE".equals(worker.job)&&worker.target<0&&!worker.paidConstruction&&worker.supportReserve==0
+             &&!worker.endgameProvider&&!economicFrontCommitted(worker);
+     }
+diff --git a/agent/test-win.ps1 b/agent/test-win.ps1
+index 43f7fd3..df071e3 100644
+--- a/agent/test-win.ps1
++++ b/agent/test-win.ps1
+@@ -88,6 +88,8 @@ JavaStep 'java:R14HeavyArtilleryNativeHarness' @('R14HeavyArtilleryNativeHarness
+ JavaStep 'java:R14AirFlowHarness' @('io.rwagent.client.R14AirFlowHarness')
+ JavaStep 'java:R14AirNativeHarness' @('R14AirNativeHarness')
+ JavaStep 'java:R15AirClearanceHarness' @('io.rwagent.client.R15AirClearanceHarness')
++JavaStep 'java:R16GroundBaseHarness' @('io.rwagent.client.R16GroundBaseHarness')
++JavaStep 'java:R16BuilderRegionHarness' @('io.rwagent.client.R16BuilderRegionHarness')
+ JavaStep 'java:R15HeadlessPlayerHarness' @('io.rwagent.headless.R15HeadlessPlayerHarness')
+ JavaStep 'java:R15AirNativeHarness' @('R15AirNativeHarness')
+ JavaStep 'java:R8ExecutionAdmissionHarness' @('io.rwagent.client.R8ExecutionAdmissionHarness')
+diff --git a/agent/tests/G55OperationsHarness.java b/agent/tests/G55OperationsHarness.java
+index 8a1c3a0..a674980 100644
+--- a/agent/tests/G55OperationsHarness.java
++++ b/agent/tests/G55OperationsHarness.java
+@@ -61,12 +61,11 @@ public final class G55OperationsHarness {
+         GlobalStrategyPolicyHarness.Fixture f=new GlobalStrategyPolicyHarness.Fixture();f.recovery=1;
+         for(Map<String,Object> u:f.own)if("builder".equals(u.get("type")))u.put("x",2500.);
+         f.observe(530000);f.strategy.act(1200,1);
+-        check(f.fake.orders.stream().anyMatch(p->p.startsWith("/command/move?")&&p.contains("x=100.0")),"distant repair constructor first moves to actual own base");
++        check(f.fake.orders.stream().noneMatch(p->p.startsWith("/command/move?")&&p.contains("x=100.0")),"R16: routine repair does not recall a deployed regional constructor");
+         check(f.contexts.stream().noneMatch(c->"repairbay".equals(c.get("product"))),"remote worker does not build a remote repair quote");
+-        long actor=Long.parseLong(f.fake.orders.stream().filter(p->p.startsWith("/command/move?")).findFirst().get().split("unitId=")[1].split("&")[0]);
+-        for(Map<String,Object> u:f.own)if(BattleClient.id(u)==actor)u.put("x",100.);
++        f.own.add(StrategyContractHarness.unit(999,"builder",100,100));
+         f.observe(531000);f.strategy.act(1200,1);
+-        check(f.contexts.stream().anyMatch(c->"repairbay".equals(c.get("product"))),"later own home-position fixture allows fresh legal home repair construction");
++        check(f.contexts.stream().anyMatch(c->"repairbay".equals(c.get("product"))),"new home-side constructor fixture services repair while remote worker retains its region");
+     }
+     static void currentSiege()throws Exception{
+         G5CombatHarness.Fixture f=new G5CombatHarness.Fixture();G51TacticalHarness.catalog(f);
+diff --git a/agent/tests/G6CapitalPolicyHarness.java b/agent/tests/G6CapitalPolicyHarness.java
+index d0ac039..5864873 100644
+--- a/agent/tests/G6CapitalPolicyHarness.java
++++ b/agent/tests/G6CapitalPolicyHarness.java
+@@ -90,7 +90,7 @@ public final class G6CapitalPolicyHarness {
+         check(noisy.purchases("amphibiousJet")==1,"recent spending rate does not revoke a healthy supported spatial role with real free funds");noisy.policy.close();
+         Host remote=funded();G53ContinuingOperationsHarness.set(remote.policy,"hardCap",0);
+         for(Map<String,Object> a:remote.own)if("builder".equals(a.get("type")))a.put("x",2000.);remote.observe(421000);remote.policy.act(0,1);
+-        check(remote.purchases("fabricatorT1")==0&&remote.fake.orders.stream().anyMatch(p->p.startsWith("/command/move?unitId=3")),"one idle distant constructor rallies home before requesting a home site");
++        check(remote.purchases("fabricatorT1")==0&&remote.fake.orders.stream().noneMatch(p->p.startsWith("/command/move?unitId=3")),"R16: a deployed constructor retains regional duty between jobs; ordinary capital waits for home capacity");
+         remote.policy.close();
+     }
+     static Object worker(Host h,long id)throws Exception{return ((Map<?,?>)G53ContinuingOperationsHarness.get(h.policy,"workers")).get(id);}
+diff --git a/agent/tests/R16BuilderRegionHarness.java b/agent/tests/R16BuilderRegionHarness.java
+new file mode 100644
+index 0000000..a495fe2
+--- /dev/null
++++ b/agent/tests/R16BuilderRegionHarness.java
+@@ -0,0 +1,30 @@
++package io.rwagent.client;
++
++import java.util.*;
++
++/** The gap between two local jobs is not a home-construction vacancy. */
++public final class R16BuilderRegionHarness {
++    static int checks;
++    static void check(boolean value,String why){checks++;if(!value)throw new AssertionError(why);}
++    static void capital()throws Exception{
++        G6CapitalPolicyHarness.Host h=G6CapitalPolicyHarness.funded();
++        G53ContinuingOperationsHarness.set(h.policy,"hardCap",0);
++        for(Map<String,Object> u:h.own)if("builder".equals(u.get("type")))u.put("x",2000.);
++        h.observe(421000);Object worker=G6CapitalPolicyHarness.worker(h,3);
++        check(((ProspectCommitment)G53ContinuingOperationsHarness.get(worker,"prospect")).tile()<0,"fixture has no active prospect or current-visible resource");
++        long generation=h.fake.gate.ownerGeneration(3L);h.policy.act(0,1);
++        check(h.fake.orders.stream().noneMatch(p->p.startsWith("/command/move?unitId=3")),"completed-region worker is not recalled across map for capital");
++        check(h.fake.gate.ownerGeneration(3L)==generation,"region retention does not invent a transfer");h.policy.close();
++        G6CapitalPolicyHarness.Host busy=G6CapitalPolicyHarness.funded();G53ContinuingOperationsHarness.set(busy.policy,"hardCap",0);for(Map<String,Object> u:busy.own)if("builder".equals(u.get("type")))u.put("orderType","repair");
++        busy.observe(421000);busy.policy.act(0,1);check(busy.purchases("fabricatorT1")==0,"native repair is not overwritten merely because bookkeeping job is IDLE");busy.policy.close();
++        G6CapitalPolicyHarness.Host home=G6CapitalPolicyHarness.funded();G53ContinuingOperationsHarness.set(home.policy,"hardCap",0);home.policy.act(0,1);check(home.purchases("fabricatorT1")>0,"available home constructor still builds capital");home.policy.close();
++    }
++    static void recovery()throws Exception{
++        R9BuilderCoverageHarness.Recovery f=new R9BuilderCoverageHarness.Recovery();f.start();f.arrive();f.recovery=1;
++        Object worker=((Map<?,?>)G53ContinuingOperationsHarness.get(f.director,"workers")).get(5924L);
++        G53ContinuingOperationsHarness.set(worker,"job","IDLE");((ProspectCommitment)G53ContinuingOperationsHarness.get(worker,"prospect")).clear();
++        f.resources.clear();f.orders.clear();f.observe(136000,102);f.director.act(0,1);
++        check(f.eventCount("strategy_recovery_builder_rally")==0,"remote worker after local completion is not drafted for routine home repair");f.director.close();
++    }
++    public static void main(String[] args)throws Exception{capital();recovery();System.out.println("R16_BUILDER_REGION_OK checks="+checks+" fixtureOnly=true");}
++}
+diff --git a/agent/tests/R16GroundBaseHarness.java b/agent/tests/R16GroundBaseHarness.java
+new file mode 100644
+index 0000000..97f3a24
+--- /dev/null
++++ b/agent/tests/R16GroundBaseHarness.java
+@@ -0,0 +1,52 @@
++package io.rwagent.client;
++
++import java.util.*;
++import static io.rwagent.client.StrategyDirector.map;
++
++/** Geometry/ownership fixtures, not a simulated siege outcome. */
++public final class R16GroundBaseHarness {
++    static int checks;
++    static void check(boolean ok,String why){checks++;if(!ok)throw new AssertionError(why);}
++    static final class Fixture implements ForceController.Host {
++        final CommandArbiter gate=new CommandArbiter();final GeneralRegistry registry=new GeneralRegistry(gate);
++        final GeneralCombatDirector combat=new GeneralCombatDirector(registry,this);
++        final List<Map<String,Object>> own=new ArrayList<Map<String,Object>>(),enemies=new ArrayList<Map<String,Object>>();
++        final List<ForceController.Proposal> orders=new ArrayList<ForceController.Proposal>();
++        final GeneralRegistry.GeneralId general=new GeneralRegistry.GeneralId(1);
++        final Map<String,Object> state=map("sessionId","r16","player",map("credits",10000),"map",map("width",8000.,"height",8000.),"ownUnits",own);
++        final Map<String,Object> packet=map("sessionId","r16","visibleEnemies",enemies,"catalogGameJarMatched",true,"catalogSha256",TargetCatalog.catalogSha256());
++        boolean targetAllowed=true;long frame;
++        Fixture(int count,int local){List<Long> ids=new ArrayList<Long>();for(long id=1;id<=count;id++){
++            Map<String,Object> actor=ForceControllerHarness.unit(id,"heavyTank",id<=local?500:6500,1000);actor.put("hp",600.);actor.put("maxHp",600.);own.add(actor);ids.add(id);}
++            gate.observe(new CommandArbiter.Stamp("r16","team:0",0,0),ids);registry.bootstrap(Arrays.asList(ids),ids);
++            enemies.add(map("id",900L,"type","commandCenter","x",1000.,"y",1000.,"hp",4000.,"building",true,"canAttack",true,"targetDomain","SURFACE"));
++        }
++        void sample()throws Exception{frame++;long now=frame*1000;List<Long> ids=new ArrayList<Long>();double x=0;
++            for(Map<String,Object> a:own){ids.add(((Number)a.get("id")).longValue());x+=((Number)a.get("x")).doubleValue();}
++            gate.observe(new CommandArbiter.Stamp("r16","team:0",frame,now),ids);state.put("frame",frame);state.put("gameTimeMs",now);packet.put("frame",frame);packet.put("gameTimeMs",now);
++            for(Map<String,Object> e:enemies){e.put("lastSeenGameTimeMs",now);e.put("domainObservedAtGameTimeMs",now);}
++            registry.updateGeneralCentroid(general,x/own.size(),1000);orders.clear();combat.observe(state,packet,100,100,now);combat.collect(state,packet,now);
++        }
++        public Map<String,Object> read(String path,String event){return map("status","planned","pathKnown",true,"targetTile",100,"targetX",1000.,"targetY",1000.);}
++        public List<Map<String,Object>> eligible(List<Map<String,Object>> actors,Map<String,Object> target,Map<String,Object> packet){return targetAllowed?actors:Collections.emptyList();}
++        public void collect(ForceController.Proposal p){orders.add(p);}
++        boolean attacks(){return orders.stream().anyMatch(p->p.path.startsWith("/command/attack-move"));}
++        Map<?,?> approach(){return (Map<?,?>)combat.view(general).get("baseApproach");}
++    }
++    static void separatedRosterCannotFundSiege()throws Exception{
++        Fixture f=new Fixture(14,2);f.sample();check(!f.attacks(),"two lead tanks cannot borrow twelve remote tanks to enter a base");
++        check(((List<?>)f.approach().get("localActorIds")).size()==2,"decision names the actual local support, not desired or total roster");
++        check(f.orders.stream().allMatch(p->p.path.startsWith("/command/move")),"denied advance gathers using MOVE outside fire");
++        for(Map<String,Object> a:f.own)a.put("x",500.);f.sample();check(f.attacks(),"later own clustered positions admit existing strong-force siege without a new timer");
++        check(f.registry.general(f.general).members.size()==14&&f.registry.unit(1).owner.equals("general:1"),"gathering preserves General membership and owner");
++    }
++    static void frontierCannotBypassBase()throws Exception{
++        Fixture f=new Fixture(14,2);f.targetAllowed=false;f.sample();check(!f.attacks(),"filtered/ineligible target cannot return as an ordinary frontier through its fire zone");
++        f.enemies.clear();f.sample();check(!f.attacks(),"remembered base protects the small local approach despite large remote roster");
++        for(Map<String,Object> a:f.own)a.put("x",500.);f.sample();check(f.attacks(),"existing large physical formation retains remembered-zone release and frontier mobility");
++        check(f.combat.view(f.general).get("tacticalChoice").equals("FRONTIER"),"memory release is travel, not permission to attack a ghost");
++        Fixture cheap=new Fixture(14,2);cheap.enemies.add(map("id",901L,"type","extractor","hp",800.,"x",1020.,"y",1000.,"building",true,"canAttack",false,"targetDomain","SURFACE"));cheap.sample();
++        check(!cheap.attacks(),"cheap nearby target does not price the base as an eight-hundred-HP objective");
++    }
++    public static void main(String[] args)throws Exception{separatedRosterCannotFundSiege();frontierCannotBypassBase();System.out.println("R16_GROUND_BASE_OK checks="+checks+" fixtureOnly=true");}
++}

@@ -1,0 +1,26 @@
+{
+  "version": "R12",
+  "source_commit": "eef352fafdf1392a588a1b7be41d8003c2512531",
+  "local_full_kit": "G:\\deepseek 工作台\\游戏环境\\RW-Agent-Octopus-G6-2026-10-11-R12",
+  "port": 47699,
+  "agent_jar_sha256": "61d8a341b3fff0445e67978d7deb2a6d4e349589e683a1f35afc35c9317b98cf",
+  "agent_jar_bytes": 640130,
+  "status": "builder baseline, natural hard Spain ongoing",
+  "source_paths": [
+    "agent",
+    "tools",
+    "docs",
+    "knowledge",
+    "project-state",
+    "project-history",
+    "handoff",
+    "AGENTS.md",
+    "ASTRA_START_HERE.md",
+    "README.md",
+    "ASTRA_WRITEBACK.md",
+    "PUBLISHING_NOTES.md",
+    "THIRD_PARTY_REFERENCES.md"
+  ],
+  "source_tree_sha": "1bb6428e2e75b4ccb5aef1ab575827f4a0030e79",
+  "commercial_runtime_in_git": false
+}

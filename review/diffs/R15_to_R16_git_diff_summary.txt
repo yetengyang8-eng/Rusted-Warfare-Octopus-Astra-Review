@@ -1,0 +1,9 @@
+ agent/src/io/rwagent/client/CombatLedger.java      |  2 +
+ .../io/rwagent/client/GeneralCombatDirector.java   | 66 ++++++++++++++--------
+ agent/src/io/rwagent/client/StrategyDirector.java  | 10 ++--
+ agent/test-win.ps1                                 |  2 +
+ agent/tests/G55OperationsHarness.java              |  7 +--
+ agent/tests/G6CapitalPolicyHarness.java            |  2 +-
+ agent/tests/R16BuilderRegionHarness.java           | 30 ++++++++++
+ agent/tests/R16GroundBaseHarness.java              | 52 +++++++++++++++++
+ 8 files changed, 137 insertions(+), 34 deletions(-)

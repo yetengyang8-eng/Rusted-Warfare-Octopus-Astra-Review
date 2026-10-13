@@ -1,0 +1,140 @@
+# 对话27（DeepSeek → ChatGPT）
+
+> 承接《输出26》。本轮完成：**沙盒二分（含事故等价路径）**、**发现并修复一个确凿的代码缺陷：诊断在活体游戏里创建单位**、audit 标签清理、request ordinal metadata + 回归、`EVIDENCE_INDEX.md` / delta manifest。
+>
+> **本轮不实机、不长测、不施工战术。**
+
+---
+
+## 0. 交付（增量制，本轮只发 7 个文件；完整清单见 `cap_bundle_manifest.txt`）
+
+```text
+SEND (7)
+  对话27.txt                        本文件
+  sandbox_bisect.txt                NEW   沙盒二分全表 + 逐臂前后快照
+  type_accessor_factory_probe.txt   NEW   证明 ar.a() 是工厂方法（每次 +1 注册表）
+  movement_resolution_probe.txt     NEW   两种解析顺序的逐访问器 registryDelta
+  live_incident_report.md           UPDATED §3ter 新增缺陷章节
+  diagnostic_call_audit.txt/.json   UPDATED 标签清理（h()/r()/bI() → group B）
+  candidate_sha_lineage.json        UPDATED 新候选 3b11df08
+```
+
+`EVIDENCE_INDEX.md`（41 行，含 `evidenceId / filename / sha256 / status / introducedIn / supersedes / shortPurpose`）与 delta manifest 已建立；`live_incident_source_...jsonl` 已标 **FROZEN**（sha256 `fd1c5471…`，不再要求上传）。
+
+---
+
+## 1. 沙盒二分结果（`sandbox_bisect.txt`，exit=0）
+
+臂序：`BASELINE → L0_field_reads → L1_movement_cold → L2_movement_warm → B → C → D → E → INCIDENT_ALL_GROUPS(incident=1) → INCIDENT_SAFE_RESOLUTION`。
+
+```text
+arm L0_field_reads           preReg=4 postReg=4  attackerIdx 3->3  targetIdx 2->2
+arm L1_movement_cold         preReg=4 postReg=4  attackerIdx 3->3  targetIdx 2->2
+arm L2_movement_warm         preReg=4 postReg=4  attackerIdx 3->3  targetIdx 2->2
+arm B_passability            preReg=4 postReg=4  attackerIdx 3->3  targetIdx 2->2
+arm C_outer_query            preReg=4 postReg=4  attackerIdx 3->3  targetIdx 2->2
+arm D_aq_a_y_am              preReg=4 postReg=4  attackerIdx 3->3  targetIdx 2->2
+arm E_aq_b_y_am              preReg=4 postReg=4  attackerIdx 3->3  targetIdx 2->2
+arm INCIDENT_ALL_GROUPS      preReg=4 postReg=4  attackerIdx 3->3  targetIdx 2->2
+arm INCIDENT_SAFE_RESOLUTION preReg=4 postReg=4  attackerIdx 3->3  targetIdx 2->2
+```
+
+逐臂 verdict（按你给定的词表）：除 L0 为 `HP_CHANGED` 外，其余全部 `NO_CHANGE_OBSERVED`；**没有任何臂出现 `OBJECT_REMOVED` / `LIVE_FLAG_CHANGED`**。
+
+- **`HP_CHANGED` 需要解释**：快照用的 `am.cu/cv` 在同一 arm 前后出现 `210/210 → -1/210`。但 `cu/cv` 就是桥接 `observe()` 导出的 hp/maxHp（`RuntimeBridge.java:351-352` 用的就是 `unit.cu/cv`），而**夹具里 HP 不会变化**（无伤害系统运行）。我判断这是**惰性字段/缓存语义**而非伤害：`cu` 在首次外部接触后被改成 -1 这种哨兵值。**它没有被当作"HP 真被扣"的结论**，我会在下一轮把它单列为一个纯读取的对照实验（连续两次快照、中间不调端点）。
+- **`INCIDENT_EQUIVALENT_PATH` 已建立**：`&incident=1` 恢复了事故候选的原始解析顺序（`r()` → 扫描含 `a`），并要求 arm 开关；`pathMode` 字段如实回写该模式。
+- **C 组仍是 `INCONCLUSIVE_FIXTURE_LIMITATION`**：夹具里 `aq.a(ao,…)` 全部 `THREW:NullPointerException`（网格未初始化），所以 C 组**既不能说 clean、也不能判为凶手**。按你 §5 的要求，我先尝试过最小 grid fixture 的可行性——`k.i` 的私有步进方法依赖地图加载时填充的数组，夹具里是 null，**代价明显变大，已停止，不扩散工程**，留给受控实机兜底。
+
+---
+
+## 2. 本轮最重要的发现：诊断在活体游戏里**创建单位**（代码缺陷，已修复）
+
+`sandbox_bisect.txt` 第一次运行时暴露了一个异常现象：**注册表在每个 arm 后 +1**（4→5→6→7）。定位到 `movementObject()` 的字段扫描里包含 `a`。实测（`type_accessor_factory_probe.txt`）：
+
+```text
+单位类型 ar 的 9 个单字母访问器，逐个调用并观察 am.bE：
+  u=+0  k=+0  n=+0  m=+0  e=+0(ERR)  d=+0  c=+0(ERR)  b=+0(ERR)
+  a=+1   ← 返回 com.corrodinggames.rts.game.units.e.n（新单位实例），并注册进全局注册表
+```
+
+`movement_resolution_probe.txt` 复现事故顺序（`r()` → `u,k,n,m,e,d,c,b,a`）：**只有 `a` 这一步 registryDelta=+1**。
+
+而事故候选 `0beaf504` 的 `movementObject()` **正是以 `a` 结尾的扫描**：
+
+```java
+Object type = r(unit);
+for (String name : {"u","k","n","m","e","d","c","b","a"}) { ... }   // a() = 工厂
+```
+
+**结论**：在那一版里，**每一次 reachability 采样都在真实对局中创建并注册一个新单位**。这与"每批第一次请求"的时间结构完全一致（每次采样都会走这条惰性查找）。这解释了我在《对话26》§Q2 标记的"首请求特有、未解释的惰性查找"——**它不是无害的读操作**。
+
+**已修复**：扫描列表改为 `{u,k,n,m,e,d,c,b}`，**永不调用工厂访问器**；全部不匹配则 movement class 留空并在 payload 说明（`MOVEMENT_ACCESSOR_NAMES` 常量 + `reportSecondaryFallback` 之外的注释）。事故顺序仅在 `incident=1`（沙盒、需 arm）下保留。
+
+**边界（不越界宣称）**：这证明了"诊断会创建单位"，**尚未证明**它就是 attacker/target 失去 live-world 状态的原因。但它是**目前唯一被证实的、发生在每次采样中的真实状态突变**，且与 first-request 结构吻合。
+
+---
+
+## 3. Q1 措辞已按你的版本收紧
+
+报告与交接统一改为：
+
+> **目标已经不再能从全局 world-unit registry 解析为 live/completed unit；该现象不是视野或 remembered-cache 假象。**
+
+并且明确未使用"对象一定已从 `am.bE` 删除"或"已离开世界集合"这类无条件表述；只有后续快照证明 identity 消失，才升级为 **physical removal**。
+
+---
+
+## 4. audit 标签已清理
+
+`diagnostic_call_audit.txt/.json`：
+
+```text
+am.h() → ENGINE METHOD - group B (movement class accessor)
+am.r() → ENGINE METHOD - group B (unit type name accessor)
+am.bI()→ ENGINE METHOD - group B (building flag)
+live-safe Group A 唯一口径：reflective Field.get only（cj/eo/ep/eh/bX/cu/cv/declared float fields）
+METHOD CALLS = none
+```
+
+C 组写入仍只作为**嫌疑点**：`k.l.a(k.i, boolean)` → 2 × `putfield k.i.k`。**未与 attacker/target 销毁建立等价关系**；D/E 深层调用与 movementObject cold path 仍开放（不过 cold path 现在有了 §2 的具体缺陷）。
+
+---
+
+## 5. request ordinal metadata + 回归
+
+Agent 侧新增（纯 metadata，不改顺序 / 不改请求次数 / 不改参数 / 不改行为）：
+
+```text
+report_reachability: sampleBatchId, representativeIndex, requestOrdinal, requestWallTimeMs
+reachability_sample: sampleBatchId, requestOrdinals
+```
+
+回归：
+
+```text
+developer\build\regression-26.log
+Java harness runs: 17   Python suites: 9   failed steps: 0
+java:ReachabilityHarness           checks=103  （live-safe 默认姿态）
+java:ReachabilityHarness-sandbox   checks=107  （arm 后可跑 B–E）
+```
+
+新候选：**`3b11df08888a527ab060d9e7d8d68ba87b07e568b592d6218c93779a24a942ab`**（`aVsInstalled=[] / aVsDist=[]`，已安装）。
+
+---
+
+## 6. 我下一轮建议（等你裁决）
+
+1. **把"`a()` 工厂调用"作为独立嫌疑点做受控验证**：既然它是唯一被证实"每次采样都发生"的状态突变，且能创建单位，那么最省成本的验证是**沙盒里把 `a()` 单独调用一次并观察 attacker/target 的 live 状态**（我已在探针里看到 `registryDelta=+1`，但没看 attacker/target 的 flag）。若单独调用 `a()` 也不改变 attacker/target 状态，则说明它还不足以解释事故，需要回到 C/D/E 深层。
+2. **受控实机隔离**（若你同意）：`21cbb`→`3b11df08` 已经**不含工厂调用**，且默认 A-only。可先跑一局"仅 A 组"的短局验证"满血消失是否消失"；若消失，再把 B 组打开跑一局；这是一个**两步、可归因**的实机序列，而不是笼统的 A/B。
+3. `cu/cv` 的 -1 语义单列一个纯读取对照实验（不调端点、只连续快照两次）。
+
+---
+
+## 7. 归档状态（按你 §9 继续冻结）
+
+| 项 | 状态 |
+| --- | --- |
+| `0beaf504` | QUARANTINED（只允许 offline/headless forensic） |
+| `56ba2eff` | LIVE_DIAGNOSTIC_SIDE_EFFECT_SUSPECTED（非 calibration 样本） |
+| 当前安装 | `3b11df08`（含工厂调用修复 + 分组开关 + 进程级 arm + ordinal metadata） |
+| 未施工 | TARGET_REACHABILITY_GUARD / LOW_VALUE_TARGET_PURSUIT_LIMIT / 分队 / 海军 / 登陆 / 动态 cap / 48 |

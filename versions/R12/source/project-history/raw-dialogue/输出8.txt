@@ -1,0 +1,357 @@
+输出8（ChatGPT → DeepSeek）
+1. 对本轮取证的总体裁决
+本轮已经得到足够强的证据，不再需要继续把“第二厂造成兵种退化”当作待验证猜想。
+现有结构证据已经形成闭环：
+单 T2 厂
+→ 主要生产 heavyTank
+
+新增 T1 厂
+→ 两厂共享资金
+→ 没有全局生产预算
+→ T1 厂持续消费 350 credits
+→ T2 厂空闲时经常买不起 800 heavyTank
+→ 当前逻辑立即 fallback 到 c_tank
+→ T2 厂自己也开始大量生产 c_tank
+
+困难 AI 长局最终形成：
+103 c_tank
+17 heavyTank
+
+而 P2-A 单厂基线为：
+1 c_tank
+54 heavyTank
+
+这已经足以判定：
+P2-B 暴露出了一个新的“多生产建筑全局资源调度”缺陷。
+
+  production_forensics   production_forensics
+所以后续不应该直接跳 P3-A。
+2. Q1：P2-C1 的桥接能力
+我选 (a)：专用端点。
+当前阶段只需要恢复：
+builderTarget = 1
+
+因此不要为了一个恢复能力立刻把整个 /combat/production 改造成通用生产框架。
+建议新增类似：
+GET  /economy/builder-production
+POST /command/produce-builder
+
+返回/接受至少：
+producerId
+queueCount
+builderActionAvailable
+builderCost
+
+要求：
+- 价格/action 从原生菜单读取，不硬编码；
+- 检查建筑 ownership；
+- 检查 command allowlist；
+- 检查 producer 当前队列；
+- 已有 builder 或已排 builder 时绝不能重复下单。
+内部实现可以抽一个通用的 producer helper，方便以后 airFactory / mechFactory 等复用。
+但外部 API 暂时保持专用、最小化。
+不要现在扩写 /combat/production 的既有语义。
+3. P2-C1 还有一个必须确认的前提
+你现在已经把半成品任务改成：
+ACTIVE
+→ STALLED_NO_BUILDER
+→ 新 builder 出现
+→ ACTIVE
+
+这个状态设计是对的。  对话8
+但请额外确认：
+新 builder 出现以后，客户端是否真的有能力重新对半成品建筑执行继续施工？
+
+不要只把状态从 STALLED 切回 ACTIVE，就认为任务已经恢复。
+需要明确核查：
+candidateId 已存在
+buildProgress < 1
+new builder 出现
+
+以后，advanceBuildJob() 是否会实际发出：
+repair / assist / continue-construction
+
+一类原生命令。
+如果没有：
+P2-C1 必须同时增加“续建已有半成品”的最小能力。
+如果原生/桥接当前确实无法续建，则：
+STALLED_NO_BUILDER
+→ builder恢复
+→ ABANDONED_UNRECOVERABLE
+→ 重新规划
+
+但不能：
+状态恢复 ACTIVE，实际上永远没有单位继续施工。
+
+这需要作为 P2-C1 的验收项。
+4. Q2：production_blocked 诊断——加
+同意现在加。
+但不要每个 tick 无条件刷日志。
+只在真正发生生产决策的空闲工厂上记录，例如：
+production_decision
+factoryId
+factoryTier
+credits
+preferredUnit
+preferredUnitCost
+bestAffordableUnit
+bestAffordableCost
+chosenUnit
+reason
+
+当出现：
+preferred = heavyTank
+preferredCost = 800
+credits = 620
+bestAffordable = c_tank
+
+记录：
+reason = PREFERRED_UNAFFORDABLE_FALLBACK
+
+这样现有推断就变成直接证据。
+如果以后 P2-B2 引入预算保留，还可以出现：
+reason = RESERVED_FOR_PRIMARY_PRODUCTION
+
+这会非常有利于比较修复前后行为。
+5. 但 Q2 不再是“决定要不要做 P2-B2”的必要条件
+目前代码级事实 + 已有实机组成已经足够判定生产调度问题存在。
+所以：
+不需要再等新实机证明一次，才允许 P2-B2。
+
+production diagnostic 的作用是：
+- 让以后报告可解释；
+- 验证修复是否按预期工作；
+而不是再次证明已经非常明确的缺陷。
+6. Q3：CapabilityHarness —— 同意
+增加纯 developer harness。
+至少打印：
+c_tank
+heavyTank
+hoverTank
+scout（若原版名称可解析）
+
+对应：
+canAttackFlyingUnits
+canAttackLandUnits
+price
+
+如果很容易，也可附：
+attackRange
+build/production time
+
+但不是必需。
+核心是把：
+heavyTank 到底能不能对空
+
+从用户经验升级成引擎事实。
+c_tank 已经确认不能对空，不需要重复推断。  对话8
+7. Q4：P2-B2 应该排在 P3-A 前
+现在可以确定：
+P2-B2 production scheduler > P3-A
+
+困难 AI 的 120/123 不能继续主要解释成“添油”。
+因为 120 个新单位里：
+103 = c_tank
+17  = heavyTank
+
+且 c_tank 已确认没有对空能力。
+所以这一局同时存在：
+兵种质量下降
++
+空军 matchup mismatch
++
+可能的添油
+
+在先修生产结构以前去调整集结阈值，会把几个变量混在一起。
+8. 但 P2-C1 仍先于 P2-B2
+施工顺序建议：
+诊断 + CapabilityHarness
+        ↓
+P2-C1
+builderTarget = 1
+        ↓
+P2-B2
+global production budget
+        ↓
+困难 AI 压力复测
+        ↓
+P3-A
+
+原因：
+P2-C1 是系统可靠性修复。
+5局中3局 builder 死亡，并且两局直接使：
+第三矿
++
+第二厂
+
+永远无法发生。
+所以如果不先消除这个单点故障，P2-B2 甚至可能随机得不到执行机会。
+9. P2-B2 第一版不要做成复杂配兵 AI
+第一版只解决预算优先权。
+不要现在加入：
+- 敌方兵种识别后动态配兵；
+- AA 比例；
+- Scout 比例；
+- 多工厂复杂优化；
+- 强化学习/效用函数。
+最小目标：
+第二生产建筑不能把主力生产建筑饿死。
+
+10. 建议的 P2-B2 最小算法
+先定义：
+primaryProducer
+
+不要硬编码“T2 factory”。
+可以定义为：
+当前所有 landFactory 中，能生产最高评分主力 combat unit 的工厂。
+
+在当前版本里它自然就是 T2 老厂，因为：
+heavyTank score = 3
+c_tank score = 1
+
+然后确定：
+preferredMainlineUnit
+preferredMainlineCost
+
+关键变化：
+当前逻辑
+heavyTank买不起
+→ 看可负担项
+→ c_tank
+
+新逻辑
+primaryProducer：
+heavyTank 是 preferred
+但 credits < 800
+→ 等钱
+→ 不 fallback 到 c_tank
+
+即：
+BANKING_FOR_PREFERRED_UNIT
+
+11. Secondary producer 的规则
+第二座 T1 厂不是禁止生产。
+它只使用：
+主力预算以外的 surplus。
+
+例如：
+primaryReserve = 800
+
+T1 厂想买：
+c_tank = 350
+
+只有：
+credits - 350 >= primaryReserve
+
+才允许。
+也就是：
+credits >= 1150
+→ T1 可以造 c_tank
+
+credits < 1150
+→ T1 主动空闲
+
+这里的 800/350 不要写死。
+全部从原生菜单价格取。
+12. 这个版本允许工厂主动闲置
+这点需要明确。
+以后：
+factoryBusyPercent
+
+不能再被理解成：
+越高越好。
+
+如果第二厂因为：
+RESERVING_FOR_PRIMARY_PRODUCTION
+
+而空闲，这是正确行为。
+我们关心的是：
+credits 有没有被转换成预期的战略单位。
+
+而不是：
+两个厂是不是永远都亮着队列。
+
+13. 不要现在强制升级第二厂
+第二 T1 厂长期没升 T2 的现象已经确认。  对话8
+但现在不要顺手改。
+P2-B2 第一版只解决：
+已有 T2 主厂的生产预算不能被 T1 副厂抢走。
+
+第二厂升级什么时候值得做，是另一个经济/科技决策。
+保持分离。
+14. 空军问题先记录为独立后续项
+用户观察到：
+c_tank 面对空军无法还击，会持续受伤，直到残血才触发撤退。
+
+由于 c_tank 已确认 canAttackFlyingUnits=false，这个现象有真实机制基础。
+但不要现在把解决方式写成：
+“所有小坦克见空军就逃。”
+
+因为正确策略可能是：
+- 等己方 AA；
+- 继续打关键地面目标；
+- 集体撤离；
+- 由 heavyTank/hover/scout 保护；
+取决于未来兵种体系。
+先记为：
+P3 / composition interaction:
+UNANSWERABLE_AIR_THREAT
+
+等 CapabilityHarness 定出 heavyTank/hover/scout 的对空能力后再设计。
+15. mineTarget 继续保持 3
+这一点现在更确定。
+困难 AI 的“缺钱”至少部分来自：
+103 辆 c_tank 抽干资金。
+
+所以更不能因为：
+NO_AFFORDABLE_ACTION
+
+就立刻开4、5矿。
+先修：
+builder continuity
++
+production budget
+
+然后重新测3矿2厂。
+16. 下一轮最有价值的实机对照
+完成 P2-C1 + P2-B2 后，用：
+冰岛 / 困难 AI / 正常战争迷雾 / 900s
+
+跑一局。
+和旧困难 AI 样本直接比较：
+旧样本：
+c_tank 103
+heavyTank 17
+
+produced 120
+lost 123
+
+army median 8
+max 12
+
+credits median 393
+
+新样本重点看：
+c_tank / heavyTank 比例
+heavyTank完成数
+produced / lost
+army median / max
+credits
+primary producer idle reason
+secondary producer reserved次数
+
+这是非常干净的 treatment-aligned 对照。
+最终裁决
+Q1：选 (a)。
+专用 builder 生产桥接；内部可复用 helper，不扩大现有 combat production API。
+Q2：加 production decision/blocking 诊断。
+但作为验证工具，不再作为是否允许 P2-B2 的前置证据。
+Q3：加 CapabilityHarness。
+只读确认 heavyTank / hoverTank / scout 等对空能力。
+Q4：排序已经可以定。
+P2-C1
+→ P2-B2
+→ 压力复测
+→ P3-A
+
+P2-B2 明确早于 P3-A。

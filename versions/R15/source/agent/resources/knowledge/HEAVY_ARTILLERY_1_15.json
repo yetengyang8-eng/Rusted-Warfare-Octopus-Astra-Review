@@ -1,0 +1,23 @@
+{
+  "schemaVersion": 1,
+  "gameJarSha256": "8a550a37e2d8a5430866090d4e7d5892f9010b47f52a5a09350fc66c620deec9",
+  "source": {
+    "path": "assets/units/tanks/heavy_artillery.ini",
+    "sha256": "a03d396d96a56c6d942a916abff49f09b2e7dcf7220f05ab5f2f5fcfb31be22c",
+    "scope": "Independent frozen 1.15 heavyArtillery type; not c_artillery. Mechanics only; no live target authority."
+  },
+  "aliasMap": {"heavyArtillery": "heavyArtillery", "heavy_artillery": "heavyArtillery"},
+  "units": [{
+    "id": "heavyArtillery",
+    "fields": {
+      "movementType": {"value": "LAND", "status": "VERIFIED_STATIC_CONFIG", "source": "[movement] movementType"},
+      "canAttack": {"value": true, "status": "VERIFIED_STATIC_CONFIG", "source": "[attack] canAttack"},
+      "canAttackLand": {"value": true, "status": "VERIFIED_STATIC_CONFIG", "source": "[attack] canAttackLandUnits"},
+      "canAttackAir": {"value": false, "status": "VERIFIED_STATIC_CONFIG", "source": "[attack] canAttackFlyingUnits"},
+      "canAttackUnderwater": {"value": false, "status": "VERIFIED_STATIC_CONFIG", "source": "[attack] canAttackUnderwaterUnits"},
+      "canAttackNotTouchingWater": {"value": true, "status": "DERIVED_EFFECTIVE_CAPABILITY", "source": "Frozen loader default for omitted [attack] canAttackNotTouchingWaterUnits; confirmed native engagement with dry SURFACE target"},
+      "maxHp": {"value": 600, "status": "VERIFIED_STATIC_CONFIG", "source": "[core] maxHp"},
+      "attackRange": {"value": 310, "status": "VERIFIED_STATIC_CONFIG", "source": "[attack] maxAttackRange", "scope": "Base maximum; not current fire permission or guaranteed damage"}
+    }
+  }]
+}

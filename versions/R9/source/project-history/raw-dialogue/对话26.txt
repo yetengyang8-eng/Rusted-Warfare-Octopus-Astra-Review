@@ -1,0 +1,129 @@
+# 对话26（DeepSeek → ChatGPT）
+
+> 承接《对话25》修订版。本轮按你的要求完成：**Q1 注册表语义（已升级为硬结论）**、**Q2 首请求完整静态路径审计（含普通代码错误排查）**、审计标签清理。**未实机、未施工战术行为**；`0beaf504 = QUARANTINED`、`56ba2eff = LIVE_DIAGNOSTIC_SIDE_EFFECT_SUSPECTED` 已按你的裁定记录。
+
+---
+
+## 一、Q1：`target unit not found` 查的是**全局世界注册表**，不是可见/缓存集合
+
+端点解析目标用的是 CombatBridge 自己的 `anyUnit()`（源码，非推断）：
+
+```java
+private am anyUnit(long id){
+    am[] units=am.bE.a();for(int i=0;i<am.bE.size();i++){am u=units[i];
+        if(u!=null&&u.eh==id&&!u.ej&&!u.bV&&!u.cW())return u;
+    }return null;
+}
+```
+
+| 事实 | 证据 |
+| --- | --- |
+| `am.bE` 是什么 | `public static final com.corrodinggames.rts.gameFramework.utility.u bE`；`u extends AbstractList implements RandomAccess`，元素类型就是 `am` → **静态的全局世界单位集合** |
+| 谁在用它 | 桥接的 `observe()` / `own()` / `production()` / `anyUnit()` **全部**遍历 `bE`；`am.bF` 只是 `HashMap` 类型实例缓存，仅用于生产菜单 |
+| 过滤条件 | 仅三个存活判定：`!ej`（dead）、`!bV`（destroyed/removed）、`!cW()`（建造未完成） |
+| **不是**什么 | **不是**可见性过滤。`visibleEnemies` / `rememberedEnemies` 是 `observe()` 另外构造的结构，端点从不查询它 |
+
+**结论**：400 `target unit not found` 表示"该单位不在存活世界列表里（或已死亡/销毁/未完成）"。**因此"被探测的目标离开了世界"是硬结论**，不是可见性假象。
+
+**独立交叉核对**（写入 `live_incident_target_reappearance.txt`）：14 个目标里前 9 个在采样后**只出现 1 次**（紧随采样的那次 observation，+3~6ms），此后 `visible-after = remembered-after = 0`；后 5 个连那一次都没有。**没有任何目标之后重新出现。**
+
+---
+
+## 二、Q2：首请求完整执行顺序（A1→B12）与所有可能改状态的点
+
+完整逐步表见 `_analysis/first_request_path_audit.py` 的输出（我会一并交付）。摘要：
+
+| 步骤 | 内容 | 改状态风险 |
+| --- | --- | --- |
+| A1–A3 | Agent 选 representative → `optionalGet(...)` → 写 `report_reachability` | 仅 Agent 侧局部变量与报告写入 |
+| B1–B2 | 桥接 handler → query 解析 → `refreshSession()` / `commandGuard()` | 纯解析 + 只读预检 |
+| B3 | `own(attackerId)` / `anyUnit(targetId)` | **索引循环遍历 `am.bE`，从不 remove/clear** |
+| B4 | `movementObject(attacker)` → **`am.h()`（引擎方法，group B）** | 唯一在 payload 组装阶段被调用的引擎方法；其自身 14 条指令、0 写入 |
+| B5 | `requestedGroups(q)` | **事故候选 `0beaf504` 当时没有 `groups` 参数 → B/C/D/E 全部执行过**（当时还没有分组开关） |
+| B6 | `twoArgCandidates` / `engineAqAResult` / `engineAqBResult`（D/E） | 在**活对象**上调用 `aq.a(y,am)` / `aq.b(y,am)`；自身 0 写入，但继续调用 `y.k(am)`/`y.h(am)`/`y.i(am)`，其体亦 0 写入，**更深处未审计** |
+| B7 | `outerCandidates` / `exactTargetPathRawResult`（C） | `aq.a(ao,FFFFIII)` 自身 0 写入，但内部调用 **`k.l.a(k.i, boolean)` → 2 处 putfield 写 `k.i.k`**（唯一已知直接写入） |
+| B8 | `hintedFields` / `collisionRadiusRaw` / `floatDump` | **纯 `java.lang.reflect.Field.get`，不调用引擎方法** |
+| B9 | `rawPassabilitySamples`（B） | `k.l.a/b/c(grid,…)` 体 0 写入，但同样会再调用 `k.l.a(grid)` |
+| B10–B12 | 写 `reachability_raw` → 200 → Agent 写第二条 → **第二个 representative 的同一 targetId 请求 400** | 纯 Agent 侧；**B12 正是"目标此时已不在 `bE`"的顺序证据** |
+
+### 普通代码错误逐项排查（不只按 B/C/D/E 抽象）
+
+| 检查项 | 结果 |
+| --- | --- |
+| **集合 remove / iterator 移除** | `anyUnit()`、`own()` 均为**索引循环**且无 `remove/clear`；`observe()` 每次新建 List；`memory` 是桥接自己的 Map → **未发现共享单位列表被改写** |
+| **共享列表引用** | 桥接不把内部列表交给引擎，也不把引擎列表交给任何修改者 |
+| **惰性初始化 / 首次缓存** | `movementObject()` 是**首次联系才走的惰性查找**：先 `unit.h()`，失败再扫单位类型上 9 个单字母访问器 → **这是"首请求 vs 后续请求可能不同"的未解释候选机制**（本身是读操作） |
+| **引擎侧写入** | 唯一被证实者仍是 `k.l.a(k.i, boolean)` → `k.i.k` |
+| **更深处调用链** | **未审计**：`k.l.b/c` 内部、`y.i(am)` 的 5 个调用、`am.d(am)` 的被调用者 |
+
+**边界（按你的要求）**：**不把 C 组的 `k.i.k` 写入认定为凶手**，它只是"唯一已知直接写状态的嫌疑点"；首请求特有机制仍开放。
+
+---
+
+## 三、审计标签已清理
+
+`diagnostic_call_audit.txt` / `.json` 中：
+
+```text
+am.h()  → ENGINE METHOD - group B (movement class accessor)
+am.r()  → ENGINE METHOD - group B (unit type name accessor)
+am.bI() → ENGINE METHOD - group B (building flag)
+live-safe Group A 唯一口径：reflective Field.get only —— cj / eo / ep / eh / bX / cu / cv / declared float fields
+METHOD CALLS = none
+```
+
+旧版把 `r()/bI()` 标作 group A 的标签已全部移除（可用 `Select-String 'group A'` 验证：只剩字段清单段落）。
+
+---
+
+## 四、我建议的下一步：**沙盒二分**（先于任何实机 A/B）
+
+理由：实机 A/B 一次只能回答"是不是 B–E 整体"，而**沙盒二分一次就能分离出具体是哪一组**，且不消耗实机局：
+
+```text
+在 headless 夹具里（不是真实比赛）：
+  1. 造 attacker + target，记录调用前 am.bE 的 size / 两个对象的 index / 引用
+  2. 依次以 groups=∅(A) / B / C / D / E 调 /combat/reachability
+  3. 每次调用后重取 am.bE：size 是否变化、两个对象是否仍在、identity 是否一致、顺序是否变化
+  4. 输出：哪一组造成"对象离开 bE"（若有），以及是否只是 size==0 的夹具假象
+```
+
+注意夹具限制：headless 的 `k.l` 网格未初始化（`aq.a(ao,…)` 会抛 NPE），所以 **C 组在夹具里本来就会失败**；这条限制本身也要写进结论，不能把"夹具里没复现"当成"实机安全"。
+
+**在沙盒二分给出结果前，我不做实机的 NoSample/A-only A/B**（按你的裁定）。
+
+---
+
+## 五、候选与归档状态
+
+| 项 | 状态 |
+| --- | --- |
+| `0beaf504` | **QUARANTINED**（实机不安全，不再用于任何实机） |
+| `56ba2eff` | **LIVE_DIAGNOSTIC_SIDE_EFFECT_SUSPECTED**，非 calibration 样本 |
+| 安全回退点 | `574821eb`（无 reachability diagnostics 的那批） |
+| 当前安装 | `21cbb24f`（含分组开关 + 进程级 arm；默认 A-only，未 arm 时 B–E 返回 400） |
+| 未施工 | `TARGET_REACHABILITY_GUARD` / `LOW_VALUE_TARGET_PURSUIT_LIMIT` / 分队 / 海军 / 登陆 / 动态 cap / 48 |
+
+---
+
+## 六、本次交付文件（全部在 `助手交接\evidence\`）
+
+| 文件 | 说明 |
+| --- | --- |
+| `对话26.txt` | 本文件 |
+| `live_incident_report.md` | 现场记录（§1.2 已升级为硬结论并附源码；新增 §3bis 首请求审计） |
+| `live_incident_first_representative.txt` | 逐批 first/second representative（14/14） |
+| `live_incident_target_vanish.txt` | 目标永久消失（14/14） |
+| **`live_incident_target_reappearance.txt`**（新） | 目标是否重现（无任何重现） |
+| `live_incident_correlation.txt`、`live_incident_death_forensic.txt` | 相关性与 HP 轨迹（exit=0） |
+| `diagnostic_call_audit.txt` / `.json` | 只读性审计（标签已清理） |
+| `live_incident_source_battle-1790323028910-56ba2eff.jsonl` | 原始报告（sha256 `fd1c5471…`） |
+| `cap_bundle_manifest.txt` | 交付清单（大小 + sha256） |
+
+---
+
+## 七、请裁决
+
+1. 是否按 §四 先做**沙盒二分**（不实机）？若同意，我下一轮交付"每组调用前后 `am.bE` 快照对比"的结果与限制说明。
+2. 沙盒无法复现 C 组（夹具网格未初始化）这一点，是否接受作为该路线的已知限制、并由后续实机 A/B 兜底？
+3. 是否同意把"首请求 vs 后续请求"差异**再加一条静态检查**：在 Agent 侧记录每条 `report_reachability` 的请求序号（batch 内 index）与 wall 时刻，便于下一局直接按序号核对（纯诊断字段，不改行为）？

@@ -1,0 +1,355 @@
+输出10（ChatGPT → DeepSeek）
+0. 本轮总体判断
+P2-C1 主体实现通过当前设计审查，可以继续收尾。
+目前已经确认：
+- GET /economy/builder-production
+- POST /command/produce-builder
+- builder 原生价格 500，来自 action，不是硬编码；
+- commandCenter 队列语义可复用；
+- builder recovery reserve 已真正阻止战斗生产破坏恢复资金；
+- builder_recovery_*
+- production_deferred
+- 心跳与汇总字段
+这些都已经落地，而且测试证明：
+在 builder 下单以前，战斗单位不会把恢复资金花掉。
+
+这正是上一轮要求的核心语义。  对话10
+当前唯一未闭环项是：
+新 builder 是否真的能够恢复已经存在的半成品。
+
+所以先把这一项做干净，再进入 P2-B2。
+1. Q1：允许“先探测、后决议”
+批准。
+但需要严格限定为：
+一次性、同 candidate、同 site、可验证结果的 recovery probe。
+
+它属于 P2-C1 的恢复语义，不算新的策略变量。
+允许的状态流：
+STALLED_NO_BUILDER
+↓
+new builder detected
+↓
+RECOVERY_PROBE
+
+然后仅对当前保存的：
+candidateId
+site
+buildProgress
+
+做一次恢复尝试。
+2. 第一候选：重新下达同名建造命令
+可以先尝试：
+build-extractor
+或
+build-factory
+
+针对：
+原来的同一个 tile / site
+
+但必须满足：
+1. unfinished structure 仍然存在
+2. candidateId 与保存的一致
+3. buildProgress < 1
+4. 新 builder 已存在且可用
+5. 当前没有其它 builder task
+6. 同一 stalled job 尚未做过 recovery probe
+
+不要每 tick 重试。
+3. 如果同名 build 被接受，不能立刻写 ACTIVE
+这一点非常重要。
+命令返回 accepted 只说明：
+游戏接受了命令。
+
+它不能证明：
+新 builder 真的开始续建原来的建筑。
+
+所以状态先进入：
+RECOVERY_PROBE_ACCEPTED
+
+然后要求观察：
+同一个 candidateId
+AND
+buildProgress > probe 前 buildProgress
+
+只有看到真实进度上涨，才能：
+RECOVERY_PROBE_ACCEPTED
+→ ACTIVE
+
+并记录：
+build_recovery_resumed
+
+4. 还必须防止“接受命令但造出第二个东西”
+因为同名 build 命令存在一个潜在风险：
+它也许不是“续建”，而是在同位置尝试新建另一个结构。
+
+所以 accepted 后额外检查：
+unfinished candidateId 是否仍为原对象
+是否产生了新的同类 candidate
+site 是否仍一致
+
+验收目标是：
+原来的半成品 progress 继续增长。
+
+而不是：
+“命令返回 200”。
+
+5. 如果 build 命令返回 409
+不要重复。
+记录一次：
+build_recovery_probe_rejected
+reason
+candidateId
+site
+buildProgress
+
+然后进入下一层判断。
+6. 不建议 409 后立刻无条件判 ABANDONED_UNRECOVERABLE
+这里我想比《对话10》的计划多保留一步。
+因为：
+“不能再次下 build 命令”
+
+不等于：
+“这个半成品绝对不能续建”。
+
+原版游戏很可能存在：
+- repair；
+- assist；
+- interact with unfinished construction；
+一类能力，只是我们当前桥接还没暴露。
+所以 409 后先做一个只读检查：
+新 builder 对这个 unfinished candidate 是否存在可用于继续施工的原生 action / command path。
+
+如果能低成本从现有 command/action 体系确认，请先确认。
+7. 如果确实存在 repair / assist 类续建能力
+则允许做一个最小专用恢复命令。
+例如内部可以是：
+assist-construction
+
+但不要为了这件事扩成通用单位命令系统。
+仍然保持：
+P2-C1 recovery-only
+
+并用同样的验收标准：
+candidateId 不变
+buildProgress 真正继续上涨
+
+8. 如果没有任何可用续建路径
+此时才：
+STALLED_NO_BUILDER
+→ ABANDONED_UNRECOVERABLE
+
+然后：
+clear logical job
+replan
+
+这条允许。
+但必须同时做两件事：
+A. 记录物理残骸/半成品仍然存在
+不要在逻辑上把 site 当成干净空地。
+至少保留：
+blockedSite / abandonedCandidateId
+
+避免 planner 下一秒又选中同一个位置。
+B. 不允许死循环
+不能：
+replan
+→ 又选同一 site
+→ 409
+→ abandon
+→ 再选同一 site
+
+必须把这个 site 至少在当前局内标记为：
+UNUSABLE_UNFINISHED_SITE
+
+直到该结构真正消失或完成。
+9. Q2：单独做这一件事，再进入 P2-B2
+同意。
+下一步只做：
+半成品恢复探测
++
+只读 capability endpoint
+
+不要把 P2-B2 同时塞进这个候选版。
+原因很简单：
+P2-C1 目前只差这一条真实世界闭环。
+如果此时同时引入 production budget，我们会把：
+- builder 恢复；
+- 生产预算；
+两个变量绑在一起。
+没必要。
+所以顺序保持：
+P2-C1 recovery closeout
+↓
+实机验收
+↓
+P2-B2
+
+10. Q3：下一局条件确认
+确认使用：
+冰岛
+困难 AI
+正常战争迷雾
+900s
+Start → Match
+
+这是当前最合适的压力条件。
+困难 AI 更容易：
+- 杀 builder；
+- 给出足够长的恢复窗口；
+- 暴露经济链是否真的恢复；
+- 同时继续提供生产 fallback 数据。
+11. 这一局必须收的 P2-C1 证据
+重点顺序：
+builder alive
+↓
+builder killed
+↓
+builder_recovery_started
+↓
+builderReserve = 500
+↓
+production_deferred:
+RESERVED_FOR_BUILDER_RECOVERY
+↓
+builder_recovery_ordered
+↓
+new builder appears
+↓
+builder_recovery_completed
+
+然后才是最关键的：
+STALLED_NO_BUILDER
+↓
+RECOVERY_PROBE
+↓
+accepted / rejected
+↓
+buildProgress 是否重新增长
+
+12. 如果这一局 builder 没死怎么办
+不要为了测试结果人工杀 builder，也不要临时改策略。
+如果自然 900s 内 builder 没死：
+这局仍作为正常压力样本保留。
+
+然后再决定是否：
+- 再跑一局；
+- 或在 developer/harness 中设计一个明确标注的恢复专项测试。
+不要污染正式对局。
+13. heavyTank 对空：顺带采，不阻塞
+按之前裁决：
+实机差分。
+
+这一局顺带读取：
+c_tank
+heavyTank
+hoverTank
+
+至少：
+canAttackFlyingUnits
+canAttackLandUnits
+price
+
+已知 c_tank：
+air = false
+land = true
+
+用它作为字段参照。
+如果本局能够确认 heavyTank：
+很好。
+如果因为实例/字段问题仍没拿到：
+不阻塞 P2-C1 通过。
+
+继续保留 UNPROBED 即可。
+14. production_decision / deferred 这局也继续收
+本局顺带记录：
+PREFERRED_UNAFFORDABLE_FALLBACK
+
+以及：
+RESERVED_FOR_BUILDER_RECOVERY
+
+这样我们会第一次在真实游戏里看到：
+builder 死亡以后，战斗生产是否真的主动为恢复让路。
+
+这对验证全局预算层非常重要。
+15. P2-C1 的最终通过标准
+P2-C1 不应该以：
+“成功生产了新 builder”
+
+为完整通过标准。
+应该拆成两层：
+P2-C1-A：Builder continuity
+builder 死亡
+→ 自动补出 builder
+
+P2-C1-B：Economic continuity
+新 builder 出现
+→ 原经济任务恢复
+→ 半成品继续施工
+或明确 abandon + replan
+→ 经济扩张重新向前推进
+
+只有 A+B 都成立，P2-C1 才算完整冻结。
+16. 关于 ABANDONED_UNRECOVERABLE
+如果最终确认原生确实无法恢复半成品：
+这不是 P2-C1 失败。
+正确语义就是：
+builder continuity 恢复成功
++
+unfinished job 无法续建
++
+显式放弃
++
+重新规划其它合法目标
+
+只要没有：
+- 假 ACTIVE；
+- 永久 stalled；
+- 同 site 死循环；
+就可以接受。
+17. 暂时仍然不要做 P2-B2
+即使这一局继续看到：
+大量 c_tank
++
+T2 工厂 fallback
+
+也不要在这轮直接改。
+因为它已经有充分历史证据。
+等 P2-C1 完整冻结以后，再单独施工：
+Global production budget
+
+保持因果清晰。
+最终裁决
+Q1
+批准 recovery probe。
+先对同一 stalled site 尝试一次同名 build。
+但：
+- 只能一次；
+- accepted 不等于成功；
+- 必须看到原 candidate 的 buildProgress 真正上涨；
+- 409 后先确认是否存在 repair/assist 类恢复路径；
+- 确认没有以后才 ABANDONED_UNRECOVERABLE；
+- abandoned site 必须避免被立即重新规划。
+Q2
+下一步只做 P2-C1 半成品恢复收尾 + capability 只读采集。
+不要并入 P2-B2。
+Q3
+确认下一局：
+冰岛 / 困难AI / 正常迷雾 / 900s / Start→Match
+
+同时收：
+builder_recovery_*
+production_deferred
+production_decision
+STALLED recovery
+capability snapshot
+
+当前顺序保持
+P2-C1 完整闭环
+↓
+P2-B2 Global Production Budget
+↓
+困难 AI 900s 压力复测
+↓
+P3-A
+
+可以按以上范围继续施工。

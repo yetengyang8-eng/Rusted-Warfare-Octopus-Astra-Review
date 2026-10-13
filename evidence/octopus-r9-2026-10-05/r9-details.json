@@ -1,0 +1,2521 @@
+{
+  "raw": "G:\\deepseek 工作台\\_validation\\octopus-r9-20261005\\spain-final-4800\\work\\rw-agent-reports\\battle-1791189103308-1c41d2a9.jsonl.gz",
+  "counts": {
+    "report_log_config": 1,
+    "health": 1,
+    "report_provenance": 1,
+    "observation": 3002,
+    "g2_world_update": 37002,
+    "g2_event": 74767,
+    "battle_config": 1,
+    "combat_observation": 2875,
+    "scout_visibility": 2875,
+    "endgame_air_provider_demand": 143,
+    "strategy_static_construction_map": 1,
+    "strategy_capacity": 142,
+    "g3_batch": 2875,
+    "builder_recovery_started": 5,
+    "builder_production": 8,
+    "g3_intent": 34255,
+    "g1_command_attempt": 34255,
+    "action": 34179,
+    "command_result": 34071,
+    "g3_execution": 34255,
+    "spend": 1516,
+    "builder_recovery_ordered": 5,
+    "production_capacity_menu": 1654,
+    "production_capacity_assessment": 344,
+    "production_facility_blocked": 107,
+    "production_route_observed": 144,
+    "g51_air_capability_need": 344,
+    "g4_force_state": 2875,
+    "g5_runtime_state": 1471,
+    "agent_tick_alive": 359,
+    "g3_credit_settled": 1077,
+    "production_menu": 1221,
+    "builder_recovery_completed": 5,
+    "production_facility_plan": 6,
+    "production_facility_planned": 5,
+    "production_facility_move": 12,
+    "production_facility_started": 5,
+    "production_facility_observed": 5,
+    "strategy_current_construction_demand": 49,
+    "factory_started": 5,
+    "factory_completed": 5,
+    "g51_tech_conversion": 9,
+    "opening_scout_ordered": 1,
+    "g1_production_witness": 1360,
+    "economy_expansion_plan": 23,
+    "economy_expansion_planned": 10,
+    "economy_expansion_move": 10,
+    "strategy_static_construction_domain": 35,
+    "strategy_current_facility_demand": 48,
+    "economy_expansion_started": 10,
+    "economy_expansion_observed": 10,
+    "strategy_construction_capacity": 76,
+    "combat_unit_observed": 721,
+    "production_queue_finished": 680,
+    "g4_force_transition": 18361,
+    "g4_force_transition_witness": 18361,
+    "g1_recon_owner": 695,
+    "task_ownership_acquired": 909,
+    "native_tech_funding_selected": 5,
+    "investment_released": 5,
+    "recon_takeover_queued": 1,
+    "extractor_started": 10,
+    "extractor_completed": 10,
+    "plan_unavailable": 2140,
+    "capability_snapshot": 6,
+    "recon_takeover_cancelled": 1,
+    "task_ownership_released": 401,
+    "economy_expansion_blocked": 299,
+    "static_map_knowledge": 1,
+    "early_expansion_approach": 332,
+    "early_expansion_transition": 98,
+    "early_expansion_transition_witness": 98,
+    "g4_force_collected": 14249,
+    "recon_frontier_plan": 12,
+    "recon_task_created": 9,
+    "recon_deferred": 113,
+    "recon_assigned": 347,
+    "recon_order_queued": 356,
+    "g1_recon_witness": 376,
+    "recon_order_observed": 356,
+    "recon_progress": 188,
+    "recon_waypoint_reached": 20,
+    "recon_frontier_memory_update": 7,
+    "upgrade_completed": 5,
+    "surplus_spending_evaluated": 729,
+    "recon_frontier_route_planned": 11,
+    "recon_frontier_route_renewed": 11,
+    "g5_commander_transition": 8314,
+    "g41_forming_expansion_approach": 33,
+    "military_urgency": 132,
+    "reachability_raw": 108,
+    "report_reachability": 127,
+    "reachability_sample": 127,
+    "engagement_observation": 8387,
+    "engagement_assessment": 2715,
+    "economy_expansion_finished": 1,
+    "g5_general_transition": 12545,
+    "strategy_allocation": 287,
+    "g1_strategy_state_transition": 2404,
+    "strategy_production_queue_finished": 53,
+    "strategy_construction_plan": 19,
+    "strategy_resource_approach": 143,
+    "strategy_prospect_ordered": 110,
+    "strategy_prospect_cluster_committed": 100,
+    "strategy_prospect_observed": 100,
+    "strategy_expansion_plan": 93,
+    "strategy_construction_ordered": 621,
+    "production_idle": 75,
+    "capability_need_created": 47,
+    "own_loss": 269,
+    "recon_attempt_blocked": 1,
+    "recon_frontier_blocked": 1,
+    "g1_strategy_ready_match_witness": 580,
+    "strategy_construction_observed": 580,
+    "strategy_local_cluster_visibility": 104,
+    "strategy_prospect_cluster_retained": 61,
+    "g5_general_frontier_plan": 3223,
+    "tactical_intent": 2028,
+    "g4_force_order": 1982,
+    "attack_order_confirmed": 865,
+    "strategy_capability_reserve_started": 4,
+    "strategy_investment_menu": 330,
+    "mine_income_investment_evaluated": 5742,
+    "mine_income_investment_deferred": 263,
+    "strategy_prospect_cluster_released": 58,
+    "production_surplus": 241,
+    "production_deferred": 109,
+    "local_crisis_engagement": 4972,
+    "strategy_income_alternative_plan": 100,
+    "engagement_assessment_deferred": 222,
+    "strategy_purchase_committed": 2,
+    "strategy_capability_reserve_released": 4,
+    "strategy_local_mine_waiting": 9,
+    "g1_strategy_purchase_ready_match_witness": 22,
+    "strategy_worker_committed": 14,
+    "response_engagement_observation": 273,
+    "strategy_task_assigned": 3,
+    "strategy_response_ordered": 5,
+    "strategy_response_progress": 52,
+    "production_facility_finished": 4,
+    "factory_target_increase_blocked": 60,
+    "strategy_investigation_started": 3,
+    "strategy_investigation_exhausted": 3,
+    "strategy_task_lost": 17,
+    "strategy_worker_commitment_released": 8,
+    "recon_unassigned": 335,
+    "recon_recall_queued": 198,
+    "capability_need_released": 3,
+    "recon_reacquired": 6,
+    "builder_recovery_waiting": 1,
+    "production_reserve_started": 1,
+    "strategy_recovery_plan": 28,
+    "strategy_support_reserve_started": 7,
+    "strategy_recovery_builder_rally": 1,
+    "strategy_home_construction_deferred": 23,
+    "strategy_recovery_capacity_committed": 5,
+    "strategy_support_reserve_released": 7,
+    "production_facility_native_quote": 21,
+    "strategy_rear_air_provider_assigned": 21,
+    "endgame_air_production_plan": 1072,
+    "strategy_task_preempted": 6,
+    "factory_target_increased": 3,
+    "production_facility_committed": 3,
+    "production_facility_order_accepted": 3,
+    "production_facility_ready": 3,
+    "recon_blocked": 1,
+    "target_suppression_started": 31,
+    "command_rejected": 108,
+    "production_capacity_after_expansion": 2,
+    "strategy_support_construction": 5,
+    "strategy_support_transferred": 5,
+    "strategy_unit_modes": 189,
+    "g1_strategy_mode_evidence_witness": 388,
+    "strategy_responder_mode_planned": 1,
+    "strategy_responder_water_approach_ordered": 1,
+    "strategy_task_blocked": 26,
+    "mine_upgrade_observed": 121,
+    "air_general_member_transition": 1081,
+    "strategy_specialist_handover": 508,
+    "endgame_capital_menu": 112,
+    "air_general_search_plan": 133,
+    "air_general_search_leg": 75,
+    "air_general_unit_mode": 2740,
+    "air_general_search_leg_witness": 43,
+    "strategy_current_capital_construction_demand": 12,
+    "air_general_engagement": 589,
+    "air_general_attack": 494,
+    "air_general_search_reroute": 31,
+    "air_general_target_clear": 140,
+    "air_general_mode_requested": 915,
+    "endgame_capital_builder_rally": 12,
+    "endgame_capital_construction_plan": 150,
+    "endgame_local_mine_priority": 4,
+    "endgame_air_investment": 531,
+    "air_general_search_deferred": 1,
+    "strategy_provider_repositioned": 1,
+    "surplus_role_ordered": 4,
+    "surplus_role_commitment_update": 4,
+    "capability_need_resolved": 15,
+    "endgame_capital_investment": 18,
+    "capital_upgrade_observed": 16,
+    "g3_cost_summary": 1,
+    "report_log_summary": 1,
+    "summary": 1
+  },
+  "tacticalChoices": {
+    "FRONTIER:NATIVE_KNOWN_ANCHOR_FRONTIER": 161,
+    "FRONTIER:RESUME_ACCEPTED_NATIVE_OUTWARD_FRONTIER_DYNAMIC_SAFETY_UNKNOWN": 525,
+    "ADVANCE:KNOWN_STATIC_TTK_EXCHANGE_WITHIN_LOSS_BUDGET": 263,
+    "ADVANCE:ADMITTED_CURRENT_NATIVE_ELIGIBLE_UNKNOWN_PROFILE_FALLBACK": 375,
+    "ADVANCE:CURRENT_BASE_SIEGE_POST_RECEIPT_OWN_ENTRY_CONTINUATION": 82,
+    "STANDOFF:COMMANDER_UNASSIGNED_REMOTE_TARGET_ORDER_CANCELLED": 72,
+    "STANDOFF:UNKNOWN_PROFILE_OR_CURRENT_DOMAIN_USE_CONSERVATIVE_FALLBACK": 1,
+    "STANDOFF:COMMANDER_LOST_CONTACT_BOUNDED_HOLD_NO_ATTACK_PERMISSION": 316,
+    "STANDOFF:LEGAL_BASE_ZONE_TRAVEL_VETO": 9,
+    "STANDOFF:LEGAL_BASE_ZONE_FRONTIER_TRAVEL_VETO": 8,
+    "FRONTIER:NATIVE_OUTWARD_MISSION_TERRAIN_DETOUR": 61,
+    "FRONTIER:NATIVE_KNOWN_FRONTIER_OUTSIDE_VISIBLE_HAZARDS_PATH_SAFETY_UNKNOWN": 4,
+    "STANDOFF:BASE_OBJECTIVE_UNAVAILABLE_LEAVE_KNOWN_FIRE_ZONE": 6
+  },
+  "siegeContinuationEvents": [
+    {
+      "line": 8878,
+      "gameTimeMs": 227712,
+      "generalId": 1,
+      "tacticalChoice": "ADVANCE",
+      "reason": "CURRENT_BASE_SIEGE_POST_RECEIPT_OWN_ENTRY_CONTINUATION",
+      "members": 7,
+      "recentOwnDamage": 256.0
+    },
+    {
+      "line": 8901,
+      "gameTimeMs": 228208,
+      "generalId": 1,
+      "tacticalChoice": "ADVANCE",
+      "reason": "CURRENT_BASE_SIEGE_POST_RECEIPT_OWN_ENTRY_CONTINUATION",
+      "members": 7,
+      "recentOwnDamage": 281.0
+    },
+    {
+      "line": 8925,
+      "gameTimeMs": 228528,
+      "generalId": 1,
+      "tacticalChoice": "ADVANCE",
+      "reason": "CURRENT_BASE_SIEGE_POST_RECEIPT_OWN_ENTRY_CONTINUATION",
+      "members": 7,
+      "recentOwnDamage": 281.0
+    },
+    {
+      "line": 8957,
+      "gameTimeMs": 228832,
+      "generalId": 1,
+      "tacticalChoice": "ADVANCE",
+      "reason": "CURRENT_BASE_SIEGE_POST_RECEIPT_OWN_ENTRY_CONTINUATION",
+      "members": 7,
+      "recentOwnDamage": 351.0
+    },
+    {
+      "line": 8977,
+      "gameTimeMs": 229360,
+      "generalId": 1,
+      "tacticalChoice": "ADVANCE",
+      "reason": "CURRENT_BASE_SIEGE_POST_RECEIPT_OWN_ENTRY_CONTINUATION",
+      "members": 7,
+      "recentOwnDamage": 410.0
+    },
+    {
+      "line": 8996,
+      "gameTimeMs": 229680,
+      "generalId": 1,
+      "tacticalChoice": "ADVANCE",
+      "reason": "CURRENT_BASE_SIEGE_POST_RECEIPT_OWN_ENTRY_CONTINUATION",
+      "members": 7,
+      "recentOwnDamage": 410.0
+    },
+    {
+      "line": 9021,
+      "gameTimeMs": 229968,
+      "generalId": 1,
+      "tacticalChoice": "ADVANCE",
+      "reason": "CURRENT_BASE_SIEGE_POST_RECEIPT_OWN_ENTRY_CONTINUATION",
+      "members": 6,
+      "recentOwnDamage": 490.0
+    },
+    {
+      "line": 9042,
+      "gameTimeMs": 230336,
+      "generalId": 1,
+      "tacticalChoice": "ADVANCE",
+      "reason": "CURRENT_BASE_SIEGE_POST_RECEIPT_OWN_ENTRY_CONTINUATION",
+      "members": 6,
+      "recentOwnDamage": 524.0
+    },
+    {
+      "line": 9061,
+      "gameTimeMs": 230656,
+      "generalId": 1,
+      "tacticalChoice": "ADVANCE",
+      "reason": "CURRENT_BASE_SIEGE_POST_RECEIPT_OWN_ENTRY_CONTINUATION",
+      "members": 6,
+      "recentOwnDamage": 489.0
+    },
+    {
+      "line": 9083,
+      "gameTimeMs": 230944,
+      "generalId": 1,
+      "tacticalChoice": "ADVANCE",
+      "reason": "CURRENT_BASE_SIEGE_POST_RECEIPT_OWN_ENTRY_CONTINUATION",
+      "members": 6,
+      "recentOwnDamage": 593.0
+    },
+    {
+      "line": 9104,
+      "gameTimeMs": 231248,
+      "generalId": 1,
+      "tacticalChoice": "ADVANCE",
+      "reason": "CURRENT_BASE_SIEGE_POST_RECEIPT_OWN_ENTRY_CONTINUATION",
+      "members": 6,
+      "recentOwnDamage": 603.0
+    },
+    {
+      "line": 9123,
+      "gameTimeMs": 231632,
+      "generalId": 1,
+      "tacticalChoice": "ADVANCE",
+      "reason": "CURRENT_BASE_SIEGE_POST_RECEIPT_OWN_ENTRY_CONTINUATION",
+      "members": 6,
+      "recentOwnDamage": 552.0
+    },
+    {
+      "line": 9141,
+      "gameTimeMs": 231936,
+      "generalId": 1,
+      "tacticalChoice": "ADVANCE",
+      "reason": "CURRENT_BASE_SIEGE_POST_RECEIPT_OWN_ENTRY_CONTINUATION",
+      "members": 6,
+      "recentOwnDamage": 562.0
+    },
+    {
+      "line": 9174,
+      "gameTimeMs": 232224,
+      "generalId": 1,
+      "tacticalChoice": "ADVANCE",
+      "reason": "CURRENT_BASE_SIEGE_POST_RECEIPT_OWN_ENTRY_CONTINUATION",
+      "members": 6,
+      "recentOwnDamage": 562.0
+    },
+    {
+      "line": 9205,
+      "gameTimeMs": 232608,
+      "generalId": 1,
+      "tacticalChoice": "ADVANCE",
+      "reason": "CURRENT_BASE_SIEGE_POST_RECEIPT_OWN_ENTRY_CONTINUATION",
+      "members": 6,
+      "recentOwnDamage": 589.0
+    },
+    {
+      "line": 9221,
+      "gameTimeMs": 233056,
+      "generalId": 1,
+      "tacticalChoice": "ADVANCE",
+      "reason": "CURRENT_BASE_SIEGE_POST_RECEIPT_OWN_ENTRY_CONTINUATION",
+      "members": 6,
+      "recentOwnDamage": 496.0
+    },
+    {
+      "line": 9239,
+      "gameTimeMs": 233344,
+      "generalId": 1,
+      "tacticalChoice": "ADVANCE",
+      "reason": "CURRENT_BASE_SIEGE_POST_RECEIPT_OWN_ENTRY_CONTINUATION",
+      "members": 6,
+      "recentOwnDamage": 488.0
+    },
+    {
+      "line": 9260,
+      "gameTimeMs": 233648,
+      "generalId": 1,
+      "tacticalChoice": "ADVANCE",
+      "reason": "CURRENT_BASE_SIEGE_POST_RECEIPT_OWN_ENTRY_CONTINUATION",
+      "members": 6,
+      "recentOwnDamage": 488.0
+    },
+    {
+      "line": 9280,
+      "gameTimeMs": 234096,
+      "generalId": 1,
+      "tacticalChoice": "ADVANCE",
+      "reason": "CURRENT_BASE_SIEGE_POST_RECEIPT_OWN_ENTRY_CONTINUATION",
+      "members": 6,
+      "recentOwnDamage": 418.0
+    },
+    {
+      "line": 9310,
+      "gameTimeMs": 234528,
+      "generalId": 1,
+      "tacticalChoice": "ADVANCE",
+      "reason": "CURRENT_BASE_SIEGE_POST_RECEIPT_OWN_ENTRY_CONTINUATION",
+      "members": 6,
+      "recentOwnDamage": 359.0
+    },
+    {
+      "line": 9324,
+      "gameTimeMs": 234912,
+      "generalId": 1,
+      "tacticalChoice": "ADVANCE",
+      "reason": "CURRENT_BASE_SIEGE_POST_RECEIPT_OWN_ENTRY_CONTINUATION",
+      "members": 6,
+      "recentOwnDamage": 359.0
+    },
+    {
+      "line": 9339,
+      "gameTimeMs": 235200,
+      "generalId": 1,
+      "tacticalChoice": "ADVANCE",
+      "reason": "CURRENT_BASE_SIEGE_POST_RECEIPT_OWN_ENTRY_CONTINUATION",
+      "members": 6,
+      "recentOwnDamage": 279.0
+    },
+    {
+      "line": 9358,
+      "gameTimeMs": 235520,
+      "generalId": 1,
+      "tacticalChoice": "ADVANCE",
+      "reason": "CURRENT_BASE_SIEGE_POST_RECEIPT_OWN_ENTRY_CONTINUATION",
+      "members": 6,
+      "recentOwnDamage": 315.00000000000006
+    },
+    {
+      "line": 9383,
+      "gameTimeMs": 235808,
+      "generalId": 1,
+      "tacticalChoice": "ADVANCE",
+      "reason": "CURRENT_BASE_SIEGE_POST_RECEIPT_OWN_ENTRY_CONTINUATION",
+      "members": 6,
+      "recentOwnDamage": 280.00000000000006
+    },
+    {
+      "line": 9404,
+      "gameTimeMs": 236208,
+      "generalId": 1,
+      "tacticalChoice": "ADVANCE",
+      "reason": "CURRENT_BASE_SIEGE_POST_RECEIPT_OWN_ENTRY_CONTINUATION",
+      "members": 6,
+      "recentOwnDamage": 176.00000000000006
+    },
+    {
+      "line": 9424,
+      "gameTimeMs": 236480,
+      "generalId": 1,
+      "tacticalChoice": "ADVANCE",
+      "reason": "CURRENT_BASE_SIEGE_POST_RECEIPT_OWN_ENTRY_CONTINUATION",
+      "members": 6,
+      "recentOwnDamage": 236.00000000000006
+    },
+    {
+      "line": 9443,
+      "gameTimeMs": 236800,
+      "generalId": 1,
+      "tacticalChoice": "ADVANCE",
+      "reason": "CURRENT_BASE_SIEGE_POST_RECEIPT_OWN_ENTRY_CONTINUATION",
+      "members": 6,
+      "recentOwnDamage": 194.00000000000006
+    },
+    {
+      "line": 9472,
+      "gameTimeMs": 237104,
+      "generalId": 1,
+      "tacticalChoice": "ADVANCE",
+      "reason": "CURRENT_BASE_SIEGE_POST_RECEIPT_OWN_ENTRY_CONTINUATION",
+      "members": 6,
+      "recentOwnDamage": 184.00000000000006
+    },
+    {
+      "line": 9496,
+      "gameTimeMs": 237712,
+      "generalId": 1,
+      "tacticalChoice": "ADVANCE",
+      "reason": "CURRENT_BASE_SIEGE_POST_RECEIPT_OWN_ENTRY_CONTINUATION",
+      "members": 5,
+      "recentOwnDamage": 244.00000000000006
+    },
+    {
+      "line": 9515,
+      "gameTimeMs": 237984,
+      "generalId": 1,
+      "tacticalChoice": "ADVANCE",
+      "reason": "CURRENT_BASE_SIEGE_POST_RECEIPT_OWN_ENTRY_CONTINUATION",
+      "members": 5,
+      "recentOwnDamage": 244.00000000000006
+    },
+    {
+      "line": 9540,
+      "gameTimeMs": 238304,
+      "generalId": 1,
+      "tacticalChoice": "ADVANCE",
+      "reason": "CURRENT_BASE_SIEGE_POST_RECEIPT_OWN_ENTRY_CONTINUATION",
+      "members": 5,
+      "recentOwnDamage": 254.00000000000006
+    },
+    {
+      "line": 9560,
+      "gameTimeMs": 238704,
+      "generalId": 1,
+      "tacticalChoice": "ADVANCE",
+      "reason": "CURRENT_BASE_SIEGE_POST_RECEIPT_OWN_ENTRY_CONTINUATION",
+      "members": 4,
+      "recentOwnDamage": 334.00000000000006
+    },
+    {
+      "line": 9578,
+      "gameTimeMs": 238976,
+      "generalId": 1,
+      "tacticalChoice": "ADVANCE",
+      "reason": "CURRENT_BASE_SIEGE_POST_RECEIPT_OWN_ENTRY_CONTINUATION",
+      "members": 4,
+      "recentOwnDamage": 334.00000000000006
+    },
+    {
+      "line": 9598,
+      "gameTimeMs": 239280,
+      "generalId": 1,
+      "tacticalChoice": "ADVANCE",
+      "reason": "CURRENT_BASE_SIEGE_POST_RECEIPT_OWN_ENTRY_CONTINUATION",
+      "members": 4,
+      "recentOwnDamage": 361.00000000000006
+    },
+    {
+      "line": 9621,
+      "gameTimeMs": 239552,
+      "generalId": 1,
+      "tacticalChoice": "ADVANCE",
+      "reason": "CURRENT_BASE_SIEGE_POST_RECEIPT_OWN_ENTRY_CONTINUATION",
+      "members": 4,
+      "recentOwnDamage": 431.0
+    },
+    {
+      "line": 9639,
+      "gameTimeMs": 239936,
+      "generalId": 1,
+      "tacticalChoice": "ADVANCE",
+      "reason": "CURRENT_BASE_SIEGE_POST_RECEIPT_OWN_ENTRY_CONTINUATION",
+      "members": 4,
+      "recentOwnDamage": 441.0
+    },
+    {
+      "line": 9657,
+      "gameTimeMs": 240272,
+      "generalId": 1,
+      "tacticalChoice": "ADVANCE",
+      "reason": "CURRENT_BASE_SIEGE_POST_RECEIPT_OWN_ENTRY_CONTINUATION",
+      "members": 4,
+      "recentOwnDamage": 458.0
+    },
+    {
+      "line": 9680,
+      "gameTimeMs": 240560,
+      "generalId": 1,
+      "tacticalChoice": "ADVANCE",
+      "reason": "CURRENT_BASE_SIEGE_POST_RECEIPT_OWN_ENTRY_CONTINUATION",
+      "members": 4,
+      "recentOwnDamage": 398.0
+    },
+    {
+      "line": 9737,
+      "gameTimeMs": 240928,
+      "generalId": 1,
+      "tacticalChoice": "ADVANCE",
+      "reason": "CURRENT_BASE_SIEGE_POST_RECEIPT_OWN_ENTRY_CONTINUATION",
+      "members": 4,
+      "recentOwnDamage": 415.0
+    },
+    {
+      "line": 9757,
+      "gameTimeMs": 241760,
+      "generalId": 1,
+      "tacticalChoice": "ADVANCE",
+      "reason": "CURRENT_BASE_SIEGE_POST_RECEIPT_OWN_ENTRY_CONTINUATION",
+      "members": 4,
+      "recentOwnDamage": 372.0
+    },
+    {
+      "line": 9774,
+      "gameTimeMs": 242048,
+      "generalId": 1,
+      "tacticalChoice": "ADVANCE",
+      "reason": "CURRENT_BASE_SIEGE_POST_RECEIPT_OWN_ENTRY_CONTINUATION",
+      "members": 4,
+      "recentOwnDamage": 382.0
+    },
+    {
+      "line": 9794,
+      "gameTimeMs": 242352,
+      "generalId": 1,
+      "tacticalChoice": "ADVANCE",
+      "reason": "CURRENT_BASE_SIEGE_POST_RECEIPT_OWN_ENTRY_CONTINUATION",
+      "members": 4,
+      "recentOwnDamage": 399.0
+    },
+    {
+      "line": 9814,
+      "gameTimeMs": 242640,
+      "generalId": 1,
+      "tacticalChoice": "ADVANCE",
+      "reason": "CURRENT_BASE_SIEGE_POST_RECEIPT_OWN_ENTRY_CONTINUATION",
+      "members": 4,
+      "recentOwnDamage": 409.0
+    },
+    {
+      "line": 9848,
+      "gameTimeMs": 242960,
+      "generalId": 1,
+      "tacticalChoice": "ADVANCE",
+      "reason": "CURRENT_BASE_SIEGE_POST_RECEIPT_OWN_ENTRY_CONTINUATION",
+      "members": 4,
+      "recentOwnDamage": 322.0
+    },
+    {
+      "line": 9867,
+      "gameTimeMs": 243472,
+      "generalId": 1,
+      "tacticalChoice": "ADVANCE",
+      "reason": "CURRENT_BASE_SIEGE_POST_RECEIPT_OWN_ENTRY_CONTINUATION",
+      "members": 4,
+      "recentOwnDamage": 339.0
+    },
+    {
+      "line": 9884,
+      "gameTimeMs": 243792,
+      "generalId": 1,
+      "tacticalChoice": "ADVANCE",
+      "reason": "CURRENT_BASE_SIEGE_POST_RECEIPT_OWN_ENTRY_CONTINUATION",
+      "members": 4,
+      "recentOwnDamage": 251.99999999999997
+    },
+    {
+      "line": 9918,
+      "gameTimeMs": 244080,
+      "generalId": 1,
+      "tacticalChoice": "ADVANCE",
+      "reason": "CURRENT_BASE_SIEGE_POST_RECEIPT_OWN_ENTRY_CONTINUATION",
+      "members": 4,
+      "recentOwnDamage": 251.99999999999997
+    },
+    {
+      "line": 9937,
+      "gameTimeMs": 244656,
+      "generalId": 1,
+      "tacticalChoice": "ADVANCE",
+      "reason": "CURRENT_BASE_SIEGE_POST_RECEIPT_OWN_ENTRY_CONTINUATION",
+      "members": 4,
+      "recentOwnDamage": 235.0
+    },
+    {
+      "line": 9952,
+      "gameTimeMs": 244912,
+      "generalId": 1,
+      "tacticalChoice": "ADVANCE",
+      "reason": "CURRENT_BASE_SIEGE_POST_RECEIPT_OWN_ENTRY_CONTINUATION",
+      "members": 4,
+      "recentOwnDamage": 235.0
+    },
+    {
+      "line": 9972,
+      "gameTimeMs": 245216,
+      "generalId": 1,
+      "tacticalChoice": "ADVANCE",
+      "reason": "CURRENT_BASE_SIEGE_POST_RECEIPT_OWN_ENTRY_CONTINUATION",
+      "members": 4,
+      "recentOwnDamage": 245.0
+    },
+    {
+      "line": 9993,
+      "gameTimeMs": 245600,
+      "generalId": 1,
+      "tacticalChoice": "ADVANCE",
+      "reason": "CURRENT_BASE_SIEGE_POST_RECEIPT_OWN_ENTRY_CONTINUATION",
+      "members": 3,
+      "recentOwnDamage": 288.0
+    },
+    {
+      "line": 10010,
+      "gameTimeMs": 245936,
+      "generalId": 1,
+      "tacticalChoice": "ADVANCE",
+      "reason": "CURRENT_BASE_SIEGE_POST_RECEIPT_OWN_ENTRY_CONTINUATION",
+      "members": 3,
+      "recentOwnDamage": 291.0
+    },
+    {
+      "line": 10030,
+      "gameTimeMs": 246592,
+      "generalId": 1,
+      "tacticalChoice": "ADVANCE",
+      "reason": "CURRENT_BASE_SIEGE_POST_RECEIPT_OWN_ENTRY_CONTINUATION",
+      "members": 3,
+      "recentOwnDamage": 398.0
+    },
+    {
+      "line": 10058,
+      "gameTimeMs": 246928,
+      "generalId": 1,
+      "tacticalChoice": "ADVANCE",
+      "reason": "CURRENT_BASE_SIEGE_POST_RECEIPT_OWN_ENTRY_CONTINUATION",
+      "members": 3,
+      "recentOwnDamage": 371.0
+    },
+    {
+      "line": 10085,
+      "gameTimeMs": 247568,
+      "generalId": 1,
+      "tacticalChoice": "ADVANCE",
+      "reason": "CURRENT_BASE_SIEGE_POST_RECEIPT_OWN_ENTRY_CONTINUATION",
+      "members": 3,
+      "recentOwnDamage": 361.0
+    },
+    {
+      "line": 10101,
+      "gameTimeMs": 247920,
+      "generalId": 1,
+      "tacticalChoice": "ADVANCE",
+      "reason": "CURRENT_BASE_SIEGE_POST_RECEIPT_OWN_ENTRY_CONTINUATION",
+      "members": 3,
+      "recentOwnDamage": 351.0
+    },
+    {
+      "line": 10122,
+      "gameTimeMs": 248224,
+      "generalId": 1,
+      "tacticalChoice": "ADVANCE",
+      "reason": "CURRENT_BASE_SIEGE_POST_RECEIPT_OWN_ENTRY_CONTINUATION",
+      "members": 3,
+      "recentOwnDamage": 368.0
+    },
+    {
+      "line": 10155,
+      "gameTimeMs": 248576,
+      "generalId": 1,
+      "tacticalChoice": "ADVANCE",
+      "reason": "CURRENT_BASE_SIEGE_POST_RECEIPT_OWN_ENTRY_CONTINUATION",
+      "members": 3,
+      "recentOwnDamage": 341.0
+    },
+    {
+      "line": 10173,
+      "gameTimeMs": 249168,
+      "generalId": 1,
+      "tacticalChoice": "ADVANCE",
+      "reason": "CURRENT_BASE_SIEGE_POST_RECEIPT_OWN_ENTRY_CONTINUATION",
+      "members": 3,
+      "recentOwnDamage": 348.0
+    },
+    {
+      "line": 10194,
+      "gameTimeMs": 249488,
+      "generalId": 1,
+      "tacticalChoice": "ADVANCE",
+      "reason": "CURRENT_BASE_SIEGE_POST_RECEIPT_OWN_ENTRY_CONTINUATION",
+      "members": 3,
+      "recentOwnDamage": 348.0
+    },
+    {
+      "line": 10229,
+      "gameTimeMs": 249792,
+      "generalId": 1,
+      "tacticalChoice": "ADVANCE",
+      "reason": "CURRENT_BASE_SIEGE_POST_RECEIPT_OWN_ENTRY_CONTINUATION",
+      "members": 3,
+      "recentOwnDamage": 355.0
+    },
+    {
+      "line": 10247,
+      "gameTimeMs": 250464,
+      "generalId": 1,
+      "tacticalChoice": "ADVANCE",
+      "reason": "CURRENT_BASE_SIEGE_POST_RECEIPT_OWN_ENTRY_CONTINUATION",
+      "members": 3,
+      "recentOwnDamage": 382.0
+    },
+    {
+      "line": 10264,
+      "gameTimeMs": 250768,
+      "generalId": 1,
+      "tacticalChoice": "ADVANCE",
+      "reason": "CURRENT_BASE_SIEGE_POST_RECEIPT_OWN_ENTRY_CONTINUATION",
+      "members": 3,
+      "recentOwnDamage": 312.0
+    },
+    {
+      "line": 10284,
+      "gameTimeMs": 251072,
+      "generalId": 1,
+      "tacticalChoice": "ADVANCE",
+      "reason": "CURRENT_BASE_SIEGE_POST_RECEIPT_OWN_ENTRY_CONTINUATION",
+      "members": 3,
+      "recentOwnDamage": 382.0
+    },
+    {
+      "line": 10301,
+      "gameTimeMs": 251440,
+      "generalId": 1,
+      "tacticalChoice": "ADVANCE",
+      "reason": "CURRENT_BASE_SIEGE_POST_RECEIPT_OWN_ENTRY_CONTINUATION",
+      "members": 3,
+      "recentOwnDamage": 399.0
+    },
+    {
+      "line": 10319,
+      "gameTimeMs": 251760,
+      "generalId": 1,
+      "tacticalChoice": "ADVANCE",
+      "reason": "CURRENT_BASE_SIEGE_POST_RECEIPT_OWN_ENTRY_CONTINUATION",
+      "members": 3,
+      "recentOwnDamage": 312.0
+    },
+    {
+      "line": 10342,
+      "gameTimeMs": 252080,
+      "generalId": 1,
+      "tacticalChoice": "ADVANCE",
+      "reason": "CURRENT_BASE_SIEGE_POST_RECEIPT_OWN_ENTRY_CONTINUATION",
+      "members": 2,
+      "recentOwnDamage": 399.0
+    },
+    {
+      "line": 10363,
+      "gameTimeMs": 252400,
+      "generalId": 1,
+      "tacticalChoice": "ADVANCE",
+      "reason": "CURRENT_BASE_SIEGE_POST_RECEIPT_OWN_ENTRY_CONTINUATION",
+      "members": 2,
+      "recentOwnDamage": 419.0
+    },
+    {
+      "line": 10382,
+      "gameTimeMs": 252720,
+      "generalId": 1,
+      "tacticalChoice": "ADVANCE",
+      "reason": "CURRENT_BASE_SIEGE_POST_RECEIPT_OWN_ENTRY_CONTINUATION",
+      "members": 2,
+      "recentOwnDamage": 402.0
+    },
+    {
+      "line": 10399,
+      "gameTimeMs": 253040,
+      "generalId": 1,
+      "tacticalChoice": "ADVANCE",
+      "reason": "CURRENT_BASE_SIEGE_POST_RECEIPT_OWN_ENTRY_CONTINUATION",
+      "members": 2,
+      "recentOwnDamage": 439.0
+    },
+    {
+      "line": 22512,
+      "gameTimeMs": 446816,
+      "generalId": 1,
+      "tacticalChoice": "ADVANCE",
+      "reason": "CURRENT_BASE_SIEGE_POST_RECEIPT_OWN_ENTRY_CONTINUATION",
+      "members": 12,
+      "recentOwnDamage": 70.0
+    },
+    {
+      "line": 49734,
+      "gameTimeMs": 820160,
+      "generalId": 2,
+      "tacticalChoice": "ADVANCE",
+      "reason": "CURRENT_BASE_SIEGE_POST_RECEIPT_OWN_ENTRY_CONTINUATION",
+      "members": 19,
+      "recentOwnDamage": 20.0
+    },
+    {
+      "line": 49832,
+      "gameTimeMs": 821312,
+      "generalId": 1,
+      "tacticalChoice": "ADVANCE",
+      "reason": "CURRENT_BASE_SIEGE_POST_RECEIPT_OWN_ENTRY_CONTINUATION",
+      "members": 20,
+      "recentOwnDamage": 82.0
+    },
+    {
+      "line": 82645,
+      "gameTimeMs": 1210320,
+      "generalId": 3,
+      "tacticalChoice": "ADVANCE",
+      "reason": "CURRENT_BASE_SIEGE_POST_RECEIPT_OWN_ENTRY_CONTINUATION",
+      "members": 18,
+      "recentOwnDamage": 140.0
+    },
+    {
+      "line": 124739,
+      "gameTimeMs": 1661088,
+      "generalId": 3,
+      "tacticalChoice": "ADVANCE",
+      "reason": "CURRENT_BASE_SIEGE_POST_RECEIPT_OWN_ENTRY_CONTINUATION",
+      "members": 20,
+      "recentOwnDamage": 531.0
+    },
+    {
+      "line": 168702,
+      "gameTimeMs": 2076352,
+      "generalId": 2,
+      "tacticalChoice": "ADVANCE",
+      "reason": "CURRENT_BASE_SIEGE_POST_RECEIPT_OWN_ENTRY_CONTINUATION",
+      "members": 10,
+      "recentOwnDamage": 333.95900000000006
+    },
+    {
+      "line": 169078,
+      "gameTimeMs": 2080224,
+      "generalId": 2,
+      "tacticalChoice": "ADVANCE",
+      "reason": "CURRENT_BASE_SIEGE_POST_RECEIPT_OWN_ENTRY_CONTINUATION",
+      "members": 10,
+      "recentOwnDamage": 20.0
+    },
+    {
+      "line": 169450,
+      "gameTimeMs": 2083888,
+      "generalId": 2,
+      "tacticalChoice": "ADVANCE",
+      "reason": "CURRENT_BASE_SIEGE_POST_RECEIPT_OWN_ENTRY_CONTINUATION",
+      "members": 9,
+      "recentOwnDamage": 211.0
+    },
+    {
+      "line": 169786,
+      "gameTimeMs": 2087728,
+      "generalId": 2,
+      "tacticalChoice": "ADVANCE",
+      "reason": "CURRENT_BASE_SIEGE_POST_RECEIPT_OWN_ENTRY_CONTINUATION",
+      "members": 9,
+      "recentOwnDamage": 225.0
+    },
+    {
+      "line": 189322,
+      "gameTimeMs": 2258240,
+      "generalId": 3,
+      "tacticalChoice": "ADVANCE",
+      "reason": "CURRENT_BASE_SIEGE_POST_RECEIPT_OWN_ENTRY_CONTINUATION",
+      "members": 9,
+      "recentOwnDamage": 629.7539999999999
+    },
+    {
+      "line": 189781,
+      "gameTimeMs": 2262112,
+      "generalId": 3,
+      "tacticalChoice": "ADVANCE",
+      "reason": "CURRENT_BASE_SIEGE_POST_RECEIPT_OWN_ENTRY_CONTINUATION",
+      "members": 9,
+      "recentOwnDamage": 569.6209999999999
+    },
+    {
+      "line": 232304,
+      "gameTimeMs": 2635184,
+      "generalId": 2,
+      "tacticalChoice": "ADVANCE",
+      "reason": "CURRENT_BASE_SIEGE_POST_RECEIPT_OWN_ENTRY_CONTINUATION",
+      "members": 14,
+      "recentOwnDamage": 326.0
+    }
+  ],
+  "insideKnownBaseRangeCollectedStandoffMoves": [],
+  "airProviderAssignments": 21,
+  "providerIds": [
+    1628,
+    42883,
+    44321,
+    48140,
+    50743,
+    51237,
+    51331,
+    51405,
+    51470,
+    52193,
+    52408,
+    52764,
+    53230,
+    53398,
+    53481,
+    53623,
+    53760,
+    53954,
+    54199,
+    55064,
+    55772
+  ],
+  "providerDemandFirst": [
+    {
+      "readyProviders": 0,
+      "pendingProviders": 0,
+      "recentNativeFundedProviders": 0,
+      "targetProviders": 0,
+      "spatialDuty": false,
+      "cashHistory": {
+        "covered": false,
+        "horizonGameMs": 120000,
+        "ownCreditsGrowth": null,
+        "source": "CURRENT_OWN_CREDITS_SAMPLES",
+        "growing": false,
+        "wealthThreshold": null,
+        "hiddenEnemyAdvantage": "UNKNOWN",
+        "idleCapitalPerGameSecond": null,
+        "observedAirServiceSamples": 0,
+        "airProviderNativeSpendPerGameSecond": null,
+        "airInvoicesAwaitingReadyWitness": 0,
+        "airThroughputSource": "ACCEPTED_NATIVE_INVOICE_TO_LATER_OWN_READY_PRODUCT",
+        "airProviderModel": "CURRENT_FUNDED_SPATIAL_DUTY_PLUS_OBSERVED_IDLE_CAPITAL_OVER_OBSERVED_PROVIDER_SERVICE"
+      },
+      "groundRole": "CURRENT_FORMATIONS_AND_LAWFUL_LAND_FRONTIERS_CONTINUE",
+      "mainlandCleared": "UNKNOWN",
+      "reason": "OBSERVED_IDLE_CAPITAL_AND_NATIVE_AIR_SERVICE",
+      "militaryHeadroom": 2147483647,
+      "gameTimeMs": 2336,
+      "sessionId": "ff0c21cc-f600-42fe-ba35-6b116b16eedd",
+      "player": "team:0"
+    },
+    {
+      "readyProviders": 0,
+      "pendingProviders": 0,
+      "recentNativeFundedProviders": 0,
+      "targetProviders": 1,
+      "spatialDuty": true,
+      "cashHistory": {
+        "covered": true,
+        "horizonGameMs": 120000,
+        "ownCreditsGrowth": 266.5,
+        "source": "CURRENT_OWN_CREDITS_SAMPLES",
+        "growing": true,
+        "wealthThreshold": null,
+        "hiddenEnemyAdvantage": "UNKNOWN",
+        "idleCapitalPerGameSecond": 2.220833333333333,
+        "observedAirServiceSamples": 0,
+        "airProviderNativeSpendPerGameSecond": null,
+        "airInvoicesAwaitingReadyWitness": 0,
+        "airThroughputSource": "ACCEPTED_NATIVE_INVOICE_TO_LATER_OWN_READY_PRODUCT",
+        "airProviderModel": "CURRENT_FUNDED_SPATIAL_DUTY_PLUS_OBSERVED_IDLE_CAPITAL_OVER_OBSERVED_PROVIDER_SERVICE"
+      },
+      "groundRole": "CURRENT_FORMATIONS_AND_LAWFUL_LAND_FRONTIERS_CONTINUE",
+      "mainlandCleared": "UNKNOWN",
+      "reason": "OBSERVED_IDLE_CAPITAL_AND_NATIVE_AIR_SERVICE",
+      "militaryHeadroom": 2147483578,
+      "gameTimeMs": 977152,
+      "sessionId": "ff0c21cc-f600-42fe-ba35-6b116b16eedd",
+      "player": "team:0"
+    },
+    {
+      "readyProviders": 1,
+      "pendingProviders": 0,
+      "recentNativeFundedProviders": 0,
+      "targetProviders": 1,
+      "spatialDuty": true,
+      "cashHistory": {
+        "covered": true,
+        "horizonGameMs": 120000,
+        "ownCreditsGrowth": 266.5,
+        "source": "CURRENT_OWN_CREDITS_SAMPLES",
+        "growing": true,
+        "wealthThreshold": null,
+        "hiddenEnemyAdvantage": "UNKNOWN",
+        "idleCapitalPerGameSecond": 2.220833333333333,
+        "observedAirServiceSamples": 0,
+        "airProviderNativeSpendPerGameSecond": null,
+        "airInvoicesAwaitingReadyWitness": 0,
+        "airThroughputSource": "ACCEPTED_NATIVE_INVOICE_TO_LATER_OWN_READY_PRODUCT",
+        "airProviderModel": "CURRENT_FUNDED_SPATIAL_DUTY_PLUS_OBSERVED_IDLE_CAPITAL_OVER_OBSERVED_PROVIDER_SERVICE"
+      },
+      "groundRole": "CURRENT_FORMATIONS_AND_LAWFUL_LAND_FRONTIERS_CONTINUE",
+      "mainlandCleared": "UNKNOWN",
+      "reason": "OBSERVED_IDLE_CAPITAL_AND_NATIVE_AIR_SERVICE",
+      "militaryHeadroom": 2147483578,
+      "gameTimeMs": 977152,
+      "sessionId": "ff0c21cc-f600-42fe-ba35-6b116b16eedd",
+      "player": "team:0"
+    },
+    {
+      "readyProviders": 1,
+      "pendingProviders": 0,
+      "recentNativeFundedProviders": 0,
+      "targetProviders": 1,
+      "spatialDuty": false,
+      "cashHistory": {
+        "covered": true,
+        "horizonGameMs": 120000,
+        "ownCreditsGrowth": 856.0,
+        "source": "CURRENT_OWN_CREDITS_SAMPLES",
+        "growing": true,
+        "wealthThreshold": null,
+        "hiddenEnemyAdvantage": "UNKNOWN",
+        "idleCapitalPerGameSecond": 7.133333333333334,
+        "observedAirServiceSamples": 0,
+        "airProviderNativeSpendPerGameSecond": null,
+        "airInvoicesAwaitingReadyWitness": 0,
+        "airThroughputSource": "ACCEPTED_NATIVE_INVOICE_TO_LATER_OWN_READY_PRODUCT",
+        "airProviderModel": "CURRENT_FUNDED_SPATIAL_DUTY_PLUS_OBSERVED_IDLE_CAPITAL_OVER_OBSERVED_PROVIDER_SERVICE"
+      },
+      "groundRole": "CURRENT_FORMATIONS_AND_LAWFUL_LAND_FRONTIERS_CONTINUE",
+      "mainlandCleared": "UNKNOWN",
+      "reason": "OBSERVED_IDLE_CAPITAL_AND_NATIVE_AIR_SERVICE",
+      "militaryHeadroom": 2147483577,
+      "gameTimeMs": 980352,
+      "sessionId": "ff0c21cc-f600-42fe-ba35-6b116b16eedd",
+      "player": "team:0"
+    }
+  ],
+  "providerDemandLast": [
+    {
+      "readyProviders": 20,
+      "pendingProviders": 0,
+      "recentNativeFundedProviders": 16,
+      "targetProviders": 20,
+      "spatialDuty": true,
+      "cashHistory": {
+        "covered": true,
+        "horizonGameMs": 120000,
+        "ownCreditsGrowth": 69963.0,
+        "source": "CURRENT_OWN_CREDITS_SAMPLES",
+        "growing": true,
+        "wealthThreshold": null,
+        "hiddenEnemyAdvantage": "UNKNOWN",
+        "idleCapitalPerGameSecond": 583.025,
+        "observedAirServiceSamples": 39,
+        "airProviderNativeSpendPerGameSecond": 49.75352867334129,
+        "airInvoicesAwaitingReadyWitness": 1,
+        "airThroughputSource": "ACCEPTED_NATIVE_INVOICE_TO_LATER_OWN_READY_PRODUCT",
+        "airProviderModel": "CURRENT_FUNDED_SPATIAL_DUTY_PLUS_OBSERVED_IDLE_CAPITAL_OVER_OBSERVED_PROVIDER_SERVICE"
+      },
+      "groundRole": "CURRENT_FORMATIONS_AND_LAWFUL_LAND_FRONTIERS_CONTINUE",
+      "mainlandCleared": "UNKNOWN",
+      "reason": "OBSERVED_IDLE_CAPITAL_AND_NATIVE_AIR_SERVICE",
+      "militaryHeadroom": 2147482700,
+      "gameTimeMs": 4507664,
+      "sessionId": "ff0c21cc-f600-42fe-ba35-6b116b16eedd",
+      "player": "team:0"
+    },
+    {
+      "readyProviders": 20,
+      "pendingProviders": 0,
+      "recentNativeFundedProviders": 19,
+      "targetProviders": 20,
+      "spatialDuty": true,
+      "cashHistory": {
+        "covered": true,
+        "horizonGameMs": 120000,
+        "ownCreditsGrowth": 69963.0,
+        "source": "CURRENT_OWN_CREDITS_SAMPLES",
+        "growing": true,
+        "wealthThreshold": null,
+        "hiddenEnemyAdvantage": "UNKNOWN",
+        "idleCapitalPerGameSecond": 583.025,
+        "observedAirServiceSamples": 39,
+        "airProviderNativeSpendPerGameSecond": 49.75352867334129,
+        "airInvoicesAwaitingReadyWitness": 14,
+        "airThroughputSource": "ACCEPTED_NATIVE_INVOICE_TO_LATER_OWN_READY_PRODUCT",
+        "airProviderModel": "CURRENT_FUNDED_SPATIAL_DUTY_PLUS_OBSERVED_IDLE_CAPITAL_OVER_OBSERVED_PROVIDER_SERVICE"
+      },
+      "groundRole": "CURRENT_FORMATIONS_AND_LAWFUL_LAND_FRONTIERS_CONTINUE",
+      "mainlandCleared": "UNKNOWN",
+      "reason": "OBSERVED_IDLE_CAPITAL_AND_NATIVE_AIR_SERVICE",
+      "militaryHeadroom": 2147482687,
+      "gameTimeMs": 4507664,
+      "sessionId": "ff0c21cc-f600-42fe-ba35-6b116b16eedd",
+      "player": "team:0"
+    },
+    {
+      "readyProviders": 20,
+      "pendingProviders": 0,
+      "recentNativeFundedProviders": 20,
+      "targetProviders": 34,
+      "spatialDuty": true,
+      "cashHistory": {
+        "covered": true,
+        "horizonGameMs": 120000,
+        "ownCreditsGrowth": 89856.0,
+        "source": "CURRENT_OWN_CREDITS_SAMPLES",
+        "growing": true,
+        "wealthThreshold": null,
+        "hiddenEnemyAdvantage": "UNKNOWN",
+        "idleCapitalPerGameSecond": 748.8,
+        "observedAirServiceSamples": 37,
+        "airProviderNativeSpendPerGameSecond": 56.14635686017433,
+        "airInvoicesAwaitingReadyWitness": 19,
+        "airThroughputSource": "ACCEPTED_NATIVE_INVOICE_TO_LATER_OWN_READY_PRODUCT",
+        "airProviderModel": "CURRENT_FUNDED_SPATIAL_DUTY_PLUS_OBSERVED_IDLE_CAPITAL_OVER_OBSERVED_PROVIDER_SERVICE"
+      },
+      "groundRole": "CURRENT_FORMATIONS_AND_LAWFUL_LAND_FRONTIERS_CONTINUE",
+      "mainlandCleared": "UNKNOWN",
+      "reason": "OBSERVED_IDLE_CAPITAL_AND_NATIVE_AIR_SERVICE",
+      "militaryHeadroom": 2147482671,
+      "gameTimeMs": 4563696,
+      "sessionId": "ff0c21cc-f600-42fe-ba35-6b116b16eedd",
+      "player": "team:0"
+    },
+    {
+      "readyProviders": 20,
+      "pendingProviders": 1,
+      "recentNativeFundedProviders": 20,
+      "targetProviders": 21,
+      "spatialDuty": true,
+      "cashHistory": {
+        "covered": true,
+        "horizonGameMs": 120000,
+        "ownCreditsGrowth": 50368.5,
+        "source": "CURRENT_OWN_CREDITS_SAMPLES",
+        "growing": true,
+        "wealthThreshold": null,
+        "hiddenEnemyAdvantage": "UNKNOWN",
+        "idleCapitalPerGameSecond": 419.7375,
+        "observedAirServiceSamples": 38,
+        "airProviderNativeSpendPerGameSecond": 56.12799546249468,
+        "airInvoicesAwaitingReadyWitness": 15,
+        "airThroughputSource": "ACCEPTED_NATIVE_INVOICE_TO_LATER_OWN_READY_PRODUCT",
+        "airProviderModel": "CURRENT_FUNDED_SPATIAL_DUTY_PLUS_OBSERVED_IDLE_CAPITAL_OVER_OBSERVED_PROVIDER_SERVICE"
+      },
+      "groundRole": "CURRENT_FORMATIONS_AND_LAWFUL_LAND_FRONTIERS_CONTINUE",
+      "mainlandCleared": "UNKNOWN",
+      "reason": "OBSERVED_IDLE_CAPITAL_AND_NATIVE_AIR_SERVICE",
+      "militaryHeadroom": 2147482658,
+      "gameTimeMs": 4575904,
+      "sessionId": "ff0c21cc-f600-42fe-ba35-6b116b16eedd",
+      "player": "team:0"
+    },
+    {
+      "readyProviders": 21,
+      "pendingProviders": 0,
+      "recentNativeFundedProviders": 20,
+      "targetProviders": 21,
+      "spatialDuty": true,
+      "cashHistory": {
+        "covered": true,
+        "horizonGameMs": 120000,
+        "ownCreditsGrowth": 120049.5,
+        "source": "CURRENT_OWN_CREDITS_SAMPLES",
+        "growing": true,
+        "wealthThreshold": null,
+        "hiddenEnemyAdvantage": "UNKNOWN",
+        "idleCapitalPerGameSecond": 1000.4125,
+        "observedAirServiceSamples": 40,
+        "airProviderNativeSpendPerGameSecond": 69.06172737192503,
+        "airInvoicesAwaitingReadyWitness": 5,
+        "airThroughputSource": "ACCEPTED_NATIVE_INVOICE_TO_LATER_OWN_READY_PRODUCT",
+        "airProviderModel": "CURRENT_FUNDED_SPATIAL_DUTY_PLUS_OBSERVED_IDLE_CAPITAL_OVER_OBSERVED_PROVIDER_SERVICE"
+      },
+      "groundRole": "CURRENT_FORMATIONS_AND_LAWFUL_LAND_FRONTIERS_CONTINUE",
+      "mainlandCleared": "UNKNOWN",
+      "reason": "OBSERVED_IDLE_CAPITAL_AND_NATIVE_AIR_SERVICE",
+      "militaryHeadroom": 2147482657,
+      "gameTimeMs": 4626688,
+      "sessionId": "ff0c21cc-f600-42fe-ba35-6b116b16eedd",
+      "player": "team:0"
+    },
+    {
+      "readyProviders": 21,
+      "pendingProviders": 0,
+      "recentNativeFundedProviders": 21,
+      "targetProviders": 36,
+      "spatialDuty": true,
+      "cashHistory": {
+        "covered": true,
+        "horizonGameMs": 120000,
+        "ownCreditsGrowth": 120049.5,
+        "source": "CURRENT_OWN_CREDITS_SAMPLES",
+        "growing": true,
+        "wealthThreshold": null,
+        "hiddenEnemyAdvantage": "UNKNOWN",
+        "idleCapitalPerGameSecond": 1000.4125,
+        "observedAirServiceSamples": 40,
+        "airProviderNativeSpendPerGameSecond": 69.06172737192503,
+        "airInvoicesAwaitingReadyWitness": 17,
+        "airThroughputSource": "ACCEPTED_NATIVE_INVOICE_TO_LATER_OWN_READY_PRODUCT",
+        "airProviderModel": "CURRENT_FUNDED_SPATIAL_DUTY_PLUS_OBSERVED_IDLE_CAPITAL_OVER_OBSERVED_PROVIDER_SERVICE"
+      },
+      "groundRole": "CURRENT_FORMATIONS_AND_LAWFUL_LAND_FRONTIERS_CONTINUE",
+      "mainlandCleared": "UNKNOWN",
+      "reason": "OBSERVED_IDLE_CAPITAL_AND_NATIVE_AIR_SERVICE",
+      "militaryHeadroom": 2147482645,
+      "gameTimeMs": 4626688,
+      "sessionId": "ff0c21cc-f600-42fe-ba35-6b116b16eedd",
+      "player": "team:0"
+    },
+    {
+      "readyProviders": 21,
+      "pendingProviders": 1,
+      "recentNativeFundedProviders": 19,
+      "targetProviders": 22,
+      "spatialDuty": true,
+      "cashHistory": {
+        "covered": true,
+        "horizonGameMs": 120000,
+        "ownCreditsGrowth": 102042.0,
+        "source": "CURRENT_OWN_CREDITS_SAMPLES",
+        "growing": true,
+        "wealthThreshold": null,
+        "hiddenEnemyAdvantage": "UNKNOWN",
+        "idleCapitalPerGameSecond": 850.35,
+        "observedAirServiceSamples": 36,
+        "airProviderNativeSpendPerGameSecond": 68.63208626290664,
+        "airInvoicesAwaitingReadyWitness": 14,
+        "airThroughputSource": "ACCEPTED_NATIVE_INVOICE_TO_LATER_OWN_READY_PRODUCT",
+        "airProviderModel": "CURRENT_FUNDED_SPATIAL_DUTY_PLUS_OBSERVED_IDLE_CAPITAL_OVER_OBSERVED_PROVIDER_SERVICE"
+      },
+      "groundRole": "CURRENT_FORMATIONS_AND_LAWFUL_LAND_FRONTIERS_CONTINUE",
+      "mainlandCleared": "UNKNOWN",
+      "reason": "OBSERVED_IDLE_CAPITAL_AND_NATIVE_AIR_SERVICE",
+      "militaryHeadroom": 2147482639,
+      "gameTimeMs": 4639632,
+      "sessionId": "ff0c21cc-f600-42fe-ba35-6b116b16eedd",
+      "player": "team:0"
+    },
+    {
+      "readyProviders": 21,
+      "pendingProviders": 1,
+      "recentNativeFundedProviders": 18,
+      "targetProviders": 22,
+      "spatialDuty": true,
+      "cashHistory": {
+        "covered": true,
+        "horizonGameMs": 120000,
+        "ownCreditsGrowth": 116869.0,
+        "source": "CURRENT_OWN_CREDITS_SAMPLES",
+        "growing": true,
+        "wealthThreshold": null,
+        "hiddenEnemyAdvantage": "UNKNOWN",
+        "idleCapitalPerGameSecond": 973.9083333333333,
+        "observedAirServiceSamples": 32,
+        "airProviderNativeSpendPerGameSecond": 70.1127061751766,
+        "airInvoicesAwaitingReadyWitness": 19,
+        "airThroughputSource": "ACCEPTED_NATIVE_INVOICE_TO_LATER_OWN_READY_PRODUCT",
+        "airProviderModel": "CURRENT_FUNDED_SPATIAL_DUTY_PLUS_OBSERVED_IDLE_CAPITAL_OVER_OBSERVED_PROVIDER_SERVICE"
+      },
+      "groundRole": "CURRENT_FORMATIONS_AND_LAWFUL_LAND_FRONTIERS_CONTINUE",
+      "mainlandCleared": "UNKNOWN",
+      "reason": "OBSERVED_IDLE_CAPITAL_AND_NATIVE_AIR_SERVICE",
+      "militaryHeadroom": 2147482630,
+      "gameTimeMs": 4688224,
+      "sessionId": "ff0c21cc-f600-42fe-ba35-6b116b16eedd",
+      "player": "team:0"
+    },
+    {
+      "readyProviders": 21,
+      "pendingProviders": 1,
+      "recentNativeFundedProviders": 20,
+      "targetProviders": 22,
+      "spatialDuty": true,
+      "cashHistory": {
+        "covered": true,
+        "horizonGameMs": 120000,
+        "ownCreditsGrowth": 146921.5,
+        "source": "CURRENT_OWN_CREDITS_SAMPLES",
+        "growing": true,
+        "wealthThreshold": null,
+        "hiddenEnemyAdvantage": "UNKNOWN",
+        "idleCapitalPerGameSecond": 1224.3458333333333,
+        "observedAirServiceSamples": 32,
+        "airProviderNativeSpendPerGameSecond": 70.1127061751766,
+        "airInvoicesAwaitingReadyWitness": 21,
+        "airThroughputSource": "ACCEPTED_NATIVE_INVOICE_TO_LATER_OWN_READY_PRODUCT",
+        "airProviderModel": "CURRENT_FUNDED_SPATIAL_DUTY_PLUS_OBSERVED_IDLE_CAPITAL_OVER_OBSERVED_PROVIDER_SERVICE"
+      },
+      "groundRole": "CURRENT_FORMATIONS_AND_LAWFUL_LAND_FRONTIERS_CONTINUE",
+      "mainlandCleared": "UNKNOWN",
+      "reason": "OBSERVED_IDLE_CAPITAL_AND_NATIVE_AIR_SERVICE",
+      "militaryHeadroom": 2147482628,
+      "gameTimeMs": 4706368,
+      "sessionId": "ff0c21cc-f600-42fe-ba35-6b116b16eedd",
+      "player": "team:0"
+    },
+    {
+      "readyProviders": 21,
+      "pendingProviders": 1,
+      "recentNativeFundedProviders": 12,
+      "targetProviders": 22,
+      "spatialDuty": true,
+      "cashHistory": {
+        "covered": true,
+        "horizonGameMs": 120000,
+        "ownCreditsGrowth": 178850.5,
+        "source": "CURRENT_OWN_CREDITS_SAMPLES",
+        "growing": true,
+        "wealthThreshold": null,
+        "hiddenEnemyAdvantage": "UNKNOWN",
+        "idleCapitalPerGameSecond": 1490.4208333333333,
+        "observedAirServiceSamples": 32,
+        "airProviderNativeSpendPerGameSecond": 70.1127061751766,
+        "airInvoicesAwaitingReadyWitness": 20,
+        "airThroughputSource": "ACCEPTED_NATIVE_INVOICE_TO_LATER_OWN_READY_PRODUCT",
+        "airProviderModel": "CURRENT_FUNDED_SPATIAL_DUTY_PLUS_OBSERVED_IDLE_CAPITAL_OVER_OBSERVED_PROVIDER_SERVICE"
+      },
+      "groundRole": "CURRENT_FORMATIONS_AND_LAWFUL_LAND_FRONTIERS_CONTINUE",
+      "mainlandCleared": "UNKNOWN",
+      "reason": "OBSERVED_IDLE_CAPITAL_AND_NATIVE_AIR_SERVICE",
+      "militaryHeadroom": 2147482629,
+      "gameTimeMs": 4761072,
+      "sessionId": "ff0c21cc-f600-42fe-ba35-6b116b16eedd",
+      "player": "team:0"
+    },
+    {
+      "readyProviders": 21,
+      "pendingProviders": 1,
+      "recentNativeFundedProviders": 13,
+      "targetProviders": 22,
+      "spatialDuty": true,
+      "cashHistory": {
+        "covered": true,
+        "horizonGameMs": 120000,
+        "ownCreditsGrowth": 178850.5,
+        "source": "CURRENT_OWN_CREDITS_SAMPLES",
+        "growing": true,
+        "wealthThreshold": null,
+        "hiddenEnemyAdvantage": "UNKNOWN",
+        "idleCapitalPerGameSecond": 1490.4208333333333,
+        "observedAirServiceSamples": 32,
+        "airProviderNativeSpendPerGameSecond": 70.1127061751766,
+        "airInvoicesAwaitingReadyWitness": 21,
+        "airThroughputSource": "ACCEPTED_NATIVE_INVOICE_TO_LATER_OWN_READY_PRODUCT",
+        "airProviderModel": "CURRENT_FUNDED_SPATIAL_DUTY_PLUS_OBSERVED_IDLE_CAPITAL_OVER_OBSERVED_PROVIDER_SERVICE"
+      },
+      "groundRole": "CURRENT_FORMATIONS_AND_LAWFUL_LAND_FRONTIERS_CONTINUE",
+      "mainlandCleared": "UNKNOWN",
+      "reason": "OBSERVED_IDLE_CAPITAL_AND_NATIVE_AIR_SERVICE",
+      "militaryHeadroom": 2147482628,
+      "gameTimeMs": 4761072,
+      "sessionId": "ff0c21cc-f600-42fe-ba35-6b116b16eedd",
+      "player": "team:0"
+    },
+    {
+      "readyProviders": 21,
+      "pendingProviders": 1,
+      "recentNativeFundedProviders": 10,
+      "targetProviders": 22,
+      "spatialDuty": true,
+      "cashHistory": {
+        "covered": true,
+        "horizonGameMs": 120000,
+        "ownCreditsGrowth": 192724.0,
+        "source": "CURRENT_OWN_CREDITS_SAMPLES",
+        "growing": true,
+        "wealthThreshold": null,
+        "hiddenEnemyAdvantage": "UNKNOWN",
+        "idleCapitalPerGameSecond": 1606.0333333333333,
+        "observedAirServiceSamples": 32,
+        "airProviderNativeSpendPerGameSecond": 70.1127061751766,
+        "airInvoicesAwaitingReadyWitness": 17,
+        "airThroughputSource": "ACCEPTED_NATIVE_INVOICE_TO_LATER_OWN_READY_PRODUCT",
+        "airProviderModel": "CURRENT_FUNDED_SPATIAL_DUTY_PLUS_OBSERVED_IDLE_CAPITAL_OVER_OBSERVED_PROVIDER_SERVICE"
+      },
+      "groundRole": "CURRENT_FORMATIONS_AND_LAWFUL_LAND_FRONTIERS_CONTINUE",
+      "mainlandCleared": "UNKNOWN",
+      "reason": "OBSERVED_IDLE_CAPITAL_AND_NATIVE_AIR_SERVICE",
+      "militaryHeadroom": 2147482632,
+      "gameTimeMs": 4782080,
+      "sessionId": "ff0c21cc-f600-42fe-ba35-6b116b16eedd",
+      "player": "team:0"
+    }
+  ],
+  "builderFiveMinuteSamples": [
+    {
+      "gameTimeMs": 2192,
+      "builders": [],
+      "types": {
+        "commandCenter": 1
+      },
+      "credits": 4058.5
+    },
+    {
+      "gameTimeMs": 309568,
+      "builders": [
+        {
+          "id": 2180,
+          "x": 4368.998,
+          "y": 5697.08,
+          "orderType": null,
+          "hp": 170.0,
+          "distanceFromHome": 87.08576464612335
+        }
+      ],
+      "types": {
+        "commandCenter": 1,
+        "landFactory": 2,
+        "extractorT1": 5,
+        "heavyTank": 5,
+        "combatEngineer": 1,
+        "builder": 1
+      },
+      "credits": 1318.0
+    },
+    {
+      "gameTimeMs": 638672,
+      "builders": [
+        {
+          "id": 5202,
+          "x": 3258.863,
+          "y": 5338.484,
+          "orderType": "repair",
+          "hp": 170.0,
+          "distanceFromHome": 1143.8296949393298
+        }
+      ],
+      "types": {
+        "commandCenter": 1,
+        "landFactory": 2,
+        "extractorT1": 4,
+        "heavyTank": 35,
+        "combatEngineer": 1,
+        "builder": 1
+      },
+      "credits": 704.5
+    },
+    {
+      "gameTimeMs": 957136,
+      "builders": [
+        {
+          "id": 13051,
+          "x": 4410.008,
+          "y": 5025.946,
+          "orderType": "move",
+          "hp": 170.0,
+          "distanceFromHome": 585.4226806163219
+        },
+        {
+          "id": 13148,
+          "x": 4387.831,
+          "y": 5729.804,
+          "orderType": "move",
+          "hp": 170.0,
+          "distanceFromHome": 121.12366811238844
+        }
+      ],
+      "types": {
+        "commandCenter": 1,
+        "landFactory": 2,
+        "extractorT1": 6,
+        "heavyTank": 64,
+        "combatEngineer": 1,
+        "repairbay": 1,
+        "builder": 2
+      },
+      "credits": 1294.0
+    },
+    {
+      "gameTimeMs": 1281792,
+      "builders": [
+        {
+          "id": 16162,
+          "x": 2557.988,
+          "y": 3263.101,
+          "orderType": null,
+          "hp": 170.0,
+          "distanceFromHome": 2965.016425645059
+        },
+        {
+          "id": 19714,
+          "x": 4308.998,
+          "y": 5557.08,
+          "orderType": null,
+          "hp": 170.0,
+          "distanceFromHome": 80.75747893539061
+        }
+      ],
+      "types": {
+        "commandCenter": 1,
+        "landFactory": 3,
+        "extractorT1": 11,
+        "heavyTank": 92,
+        "combatEngineer": 2,
+        "repairbay": 2,
+        "builder": 2,
+        "amphibiousJet": 1
+      },
+      "credits": 1964.5
+    },
+    {
+      "gameTimeMs": 1605920,
+      "builders": [
+        {
+          "id": 19714,
+          "x": 1930.002,
+          "y": 4287.092,
+          "orderType": null,
+          "hp": 80.0,
+          "distanceFromHome": 2775.5496422272836
+        },
+        {
+          "id": 23176,
+          "x": 5987.743,
+          "y": 4727.748,
+          "orderType": "repair",
+          "hp": 170.0,
+          "distanceFromHome": 1842.677672723312
+        },
+        {
+          "id": 23807,
+          "x": 3493.742,
+          "y": 6078.452,
+          "orderType": "move",
+          "hp": 170.0,
+          "distanceFromHome": 993.6173100686199
+        },
+        {
+          "id": 26162,
+          "x": 5251.579,
+          "y": 5425.088,
+          "orderType": "repair",
+          "hp": 170.0,
+          "distanceFromHome": 900.7629993427792
+        },
+        {
+          "id": 26891,
+          "x": 4270.011,
+          "y": 4610.21,
+          "orderType": "move",
+          "hp": 170.0,
+          "distanceFromHome": 1004.7775098105052
+        }
+      ],
+      "types": {
+        "commandCenter": 1,
+        "landFactory": 3,
+        "extractorT2": 3,
+        "extractorT1": 10,
+        "heavyTank": 124,
+        "combatEngineer": 2,
+        "repairbay": 2,
+        "amphibiousJet": 4,
+        "builder": 5
+      },
+      "credits": 1666.5
+    },
+    {
+      "gameTimeMs": 1931440,
+      "builders": [
+        {
+          "id": 19714,
+          "x": 5830.134,
+          "y": 3229.974,
+          "orderType": null,
+          "hp": 170.0,
+          "distanceFromHome": 2792.224034462851
+        },
+        {
+          "id": 26162,
+          "x": 6207.281,
+          "y": 4070.005,
+          "orderType": null,
+          "hp": 170.0,
+          "distanceFromHome": 2397.3289455112326
+        },
+        {
+          "id": 26891,
+          "x": 6349.851,
+          "y": 2653.263,
+          "orderType": null,
+          "hp": 170.0,
+          "distanceFromHome": 3558.384980489042
+        },
+        {
+          "id": 31403,
+          "x": 3562.09,
+          "y": 4337.15,
+          "orderType": "move",
+          "hp": 170.0,
+          "distanceFromHome": 1507.6026302046573
+        },
+        {
+          "id": 32298,
+          "x": 4890.254,
+          "y": 2613.0,
+          "orderType": "repair",
+          "hp": 170.0,
+          "distanceFromHome": 3041.820708805172
+        },
+        {
+          "id": 33477,
+          "x": 4708.116,
+          "y": 5531.914,
+          "orderType": "move",
+          "hp": 170.0,
+          "distanceFromHome": 347.01563776291124
+        }
+      ],
+      "types": {
+        "commandCenter": 1,
+        "landFactory": 5,
+        "extractorT2": 5,
+        "extractorT3": 1,
+        "extractorT1": 6,
+        "heavyTank": 163,
+        "combatEngineer": 2,
+        "repairbay": 2,
+        "amphibiousJet": 7,
+        "builder": 6
+      },
+      "credits": 4428.5
+    },
+    {
+      "gameTimeMs": 2242016,
+      "builders": [
+        {
+          "id": 31403,
+          "x": 932.42,
+          "y": 4328.718,
+          "orderType": null,
+          "hp": 170.0,
+          "distanceFromHome": 3668.601888993135
+        },
+        {
+          "id": 33959,
+          "x": 4370.899,
+          "y": 5579.973,
+          "orderType": null,
+          "hp": 170.0,
+          "distanceFromHome": 30.040454890031263
+        },
+        {
+          "id": 37245,
+          "x": 2192.567,
+          "y": 4990.751,
+          "orderType": null,
+          "hp": 170.0,
+          "distanceFromHome": 2263.776445122177
+        },
+        {
+          "id": 37812,
+          "x": 4884.884,
+          "y": 2952.123,
+          "orderType": "move",
+          "hp": 170.0,
+          "distanceFromHome": 2707.2893603353523
+        },
+        {
+          "id": 40000,
+          "x": 3372.412,
+          "y": 6567.925,
+          "orderType": null,
+          "hp": 170.0,
+          "distanceFromHome": 1383.0408972149019
+        },
+        {
+          "id": 41584,
+          "x": 4308.728,
+          "y": 5756.972,
+          "orderType": null,
+          "hp": 170.0,
+          "distanceFromHome": 159.23261841720722
+        }
+      ],
+      "types": {
+        "commandCenter": 1,
+        "landFactory": 5,
+        "extractorT2": 17,
+        "extractorT3_reinforced": 1,
+        "extractorT1": 5,
+        "combatEngineer": 2,
+        "heavyTank": 178,
+        "repairbay": 3,
+        "amphibiousJet": 6,
+        "builder": 6
+      },
+      "credits": 7462.0
+    },
+    {
+      "gameTimeMs": 2559280,
+      "builders": [
+        {
+          "id": 33959,
+          "x": 1649.692,
+          "y": 2952.68,
+          "orderType": null,
+          "hp": 170.0,
+          "distanceFromHome": 3802.8180599739453
+        },
+        {
+          "id": 37245,
+          "x": 7187.729,
+          "y": 2072.278,
+          "orderType": null,
+          "hp": 170.0,
+          "distanceFromHome": 4522.7285643431005
+        },
+        {
+          "id": 40000,
+          "x": 6013.566,
+          "y": 1725.014,
+          "orderType": "move",
+          "hp": 170.0,
+          "distanceFromHome": 4218.343918714073
+        },
+        {
+          "id": 41584,
+          "x": 1852.635,
+          "y": 1911.348,
+          "orderType": null,
+          "hp": 170.0,
+          "distanceFromHome": 4474.0533256018525
+        },
+        {
+          "id": 43723,
+          "x": 6378.124,
+          "y": 1753.593,
+          "orderType": null,
+          "hp": 170.0,
+          "distanceFromHome": 4347.923291529532
+        }
+      ],
+      "types": {
+        "commandCenter": 1,
+        "landFactory": 5,
+        "extractorT3_reinforced": 5,
+        "extractorT1": 7,
+        "combatEngineer": 4,
+        "heavyTank": 222,
+        "repairbay": 5,
+        "extractorT2": 20,
+        "amphibiousJet": 25,
+        "builder": 5
+      },
+      "credits": 5936.5
+    },
+    {
+      "gameTimeMs": 2871408,
+      "builders": [
+        {
+          "id": 33959,
+          "x": 2910.018,
+          "y": 2425.387,
+          "orderType": "move",
+          "hp": 170.0,
+          "distanceFromHome": 3503.3280463143897
+        },
+        {
+          "id": 37245,
+          "x": 3468.882,
+          "y": 5543.404,
+          "orderType": "move",
+          "hp": 170.0,
+          "distanceFromHome": 903.5754960931598
+        },
+        {
+          "id": 40000,
+          "x": 3933.336,
+          "y": 1030.001,
+          "orderType": null,
+          "hp": 170.0,
+          "distanceFromHome": 4600.768010767007
+        },
+        {
+          "id": 41584,
+          "x": 991.995,
+          "y": 1331.98,
+          "orderType": null,
+          "hp": 170.0,
+          "distanceFromHome": 5450.905695425761
+        },
+        {
+          "id": 43723,
+          "x": 3496.698,
+          "y": 4721.987,
+          "orderType": "move",
+          "hp": 170.0,
+          "distanceFromHome": 1245.4812208030276
+        },
+        {
+          "id": 46757,
+          "x": 2849.633,
+          "y": 3989.643,
+          "orderType": "move",
+          "hp": 170.0,
+          "distanceFromHome": 2221.952434715469
+        },
+        {
+          "id": 48018,
+          "x": 4391.604,
+          "y": 5549.83,
+          "orderType": null,
+          "hp": 170.0,
+          "distanceFromHome": 63.9309136177485
+        }
+      ],
+      "types": {
+        "commandCenter": 1,
+        "landFactory": 5,
+        "extractorT3_reinforced": 13,
+        "extractorT1": 6,
+        "combatEngineer": 5,
+        "heavyTank": 261,
+        "repairbay": 5,
+        "extractorT2": 19,
+        "amphibiousJet": 54,
+        "builder": 7,
+        "extractorT3": 2,
+        "heavyArtillery": 3
+      },
+      "credits": 38859.0
+    },
+    {
+      "gameTimeMs": 3174352,
+      "builders": [
+        {
+          "id": 33959,
+          "x": 5929.917,
+          "y": 89.63,
+          "orderType": "repair",
+          "hp": 170.0,
+          "distanceFromHome": 5736.534318191516
+        },
+        {
+          "id": 37245,
+          "x": 4373.526,
+          "y": 5579.973,
+          "orderType": null,
+          "hp": 170.0,
+          "distanceFromHome": 30.233316142957285
+        },
+        {
+          "id": 40000,
+          "x": 3955.761,
+          "y": 998.754,
+          "orderType": null,
+          "hp": 170.0,
+          "distanceFromHome": 4629.814642254806
+        },
+        {
+          "id": 41584,
+          "x": 3288.878,
+          "y": 6567.072,
+          "orderType": null,
+          "hp": 170.0,
+          "distanceFromHome": 1443.8876660142228
+        },
+        {
+          "id": 43723,
+          "x": 4399.998,
+          "y": 5579.982,
+          "orderType": null,
+          "hp": 170.0,
+          "distanceFromHome": 42.437722936085734
+        },
+        {
+          "id": 46757,
+          "x": 4279.8,
+          "y": 5441.887,
+          "orderType": null,
+          "hp": 170.0,
+          "distanceFromHome": 190.78265321826316
+        },
+        {
+          "id": 48018,
+          "x": 5992.088,
+          "y": 131.916,
+          "orderType": null,
+          "hp": 170.0,
+          "distanceFromHome": 5713.192959352939
+        }
+      ],
+      "types": {
+        "commandCenter": 1,
+        "landFactory": 5,
+        "extractorT3_reinforced": 19,
+        "extractorT1": 3,
+        "combatEngineer": 6,
+        "heavyTank": 323,
+        "repairbay": 5,
+        "extractorT2": 19,
+        "amphibiousJet": 110,
+        "builder": 7,
+        "extractorT3": 2,
+        "heavyArtillery": 3
+      },
+      "credits": 124113.5
+    },
+    {
+      "gameTimeMs": 3487824,
+      "builders": [
+        {
+          "id": 33959,
+          "x": 5929.917,
+          "y": 89.63,
+          "orderType": null,
+          "hp": 170.0,
+          "distanceFromHome": 5736.534318191516
+        },
+        {
+          "id": 37245,
+          "x": 4503.841,
+          "y": 5539.841,
+          "orderType": null,
+          "hp": 170.0,
+          "distanceFromHome": 151.1148522217457
+        },
+        {
+          "id": 40000,
+          "x": 3955.761,
+          "y": 998.754,
+          "orderType": null,
+          "hp": 170.0,
+          "distanceFromHome": 4629.814642254806
+        },
+        {
+          "id": 41584,
+          "x": 3337.431,
+          "y": 6599.115,
+          "orderType": null,
+          "hp": 170.0,
+          "distanceFromHome": 1429.8766460733596
+        },
+        {
+          "id": 43723,
+          "x": 4399.998,
+          "y": 5579.8,
+          "orderType": null,
+          "hp": 170.0,
+          "distanceFromHome": 42.56665366222678
+        },
+        {
+          "id": 46757,
+          "x": 4279.941,
+          "y": 5439.967,
+          "orderType": null,
+          "hp": 170.0,
+          "distanceFromHome": 192.41061449410776
+        },
+        {
+          "id": 48018,
+          "x": 5992.088,
+          "y": 131.916,
+          "orderType": null,
+          "hp": 170.0,
+          "distanceFromHome": 5713.192959352939
+        }
+      ],
+      "types": {
+        "commandCenter": 1,
+        "landFactory": 5,
+        "extractorT3_reinforced": 29,
+        "extractorT1": 2,
+        "combatEngineer": 11,
+        "heavyTank": 374,
+        "repairbay": 5,
+        "extractorT2": 13,
+        "builder": 7,
+        "amphibiousJet": 168,
+        "heavyArtillery": 4
+      },
+      "credits": 235500.0
+    },
+    {
+      "gameTimeMs": 3815328,
+      "builders": [
+        {
+          "id": 33959,
+          "x": 5929.917,
+          "y": 89.63,
+          "orderType": null,
+          "hp": 170.0,
+          "distanceFromHome": 5736.534318191516
+        },
+        {
+          "id": 37245,
+          "x": 4576.88,
+          "y": 5605.727,
+          "orderType": null,
+          "hp": 170.0,
+          "distanceFromHome": 206.92412360331514
+        },
+        {
+          "id": 40000,
+          "x": 4344.883,
+          "y": 5538.719,
+          "orderType": null,
+          "hp": 170.0,
+          "distanceFromHome": 75.57674675454086
+        },
+        {
+          "id": 41584,
+          "x": 4298.695,
+          "y": 5513.699,
+          "orderType": null,
+          "hp": 170.0,
+          "distanceFromHome": 119.82606405119095
+        },
+        {
+          "id": 43723,
+          "x": 4349.276,
+          "y": 5560.716,
+          "orderType": "build",
+          "hp": 170.0,
+          "distanceFromHome": 53.463976956451454
+        },
+        {
+          "id": 46757,
+          "x": 4310.83,
+          "y": 5377.757,
+          "orderType": null,
+          "hp": 170.0,
+          "distanceFromHome": 239.66205362760329
+        },
+        {
+          "id": 48018,
+          "x": 5992.088,
+          "y": 131.916,
+          "orderType": null,
+          "hp": 170.0,
+          "distanceFromHome": 5713.192959352939
+        }
+      ],
+      "types": {
+        "commandCenter": 1,
+        "landFactory": 5,
+        "extractorT3_reinforced": 35,
+        "extractorT1": 2,
+        "combatEngineer": 14,
+        "heavyTank": 418,
+        "repairbay": 5,
+        "extractorT2": 6,
+        "builder": 7,
+        "amphibiousJet": 244,
+        "heavyArtillery": 4,
+        "extractorT3": 1,
+        "fabricatorT1": 2
+      },
+      "credits": 387347.5
+    },
+    {
+      "gameTimeMs": 4125776,
+      "builders": [
+        {
+          "id": 33959,
+          "x": 5929.917,
+          "y": 89.63,
+          "orderType": null,
+          "hp": 170.0,
+          "distanceFromHome": 5736.534318191516
+        },
+        {
+          "id": 37245,
+          "x": 4637.698,
+          "y": 5571.273,
+          "orderType": "build",
+          "hp": 170.0,
+          "distanceFromHome": 270.48474953867577
+        },
+        {
+          "id": 40000,
+          "x": 4353.386,
+          "y": 5563.469,
+          "orderType": "build",
+          "hp": 170.0,
+          "distanceFromHome": 49.408085947544876
+        },
+        {
+          "id": 41584,
+          "x": 4322.048,
+          "y": 5538.738,
+          "orderType": "build",
+          "hp": 170.0,
+          "distanceFromHome": 85.89334635465067
+        },
+        {
+          "id": 43723,
+          "x": 4351.103,
+          "y": 5544.529,
+          "orderType": "build",
+          "hp": 170.0,
+          "distanceFromHome": 68.14358700567456
+        },
+        {
+          "id": 46757,
+          "x": 4305.424,
+          "y": 5367.119,
+          "orderType": "repair",
+          "hp": 170.0,
+          "distanceFromHome": 251.3190003501529
+        },
+        {
+          "id": 48018,
+          "x": 5992.088,
+          "y": 131.916,
+          "orderType": null,
+          "hp": 170.0,
+          "distanceFromHome": 5713.192959352939
+        }
+      ],
+      "types": {
+        "commandCenter": 1,
+        "landFactory": 5,
+        "extractorT3_reinforced": 36,
+        "extractorT1": 2,
+        "combatEngineer": 18,
+        "heavyTank": 453,
+        "repairbay": 5,
+        "extractorT2": 6,
+        "builder": 7,
+        "amphibiousJet": 323,
+        "heavyArtillery": 4,
+        "fabricatorT2": 3,
+        "fabricatorT1": 2
+      },
+      "credits": 558437.0
+    },
+    {
+      "gameTimeMs": 4449424,
+      "builders": [
+        {
+          "id": 33959,
+          "x": 5929.917,
+          "y": 89.63,
+          "orderType": null,
+          "hp": 170.0,
+          "distanceFromHome": 5736.534318191516
+        },
+        {
+          "id": 37245,
+          "x": 4686.527,
+          "y": 5596.923,
+          "orderType": null,
+          "hp": 170.0,
+          "distanceFromHome": 316.7970164916331
+        },
+        {
+          "id": 40000,
+          "x": 4337.946,
+          "y": 5709.765,
+          "orderType": null,
+          "hp": 170.0,
+          "distanceFromHome": 104.78794845305481
+        },
+        {
+          "id": 41584,
+          "x": 4325.8,
+          "y": 5562.548,
+          "orderType": "build",
+          "hp": 170.0,
+          "distanceFromHome": 64.84853355319613
+        },
+        {
+          "id": 43723,
+          "x": 4338.211,
+          "y": 5557.854,
+          "orderType": "build",
+          "hp": 170.0,
+          "distanceFromHome": 61.0716451145698
+        },
+        {
+          "id": 46757,
+          "x": 4305.003,
+          "y": 5340.018,
+          "orderType": null,
+          "hp": 170.0,
+          "distanceFromHome": 277.69567935601737
+        },
+        {
+          "id": 48018,
+          "x": 5992.088,
+          "y": 131.916,
+          "orderType": null,
+          "hp": 170.0,
+          "distanceFromHome": 5713.192959352939
+        }
+      ],
+      "types": {
+        "commandCenter": 1,
+        "landFactory": 5,
+        "extractorT3_reinforced": 36,
+        "extractorT1": 2,
+        "combatEngineer": 21,
+        "heavyTank": 492,
+        "repairbay": 5,
+        "extractorT2": 6,
+        "builder": 7,
+        "amphibiousJet": 401,
+        "heavyArtillery": 4,
+        "fabricatorT3": 3,
+        "fabricatorT2": 5,
+        "fabricatorT1": 3
+      },
+      "credits": 758411.0
+    },
+    {
+      "gameTimeMs": 4782080,
+      "builders": [
+        {
+          "id": 33959,
+          "x": 5929.917,
+          "y": 89.63,
+          "orderType": null,
+          "hp": 170.0,
+          "distanceFromHome": 5736.534318191516
+        },
+        {
+          "id": 37245,
+          "x": 3509.271,
+          "y": 6589.974,
+          "orderType": null,
+          "hp": 170.0,
+          "distanceFromHome": 1304.3019022132107
+        },
+        {
+          "id": 40000,
+          "x": 4339.307,
+          "y": 5708.384,
+          "orderType": null,
+          "hp": 170.0,
+          "distanceFromHome": 103.06052447469892
+        },
+        {
+          "id": 41584,
+          "x": 4330.288,
+          "y": 5561.777,
+          "orderType": "build",
+          "hp": 170.0,
+          "distanceFromHome": 62.469998183128126
+        },
+        {
+          "id": 43723,
+          "x": 4340.927,
+          "y": 5555.152,
+          "orderType": "build",
+          "hp": 170.0,
+          "distanceFromHome": 62.07690740525025
+        },
+        {
+          "id": 46757,
+          "x": 4305.091,
+          "y": 5340.03,
+          "orderType": null,
+          "hp": 170.0,
+          "distanceFromHome": 277.66342787806985
+        },
+        {
+          "id": 48018,
+          "x": 5992.088,
+          "y": 131.916,
+          "orderType": null,
+          "hp": 170.0,
+          "distanceFromHome": 5713.192959352939
+        }
+      ],
+      "types": {
+        "commandCenter": 1,
+        "landFactory": 5,
+        "extractorT3_reinforced": 36,
+        "extractorT1": 4,
+        "combatEngineer": 22,
+        "heavyTank": 512,
+        "repairbay": 5,
+        "extractorT2": 4,
+        "builder": 7,
+        "amphibiousJet": 455,
+        "heavyArtillery": 4,
+        "fabricatorT3": 8,
+        "fabricatorT1": 4
+      },
+      "credits": 1079634.0
+    }
+  ],
+  "builderHomeRallies": [
+    {
+      "gameTimeMs": 729904,
+      "event": "strategy_recovery_builder_rally",
+      "data": {
+        "unitId": 5202,
+        "owner": "strategy:1000005",
+        "x": 4370.0,
+        "y": 5610.0,
+        "reason": "HOME_REPAIR_SITE_BEFORE_NATIVE_CONSTRUCTION_PLAN",
+        "siteAuthority": "NEEDS_CURRENT_NATIVE_PLAN",
+        "gameTimeMs": 729904,
+        "sessionId": "ff0c21cc-f600-42fe-ba35-6b116b16eedd",
+        "player": "team:0"
+      }
+    },
+    {
+      "gameTimeMs": 1615008,
+      "event": "endgame_capital_builder_rally",
+      "data": {
+        "unitId": 26891,
+        "reason": "ONE_IDLE_CONSTRUCTOR_TO_HOME_CAPITAL_SITE",
+        "siteAuthority": "NEEDS_LATER_CURRENT_NATIVE_PLAN",
+        "gameTimeMs": 1615008,
+        "sessionId": "ff0c21cc-f600-42fe-ba35-6b116b16eedd",
+        "player": "team:0"
+      }
+    },
+    {
+      "gameTimeMs": 1670240,
+      "event": "endgame_capital_builder_rally",
+      "data": {
+        "unitId": 26162,
+        "reason": "ONE_IDLE_CONSTRUCTOR_TO_HOME_CAPITAL_SITE",
+        "siteAuthority": "NEEDS_LATER_CURRENT_NATIVE_PLAN",
+        "gameTimeMs": 1670240,
+        "sessionId": "ff0c21cc-f600-42fe-ba35-6b116b16eedd",
+        "player": "team:0"
+      }
+    },
+    {
+      "gameTimeMs": 1674928,
+      "event": "endgame_capital_builder_rally",
+      "data": {
+        "unitId": 26891,
+        "reason": "ONE_IDLE_CONSTRUCTOR_TO_HOME_CAPITAL_SITE",
+        "siteAuthority": "NEEDS_LATER_CURRENT_NATIVE_PLAN",
+        "gameTimeMs": 1674928,
+        "sessionId": "ff0c21cc-f600-42fe-ba35-6b116b16eedd",
+        "player": "team:0"
+      }
+    },
+    {
+      "gameTimeMs": 1690912,
+      "event": "endgame_capital_builder_rally",
+      "data": {
+        "unitId": 23807,
+        "reason": "ONE_IDLE_CONSTRUCTOR_TO_HOME_CAPITAL_SITE",
+        "siteAuthority": "NEEDS_LATER_CURRENT_NATIVE_PLAN",
+        "gameTimeMs": 1690912,
+        "sessionId": "ff0c21cc-f600-42fe-ba35-6b116b16eedd",
+        "player": "team:0"
+      }
+    },
+    {
+      "gameTimeMs": 2060320,
+      "event": "endgame_capital_builder_rally",
+      "data": {
+        "unitId": 33959,
+        "reason": "ONE_IDLE_CONSTRUCTOR_TO_HOME_CAPITAL_SITE",
+        "siteAuthority": "NEEDS_LATER_CURRENT_NATIVE_PLAN",
+        "gameTimeMs": 2060320,
+        "sessionId": "ff0c21cc-f600-42fe-ba35-6b116b16eedd",
+        "player": "team:0"
+      }
+    },
+    {
+      "gameTimeMs": 2174976,
+      "event": "endgame_capital_builder_rally",
+      "data": {
+        "unitId": 33959,
+        "reason": "ONE_IDLE_CONSTRUCTOR_TO_HOME_CAPITAL_SITE",
+        "siteAuthority": "NEEDS_LATER_CURRENT_NATIVE_PLAN",
+        "gameTimeMs": 2174976,
+        "sessionId": "ff0c21cc-f600-42fe-ba35-6b116b16eedd",
+        "player": "team:0"
+      }
+    },
+    {
+      "gameTimeMs": 2328256,
+      "event": "endgame_capital_builder_rally",
+      "data": {
+        "unitId": 37245,
+        "reason": "ONE_IDLE_CONSTRUCTOR_TO_HOME_CAPITAL_SITE",
+        "siteAuthority": "NEEDS_LATER_CURRENT_NATIVE_PLAN",
+        "gameTimeMs": 2328256,
+        "sessionId": "ff0c21cc-f600-42fe-ba35-6b116b16eedd",
+        "player": "team:0"
+      }
+    },
+    {
+      "gameTimeMs": 2786880,
+      "event": "endgame_capital_builder_rally",
+      "data": {
+        "unitId": 48018,
+        "reason": "ONE_IDLE_CONSTRUCTOR_TO_HOME_CAPITAL_SITE",
+        "siteAuthority": "NEEDS_LATER_CURRENT_NATIVE_PLAN",
+        "gameTimeMs": 2786880,
+        "sessionId": "ff0c21cc-f600-42fe-ba35-6b116b16eedd",
+        "player": "team:0"
+      }
+    },
+    {
+      "gameTimeMs": 2792960,
+      "event": "endgame_capital_builder_rally",
+      "data": {
+        "unitId": 43723,
+        "reason": "ONE_IDLE_CONSTRUCTOR_TO_HOME_CAPITAL_SITE",
+        "siteAuthority": "NEEDS_LATER_CURRENT_NATIVE_PLAN",
+        "gameTimeMs": 2792960,
+        "sessionId": "ff0c21cc-f600-42fe-ba35-6b116b16eedd",
+        "player": "team:0"
+      }
+    },
+    {
+      "gameTimeMs": 2799728,
+      "event": "endgame_capital_builder_rally",
+      "data": {
+        "unitId": 46757,
+        "reason": "ONE_IDLE_CONSTRUCTOR_TO_HOME_CAPITAL_SITE",
+        "siteAuthority": "NEEDS_LATER_CURRENT_NATIVE_PLAN",
+        "gameTimeMs": 2799728,
+        "sessionId": "ff0c21cc-f600-42fe-ba35-6b116b16eedd",
+        "player": "team:0"
+      }
+    },
+    {
+      "gameTimeMs": 3505408,
+      "event": "endgame_capital_builder_rally",
+      "data": {
+        "unitId": 41584,
+        "reason": "ONE_IDLE_CONSTRUCTOR_TO_HOME_CAPITAL_SITE",
+        "siteAuthority": "NEEDS_LATER_CURRENT_NATIVE_PLAN",
+        "gameTimeMs": 3505408,
+        "sessionId": "ff0c21cc-f600-42fe-ba35-6b116b16eedd",
+        "player": "team:0"
+      }
+    },
+    {
+      "gameTimeMs": 3509152,
+      "event": "endgame_capital_builder_rally",
+      "data": {
+        "unitId": 40000,
+        "reason": "ONE_IDLE_CONSTRUCTOR_TO_HOME_CAPITAL_SITE",
+        "siteAuthority": "NEEDS_LATER_CURRENT_NATIVE_PLAN",
+        "gameTimeMs": 3509152,
+        "sessionId": "ff0c21cc-f600-42fe-ba35-6b116b16eedd",
+        "player": "team:0"
+      }
+    }
+  ],
+  "productionUnconfirmed": [],
+  "constructionReadyEvents": {},
+  "limits": "CURRENT OWN SNAPSHOTS AND LEGAL MEMORY; roster / collected MOVE != native arrival or firing; absence != death; no hidden mainland-clear claim; sparse samples != exact idle duration"
+}

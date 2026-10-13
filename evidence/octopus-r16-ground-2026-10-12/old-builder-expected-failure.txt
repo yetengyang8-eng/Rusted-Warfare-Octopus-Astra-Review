@@ -1,0 +1,4 @@
+Exception in thread "main" java.lang.AssertionError: completed-region worker is not recalled across map for capital
+	at io.rwagent.client.R16BuilderRegionHarness.check(R16BuilderRegionHarness.java:8)
+	at io.rwagent.client.R16BuilderRegionHarness.capital(R16BuilderRegionHarness.java:16)
+	at io.rwagent.client.R16BuilderRegionHarness.main(R16BuilderRegionHarness.java:29)

@@ -1,0 +1,256 @@
+{
+  "productCommit": "1446c239c6a7d8942a11ed1c51429279d1865bbd",
+  "candidateJarSha256": "9cd0b8a345c9b23ed0d763859019bb50555829d83e206dc06de5c5cf22b8250a",
+  "fullJarSha256": "e7d18a6fb3e503f9f48236c4a6397ec3a572585136883791410922a91942257a",
+  "windows": {
+    "steps": 107,
+    "passed": 107,
+    "failedStepsZero": true,
+    "java": 73,
+    "pythonSuites": 31,
+    "pythonTests": 503
+  },
+  "testedInputs": 264,
+  "inputDrift": [],
+  "kitFilesChecked": 1895,
+  "kitDrift": [],
+  "fullJarEntryMatches": 208,
+  "jarEntryDrift": [],
+  "protectedUserFiles": {
+    "tools/RW-Agent-Octopus-Test.ps1": "7f5974f7da4ef53d8f6ca8a13277a40eb78a8392e7c904f0e9276b56aa9d01e6",
+    "tools/rw-agent-human.py": "3cb3b18a9ba0170782bfdfa02c481845dc04b6a35943ab5e6b5a605bbf1f2e4d",
+    "tools/rw-agent-human.py.bak-20261003": "84cc4f2fcf379fbf79bcd147286fb4da22883e7840f9ffa8604fcc7dabdb36e8"
+  },
+  "protectedDrift": [],
+  "desktopTouched": false,
+  "pushed": false,
+  "deployed": false,
+  "focusedR9": {
+    "productionTimeout": 18,
+    "siege": 130,
+    "builderCoverage": 20,
+    "airInvestment": 18,
+    "total": 186
+  },
+  "native": {
+    "stages": [
+      "g53",
+      "order-reuse",
+      "g51",
+      "closure",
+      "production",
+      "modes",
+      "competition",
+      "g54",
+      "g55",
+      "G6NativeEndgameHarness",
+      "G3SpainTerrainNativeHarness",
+      "R9NativeLongRunHarness"
+    ],
+    "stageCount": 12,
+    "allFinalExitZero": true,
+    "newTimeoutChecks": 25,
+    "fixtureOnly": true,
+    "simulationTicks": 0
+  },
+  "natural": {
+    "gameBudgetSeconds": 4800,
+    "outcome": "PARTIAL",
+    "nativeOutcome": "ONGOING",
+    "lastOwn": {
+      "gameTimeMs": 4811920,
+      "frame": 300745,
+      "readyOwnTypes": {
+        "commandCenter": 1,
+        "landFactory": 5,
+        "extractorT3_reinforced": 36,
+        "extractorT1": 4,
+        "combatEngineer": 22,
+        "heavyTank": 512,
+        "repairbay": 5,
+        "extractorT2": 4,
+        "builder": 7,
+        "amphibiousJet": 455,
+        "heavyArtillery": 4,
+        "fabricatorT3": 8,
+        "fabricatorT1": 4
+      },
+      "player": {
+        "teamId": 0,
+        "name": "Player",
+        "credits": 1124464.0
+      }
+    },
+    "air": {
+      "searchLegs": 75,
+      "laterOwnWitnesses": 43,
+      "acquiredDistinct": 508,
+      "attachedDistinct": 508,
+      "peakCurrentMemberCount": 455,
+      "lastEventMemberCountBeforeCleanup": 455,
+      "maxLegRouteSteps": 177,
+      "lastLegs": [
+        {
+          "x": 2830.0,
+          "y": 6870.0,
+          "routeCursor": 0,
+          "routeLegEnd": 43,
+          "routeTiles": 61,
+          "routeLeader": 43796,
+          "frontierTile": 52530
+        },
+        {
+          "x": 2830.0,
+          "y": 7210.0,
+          "routeCursor": 43,
+          "routeLegEnd": 60,
+          "routeTiles": 61,
+          "routeLeader": 43796,
+          "frontierTile": 52530
+        },
+        {
+          "x": 2210.0,
+          "y": 7230.0,
+          "routeCursor": 0,
+          "routeLegEnd": 31,
+          "routeTiles": 32,
+          "routeLeader": 43796,
+          "frontierTile": 41061
+        },
+        {
+          "x": 1550.0,
+          "y": 7310.0,
+          "routeCursor": 0,
+          "routeLegEnd": 34,
+          "routeTiles": 39,
+          "routeLeader": 43796,
+          "frontierTile": 28851
+        },
+        {
+          "x": 1550.0,
+          "y": 7230.0,
+          "routeCursor": 34,
+          "routeLegEnd": 38,
+          "routeTiles": 39,
+          "routeLeader": 43796,
+          "frontierTile": 28851
+        },
+        {
+          "x": 910.0,
+          "y": 7250.0,
+          "routeCursor": 0,
+          "routeLegEnd": 42,
+          "routeTiles": 44,
+          "routeLeader": 43796,
+          "frontierTile": 17011
+        },
+        {
+          "x": 910.0,
+          "y": 7230.0,
+          "routeCursor": 42,
+          "routeLegEnd": 43,
+          "routeTiles": 44,
+          "routeLeader": 43796,
+          "frontierTile": 17011
+        },
+        {
+          "x": 990.0,
+          "y": 6390.0,
+          "routeCursor": 0,
+          "routeLegEnd": 60,
+          "routeTiles": 61,
+          "routeLeader": 43796,
+          "frontierTile": 18449
+        },
+        {
+          "x": 290.0,
+          "y": 5790.0,
+          "routeCursor": 0,
+          "routeLegEnd": 37,
+          "routeTiles": 38,
+          "routeLeader": 43796,
+          "frontierTile": 5469
+        },
+        {
+          "x": 7410.0,
+          "y": 5870.0,
+          "routeCursor": 0,
+          "routeLegEnd": 177,
+          "routeTiles": 212,
+          "routeLeader": 43796,
+          "frontierTile": 137227
+        },
+        {
+          "x": 7730.0,
+          "y": 4050.0,
+          "routeCursor": 0,
+          "routeLegEnd": 49,
+          "routeTiles": 61,
+          "routeLeader": 43796,
+          "frontierTile": 143033
+        },
+        {
+          "x": 7770.0,
+          "y": 3030.0,
+          "routeCursor": 0,
+          "routeLegEnd": 60,
+          "routeTiles": 61,
+          "routeLeader": 43796,
+          "frontierTile": 143711
+        },
+        {
+          "x": 7830.0,
+          "y": 2670.0,
+          "routeCursor": 0,
+          "routeLegEnd": 29,
+          "routeTiles": 47,
+          "routeLeader": 43796,
+          "frontierTile": 144786
+        },
+        {
+          "x": 7830.0,
+          "y": 3110.0,
+          "routeCursor": 0,
+          "routeLegEnd": 80,
+          "routeTiles": 203,
+          "routeLeader": 43796,
+          "frontierTile": 144947
+        },
+        {
+          "x": 7830.0,
+          "y": 2990.0,
+          "routeCursor": 0,
+          "routeLegEnd": 3,
+          "routeTiles": 38,
+          "routeLeader": 43796,
+          "frontierTile": 144785
+        }
+      ]
+    },
+    "providerAssignments": 21,
+    "insideKnownBaseRangeCollectedStandoffMoves": 0,
+    "nativeVictoryProven": false
+  },
+  "rawRoot": "G:\\deepseek 工作台\\_validation\\octopus-r9-20261005",
+  "initialFull": {
+    "steps": 107,
+    "failed": 2,
+    "reason": "Historical G1/G2 event shape regression; wire commands equal; corrected by 1446c23 without weakening tests"
+  },
+  "initialNativeSetup": {
+    "reason": "Extra fixture proposed with unowned strategy owner; admission correctly rejected; fixture changed to actual rule-main owner; product untouched"
+  },
+  "extraFocusedWrongEnvironment": {
+    "reason": "Standalone historical G1 initially omitted explicit g3Execution=false; rerun with Windows runner settings passed all four paths"
+  },
+  "knownRemainingLimitations": {
+    "observedTerminalMobileOwnCount": 1000,
+    "unitCapExistence": "USER_CONFIRMED",
+    "exactNativeCapacityApi": "NEEDS_EVIDENCE_NOT_HARDCODED",
+    "unsettledCreditCount": 439,
+    "unsettledCredits": 876700,
+    "constructionHistory": "CURRENT_SITE_GROUP_MATCHING_DOES_NOT_PERSIST_MOVED_PRODUCT_EFFECTS; ambiguity not refunded",
+    "nativeVictory": "NEEDS_EVIDENCE",
+    "natural180SecondTimeout": "NOT_OBSERVED; 25-check controlled native queue fixture proves local tolerance"
+  }
+}

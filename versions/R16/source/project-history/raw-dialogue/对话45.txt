@@ -1,0 +1,117 @@
+# 对话45（DeepSeek → ChatGPT/Codex）：2-instance parallel runner v0 独立接收与验收
+
+依据：`助手交接\请DeepSeek接收Codex_parallel_v0_2026-09-27.md`（四项任务）。本轮**没有改任何产品代码、
+策略语义、runner 或安装件**；只做了独立复核、一次真实长负载并行验证、状态文档清理与建议。
+
+## 0. 结论一句话
+
+**ACCEPT（E2/E3：可复跑脚本 + 独立交叉核对）**：双实例隔离语义在**我自己新跑的一局 match 模式长负载**
+与 **Codex 归档的 4 个运行目录**上都由我自己的脚本重新推导成立；残留风险 4 条（其中 2 条是环境/文档性质，
+2 条是真实工程边界），下一项建议做「固定条件 A/B 对比能力 v0」，**不是**直接上 self-play。
+
+## 1. 我独立做了什么（不复用 Codex 的脚本与结论）
+
+| 动作 | 结果 |
+| --- | --- |
+| 读实现（不读结论）：`tools\run_headless.py` 的 `ParallelPair` / `verify_owner` / `stage` / 清理路径 | 端口靠 bind(0) 探测后关闭再由引擎绑定；每 episode 独立 `work` 目录，`cwd=work`；`reportDir=work\rw-agent-reports`；`lockPath=reportDir\economy.lock`；屏障在**两进程都存活**时采样，且要求 session 不变、frame 前进；`verify_owner` 核对 health 的 port/cwd/reportDir/jar 哈希 |
+| 自写审计脚本 `_analysis\parallel_pair_audit.py`（只读、重新推导，不引用上游判断） | 见下 |
+| **我自己新跑的双实例长负载**：`tools\run_headless.py --mode match --episodes 2 --parallel-pair --speed 4 --battle-seconds 900 --agent-jar <P1F 已安装件>` | **两局同时 PASS、两局都 VICTORY、退出码 0**；ep1 122.2 秒墙钟 / ep2 95.2 秒；运行目录 `游戏环境\Rusted-Warfare-1.15-Agent-0.07\headless-runs\ds-accept\run-20260927T071633-bd2165` |
+| 用同一脚本审计 **Codex 的 4 个归档目录**（N/K/R/I） | 4/4 也判 ACCEPT；故障注入那批复现出「A=FAIL(exit 15) / B=PASS(exit 0)、整批 completed=2 passed=1」 |
+| 独立复算候选身份 | 安装件与 dist 的 contentDigest = `6fec7a0c…`（58 条目），环境根冻结件 = `0681b4f7…`（53 条目，未被碰） |
+| 宿主完整回归 | 见 §4（Codex 沙箱里 loopback 失败的 16 项，在宿主上重跑） |
+
+## 2. 我这轮的原始证据（match 模式，900 游戏秒预算）
+
+```
+batch: mode=match completed=2 passed=2 parallelPair=True parallelProof=PASS   退出码 0
+隔离项（屏障采样时两两不同）：
+  port            8712 / 8713
+  sessionId       6ab68945… / 1c882ca2…
+  workDirectory   …\run-20260927T071633-bd2165\episode-001 / episode-002
+  reportDirectory 各自 work\rw-agent-reports
+  lockPath        各自 reportDir\economy.lock      ← 两个 economy.lock 都真实创建了
+  frame 前进      ep1 52→165(+113)   ep2 49→160(+111)   ← 采样窗内各自在自己 session 里前进
+每个 episode：preflight exit=0 / match exit=0，各 3 份原始报告（economy / development / battle）
+  每份报告 session 集合 = {本 episode 的 session}，外来 session = 0
+  每份报告 SHA256 == phases[*].reportEvidence 里登记的 sha256（3/3 + 3/3）
+  两份 battle 报告自证 agentJarSha256=cd586ff422ad6e81…（= 当前安装件），倍速 3.84，结果 PASS/VICTORY
+清理：两个记录 PID 均已不存在；两个端口均不再 LISTEN；两个遗留 economy.lock 均可立即取得 OS 锁
+```
+
+**比 Codex 那批更强的一点**：它的 smoke/suite 批只证明了 `lockPath` **路径不同**（smoke 未真的建锁、
+suite 只让 B 建了锁），而我这次是 match 模式，**两把锁都真实存在且事后都能立刻取到**，
+所以「锁不互斥、也不残留占用」这条现在是实测，而不是路径推断。
+
+## 3. 残留风险（我确认过的，不含已排除项）
+
+1. **端口预留存在 TOCTOU 窗口**（真实但低）：`reserve_port()` 先 `bind(('127.0.0.1',0))` 取端口再关闭，
+   引擎随后才绑定。批内靠 `self.ports` 集合保证 A/B 不同，但**外部进程**理论上可在这毫秒级窗口里抢占。
+   影响：单机安静环境下没遇到过；若要跑无人值守长批次，值得加一次「引擎绑定成功后再核对端口归属」的检查
+   （现有 `verify_owner` 已核对 health 报告的 port，等于已经事后验证——所以只是窗口期风险，不是静默错误）。
+2. **强杀 Python 编排器会漏掉两个引擎**（Codex 自述，**我已实测确认**，不是推测）：
+   探针 `_analysis\kill_orchestrator_probe.ps1`（结果 JSON 在 `%TEMP%\kill_orch_result.json`）：
+   启动双实例 suite → 屏障后两引擎存活、两端口 LISTEN、java 总数 4（2 引擎 + 2 客户端）→
+   `Stop-Process -Force` 杀掉编排器 → **+1 秒** 客户端随之消失（java 4→2），但
+   **两个引擎在 +1s / +10s / +20s 三个采样点都仍存活、仍 LISTEN、CPU 时间持续增长**
+   （4.8→5.1→5.2→6.5 秒，说明在继续推进模拟，不是僵尸）。按 PID 清理后 java=0、端口全部释放。
+   影响：无人值守批量跑时，上层若用超时强杀编排器，会留下两个占端口的引擎，直到各自的
+   `--max-wall-seconds` 到期。**建议（下一轮可选，最小改动）**：编排器启动时把
+   「本批 PID + 端口 + 工作目录」写进 `live-claims.json` 并随进度更新，另加 `--reap <run 目录>`
+   只清理清单里的 PID 并复核端口释放——既是崩溃恢复手段，也让「异常退出自行清理」这条验收可复核。
+3. **真正同局双 Agent 的 self-play 不在本能力范围内**：`HeadlessRunner` 明确
+   `if(engine.bX.B || engine.cb.j()) throw "Only local matches are supported"`，
+   且其 CLI 只有 `--map/--port/--speed/--max-wall-seconds/--frames/--difficulty`。
+   这是**桥接/大厅层**的限制，不是 runner 的限制（详见 §5）。
+4. **条件可复现性未闭环**：引擎有 `seed`（`runtime.json` 里 `"seed":…, "seedReproducibilityVerified": false`），
+   但 CLI 没有 `--seed`，也没有验证同一 seed 是否复现同一局面。做参数 A/B 前需要先解决（见 §5）。
+
+已排除：Codex 提到的 `engine-process.json` 里中文路径「带替换字符」——**我这次跑出来的两份文件
+U+FFFD = 0**，`command[0]` 是完整的 `G:\deepseek 工作台\…\jvm64\bin\java.exe`。
+所以那是它沙箱的写读编码问题，不是产物缺陷；宿主上该字段可逐字节复原。
+
+## 4. 宿主完整回归（Codex 沙箱内 16 项 loopback 失败的对照）
+
+见 §6 的实测输出：`developer\test-win.ps1` 在当前源码树上 **failed steps = 0**
+（Java harness 17 项 + Python 10 套，含新增 `test_headless_parallel` 7 用例）。
+这确认了 Codex 的判断：它沙箱里 `Selector.open()` / `UnixDomainSockets.connect0` 的
+`Invalid argument: connect` 属**执行环境**问题（它用无关的 JShell 最小探针复现过），不是代码回归。
+
+## 5. 任务 4：下一步建议（暂不施工）
+
+**建议下一项：`固定条件 A/B 对比能力 v0`**（而不是直接进 self-play 设计阶段）。理由与最小接口：
+
+现在有的：两实例完全隔离、可并发跑、退出码与证据自证完备。
+**进入「限制规则双 Agent / self-play v0」还差三件最小接口**：
+
+1. **每实例可注入不同规则 profile**（今天所有旋钮都是 `-Drwagent.*` 系统属性，只能整批一致）。
+   最小做法：支持 `--profile <json>` 或 `-Drwagent.profile=A|B`，profile 只覆盖既有旋钮，不新增策略。
+2. **条件固定**：固定地图/难度已有（`--map/--difficulty`）；缺 **seed 控制**与「同 seed 是否复现」的验证
+   （引擎自报 `seedReproducibilityVerified: false`）。**若 seed 不可设**（需要写引擎内部状态，
+   触及 Diagnostic Lab 禁区），替代方案是先做「重复 N 局 + 配对同条件 + 报方差」，
+   并在结论里明确「同条件但不同随机」——这一步需要裁决，不要先动引擎。
+3. **跨批聚合**：现在 `batch.json` 是单批的；参数比较需要一个只读聚合器
+   （按 profile 汇总胜率/经济曲线/损失/关键事件计数，按批号与候选 contentDigest 归档）。
+
+**为什么不是直接上同局 self-play**：同局双 Agent 需要大厅/桥接层支持「两个非 AI 玩家、各自一个客户端」，
+而当前 headless 路径显式只允许本地单玩家。这是一个**独立的大工程**（与 P0/Lab 边界相邻），
+不适合作为下一小步。而上面 1–3 三件小事做完，就能先用「两实例 + 不同 profile + 固定条件 + 跨批聚合」
+得到**统计可比的 A/B**，这正是路线里「批量自对弈 + 参数比较/自动调参」的前置，
+且不需要碰任何策略语义。
+
+## 6. 任务 3：`CURRENT_STATE.md` 的陈旧矛盾（已清理）
+
+- `Builder Utilization v0` 段里的「**待做（E4）**」→ 改为「E4 已完成（2026-09-27 两局实机）」，
+  并保留实测数字。
+- `Economy v0` 段的「**待做（E4）**」→ 改为「E4 已完成（2026-09-27）」。
+- 路线段两处的「`NO_PROGRESS_TARGET_HANDLING v0` **已实现（E2），待 E4**」→ 改为
+  「DONE_AND_LIVE_VALIDATED（E4：最长停滞 276.7 → 21.7 游戏秒）」。
+- 把 v1b 收尾那两条重复段落合并为一条（Q1/Q2/Q3），不再重复描述同一件事。
+- 只动「当前状态」表述，未改任何历史证据文件；两个 `CURRENT_STATE.md` 仍保持同一内容。
+
+## 7. 边界声明（与 Codex 的交接一致，我复核后同意）
+
+- 本轮是**无头编排/隔离能力**的验收，**不是策略 E4**。
+- 当前候选 `6fec7a0c…`（v1b.1）**尚未有实机 E4**；v1b 的实机证据属于 `73a09229…`，
+  不能自动继承。若需要「当前安装件的实机验证」，要用户再打一局。
+- 未开 4 实例、未做同局双 Agent、未做 self-play、未动任何策略/经济语义。
+- Diagnostic Lab / P0 归档事项未重开。

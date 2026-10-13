@@ -1,0 +1,154 @@
+{
+  "raw": {
+    "source": "G:\\deepseek 工作台\\游戏环境\\RW-Agent-Octopus-G6-2026-10-11-R11B\\runs\\20261011-023343-8804\\rw-agent-reports\\battle-1791657224802-b50600f4.jsonl.gz.partial",
+    "frozen": "G:\\deepseek 工作台\\_validation\\octopus-r12-builder-20261011\\human-input.jsonl.gz.partial",
+    "bytes": 79943862,
+    "sha256": "9f955ddec85cae8a3a612861f40d8fd1847433ad95464995e6f1c48c73f384df",
+    "rows": 346532,
+    "bad": 0,
+    "partial": true
+  },
+  "lastOwn": {
+    "gameTimeMs": 3427961,
+    "frame": 123400,
+    "player": {
+      "teamId": 5,
+      "name": "Player",
+      "credits": 3919.0
+    },
+    "readyTypes": {
+      "commandCenter": 1,
+      "landFactory": 4,
+      "extractorT2": 2,
+      "extractorT1": 3,
+      "combatEngineer": 3,
+      "repairbay": 5,
+      "heavyTank": 43,
+      "builder": 12
+    }
+  },
+  "distinctObservedBuilderIds": 46,
+  "commandSummary": {
+    "observedBuilderCommandRecords": 851,
+    "acceptedKinds": {
+      "/command/build-extractor": 18,
+      "/command/move": 815,
+      "/command/construct": 1,
+      "/command/build-factory": 1
+    },
+    "acceptedOwners": {
+      "rule-main": 63,
+      "strategy:1000002": 1,
+      "strategy:1000001": 20,
+      "strategy:1000003": 2,
+      "strategy:1000010": 47,
+      "strategy:1000014": 13,
+      "strategy:1000015": 5,
+      "strategy:1000016": 3,
+      "strategy:1000018": 17,
+      "strategy:1000019": 15,
+      "strategy:1000020": 2,
+      "strategy:1000021": 14,
+      "strategy:1000022": 70,
+      "strategy:1000023": 17,
+      "strategy:1000024": 4,
+      "strategy:1000025": 15,
+      "strategy:1000026": 11,
+      "strategy:1000027": 67,
+      "strategy:1000028": 10,
+      "strategy:1000029": 21,
+      "strategy:1000030": 52,
+      "strategy:1000031": 22,
+      "strategy:1000032": 24,
+      "strategy:1000033": 16,
+      "strategy:1000034": 15,
+      "strategy:1000035": 20,
+      "strategy:1000036": 17,
+      "strategy:1000037": 9,
+      "strategy:1000038": 7,
+      "strategy:1000039": 8,
+      "strategy:1000040": 12,
+      "strategy:1000042": 31,
+      "strategy:1000043": 25,
+      "strategy:1000044": 7,
+      "strategy:1000045": 15,
+      "strategy:1000046": 9,
+      "strategy:1000051": 16,
+      "strategy:1000052": 13,
+      "strategy:1000053": 8,
+      "strategy:1000054": 25,
+      "strategy:1000055": 8,
+      "strategy:1000057": 7,
+      "strategy:1000058": 16,
+      "strategy:1000059": 29,
+      "strategy:1000065": 7
+    },
+    "cancellations": {
+      "ACTOR_CONFLICT_IN_OBSERVATION": 2,
+      "NATIVE_REJECTED": 14
+    },
+    "scope": "commands referring to Builder IDs already identified by earlier lawful own samples; earlier untyped records can be omitted"
+  },
+  "relevantEvents": {
+    "strategy_prospect_ordered": 134,
+    "strategy_prospect_cluster_committed": 223,
+    "strategy_prospect_current_work": 250,
+    "strategy_prospect_observed": 113,
+    "strategy_frontier_funding_quote": 8788,
+    "strategy_prospect_cluster_retained": 1453,
+    "strategy_prospect_cluster_released": 101,
+    "strategy_prospect_danger_cancelled": 11,
+    "strategy_resource_journey_approach": 726,
+    "strategy_resource_journey_continued": 682,
+    "strategy_frontier_funding_committed": 9,
+    "strategy_frontier_funding_released": 9,
+    "strategy_frontier_funding_waiting": 16,
+    "strategy_expansion_plan": 1456
+  },
+  "concreteCase": {
+    "builderId": 36298,
+    "lastPosition": [
+      5799.645,
+      1845.238
+    ],
+    "lastNativeOrder": null,
+    "stationaryObservedGameSeconds": 545.815,
+    "acceptedCommandKinds": {
+      "/command/move": 22
+    },
+    "quoteExamples": [
+      {
+        "rawLine": 341654,
+        "detectedGameMs": 3382886,
+        "nativeSite": [
+          5570,
+          1710
+        ],
+        "cost": 700,
+        "nativeCredits": 1079,
+        "distance": 266.507
+      },
+      {
+        "rawLine": 341834,
+        "detectedGameMs": 3384506,
+        "nativeSite": [
+          5570,
+          1710
+        ],
+        "cost": 700,
+        "nativeCredits": 1201,
+        "distance": 266.507
+      }
+    ],
+    "nativeCreditsNotEffectiveFreeCredits": true
+  },
+  "fullDerivedPath": "G:\\deepseek 工作台\\_validation\\octopus-r12-builder-20261011\\human-derived.json",
+  "duplicateLaunchRejected": true,
+  "duplicateLaunchRun": "20261011-023343-17624",
+  "boundaries": {
+    "partialPrefixNotCompleteMatch": true,
+    "difficultyNotIndependentlyVerified": true,
+    "absenceNotDeath": true,
+    "notAllIdleBuildersExplained": true
+  }
+}

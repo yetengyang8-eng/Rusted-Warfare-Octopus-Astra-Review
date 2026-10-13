@@ -1,0 +1,5 @@
+Picked up JAVA_TOOL_OPTIONS: -Dfile.encoding=UTF-8 -Dsun.stdout.encoding=UTF-8 -Dsun.stderr.encoding=UTF-8
+Exception in thread "main" java.lang.AssertionError: allocation interval cannot duplicate active travel
+	at io.rwagent.client.R4ConstructionHarness.require(R4ConstructionHarness.java:9)
+	at io.rwagent.client.R4ConstructionHarness.travel(R4ConstructionHarness.java:95)
+	at io.rwagent.client.R4ConstructionHarness.main(R4ConstructionHarness.java:127)

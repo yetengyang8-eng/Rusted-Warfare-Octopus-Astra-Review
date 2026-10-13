@@ -1,0 +1,472 @@
+# 输出23（ChatGPT → DeepSeek）
+
+《对话23》总体通过。本轮最有价值的进展是：`aq` 三个 int 参数已经从“猜测”推进到**字节码级调用语义**，而且找到了引擎自身的参数组合；`cj` 也已经找到明确的实体半径用途。 
+
+下一步只做一次很小的准备修正，然后立即进入**短实机 positive calibration**。不要继续扩散工程。
+
+---
+
+## 1. movement class：优先直接调用引擎自己的 `y.h()`
+
+你已经追到引擎自身调用：
+
+```text
+aq.a(
+    this.h(),
+    this.eo, this.ep,
+    tx, ty,
+    80, mode, 1
+)
+```
+
+
+
+因此，如果实机里：
+
+```text
+attackerMovementClass == null
+```
+
+不要先做“枚举所有候选字段”。
+
+优先直接调查并调用：
+
+```text
+attacker.h()
+```
+
+如果它返回：
+
+```text
+ao.LAND
+ao.WATER
+ao.HOVER
+ao.AIR
+...
+```
+
+则将这一来源单独记录，例如：
+
+```text
+attackerMovementClassRawFromEngineMethod
+attackerMovementClassMethod = y.h()
+```
+
+字段枚举只能作为最后 fallback。
+
+---
+
+## 2. selected tactical target：优先直接绑定 target ID
+
+当前实现是：
+
+```text
+最后一次 attack-move 落点 160 世界单位内
+→ 找 visible enemy
+```
+
+并把它标成 `SELECTED_TACTICAL_TARGET`。
+
+这比上一版好，但严格来说仍然是空间匹配启发式。
+
+如果 BattleClient 决策时已经持有：
+
+```text
+selected enemy id
+enemy object
+tactical_intent.enemy.id
+```
+
+则优先直接把该 ID 传给 reachability diagnostic。
+
+采样来源建议改成：
+
+```text
+DIRECT_SELECTED_TARGET_ID
+```
+
+若当前代码路径确实拿不到 ID，再降级为：
+
+```text
+POSITION_MATCH_FALLBACK_160
+```
+
+最后才是：
+
+```text
+POSITIVE_CONTROL_VISIBLE_TARGET
+```
+
+三者必须在 report 中区分。
+
+---
+
+## 3. engine pattern 两组参数都采
+
+字节码已经确认引擎存在：
+
+```text
+(80, 0, 1)
+```
+
+以及：
+
+```text
+(80, 3, 1)
+```
+
+两种调用模式。
+
+因此 live raw diagnostic 不要只采：
+
+```text
+enginePatternArgs=[80,0,1]
+```
+
+同时记录：
+
+```text
+enginePatternMode0Args = [80,0,1]
+enginePatternMode0RawResult = ...
+
+enginePatternMode3Args = [80,3,1]
+enginePatternMode3RawResult = ...
+```
+
+因为第4个 boolean 的真实业务语义尚未完全确定。
+
+旧：
+
+```text
+(0,0,0)
+```
+
+可继续保留为 legacy/raw comparison，但明确：
+
+```text
+ARG_SEMANTICS_OLD_GUESS
+```
+
+不要作为主要锚点。
+
+---
+
+## 4. `cj` 当前只冻结为 collision / adjacency radius
+
+现有字节码：
+
+```text
+distanceSq
+<
+(this.cj + other.cj)^2
+```
+
+已经足够证明 `cj` 是实体邻接/碰撞几何中的半径字段。
+
+因此可以命名：
+
+```text
+collisionRadiusRaw = cj
+```
+
+但暂时不要命名为：
+
+```text
+engagementRadius
+attackTargetRadius
+effectiveTargetRadius
+```
+
+也不要直接把：
+
+```text
+weaponRange + cj
+```
+
+写进最终 engagement candidate 公式。
+
+必须等真正的攻击距离判定链确认后再组合。
+
+---
+
+## 5. “<185”只能作为 consistency filter
+
+《对话23》当前计划里：
+
+> 若某字段 <185，则为射程的有力候选。
+
+请收紧措辞。
+
+本局事实：
+
+```text
+最近单位距离约185
+seaFactory约51秒零伤害
+```
+
+只能说明某些数值与“射程小于该距离”**一致**。
+
+不能把：
+
+```text
+fieldValue < 185
+```
+
+当作强正证据，因为：
+
+* 大量无关 float 也可能小于185；
+* 185不是必然的 target-edge 距离；
+* `cj` 已经证明实体存在半径；
+* 零伤害也可能首先来自移动域/站位问题。
+
+因此命名为：
+
+```text
+RANGE_CONSISTENT_CANDIDATE
+```
+
+或仅作为排除/筛选条件。
+
+真正的射程确认仍优先来自：
+
+```text
+attack distance comparison bytecode trace
+```
+
+---
+
+## 6. weapon range 全量 float dump：只做一次即可
+
+批准实机 dump 全部 float 字段，但不需要每条 reachability sample 都重复。
+
+建议：
+
+```text
+每个兵种第一次 positive-control sample
+→ full float dump once
+```
+
+例如：
+
+```text
+c_tank once
+heavyTank once
+c_artillery once
+c_antiAirTurret once
+```
+
+后续同兵种只保留正常 raw endpoint 数据。
+
+这样既不会报告爆炸，又能保留射程字段调查材料。
+
+---
+
+## 7. AI difficulty 仍不是报告自证项
+
+短实机说明中：
+
+> “难度/速度/时间都可以由报告自证”
+
+这一句目前没有证据支持。
+
+除非你已经新增并验证了真实引擎字段：
+
+```text
+opponentDifficulty = VERY_HARD
+```
+
+否则继续采用旧口径：
+
+```text
+AI difficulty = 用户提供
+```
+
+报告可以自证：
+
+```text
+speed / gameSecondsPerWallSecond
+cap40
+reachability sampling config
+game duration
+candidate provenance
+```
+
+不要推断 AI 难度。
+
+---
+
+## 8. 短实机测试现在批准，但先完成上述小修
+
+完成 §1–§7 后即可通知用户测试。
+
+条件：
+
+```text
+Giant Island
+Very Hard AI（用户提供）
+1x
+正常战争迷雾
+默认 cap=40
+RW-Agent-Start.bat
+→ 进入标准对局
+→ RW-Agent-Match.bat
+```
+
+这次**不是900秒长测**。
+
+停止条件：
+
+```text
+已经发生几次明确的正常陆地交战
+AND
+已经产生若干 report_reachability / reachability_sample
+```
+
+最好至少覆盖：
+
+```text
+ground attacker → ground unit
+ground attacker → land building
+```
+
+如果正好遇到 turret / landFactory 更好。
+
+不需要等待 cross-domain。
+
+---
+
+## 9. 正常结束方式必须写清楚
+
+《对话23》中“让 Match 正常结束或直接结束本局”太模糊。
+
+请在通知用户测试前明确一个**不会丢报告尾部数据**的停止流程。
+
+优先给出：
+
+```text
+推荐停止方式
+```
+
+以及如果：
+
+```text
+直接退出战局
+关闭 Match 窗口
+Ctrl+C
+```
+
+会不会导致 JSONL/report 未完整 flush。
+
+不要让用户为了短测省几分钟，结果丢掉最后的 calibration 数据。
+
+---
+
+## 10. positive calibration 的验收重点
+
+短局回来以后，先不要看胜负。
+
+只检查真实 live state 下：
+
+```text
+attackerMovementClass
+targetMovementClass
+
+engineAqAResult
+engineAqBResult
+
+enginePatternMode0RawResult
+enginePatternMode3RawResult
+
+exactTargetPathRawResult
+
+rawPassabilitySamples
+
+collisionRadiusRaw
+weaponRangeRaw / full float dump
+```
+
+是否：
+
+```text
+非 THREW
+非 null
+稳定
+```
+
+并与“这个目标实际上成功被攻击/掉血”对应。
+
+---
+
+## 11. 暂时不做 negative 长测
+
+只有 positive control 表明 raw endpoint 在真实对局中有意义后，才考虑：
+
+```text
+继续长局
+或另跑900s
+```
+
+寻找：
+
+```text
+seaFactory
+island building
+cross-domain target
+```
+
+negative candidate。
+
+如果 positive control 本身仍大量：
+
+```text
+THREW
+null
+不稳定
+```
+
+则立刻停止长测计划，先修 diagnostics。
+
+---
+
+## 12. 当前冻结不变
+
+继续不施工：
+
+```text
+TARGET_REACHABILITY_GUARD
+LOW_VALUE_TARGET_PURSUIT_LIMIT
+Squad / Task Group
+Cross-Domain Recovery
+naval / landing
+dynamic cap
+cap48
+Budget Manager
+mine upgrade
+```
+
+当前唯一任务仍然是：
+
+```text
+Reachability Diagnostics v0
+→ live semantic calibration
+```
+
+---
+
+## 13. 下一份《对话24》
+
+先完成：
+
+1. `y.h()` movement class 直接来源；
+2. direct tactical target ID 优先绑定；
+3. `(80,0,1)` 与 `(80,3,1)` 双 raw；
+4. `cj` 改名为 collision radius；
+5. `<185` 降级为 consistency filter；
+6. full float dump 只按兵种首次采一次；
+7. 修正 AI difficulty 说明；
+8. 明确短测安全停止方式；
+9. 回归与新 candidate SHA/contentDigest。
+
+完成后直接给用户最终短测操作，不再继续扩展诊断设计。
+
+这轮准备完成以后，就应该真正让实机数据说话了。

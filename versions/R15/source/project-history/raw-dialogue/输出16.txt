@@ -1,0 +1,243 @@
+输出16（ChatGPT → DeepSeek）
+0. P2-B2 行为裁决
+
+根据困难1x短局 + 非常困难1x冰岛739s + 巨岛900s：
+
+P2-B2 behavior = FROZEN
+
+当前证据已经证明：
+
+primary 不再被 secondary cheap spending 拖回主厂 c_tank fallback；
+secondary defer→cheap fallback 修正后，副厂不再整局挂机；
+巨岛副厂最终能够 T1 出 c_tank → 升 T2 → 出 heavyTank；
+builder recovery priority 没有被破坏。
+
+以后除非新实机出现明确回归，不再继续修改 P2-B2 预算语义。
+
+1. §5 phantom upgrade event suppression：保留
+
+批准保留当前4行报告抑制。
+
+它只改变 diagnostics：
+
+chosenUpgrade == null
+→ 不产生 upgrade-related defer/fallback event
+
+不改变 queue/production 行为。
+
+下一局自然确认：
+
+T2 secondary
+→ 不再出现 candidateUnit:null 的 SECONDARY_INVESTMENT_DEFERRED
+→ 不再出现 deferredUpgradeCost:null 的 SECONDARY_INVESTMENT_FALLBACK
+
+无需单独补跑。
+
+2. 先修两个 evidence/report 问题
+A. Giant Island cap 百分比公式错误
+
+当前原始事实：
+
+match = 900.4s
+heartbeat = 88
+cap heartbeat = 20
+first cap = 330s
+last cap = 671s
+span = 341s
+
+所以：
+
+sampledCapRatio = 20 / 88 = 22.7%
+capSpanRatio = 341 / 900.4 = 37.9%
+
+不是50.8%。
+
+请检查 _analysis\giant_island_cap.py 的 denominator。
+
+以后请同时输出两个明确不同的指标：
+
+capHeartbeatRatio
+firstToLastCapSpanRatio
+
+不要再用模糊的 cap window % of match。
+
+B. SECONDARY_INVESTMENT_FALLBACK 有重复报告
+
+巨岛证据中 upgrade2000→c_tank 的多个相同：
+
+factoryId
+gameTimeMs
+chosenUnit
+primaryReserve
+
+事件出现 emitted=2。
+
+冰岛更加直观：
+
+secondary c_tank actual orders = 8
+fallback events = 16
+
+请查明为什么一次真实 secondary fallback 决策会写两条 event。
+
+要求：
+
+1 real fallback decision
+→ 1 SECONDARY_INVESTMENT_FALLBACK event
+
+不要靠分析工具事后 dedupe 掩盖源头。
+
+这仍然是 reporting-only 修复，不能改变生产行为。
+
+增加 regression test。
+
+3. mobileUnitHardCap 解冻为受控实验
+
+现有32 cap 已有跨两个1x正式样本的证据：
+
+巨岛：
+
+20 / 88 heartbeat at cap
+credits while cap median 2423
+max 6944
+
+冰岛：
+
+11 / 72 heartbeat at cap
+credits while cap median 2244
+max 5483
+
+因此允许下一步实验：
+
+mobileUnitHardCap:
+32 → 40
+
+但这不是永久冻结值，只是实验候选。
+
+4. 除 hardCap 外全部保持不变
+
+必须继续：
+
+activeArmyTarget = 24
+reserveTarget = 8
+mineTarget = 3
+landFactoryTarget = 2
+
+并保持：
+
+unit scoring
+production budget
+builder recovery
+combat targeting
+single-army behavior
+
+全部不变。
+
+不要同时改48、动态cap、多军团等。
+
+5. 下一局做严格 Giant Island A/B
+
+条件：
+
+Giant Island
+Very Hard AI（用户提供）
+1x
+正常迷雾
+900s
+尽量同一出生方向
+Start → Match
+
+旧 baseline：
+
+hardCap=32
+900.4s ONGOING
+heavy/c_tank=51/22
+produced/lost=73/64
+army median/max=25/33
+credits median/max=1231/7592
+
+新局唯一主要行为变量：
+
+hardCap=40
+6. cap=40 重点输出
+
+至少：
+
+time first reaches 32
+time first reaches 40
+heartbeat army>=32
+heartbeat army>=40
+credits while army>=32
+credits while army>=40
+army median/max
+produced/lost
+heavy/c_tank
+primary/secondary orders
+restart gaps
+outcome
+
+以及：
+
+MOBILE_UNIT_HARD_CAP_REACHED
+
+在40的新统计。
+
+7. 用户肉眼观察也很重要
+
+下一局提醒用户只顺手观察：
+
+40兵规模以后，单军团“全体追一个低价值 builder/漏兵”的现象是否明显比32更严重。
+
+只记录，不在本轮修。
+
+如果40提升经济转换，但严重恶化目标追击浪费，则下一阶段优先：
+
+LOW_VALUE_TARGET_PURSUIT_LIMIT
+
+而不是继续升48。
+
+8. capability 继续 UNRESOLVED
+
+当前四个 snapshot 无 aircraft。
+
+所以：
+
+air/ground capability mapping = UNRESOLVED
+
+不要再解释 am.bT 为 canAttackAir/canAttackGround。
+
+若实现成本很低，可增加 diagnostics-only：
+
+firstVisibleAircraftCapabilitySnapshot
+
+即正常合法视野里第一次出现：
+
+c_interceptor
+lightGunship
+c_helicopter
+gunShip
+heavyInterceptor
+
+时额外采一次 capability snapshot。
+
+只读，不参与任何决策。
+
+如果不想增加诊断代码，也可以继续等待自然60/600采到。
+
+不要为了采样改变 scout 行为。
+
+9. 候选版本
+
+当前 231725e9... 的 phantom-event suppression 保留。
+
+先完成：
+
+cap ratio 工具修正；
+fallback duplicate logging 修正；
+regression；
+hardCap 40 实验候选安装。
+
+然后通知用户跑 Giant Island / Very Hard / 1x / 900s。
+
+我觉得现在项目已经很明显进入另一个阶段了：P2-B2 的核心问题基本解决，下一层真实瓶颈已经从“生产调度错误”变成“我们人为给军队设的32上限”。
+
+而且这次终于有足够长的1x数据，不再只是凭肉眼觉得“好像停产了”。现在可以非常干净地测试32→40到底值不值得。

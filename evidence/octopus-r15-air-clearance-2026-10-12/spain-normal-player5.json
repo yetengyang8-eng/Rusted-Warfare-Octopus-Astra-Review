@@ -1,0 +1,490 @@
+{
+  "source": {
+    "path": "G:\\deepseek 工作台\\_validation\\octopus-r15-air-clearance-20261012\\spain-normal-player5-v2\\work\\rw-agent-reports\\battle-1791738671000-f4b69a35.jsonl.gz",
+    "sha256": "5a8b21a62b4bcf19b245e67dac0bd970692a0ff8995a46d12c7536165e638783",
+    "bytes": 48899764
+  },
+  "rows": 210494,
+  "malformed": 0,
+  "config": {
+    "jarSha256": "d0530e5d7e294d391f2252109393054ec7b3cd382e30b0446ef028dab01b7aba",
+    "mapSource": "G:\\deepseek 工作台\\游戏环境\\P1F-GPTSol61-Operations-2026-10-01\\mods\\maps\\[10p] 10p 西班牙混战_by_MP97.tmx",
+    "mapSha256": "342db6d8a8b8320b6a271b9e3c8a4c29c96a203e206c4be690c44bbef5882746",
+    "loadedMap": "maps/skirmish/[10p] Spain MP97.tmx",
+    "speed": 5,
+    "difficulty": 0,
+    "playerId": 5,
+    "durationGameSeconds": 7200,
+    "wallSafetySeconds": 2580,
+    "nativePositionMutation": false,
+    "fixture": false,
+    "desktopTouched": false
+  },
+  "outcome": "VICTORY",
+  "detectedVictoryGameTimeMs": 2563664,
+  "detectedVictoryFrame": 160229,
+  "eventOccurrenceTimeUnknown": true,
+  "finalState": {
+    "gameTimeMs": 2565056,
+    "frame": 160316,
+    "status": "running",
+    "player": {
+      "teamId": 5,
+      "name": "Player",
+      "credits": 317410.5
+    }
+  },
+  "lastFullOwnSnapshot": {
+    "time": 2552656,
+    "frame": 159541,
+    "credits": 304502.0,
+    "types": {
+      "commandCenter": 1,
+      "landFactory": 7,
+      "extractorT3_reinforced": 13,
+      "extractorT1": 2,
+      "heavyTank": 94,
+      "repairbay": 3,
+      "extractorT2": 28,
+      "combatEngineer": 12,
+      "builder": 5,
+      "extractorT3": 1,
+      "amphibiousJet": 170,
+      "heavyArtillery": 5,
+      "fabricatorT2": 1,
+      "fabricatorT1": 1
+    },
+    "mines": 44,
+    "rawLine": 209652
+  },
+  "firstReady": {
+    "commandCenter": 2128,
+    "builder": 32224,
+    "landFactory": 32224,
+    "extractorT1": 62272,
+    "scout": 62272,
+    "heavyTank": 122624,
+    "repairbay": 619136,
+    "extractorT2": 856304,
+    "combatEngineer": 1180896,
+    "amphibiousJet": 1207040,
+    "heavyArtillery": 1439888,
+    "extractorT3": 1509904,
+    "extractorT3_reinforced": 1572800,
+    "fabricatorT1": 2361136,
+    "fabricatorT2": 2433120
+  },
+  "mineCommands": 49,
+  "laterReadySiteMatches": 49,
+  "airEventCounts": {
+    "air_general_member_transition": 734,
+    "air_general_unit_modes_batch": 385,
+    "air_general_engagement": 372,
+    "air_general_attack": 107,
+    "air_general_area_assigned": 13,
+    "air_general_target_clear": 76,
+    "air_general_area_visibility": 241,
+    "air_general_area_observation_plan": 32,
+    "air_general_area_blocked": 39,
+    "air_general_area_reacquire": 134,
+    "air_general_area_contact_recheck": 60,
+    "air_general_area_clear": 42,
+    "air_general_clearance_continued": 31,
+    "air_general_mode_requested": 34,
+    "air_general_area_leg_witness": 4,
+    "air_general_clearance_probe": 15,
+    "air_general_clearance_complete": 20,
+    "air_general_search_plan": 135,
+    "air_general_split_search_plan": 25,
+    "air_general_formation_created": 25,
+    "air_general_search_leg": 256,
+    "air_general_search_leg_witness": 191,
+    "air_general_search_lookahead": 45,
+    "air_general_search_detour": 6,
+    "air_general_formation_retired": 2
+  },
+  "maxAirFormations": 24,
+  "clearanceExamples": [
+    {
+      "contactId": 14181,
+      "owner": "air-general:1",
+      "assigned": {
+        "time": 1900448,
+        "rawLine": 156264,
+        "data": {
+          "contactId": 14181,
+          "x": 3500.0,
+          "y": 7280.0,
+          "intelStatus": "LOST_CONTACT",
+          "lastObservedAtGameTimeMs": 1807248,
+          "reason": "KNOWN_AREA_WORK_BEFORE_GENERIC_SEARCH",
+          "memoryIsAttackPermission": false,
+          "gameTimeMs": 1900448,
+          "owner": "air-general:1",
+          "airGeneralId": 1
+        }
+      },
+      "probe": {
+        "time": 1900448,
+        "rawLine": 156265,
+        "data": {
+          "contactId": 14181,
+          "unitIds": [
+            25175,
+            28595,
+            28737,
+            28796,
+            28810,
+            28855,
+            28903,
+            28926,
+            28969,
+            28970
+          ],
+          "ownHpAtStart": 4944.0,
+          "lossBudget": 0.55,
+          "safeX": 7370.0,
+          "safeY": 1950.0,
+          "enemyStrength": "UNKNOWN_NOT_ZERO",
+          "permission": "MOVE_FOR_CURRENT_VISIBILITY_ONLY",
+          "gameTimeMs": 1900448,
+          "owner": "air-general:1",
+          "airGeneralId": 1
+        }
+      },
+      "acceptedMoves": 10,
+      "firstMove": {
+        "time": 1900448,
+        "rawLine": 156270,
+        "accepted": true,
+        "kind": "/command/move",
+        "lane": "AIR_FORCE",
+        "owner": "air-general:1",
+        "actors": [
+          25175
+        ],
+        "query": {
+          "unitId": [
+            "25175"
+          ],
+          "x": [
+            "3500.0"
+          ],
+          "y": [
+            "7280.0"
+          ]
+        },
+        "credits": 0,
+        "cancel": null,
+        "frame": 118933,
+        "costSource": null,
+        "reason": "CLEARANCE_APPROACH_CURRENT_VISIBILITY"
+      },
+      "firstOwnSample": {
+        "time": 1903456,
+        "unitId": 25175,
+        "x": 3451.123,
+        "y": 7014.998,
+        "distance": 269.47174459115416,
+        "order": "move",
+        "target": null
+      },
+      "nearestOwnSample": {
+        "time": 1908384,
+        "unitId": 28969,
+        "x": 3507.19,
+        "y": 7273.567,
+        "distance": 9.647776375932471,
+        "order": "move",
+        "target": null
+      },
+      "attacksDuringDuty": [
+        {
+          "time": 1905536,
+          "line": 156822,
+          "targetId": 8448,
+          "members": 9
+        },
+        {
+          "time": 1909984,
+          "line": 157210,
+          "targetId": 8448,
+          "members": 1
+        },
+        {
+          "time": 1914848,
+          "line": 157591,
+          "targetId": 8448,
+          "members": 2
+        },
+        {
+          "time": 1923344,
+          "line": 158427,
+          "targetId": 13255,
+          "members": 9
+        },
+        {
+          "time": 1927776,
+          "line": 158753,
+          "targetId": 13255,
+          "members": 1
+        }
+      ],
+      "localClear": {
+        "time": 1931392,
+        "rawLine": 159202,
+        "data": {
+          "contactId": 14181,
+          "x": 3500.0,
+          "y": 7280.0,
+          "reason": "LATER_OWN_SAMPLE_AND_CURRENT_LOCAL_VISIBLE_EMPTY_CONTACT_PACKET",
+          "sourceFrame": 120712,
+          "localAreaIsWholeMapClear": false,
+          "clearedIsKilled": false,
+          "resumeRouteCursor": 0,
+          "gameTimeMs": 1931392,
+          "owner": "air-general:1",
+          "airGeneralId": 1
+        }
+      }
+    },
+    {
+      "contactId": 29255,
+      "owner": "air-general:1",
+      "assigned": {
+        "time": 2124368,
+        "rawLine": 175735,
+        "data": {
+          "contactId": 29255,
+          "x": 7770.0,
+          "y": 7090.0,
+          "intelStatus": "VISIBLE",
+          "lastObservedAtGameTimeMs": 2124432,
+          "reason": "KNOWN_AREA_WORK_BEFORE_GENERIC_SEARCH",
+          "memoryIsAttackPermission": false,
+          "gameTimeMs": 2124368,
+          "owner": "air-general:1",
+          "airGeneralId": 1
+        }
+      },
+      "probe": {
+        "time": 2144768,
+        "rawLine": 177645,
+        "data": {
+          "contactId": 29255,
+          "unitIds": [
+            25175,
+            28737,
+            28796,
+            29535,
+            29537,
+            29538,
+            29546,
+            29542,
+            29547,
+            29548,
+            29549,
+            29550
+          ],
+          "ownHpAtStart": 6120.0,
+          "lossBudget": 0.55,
+          "safeX": 1538.453,
+          "safeY": 7164.916,
+          "enemyStrength": "UNKNOWN_NOT_ZERO",
+          "permission": "MOVE_FOR_CURRENT_VISIBILITY_ONLY",
+          "gameTimeMs": 2144768,
+          "owner": "air-general:1",
+          "airGeneralId": 1
+        }
+      },
+      "acceptedMoves": 0,
+      "firstMove": null,
+      "firstOwnSample": {
+        "time": 2148048,
+        "unitId": 25175,
+        "x": 1824.756,
+        "y": 7127.461,
+        "distance": 5945.362019764398,
+        "order": "move",
+        "target": null
+      },
+      "nearestOwnSample": {
+        "time": 2177408,
+        "unitId": 29546,
+        "x": 4604.724,
+        "y": 7182.936,
+        "distance": 3166.6400578960656,
+        "order": null,
+        "target": null
+      },
+      "attacksDuringDuty": [
+        {
+          "time": 2151664,
+          "line": 178177,
+          "targetId": 29553,
+          "members": 15
+        }
+      ],
+      "localClear": {
+        "time": 2180816,
+        "rawLine": 180640,
+        "data": {
+          "contactId": 29255,
+          "x": 7770.0,
+          "y": 7090.0,
+          "reason": "LATER_OWN_SAMPLE_AND_CURRENT_LOCAL_VISIBLE_EMPTY_CONTACT_PACKET",
+          "sourceFrame": 136301,
+          "localAreaIsWholeMapClear": false,
+          "clearedIsKilled": false,
+          "resumeRouteCursor": 7,
+          "gameTimeMs": 2180816,
+          "owner": "air-general:1",
+          "airGeneralId": 1
+        }
+      }
+    },
+    {
+      "contactId": 30331,
+      "owner": "air-general:1",
+      "assigned": {
+        "time": 2317312,
+        "rawLine": 191084,
+        "data": {
+          "contactId": 30331,
+          "x": 7680.0,
+          "y": 3960.0,
+          "intelStatus": "VISIBLE",
+          "lastObservedAtGameTimeMs": 2317360,
+          "reason": "KNOWN_AREA_WORK_BEFORE_GENERIC_SEARCH",
+          "memoryIsAttackPermission": false,
+          "gameTimeMs": 2317312,
+          "owner": "air-general:1",
+          "airGeneralId": 1
+        }
+      },
+      "probe": {
+        "time": 2347152,
+        "rawLine": 193167,
+        "data": {
+          "contactId": 30331,
+          "unitIds": [
+            25175,
+            28737,
+            28796,
+            29535,
+            29962,
+            29963,
+            29964,
+            29965,
+            29966,
+            29967,
+            29968,
+            29979,
+            30113,
+            30255
+          ],
+          "ownHpAtStart": 7180.0,
+          "lossBudget": 0.55,
+          "safeX": 1029.701,
+          "safeY": 6866.318,
+          "enemyStrength": "UNKNOWN_NOT_ZERO",
+          "permission": "MOVE_FOR_CURRENT_VISIBILITY_ONLY",
+          "gameTimeMs": 2347152,
+          "owner": "air-general:1",
+          "airGeneralId": 1
+        }
+      },
+      "acceptedMoves": 14,
+      "firstMove": {
+        "time": 2347152,
+        "rawLine": 193172,
+        "accepted": true,
+        "kind": "/command/move",
+        "lane": "AIR_FORCE",
+        "owner": "air-general:1",
+        "actors": [
+          25175
+        ],
+        "query": {
+          "unitId": [
+            "25175"
+          ],
+          "x": [
+            "7680.0"
+          ],
+          "y": [
+            "3960.0"
+          ]
+        },
+        "credits": 0,
+        "cancel": null,
+        "frame": 146950,
+        "costSource": null,
+        "reason": "CLEARANCE_APPROACH_CURRENT_VISIBILITY"
+      },
+      "firstOwnSample": {
+        "time": 2348688,
+        "unitId": 25175,
+        "x": 1068.809,
+        "y": 6797.577,
+        "distance": 7194.420732026311,
+        "order": null,
+        "target": null
+      },
+      "nearestOwnSample": {
+        "time": 2387856,
+        "unitId": 28796,
+        "x": 3467.982,
+        "y": 5860.797,
+        "distance": 4621.052354987227,
+        "order": null,
+        "target": null
+      },
+      "attacksDuringDuty": [
+        {
+          "time": 2371104,
+          "line": 195926,
+          "targetId": 20054,
+          "members": 26
+        },
+        {
+          "time": 2380832,
+          "line": 196702,
+          "targetId": 15409,
+          "members": 28
+        }
+      ],
+      "localClear": {
+        "time": 2389808,
+        "rawLine": 197533,
+        "data": {
+          "contactId": 30331,
+          "x": 7680.0,
+          "y": 3960.0,
+          "reason": "LATER_OWN_SAMPLE_AND_CURRENT_LOCAL_VISIBLE_EMPTY_CONTACT_PACKET",
+          "sourceFrame": 149363,
+          "localAreaIsWholeMapClear": false,
+          "clearedIsKilled": false,
+          "resumeRouteCursor": 0,
+          "gameTimeMs": 2389808,
+          "owner": "air-general:1",
+          "airGeneralId": 1
+        }
+      }
+    }
+  ],
+  "lastFiveMinutesDecisionObservations": {
+    "intervals": 31,
+    "medianGameMs": 9728,
+    "maxGameMs": 14656,
+    "basis": "ALL_OBSERVATION_SOURCE_TIMES_NOT_FULL_OWN_PAYLOAD_INTERVAL"
+  },
+  "limitations": [
+    "Natural native win is one run, not a win rate or controlled R14 A/B.",
+    "AA priority and own-loss retreat are focused/native fixture proven; no natural retreat event occurred.",
+    "A late small-owner support need drew multiple existing formations to contact30331 at 38:52; support allocation still permits excess reinforcement. Do not claim minimum-force support solved.",
+    "Local clear is not kill attribution; accepted command is not arrival.",
+    "Scout absent after early observation is not death proof; longevity not solved in this Air-only change."
+  ],
+  "fullDerivedEvidence": "G:\\deepseek 工作台\\_validation\\octopus-r15-air-clearance-20261012\\spain-normal-player5-v2\\air-clearance-evidence.json"
+}

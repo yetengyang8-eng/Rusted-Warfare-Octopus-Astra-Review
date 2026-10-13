@@ -1,0 +1,87 @@
+{
+  "sourceRun": "G:\\deepseek 工作台\\游戏环境\\RW-Agent-Octopus-G6-2026-10-05-R8\\runs\\20261005-103957-5088",
+  "raw": {
+    "file": "rw-agent-reports/battle-1791167998848-2e205692.jsonl.gz",
+    "sha256": "f5ec9f33bee7af5f54ade5a9ee47b790bd654d2a6c1aecf096844509d29bf40c",
+    "bytes": 96236178,
+    "rows": 399616,
+    "malformed": 0
+  },
+  "lastOwn": {
+    "gameTimeMs": 4742995,
+    "heavyTank": 950,
+    "landFactory": 9,
+    "fabricatorT3": 41,
+    "amphibiousJet": 27,
+    "builder": 9,
+    "repairbay": 4,
+    "credits": 1760265
+  },
+  "causes": [
+    {
+      "problem": "INSIDE_BASE_STANDOFF",
+      "generalId": 1,
+      "detectedGameTimeMs": 582805,
+      "priorCollectedAttackGameTimeMs": 566435,
+      "enemyId": 148,
+      "knownNativeRange": 280,
+      "holdDistance": 121.406,
+      "reason": "LEGAL_BASE_ZONE_TRAVEL_VETO",
+      "recentOwnDamage": 439,
+      "ownMaxHp": 6600,
+      "escapeDamageWitness": false,
+      "limits": "Current tactical transition and accepted hold receipt; not all collected proposals are actual commands, arrival or fire."
+    },
+    {
+      "problem": "REMOTE_PROSPECT_HOME_RECALL",
+      "builderId": 37832,
+      "prospectGameTimeMs": 2967815,
+      "prospectAnchor": [
+        990,
+        1330
+      ],
+      "paidTravelDistance": 2846.7,
+      "laterOwnSampleGameTimeMs": 3012995,
+      "distanceFromHomeAtLaterOwnSample": 6408.49,
+      "job": "endgame_capital_builder_rally",
+      "limits": "IDLE current order does not erase prospect commitment. Snapshot is not exact command-time position."
+    },
+    {
+      "problem": "AIR_MANUFACTURING_CONCURRENCY_ONE",
+      "distinctRearProviderAssignments": 1,
+      "providerId": 26658,
+      "firstAssignmentGameTimeMs": 1866630,
+      "endgameAirAcceptedInvestments": 57,
+      "constructionReadyJetsIncludingCapability": 63,
+      "currentSurvivingReadyJets": 27,
+      "matchedReadyPairs": 52,
+      "typicalMatchedServiceGameSeconds": [
+        10,
+        26
+      ],
+      "lateCashGrowth": {
+        "fromGameTimeMs": 4530920,
+        "toGameTimeMs": 4742995,
+        "fromCredits": 1337859.5,
+        "toCredits": 1760265,
+        "approxNetPerGameSecond": 1991.6
+      },
+      "limits": "Owned-ready counts are not K/D. Exact causes of all plan-without-order observations are not proven. Calibrated extractor income excludes fabricated resource-machine income."
+    },
+    {
+      "problem": "LOCAL_PENDING_EXCEPTION_TERMINATES_AGENT",
+      "summaryError": "IllegalStateException: Native production did not finish within 180 game seconds",
+      "lastOwnFactories": 9,
+      "lastObservedQueuesAllEmpty": true,
+      "exactFatalProducer": "NEEDS_EVIDENCE",
+      "limits": "Sparse compact queue snapshots do not establish native spending, readiness or product lineage."
+    }
+  ],
+  "externalEvidenceRoot": "G:\\deepseek 工作台\\_validation\\octopus-r9-20261005",
+  "boundary": {
+    "noHiddenEnemyState": true,
+    "missingOwnIsNotDeath": true,
+    "clearedIsNotKilled": true,
+    "noKillAttribution": true
+  }
+}

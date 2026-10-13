@@ -1,0 +1,46 @@
+{
+  "baseline": "6637cdd",
+  "productCommits": [
+    "98acb46",
+    "cff889e"
+  ],
+  "branch": "codex/octopus-g3-execution-20261002",
+  "candidateJarSha256": "d0530e5d7e294d391f2252109393054ec7b3cd382e30b0446ef028dab01b7aba",
+  "regression": "PASS_COMBINED_MATRIX",
+  "steps": 137,
+  "failedSteps": 0,
+  "pythonTests": 509,
+  "focusedChecks": {
+    "R15AirClearanceHarness": 116,
+    "R15HeadlessPlayerHarness": 12,
+    "R15AirNativeHarness": 18
+  },
+  "nativePlayerChecks": {
+    "player5": 64,
+    "default0": 64
+  },
+  "natural": {
+    "difficulty": 0,
+    "player": 5,
+    "speed": 5,
+    "result": "VICTORY",
+    "detectedGameTimeMs": 2563664,
+    "frame": 160229,
+    "humanCommands": false
+  },
+  "sourceInputsChecked": 320,
+  "sourceDrift": [],
+  "humanKitFilesChecked": 1895,
+  "kitDrift": [],
+  "humanKit": "G:\\deepseek 工作台\\游戏环境\\RW-Agent-Octopus-G6-2026-10-12-R15",
+  "port": 47705,
+  "oldR14BackupTag": "backup/r14-before-r15-20261012",
+  "desktopTouched": false,
+  "pushed": false,
+  "initialFailedEvidence": [
+    "G:\\deepseek 工作台\\_validation\\octopus-r15-air-clearance-20261012\\spain-normal-player5\\result.json",
+    "Air focused v2 used an out-of-map synthetic third region; corrected fixture coordinates only.",
+    "Headless native v1 wrongly expected Spain slots8/9 absent; native map automatically creates them; corrected fixture only."
+  ],
+  "evidenceBoundary": "One natural isolated win, not a controlled improvement, stable win rate or desktop acceptance. Support over-concentration remains."
+}

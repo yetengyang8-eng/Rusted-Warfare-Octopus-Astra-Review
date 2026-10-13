@@ -1,0 +1,346 @@
+输出14（ChatGPT → DeepSeek）
+0. 总体裁决
+《对话14》的 P2-B2 第一版实现可以进入实机。
+当前范围控制正确：
+P2-C1 builder reserve
+↓
+primary combat / tech budget
+↓
+secondary investment
+↓
+secondary cheap production
+
+且没有同时修改：
+unit scoring
+mineTarget
+mobileUnitHardCap
+combat targeting
+squad
+AA composition
+
+这一点继续保持。  对话14
+1. Q1：认可“主厂空闲且买不起时才持有 primaryReserve”
+第一版先保持你现在的实现：
+primary busy
+→ 不常驻持有 primaryReserve
+
+primary idle + mainline 买不起
+→ primaryReserve = mainlineCost
+
+不要现在改成常驻 reserve。
+原因：
+如果主厂正在正常生产，仍永久锁住一整个 mainlineCost，很可能让第二厂几乎失去存在意义。
+当前设计至少实现了：
+主厂工作的时候允许副厂消费；
+主厂真正需要下一张单而钱不够时才开始保护预算。
+
+这是合理的第一版。
+2. 但下一局必须特别检查“主厂续单间隙”
+当前设计存在一个需要实机验证的候选问题：
+T2 主厂正在生产 heavyTank
+↓
+primaryReserve = 0
+↓
+T1 副厂花钱
+↓
+T2 heavyTank 完成
+↓
+T2 队列空
+↓
+余额不足 800
+↓
+BANKING_FOR_PRIMARY_UNIT
+
+如果这种情况频繁发生，那么第二厂虽然不再把 T2 永久拖成 c_tank 厂，却可能造成：
+T2 heavyTank 生产断续。
+
+所以实机报告请额外统计：
+primary queue finished
+→ 下一次 primary mainline order
+
+之间的时间。
+建议指标：
+primaryRestartGapSeconds
+
+并记录：
+- queue finished 时 credits；
+- 下一次 heavyTank order 时 credits；
+- gap 中是否出现 BANKING_FOR_PRIMARY_UNIT；
+- 前一个 heavyTank 尚在生产期间，secondary 是否有消费。
+3. 暂时不要据此做预测式 reserve
+即使上述风险理论上存在，本轮也不要提前修改成：
+主厂快生产完了
+→ 提前攒800
+
+因为那需要知道：
+- 剩余生产时间；
+- 当前收入；
+- 副厂消费；
+- 下一单位成本；
+会把第一版 Global Budget 迅速变复杂。
+先让数据回答：
+“idle-only reserve”是否已经足够。
+
+如果下一局 T2 基本可以连续 heavyTank，就不需要复杂化。
+4. Q2：删除旧 fallback 测试——认可
+批准删除旧：
+test_unaffordable_preferred_unit_is_recorded
+
+中的“单主厂 fallback”旧语义。
+因为 P2-B2 明确改变了这个行为：
+旧行为
+T2 preferred heavyTank
+买不起
+→ c_tank fallback
+
+新行为
+T2 preferred heavyTank
+买不起
+→ BANKING_FOR_PRIMARY_UNIT
+
+旧测试如果继续要求 fallback，反而是在强迫新代码保留旧 bug。
+把 fallback 测试迁移到：
+secondary producer
+
+场景是合理的。
+这属于：
+行为需求改变 → 对应测试语义更新，
+
+不是放宽测试。  对话14
+5. BANKING_FOR_UPGRADE 的处理认可
+同意把它直接并入 P2-B2。
+当前区分：
+PRIMARY_TECH_BANKING
+SECONDARY_INVESTMENT_DEFERRED
+
+是正确方向。
+只有 T1 主厂
+如果必须升级才能获得当前 mainline：
+upgrade = PRIMARY TECH ENABLEMENT
+
+允许优先攒钱。
+已经有 T2 主厂
+其它 T1 厂升级：
+SECONDARY INVESTMENT
+
+不得侵占 primary mainline budget。
+先保持这一规则。
+6. capability / provenance 三项诊断批准
+都保留：
+capability snapshot
+60s
+600s
+
+各采一次即可。
+不参与策略。  对话14
+battle_config
+加入：
+builderTarget
+
+批准。
+provenance
+直接记录：
+agentJarSha256
+gameLibJarSha256
+gameSecondsPerWallSecond
+
+很好。
+以后就不用再靠安装时间判断候选版本。
+7. evidence tooling 修正通过
+新的：
+newMines
+newFactories
+readyMinesTotal
+readyFactoriesTotal
+
+明显比以前的 mines/factories 清楚。
+继续使用。
+postAbandonChain 并回 P2-C1 evidence 也正确，P2-C1 以后不需要再开独立脚本证明 economic continuity。  对话14
+8. Q3：不用再补一局吞吐确认，直接做正式压力局
+选择：
+直接跑下一局。
+
+没必要先额外跑一局只验证“吞吐有没有降低”。
+同一场 900s 压力局已经可以同时回答：
+- composition 是否恢复；
+- primary 是否连续；
+- secondary 是否真正有机会生产；
+- upgrade 是否合理 defer；
+- 总产量是否异常下降；
+- 交换效率有没有改善。
+再额外加一局只会增加测试成本。
+9. 下一局最好尽量和旧 17/103 样本保持设置一致
+旧关键对照是：
+c_tank = 103
+heavyTank = 17
+produced = 120
+lost = 123
+
+所以如果用户记得当时的 AI 设置：
+优先使用与旧样本相同的 AI 难度。
+
+条件：
+冰岛
+相同 AI difficulty
+1x
+正常战争迷雾
+900s
+Start → Match
+
+如果用户无法确定旧难度，则明确记录这是一轮：
+NEW PRESSURE VALIDATION
+
+而不是严格 A/B。
+不要根据敌方阵容反推 difficulty。
+10. 这一局最重要的第一判据不是输赢
+优先判断：
+A. Composition
+旧：
+heavyTank 17
+c_tank 103
+
+新版本是否明显恢复到：
+heavyTank 主导
+
+不要求某个固定比例，但不能再出现主 T2 厂长期生产 c_tank。
+B. Primary factory
+分别统计主厂：
+heavyTank orders
+c_tank orders
+upgrade orders
+
+预期：
+主厂 cheap fallback 应接近 0。
+
+C. Secondary factory
+统计：
+secondary unit orders
+secondary upgrade
+RESERVED_FOR_PRIMARY_PRODUCTION
+SECONDARY_INVESTMENT_DEFERRED
+
+我们希望看到：
+副厂并没有完全死亡，而是在真正有 surplus 时工作。
+
+11. 新增一个关键判据：Primary Restart Gap
+请在分析工具里尽量提取：
+上一辆 primary mainline 完成
+→ 下一辆 primary mainline 下单
+
+的间隔。
+至少给：
+median
+max
+count
+
+并标记 gap 原因：
+WAITING_FOR_CREDITS
+HARD_CAP
+BUILDER_RECOVERY
+其它
+
+如果现有事件不足以精确计算，不要为了它改 Agent 行为；只指出日志缺口。
+12. 为什么这个指标重要
+P2-B2 不只是要解决：
+T2 不再生产 c_tank。
+
+还要避免另一种极端：
+T2 虽然只生产 heavyTank，但每生产一辆就等很久。
+
+最终我们需要区分：
+好结果
+T2持续heavy
++
+T1有盈余就消费
+
+过度保守
+T2持续heavy
+但副厂几乎永久闲置
+
+预算仍过松
+副厂花钱
+→ T2频繁停顿等钱
+
+下一局就可以开始区分这三种。
+13. 暂时不要追求“两个厂都满负荷”
+再次确认：
+factoryBusyPercent
+
+不是优化目标。
+正确情况完全可能是：
+T2 primary 连续生产
+T1 secondary 偶尔空闲
+
+只要资金被更有效地转换成战略价值，这就是成功。
+14. 这轮不要修改 hard cap
+继续：
+mobileUnitHardCap = 32
+
+如果再次撞 cap：
+记录即可。
+不要因为测试时看到工厂闲置就提高。
+15. 这轮不要修改 mineTarget
+继续：
+mineTarget = 3
+
+这样我们才能真正回答：
+三矿是否足够支持修复后的生产体系。
+
+如果仍然出现明显经济不足，再讨论 dynamic economy。
+16. capability 结果如果顺带出来就报告
+如果 60s / 600s snapshot 成功形成双锚点：
+请尝试给出：
+heavyTank:
+canAttackAir = ?
+canAttackLand = ?
+
+hoverTank:
+canAttackAir = ?
+canAttackLand = ?
+
+要求：
+- c_tank 作为 air=false / land=true 锚点；
+- AA turret 作为 air=true / land=false 锚点；
+- 若字段映射仍不唯一，就报告 unresolved；
+- 不要猜。
+这一项仍然不影响 P2-B2 判定。
+17. 下一轮报告重点
+实机结束后请给 ChatGPT：
+对话15
+
+以及小 evidence：
+latest_summary
+latest_metrics
+production_forensics / P2-B2 equivalent
+
+不需要用户发完整原始报告包。
+重点包括：
+1. candidate SHA；
+2. 用户提供的实际 AI difficulty；
+3. speed；
+4. outcome；
+5. heavy/c_tank composition；
+6. primary / secondary 分厂生产；
+7. reserve/defer 事件；
+8. primary restart gap；
+9. produced/lost；
+10. army median/max；
+11. credits；
+12. capability snapshot 结果。
+最终裁决
+Q1
+认可当前：
+primary idle + 买不起 mainline 才持有 reserve。
+
+第一版不改成常驻。
+但下一局重点测：
+副厂在主厂忙时消费，是否导致主厂下一轮续单明显停顿。
+
+Q2
+认可旧测试删除并迁移到 secondary fallback 场景。
+Q3
+直接进入：
+冰岛 / 同旧样本AI难度优先 / 1x / 正常迷雾 / 900s
+
+不需要额外吞吐预跑。
+现在可以上实机。

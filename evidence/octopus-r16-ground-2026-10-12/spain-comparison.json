@@ -1,0 +1,549 @@
+{
+  "status": "SINGLE_PAIR_NOT_EFFICACY_ACCEPTANCE",
+  "conditions": "Original Spain / Normal difficulty0 / player5 /5x / autonomous; independent native games, no fixed RNG or human intervention",
+  "runs": {
+    "spain-r15-normal-p5-v2": {
+      "input": {
+        "jarSha256": "d0530e5d7e294d391f2252109393054ec7b3cd382e30b0446ef028dab01b7aba",
+        "mapSource": "G:\\deepseek 工作台\\游戏环境\\P1F-GPTSol61-Operations-2026-10-01\\mods\\maps\\[10p] 10p 西班牙混战_by_MP97.tmx",
+        "mapSha256": "342db6d8a8b8320b6a271b9e3c8a4c29c96a203e206c4be690c44bbef5882746",
+        "loadedMap": "maps/skirmish/[10p] Spain MP97.tmx",
+        "speed": 5,
+        "difficulty": 0,
+        "playerId": 5,
+        "durationGameSeconds": 3600,
+        "wallSafetySeconds": 1380,
+        "nativePositionMutation": false,
+        "fixture": false,
+        "desktopTouched": false
+      },
+      "sourceRaw": "G:\\deepseek 工作台\\_validation\\octopus-r16-ground-20261012\\spain-r15-normal-p5-v2\\work\\rw-agent-reports\\battle-1791743035955-dc9a3fc0.jsonl.gz",
+      "rawSha256": "30b8e51aa1f1a80b82005ea751043ac1463e6ee10eb96cbfffe7410be8eadd06",
+      "rows": 215413,
+      "malformed": 0,
+      "process": {
+        "clientExit": 0,
+        "engineExit": null,
+        "jarSha256": "d0530e5d7e294d391f2252109393054ec7b3cd382e30b0446ef028dab01b7aba",
+        "noDesktopTouched": true
+      },
+      "match": {
+        "outcome": "VICTORY",
+        "nativeVictory": true,
+        "nativeDefeat": false,
+        "ownTeamVictory": false,
+        "ownTeamDefeated": false,
+        "ownTeamWipedOut": false,
+        "source": "native_result_screen"
+      },
+      "checkpoints": [
+        {
+          "gameTimeMs": 297984,
+          "frame": 18624,
+          "player": {
+            "teamId": 5,
+            "name": "Player",
+            "credits": 667.0
+          },
+          "types": {
+            "commandCenter": 1,
+            "builder": 2,
+            "landFactory": 2,
+            "extractorT1": 7,
+            "heavyTank": 12
+          }
+        },
+        {
+          "gameTimeMs": 601440,
+          "frame": 37590,
+          "player": {
+            "teamId": 5,
+            "name": "Player",
+            "credits": 639.5
+          },
+          "types": {
+            "commandCenter": 1,
+            "landFactory": 3,
+            "extractorT1": 6,
+            "heavyTank": 36,
+            "builder": 1
+          }
+        },
+        {
+          "gameTimeMs": 1198640,
+          "frame": 74915,
+          "player": {
+            "teamId": 5,
+            "name": "Player",
+            "credits": 1383.5
+          },
+          "types": {
+            "commandCenter": 1,
+            "landFactory": 4,
+            "extractorT2": 2,
+            "extractorT1": 12,
+            "heavyTank": 41,
+            "combatEngineer": 1,
+            "repairbay": 3,
+            "builder": 6
+          }
+        },
+        {
+          "gameTimeMs": 1801152,
+          "frame": 112572,
+          "player": {
+            "teamId": 5,
+            "name": "Player",
+            "credits": 29599.5
+          },
+          "types": {
+            "commandCenter": 1,
+            "landFactory": 9,
+            "extractorT3_reinforced": 1,
+            "extractorT3": 1,
+            "extractorT2": 25,
+            "heavyTank": 97,
+            "combatEngineer": 5,
+            "repairbay": 3,
+            "builder": 5,
+            "extractorT1": 4,
+            "heavyArtillery": 1,
+            "amphibiousJet": 16
+          }
+        },
+        {
+          "gameTimeMs": 2399072,
+          "frame": 149942,
+          "player": {
+            "teamId": 5,
+            "name": "Player",
+            "credits": 146943.0
+          },
+          "types": {
+            "commandCenter": 1,
+            "landFactory": 9,
+            "extractorT3_reinforced": 1,
+            "extractorT3": 1,
+            "extractorT2": 23,
+            "heavyTank": 108,
+            "combatEngineer": 7,
+            "repairbay": 3,
+            "builder": 8,
+            "extractorT1": 12,
+            "heavyArtillery": 1,
+            "amphibiousJet": 91
+          }
+        }
+      ],
+      "lastReady": {
+        "time": 2732240,
+        "types": {
+          "commandCenter": 1,
+          "landFactory": 9,
+          "extractorT3_reinforced": 1,
+          "extractorT3": 1,
+          "extractorT2": 32,
+          "heavyTank": 108,
+          "combatEngineer": 9,
+          "repairbay": 3,
+          "builder": 10,
+          "extractorT1": 10,
+          "heavyArtillery": 1,
+          "amphibiousJet": 128
+        }
+      },
+      "summary": {
+        "outcome": "PASS",
+        "reason": "Native result screen: VICTORY",
+        "battleGameTimeMs": 2730112,
+        "commands": 12344,
+        "observations": 1986
+      },
+      "events": {
+        "strategy_recovery_builder_rally": 2,
+        "endgame_capital_builder_rally": 15,
+        "strategy_construction_ordered": 225,
+        "strategy_construction_observed": 220,
+        "air_general_attack": 135,
+        "air_general_clearance_probe": 5,
+        "air_general_area_clear": 39
+      },
+      "approachExamples": []
+    },
+    "spain-r16-normal-p5": {
+      "input": {
+        "jarSha256": "3a1eeb33725c93279818e90a9812e21bfb0bbf04f079407143835054d8ee8ad5",
+        "mapSource": "G:\\deepseek 工作台\\游戏环境\\P1F-GPTSol61-Operations-2026-10-01\\mods\\maps\\[10p] 10p 西班牙混战_by_MP97.tmx",
+        "mapSha256": "342db6d8a8b8320b6a271b9e3c8a4c29c96a203e206c4be690c44bbef5882746",
+        "loadedMap": "maps/skirmish/[10p] Spain MP97.tmx",
+        "speed": 5,
+        "difficulty": 0,
+        "playerId": 5,
+        "durationGameSeconds": 3600,
+        "wallSafetySeconds": 1380,
+        "nativePositionMutation": false,
+        "fixture": false,
+        "desktopTouched": false
+      },
+      "sourceRaw": "G:\\deepseek 工作台\\_validation\\octopus-r16-ground-20261012\\spain-r16-normal-p5\\work\\rw-agent-reports\\battle-1791742972406-737aa4b2.jsonl.gz",
+      "rawSha256": "b753a183c60965cca43ddf601c1bd4a8545003ba64e789cd212185cdaf1d1d19",
+      "rows": 282643,
+      "malformed": 0,
+      "process": {
+        "clientExit": 2,
+        "engineExit": null,
+        "jarSha256": "3a1eeb33725c93279818e90a9812e21bfb0bbf04f079407143835054d8ee8ad5",
+        "noDesktopTouched": true
+      },
+      "match": {
+        "outcome": "ONGOING",
+        "nativeVictory": false,
+        "nativeDefeat": false,
+        "ownTeamVictory": false,
+        "ownTeamDefeated": false,
+        "ownTeamWipedOut": false,
+        "source": "native_result_screen"
+      },
+      "checkpoints": [
+        {
+          "gameTimeMs": 298096,
+          "frame": 18631,
+          "player": {
+            "teamId": 5,
+            "name": "Player",
+            "credits": 67.5
+          },
+          "types": {
+            "commandCenter": 1,
+            "landFactory": 2,
+            "extractorT1": 4,
+            "heavyTank": 13,
+            "builder": 1
+          }
+        },
+        {
+          "gameTimeMs": 601472,
+          "frame": 37592,
+          "player": {
+            "teamId": 5,
+            "name": "Player",
+            "credits": 871.5
+          },
+          "types": {
+            "commandCenter": 1,
+            "landFactory": 2,
+            "extractorT1": 5,
+            "heavyTank": 31,
+            "builder": 1
+          }
+        },
+        {
+          "gameTimeMs": 1199056,
+          "frame": 74941,
+          "player": {
+            "teamId": 5,
+            "name": "Player",
+            "credits": 3344.0
+          },
+          "types": {
+            "commandCenter": 1,
+            "landFactory": 3,
+            "extractorT2": 2,
+            "extractorT1": 13,
+            "heavyTank": 44,
+            "builder": 8,
+            "combatEngineer": 2,
+            "repairbay": 3
+          }
+        },
+        {
+          "gameTimeMs": 1798128,
+          "frame": 112383,
+          "player": {
+            "teamId": 5,
+            "name": "Player",
+            "credits": 16813.0
+          },
+          "types": {
+            "commandCenter": 1,
+            "landFactory": 3,
+            "extractorT3_reinforced": 2,
+            "extractorT2": 24,
+            "heavyTank": 57,
+            "combatEngineer": 5,
+            "repairbay": 5,
+            "builder": 6,
+            "extractorT1": 6,
+            "amphibiousJet": 29
+          }
+        },
+        {
+          "gameTimeMs": 2401296,
+          "frame": 150081,
+          "player": {
+            "teamId": 5,
+            "name": "Player",
+            "credits": 113309.0
+          },
+          "types": {
+            "commandCenter": 1,
+            "landFactory": 3,
+            "extractorT3_reinforced": 2,
+            "extractorT2": 15,
+            "heavyTank": 78,
+            "combatEngineer": 5,
+            "repairbay": 5,
+            "builder": 10,
+            "amphibiousJet": 107,
+            "extractorT1": 10
+          }
+        },
+        {
+          "gameTimeMs": 2999136,
+          "frame": 187446,
+          "player": {
+            "teamId": 5,
+            "name": "Player",
+            "credits": 255337.0
+          },
+          "types": {
+            "commandCenter": 1,
+            "landFactory": 4,
+            "extractorT3_reinforced": 2,
+            "extractorT2": 31,
+            "combatEngineer": 9,
+            "repairbay": 5,
+            "heavyTank": 99,
+            "amphibiousJet": 195,
+            "builder": 10,
+            "extractorT1": 8
+          }
+        },
+        {
+          "gameTimeMs": 3601392,
+          "frame": 225087,
+          "player": {
+            "teamId": 5,
+            "name": "Player",
+            "credits": 435328.0
+          },
+          "types": {
+            "commandCenter": 1,
+            "landFactory": 4,
+            "extractorT3_reinforced": 2,
+            "extractorT2": 26,
+            "combatEngineer": 10,
+            "repairbay": 5,
+            "heavyTank": 98,
+            "amphibiousJet": 305,
+            "builder": 3,
+            "extractorT1": 9
+          }
+        }
+      ],
+      "lastReady": {
+        "time": 3614336,
+        "types": {
+          "commandCenter": 1,
+          "landFactory": 4,
+          "extractorT3_reinforced": 2,
+          "extractorT2": 26,
+          "combatEngineer": 10,
+          "repairbay": 5,
+          "heavyTank": 97,
+          "amphibiousJet": 305,
+          "builder": 4,
+          "extractorT1": 9
+        }
+      },
+      "summary": {
+        "outcome": "PARTIAL",
+        "reason": "Game-time budget reached without native result",
+        "battleGameTimeMs": 3612416,
+        "commands": 20829,
+        "observations": 2242
+      },
+      "events": {
+        "strategy_recovery_builder_rally": 3,
+        "endgame_capital_builder_rally": 0,
+        "strategy_construction_ordered": 433,
+        "strategy_construction_observed": 421,
+        "air_general_attack": 29,
+        "air_general_clearance_probe": 2,
+        "air_general_area_clear": 8
+      },
+      "approachExamples": [
+        {
+          "time": 416176,
+          "line": 20060,
+          "generalId": 1,
+          "data": {
+            "enemyId": 148,
+            "reason": "REMEMBERED_BASE_LOCAL_SMALL_FORCE_PROTECTION",
+            "admitted": true,
+            "rosterCount": 21,
+            "localActorIds": [
+              747,
+              884,
+              972,
+              1047,
+              1155,
+              807,
+              1209,
+              1231,
+              1807,
+              1320,
+              1944,
+              1685,
+              2035,
+              1434,
+              1570,
+              2162,
+              2316,
+              2457,
+              2580,
+              2715,
+              2860
+            ],
+            "formationRadius": 400.0,
+            "fightEstimate": {},
+            "geometry": "CURRENT_OWN_POSITIONS_NOT_NATIVE_PATH_OR_SIMULTANEOUS_FIRE_WITNESS"
+          }
+        },
+        {
+          "time": 417904,
+          "line": 20169,
+          "generalId": 1,
+          "data": {
+            "enemyId": 148,
+            "reason": "REMEMBERED_BASE_LOCAL_SMALL_FORCE_PROTECTION",
+            "admitted": true,
+            "rosterCount": 20,
+            "localActorIds": [
+              747,
+              884,
+              972,
+              1047,
+              1155,
+              807,
+              1209,
+              1231,
+              1807,
+              1320,
+              1944,
+              1685,
+              2035,
+              1434,
+              1570,
+              2162,
+              2457,
+              2580,
+              2715,
+              2860
+            ],
+            "formationRadius": 400.0,
+            "fightEstimate": {},
+            "geometry": "CURRENT_OWN_POSITIONS_NOT_NATIVE_PATH_OR_SIMULTANEOUS_FIRE_WITNESS"
+          }
+        },
+        {
+          "time": 418576,
+          "line": 20246,
+          "generalId": 1,
+          "data": {
+            "enemyId": 148,
+            "reason": "REMEMBERED_BASE_LOCAL_SMALL_FORCE_PROTECTION",
+            "admitted": true,
+            "rosterCount": 18,
+            "localActorIds": [
+              747,
+              884,
+              972,
+              1047,
+              1155,
+              807,
+              1209,
+              1231,
+              1807,
+              1320,
+              1944,
+              1434,
+              1570,
+              2162,
+              2457,
+              2580,
+              2715,
+              2860
+            ],
+            "formationRadius": 400.0,
+            "fightEstimate": {},
+            "geometry": "CURRENT_OWN_POSITIONS_NOT_NATIVE_PATH_OR_SIMULTANEOUS_FIRE_WITNESS"
+          }
+        },
+        {
+          "time": 419488,
+          "line": 20358,
+          "generalId": 1,
+          "data": {
+            "enemyId": 148,
+            "reason": "REMEMBERED_BASE_LOCAL_SMALL_FORCE_PROTECTION",
+            "admitted": true,
+            "rosterCount": 17,
+            "localActorIds": [
+              747,
+              884,
+              972,
+              1047,
+              1155,
+              807,
+              1209,
+              1231,
+              1807,
+              1320,
+              1944,
+              1434,
+              1570,
+              2162,
+              2457,
+              2580,
+              2860
+            ],
+            "formationRadius": 400.0,
+            "fightEstimate": {},
+            "geometry": "CURRENT_OWN_POSITIONS_NOT_NATIVE_PATH_OR_SIMULTANEOUS_FIRE_WITNESS"
+          }
+        },
+        {
+          "time": 421072,
+          "line": 20499,
+          "generalId": 1,
+          "data": {
+            "enemyId": 148,
+            "reason": "REMEMBERED_BASE_LOCAL_SMALL_FORCE_PROTECTION",
+            "admitted": true,
+            "rosterCount": 13,
+            "localActorIds": [
+              747,
+              884,
+              972,
+              1047,
+              1155,
+              807,
+              1209,
+              1231,
+              1807,
+              1320,
+              1434,
+              1570,
+              2860
+            ],
+            "formationRadius": 400.0,
+            "fightEstimate": {},
+            "geometry": "CURRENT_OWN_POSITIONS_NOT_NATIVE_PATH_OR_SIMULTANEOUS_FIRE_WITNESS"
+          }
+        }
+      ]
+    }
+  },
+  "conclusion": "R15 native victory; R16 reached3600-game-second budget stillONGOING. No claim of improved overall speed, losses or win rate."
+}

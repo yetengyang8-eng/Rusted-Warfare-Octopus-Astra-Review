@@ -1,0 +1,26 @@
+{
+  "version": "R9",
+  "source_commit": "56a059831cc69dc8f2cf83ef8685e5369fe4dfa2",
+  "local_full_kit": "G:\\deepseek 工作台\\游戏环境\\RW-Agent-Octopus-G6-2026-10-05-R9",
+  "port": 47691,
+  "agent_jar_sha256": "9cd0b8a345c9b23ed0d763859019bb50555829d83e206dc06de5c5cf22b8250a",
+  "agent_jar_bytes": 619918,
+  "status": "legacy strong baseline, natural evidence but not certified stable victory",
+  "source_paths": [
+    "agent",
+    "tools",
+    "docs",
+    "knowledge",
+    "project-state",
+    "project-history",
+    "handoff",
+    "AGENTS.md",
+    "ASTRA_START_HERE.md",
+    "README.md",
+    "ASTRA_WRITEBACK.md",
+    "PUBLISHING_NOTES.md",
+    "THIRD_PARTY_REFERENCES.md"
+  ],
+  "source_tree_sha": "0b888bb74920d0ddd59835917f5cc6cd0152973b",
+  "commercial_runtime_in_git": false
+}

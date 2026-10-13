@@ -1,0 +1,719 @@
+{
+  "status": "PASS_COMBINED_MATRIX",
+  "steps": 137,
+  "javaHarnessRuns": 102,
+  "pythonSuites": 32,
+  "pythonTests": 509,
+  "failedSteps": 0,
+  "firstRunPassed": 134,
+  "firstRunFailed": [
+    "java:R14HeavyArtilleryNativeHarness",
+    "py:test_reports",
+    "java:StrategyNativeHarness"
+  ],
+  "reason": "Isolated staging omitted native assets and historical docs fixtures; only those three suites rerun after copying inputs. Product and test source/JAR unchanged.",
+  "finalCandidateJarSha256": "d0530e5d7e294d391f2252109393054ec7b3cd382e30b0446ef028dab01b7aba",
+  "results": [
+    {
+      "step": "build:compile",
+      "exit": 0,
+      "firstPass": true
+    },
+    {
+      "step": "build:jar",
+      "exit": 0,
+      "firstPass": true
+    },
+    {
+      "step": "build:test-classes",
+      "exit": 0,
+      "firstPass": true
+    },
+    {
+      "step": "java:SmokeHarness",
+      "exit": 0,
+      "firstPass": true
+    },
+    {
+      "step": "java:G54ExecutionFlowHarness",
+      "exit": 0,
+      "firstPass": true
+    },
+    {
+      "step": "java:G55OperationsHarness",
+      "exit": 0,
+      "firstPass": true
+    },
+    {
+      "step": "java:R7BuilderDemandHarness",
+      "exit": 0,
+      "firstPass": true
+    },
+    {
+      "step": "java:R8BuilderWorkHarness",
+      "exit": 0,
+      "firstPass": true
+    },
+    {
+      "step": "java:R12BuilderWorkHarness",
+      "exit": 0,
+      "firstPass": true
+    },
+    {
+      "step": "java:R12BuilderNativeHarness",
+      "exit": 0,
+      "firstPass": true
+    },
+    {
+      "step": "java:R13BuilderOpportunityHarness",
+      "exit": 0,
+      "firstPass": true
+    },
+    {
+      "step": "java:R13MineQuoteNativeHarness",
+      "exit": 0,
+      "firstPass": true
+    },
+    {
+      "step": "java:R13ScoutNavigationHarness",
+      "exit": 0,
+      "firstPass": true
+    },
+    {
+      "step": "java:R13MarginalProductionHarness",
+      "exit": 0,
+      "firstPass": true
+    },
+    {
+      "step": "java:R13ThreatDetachmentHarness",
+      "exit": 0,
+      "firstPass": true
+    },
+    {
+      "step": "java:R13AirLifecycleHarness",
+      "exit": 0,
+      "firstPass": true
+    },
+    {
+      "step": "java:R13AirNativeHarness",
+      "exit": 0,
+      "firstPass": true
+    },
+    {
+      "step": "java:R14BuilderFlowHarness",
+      "exit": 0,
+      "firstPass": true
+    },
+    {
+      "step": "java:R14LiveReportHarness",
+      "exit": 0,
+      "firstPass": true
+    },
+    {
+      "step": "java:R14HeavyArtilleryHarness",
+      "exit": 0,
+      "firstPass": true
+    },
+    {
+      "step": "java:R14HeavyArtilleryNativeHarness",
+      "exit": 0,
+      "firstPass": false,
+      "rerun": {
+        "step": "java:R14HeavyArtilleryNativeHarness",
+        "exit": 0,
+        "log": "G:\\deepseek 工作台\\_validation\\octopus-r15-air-clearance-20261012\\environment-rerun\\java_R14HeavyArtilleryNativeHarness.log"
+      }
+    },
+    {
+      "step": "java:R14AirFlowHarness",
+      "exit": 0,
+      "firstPass": true
+    },
+    {
+      "step": "java:R14AirNativeHarness",
+      "exit": 0,
+      "firstPass": true
+    },
+    {
+      "step": "java:R15AirClearanceHarness",
+      "exit": 0,
+      "firstPass": true
+    },
+    {
+      "step": "java:R15HeadlessPlayerHarness",
+      "exit": 0,
+      "firstPass": true
+    },
+    {
+      "step": "java:R15AirNativeHarness",
+      "exit": 0,
+      "firstPass": true
+    },
+    {
+      "step": "java:R8ExecutionAdmissionHarness",
+      "exit": 0,
+      "firstPass": true
+    },
+    {
+      "step": "java:R8BaseAdmissionHarness",
+      "exit": 0,
+      "firstPass": true
+    },
+    {
+      "step": "java:R8FrontierContinuationHarness",
+      "exit": 0,
+      "firstPass": true
+    },
+    {
+      "step": "java:R8AirSearchHarness",
+      "exit": 0,
+      "firstPass": true
+    },
+    {
+      "step": "java:R9ProductionTimeoutHarness",
+      "exit": 0,
+      "firstPass": true
+    },
+    {
+      "step": "java:R9SiegeLifecycleHarness",
+      "exit": 0,
+      "firstPass": true
+    },
+    {
+      "step": "java:R9BuilderCoverageHarness",
+      "exit": 0,
+      "firstPass": true
+    },
+    {
+      "step": "java:R9AirInvestmentHarness",
+      "exit": 0,
+      "firstPass": true
+    },
+    {
+      "step": "java:R10TemporaryResponseHarness",
+      "exit": 0,
+      "firstPass": true
+    },
+    {
+      "step": "java:R10AirFormationsHarness",
+      "exit": 0,
+      "firstPass": true
+    },
+    {
+      "step": "java:R10ScoutContinuityHarness",
+      "exit": 0,
+      "firstPass": true
+    },
+    {
+      "step": "java:R10ScoutBridgeHarness",
+      "exit": 0,
+      "firstPass": true
+    },
+    {
+      "step": "java:R10FrontierFundingHarness",
+      "exit": 0,
+      "firstPass": true
+    },
+    {
+      "step": "java:R10MilitaryInvestmentHarness",
+      "exit": 0,
+      "firstPass": true
+    },
+    {
+      "step": "java:R11FrontlineContinuityHarness",
+      "exit": 0,
+      "firstPass": true
+    },
+    {
+      "step": "java:R11GeneralMotionHarness",
+      "exit": 0,
+      "firstPass": true
+    },
+    {
+      "step": "java:R11AirContinuityHarness",
+      "exit": 0,
+      "firstPass": true
+    },
+    {
+      "step": "java:R11ScoutMotionHarness",
+      "exit": 0,
+      "firstPass": true
+    },
+    {
+      "step": "java:R11ScoutBridgeSafetyHarness",
+      "exit": 0,
+      "firstPass": true
+    },
+    {
+      "step": "java:G7ScoutMissionHarness",
+      "exit": 0,
+      "firstPass": true
+    },
+    {
+      "step": "java:G6EndgameHarness",
+      "exit": 0,
+      "firstPass": true
+    },
+    {
+      "step": "java:G6CapitalPolicyHarness",
+      "exit": 0,
+      "firstPass": true
+    },
+    {
+      "step": "java:AirReconTerrainHarness",
+      "exit": 0,
+      "firstPass": true
+    },
+    {
+      "step": "java:BridgeHarness",
+      "exit": 0,
+      "firstPass": true
+    },
+    {
+      "step": "java:BridgeHarness-disabled",
+      "exit": 0,
+      "firstPass": true
+    },
+    {
+      "step": "java:EconomyHarness",
+      "exit": 0,
+      "firstPass": true
+    },
+    {
+      "step": "java:OpeningHarness",
+      "exit": 0,
+      "firstPass": true
+    },
+    {
+      "step": "java:OpeningHarness-replacement",
+      "exit": 0,
+      "firstPass": true
+    },
+    {
+      "step": "java:ProductionPlanHarness",
+      "exit": 0,
+      "firstPass": true
+    },
+    {
+      "step": "py:test_development",
+      "exit": 0,
+      "firstPass": true
+    },
+    {
+      "step": "py:test_opening",
+      "exit": 0,
+      "firstPass": true
+    },
+    {
+      "step": "py:test_economy",
+      "exit": 0,
+      "firstPass": true
+    },
+    {
+      "step": "py:test_client",
+      "exit": 0,
+      "firstPass": true
+    },
+    {
+      "step": "py:test_match_bootstrap",
+      "exit": 0,
+      "firstPass": true
+    },
+    {
+      "step": "java:DiagnosticsHarness",
+      "exit": 0,
+      "firstPass": true
+    },
+    {
+      "step": "java:PreflightHarness",
+      "exit": 0,
+      "firstPass": true
+    },
+    {
+      "step": "py:test_reports",
+      "exit": 0,
+      "firstPass": false,
+      "rerun": {
+        "step": "py:test_reports",
+        "exit": 0,
+        "log": "G:\\deepseek 工作台\\_validation\\octopus-r15-air-clearance-20261012\\environment-rerun\\py_test_reports.log"
+      }
+    },
+    {
+      "step": "java:ScoutHarness",
+      "exit": 0,
+      "firstPass": true
+    },
+    {
+      "step": "java:TerrainMemoryHarness",
+      "exit": 0,
+      "firstPass": true
+    },
+    {
+      "step": "java:GuardHarness",
+      "exit": 0,
+      "firstPass": true
+    },
+    {
+      "step": "java:CapabilityHarness",
+      "exit": 0,
+      "firstPass": true
+    },
+    {
+      "step": "java:TargetCompatibilityHarness",
+      "exit": 0,
+      "firstPass": true
+    },
+    {
+      "step": "java:BuilderHarness",
+      "exit": 0,
+      "firstPass": true
+    },
+    {
+      "step": "java:ReachabilityHarness",
+      "exit": 0,
+      "firstPass": true
+    },
+    {
+      "step": "java:ReachabilityHarness-sandbox",
+      "exit": 0,
+      "firstPass": true
+    },
+    {
+      "step": "py:test_frontier",
+      "exit": 0,
+      "firstPass": true
+    },
+    {
+      "step": "py:test_frontier_reports",
+      "exit": 0,
+      "firstPass": true
+    },
+    {
+      "step": "java:CombatHarness",
+      "exit": 0,
+      "firstPass": true
+    },
+    {
+      "step": "py:test_battle_reports",
+      "exit": 0,
+      "firstPass": true
+    },
+    {
+      "step": "py:test_battle_client",
+      "exit": 0,
+      "firstPass": true
+    },
+    {
+      "step": "py:test_production_capacity",
+      "exit": 0,
+      "firstPass": true
+    },
+    {
+      "step": "py:test_strategy_funding",
+      "exit": 0,
+      "firstPass": true
+    },
+    {
+      "step": "py:test_specialist_lifecycle",
+      "exit": 0,
+      "firstPass": true
+    },
+    {
+      "step": "py:test_local_army",
+      "exit": 0,
+      "firstPass": true
+    },
+    {
+      "step": "py:test_surplus_spending",
+      "exit": 0,
+      "firstPass": true
+    },
+    {
+      "step": "py:test_engineer_provider",
+      "exit": 0,
+      "firstPass": true
+    },
+    {
+      "step": "py:test_target_compatibility",
+      "exit": 0,
+      "firstPass": true
+    },
+    {
+      "step": "py:test_recon_client",
+      "exit": 0,
+      "firstPass": true
+    },
+    {
+      "step": "py:test_recon_frontier_client",
+      "exit": 0,
+      "firstPass": true
+    },
+    {
+      "step": "py:test_g1_trace",
+      "exit": 0,
+      "firstPass": true
+    },
+    {
+      "step": "py:test_g2_world_state",
+      "exit": 0,
+      "firstPass": true
+    },
+    {
+      "step": "py:test_g3_execution",
+      "exit": 0,
+      "firstPass": true
+    },
+    {
+      "step": "py:test_g4_runtime",
+      "exit": 0,
+      "firstPass": true
+    },
+    {
+      "step": "py:test_g41_runtime",
+      "exit": 0,
+      "firstPass": true
+    },
+    {
+      "step": "py:test_g5_runtime",
+      "exit": 0,
+      "firstPass": true
+    },
+    {
+      "step": "py:test_human_observer",
+      "exit": 0,
+      "firstPass": true
+    },
+    {
+      "step": "py:test_native_clock_display",
+      "exit": 0,
+      "firstPass": true
+    },
+    {
+      "step": "py:test_headless_parallel",
+      "exit": 0,
+      "firstPass": true
+    },
+    {
+      "step": "py:test_ab_aggregate",
+      "exit": 0,
+      "firstPass": true
+    },
+    {
+      "step": "py:test_ab_campaign",
+      "exit": 0,
+      "firstPass": true
+    },
+    {
+      "step": "java:ReportCommitHarness",
+      "exit": 0,
+      "firstPass": true
+    },
+    {
+      "step": "java:CompactBattleLogHarness",
+      "exit": 0,
+      "firstPass": true
+    },
+    {
+      "step": "java:ExecutionContractHarness",
+      "exit": 0,
+      "firstPass": true
+    },
+    {
+      "step": "java:ExecutionSchedulerHarness",
+      "exit": 0,
+      "firstPass": true
+    },
+    {
+      "step": "java:CapabilityLifecycleHarness",
+      "exit": 0,
+      "firstPass": true
+    },
+    {
+      "step": "java:NativeCreditWitnessHarness",
+      "exit": 0,
+      "firstPass": true
+    },
+    {
+      "step": "java:StrategyQuoteProvenanceHarness",
+      "exit": 0,
+      "firstPass": true
+    },
+    {
+      "step": "java:GeneralRegistryHarness",
+      "exit": 0,
+      "firstPass": true
+    },
+    {
+      "step": "java:ForceControllerHarness",
+      "exit": 0,
+      "firstPass": true
+    },
+    {
+      "step": "java:GeneralFormationHarness",
+      "exit": 0,
+      "firstPass": true
+    },
+    {
+      "step": "java:ForceFormationHarness",
+      "exit": 0,
+      "firstPass": true
+    },
+    {
+      "step": "java:G5CommanderHarness",
+      "exit": 0,
+      "firstPass": true
+    },
+    {
+      "step": "java:CommanderBudgetHarness",
+      "exit": 0,
+      "firstPass": true
+    },
+    {
+      "step": "java:G52FightZonesHarness",
+      "exit": 0,
+      "firstPass": true
+    },
+    {
+      "step": "java:G53FreeResponseHarness",
+      "exit": 0,
+      "firstPass": true
+    },
+    {
+      "step": "java:G53OutwardMissionHarness",
+      "exit": 0,
+      "firstPass": true
+    },
+    {
+      "step": "java:G53ContinuingOperationsHarness",
+      "exit": 0,
+      "firstPass": true
+    },
+    {
+      "step": "java:R4ConstructionHarness",
+      "exit": 0,
+      "firstPass": true
+    },
+    {
+      "step": "java:GlobalStrategyPolicyHarness",
+      "exit": 0,
+      "firstPass": true
+    },
+    {
+      "step": "java:RecoveryPoolHarness",
+      "exit": 0,
+      "firstPass": true
+    },
+    {
+      "step": "java:LocalCoverageHarness",
+      "exit": 0,
+      "firstPass": true
+    },
+    {
+      "step": "java:GeneralRosterRefreshHarness",
+      "exit": 0,
+      "firstPass": true
+    },
+    {
+      "step": "java:G5CombatHarness",
+      "exit": 0,
+      "firstPass": true
+    },
+    {
+      "step": "java:G51OperationsHarness",
+      "exit": 0,
+      "firstPass": true
+    },
+    {
+      "step": "java:G51TacticalHarness",
+      "exit": 0,
+      "firstPass": true
+    },
+    {
+      "step": "java:G51LogisticsHarness",
+      "exit": 0,
+      "firstPass": true
+    },
+    {
+      "step": "java:G51ProspectIntegrationHarness",
+      "exit": 0,
+      "firstPass": true
+    },
+    {
+      "step": "java:RuntimeAccelerationHarness",
+      "exit": 0,
+      "firstPass": true
+    },
+    {
+      "step": "java:G1TraceHarness",
+      "exit": 0,
+      "firstPass": true
+    },
+    {
+      "step": "java:WorldStateHarness",
+      "exit": 0,
+      "firstPass": true
+    },
+    {
+      "step": "java:StrategyContractHarness",
+      "exit": 0,
+      "firstPass": true
+    },
+    {
+      "step": "java:ProductionCapacityHarness",
+      "exit": 0,
+      "firstPass": true
+    },
+    {
+      "step": "java:LocalArmyContractHarness",
+      "exit": 0,
+      "firstPass": true
+    },
+    {
+      "step": "java:LocalCrisisContractHarness",
+      "exit": 0,
+      "firstPass": true
+    },
+    {
+      "step": "java:SurplusSpendingHarness",
+      "exit": 0,
+      "firstPass": true
+    },
+    {
+      "step": "java:MineInvestmentHarness",
+      "exit": 0,
+      "firstPass": true
+    },
+    {
+      "step": "java:EngineerProviderHarness",
+      "exit": 0,
+      "firstPass": true
+    },
+    {
+      "step": "java:NativeMorphHarness",
+      "exit": 0,
+      "firstPass": true
+    },
+    {
+      "step": "java:StrategyNativeHarness",
+      "exit": 0,
+      "firstPass": false,
+      "rerun": {
+        "step": "java:StrategyNativeHarness",
+        "exit": 0,
+        "log": "G:\\deepseek 工作台\\_validation\\octopus-r15-air-clearance-20261012\\environment-rerun\\java_StrategyNativeHarness.log"
+      }
+    },
+    {
+      "step": "py:test_feedback_progress_audit",
+      "exit": 0,
+      "firstPass": true
+    },
+    {
+      "step": "py:test_global_strategy_audit",
+      "exit": 0,
+      "firstPass": true
+    }
+  ],
+  "fullLog": "G:\\deepseek 工作台\\_validation\\octopus-r15-air-clearance-20261012\\full-console.log"
+}

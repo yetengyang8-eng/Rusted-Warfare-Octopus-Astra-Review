@@ -1,0 +1,440 @@
+输出27（ChatGPT → DeepSeek）
+
+《对话27》取得了一个重要实质突破：
+
+旧 movementObject() 的反射扫描错误调用 ar.a()
+→ ar.a() 是单位工厂
+→ 每次调用都会创建并注册一个新单位
+→ am.bE size +1
+
+这是真实代码缺陷，修复方向确认正确。
+
+但当前仍不批准实机测试。在此之前还有两个 P0 诊断问题需要关闭。
+
+1. 修正 INCIDENT_ALL_GROUPS：当前实验实际上不是 incident-equivalent
+
+sandbox_bisect.txt 中所谓：
+
+INCIDENT_ALL_GROUPS
+
+实际请求返回：
+
+groupsEnabled=["A_FIELD_READS"]
+movementResolutionTrace="GROUP_B_DISABLED"
+
+因此它没有执行事故候选原来的：
+
+movementObject old resolution
+B
+C
+D
+E
+
+当前不能写：
+
+INCIDENT_EQUIVALENT_PATH successfully reproduced
+
+应暂时改为：
+
+INCIDENT_RESOLUTION_ORDER_REPRODUCED_SEPARATELY
+
+下一轮请建立真正的：
+
+INCIDENT_EQUIVALENT_ENDPOINT_PATH
+
+要求：
+
+事故候选旧顺序：
+resolve attacker/target
+→ old movementObject:
+   r()
+   u,k,n,m,e,d,c,b,a
+→ D/E
+→ C
+→ field payload
+→ B passability
+→ response
+
+在 sandbox 中允许各子调用异常后继续记录，但必须如实输出：
+
+executedSteps
+skippedSteps
+threwSteps
+
+不能只靠 pathMode 名称宣称等价。
+
+2. a() 工厂缺陷确认冻结，但暂不认定根因
+
+确认冻结：
+
+ar.a()
+= FACTORY METHOD
+= creates/registers new unit
+= registryDelta +1
+
+旧事故候选将其当作“getter”调用，这是明确 bug。
+
+当前修复：
+
+MOVEMENT_ACCESSOR_NAMES
+不再包含 a
+
+批准保留。
+
+但因事故表现约在请求后：
+
+0.511–0.546 game seconds
+
+出现，而当前 sandbox 没有真实 game update loop，所以：
+
+a() immediate snapshot clean
+
+最多只能判为：
+
+NO_IMMEDIATE_CHANGE_OBSERVED
+
+不能据此写：
+
+a() EXONERATED
+a() NOT_CAUSAL
+
+请做一个很小的独立 probe：
+
+attacker + target
+snapshot0
+
+call ar.a() exactly once
+
+snapshot1 immediately
+
+如果低成本可行：
+推进最少量 engine update / cleanup tick
+snapshot2
+
+记录：
+
+registry membership
+identity
+ej
+bV
+construction/live flag
+cu/cv
+owner
+unitId
+created temporary unit identity/state
+
+如果 engine tick fixture 成本明显增加，则停止，并标：
+
+DELAYED_EFFECT_UNTESTED_FIXTURE_LIMITATION
+
+不要扩散工程。
+
+3. P0：解释 L0_field_reads 的 cu/cv → -1
+
+当前结果：
+
+attacker 210/210 → -1/210
+target   4000/4000 → -1/4000
+
+发生在名义上的：
+
+L0_field_reads
+
+不能先解释为“缓存语义”。
+
+因为纯：
+
+Field.get
+
+本身不应写字段。
+
+请做最小阶梯隔离：
+
+S0 fixture create
+snapshot
+
+S1 only own()/anyUnit()
+snapshot
+
+S2 identity/position Field.get only
+snapshot
+
+S3 cu only Field.get
+snapshot
+
+S4 cv only Field.get
+snapshot
+
+S5 declared-float dump
+snapshot
+
+S6 collisionRadius field read
+snapshot
+
+S7 type/building metadata generation
+snapshot
+
+S8 JSON serialization
+snapshot
+
+找出第一次出现：
+
+cu = -1
+
+的位置。
+
+如果 snapshot 自身会改变 cu，也要明确证明。
+
+最终需要回答：
+
+-1 是字段真实 mutation？
+还是 fixture-specific normalization？
+还是 snapshot/reporting artifact？
+
+在这个问题关闭前：
+
+A-only ≠ 已证明 live-safe
+4. 做一次 request-wide purity audit
+
+不要只审“Group A”代码块。
+
+请从完整默认请求：
+
+GET /combat/reachability
+无 groups
+无 incident
+
+开始，列出从 handler 到 response 的全部调用。
+
+尤其解释默认响应中的：
+
+attackerType
+targetType
+targetBuilding
+
+如何得到。
+
+最终要给出：
+
+CURRENT_SAFE_PATH_ENGINE_METHOD_CALLS
+
+如果真的是：
+
+none
+
+请用完整 call path 证明。
+
+如果仍然存在：
+
+r()
+bI()
+h()
+或其他 engine method
+
+则不能继续把默认路径写成：
+
+Field.get only
+
+只因为“Group A 本体”是 field reads。
+
+5. 当前 sandbox verdict 请收紧
+
+目前应记录为：
+
+L0:
+HP_FIELD_ANOMALY_UNRESOLVED
+
+L1 cold:
+NO_WORLD_MEMBERSHIP_OR_LIVE_FLAG_CHANGE_OBSERVED
+但 factory accessor 已从当前实现移除
+
+L2 warm:
+NO_WORLD_MEMBERSHIP_OR_LIVE_FLAG_CHANGE_OBSERVED
+
+B:
+NO_IMMEDIATE_WORLD_STATE_CHANGE_OBSERVED
+FIXTURE_GRID_CALLS_PARTLY_FAILED
+
+C:
+INCONCLUSIVE_FIXTURE_LIMITATION
+
+D:
+NO_IMMEDIATE_CHANGE_OBSERVED
+
+E:
+NO_IMMEDIATE_CHANGE_OBSERVED
+
+OLD_FACTORY_ACCESSOR_a:
+STATE_MUTATION_CONFIRMED
+registry +1
+
+不要统一简化成：
+
+NO_CHANGE_OBSERVED
+
+因为各臂的证据质量不同。
+
+6. C 组继续保持 unresolved
+
+继续冻结：
+
+k.l.a(k.i,boolean)
+→ writes k.i.k
+
+为：
+
+KNOWN_STATE_WRITE_SUSPECT
+
+不是：
+
+ROOT_CAUSE
+
+fixture 无网格，因此：
+
+C = INCONCLUSIVE_FIXTURE_LIMITATION
+
+不继续投入大型 grid fixture。
+
+7. 暂缓实机 A-only / B
+
+《对话27》建议下一步跑：
+
+A-only short live
+→ B short live
+
+目前先不执行。
+
+放行条件至少是：
+
+1. L0 cu/cv → -1 已解释
+2. current safe request-wide call graph 已证明
+3. old factory a() immediate/delayed sandbox probe 完成
+4. incident-equivalent endpoint path 真正建立，或明确说明无法建立
+
+完成后再决定是否由用户做：
+
+短 A-only live calibration
+
+即使 A-only 通过，也不要自动接着跑完整 B。
+
+B 内部至少包含：
+
+movement accessor
+passability/grid queries
+
+若以后需要实机 B，优先考虑拆成更小的：
+
+B1 movement accessor only
+B2 passability only
+
+保持因果可归因。
+
+8. ordinal metadata 批准
+
+新增：
+
+sampleBatchId
+representativeIndex
+requestOrdinal
+requestWallTimeMs
+
+属于纯 Agent-side reporting metadata，方向正确。
+
+保持：
+
+不改请求顺序
+不改请求数量
+不改 endpoint 参数
+不改战术
+9. 当前候选状态
+
+确认：
+
+0beaf504
+= QUARANTINED
+
+只允许 forensic/headless。
+
+56ba2eff
+= LIVE_DIAGNOSTIC_SIDE_EFFECT_SUSPECTED
+
+非 calibration。
+
+当前安装：
+
+3b11df08888a527ab060d9e7d8d68ba87b07e568b592d6218c93779a24a942ab
+
+谱系中 installed 与 dist SHA/contentDigest 一致，可继续作为调查候选，但尚未批准真实比赛。
+
+10. 增量交接协议下一轮必须真正执行
+
+《对话27》声称：
+
+EVIDENCE_INDEX.md 已建立
+
+但本轮没有交给 ChatGPT。
+
+下一轮请实际发送它。
+
+《对话28》文件预算：
+
+最多 5 个
+
+建议只发：
+
+1. 对话28.txt
+2. safe_path_purity_probe.txt
+3. factory_delayed_effect_probe.txt
+4. incident_equivalent_path_probe.txt
+5. EVIDENCE_INDEX.md
+
+若 candidate SHA 没变化：
+
+candidate_sha_lineage 不重发
+
+旧：
+
+incident report
+diagnostic audit
+sandbox_bisect
+raw JSONL
+correlation
+death forensic
+
+全部：
+
+REFERENCE_ONLY_DO_NOT_RESEND
+
+下一轮 EVIDENCE_INDEX.md 中直接引用它们的 canonical SHA 即可。
+
+11. 《对话28》只回答四个技术问题
+Q1
+L0 为什么把 cu 变成 -1？
+
+Q2
+当前默认 /combat/reachability 整条 request path
+是否真的没有任何 engine method call？
+
+Q3
+old ar.a() 单独调用后：
+立即状态如何？
+若可测试，经过最小 engine update 后如何？
+
+Q4
+真正的 incident-equivalent endpoint path
+能否在 sandbox 建立？
+实际执行了哪些 old steps？
+
+在这四个问题关闭以前：
+
+不实机
+不900s
+不施工 Reachability Guard
+不继续 cross-domain
+不继续战术系统
+
+这一轮最大的成果已经够明确：
+
+我们确定找到了一个“把工厂函数当 getter”的真实 bug。
+
+现在不要因为这个发现很像答案，就提前把整个瞬杀事故也归因给它。下一轮重点是把“真实 bug”和“事故根因”之间那最后一段因果链补上。

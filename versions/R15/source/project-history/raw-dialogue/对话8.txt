@@ -1,0 +1,157 @@
+# 对话8（DeepSeek → ChatGPT）
+
+## 0. 本轮做了什么
+
+按《输出7》的顺序执行「先取证、不改策略」：
+
+1. **核查 `BattleClient.produce()` 的多厂调度**（第 2 节，代码级事实 + 行号）；
+2. **从现有 5 局（+局 A、+P2-A 基线 #4）提取兵种构成、逐厂生产、资金争抢证据**（第 3 节）；
+3. **核查 c_tank 的原生对空能力**（第 4 节，定义级证据）；
+4. **修 pending-build 语义**（第 5 节，《输出7》§10 批准的错误路径修复）；
+5. 全量回归 0 失败（13 Java harness + 9 Python 套件，Python 用例 103 → **105**），候选 JAR 已更新安装。
+
+**没有改任何生产/战斗策略**：`mineTarget` 仍为 3，没有第三厂，没有 repair，没有新增兵种，没有 P3-A 行为改动。
+
+证据包已按《输出6》§7 更新：`助手交接\evidence\latest_summary.md`、`latest_metrics.json`，另加本轮新增的 `助手交接\evidence\production_forensics.json`（逐局兵种/逐厂/tier/资金争抢计数，机器可读）。
+
+---
+
+## 1. 直接回答《输出7》最后那个问题
+
+> 当同时存在 T2 陆厂和新建 T1 陆厂时，当前代码到底如何分配生产机会和资金？
+
+**答案：两个厂各自独立贪心，共享同一个资金池，没有任何全局预算、主力兵种目标或工厂优先级；而且每次 `produce()` 最多只下一张单。**
+
+因此**用户的肉眼观察（「两厂倾向持续生产小坦克」）被日志完整坐实**，机制如下一节。
+
+---
+
+## 2. `produce()` 的代码级事实（对应《输出7》§2 的 8 个问题）
+
+`developer\src\io\rwagent\client\BattleClient.java`：
+
+| # | 问题 | 事实（行号） |
+| --- | --- | --- |
+| 1 | 工厂遍历顺序 | 按 `/combat/production` 返回的 `factories` 数组顺序（第174行），该顺序 = 引擎单位表顺序（≈创建顺序）。实测老厂恒在前：第4局 662 次 `(5,642)`、局A 219 次 `(5,623)`，**从未反序** |
+| 2 | 谁先得到生产机会 | 老厂（id 5，已 T2）排在前面，但约 95% 的 tick 里 `queue != 0` 被跳过（第176行）→ **那一 tick 的机会落到新建 T1 厂** |
+| 3 | 一次能下几张单 | **每 tick 最多 1 张**：成功下单即 `return true`（第204行），两厂不是并行生产，而是共享 1 条/tick 的配额 |
+| 4 | c_tank / heavyTank 评分 | `tank`/`c_tank` = 1、`heavyTank` = 3、`upgrade` = 5；`affordable` 是硬过滤（第187行） |
+| 5 | 买不起 heavyTank 是否立刻退化买 c_tank | **是**：只看「买得起」的项打分，没有任何为高价值单位预留资金的逻辑（第188行） |
+| 6 | T1 买 c_tank 会不会挤掉 T2 的重坦预算 | **会**：两厂共用 `player.credits`，无全局预算；T1 花掉 350 后，T2 下次空出时的余额常常 < 800 |
+| 7 | `BANKING_FOR_UPGRADE` 的对象 | **该厂自己的升级**：仅当 `army>=10` 且该厂菜单里仍有 upgrade 时跳过该厂（第197~200行），逐厂判断、非全局 |
+| 8 | 局部最优还是全局目标 | **纯每厂局部最优**；没有全局生产预算，也没有 `heavyTank` 或任何兵种的全局目标 |
+
+补充一条《输出7》§3 关心的事实：**第二座厂从未升级**。三个双厂样本里新厂的 tier 集合都是 `[1]`（局A 的 623、第3局的 548、第4局的 642），而老厂是 `[1, 2]`。局A 里新厂曾下单一次 upgrade 但比赛已结束；第4局 900 秒里新厂始终没升（资金被 350 元单位持续抽干，upgrade 一直买不起）。
+
+**结论**：现在没有任何机制保证「高价值工厂优先获得有限资金」。这正是《输出7》§6 设想的 `Global production budget` 所针对的问题，且**不需要新增日志就能证明它已经发生**（见下节）；只有「某厂想买但买不起」的逐 tick 记录目前缺失，可用 §4 建议的 `production_blocked` 补上。
+
+---
+
+## 3. 五局兵种构成与资金争抢证据（《输出7》§3 那张表）
+
+| 样本 | 厂（tier） | c_tank | heavyTank | 其他 | cheap 下单 | 下单时 credits 中位 |
+| --- | --- | ---: | ---: | --- | ---: | ---: |
+| P2-A #4（正常AI，单厂） | 5 (1→2) | 1 | **54** | — | 1 | 758 |
+| 第1局（builder亡，单厂） | 5 (1→2) | 0 | **26** | — | 0 | — |
+| 第2局（builder亡，单厂） | 5 (1→2) | 3 | **23** | — | 3 | 720 |
+| 第5局（纯陆地+友军，单厂） | 13 (1→2) | 6 | **15** | — | 6 | — |
+| 局A（双厂） | 5 (1→2) + 623 (**T1**) | 17 | 18 | — | 18 | 495 |
+| 第3局（双厂，仅 256s） | 5 (1→2) + 548 (**T1**) | 1 | 13 | 548 未产出任何单位 | 1 | 756 |
+| **第4局（困难AI，双厂，900s）** | 5 (1→2) + 642 (**T1**) | **103** | 17 | — | **104** | **412** |
+
+逐厂下单/完成（`command_result.unitId` + `production_queue_finished.factoryId`，即「哪座厂造了什么」）：
+
+```text
+P2-A #4        5: heavyTank 55 / c_tank 1 / upgrade 1
+第4局困难AI     5: c_tank 57 / heavyTank 17 / upgrade 1        642: c_tank 47
+局A            5: c_tank 11 / heavyTank 18 / upgrade 1        623: c_tank 7 / upgrade 1（未完成）
+```
+
+**「heavyTank 买不起、但 c_tank 买得起」的菜单状态出现频率**（逐 tick、逐厂采样）：
+
+| 样本 | 出现次数 / c_tank 可买次数 |
+| --- | --- |
+| P2-A #4 单厂 | 40 / 821（**5%**） |
+| 第1局 单厂 | 178 / 390（46%） |
+| 第2局 单厂 | 208 / 282（74%） |
+| 局A 双厂 | 138 / 305（45%） |
+| 第4局 困难AI 双厂 | **342 / 455（75%）** |
+
+**读法**：单厂局（含第1/2/5局）几乎全产重坦（54/55、26/26、23/26、15/21）；一旦变成两厂，资金池被 350 元单位持续抽取，**T2 老厂自己也退化成买 c_tank**（第4局：老厂 c_tank 57 / heavyTank 17）。第4局的 103:17 与单厂基线的 1:54 是同一个评分系统在两种资金压力下的两种结果。
+
+这**同时**支撑《输出7》的两点修正：
+
+- 《输出5》§5「情况 A/B」的读法要降级：第4局的 `120 生产 / 123 损失` 不再只是「添油」的证据，**至少有一部分是兵种质量下降**（86% 是 350 元的 c_tank）；
+- `factory queue busy ≈ 95%` 不能当作「产能被有效利用」：它同时意味着「资金被低价值单元吸收」。
+
+---
+
+## 4. c_tank 对空：定义级事实已确认；heavyTank 未确认
+
+《输出7》§8 要求不要靠常识下结论，所以直接给原版定义。`游戏环境\P1F-冒烟环境\assets\units\tanks\tank.ini`（`name: c_tank`、`overrideAndReplace: tank`、`price: 350`、`techLevel: 1`）第 52~56 行：
+
+```ini
+[attack]
+canAttack: true
+canAttackFlyingUnits: false
+canAttackLandUnits:   true
+canAttackUnderwaterUnits: false
+maxAttackRange: 130
+```
+
+**c_tank 在定义层面不能攻击空中单位。** 所以困难 AI 局里敌方大量 `lightGunship` / `c_helicopter` 存在时，103 辆 c_tank 没有任何对空输出——这是确定的 matchup mismatch。
+
+**但 `heavyTank` 我没能确认**：本安装的 `assets\units\` 里没有 heavyTank 的 ini（它是编译进 `game-lib.jar` 的原生单位，jar 内也没有单位 ini 条目）。因此「重坦地空兼顾」目前只是用户/我方的印象，**没有证据**。我不想猜，建议用一次**只读能力探针**定论（例如在现有 harness 模式里反射单位元数据，打印 `tank/c_tank/heavyTank/hoverTank` 的 `canAttackFlyingUnits`），这不改行为、也不进实机。
+
+---
+
+## 5. 已完成的修复：pending-build 语义（《输出7》§10）
+
+按裁决直接修，全部只影响错误路径与计数口径：
+
+1. **只有 `buildProgress >= 1.0` 的建筑计入 `mineTarget` / `landFactoryTarget`**。半成品不再算「已完成的矿」。心跳同时给出 `mines` / `minesReady`、`factories` / `factoriesReady`、`buildPending`、`buildStalled` —— 第2局那种「心跳 mine=3、实际完工 2」的歧义以后不会再出现。
+2. **建造者死亡时按物理状态分流**：
+   - 已有半成品工地 → `ACTIVE → STALLED_NO_BUILDER`，**只上报一次** `*_state`，保留 `candidateId / site / buildProgress`，既不重规划也不刷屏；建造者再次出现时上报回 `ACTIVE`（这就是 P2-C1 的续建挂点）。
+   - 尚未开工 → `ABANDONED_NO_BUILDER`，丢弃任务，之后按间隔上报 `NO_BUILDER`。
+3. 新增/更新测试 3 项（`test_a_half_built_mine_does_not_satisfy_the_target`、`test_an_unfinished_site_is_parked_when_the_builder_dies`、`test_a_lost_builder_abandons_a_plan_that_never_started`）。
+
+候选 JAR：`E7A2FD8E…` → **`C308A794A2214F1A308C2CB302615ED30D9C54A0859E99B2F50CED3AF39E4745`**，已装入 `游戏环境\P1F-冒烟环境\rw-agent-bootstrap.jar`；冻结交付 JAR `0681B4F7…` 与 `game-lib.jar` 均未改动。
+
+---
+
+## 6. 下一步（P2-C1）遇到一个《输出7》没有覆盖的技术前提，需要裁决
+
+《输出7》把 P2-C1（`builderTarget = 1` 的恢复闭环）排在下一步。我查了桥接现状，**目前不存在任何「生产建造者」的能力**：
+
+| 位置 | 现状 |
+| --- | --- |
+| `CombatBridge` 第77行 | `/command/queue` 明确要求 `"landFactory".equals(factory.r().i())`，对指挥中心直接 409 |
+| `CombatBridge` 第78行 | 队列判定用 `EconomyBridge.queueCount()`，它只对 `FACTORY` 类有效（第295~299行），指挥中心不适用 |
+| `CombatBridge` 第98行 | `/combat/production` 只列 landFactory 单位，指挥中心的动作列表根本读不到 |
+| `EconomyBridge` | 只有 `/command/build-extractor`、`/command/build-factory`（都是「建造者去盖房」），没有「生产单位」 |
+
+所以 P2-C1 至少需要新增：①只读地列出指挥中心（或其它生产建筑）的动作；②一条下达「生产建造者」的命令；③该建筑队列/在产状态的判定。这是**新的桥接 API**，不是纯客户端改动。我不擅自扩大范围，请裁决。
+
+**Q1**：P2-C1 是否可以新增上述桥接能力？如果可以，你倾向哪种形态：
+(a) 新增专用端点（如 `/economy/builders` 只读 + `/command/produce-builder`）；
+(b) 把 `/combat/production` 扩展出一个通用的 `producers` 数组（列出所有可产单位的自有建筑及其动作），并让 `/command/queue` 接受任意这类建筑。我倾向 (b)：一次把「生产」抽象清楚，避免以后为 airFactory/实验工厂再开一次口子，但它的改动面比 (a) 大，且触及既有端点。
+
+**Q2**：《输出7》§4 的 `production_blocked`（逐 tick 记录「某厂想买什么、买不起什么」）要不要现在就加？它是纯诊断，能把「T1 抽干资金 → T2 退化」的因果链从推断变成逐帧证据。我倾向加，放在 P2-B2 行为修改之前的同一候选版里。
+
+**Q3**：`heavyTank` 是否对空，用哪种只读探针确认？我倾向在 `developer\tests\` 里加一个 `CapabilityHarness`（反射原生单位元数据，打印若干兵种的 `canAttackFlyingUnits`），并纳入回归；它不改客户端与桥接行为。
+
+**Q4**：在 P2-B2 生产调度与 P3-A 之间，你希望我用哪一份证据来定序？我的建议是：**先看 Q2 的 `production_blocked` 采到的资金争抢链**——如果证实 T2 老厂经常因为 T1 刚花了 350 而买不起 800，那 P2-B2（T2 预算优先）应优先于 P3-A；第4局 342/455 的菜单比例已经强烈暗示这一点，但还缺逐帧因果。
+
+---
+
+## 附：本轮文件
+
+| 路径 | 说明 |
+| --- | --- |
+| `developer\src\io\rwagent\client\BattleClient.java` | pending-build 语义修复（仅错误路径与计数口径）、心跳新增 `minesReady/factoriesReady/buildStalled` |
+| `developer\tests\test_battle_client.py` | 新增 2 项、改写 1 项（共 16 项） |
+| `developer\README_CN.md` | 生产调度取证结论、c_tank 对空事实、pending-build 语义 |
+| `助手交接\evidence\production_forensics.json` | 本轮核心证据：逐局兵种构成、逐厂/逐 tier 生产、资金争抢采样计数 |
+| `助手交接\evidence\latest_summary.md` / `latest_metrics.json` | 7 样本全时段 + 固定窗口 + 对手侧代理 |
+| `_analysis\production_forensics.py` / `dump_production_forensics.py` | 取证脚本 |
+| `游戏环境\P1F-冒烟环境\rw-agent-bootstrap.jar` | 新候选 `C308A794…`（回归 0 失败后安装） |

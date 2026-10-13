@@ -1,0 +1,26 @@
+{
+  "version": "R15",
+  "source_commit": "1311f2ae0ab5c6862e9e24d6db1d8ca54cf9ec02",
+  "local_full_kit": "G:\\deepseek 工作台\\游戏环境\\RW-Agent-Octopus-G6-2026-10-12-R15",
+  "port": 47705,
+  "agent_jar_sha256": "d0530e5d7e294d391f2252109393054ec7b3cd382e30b0446ef028dab01b7aba",
+  "agent_jar_bytes": 666548,
+  "status": "native normal Spain player5 autonomous victory at 42:43.664 (single run)",
+  "source_paths": [
+    "agent",
+    "tools",
+    "docs",
+    "knowledge",
+    "project-state",
+    "project-history",
+    "handoff",
+    "AGENTS.md",
+    "ASTRA_START_HERE.md",
+    "README.md",
+    "ASTRA_WRITEBACK.md",
+    "PUBLISHING_NOTES.md",
+    "THIRD_PARTY_REFERENCES.md"
+  ],
+  "source_tree_sha": "0f5b7bdf664ae0aa8e1ab2e1f41987a05f725ed0",
+  "commercial_runtime_in_git": false
+}

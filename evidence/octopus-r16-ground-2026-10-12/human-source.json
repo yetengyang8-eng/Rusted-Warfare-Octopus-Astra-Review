@@ -1,0 +1,406 @@
+{
+  "source": "G:\\deepseek 工作台\\游戏环境\\RW-Agent-Octopus-G6-2026-10-12-R15\\runs\\20261012-013746-24200\\rw-agent-reports\\battle-1791740267780-3914c257.jsonl.gz",
+  "sha256": "77a3a63ccefd0461566a897f30ac6a2fb22a7c40ddd2e2c3156ec7bf2f1b7478",
+  "rows": 295575,
+  "malformed": 0,
+  "selectedRun": "20261012-013746-24200",
+  "ignoredRun": "20261012-015115-11320",
+  "homeRecallIntents": 26,
+  "sameObservationAcceptedHomeMoves": 23,
+  "recallExamples": [
+    {
+      "time": 322287,
+      "rawLine": 18438,
+      "event": "strategy_recovery_builder_rally",
+      "data": {
+        "unitId": 866,
+        "owner": "strategy:1000002",
+        "x": 7370.0,
+        "y": 1950.0,
+        "reason": "HOME_REPAIR_SITE_BEFORE_NATIVE_CONSTRUCTION_PLAN",
+        "siteAuthority": "NEEDS_CURRENT_NATIVE_PLAN",
+        "gameTimeMs": 322287,
+        "sessionId": "bf48fa30-f4ba-48bf-8699-687f7fa4b922",
+        "player": "team:5"
+      },
+      "ownSampleTime": 314982,
+      "actor": {
+        "id": 866,
+        "type": "builder",
+        "x": 5576.904,
+        "y": 2590.01,
+        "hp": 170.0,
+        "maxHp": 170.0,
+        "buildProgress": 1.0,
+        "productionQueue": -1,
+        "dead": false,
+        "mobile": true,
+        "canAttack": false,
+        "building": false,
+        "techLevel": 1,
+        "orderType": "move",
+        "orderX": 7370.0,
+        "orderY": 1950.0,
+        "guardTargetId": null,
+        "orderTargetId": null
+      },
+      "sameObservationAcceptedHomeMoves": []
+    },
+    {
+      "time": 1456807,
+      "rawLine": 123582,
+      "event": "endgame_capital_builder_rally",
+      "data": {
+        "unitId": 23270,
+        "reason": "ONE_IDLE_CONSTRUCTOR_TO_HOME_CAPITAL_SITE",
+        "siteAuthority": "NEEDS_LATER_CURRENT_NATIVE_PLAN",
+        "gameTimeMs": 1456807,
+        "sessionId": "bf48fa30-f4ba-48bf-8699-687f7fa4b922",
+        "player": "team:5"
+      },
+      "ownSampleTime": 1451997,
+      "actor": {
+        "id": 23270,
+        "type": "builder",
+        "x": 5969.208,
+        "y": 1868.809,
+        "hp": 170.0,
+        "maxHp": 170.0,
+        "buildProgress": 1.0,
+        "productionQueue": -1,
+        "dead": false,
+        "mobile": true,
+        "canAttack": false,
+        "building": false,
+        "techLevel": 1,
+        "orderType": "repair",
+        "guardTargetId": null,
+        "orderTargetId": null
+      },
+      "sameObservationAcceptedHomeMoves": [
+        {
+          "time": 1456807,
+          "rawLine": 123581,
+          "actorIds": [
+            23270
+          ],
+          "owner": "strategy:1000009",
+          "sourceObservationId": "a1df6632-96b6-4dec-a5f3-6da4157bd3bf:o:22712",
+          "receipt": {
+            "status": "queued",
+            "requestId": "ebac08c8-3c27-419b-9dc2-0a512c7d3731",
+            "sessionId": "bf48fa30-f4ba-48bf-8699-687f7fa4b922",
+            "frame": 58011,
+            "unitId": 23270,
+            "targetX": 7370.0,
+            "targetY": 1950.0
+          }
+        }
+      ]
+    },
+    {
+      "time": 1486002,
+      "rawLine": 126413,
+      "event": "endgame_capital_builder_rally",
+      "data": {
+        "unitId": 23666,
+        "reason": "ONE_IDLE_CONSTRUCTOR_TO_HOME_CAPITAL_SITE",
+        "siteAuthority": "NEEDS_LATER_CURRENT_NATIVE_PLAN",
+        "gameTimeMs": 1486002,
+        "sessionId": "bf48fa30-f4ba-48bf-8699-687f7fa4b922",
+        "player": "team:5"
+      },
+      "ownSampleTime": 1481997,
+      "actor": {
+        "id": 23666,
+        "type": "builder",
+        "x": 5574.81,
+        "y": 1790.339,
+        "hp": 170.0,
+        "maxHp": 170.0,
+        "buildProgress": 1.0,
+        "productionQueue": -1,
+        "dead": false,
+        "mobile": true,
+        "canAttack": false,
+        "building": false,
+        "techLevel": 1,
+        "orderType": "repair",
+        "guardTargetId": null,
+        "orderTargetId": null
+      },
+      "sameObservationAcceptedHomeMoves": [
+        {
+          "time": 1486002,
+          "rawLine": 126412,
+          "actorIds": [
+            23666
+          ],
+          "owner": "strategy:1000011",
+          "sourceObservationId": "a1df6632-96b6-4dec-a5f3-6da4157bd3bf:o:23186",
+          "receipt": {
+            "status": "queued",
+            "requestId": "db073fdc-ac05-4ca7-a581-75d7618a542c",
+            "sessionId": "bf48fa30-f4ba-48bf-8699-687f7fa4b922",
+            "frame": 59426,
+            "unitId": 23666,
+            "targetX": 7370.0,
+            "targetY": 1950.0
+          }
+        }
+      ]
+    },
+    {
+      "time": 1561142,
+      "rawLine": 134145,
+      "event": "endgame_capital_builder_rally",
+      "data": {
+        "unitId": 23920,
+        "reason": "ONE_IDLE_CONSTRUCTOR_TO_HOME_CAPITAL_SITE",
+        "siteAuthority": "NEEDS_LATER_CURRENT_NATIVE_PLAN",
+        "gameTimeMs": 1561142,
+        "sessionId": "bf48fa30-f4ba-48bf-8699-687f7fa4b922",
+        "player": "team:5"
+      },
+      "ownSampleTime": 1555207,
+      "actor": {
+        "id": 23920,
+        "type": "builder",
+        "x": 3779.765,
+        "y": 2010.373,
+        "hp": 170.0,
+        "maxHp": 170.0,
+        "buildProgress": 1.0,
+        "productionQueue": -1,
+        "dead": false,
+        "mobile": true,
+        "canAttack": false,
+        "building": false,
+        "techLevel": 1,
+        "orderType": "repair",
+        "guardTargetId": null,
+        "orderTargetId": null
+      },
+      "sameObservationAcceptedHomeMoves": [
+        {
+          "time": 1561142,
+          "rawLine": 134144,
+          "actorIds": [
+            23920
+          ],
+          "owner": "strategy:1000012",
+          "sourceObservationId": "a1df6632-96b6-4dec-a5f3-6da4157bd3bf:o:24250",
+          "receipt": {
+            "status": "queued",
+            "requestId": "983bc841-2012-4786-9eab-0d8ef403696c",
+            "sessionId": "bf48fa30-f4ba-48bf-8699-687f7fa4b922",
+            "frame": 62226,
+            "unitId": 23920,
+            "targetX": 7370.0,
+            "targetY": 1950.0
+          }
+        }
+      ]
+    },
+    {
+      "time": 1579332,
+      "rawLine": 136010,
+      "event": "endgame_capital_builder_rally",
+      "data": {
+        "unitId": 23270,
+        "reason": "ONE_IDLE_CONSTRUCTOR_TO_HOME_CAPITAL_SITE",
+        "siteAuthority": "NEEDS_LATER_CURRENT_NATIVE_PLAN",
+        "gameTimeMs": 1579332,
+        "sessionId": "bf48fa30-f4ba-48bf-8699-687f7fa4b922",
+        "player": "team:5"
+      },
+      "ownSampleTime": 1555207,
+      "actor": {
+        "id": 23270,
+        "type": "builder",
+        "x": 6309.924,
+        "y": 3747.255,
+        "hp": 170.0,
+        "maxHp": 170.0,
+        "buildProgress": 1.0,
+        "productionQueue": -1,
+        "dead": false,
+        "mobile": true,
+        "canAttack": false,
+        "building": false,
+        "techLevel": 1,
+        "orderType": "move",
+        "orderX": 6290.0,
+        "orderY": 4070.0,
+        "guardTargetId": null,
+        "orderTargetId": null
+      },
+      "sameObservationAcceptedHomeMoves": [
+        {
+          "time": 1579332,
+          "rawLine": 136009,
+          "actorIds": [
+            23270
+          ],
+          "owner": "strategy:1000009",
+          "sourceObservationId": "a1df6632-96b6-4dec-a5f3-6da4157bd3bf:o:24436",
+          "receipt": {
+            "status": "queued",
+            "requestId": "8e8ec824-c6c1-4cf1-80e0-dac7983d6ec8",
+            "sessionId": "bf48fa30-f4ba-48bf-8699-687f7fa4b922",
+            "frame": 62841,
+            "unitId": 23270,
+            "targetX": 7370.0,
+            "targetY": 1950.0
+          }
+        }
+      ]
+    }
+  ],
+  "baseCase": {
+    "time": 2008337,
+    "line": 181152,
+    "owner": "general:1",
+    "actors": [
+      26271,
+      24383,
+      27510,
+      34428,
+      34432,
+      34537,
+      34544,
+      24476,
+      24702
+    ],
+    "target": [
+      3490.0,
+      3890.0
+    ],
+    "base": {
+      "id": 283,
+      "x": 3490.0,
+      "y": 3890.0,
+      "hp": 3114.509,
+      "building": true,
+      "canAttack": true,
+      "type": "commandCenter",
+      "lastSeenGameTimeMs": 2005637,
+      "targetDomain": "SURFACE",
+      "touchingWater": false,
+      "canAttackAir": true,
+      "canAttackSubmerged": false,
+      "canAttackSurface": true,
+      "canAttackLand": true,
+      "weaponDomainObservedAtGameTimeMs": 2005637,
+      "weaponRange": 280.0,
+      "domainObservedAtGameTimeMs": 2005637,
+      "domainSourceId": "native:am.i/Q/cH_after_legal_visibility"
+    },
+    "ownSampleTime": 2005597,
+    "combatTime": 2005637,
+    "actorPositions": [
+      {
+        "id": 24383,
+        "type": "heavyTank",
+        "x": 2377.984,
+        "y": 5636.209,
+        "hp": 187.0,
+        "orderType": "attackMove"
+      },
+      {
+        "id": 24476,
+        "type": "heavyTank",
+        "x": 2165.545,
+        "y": 5755.216,
+        "hp": 248.328,
+        "orderType": "attackMove"
+      },
+      {
+        "id": 24702,
+        "type": "heavyTank",
+        "x": 2088.902,
+        "y": 5779.134,
+        "hp": 314.286,
+        "orderType": "attackMove"
+      },
+      {
+        "id": 26271,
+        "type": "heavyTank",
+        "x": 2342.174,
+        "y": 5603.484,
+        "hp": 297.083,
+        "orderType": "attackMove"
+      },
+      {
+        "id": 27510,
+        "type": "heavyTank",
+        "x": 7270.167,
+        "y": 1896.508,
+        "hp": 600.0,
+        "orderType": "attackMove"
+      },
+      {
+        "id": 34428,
+        "type": "heavyTank",
+        "x": 7339.744,
+        "y": 2114.033,
+        "hp": 600.0,
+        "orderType": "attackMove"
+      },
+      {
+        "id": 34432,
+        "type": "heavyTank",
+        "x": 7313.397,
+        "y": 2088.611,
+        "hp": 600.0,
+        "orderType": "attackMove"
+      },
+      {
+        "id": 34537,
+        "type": "heavyTank",
+        "x": 7358.303,
+        "y": 2086.325,
+        "hp": 600.0,
+        "orderType": "attackMove"
+      },
+      {
+        "id": 34544,
+        "type": "heavyTank",
+        "x": 7322.041,
+        "y": 1887.074,
+        "hp": 600.0,
+        "orderType": "attackMove"
+      }
+    ],
+    "spread": 3658.8965003765093,
+    "ledger": {
+      "tacticalChoice": "FRONTIER",
+      "tacticalReason": "RESUME_ACCEPTED_NATIVE_OUTWARD_FRONTIER_DYNAMIC_SAFETY_UNKNOWN",
+      "currentMembers": 7,
+      "ownHp": 3484.083,
+      "recentOwnDamage": 0.0,
+      "fightEstimate": {
+        "confidence": "UNKNOWN_PARTIAL_PROFILE",
+        "reason": "UNKNOWN_PROFILE_OR_CURRENT_DOMAIN_USE_CONSERVATIVE_FALLBACK",
+        "source": "knowledge/COMBAT_PROFILES_1_15.md#frozen-8a550a37",
+        "ownHp": 622.0830000000001,
+        "ownDps": 85.71428571428571,
+        "enemyDps": null,
+        "knownOwnDpsSubtotal": 85.71428571428571,
+        "knownEnemyDpsSubtotal": 0.0,
+        "targetHp": 800.0,
+        "timeToKillSeconds": null,
+        "approachExposureSeconds": null,
+        "expectedLossFraction": null,
+        "lossBudget": 0.55,
+        "knownActors": 2,
+        "unknownActors": 0,
+        "unknownDefenders": 5,
+        "admitted": false,
+        "limits": "NOMINAL_FIRE_UNIFORM_HP_NO_FORMATION_FOCUS_FIRE_REPAIR_OR_EXECUTION_CLAIM"
+      },
+      "visiblePressure": 0.0
+    }
+  },
+  "limits": "Actor positions are most recent logged own keyframe, NOT atomically sampled with combat or command. g3 intent line181148 and subsequent tactical trace181189-181190 identify CURRENT_VISIBLE_TARGET and aggregate9actor admission. No inferred deaths or kill attribution."
+}

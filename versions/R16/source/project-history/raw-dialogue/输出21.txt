@@ -1,0 +1,485 @@
+ 输出21（ChatGPT → DeepSeek）
+
+《对话21》总体方向通过。当前最重要的进展是：**已经确认 RW 原生引擎存在 movement class、movement grid、单位级路径查询以及 `aq.a(y,am)` / `aq.b(y,am)` 等原语，因此不需要自行实现一套新的寻路器。** 
+
+但目前只证明了“原语存在”，**还没有证明我们对这些混淆 API 的业务语义理解完全正确**。因此下一阶段批准实现 diagnostics-only reachability bridge，但第一版必须以 **raw facts / semantic calibration** 为目标，不得直接输出并依赖一个看似确定的 `reachableEngagementPosition=true/false`。
+
+---
+
+## 1. 当前 endgame case 继续作为固定证据样本
+
+41/46 修正通过。
+
+末段六个 heartbeat：
+
+```text
+activeArmy = 41
+attacker count = 41
+target = seaFactory #229 @ (50,470)
+target HP = 1000
+searchTargets = 0
+```
+
+而且全部41个活动单位连续向同一个目标下达 attack-move。
+
+当前证据标签保持：
+
+```text
+GROUND_ENGAGEMENT_UNREACHABLE_SUSPECTED
+```
+
+不要升级成：
+
+```text
+PATHFINDER_VERIFIED_UNREACHABLE
+```
+
+直到实机原生 API 校准完成。
+
+本局已证明的现象仍然是：
+
+```text
+same target ~51s
++ entire active army committed
++ minimum distance plateau
++ target HP unchanged
+```
+
+
+
+---
+
+## 2. 批准 diagnostics-only `/combat/reachability` v0
+
+允许新增只读 bridge endpoint。
+
+但 v0 的目标是：
+
+> **暴露原始引擎判定，建立语义校准数据。**
+
+暂时不要让 endpoint 自己替我们下最终结论。
+
+建议第一版返回：
+
+```text
+GET /combat/reachability?unitId=<id>&targetId=<id>
+```
+
+至少包含：
+
+```text
+attackerId
+attackerType
+attackerMovementClass
+
+targetId
+targetType
+targetMovementClass
+targetBuilding
+attackerPosition
+targetPosition
+
+engineAqAResult
+engineAqBResult
+
+exactTargetPathRawResult
+
+weaponRangeRaw
+targetRadiusRaw
+targetFootprintRaw
+
+movementGridClass
+
+rawPassabilitySamples
+rawPathSamples
+
+diagnosticStatus
+```
+
+其中：
+
+```text
+engineAqAResult
+engineAqBResult
+exactTargetPathRawResult
+```
+
+都必须明确写成 **raw engine result**，不要先重命名为：
+
+```text
+canAttack
+reachable
+engageable
+```
+
+---
+
+## 3. 必须区分三个概念
+
+后续代码和报告里禁止把下面三件事混成一个 boolean：
+
+```text
+A. Targetable
+   武器/目标类型规则是否允许攻击它
+
+B. PathToTargetCoordinate
+   该 movement class 是否能走到 target x/y
+
+C. ReachableEngagementPosition
+   是否存在一个攻击者能够走到、并从那里实际进入合法攻击距离的位置
+```
+
+我们最终真正需要给 `TARGET_REACHABILITY_GUARD` 使用的是 **C**。
+
+`aq.a(y,am)` / `aq.b(y,am)` 虽然已经确认存在，而且反编译显示它们参与单位—目标判定，但当前还没有实机证据证明它们本身就等价于 C。
+
+因此：
+
+```text
+aq.a(y,am) != assumed ReachableEngagementPosition
+```
+
+在校准完成以前只能作为一个 raw anchor。
+
+---
+
+## 4. 先校准 passability / path API 的真实语义
+
+当前 headless probe 的结果存在明显不能直接解释的组合：
+
+```text
+(0,0)/(5,5)/(90,90)
+gridPassable=false
+moveCost=0
+
+(175,175)/(149,153)
+gridPassable=true
+moveCost=-1
+```
+
+而夹具地图只有110×110，并且 per-class 查询因为夹具未完整初始化而报 ERR。
+
+因此目前不能直接冻结：
+
+```text
+a(...) true = passable
+b(...) -1 = unreachable
+```
+
+之类的语义。
+
+下一步实机诊断必须包含 **正负控制**。
+
+### Positive control
+
+找一个正常地面交战中的目标，例如：
+
+```text
+heavyTank / c_tank
+→ 可正常攻击的 landFactory / turret / ground unit
+```
+
+要求记录所有 raw API 返回。
+
+### Negative/cross-domain candidate
+
+如果正常局里再次出现：
+
+```text
+LAND attacker
+→ seaFactory / island building / water-separated target
+```
+
+同样记录所有 raw API 返回。
+
+只有看到：
+
+```text
+known engageable case
+vs
+known non-engageable/stalled case
+```
+
+在 API 返回上形成稳定区别，才能开始赋予语义。
+
+---
+
+## 5. 不要固定使用“目标外1～3格”
+
+《对话21》§3.3 的：
+
+```text
+target footprint 外 1~3 tile 环
+```
+
+暂不批准作为最终 engagement-position 算法。
+
+因为合法射击位范围应当至少受到：
+
+```text
+attacker weapon range
+target geometry/radius
+tile world size
+```
+
+影响。
+
+例如以后火炮可能在远于3格的位置就能攻击。
+
+因此未来 candidate radius 应动态来自类似：
+
+```text
+ceil((effectiveWeaponRange + targetRadius) / tileWorldSize)
+```
+
+具体公式等真实射程/geometry字段确认后再定。
+
+第一版 raw endpoint 不需要枚举完整射击环。
+
+---
+
+## 6. 第一阶段可以读取射程，但只记录 raw 值
+
+允许在实机中调查并读取：
+
+```text
+weapon range
+target radius
+target footprint
+```
+
+但如果字段仍然混淆，不要根据数值“猜哪个就是射程”。
+
+最好同时记录：
+
+```text
+field/source
+raw value
+unit type
+```
+
+然后利用已知单位做校准。
+
+Headless 夹具当前没有真实 weapon block，因此这一步必须靠 live game。
+
+---
+
+## 7. diagnostics 应按兵种/代表单位取样，而不是只看一辆坦克
+
+未来 MAIN_FORCE 可能同时包含：
+
+```text
+c_tank
+heavyTank
+artillery
+hoverTank
+...
+```
+
+一个目标可能对某类单位不可接战，但对另一个兵种可接战。
+
+因此实机 diagnostic 建议按当前 active army 中的 combat type 选代表单位，例如：
+
+```text
+target seaFactory #229
+
+c_tank representative:
+    raw engine results...
+
+heavyTank representative:
+    raw engine results...
+
+artillery representative:
+    raw engine results...
+```
+
+不需要对41辆单位逐个跑昂贵路径查询。
+
+目标是最终能够回答：
+
+```text
+0 / N combat types can engage
+or
+some combat types can engage
+```
+
+这会为未来 Task Group / pursuit detachment 提供基础，但本轮仍然不施工分队。
+
+---
+
+## 8. 不要求用户现在马上再跑900秒
+
+先完成：
+
+```text
+read-only endpoint
++ raw diagnostic event/report
++ regression for endpoint plumbing
+```
+
+之后再通知用户实机。
+
+而且下一次实机不要只在 endgame 才记录。
+
+正常地面战斗本身就应该自动提供 positive controls。
+
+建议 diagnostics-only 采样原则：
+
+```text
+首次出现新的 selected visible target type
+或
+selected target 明显变化
+```
+
+时，对每个主要 combat type 最多采少量 representative unit。
+
+必须有限流/去重，避免每秒做大量 path query。
+
+这样一局正常 Giant Island / Very Hard / 1x 可以同时产生：
+
+```text
+正常陆地目标 positive control
++
+若再次出现跨域目标，则产生 negative candidate
+```
+
+无需为了 API 校准专门等待15分钟只看一个 seaFactory。
+
+---
+
+## 9. `ReachabilityProbe.java` 暂不正式并入第16个 Java harness
+
+当前 probe 已经很好地证明：
+
+```text
+classes exist
+methods exist
+movement grid obtainable
+headless access path works
+```
+
+但还没有证明：
+
+```text
+known reachable → correct semantic answer
+known unreachable → correct semantic answer
+```
+
+因此先保留为 investigation asset。
+
+等完成至少一对明确的 semantic control 后，再正式并入：
+
+```text
+test-win.ps1
+```
+
+成为长期回归 harness。
+
+---
+
+## 10. STALLED_ENGAGEMENT 可以继续作为独立诊断
+
+保留 conservative diagnostic：
+
+```text
+same target persists >= T
+AND target HP unchanged
+AND many attackers converge
+AND minimum distance no longer improves
+→ STALLED_ENGAGEMENT
+```
+
+它不声称知道原因。
+
+可能原因包括：
+
+```text
+unreachable domain
+path obstruction
+weapon incompatibility
+range/geometry issue
+AI order issue
+```
+
+因此：
+
+```text
+STALLED_ENGAGEMENT != UNREACHABLE
+```
+
+当前 seaFactory 样本已经是非常强的 `STALLED_ENGAGEMENT` 实例。
+
+---
+
+## 11. TARGET_REACHABILITY_GUARD 继续不施工
+
+施工顺序冻结为：
+
+```text
+Raw Reachability Diagnostics
+↓
+Semantic Calibration
+↓
+Engagement Reachability calculation
+↓
+TARGET_REACHABILITY_GUARD v0
+↓
+Cross-Domain detector
+↓
+future Cross-Domain Recovery
+```
+
+暂时不要：
+
+```text
+LOW_VALUE_TARGET_PURSUIT_LIMIT
+Squad System
+naval production
+landing logic
+dynamic cap
+48 cap
+```
+
+---
+
+## 12. CURRENT_STATE.md
+
+接受当前73行状态文件。
+
+本轮若状态更新，只把：
+
+```text
+current single task
+```
+
+更新为：
+
+```text
+Reachability Diagnostics v0:
+live semantic calibration of engine path/attack primitives
+```
+
+不要继续扩写历史。
+
+---
+
+## 13. 下一份《对话22》希望看到
+
+先不要让用户测试。
+
+请先完成并汇报：
+
+1. diagnostics-only `/combat/reachability` v0；
+2. endpoint 所有字段明确标记 raw/derived；
+3. live diagnostic 的有限流/代表兵种设计；
+4. weapon range / target geometry 的读取调查结果；
+5. 不固定1～3格的 engagement candidate 设计草案；
+6. endpoint plumbing/regression；
+7. 当前候选 SHA/contentDigest；
+8. 不施工任何战术行为。
+
+完成后再决定下一局如何测试。
+
+---
+
+我认为这一步值得做得慢一点。我们现在已经从“Agent能不能找到敌人”进入了**“Agent能不能理解当前兵力是否具备解决这个敌人的物理条件”**。这个底层事实一旦拿稳，后面的跨域、分队、残兵管理乃至兵种组合都会更容易建立在可靠基础上。

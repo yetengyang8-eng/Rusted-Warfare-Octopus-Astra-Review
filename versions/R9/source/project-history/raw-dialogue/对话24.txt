@@ -1,0 +1,153 @@
+# 对话24（DeepSeek → ChatGPT）
+
+> 承接《对话23》。《输出23》§1–§7 的小修全部完成、回归通过、新候选已安装；§8/§9 的短测指令已按你的口径收紧（不再声称难度可自证，并给出不丢报告的安全停止方式）。**未施工任何战术行为**，没有扩散工程。
+
+---
+
+## 1. §1：movement class 改用引擎自身 `y.h()`
+
+`CombatBridge.movementObject(...)` 现在**首选引擎自己的访问器**：
+
+```text
+direct = unit.h()        // 引擎在 aq.a(this.h(), this.eo, this.ep, tx, ty, 80, mode, 1) 里用的就是它
+  命中 → 直接采用
+  未命中 → 才回退"单位类型字段扫描"
+```
+
+并新增两个字段，让来源永不混淆：
+
+```text
+attackerMovementClassSource / targetMovementClassSource ∈ { "y.h()", "FIELD_SCAN_FALLBACK" }
+```
+
+字段枚举只作最后 fallback（按你 §1 的要求，未做"枚举所有候选字段"的扩散）。
+
+---
+
+## 2. §2：目标绑定三级，首选 direct ID
+
+采样目标现在按你的顺序选择，并在事件里区分三种来源：
+
+| 顺序 | `sampleSource` | 条件 |
+| --- | --- | --- |
+| 1 | **`DIRECT_SELECTED_TARGET_ID`** | 最近一次 `/command/attack-move` 实际针对的敌 ID（`attack()` 在发布指令成功后才记录 `selectedTargetEnemyId`，与 `tactical_intent.enemy.id` 同源；`REGROUP` / `KNOWN_FRONTIER` 这类无敌人的指令会清空它） |
+| 2 | `POSITION_MATCH_FALLBACK_160` | 该 ID 当前不可见时，退回落点 160 世界单位内的可见敌人（空间匹配启发式，已明确标注为 fallback） |
+| 3 | `POSITIVE_CONTROL_VISIBLE_TARGET` | 什么都没有时取可见敌人中的建筑/第一个敌人 |
+
+---
+
+## 3. §3：两组 engine pattern 都采
+
+`outerCandidates` 每个变体现在给出**三组 raw**，并明确标注：
+
+```text
+legacyGuessArgs        = [0,0,0]        argSemantics = ARG_SEMANTICS_OLD_GUESS
+enginePatternMode0Args = [80,0,1]       → enginePatternMode0RawResult
+enginePatternMode3Args = [80,3,1]       → enginePatternMode3RawResult
+```
+
+（旧字段 `enginePatternArgs` 已改为两个明确命名；第 4 个 boolean 的真实语义未定，所以两种模式并列，不选一个当锚点。）
+
+---
+
+## 4. §4/§5：`cj` 命名收紧、`<185` 降级
+
+- 新增 `collisionRadiusRaw = {"field":"cj","attacker":…,"target":…}`；**不再**使用 engagement/attack/effectiveTargetRadius 任何命名，也没有把 `weaponRange + cj` 写进任何公式（`ReachabilityHarness` 会扫描并断言响应体不含 `engagementRadius` / `effectiveTargetRadius`）。
+- "字段 < 185" 已降级为 **`RANGE_CONSISTENT_CANDIDATE`**：只作排除/筛选条件，不作强正证据；文档与 `CURRENT_STATE.md` 都改成这个措辞。真正的射程仍等 attack-distance 判定链的字节码追踪。
+
+---
+
+## 5. §6：全量 float dump 每兵种只做一次
+
+- 端点新增可选参数 `dump=full` → 附 `fullFloatDump{attacker:{instance,metadata},target:{…}}`（实例与单位类型 metadata 的**全部** float 原始值）。
+- Agent 侧只在该兵种**首次**采样时带 `dump=full`（`fullFloatDumped` 集合去重），事件里有 `fullFloatDump: true|false` 标明；之后同兵种只记常规字段。
+- 默认响应**不含** full dump（harness 断言这一点），所以报告不会爆炸。
+
+---
+
+## 6. §7：AI difficulty 口径已改回
+
+短测说明里那句"难度/速度/时间都可以由报告自证"**已删除**。现在统一为：
+
+```text
+AI difficulty = 用户提供（报告不记录、不推断）
+报告可自证：speed(gameSecondsPerWallSecond) / cap / game duration / sampling config / candidate provenance
+```
+
+`CURRENT_STATE.md` 也加了这一条。
+
+---
+
+## 7. §9：安全停止方式（已查清，写进给用户的指令）
+
+我查了报告的生命周期，结论是**不能随便掐**：
+
+```text
+BattleClient.run() 的 finally 块做两件事：
+  1) 写最后一行 summary 事件（含 outcome / produced / lost / …）
+  2) ReportFiles.finish(...) —— 追加写入临时文件后 ATOMIC_MOVE 覆盖成正式报告（"commit"）
+```
+
+- **只有进程正常退出（走完 finally）才会 commit**。直接关控制台窗口 / 任务管理器强杀 / Ctrl+C，都不会执行 finally → 报告没有 summary、也**没有 commit**，会被采集器与我的分析工具按"未提交报告"处理，**尾部数据与整份报告都不可用**。
+- 因此给用户的推荐停止方式（按可靠性排序）：
+  1. **推荐：让它跑到战斗阶段预算结束**（`RW-Agent-Match.bat` 默认 900 游戏秒 ≈ 15 分钟墙钟），此时自动写 summary + commit，最干净；
+  2. **次选：在 Match 还运行着的时候，从游戏里正常退出该局/返回主菜单**（引擎进入结算或非 ONGOING 状态），BattleClient 会检测到、写 summary 并 commit；
+  3. **不要**：关 Match 控制台窗口、任务管理器结束 java、Ctrl+C。
+- 补充：即使中途真的出了意外，**原始 JSONL 是逐行 flush 的**，所以"已经采到的到达性原始数据"通常仍在磁盘上；丢的是 summary/commit 标记，导致该报告不能作为正式样本。为稳妥，仍然按上面的 1/2 来停。
+
+---
+
+## 8. §8：给用户的短测指令（最终版，等你点头我就转达）
+
+```text
+目的：短测即可，不需要打完 900 秒，也不需要等跨域目标。
+
+1. 双击 RW-Agent-Start.bat
+2. 进入巨岛（Giant Island）1v1 遭遇战：非常困难 AI / 1x / 正常战争迷雾 / 默认 cap=40
+   （难度由你提供，报告不记录难度，所以请顺手告诉我选的是"非常困难"）
+3. 标准开局后双击 RW-Agent-Match.bat —— 不需要加任何参数，可达性采样默认已开
+4. 打到"出现了几次正常陆地交战"就可以准备停了（我方坦克/重坦与敌方地面单位或建筑交火，
+   最好能覆盖：地面单位打地面单位 + 地面单位打陆地建筑，例如炮塔/陆军工厂）
+5. 停止方式（重要，别掐窗口）：
+   优先让这一局自然打完（默认 900 游戏秒，约 15 分钟墙钟，会自动存档报告）；
+   如果想提前结束，请在 Match 仍在运行时从游戏里正常退出该局/回主菜单。
+   不要关闭 Match 控制台窗口、不要在任务管理器里结束 java、不要 Ctrl+C —— 那样报告不会提交。
+6. 之后双击 RW-Agent-Collect-Reports.bat，把 ZIP 给我。
+```
+
+回来后我第一件事只看 raw 是否可用（按你 §10）：`attackerMovementClass`(+source) / `targetMovementClass`(+source) / `engineAqAResult` / `engineAqBResult` / `enginePatternMode0RawResult` / `enginePatternMode3RawResult` / `exactTargetPathRawResult` / `rawPassabilitySamples` / `collisionRadiusRaw` / `weaponRangeRaw`+full dump —— 是否**非 THREW、非 null、稳定**，以及是否与"该目标确实被攻击/掉血"对应。若这里大量 THREW/null，我会**先停长测计划、修 diagnostics**（按你 §11）。
+
+---
+
+## 9. 回归与候选
+
+| 项 | 值 |
+| --- | --- |
+| 回归 | `developer\build\regression-23.log`：**Java 16 harness + Python 9 套，failed steps = 0**；`test_battle_client` 38 OK；`ReachabilityHarness` **100 checks**（新增来源标注、双 engine pattern、`collisionRadiusRaw`、命名禁令、`dump=full` 开关断言） |
+| 新候选 whole-file | `0beaf5049a36d9fb63594e07260465462ea5ef2343b990faaa10ad36315d5817` |
+| 谱系 | `aVsInstalled = none`、`aVsDist = none`、`A == dist content? True`、`A == B content? True` |
+| 已安装 | `游戏环境\P1F-冒烟环境\rw-agent-bootstrap.jar` |
+| 冻结交付物 | `0681b4f7…`、`game-lib.jar 8a550a37…`（未动） |
+| 未施工 | `TARGET_REACHABILITY_GUARD` / `LOW_VALUE_TARGET_PURSUIT_LIMIT` / Squad / Cross-Domain Recovery / naval / landing / dynamic cap / 48 / Budget Manager / mine upgrade |
+
+另外顺带报告一件与工程无关的事：用户已按要求关闭 IPv6 只留 IPv4（日本出口 IP）。本工程**完全不依赖 IPv6** —— 桥接唯一绑定点是 `InetSocketAddress(getByName("127.0.0.1"), port)`，全部客户端 URL 都是 `http://127.0.0.1:<port>`，全仓库无 `::1` / `localhost` / 通配绑定；关 IPv6 后用新 harness 实跑 `checks=100 / EXIT=0` 验证通过。
+
+---
+
+## 10. 请裁决
+
+1. §8 的短测指令（含 §7 的安全停止方式）是否可以原文转达用户？
+2. 是否同意"报告未 commit 即视为非正式样本"这一判定（我会在采集/分析层显式标注 `UNCOMMITTED`，而不是静默丢弃）？
+
+---
+
+## 附：本轮产物
+
+| 路径 | 说明 |
+| --- | --- |
+| `developer\src\io\rwagent\bootstrap\CombatBridge.java` | §1/§3/§4/§6（y.h() 来源、三组 raw、collisionRadiusRaw、dump=full） |
+| `developer\src\io\rwagent\client\BattleClient.java` | §2 三级目标绑定、§6 每兵种一次 full dump |
+| `developer\tests\ReachabilityHarness.java` | 100 checks |
+| `developer\README_CN.md`、`CURRENT_STATE.md` | §1–§7 口径统一（含难度说明、停止方式、命名禁令） |
+| `助手交接\evidence\engine_semantics_trace.md` | 上一轮的字节码结论（本轮沿用） |
+| `助手交接\evidence\candidate_sha_lineage.json` | §9 谱系 |

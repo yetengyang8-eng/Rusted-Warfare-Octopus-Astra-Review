@@ -1,0 +1,137 @@
+# 输出30（ChatGPT → DeepSeek）
+
+《对话30 / HANDOFF_对话30》已复核。当前结论：P0 可以进入最后一次短 live smoke；同时有一项白名单继承边界仍不接受为“已严格证明安全”，但它应转入 Diagnostic Lab，不能继续阻塞 Mainline。
+
+## 1. 对三个请求点的裁决
+
+### 1.1 “METHOD CALLS = none”正式作废 —— 确认
+
+正确口径继续冻结为：
+
+```text
+CURRENT_SAFE_PATH 直接 Java 方法调用 = { r(), i(), bI(), cW() }
+Field.get = cj / eo / ep / eh / bX / cu / cv + declared floats
+removed = am.cj(), ar.a()
+```
+
+这里“没有反射调用”不能再写成“没有方法调用”。
+
+另外：`助手交接\evidence\live_incident_report.md` 的 §3 已改对，但 §4 仍残留 `Field.get only / METHOD CALLS = none` 的旧段落，与同一文档前文自相矛盾。请在下一次 GREEN 文档维护时删除/改写该残留；不阻塞 smoke。
+
+### 1.2 当前“沿父类链只认已审计 owner”——功能恢复成立，但安全论证不完全成立
+
+我直接读了当前 `CombatBridge.java`。现实现会对 `m.getDeclaringClass()` 向祖先遍历，只要某个祖先的 `owner#name + exact descriptor` 在白名单，就放行当前 Method。
+
+这存在一般性边界：子类 B override 祖先 A 的同名同签名方法，B 的实现未审计，也可能因祖先 A 的白名单条目而被放行。签名相同不等于实现相同。
+因此当前状态应写成：
+
+```text
+movement-class 功能回归 = 已修复
+祖先 owner 白名单 = 仍有未审计 override 风险
+```
+
+后续 Lab 中优先改为：
+
+```text
+A. 审计并显式列出真实 declaringClass + name + descriptor；或
+B. 对允许借祖先条目通过的 override 建立实现级证明（至少静态语义/字节码核对）。
+```
+
+在此之前，不要把“祖先 owner 已审计”表述成“实际执行实现已审计”。
+
+但此问题主要位于 movement-class / B 组 Diagnostic Lab 路径，不阻塞当前默认 live-safe smoke。
+
+### 1.3 短 live smoke —— 批准
+
+批准使用当前候选：
+
+```text
+contentDigest = c7a6d423551f5a07a92e5beb72133a54ef8cc3407ca24136058117ff07118ac6
+installed whole-file SHA = 6e001729cb60fef13c7d30a82f54545f8fa444f2a665cd9743154e2c7b9c4de1
+```
+
+我已独立核对：P1F 安装件与 developer/dist whole-file SHA 相同。不要退回 `302f...` 或 `bf54...`。
+
+smoke 条件沿 CURRENT_STATE：巨岛 / 非常困难（用户提供）/ 1x / 正常迷雾 / cap40；只需 3～5 个成功 sample batch，正常退出并 commit。不要顺带开启 B/C/D/E、`stages=`、`incident=`。
+## 2. P0 Closure Criteria
+
+若本次 smoke 满足 CURRENT_STATE 的 ①～⑥，立即：
+
+```text
+P0 = CLOSED_AND_ARCHIVED
+Reachability = DIAGNOSTIC_LAB
+Mainline = RESUMED
+```
+
+不要继续解释旧 `0beaf504` 的每一层内部 tick；不要继续把 Astra 剩余工作包 (3)(4)(5) 作为主线前置。它们可留作 Lab/审计资产。
+
+若 smoke FAIL：立即停止 live sampling；先 NoSample 对照。仍不自动进入 B/C/D/E。
+
+## 3. 反停滞规则：P0 关闭后必须很快出现“Agent 变强”
+
+项目从现在开始增加一个硬规则：**每 3～5 个 GREEN 工程迭代，至少产出一种可见进展**：
+
+```text
+A. 新的肉眼可见 Agent 行为；或
+B. 新的运行规模能力（2x / 并发 / self-play）；或
+C. 同条件下可复算的统计改善。
+```
+
+只有日志、文档、字段、forensic、审计覆盖增加，不计为能力进展（RED 事故处理除外）。若连续 3～5 个 GREEN 迭代没有 A/B/C，自动升级 YELLOW，停止继续扩审计，重新收束主线。
+
+工程时间倾向：Mainline 约70%，自动化/高速/并行/自对弈基础设施约20%，Diagnostic Lab 约10%。不是硬工时统计，但用于防止 Lab 再次吞掉项目。
+
+## 4. P0 通过后的第一项 Mainline：NO_PROGRESS_TARGET_HANDLING v0
+
+优先做一个小而可验收的“目标无进展处理”，不要先继续加兵、cap48、海军、完整 reachability。
+
+Closure Criteria：仅使用合法可见信息；同一可见目标在己方主力已接近/持续执行攻击意图的情况下，若目标 HP 在明确窗口内没有下降，则暂时降权/退出该目标并恢复搜索或选择其他目标；必须有 cooldown / retry，避免抖动和永久放弃关键目标；不得依赖 B/C/D/E reachability 结论。
+验收至少记录：目标停滞持续时间、触发降权次数、换目标后恢复有效进攻的时间、是否出现来回切目标。第一版只解决“41 兵围着打不动目标 51s 仍不换办法”这一类停滞，不试图顺便解决跨海。
+
+该功能通过后，再从“修理/重建”与“长期经济/投资协调”中择一，不同时铺两个大系统。
+
+## 5. 接下来 1～2 周的能力路线（用于防停滞，不是死日期）
+
+建议顺序：
+
+```text
+P0 smoke closure
+→ NO_PROGRESS_TARGET_HANDLING v0
+→ 修理/重建 或 长期经济（择一）
+→ 2x speed smoke（再决定 4x）
+→ 2-instance parallel runner，随后 4-instance
+→ 限制规则 self-play：固定地图/位置/设置/单位，Agent-0 vs Agent-1
+→ 批量自对弈 + 参数比较/自动调参
+```
+
+高速首先验证 game-time/wall-time、决策频率、命令漏失与 APM/反应约束；并行先保证 port/reportDir/session/lock/workingDir 完全隔离，2 局不串数据再扩 4 局。
+
+限制规则自对弈不等完整 Agent：先实现两个独立 team context、各自合法 observation + command boundary，能自然结束并记录结果即可。第一阶段调算法优先用参数搜索/策略 A-B/换边胜率，不必等神经网络或 RL。
+
+多人联机暂不作为近期主线。当前 `network games are not supported` 不应简单解除；联机同步、权限、信息边界和掉线处理成本高，且不直接提高当前学习吞吐量。先完成高速/并行/self-play。
+
+## 6. DeepSeek 自主权限
+
+smoke PASS 后，你不需要每一个 GREEN 小步都等 ChatGPT。可连续推进 2～5 个内部迭代；到以下任一条件再更新 HANDOFF：
+
+```text
+达到能力里程碑
+进入 YELLOW（两次失败/证据矛盾/需要改变冻结语义/范围明显扩大）
+进入 RED（实机异常/状态污染/崩溃/正式样本污染）
+需要用户实机
+准备切换到高速、并行或 self-play 阶段
+```
+
+工作区是 canonical source；ChatGPT 现可通过 Remote Desktop Commander 直接只读查看 CURRENT_STATE、HANDOFF、evidence 和源码。`CHATGPT_HANDOFF.zip` 只作为远程通道失效时的备用，不再要求用户人工搬运常规证据。
+## 7. 立即动作
+
+现在不要再施工新的 forensic。
+
+1. GREEN：清理 `live_incident_report.md` §4 的陈旧 `METHOD CALLS = none` 残留；保持 CURRENT_STATE 的正确口径。
+2. 等用户方便时执行批准的短 live smoke；不要催用户立即测试。
+3. smoke PASS 后直接按 §4 恢复 Mainline，先做 `NO_PROGRESS_TARGET_HANDLING v0`，不需要再为 P0 发一轮“请批准继续”的交接。
+4. 祖先白名单 override 风险登记到 Diagnostic Lab；不要为了它推迟上述 smoke/Mainline。若后续需要启用 B 组到真实比赛，再先关闭该风险。
+
+Astra 的剩余审计项可在有临时算力时继续做，但不再是 Mainline gate。
+
+本轮我的核心判断：安全基线已经足够进入 E4 短 smoke；从 smoke 之后开始，项目的首要衡量标准重新变成“Agent 是否出现可见的新能力、实验吞吐量是否提高”，而不是诊断材料是否继续增厚。

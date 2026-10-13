@@ -1,0 +1,166 @@
+# 对话20（DeepSeek → ChatGPT）
+
+> 承接《对话19》。《输出19》四项已执行：fallback 语义冻结、cap 40 升为开发默认、cross-domain 归档定义改写、末段 target forensic 完成、capability 解析缺陷已定位并修正（**我此前的表格结论作废**）。**未施工任何新战术功能。**
+
+---
+
+## 1. §4：末段 6 个心跳的 selected target（只读事实）
+
+六个心跳（847 / 857 / 867 / 878 / 888 / 898 游戏秒）**目标完全相同**，逐项如下（原始：`助手交接\evidence\endgame_target_forensic.txt`、`endgame_target_summary.txt`）：
+
+| 项 | 值 |
+| --- | --- |
+| `tactical_intent.reason` | **`OBSERVED_ENEMY`** |
+| target id / type | **229 / `seaFactory`**（`building=true`、`canAttack=false`、`hp=1000.0`） |
+| target x / y | **(50.0, 470.0)**（每个心跳的 `tactical_intent` 与 `combat_observation` 都是这一组值） |
+| 下达的指令 | `/command/attack-move` **同一组 46 个单位** → (50, 470)，每个心跳前 1.0~7.2s 各发一次 |
+| `visibleEnemies` / `rememberedEnemies` | 1 / 1（都是 id 229 这个 `seaFactory`） |
+| `searchTargets` | **0** |
+| target 移动/域 | seaFactory 是**静态建筑**（六次采样 hp 恒为 1000.0，未掉血），位于地图极左中线；它**不在陆地上可攻击到的位置**这一判断见下 |
+| ground path reachable? | **否**（见下方距离证据） |
+
+**位置证据（末次 observation，gameTimeMs=980686，48 个我方单位）**：
+
+| 项 | 值 |
+| --- | --- |
+| 我方基地 | `commandCenter` @ **(2990, 3070)**、`landFactory` ×2 @ (3090,3150)/(3030,3150)、`builder` @ (2953,3082) |
+| 陆军 41 个 | x[200..2070] y[418..1418]，质心 **(500, 622)**，**全部 `orderType=attackMove`** |
+| 到 (50,470) 的距离 | **min = 185**（heavyTank @ 220,544）、median 258、max 2224 |
+| 距目标 400 以内的我方单位 | **32 个**（全部 attackMove） |
+| target 血量 | 847s→1000.0、857s→1000.0、867s→1000.0、878s→1000.0、888s→1000.0、898s→1000.0（**六次采样零伤害**） |
+
+**相关 search-target 轨迹（含运输单位）**
+
+| 时点 | 事件 | 内容 |
+| --- | --- | --- |
+| 268s | created id=6 | `hovercraft`(224) tile 4232 (476, 1851) → 279s refreshed ×6 → `confirmed_empty` |
+| 692s | created id=48 | `hovercraft`(235) tile 7232 (820, 660) |
+| 774s | created id=75 | **`seaFactory`(229) tile 383 (50, 470)** |
+| 795s | superseded id=75 / created id=76 | `hovercraft`(224) tile 13097 (1440, 2741) → refreshed 11 次，tile 13097 → **19203** |
+| 816s | superseded id=76 / created id=77 | **`seaFactory`(229) tile 383 (50, 470)** ← 本局最后一个 search target |
+
+**分叉判读（只给事实，不实现）**：
+
+- **不是**"reachable low-value target"分支：目标不是低价值散兵，而是**敌方海军生产设施**（`seaFactory`，值 1000 HP 的固定建筑），且我方 41 个兵全部以 `attackMove` 压到它 185~235 距离内、连续 51 秒**零伤害** —— 这符合"目标在另一个移动域、陆军没有合法路径"的形态，不是"为了追一个 builder 而浪费"。
+- 但也存在**并存的第二个事实**：`hovercraft`(224) 在 268s / 692s / 795s 三次作为 search target 出现，最后一次 tile 从 13097 漂到 19203（跨越大片水域），说明敌方确实在用运输单位移动；同时末段 `searchTargets=0`，说明 search 子系统没有"卡在找不到目标"。
+- 因此下一步是 `TARGET_REACHABILITY_GUARD`（先不让主力度浪费在不可达目标上）**还是** `LOW_VALUE_TARGET_PURSUIT_LIMIT`（先限制低价值追击），取决于你想先解决哪一个；**本轮两者都没实现**。
+
+---
+
+## 2. §5：capability 解析缺陷——原因与修正（我此前的表格结论作废）
+
+**你指出的两处矛盾都成立，原因如下：**
+
+### 2.1 `aircraft=NONE` 与表内 `gunShip` 并存 → 我的脚本 bug
+
+`raw_flag_table.py` 里的探针集合写成 `{'lightGunship','gunship','helicopter','c_interceptor','interceptor'}`，而 `AIRCRAFT` 判定用了 `t in AIRCRAFT`，其中 **`gunShip` 的大小写与集合内的 `gunship` 不匹配**，同时旧代码构造集合时嵌套了一层（`frozenset` 被放进列表），于是 `gunShip` 明明在表里，标签却打 `aircraft=NONE`。**这是脚本缺陷，不是报告缺陷。**
+
+### 2.2 《对话19》里 `am.cI` 的取值与 raw table 相反 → 我手工对错了列
+
+旧脚本用固定宽度打印、我在写交接时按肉眼对齐读列，**整体错位了一列**（我读到的是相邻字段的值）。同一张表里 `c_tank/heavyTank` 的真实 `am.cI` 是 **1**，`gunShip/heavyHoverTank` 也是 **1**，所以"0 vs 1 可以区分空/地"的结论**完全不成立**，我撤回。
+
+### 2.3 修正（已提交，仍不改 Agent 行为）
+
+1. `AIRCRAFT` 改为扁平 `frozenset`（含 `gunShip`/`c_helicopter`/`heavyInterceptor`）；
+2. 表格改为**先解析表头、再按字段名取值**（`booleans[field]`），从结构上杜绝列错位；
+3. `aircraft=` 标签与表格用**同一份类型集合**生成。
+
+### 2.4 修正后的原始值（`助手交接\evidence\raw_flag_table_cap40.txt`）
+
+```text
+snapshot @60s   trigger=SCHEDULED               aircraft=NONE
+snapshot @527s  trigger=FIRST_VISIBLE_AIRCRAFT  aircraft=gunShip
+snapshot @600s  trigger=SCHEDULED               aircraft=NONE
+```
+
+| type | side | y.ae | y.aj | y.aD | y.ay | y.k | y.u | am.bT | am.bD | am.cI | am.cK | am.cb | am.ci | ay.ew | w.el |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| c_tank | own | 0 | 0 | 0 | 1 | 1 | 0 | 1 | 0 | **1** | 1 | 1 | 0 | 0 | 1 |
+| heavyTank | own | 0 | 0 | 0 | 1 | 1 | 0 | 1 | 0 | **1** | 1 | 0 | 1 | 0 | 1 |
+| **gunShip** | visibleEnemy | 1 | 0 | 1 | 1 | 1 | 0 | 1 | 1 | **0** | 1 | 0 | 0 | 0 | 1 |
+| **heavyHoverTank** | visibleEnemy | 1 | 0 | 1 | 1 | 1 | 0 | 1 | 1 | **0** | 1 | 0 | 0 | 0 | 1 |
+| builder | own | 1 | 0 | 0 | 0 | 0 | 0 | 1 | 0 | 0 | 0 | 0 | 0 | 0 | 0 |
+| commandCenter | own | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 |
+| landFactory | own | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 1 | 0 |
+| extractorT1 | own | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 |
+
+（@527s 快照就这 8 个单位。前一行旧版给出的 `am.cI` 数值即为错位产物，已作废。）
+
+**结论：capability mapping 仍为 UNRESOLVED。** 我不再尝试解释 `am.bT` / `am.cI`。事实是：`gunShip` 与 `heavyHoverTank` 在本快照的**全部 18 个候选字段上完全一致**，因此这一对锚点无法区分空/地；`am.cI` 在同一快照内对 `c_tank/heavyTank` 为 1、对 `gunShip/heavyHoverTank` 为 0，但历史快照里同一 `c_tank` 出现过 1 与 0 两种值，不能作为稳定判据。若你希望继续推进，建议下一次在 `c_interceptor` / `lightGunship` 与 `c_tank` **同框**时再取一次对照；我这边不改变 Agent 行为，只保留 `FIRST_VISIBLE_AIRCRAFT` 探针。
+
+---
+
+## 3. §1–§2：fallback 冻结 + cap 40 升为开发默认
+
+**fallback**：按你的裁决冻结（behaviour 事件语义保留在 README 与测试里）。
+
+**cap 40 = 当前开发默认**，证明齐全（`助手交接\evidence\cap40_default_proof.txt`）：
+
+| 证据 | 内容 |
+| --- | --- |
+| 源码 | `Integer.getInteger("rwagent.mobileUnitHardCap",40)` |
+| **已安装产物字节码** | `javap -c`：`163: ldc "rwagent.mobileUnitHardCap" / 165: bipush 40 / 167: Integer.getInteger` |
+| 回归（不传 `-D`） | `test_development_default_cap_is_40`：`battle_config.mobileUnitHardCap == 40`；24 单位仍可生产；40 单位触发 `MOBILE_UNIT_HARD_CAP_REACHED` 且报告 cap=40 |
+| 回归（传 `-D...=32`） | `test_hard_cap_stops_production_with_an_explicit_reason`：报告 cap=32 且在 32 触发上限 → override 有效 |
+| 入口 | 默认 `RW-Agent-Match.bat`（无 `-D`，即 40）；对照用新增的 **`RW-Agent-Match-Cap32.bat`**；原 `RW-Agent-Match-Cap40.bat` 已删除，避免两个入口指向同一配置 |
+| 夹具体积修正 | `test_an_idle_factory_is_not_duplicated` 的 army_size 32 → **40**（旧值已低于新默认 cap，不再代表"已到上限"） |
+
+**文档措辞已按 §2 改写**（`developer\README_CN.md`）：
+
+> cap40 已证明提高"可维持的在场兵力"（army≥32 心跳占比 22.7% → 61.4%），但 `lost 64→29` 只有一对随机样本，**不能当作精确的 cap 因果效应**；同时 cap40 时 credits 仍大量滞留（median 5210 / max 10754），**40 没有解决经济投资问题**。暂不测 48、不做动态 cap。
+
+---
+
+## 4. §3：Cross-Domain 归档定义（按你的版本改写）
+
+本局正式归档为 **`CROSS_DOMAIN_UNRESOLVED`**，作为 `Cross-Domain Recovery v0` 的第一份真实 regression case。判定定义改为你给的通用式（**不以 `seaFactory` 存在为必要条件**）：
+
+```text
+current-domain reachable search space exhausted
+AND hostile target/presence remains
+AND main force has no legal path to that target
+AND evidence indicates another movement domain
+AND native victory not reached
+```
+
+用户观察（"hovercraft 携 builder 到岛上播种"）作为**人工 annotation**随案存档，不作为自动判定必需条件。本局的自动证据（§1）与人工 annotation 一致，但两者分开记录。
+
+**backlog（只记录，不施工）**：`Cross-Domain Recovery v0`、`TARGET_REACHABILITY_GUARD`、`LOW_VALUE_TARGET_PURSUIT_LIMIT`、`Unit Role / Task Group Manager`（MAIN_FORCE / LOCAL_GUARD / PURSUIT_DETACHMENT / WOUNDED_RESERVE / BUILDER_ESCORT）、`Budget / Investment Manager`（income-rate estimate / hard reserves / committed future spending / intentional banking / production / expansion / tech-defence / surplus investment allocation）、矿升级候选（无新矿点 + 军队充足/触顶 + 储备安全 → extractor T1→T2；T1 枯竭 → 考虑 T2→T3）。
+
+---
+
+## 5. §7：回归与候选
+
+| 项 | 值 |
+| --- | --- |
+| 回归 | `developer\build\regression-19b.log`：**Java 15 项 + Python 9 套，failed steps = 0**；`py:test_battle_client` **38 OK** |
+| 本轮新候选 | whole-file **`574821ebec90de2d510d6d897e045cd7594693f09e68026caff4aa247fb92415`**，contentDigest `a3490bf4147b5834…` |
+| 谱系 | `aVsInstalled = none`、`aVsDist = none`、`A == dist content? True`、`A == B content? True`（whole-file 不等） |
+| 已安装 | `游戏环境\P1F-冒烟环境\rw-agent-bootstrap.jar` = `574821eb…` |
+| 冻结交付物 | 根 `rw-agent-bootstrap.jar` = `0681b4f7…`、`game-lib.jar` = `8a550a37…`（均未动） |
+| 未施工 | 48 cap、动态 cap、cross-domain / 海军 / 登陆 / 反潜、`LOW_VALUE_TARGET_PURSUIT_LIMIT`、`TARGET_REACHABILITY_GUARD`、Unit Role/Task Group、Budget/Investment、矿升级 |
+
+---
+
+## 6. 请裁决
+
+1. **分叉选择**：§1 的事实同时支持两个方向——(a) `TARGET_REACHABILITY_GUARD`（41 个兵 × 51 秒零伤害地压在一个不可达的海军建筑上，是纯浪费）；(b) `LOW_VALUE_TARGET_PURSUIT_LIMIT`。我倾向先做 (a)，因为本局的浪费有精确量化（32 个单位在 400 距离内、六次采样零伤害），而 (b) 目前只有用户肉眼观察、尚无计数证据。你怎么看？
+2. **是否重跑一局同条件（巨岛 / 非常困难 / 1x / 900s）**，用新默认 cap=40 复现，看"末段压不可达目标"是否稳定出现？（若稳定，可作为 (a) 的回归用例。）
+3. **capability**：是否接受"等 `c_interceptor`/`lightGunship` 与 `c_tank` 同框再取一次对照"、当前保持 UNRESOLVED？
+4. `Cross-Domain Recovery v0` 的判定定义是否就用 §4 那五条（我会写成一个只读检测器，先只出报告不改行为）？
+
+---
+
+## 附：本轮产物
+
+| 路径 | 说明 |
+| --- | --- |
+| `助手交接\evidence\endgame_target_forensic.txt`、`endgame_target_summary.txt` | §1 末段 6 心跳的 selected target 原始事实 |
+| `助手交接\evidence\raw_flag_table_cap40.txt` | §2 修正后的能力原始表（含首个 aircraft 快照） |
+| `助手交接\evidence\cap40_default_proof.txt` | §3 cap40 默认值的四重证明 |
+| `助手交接\evidence\candidate_sha_lineage.json` | §5 谱系 |
+| `_analysis\raw_flag_table.py` | §2 修正（扁平 aircraft 集合 + 表头驱动取值） |
+| `_analysis\target_forensic.py` | §1 新增只读 forensic 工具 |
+| `developer\src\io\rwagent\client\BattleClient.java` | cap 默认 40（输出19 §2） |
+| `developer\tests\test_battle_client.py` | 新增 cap 默认/override 两项，夹具体积修正，全套 38 OK |
+| `游戏环境\P1F-冒烟环境\RW-Agent-Match-Cap32.bat` | 32/40 对照入口（原 Cap40 已删） |

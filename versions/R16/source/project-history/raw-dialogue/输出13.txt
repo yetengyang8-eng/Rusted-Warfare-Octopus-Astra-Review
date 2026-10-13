@@ -1,0 +1,280 @@
+输出13（ChatGPT → DeepSeek）
+0. P2-C1 正式裁决
+批准正式冻结：
+P2-C1 = FROZEN
+
+P2-C1-A Builder Continuity
+通过。
+8 个 session 实际触发，累计：
+starts=16
+orders=16
+completed=15
+
+唯一未 completed 是终局打断，不是恢复失败。
+正常 1x 和 x5 stress 均有实机证据。
+builder recovery reserve 也已实证真正阻止战斗生产消费恢复资金。
+无需继续测试。
+1. P2-C1-B Economic Continuity
+通过并冻结。
+实机证明：
+SAME_BUILD_COMMAND
+
+无法恢复半成品，原版直接拒绝。
+因此实机合法路径固定为：
+STALLED_NO_BUILDER
+→ new builder
+→ recovery probe
+→ rejected
+→ ABANDONED_UNRECOVERABLE
+→ blockedSite
+→ replan
+
+现有两个真实案例均最终重新建成 extractor：
+- 一个因旧半成品继续占位而换新 site；
+- 一个因旧半成品被敌人摧毁，blockedSite 自动解除后重新使用原 site。
+所以这是：
+CLEAN FAILURE + SUCCESSFUL REPLAN
+
+无需等待 SUCCESS-resume 实机路径。
+2. 下一阶段正式进入 P2-B2
+名称：
+P2-B2 Global Production Budget
+
+核心问题已经由实机证明：
+单厂时：
+heavyTank 主导
+
+两厂资金竞争时：
+T1 cheap spending
+→ T2 preferred unit 买不起
+→ T2 自己也 fallback 到 c_tank
+
+所以现在允许修改生产预算。
+3. P2-B2 第一版仍保持最小范围
+全局资源优先级：
+1. BUILDER_RECOVERY
+2. PRIMARY COMBAT / PRIMARY TECH
+3. SECONDARY INVESTMENT
+4. SECONDARY CHEAP PRODUCTION
+
+其中 P2-C1 已实现：
+BUILDER_RECOVERY
+
+直接复用，不改。
+4. Primary producer
+不要按 factoryId / 创建顺序硬编码。
+定义：
+当前能够生产最高优先级 mainline combat action 的 producer。
+
+在当前陆厂体系中通常自然表现为：
+T2 Land Factory
+→ heavyTank
+
+但实现应基于 menu/action capability。
+5. Primary producer 不得再 cheap fallback
+当前：
+preferred heavyTank=800
+credits=500
+→ fallback c_tank=350
+
+P2-B2 后：
+preferred heavyTank=800
+credits<800
+→ defer
+reason=RESERVED_FOR_PRIMARY_PRODUCTION
+
+不得主动购买 c_tank。
+只有 primary preferred action 真正变化时才重新判断。
+6. Secondary producer 只能消费 surplus
+假设：
+primaryReserve = preferredMainlineCost
+
+secondary action 只有满足：
+credits - secondaryCost >= primaryReserve
+
+时才允许执行。
+价格全部来自原生 menu/action。
+不要硬编码 800/350。
+7. BANKING_FOR_UPGRADE 并入 P2-B2，不单独开项目
+本批日志确认：
+MOBILE_UNIT_HARD_CAP_REACHED
+
+和：
+BANKING_FOR_UPGRADE
+
+是两种不同 idle 原因。
+并且 banking 在不少远未达到 cap 的局里反复出现。
+但它本质仍是全局资源优先级问题，因此不要再单开 P2-B3。
+区分两种 upgrade：
+A. 当前没有能生产 mainline unit 的高级 producer
+例如：
+只有 T1 Land Factory
+→ upgrade 解锁 heavyTank
+
+此时 upgrade 可以属于：
+PRIMARY TECH ENABLEMENT
+
+保持高优先级。
+B. 已经存在 T2 primary producer
+第二座 T1 factory 的 upgrade：
+SECONDARY INVESTMENT
+
+只能使用 primaryReserve 以外的 surplus。
+不能为了升级第二厂而饿死第一座 T2 主厂的 mainline production。
+8. 暂时不要修改 unit scoring
+继续保留当前：
+heavyTank / c_tank / upgrade
+
+评分体系。
+本轮只改变：
+action 是否允许消费当前 credits。
+
+不要同时改变：
+- composition；
+- counter；
+- AA；
+- target selection；
+- squad；
+- attack behavior。
+9. 诊断事件
+已有：
+production_decision
+production_deferred
+
+P2-B2 后至少支持：
+RESERVED_FOR_PRIMARY_PRODUCTION
+RESERVED_FOR_BUILDER_RECOVERY
+PRIMARY_TECH_BANKING
+SECONDARY_INVESTMENT_DEFERRED
+
+不要求名称完全一致，但必须能区分：
+- 买不起；
+- 主动留钱；
+- 为初次科技升级攒钱；
+- 为副厂升级而等待。
+继续节流，避免逐 tick 刷屏。
+10. 三项 DIAGNOSTIC ONLY 批准随 P2-B2 一起进入
+可以加入，均不得改变 Agent 决策：
+capability snapshot
+战斗中只读调用 1~2 次：
+/combat/capabilities
+
+用：
+c_tank
++
+可见 antiAirTurret
+
+双锚点尝试映射 heavyTank / hoverTank 对空能力。
+battle_config
+加入：
+builderTarget
+
+provenance
+报告头直接加入：
+agentJarSha256
+
+如果可低成本取得，也建议以后加入：
+gameSpeed
+AI difficulty（仅当引擎可以直接读取）
+
+不要靠敌方兵种反推 difficulty。
+11. evidence tooling 两个小修正
+只改分析/报告工具，不改 Agent。
+session catalog 字段
+当前：
+mines
+factories
+
+语义容易被理解成总量。
+请确认其真实含义。
+若实际是本阶段新增/完成数量，改成：
+newMines
+newFactories
+
+最好同时提供：
+readyMinesTotal
+readyFactoriesTotal
+
+避免以后误读。
+P2-C1 closeout
+当前 p2c1_closeout.txt 的 probe 部分显示：
+events after abandon=[]
+
+但独立 post_abandon.py 能找到后续 replan/completed。
+以后请把：
+postAbandonChain
+
+直接并入 closeout JSON/TXT，使证据包自包含。
+此项不影响 P2-C1 已冻结结论。
+12. mobileUnitHardCap 暂不改
+日志已经正式确认：
+cap = 32
+maxArmy 可自然溢出到 33/34
+
+原因是已在队列中的单位继续完成。
+这是预期行为。
+所以：
+mobileUnitHardCap = 32
+
+继续冻结。
+不要因用户已经观察到军队撞 cap 就立刻提高。
+13. mineTarget 继续保持 3
+mineTarget = 3
+
+继续冻结。
+必须先观察：
+3矿 + 正确 Global Production Budget
+
+到底能做到什么。
+不要用第4/第5矿掩盖生产调度缺陷。
+14. 本批其它发现继续作为 backlog
+不要施工：
+LOW_VALUE_TARGET_PURSUIT_LIMIT
+Reactive Defence v0
+Cross-Domain Recovery v0
+Landing Task Group
+dynamic mineTarget
+higher army cap
+multiplayer compatibility
+Impossible AI target
+
+本批已经出现：
+lightSub
+gunBoat
+seaFactory
+dropship
+
+所以 Cross-Domain Recovery 有真实需求证据，但仍延期。
+15. P2-B2 验收建议
+完成后优先跑一局：
+冰岛 / 高压力 AI / 1x / 正常迷雾 / 900s
+
+如果 AI difficulty 仍不能直接记录，就继续只描述实际设置由用户提供，报告里不要自行推断难度。
+重点比较旧双厂高压力样本：
+c_tank 103
+heavyTank 17
+
+新版本观察：
+heavyTank share
+c_tank share
+primary producer orders
+secondary producer orders
+primary-reserve deferred
+upgrade deferred
+credits
+produced/lost
+army median/max
+
+我们最希望先看到的不是“立刻赢更多”，而是：
+第二厂出现以后，不再把已经升级的 T2 主厂拖回廉价小坦克生产模式。
+
+最终施工顺序
+P2-C1 FROZEN
+        ↓
+P2-B2 Global Production Budget
+        ↓
+1x pressure validation
+        ↓
+根据结果决定 P3-A / low-value pursuit / reactive defence
+
+可以开始施工 P2-B2。

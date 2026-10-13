@@ -1,0 +1,4 @@
+Exception in thread "main" java.lang.AssertionError: two lead tanks cannot borrow twelve remote tanks to enter a base
+	at io.rwagent.client.R16GroundBaseHarness.check(R16GroundBaseHarness.java:9)
+	at io.rwagent.client.R16GroundBaseHarness.separatedRosterCannotFundSiege(R16GroundBaseHarness.java:37)
+	at io.rwagent.client.R16GroundBaseHarness.main(R16GroundBaseHarness.java:51)

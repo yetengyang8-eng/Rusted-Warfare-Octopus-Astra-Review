@@ -1,0 +1,4 @@
+Exception in thread "main" java.lang.AssertionError: nearby Builders reserve different actual mines, not each others entire 600-world region
+	at io.rwagent.client.R12BuilderWorkHarness.check(R12BuilderWorkHarness.java:9)
+	at io.rwagent.client.R12BuilderWorkHarness.twoNearbySites(R12BuilderWorkHarness.java:35)
+	at io.rwagent.client.R12BuilderWorkHarness.main(R12BuilderWorkHarness.java:59)

@@ -1,0 +1,204 @@
+{
+  "schemaVersion": 1,
+  "candidate": "R12 Builder",
+  "baseline": "f4d81e89d114617cfb70573e8682372f0372e980",
+  "branch": "codex/octopus-g3-execution-20261002",
+  "productCommit": "7b9e4e5",
+  "fixtureCommit": "a38b061709deb4d4edb29dc626732c916ce63a7b",
+  "candidateSha256": "61d8a341b3fff0445e67978d7deb2a6d4e349589e683a1f35afc35c9317b98cf",
+  "status": "ENGINEERING_CANDIDATE_HUMAN_BUILDER_ACCEPTANCE_PENDING",
+  "focused": {
+    "newBuilderChecks": 14,
+    "nativeFixtureChecks": 7,
+    "relatedSuites": {
+      "R10FrontierFunding": 16,
+      "R11FrontlineContinuity": 18,
+      "G51ProspectIntegration": 92,
+      "R8BuilderWork": 13,
+      "R9BuilderCoverage": 20,
+      "R7BuilderDemand": 12,
+      "G55Operations": 21,
+      "G6Endgame": 32,
+      "StrategyQuoteProvenance": 72
+    },
+    "baselineRepro": {
+      "status": "EXPECTED_FAIL_ON_R11",
+      "log": "G:\\deepseek 工作台\\_validation\\octopus-r12-builder-20261011\\baseline-repro.log",
+      "assertion": "nearby Builders reserve different actual mines, not each others entire 600-world region"
+    },
+    "finalTestsProvenByFullWindows": true
+  },
+  "fullWindows": {
+    "status": "PASS",
+    "steps": 121,
+    "javaHarnesses": 86,
+    "pythonSuites": 32,
+    "pythonTests": 506,
+    "buildSteps": 3,
+    "failedSteps": 0,
+    "exitCode": 0,
+    "runnerLog": "G:\\deepseek 工作台\\_validation\\octopus-r12-builder-20261011\\corrected-full\\full-run-console.log",
+    "runnerLogSha256": "66c0715dde05210a3d8c6f4f7c73e61a07c695ec78874a427826a49a5e424dea",
+    "sourceCommit": "a38b061709deb4d4edb29dc626732c916ce63a7b"
+  },
+  "native": {
+    "status": "PASS",
+    "checks": 7,
+    "fixtureOnly": true,
+    "simulationTicks": 0,
+    "receiptNotExecutionOrCompletion": true,
+    "log": "G:\\deepseek 工作台\\_validation\\octopus-r12-builder-20261011\\corrected-full\\final-source\\agent\\build\\logs\\java_R12BuilderNativeHarness.log"
+  },
+  "naturalSpain": {
+    "input": {
+      "jarSha256": "61d8a341b3fff0445e67978d7deb2a6d4e349589e683a1f35afc35c9317b98cf",
+      "mapSource": "G:\\deepseek 工作台\\游戏环境\\P1F-GPTSol61-Operations-2026-10-01\\mods\\maps\\[10p] 10p 西班牙混战_by_MP97.tmx",
+      "mapSha256": "342db6d8a8b8320b6a271b9e3c8a4c29c96a203e206c4be690c44bbef5882746",
+      "loadedMap": "maps/skirmish/[10p] Spain MP97.tmx",
+      "speed": 5,
+      "difficulty": 1,
+      "durationGameSeconds": 3600,
+      "wallSafetySeconds": 1080,
+      "nativePositionMutation": false,
+      "fixture": false,
+      "desktopTouched": false
+    },
+    "raw": {
+      "path": "G:\\deepseek 工作台\\_validation\\octopus-r12-builder-20261011\\spain-hard-final\\work\\rw-agent-reports\\battle-1791659212982-bcb85ed8.jsonl.gz",
+      "bytes": 74731604,
+      "sha256": "3351bd2201a1233d85a468c1de9ca94f034343e06e6211c971d87dd59e50447b",
+      "rows": 310386,
+      "malformed": 0,
+      "closedGzip": true
+    },
+    "clientExit": 2,
+    "agentOutcome": "PARTIAL",
+    "nativeMatch": {
+      "outcome": "ONGOING",
+      "nativeVictory": false,
+      "nativeDefeat": false,
+      "ownTeamVictory": false,
+      "ownTeamDefeated": false,
+      "ownTeamWipedOut": false,
+      "source": "native_result_screen"
+    },
+    "finalGameTimeMs": 3608112,
+    "finalFrame": 225507,
+    "lastOwn": {
+      "gameTimeMs": 3575984,
+      "frame": 223499,
+      "player": {
+        "teamId": 0,
+        "name": "Player",
+        "credits": 17596.5
+      },
+      "readyTypes": {
+        "commandCenter": 1,
+        "landFactory": 4,
+        "extractorT2": 6,
+        "combatEngineer": 3,
+        "repairbay": 5,
+        "amphibiousJet": 7,
+        "heavyTank": 113,
+        "builder": 8,
+        "heavyArtillery": 6,
+        "extractorT1": 6,
+        "fabricatorT1": 1
+      }
+    },
+    "nativeMineAccepted": 62,
+    "laterReadyMineWitness": 54,
+    "admissionRejections": {
+      "RECON:ACTOR_CONFLICT_IN_OBSERVATION": 42,
+      "CRITICAL_RETREAT:NATIVE_REJECTED": 91,
+      "STRATEGY:ACTOR_CONFLICT_IN_OBSERVATION": 5,
+      "STRATEGY:NATIVE_REJECTED": 8,
+      "GENERAL:NATIVE_REJECTED": 76,
+      "JOINING:NATIVE_REJECTED": 2,
+      "RECON:NATIVE_REJECTED": 1
+    },
+    "peakReadyMineCount": 16,
+    "peakReadyBuilderCount": 11,
+    "alternateQuotedMineAccepted": 1,
+    "alternateQuotedMineLaterReadyWitness": 1,
+    "finalNativeReadyOwnTypes": {
+      "commandCenter": 1,
+      "landFactory": 4,
+      "extractorT2": 6,
+      "combatEngineer": 3,
+      "repairbay": 5,
+      "amphibiousJet": 7,
+      "heavyTank": 113,
+      "heavyArtillery": 6,
+      "builder": 8,
+      "extractorT1": 8,
+      "fabricatorT1": 1
+    },
+    "finalNativeCredits": 20712.0,
+    "fixture": false,
+    "positionHPFundsFogMutation": false,
+    "notControlledAB": true,
+    "nativeVictoryIsNotHumanAcceptance": true
+  },
+  "delivery": {
+    "testedInputs": 279,
+    "inputDrift": [],
+    "kitFiles": 1895,
+    "kitDrift": [],
+    "candidateJarSha256": "61d8a341b3fff0445e67978d7deb2a6d4e349589e683a1f35afc35c9317b98cf",
+    "fullIndependentBuildSha256": "c31b20d054fc1f840cbf76c24052d7d9d43b5fdcc1ff3a72db0c222b0c022ee7",
+    "jarContentDrift": [],
+    "naturalJarSha256": "61d8a341b3fff0445e67978d7deb2a6d4e349589e683a1f35afc35c9317b98cf",
+    "kitJarSha256": "61d8a341b3fff0445e67978d7deb2a6d4e349589e683a1f35afc35c9317b98cf",
+    "protected": {
+      "tools/RW-Agent-Octopus-Test.ps1": "7f5974f7da4ef53d8f6ca8a13277a40eb78a8392e7c904f0e9276b56aa9d01e6",
+      "tools/rw-agent-human.py": "3cb3b18a9ba0170782bfdfa02c481845dc04b6a35943ab5e6b5a605bbf1f2e4d",
+      "tools/rw-agent-human.py.bak-20261003": "84cc4f2fcf379fbf79bcd147286fb4da22883e7840f9ffa8604fcc7dabdb36e8"
+    },
+    "kit": "G:\\deepseek 工作台\\游戏环境\\RW-Agent-Octopus-G6-2026-10-11-R12",
+    "port": 47699,
+    "clock": {
+      "defaultEnabled": true,
+      "source": "/state gameTimeMs/frame",
+      "html": "runs/<run-id>/rw-agent-live.html",
+      "wallTimeEstimate": false
+    },
+    "jarContentEntries": 210
+  },
+  "boundaries": {
+    "desktopTouched": false,
+    "push": false,
+    "deploy": false,
+    "sourceScope": "Builder mining reservations / actual work / native order compatibility only",
+    "allHumanMassIdleResolved": "NEEDS_EVIDENCE",
+    "humanPlayer5HardEffect": "NEEDS_EVIDENCE",
+    "longUnpaidConstructionHistory": "UNCHANGED",
+    "largeArmyLatePerformance": "OUT_OF_SCOPE",
+    "generalScoutAirBehavior": "UNCHANGED",
+    "noNewGlobalArtificialAPMQuota": true
+  },
+  "diagnosticFailures": [
+    {
+      "kind": "old R11 product reproduction",
+      "path": "G:\\deepseek 工作台\\_validation\\octopus-r12-builder-20261011\\baseline-repro.log"
+    },
+    {
+      "kind": "R8 fixture expected unfunded lawful local mine; expectation corrected, outside-current-range negative retained",
+      "path": "G:\\deepseek 工作台\\_validation\\octopus-r12-builder-20261011\\focused-first.log"
+    },
+    {
+      "kind": "test-only Java field/key type compile errors corrected",
+      "path": "G:\\deepseek 工作台\\_validation\\octopus-r12-builder-20261011\\focused-second.log"
+    },
+    {
+      "kind": "first complete regression 120/121; R4 active-travel fixture had null native order; fixed later MOVE witness and idle/UNKNOWN negatives",
+      "path": "G:\\deepseek 工作台\\_validation\\octopus-r12-builder-20261011\\full-run-console.log",
+      "finalCorrectedFocused": "G:\\deepseek 工作台\\_validation\\octopus-r12-builder-20261011\\r4-corrected-focused.log",
+      "finalFocusedChecks": 27
+    },
+    {
+      "kind": "initial native fixture omitted path-grid array; fixture initialized, no product fix for this test setup error",
+      "firstFullLogOverwritten": true
+    }
+  ]
+}

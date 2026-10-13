@@ -1,0 +1,1041 @@
+我把《对话28》和四份增量证据看完了。现在可以做你说的“综合决策”了，而且这轮确实到了一个适合**结束事故取证、切换工程工作流**的节点。
+
+先说我的判断，再给你完整《输出28》。
+
+## 先分析：这次 P0 到底查清了吗？
+
+这一次已经不是“很可能”，而是抓到了**直接的置死调用**。
+
+DeepSeek 的阶段二分把异常第一次出现的位置锁定在 `radius`，旧代码实际上做的是：
+
+```java
+rawInvoke(rawMethod(am.getClass(),"cj"), attacker)
+```
+
+问题在于 `am` 同时存在字段 `float cj` 和方法 `void cj()`。后者的完整效果就是把 `cu` 写成 `-1`；而 `cu` 正是游戏里的 HP 字段。
+
+独立直接调用实验也非常干净：
+
+```text
+直接读 cj 字段        → cu=210
+Field.get(cj)         → cu=210
+仅取得 Method cj()    → cu=210
+invoke cj()           → cu=-1
+```
+
+
+
+所以这次我们可以正式写：
+
+> **旧 Reachability diagnostics 把碰撞半径字段 `cj` 错解析成了同名 `am.cj()` 方法，并调用了它；该方法直接执行 `cu=-1`。**
+
+结合之前原始事故的 14/14 first representative、目标随后失去 live-unit 可解析状态，以及约 0.52 秒后被下一次 observation/own_loss 捕获，因果链已经足够强。
+
+另一个 `ar.a()` 也确实是独立真实 bug：它是工厂调用，会创建并注册新单位。但现在可以把两件事分开：
+
+```text
+am.cj()  → 解释“枪毙/瞬死”的主根因
+ar.a()   → 另一个真实世界状态污染 bug
+```
+
+DeepSeek没有把 `ar.a()` 强行当作死亡根因，这很好。
+
+修复后的同一阶段二分里，`radius` 已经变成真正的 `Field.get`，完整默认请求之后 attacker 仍为 210/210、target 仍为 4000/4000。
+
+所以我的技术判断是：
+
+> **Q1–Q4 可以认为已经回答完成；根因已经找到并修复。**
+
+但我不同意直接把整个 P0 标成完全 `CLOSED`。
+
+更准确应该是：
+
+```text
+ROOT_CAUSE_IDENTIFIED_AND_PATCHED
+LIVE_REVALIDATION_PENDING
+```
+
+因为还缺最后一项——**修复后的真实游戏短验证**。
+
+一旦短验证通过，就没有必要继续把旧 `0beaf504` 解剖到每一个深层调用。
+
+---
+
+还有两个工程上的小修正值得带进《输出28》。
+
+第一，DeepSeek现在的 `INCIDENT_EQUIVALENT_ENDPOINT_PATH` 实际上已经应用了新护栏，所以它能够证明：
+
+> 旧执行顺序在新护栏下不会再触发那些危险调用。
+
+它不是“把旧事故原封不动重新执行一次”。这不影响结论，只是名称最好理解成：
+
+```text
+INCIDENT_ORDER_UNDER_CURRENT_GUARDS
+```
+
+旧行为已经由 `cj()` 和 `a()` 的独立直接实验足够证明，不需要为了追求“完全事故复现”重新制造危险。
+
+第二，它的新 `isPureQuery()` 拒绝 void 和已知工厂函数是很好的**安全护栏**，但：
+
+> **“非 void”不等于“纯函数”。**
+
+未来绝不能重新形成：
+
+```text
+有返回值 → 默认安全
+```
+
+应该变成：
+
+> live diagnostics 能调用的方法必须是**显式白名单的 owner+name+descriptor**，经过一次语义/字节码确认；“拒绝 void / factory”只是第二道保险。
+
+另外，DeepSeek已经承认默认路径并不是“METHOD CALLS=none”，而是仍调用 `cW()/r()/i()/bI()`。 这个修正应该永久进入项目状态。
+
+最后是交接制度。`EVIDENCE_INDEX` 现在真的建立起来了，而且事故原始 JSONL等旧材料已经冻结，不需要以后继续搬。 但索引里的旧 `candidate_sha_lineage` 已经落后于当前 `f985...` 候选，所以以后“当前状态”不能只靠 Evidence Index，要由 `CURRENT_STATE.md` 管当前候选，Evidence Index 管历史证据。
+
+下面这份就是我建议你原样发给 DeepSeek 的正式版本。
+
+---
+
+# 输出28（ChatGPT → DeepSeek）
+
+《对话28》通过。本轮已经完成两个目标：
+
+1. **Reachability P0 的技术根因达到工程可闭环程度；**
+2. **项目协作结构从逐轮双重复核，切换为“DeepSeek连续执行 + ChatGPT里程碑/异常审查”。**
+
+以下内容同时作为本次技术裁决和后续工程协作章程。
+
+---
+
+## 一、P0 技术裁决
+
+接受 Q1–Q4 的主要结论。
+
+### 1. `am.cj()` 是本次异常死亡的主根因
+
+冻结事实：
+
+```text
+字段：
+public float cj
+```
+
+与：
+
+```text
+方法：
+public void cj()
+```
+
+同名。
+
+旧 diagnostics 使用：
+
+```java
+rawMethod(am.class, "cj")
+→ invoke()
+```
+
+错误解析并调用了：
+
+```text
+am.cj()
+```
+
+字节码效果：
+
+```text
+cu = -1
+```
+
+而：
+
+```text
+cu = unit HP
+```
+
+因此：
+
+```text
+Reachability diagnostic
+→ 对被探测 live unit 调用 am.cj()
+→ HP 字段立即变成 -1
+→ 后续 game update / observation
+→ 单位表现为异常死亡/消失
+```
+
+这与事故日志中的：
+
+```text
+14/14 first representative
+约 +0.511～0.546 game s 后消失
+```
+
+以及用户看到的异常死亡表现高度一致。
+
+正式状态：
+
+```text
+AM_CJ_VOID_MUTATOR
+= CONFIRMED_ROOT_CAUSE_OF_DIAGNOSTIC_KILL
+```
+
+不再仅标 `SUSPECTED`。
+
+---
+
+### 2. `ar.a()` 是第二个独立确认的状态污染 bug
+
+冻结：
+
+```text
+ar.a()
+→ factory method
+→ creates/registers new unit
+→ am.bE registry +1
+```
+
+正式状态：
+
+```text
+AR_A_FACTORY_ACCESSOR
+= CONFIRMED_DIAGNOSTIC_STATE_MUTATION
+```
+
+但不要写成：
+
+```text
+AR_A = confirmed kill root cause
+```
+
+它解释的是诊断偷偷创建单位；异常死亡主根因已有 `am.cj()` 更直接证据。
+
+当前两项均已从 live-safe path 移除。
+
+---
+
+## 二、P0 状态不要立即写 CLOSED
+
+当前改为：
+
+```text
+ROOT_CAUSE_IDENTIFIED_AND_PATCHED
+LIVE_REVALIDATION_PENDING
+```
+
+四个静态/沙盒问题已经关闭，但整个事故还差**一次修复后的短实机验证**。
+
+不再追加深层 forensic 前置条件。
+
+---
+
+# 三、批准一次短实机验证
+
+批准当前修复候选：
+
+```text
+f985c3ab7a109da59bfa1385531f345d96bdde95c02e7bba4c78d7034f25b8a2
+```
+
+进行一次**短、单变量、A-safe-path live smoke**。
+
+仍使用我们事故调查时的熟悉环境：
+
+```text
+巨岛 1v1
+非常困难 AI（用户提供）
+1x
+正常迷雾
+cap40
+```
+
+目的不是胜负，不跑900秒。
+
+### 验收目标
+
+至少观察到：
+
+```text
+3～5 个成功 reachability sample batch
+```
+
+其中有正常 live attacker + target。
+
+重点观察：
+
+```text
+1. 不再出现 first representative 采样后约0.5s异常死亡
+2. target 不再因为一次诊断立即失去 live-unit 状态
+3. 不再出现无攻击瞬死/异常死亡音效
+4. 不出现诊断导致 registry 异常增长
+5. report 中不出现被诊断单位 cu=-1 的新异常
+```
+
+达到以上即可安全退出。
+
+不要求：
+
+```text
+胜利
+完整900s
+完成跨域
+结束一整局
+```
+
+如果本次 smoke 干净：
+
+```text
+P0 → CLOSED_AND_ARCHIVED
+```
+
+旧：
+
+```text
+0beaf504 = QUARANTINED
+56ba2eff = INCIDENT_FORENSIC_SAMPLE
+```
+
+永久保留但不再阻塞开发。
+
+如果仍出现异常：
+
+```text
+立即停止 live testing
+```
+
+下一步才使用 NoSample 对照；不要自动进入 B/C/D/E。
+
+---
+
+# 四、暂不批准 B1/B2 实机
+
+即使 A-safe smoke 成功：
+
+```text
+不要自动继续 B1 / B2
+```
+
+P0 关闭之后，Reachability 的 B/C/D/E 研究转入 **Diagnostic Lab**。
+
+后续是否需要：
+
+```text
+B1 movement accessor
+B2 passability
+C outer query
+D/E predicates
+```
+
+由实际 Mainline 需求决定。
+
+不要为了“把诊断研究完整”继续消耗用户实机时间。
+
+---
+
+# 五、`stages=` 保留
+
+批准保留：
+
+```text
+stages=
+```
+
+作为 Diagnostic Lab 工具。
+
+要求继续：
+
+```text
+必须 process-level arm
+真实比赛默认不可开启
+不得由普通 HTTP 参数单独解锁
+不得参与 tactical behavior
+```
+
+它已经证明是定位本次问题的高价值工具。
+
+---
+
+# 六、正式更正 CURRENT_SAFE_PATH 的口径
+
+永久废弃：
+
+```text
+CURRENT_SAFE_PATH = Field.get only / METHOD CALLS = none
+```
+
+正确口径：
+
+```text
+CURRENT_SAFE_PATH_ENGINE_METHOD_CALLS
+= {
+    cW(),
+    r(),
+    i(),
+    bI()
+  }
+
+CURRENT_SAFE_PATH_FIELD_READS
+= explicit Field.get:
+  cj / eo / ep / eh / bX / cu / cv / declared floats
+
+REMOVED_FROM_LIVE_SAFE_PATH
+= am.cj()
+= ar.a()
+```
+
+`cW()/r()/i()/bI()` 属于**显式查询方法**，不是“零方法调用”。
+
+---
+
+# 七、修正反射安全规则
+
+当前：
+
+```text
+reject void
+reject known factory accessor
+```
+
+值得保留，但它只是 fail-safe，不是 purity proof。
+
+长期规则改成：
+
+```text
+任何 live diagnostic Method.invoke
+必须满足显式 allowlist：
+
+owner
+method name
+descriptor/signature
+verified semantic purpose
+audit status
+```
+
+禁止：
+
+```text
+扫描单字母方法然后猜语义
+按返回类型推断纯度
+non-void => safe
+名字像 getter => safe
+```
+
+`void`/factory 拒绝继续作为额外保险。
+
+原则：
+
+> **只读必须证明，不得根据命名、返回值或直觉默认。**
+
+---
+
+# 八、Reachability 从 Mainline 中解耦
+
+从本次 P0 关闭后，项目正式拆成两条轨：
+
+```text
+MAINLINE
+```
+
+负责真正提高 Agent 能力：
+
+```text
+经济持续性
+投资管理
+矿升级
+修理/重建
+部队角色
+局部守军
+兵力调度
+持续进攻
+低价值目标处理
+长期作战
+```
+
+以及：
+
+```text
+DIAGNOSTIC LAB
+```
+
+负责：
+
+```text
+Reachability
+B/C/D/E
+aq
+movement class
+武器/目标语义
+混淆字段逆向
+cross-domain底层可达性
+```
+
+### 关键规则
+
+Lab 可以：
+
+```text
+UNRESOLVED
+INCONCLUSIVE
+NPE
+QUARANTINED
+长期挂起
+```
+
+但：
+
+> **Lab 不再天然阻塞 Mainline。**
+
+如果 Reachability 后续仍难以安全完成：
+
+```text
+Mainline 关闭自动 reachability sampling
+继续 Agent 能力开发
+```
+
+而不是继续停工。
+
+---
+
+# 九、给调查任务设置 Closure Criteria
+
+今后任何 bug / forensic task 开始时必须先写：
+
+```text
+Closure Criteria
+```
+
+避免“还能再证明一点，所以继续证明”。
+
+本次事故的 Closure Criteria 定义为：
+
+```text
+1. 找到真实状态污染根因
+2. 根因代码已删除/隔离
+3. 回归通过
+4. 当前默认路径不再触发已知 mutator/factory
+5. 一次短 live smoke 无原异常
+```
+
+满足即关闭。
+
+不要求：
+
+```text
+把旧0beaf504每一层引擎调用研究到底
+完整解释所有0.52秒内部tick
+把C/D/E全部逆向完成
+```
+
+那些都属于 Lab backlog。
+
+---
+
+# 十、正式引入证据等级
+
+以后不要所有问题都做到 forensic 论文级。
+
+统一使用：
+
+```text
+E0 = observation / hypothesis
+E1 = single log or direct trace
+E2 = reproducible scripted evidence
+E3 = independent cross-check / second evidence path
+E4 = real live regression/acceptance
+```
+
+使用原则：
+
+```text
+普通工程 bug
+→ E2 + regression 通常足够
+
+冻结语义改变
+→ E2/E3
+
+P0 状态污染
+→ E3 + E4
+
+普通调参
+→ 不要求 P0 等级 forensic
+```
+
+ChatGPT只有在：
+
+```text
+P0
+证据矛盾
+统计异常
+高风险行为变化
+```
+
+时默认独立复算原始数据。
+
+正常 E2 证据：
+
+```text
+DeepSeek脚本生成
+exit=0
+provenance
+SHA
+```
+
+ChatGPT审查**方法与结论**，不再默认把全部 JSONL 人工重算一遍。
+
+---
+
+# 十一、Canonical Source of Truth
+
+以后单一事实源不是：
+
+```text
+DeepSeek的文字总结
+```
+
+也不是：
+
+```text
+ChatGPT的复述
+```
+
+而是 DeepSeek 工作区里的版本化证据仓库：
+
+```text
+source
+raw logs
+analysis scripts
+exit=0 outputs
+SHA256
+EVIDENCE_INDEX
+CURRENT_STATE
+```
+
+DeepSeek负责执行复算。
+
+ChatGPT可以说：
+
+```text
+请计算 X
+请比较 Y
+请验证 Z
+```
+
+默认由 DeepSeek在工作区写/复用只读脚本执行，并把可复跑结果放入 evidence。
+
+只有 RED 情况才要求 ChatGPT独立二次复算。
+
+---
+
+# 十二、三档自主权限
+
+从 P0 smoke 完成后正式采用：
+
+### GREEN —— DeepSeek自主执行，不等待 ChatGPT
+
+包括：
+
+```text
+普通 bug 修复
+日志/指标补充
+脚本化分析
+回归测试
+局部重构
+明显安全修复
+不改变冻结行为的实现
+同一已批准方案下的连续工程步骤
+```
+
+DeepSeek可以连续推进多个步骤。
+
+---
+
+### YELLOW —— 完成当前安全步骤后暂停，交 ChatGPT
+
+包括：
+
+```text
+连续两次修复/实验未解决
+证据彼此矛盾
+需要改变冻结语义
+出现两个明显架构分支
+需要新的游戏行为设计
+工程范围明显扩大
+```
+
+---
+
+### RED —— 立即冻结并交接
+
+包括：
+
+```text
+实机异常
+游戏状态污染
+崩溃/破坏样本
+疑似作弊/非法信息来源
+正式样本被污染
+重大策略方向变化
+```
+
+本次 `am.cj()/ar.a()` 就属于 RED。
+
+---
+
+# 十三、角色重新划分
+
+正式角色：
+
+```text
+用户
+= 产品负责人
++ Rusted Warfare 领域专家
++ 实机验收者
+```
+
+用户的异常游戏直觉具有高权重。
+
+类似：
+
+```text
+“死亡声音不对”
+“这个单位不像正常死法”
+“AI这段行为明显不符合RW”
+```
+
+应直接进入高优先级调查，不因日志“看似正常”而降权。
+
+---
+
+```text
+DeepSeek
+= 主执行工程师
++ 工作区维护者
++ 证据生成者
+```
+
+负责连续实施、测试、脚本化和状态维护。
+
+---
+
+```text
+ChatGPT
+= 架构/方向审查
++ 红队
++ 里程碑裁决
+```
+
+不再作为第二个 DeepSeek，每轮重新做一遍工程。
+
+---
+
+# 十四、停止“一轮 DeepSeek → 一轮 ChatGPT”强制同步
+
+以后不要求：
+
+```text
+对话N
+→ 输出N
+→ 对话N+1
+→ 输出N+1
+```
+
+DeepSeek在 GREEN 范围内可以连续完成：
+
+```text
+2～5 个内部工程迭代
+```
+
+然后在以下情况之一交接：
+
+```text
+达到里程碑
+进入 YELLOW
+进入 RED
+需要用户实机
+准备改变冻结规则
+```
+
+ChatGPT再输出一次阶段裁决。
+
+所以以后可能出现：
+
+```text
+DeepSeek内部推进 29/30/31
+→ 一次里程碑交接
+→ ChatGPT 输出31
+```
+
+这是允许且推荐的。
+
+---
+
+# 十五、用户不再人工挑文件
+
+下一阶段改成：
+
+```text
+CHATGPT_HANDOFF.zip
+```
+
+DeepSeek每次需要 ChatGPT介入时自动生成。
+
+内容固定：
+
+```text
+HANDOFF.md
+CURRENT_STATE.md
+EVIDENCE_INDEX.md
+delta/
+```
+
+其中：
+
+```text
+HANDOFF.md
+```
+
+只写：
+
+```text
+发生了什么
+为什么需要ChatGPT
+本轮结论
+需要裁决的问题
+新增证据ID
+```
+
+`CURRENT_STATE.md`：
+
+```text
+当前candidate SHA
+默认参数
+冻结模块
+当前唯一主线任务
+已知风险
+Mainline/Lab状态
+```
+
+状态变化时必须更新。
+
+`EVIDENCE_INDEX.md`：
+
+继续维护 canonical SHA。
+
+`delta/`：
+
+只放：
+
+```text
+NEW
+UPDATED
+```
+
+旧 SHA 未变化证据：
+
+```text
+REFERENCE_ONLY
+```
+
+不要再打包。
+
+---
+
+# 十六、修正当前 Evidence Index 的状态职责
+
+当前 `EVIDENCE_INDEX` 已建立，方向正确。
+
+但：
+
+```text
+candidate_sha_lineage
+```
+
+仍对应旧候选，而当前候选已经变成：
+
+```text
+f985c3ab...
+```
+
+因此以后：
+
+```text
+EVIDENCE_INDEX
+= 历史证据身份/版本索引
+
+CURRENT_STATE
+= 当前运行状态/当前candidate
+```
+
+旧 candidate lineage 可以保持历史 `FROZEN`，但不能被理解为 current。
+
+如新 lineage 文件产生：
+
+```text
+旧entry → SUPERSEDED/HISTORICAL
+新entry → CURRENT
+```
+
+不要为了文件预算让 current state 失真。
+
+---
+
+# 十七、不再设置机械“最多5文件”规则
+
+真正目标不是：
+
+```text
+文件数必须≤5
+```
+
+而是：
+
+> 用户只需要上传 **一个 CHATGPT_HANDOFF.zip**。
+
+包内部继续坚持 delta-only。
+
+通常 delta evidence 控制在：
+
+```text
+1～3个
+```
+
+但如果一次 RED 事故确实需要更多证据，可以超过，不为了凑数字删掉必要证据。
+
+避免再次出现：
+
+```text
+为了“5文件预算”
+CURRENT_STATE该更新却没发
+```
+
+这种反效果。
+
+---
+
+# 十八、当前 P0 后续只做一件事
+
+DeepSeek现在不要继续新的 forensic。
+
+准备当前：
+
+```text
+f985c3ab...
+```
+
+短 live smoke 所需运行说明即可。
+
+不要：
+
+```text
+继续C组逆向
+继续D/E深层审计
+继续重建旧事故
+继续长测
+继续战术施工
+```
+
+用户完成短 smoke 后：
+
+### 若 PASS
+
+```text
+P0 = CLOSED_AND_ARCHIVED
+Reachability → Diagnostic Lab
+Mainline恢复
+```
+
+然后 DeepSeek可以在 GREEN 权限下连续推进 Mainline，直到下一个里程碑。
+
+### 若 FAIL
+
+```text
+立即停止reachability live sampling
+Mainline切NoSample继续
+Reachability回Diagnostic Lab
+```
+
+不要再次让整个 Agent 项目被这一研究线锁死。
+
+---
+
+# 十九、下一阶段 Mainline
+
+P0 一旦 PASS，不再默认继续 Reachability。
+
+下一阶段从已有 backlog 中选择**一个对 Agent 实际强度贡献大的主线任务**，由 DeepSeek提出最小方案并自主推进。
+
+优先考虑：
+
+```text
+长期经济/投资协调
+修理与重建
+角色/任务组
+持续作战调度
+```
+
+不要同时施工多个大系统。
+
+依旧保持：
+
+```text
+一次只改变一个主要行为变量
+→ 回归
+→ 短测
+→ 再推进
+```
+
+---
+
+## 最终状态
+
+当前：
+
+```text
+0beaf504
+= QUARANTINED
+```
+
+```text
+56ba2eff
+= INCIDENT FORENSIC SAMPLE
+```
+
+```text
+f985c3ab...
+= LIVE REVALIDATION CANDIDATE
+```
+
+Reachability P0：
+
+```text
+ROOT_CAUSE_IDENTIFIED_AND_PATCHED
+LIVE_REVALIDATION_PENDING
+```
+
+协作模式：
+
+```text
+旧：
+DeepSeek执行
+→ ChatGPT逐轮复算
+→ 用户反复搬文件
+```
+
+正式切换为：
+
+```text
+DeepSeek连续执行 + 工作区证据化
+        ↓ milestone / YELLOW / RED
+CHATGPT架构审查与红队
+        ↓
+用户只负责目标、RW判断、必要实机验收
+```
+
+目标不是降低严谨度，而是：
+
+> **把严谨度集中在真正需要严谨的地方，把 Agent 的开发速度重新拿回来。**
+
+---
+
+这就是我认为现在最合适的《输出28》。它既没有因为找到 `am.cj()` 就草率结束，也没有继续要求 DeepSeek把整个旧事故无限解剖；同时把我们这几轮暴露出的协作问题一次性制度化解决了。

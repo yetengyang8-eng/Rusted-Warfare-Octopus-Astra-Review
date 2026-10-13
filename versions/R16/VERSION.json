@@ -1,0 +1,26 @@
+{
+  "version": "R16",
+  "source_commit": "0ada07a88426b4fe03781027c58e16a0950f5f96",
+  "local_full_kit": "G:\\deepseek 工作台\\游戏环境\\RW-Agent-Octopus-G6-2026-10-12-R16",
+  "port": 47707,
+  "agent_jar_sha256": "3a1eeb33725c93279818e90a9812e21bfb0bbf04f079407143835054d8ee8ad5",
+  "agent_jar_bytes": 667279,
+  "status": "latest candidate, R15 same-settings comparison not victorious at 60:14; user reports severe problems",
+  "source_paths": [
+    "agent",
+    "tools",
+    "docs",
+    "knowledge",
+    "project-state",
+    "project-history",
+    "handoff",
+    "AGENTS.md",
+    "ASTRA_START_HERE.md",
+    "README.md",
+    "ASTRA_WRITEBACK.md",
+    "PUBLISHING_NOTES.md",
+    "THIRD_PARTY_REFERENCES.md"
+  ],
+  "source_tree_sha": "303238d425e2ff3fe481120084c940178f3d928d",
+  "commercial_runtime_in_git": false
+}

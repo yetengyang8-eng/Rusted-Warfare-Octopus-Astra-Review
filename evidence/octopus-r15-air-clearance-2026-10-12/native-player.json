@@ -1,0 +1,125 @@
+{
+  "status": "PASS",
+  "baseHead": "6637cddf77761ef57fdc55b2a4a117e43d7c602e",
+  "scope": "native initialization and three simulation frames only",
+  "focusedChecks": 12,
+  "nativePlayer5": {
+    "status": "PASS",
+    "checks": 64,
+    "playerId": 5,
+    "simulationFrames": 3,
+    "initialSpawnX": 7370.0,
+    "initialSpawnY": 1950.0,
+    "nativeHumanCount": 1,
+    "nativeAICount": 9,
+    "syntheticUnitFixture": false,
+    "desktopTouched": false,
+    "naturalBattleOrVictoryProven": false
+  },
+  "nativeDefault0": {
+    "status": "PASS",
+    "checks": 64,
+    "playerId": 0,
+    "simulationFrames": 3,
+    "initialSpawnX": 4370.0,
+    "initialSpawnY": 5610.0,
+    "nativeHumanCount": 1,
+    "nativeAICount": 9,
+    "syntheticUnitFixture": false,
+    "desktopTouched": false,
+    "naturalBattleOrVictoryProven": false
+  },
+  "mapOriginal": "G:\\deepseek 工作台\\游戏环境\\P1F-GPTSol61-Operations-2026-10-01\\mods\\maps\\[10p] 10p 西班牙混战_by_MP97.tmx",
+  "mapCopy": "G:\\deepseek 工作台\\_validation\\octopus-r15-flow-20261012\\player\\player5-work\\assets\\maps\\skirmish\\[10p] Spain MP97.tmx",
+  "mapSha256": "342db6d8a8b8320b6a271b9e3c8a4c29c96a203e206c4be690c44bbef5882746",
+  "gameJarSha256": "8a550a37e2d8a5430866090d4e7d5892f9010b47f52a5a09350fc66c620deec9",
+  "nativeTeamsBeforeAnyTicks": [
+    {
+      "teamId": 0,
+      "initialCredits": 4000.0,
+      "initialUnitCount": 1,
+      "controlChangedOnlyForSelectedHumanSwap": true
+    },
+    {
+      "teamId": 1,
+      "initialCredits": 4000.0,
+      "initialUnitCount": 1,
+      "controlChangedOnlyForSelectedHumanSwap": false
+    },
+    {
+      "teamId": 2,
+      "initialCredits": 4000.0,
+      "initialUnitCount": 1,
+      "controlChangedOnlyForSelectedHumanSwap": false
+    },
+    {
+      "teamId": 3,
+      "initialCredits": 4000.0,
+      "initialUnitCount": 1,
+      "controlChangedOnlyForSelectedHumanSwap": false
+    },
+    {
+      "teamId": 4,
+      "initialCredits": 4000.0,
+      "initialUnitCount": 1,
+      "controlChangedOnlyForSelectedHumanSwap": false
+    },
+    {
+      "teamId": 5,
+      "initialCredits": 4000.0,
+      "initialUnitCount": 1,
+      "controlChangedOnlyForSelectedHumanSwap": true
+    },
+    {
+      "teamId": 6,
+      "initialCredits": 4000.0,
+      "initialUnitCount": 1,
+      "controlChangedOnlyForSelectedHumanSwap": false
+    },
+    {
+      "teamId": 7,
+      "initialCredits": 4000.0,
+      "initialUnitCount": 1,
+      "controlChangedOnlyForSelectedHumanSwap": false
+    },
+    {
+      "teamId": 8,
+      "initialCredits": 4000.0,
+      "initialUnitCount": 1,
+      "controlChangedOnlyForSelectedHumanSwap": false
+    },
+    {
+      "teamId": 9,
+      "initialCredits": 4000.0,
+      "initialUnitCount": 1,
+      "controlChangedOnlyForSelectedHumanSwap": false
+    }
+  ],
+  "extraSlots8And9": "map-created original AI in both default0 and player5 initialization",
+  "initialFailurePreserved": {
+    "logs": [
+      "v1-player5-native.log",
+      "v1-default0-native.log"
+    ],
+    "cause": "harness assumed extra slots 8/9 absent; original map creates both AI teams",
+    "productStatusAtFirstAttempt": "FRAME_LIMIT, 3 ticks, 48ms, correct natural spawn",
+    "repair": "only harness expectation updated to accept and verify original map-created native AI"
+  },
+  "sourceHashes": {
+    "agent/src/io/rwagent/headless/HeadlessRunner.java": "a9e67cddd9b33a0543884945e4f298feab8fe7f6c8cf3d916fe41fe7401ab738",
+    "agent/tests/R15HeadlessPlayerHarness.java": "e808d37204bac2f4c1ec3920cd6bc413346d550b0f5d3cec9057366173497231",
+    "docs/HEADLESS_CN.md": "e33cb4b12d795a6d4b2617420dc7b7af8e5f8bf604299c943ed8179440b931a5"
+  },
+  "boundaries": {
+    "mapModified": false,
+    "unitsCreatedByHarness": false,
+    "unitPositionsModified": false,
+    "fundsModified": false,
+    "fogArraysModified": false,
+    "gameCommandsIssued": false,
+    "desktopTouched": false,
+    "fullRegressionRunByThisAgent": false,
+    "naturalBattleOrVictoryProven": false
+  },
+  "integration": "Python tools/run_headless.py does not yet forward --player; direct Java entry supports it"
+}

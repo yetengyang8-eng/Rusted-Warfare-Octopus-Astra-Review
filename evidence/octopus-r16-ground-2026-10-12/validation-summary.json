@@ -1,0 +1,31 @@
+{
+  "status": "ENGINEERING_CANDIDATE_HUMAN_ACCEPTANCE_PENDING_NATURAL_PAIR_NOT_IMPROVED",
+  "base": "1311f2a",
+  "backup": "backup/r15-before-r16-20261012",
+  "candidateJarSha256": "3a1eeb33725c93279818e90a9812e21bfb0bbf04f079407143835054d8ee8ad5",
+  "kit": "G:\\deepseek 工作台\\游戏环境\\RW-Agent-Octopus-G6-2026-10-12-R16",
+  "port": 47707,
+  "nativeClockDisplay": true,
+  "windows": {
+    "status": "PASS_COMBINED_MATRIX",
+    "steps": 139,
+    "java": 104,
+    "pythonSuites": 32,
+    "pythonTests": 509,
+    "initialFailedSteps": 1,
+    "finalFailedSteps": 0,
+    "initialTranscript": "G:\\deepseek 工作台\\_validation\\octopus-r16-ground-20261012\\final-full\\transcript.txt",
+    "correction": "G55OperationsHarness expected cross-map repair recall; requirement replaced by remote retention plus new home constructor. Product JAR unchanged; corrected harness compiled and rerun against identical JAR.",
+    "correctedLog": "G:\\deepseek 工作台\\_validation\\octopus-r16-ground-20261012\\full-corrected\\G55OperationsHarness.log"
+  },
+  "airClassEquality": true,
+  "protectedUserInputs": {
+    "tools/RW-Agent-Octopus-Test.ps1": "7f5974f7da4ef53d8f6ca8a13277a40eb78a8392e7c904f0e9276b56aa9d01e6",
+    "tools/rw-agent-human.py": "3cb3b18a9ba0170782bfdfa02c481845dc04b6a35943ab5e6b5a605bbf1f2e4d",
+    "tools/rw-agent-human.py.bak-20261003": "84cc4f2fcf379fbf79bcd147286fb4da22883e7840f9ffa8604fcc7dabdb36e8"
+  },
+  "desktopTouched": false,
+  "pushed": false,
+  "fullLocalEvidence": "G:\\deepseek 工作台\\_validation\\octopus-r16-ground-20261012",
+  "failedSetup": "Initial R15 comparator used a wrong kit JAR path; copy failed before starting engine. Kept as spain-r15-normal-p5; corrected launch is spain-r15-normal-p5-v2."
+}

@@ -1,0 +1,25 @@
+{
+  "testedInputs": 279,
+  "inputDrift": [],
+  "kitFiles": 1895,
+  "kitDrift": [],
+  "candidateJarSha256": "61d8a341b3fff0445e67978d7deb2a6d4e349589e683a1f35afc35c9317b98cf",
+  "fullIndependentBuildSha256": "c31b20d054fc1f840cbf76c24052d7d9d43b5fdcc1ff3a72db0c222b0c022ee7",
+  "jarContentDrift": [],
+  "naturalJarSha256": "61d8a341b3fff0445e67978d7deb2a6d4e349589e683a1f35afc35c9317b98cf",
+  "kitJarSha256": "61d8a341b3fff0445e67978d7deb2a6d4e349589e683a1f35afc35c9317b98cf",
+  "protected": {
+    "tools/RW-Agent-Octopus-Test.ps1": "7f5974f7da4ef53d8f6ca8a13277a40eb78a8392e7c904f0e9276b56aa9d01e6",
+    "tools/rw-agent-human.py": "3cb3b18a9ba0170782bfdfa02c481845dc04b6a35943ab5e6b5a605bbf1f2e4d",
+    "tools/rw-agent-human.py.bak-20261003": "84cc4f2fcf379fbf79bcd147286fb4da22883e7840f9ffa8604fcc7dabdb36e8"
+  },
+  "kit": "G:\\deepseek 工作台\\游戏环境\\RW-Agent-Octopus-G6-2026-10-11-R12",
+  "port": 47699,
+  "clock": {
+    "defaultEnabled": true,
+    "source": "/state gameTimeMs/frame",
+    "html": "runs/<run-id>/rw-agent-live.html",
+    "wallTimeEstimate": false
+  },
+  "jarContentEntries": 210
+}
