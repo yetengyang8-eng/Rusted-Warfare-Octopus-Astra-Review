@@ -1,0 +1,13 @@
+﻿wallclock=2026-10-13T00:14:17.4312833+08:00
+elapsedSeconds=1799.9
+gameProcessAlive=False
+lastCommandId=65524
+targetCommandId=51664
+targetPassed=True
+lastChecksumFrame=375790
+lastChecksumStatus=checksums are matching
+syncAlertCount=0
+lastCommandActivity=2026-10-12T23:47:36.3567005+08:00
+sourceLogBytes=20094347
+monitorRunning=true
+monitorRunning=false

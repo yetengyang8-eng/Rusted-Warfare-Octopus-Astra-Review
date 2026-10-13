@@ -1,0 +1,12 @@
+RW Agent human validation report
+Outcome=PARTIAL | Native match=ONGOING/UNKNOWN
+Reason=BattleClient exit 1
+gameTime=UNKNOWN | credits=UNKNOWN | income=UNKNOWN | factories=UNKNOWN | queues=UNKNOWN | FREE=UNKNOWN | GeneralCount=UNKNOWN
+Recon=UNKNOWN | LR=UNKNOWN | Capability=UNKNOWN | ThreatTask=UNKNOWN | throughput=UNKNOWN | decisionLatencyMs=UNKNOWN
+Latest: Waiting for BattleClient journal
+Evidence: values are journal observations/derived counts; UNKNOWN is missing evidence.
+No kill, win-rate or causal improvement is inferred from commands, damage or parser success.
+Events consumed=0
+Sources={}
+Tail diagnostics={"battle-1791200497278-f30262e0.jsonl.gz":{"invalidLines":0,"truncationResets":0,"oversizedLines":0,"bytesRead":10}}
+Binary provenance={"candidateSha256":"9cd0b8a345c9b23ed0d763859019bb50555829d83e206dc06de5c5cf22b8250a","bridgeJarSha256":"9cd0b8a345c9b23ed0d763859019bb50555829d83e206dc06de5c5cf22b8250a","gameLibSha256":"8a550a37e2d8a5430866090d4e7d5892f9010b47f52a5a09350fc66c620deec9","binaryCompatibility":"SAME_BINARY","sessionId":"3ff4a590-1fbb-4253-8033-644b144c876e"}

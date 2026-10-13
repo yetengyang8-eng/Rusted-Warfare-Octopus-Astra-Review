@@ -1,0 +1,3 @@
+java.lang.IllegalStateException: Configured wall-time safety limit
+FAIL / ONGOING: java.lang.IllegalStateException: Configured wall-time safety limit
+Report: G:\deepseek 工作台\游戏环境\RW-Agent-Octopus-G6-2026-10-05-R9\runs\20261010-193513-26836\rw-agent-reports\battle-1791632114897-0f1fed76.jsonl.gz

@@ -1,0 +1,453 @@
+SOURCE: G:\deepseek 工作台\_analysis\human_1v9_20261012\timeseries_1m.csv
+END 251.36 minutes, 2531 rows
+SLOTS
+0: AI - Impossible
+1: AI - Impossible
+2: AI - Impossible
+3: AI - Impossible
+4: AI - Impossible
+5: Ares
+6: AI - Impossible
+7: 
+8: 
+9: 
+
+HUMAN ARES SNAPSHOTS vs AI combined/max
+
+## 0m actual=0.0; liveAI=6
+credits                  human=      4,000 AI_sum=      36,000 AI_max=      4,000 slot=0
+effectiveIncome          human=         18 AI_sum=         402 AI_max=         67 slot=0
+rawIncome                human=         18 AI_sum=         108 AI_max=         18 slot=0
+totalUnits               human=          1 AI_sum=           6 AI_max=          1 slot=0
+buildings                human=          1 AI_sum=           6 AI_max=          1 slot=0
+builder                  human=          0 AI_sum=           0 AI_max=          0 slot=0
+landFactory              human=          0 AI_sum=           0 AI_max=          0 slot=0
+heavyTank                human=          0 AI_sum=           0 AI_max=          0 slot=0
+amphibiousJet            human=          0 AI_sum=           0 AI_max=          0 slot=0
+mobileCombat             human=          0 AI_sum=           0 AI_max=          0 slot=0
+mobileMilitaryValue      human=          0 AI_sum=           0 AI_max=          0 slot=0
+militaryValue            human=      3,000 AI_sum=      18,000 AI_max=      3,000 slot=0
+extractorT1              human=          0 AI_sum=           0 AI_max=          0 slot=0
+extractorT2              human=          0 AI_sum=           0 AI_max=          0 slot=0
+extractorT3              human=          0 AI_sum=           0 AI_max=          0 slot=0
+extractorT3_reinforced   human=          0 AI_sum=           0 AI_max=          0 slot=0
+commandCenter            human=          1 AI_sum=           6 AI_max=          1 slot=0
+
+## 5m actual=5.0; liveAI=9
+credits                  human=      1,286 AI_sum=      52,049 AI_max=     13,413 slot=4
+effectiveIncome          human=         66 AI_sum=       2,162 AI_max=        318 slot=0
+rawIncome                human=         66 AI_sum=         584 AI_max=         86 slot=0
+totalUnits               human=         25 AI_sum=         365 AI_max=         59 slot=0
+buildings                human=         11 AI_sum=         148 AI_max=         26 slot=0
+builder                  human=          3 AI_sum=          29 AI_max=          6 slot=0
+landFactory              human=          2 AI_sum=          16 AI_max=          3 slot=0
+heavyTank                human=         11 AI_sum=           2 AI_max=          1 slot=2
+amphibiousJet            human=          0 AI_sum=           2 AI_max=          1 slot=3
+mobileCombat             human=         11 AI_sum=         164 AI_max=         32 slot=1
+mobileMilitaryValue      human=      8,800 AI_sum=     140,900 AI_max=     24,800 slot=1
+militaryValue            human=     11,800 AI_sum=     234,800 AI_max=     40,200 slot=1
+extractorT1              human=          0 AI_sum=           0 AI_max=          0 slot=0
+extractorT2              human=          0 AI_sum=           5 AI_max=          3 slot=0
+extractorT3              human=          0 AI_sum=           4 AI_max=          1 slot=3
+extractorT3_reinforced   human=          0 AI_sum=          10 AI_max=          2 slot=1
+commandCenter            human=          1 AI_sum=           9 AI_max=          1 slot=0
+
+## 10m actual=10.0; liveAI=9
+credits                  human=        235 AI_sum=      66,240 AI_max=     15,393 slot=6
+effectiveIncome          human=        146 AI_sum=       2,577 AI_max=        470 slot=4
+rawIncome                human=        146 AI_sum=         696 AI_max=        127 slot=4
+totalUnits               human=         51 AI_sum=         509 AI_max=         84 slot=4
+buildings                human=         19 AI_sum=         193 AI_max=         39 slot=0
+builder                  human=          4 AI_sum=          30 AI_max=          7 slot=8
+landFactory              human=          3 AI_sum=          19 AI_max=          3 slot=0
+heavyTank                human=         28 AI_sum=           7 AI_max=          4 slot=7
+amphibiousJet            human=          0 AI_sum=           5 AI_max=          2 slot=2
+mobileCombat             human=         28 AI_sum=         263 AI_max=         46 slot=4
+mobileMilitaryValue      human=     22,400 AI_sum=     320,500 AI_max=     64,500 slot=4
+militaryValue            human=     25,400 AI_sum=     528,900 AI_max=     85,050 slot=8
+extractorT1              human=          0 AI_sum=           0 AI_max=          0 slot=0
+extractorT2              human=          6 AI_sum=           0 AI_max=          0 slot=0
+extractorT3              human=          0 AI_sum=           3 AI_max=          1 slot=4
+extractorT3_reinforced   human=          0 AI_sum=          18 AI_max=          3 slot=0
+commandCenter            human=          1 AI_sum=           8 AI_max=          1 slot=0
+
+## 15m actual=15.0; liveAI=9
+credits                  human=      3,884 AI_sum=     122,334 AI_max=     62,126 slot=6
+effectiveIncome          human=        182 AI_sum=       2,817 AI_max=        555 slot=4
+rawIncome                human=        182 AI_sum=         761 AI_max=        150 slot=4
+totalUnits               human=        100 AI_sum=         599 AI_max=        152 slot=4
+buildings                human=         27 AI_sum=         245 AI_max=         54 slot=4
+builder                  human=          6 AI_sum=          36 AI_max=          9 slot=8
+landFactory              human=          9 AI_sum=          26 AI_max=          5 slot=0
+heavyTank                human=         66 AI_sum=           6 AI_max=          2 slot=2
+amphibiousJet            human=          0 AI_sum=           3 AI_max=          1 slot=2
+mobileCombat             human=         67 AI_sum=         299 AI_max=         89 slot=4
+mobileMilitaryValue      human=     53,500 AI_sum=     443,500 AI_max=    126,600 slot=4
+militaryValue            human=     56,500 AI_sum=     767,800 AI_max=    168,400 slot=4
+extractorT1              human=          0 AI_sum=           0 AI_max=          0 slot=0
+extractorT2              human=         11 AI_sum=           2 AI_max=          1 slot=0
+extractorT3              human=          0 AI_sum=           1 AI_max=          1 slot=2
+extractorT3_reinforced   human=          0 AI_sum=          19 AI_max=          3 slot=0
+commandCenter            human=          1 AI_sum=           8 AI_max=          1 slot=0
+
+## 20m actual=20.0; liveAI=9
+credits                  human=      5,250 AI_sum=     150,064 AI_max=     95,420 slot=6
+effectiveIncome          human=        210 AI_sum=       2,780 AI_max=        640 slot=8
+rawIncome                human=        210 AI_sum=         751 AI_max=        173 slot=8
+totalUnits               human=        105 AI_sum=         652 AI_max=        180 slot=4
+buildings                human=         33 AI_sum=         293 AI_max=         76 slot=4
+builder                  human=          4 AI_sum=          41 AI_max=         10 slot=4
+landFactory              human=         14 AI_sum=          29 AI_max=          7 slot=4
+heavyTank                human=         68 AI_sum=           3 AI_max=          1 slot=0
+amphibiousJet            human=          0 AI_sum=           1 AI_max=          1 slot=4
+mobileCombat             human=         68 AI_sum=         300 AI_max=         92 slot=4
+mobileMilitaryValue      human=     54,400 AI_sum=     397,050 AI_max=    126,900 slot=4
+militaryValue            human=     57,400 AI_sum=     724,950 AI_max=    186,600 slot=4
+extractorT1              human=          0 AI_sum=           0 AI_max=          0 slot=0
+extractorT2              human=         16 AI_sum=           0 AI_max=          0 slot=0
+extractorT3              human=          0 AI_sum=           2 AI_max=          1 slot=4
+extractorT3_reinforced   human=          0 AI_sum=          18 AI_max=          4 slot=2
+commandCenter            human=          1 AI_sum=           7 AI_max=          1 slot=0
+
+## 30m actual=30.0; liveAI=8
+credits                  human=      1,809 AI_sum=     212,266 AI_max=    174,654 slot=6
+effectiveIncome          human=        226 AI_sum=       2,617 AI_max=        803 slot=8
+rawIncome                human=        226 AI_sum=         707 AI_max=        217 slot=8
+totalUnits               human=        138 AI_sum=         623 AI_max=        213 slot=8
+buildings                human=         36 AI_sum=         265 AI_max=         88 slot=8
+builder                  human=          5 AI_sum=          38 AI_max=         17 slot=8
+landFactory              human=         14 AI_sum=          24 AI_max=          6 slot=8
+heavyTank                human=         97 AI_sum=           5 AI_max=          3 slot=2
+amphibiousJet            human=          0 AI_sum=           5 AI_max=          2 slot=8
+mobileCombat             human=         97 AI_sum=         305 AI_max=        105 slot=8
+mobileMilitaryValue      human=     77,600 AI_sum=     517,850 AI_max=    184,550 slot=4
+militaryValue            human=     80,600 AI_sum=     926,150 AI_max=    243,650 slot=8
+extractorT1              human=          0 AI_sum=           0 AI_max=          0 slot=0
+extractorT2              human=         13 AI_sum=           0 AI_max=          0 slot=0
+extractorT3              human=          1 AI_sum=           1 AI_max=          1 slot=6
+extractorT3_reinforced   human=          0 AI_sum=          16 AI_max=          5 slot=8
+commandCenter            human=          1 AI_sum=           6 AI_max=          1 slot=0
+
+## 40m actual=40.0; liveAI=6
+credits                  human=      9,264 AI_sum=     272,991 AI_max=    228,871 slot=6
+effectiveIncome          human=        218 AI_sum=       3,006 AI_max=        907 slot=8
+rawIncome                human=        218 AI_sum=         812 AI_max=        245 slot=8
+totalUnits               human=        114 AI_sum=         683 AI_max=        210 slot=8
+buildings                human=         34 AI_sum=         275 AI_max=         84 slot=8
+builder                  human=         13 AI_sum=          45 AI_max=         25 slot=8
+landFactory              human=         14 AI_sum=          24 AI_max=          6 slot=4
+heavyTank                human=         67 AI_sum=           6 AI_max=          4 slot=4
+amphibiousJet            human=          0 AI_sum=           6 AI_max=          2 slot=2
+mobileCombat             human=         67 AI_sum=         349 AI_max=        100 slot=4
+mobileMilitaryValue      human=     53,600 AI_sum=     667,200 AI_max=    193,750 slot=8
+militaryValue            human=     56,600 AI_sum=   1,226,100 AI_max=    381,450 slot=8
+extractorT1              human=          0 AI_sum=           0 AI_max=          0 slot=0
+extractorT2              human=         12 AI_sum=           0 AI_max=          0 slot=0
+extractorT3              human=          2 AI_sum=           1 AI_max=          1 slot=8
+extractorT3_reinforced   human=          0 AI_sum=          15 AI_max=          4 slot=2
+commandCenter            human=          1 AI_sum=           5 AI_max=          1 slot=0
+
+## 50m actual=50.0; liveAI=6
+credits                  human=      7,911 AI_sum=     291,635 AI_max=    228,871 slot=6
+effectiveIncome          human=        428 AI_sum=       3,145 AI_max=      1,084 slot=8
+rawIncome                human=        428 AI_sum=         850 AI_max=        293 slot=8
+totalUnits               human=        186 AI_sum=         730 AI_max=        240 slot=8
+buildings                human=         40 AI_sum=         284 AI_max=         92 slot=8
+builder                  human=          6 AI_sum=          36 AI_max=         16 slot=8
+landFactory              human=         14 AI_sum=          23 AI_max=          6 slot=4
+heavyTank                human=        140 AI_sum=           9 AI_max=          3 slot=4
+amphibiousJet            human=          0 AI_sum=           3 AI_max=          2 slot=8
+mobileCombat             human=        140 AI_sum=         396 AI_max=        129 slot=8
+mobileMilitaryValue      human=    112,000 AI_sum=     973,150 AI_max=    350,050 slot=8
+militaryValue            human=    115,000 AI_sum=   1,887,450 AI_max=    696,150 slot=8
+extractorT1              human=          0 AI_sum=           0 AI_max=          0 slot=0
+extractorT2              human=          0 AI_sum=           2 AI_max=          1 slot=7
+extractorT3              human=         15 AI_sum=           0 AI_max=          0 slot=0
+extractorT3_reinforced   human=          4 AI_sum=          15 AI_max=          4 slot=2
+commandCenter            human=          1 AI_sum=           5 AI_max=          1 slot=0
+
+## 60m actual=60.0; liveAI=5
+credits                  human=     14,122 AI_sum=     474,956 AI_max=    228,871 slot=6
+effectiveIncome          human=        548 AI_sum=       3,112 AI_max=      1,125 slot=8
+rawIncome                human=        548 AI_sum=         841 AI_max=        304 slot=8
+totalUnits               human=        263 AI_sum=         671 AI_max=        240 slot=8
+buildings                human=         60 AI_sum=         288 AI_max=         94 slot=4
+builder                  human=          3 AI_sum=          34 AI_max=         21 slot=8
+landFactory              human=         29 AI_sum=          24 AI_max=          7 slot=4
+heavyTank                human=        200 AI_sum=           7 AI_max=          3 slot=8
+amphibiousJet            human=          0 AI_sum=           7 AI_max=          3 slot=8
+mobileCombat             human=        200 AI_sum=         336 AI_max=        123 slot=8
+mobileMilitaryValue      human=    160,000 AI_sum=     910,100 AI_max=    399,500 slot=8
+militaryValue            human=    163,000 AI_sum=   1,963,200 AI_max=    823,400 slot=8
+extractorT1              human=          0 AI_sum=           0 AI_max=          0 slot=0
+extractorT2              human=          0 AI_sum=           0 AI_max=          0 slot=0
+extractorT3              human=          2 AI_sum=           2 AI_max=          2 slot=4
+extractorT3_reinforced   human=          5 AI_sum=          14 AI_max=          4 slot=2
+commandCenter            human=          1 AI_sum=           3 AI_max=          1 slot=0
+
+## 70m actual=70.0; liveAI=4
+credits                  human=      2,807 AI_sum=     443,673 AI_max=    228,871 slot=6
+effectiveIncome          human=        540 AI_sum=       2,772 AI_max=      1,406 slot=8
+rawIncome                human=        540 AI_sum=         749 AI_max=        380 slot=8
+totalUnits               human=        194 AI_sum=         617 AI_max=        276 slot=8
+buildings                human=         72 AI_sum=         241 AI_max=        113 slot=8
+builder                  human=         10 AI_sum=          40 AI_max=         31 slot=8
+landFactory              human=         35 AI_sum=          21 AI_max=          8 slot=8
+heavyTank                human=        112 AI_sum=           3 AI_max=          2 slot=8
+amphibiousJet            human=          0 AI_sum=           1 AI_max=          1 slot=2
+mobileCombat             human=        112 AI_sum=         325 AI_max=        130 slot=8
+mobileMilitaryValue      human=     89,600 AI_sum=   1,044,750 AI_max=    517,100 slot=8
+militaryValue            human=     92,600 AI_sum=   1,870,450 AI_max=    959,700 slot=8
+extractorT1              human=          0 AI_sum=           0 AI_max=          0 slot=0
+extractorT2              human=          1 AI_sum=           1 AI_max=          1 slot=8
+extractorT3              human=          4 AI_sum=           1 AI_max=          1 slot=8
+extractorT3_reinforced   human=          2 AI_sum=          12 AI_max=          4 slot=2
+commandCenter            human=          1 AI_sum=           3 AI_max=          1 slot=0
+
+## 80m actual=80.0; liveAI=4
+credits                  human=     37,484 AI_sum=     716,316 AI_max=    369,359 slot=8
+effectiveIncome          human=        536 AI_sum=       2,504 AI_max=      1,265 slot=8
+rawIncome                human=        536 AI_sum=         677 AI_max=        342 slot=8
+totalUnits               human=        283 AI_sum=         677 AI_max=        298 slot=8
+buildings                human=         72 AI_sum=         230 AI_max=        107 slot=8
+builder                  human=         18 AI_sum=          43 AI_max=         31 slot=8
+landFactory              human=         33 AI_sum=          16 AI_max=          7 slot=0
+heavyTank                human=        193 AI_sum=           5 AI_max=          3 slot=2
+amphibiousJet            human=          0 AI_sum=           4 AI_max=          2 slot=2
+mobileCombat             human=        193 AI_sum=         393 AI_max=        158 slot=8
+mobileMilitaryValue      human=    154,400 AI_sum=   1,282,050 AI_max=    729,150 slot=8
+militaryValue            human=    157,400 AI_sum=   2,134,750 AI_max=  1,229,850 slot=8
+extractorT1              human=          0 AI_sum=           0 AI_max=          0 slot=0
+extractorT2              human=          0 AI_sum=           0 AI_max=          0 slot=0
+extractorT3              human=          8 AI_sum=           0 AI_max=          0 slot=0
+extractorT3_reinforced   human=          4 AI_sum=           9 AI_max=          4 slot=8
+commandCenter            human=          1 AI_sum=           3 AI_max=          1 slot=0
+
+## 90m actual=90.0; liveAI=4
+credits                  human=    128,143 AI_sum=   2,038,044 AI_max=  1,249,156 slot=8
+effectiveIncome          human=        418 AI_sum=       2,443 AI_max=      1,280 slot=8
+rawIncome                human=        418 AI_sum=         660 AI_max=        346 slot=8
+totalUnits               human=        261 AI_sum=         867 AI_max=        351 slot=8
+buildings                human=         50 AI_sum=         215 AI_max=        112 slot=8
+builder                  human=         15 AI_sum=          59 AI_max=         33 slot=8
+landFactory              human=         22 AI_sum=          15 AI_max=          7 slot=0
+heavyTank                human=        196 AI_sum=           9 AI_max=          4 slot=0
+amphibiousJet            human=          0 AI_sum=           9 AI_max=          3 slot=8
+mobileCombat             human=        196 AI_sum=         560 AI_max=        221 slot=0
+mobileMilitaryValue      human=    156,800 AI_sum=   1,721,100 AI_max=    848,850 slot=8
+militaryValue            human=    159,800 AI_sum=   2,531,800 AI_max=  1,317,250 slot=8
+extractorT1              human=          0 AI_sum=           0 AI_max=          0 slot=0
+extractorT2              human=          0 AI_sum=           0 AI_max=          0 slot=0
+extractorT3              human=          6 AI_sum=           0 AI_max=          0 slot=0
+extractorT3_reinforced   human=          2 AI_sum=           8 AI_max=          4 slot=8
+commandCenter            human=          1 AI_sum=           2 AI_max=          1 slot=0
+
+## 100m actual=100.0; liveAI=4
+credits                  human=    426,928 AI_sum=   4,112,984 AI_max=  2,434,388 slot=8
+effectiveIncome          human=        448 AI_sum=       2,454 AI_max=      1,288 slot=8
+rawIncome                human=        448 AI_sum=         663 AI_max=        348 slot=8
+totalUnits               human=        300 AI_sum=       1,024 AI_max=        358 slot=8
+buildings                human=         50 AI_sum=         223 AI_max=        119 slot=8
+builder                  human=         20 AI_sum=          68 AI_max=         33 slot=8
+landFactory              human=         22 AI_sum=          16 AI_max=          7 slot=0
+heavyTank                human=        230 AI_sum=          13 AI_max=          5 slot=0
+amphibiousJet            human=          0 AI_sum=          15 AI_max=          6 slot=4
+mobileCombat             human=        230 AI_sum=         677 AI_max=        232 slot=0
+mobileMilitaryValue      human=    184,000 AI_sum=   1,878,900 AI_max=    854,950 slot=8
+militaryValue            human=    187,000 AI_sum=   2,708,500 AI_max=  1,326,750 slot=8
+extractorT1              human=          0 AI_sum=           0 AI_max=          0 slot=0
+extractorT2              human=          0 AI_sum=           0 AI_max=          0 slot=0
+extractorT3              human=          3 AI_sum=           0 AI_max=          0 slot=0
+extractorT3_reinforced   human=          2 AI_sum=           8 AI_max=          4 slot=8
+commandCenter            human=          1 AI_sum=           2 AI_max=          1 slot=0
+
+## 120m actual=120.0; liveAI=4
+credits                  human=  1,266,928 AI_sum=   8,503,297 AI_max=  4,812,168 slot=8
+effectiveIncome          human=        448 AI_sum=       2,409 AI_max=      1,236 slot=8
+rawIncome                human=        448 AI_sum=         651 AI_max=        334 slot=8
+totalUnits               human=        300 AI_sum=       1,147 AI_max=        356 slot=8
+buildings                human=         50 AI_sum=         221 AI_max=        117 slot=8
+builder                  human=         20 AI_sum=          70 AI_max=         31 slot=8
+landFactory              human=         22 AI_sum=          17 AI_max=          8 slot=8
+heavyTank                human=        230 AI_sum=          16 AI_max=          5 slot=0
+amphibiousJet            human=          0 AI_sum=          24 AI_max=         10 slot=2
+mobileCombat             human=        230 AI_sum=         779 AI_max=        232 slot=0
+mobileMilitaryValue      human=    184,000 AI_sum=   2,002,600 AI_max=    838,300 slot=8
+militaryValue            human=    187,000 AI_sum=   2,818,100 AI_max=  1,285,000 slot=8
+extractorT1              human=          0 AI_sum=           0 AI_max=          0 slot=0
+extractorT2              human=          0 AI_sum=           0 AI_max=          0 slot=0
+extractorT3              human=          3 AI_sum=           0 AI_max=          0 slot=0
+extractorT3_reinforced   human=          2 AI_sum=           8 AI_max=          4 slot=8
+commandCenter            human=          1 AI_sum=           2 AI_max=          1 slot=0
+
+## 140m actual=140.0; liveAI=4
+credits                  human=  2,106,446 AI_sum=  12,919,516 AI_max=  7,091,489 slot=8
+effectiveIncome          human=        448 AI_sum=       2,398 AI_max=      1,225 slot=8
+rawIncome                human=        448 AI_sum=         648 AI_max=        331 slot=8
+totalUnits               human=        300 AI_sum=       1,210 AI_max=        361 slot=8
+buildings                human=         50 AI_sum=         226 AI_max=        122 slot=8
+builder                  human=         20 AI_sum=          69 AI_max=         27 slot=8
+landFactory              human=         22 AI_sum=          18 AI_max=          9 slot=8
+heavyTank                human=        230 AI_sum=          17 AI_max=          5 slot=0
+amphibiousJet            human=          0 AI_sum=          29 AI_max=         14 slot=2
+mobileCombat             human=        230 AI_sum=         832 AI_max=        232 slot=0
+mobileMilitaryValue      human=    184,000 AI_sum=   2,052,950 AI_max=    832,850 slot=8
+militaryValue            human=    187,000 AI_sum=   2,856,250 AI_max=  1,267,350 slot=8
+extractorT1              human=          0 AI_sum=           0 AI_max=          0 slot=0
+extractorT2              human=          0 AI_sum=           0 AI_max=          0 slot=0
+extractorT3              human=          3 AI_sum=           0 AI_max=          0 slot=0
+extractorT3_reinforced   human=          2 AI_sum=           8 AI_max=          4 slot=8
+commandCenter            human=          1 AI_sum=           2 AI_max=          1 slot=0
+
+## 160m actual=160.0; liveAI=4
+credits                  human=  2,897,051 AI_sum=  17,150,170 AI_max=  9,252,472 slot=8
+effectiveIncome          human=        448 AI_sum=       2,398 AI_max=      1,225 slot=8
+rawIncome                human=        448 AI_sum=         648 AI_max=        331 slot=8
+totalUnits               human=        300 AI_sum=       1,210 AI_max=        361 slot=8
+buildings                human=         50 AI_sum=         226 AI_max=        122 slot=8
+builder                  human=         20 AI_sum=          69 AI_max=         27 slot=8
+landFactory              human=         22 AI_sum=          18 AI_max=          9 slot=8
+heavyTank                human=        230 AI_sum=          17 AI_max=          5 slot=0
+amphibiousJet            human=          0 AI_sum=          29 AI_max=         14 slot=2
+mobileCombat             human=        230 AI_sum=         832 AI_max=        232 slot=0
+mobileMilitaryValue      human=    184,000 AI_sum=   2,052,950 AI_max=    832,850 slot=8
+militaryValue            human=    187,000 AI_sum=   2,856,250 AI_max=  1,267,350 slot=8
+extractorT1              human=          0 AI_sum=           0 AI_max=          0 slot=0
+extractorT2              human=          0 AI_sum=           0 AI_max=          0 slot=0
+extractorT3              human=          3 AI_sum=           0 AI_max=          0 slot=0
+extractorT3_reinforced   human=          2 AI_sum=           8 AI_max=          4 slot=8
+commandCenter            human=          1 AI_sum=           2 AI_max=          1 slot=0
+
+## 180m actual=180.0; liveAI=4
+credits                  human=  3,628,946 AI_sum=  21,376,621 AI_max= 11,412,098 slot=8
+effectiveIncome          human=        408 AI_sum=       2,394 AI_max=      1,221 slot=8
+rawIncome                human=        408 AI_sum=         647 AI_max=        330 slot=8
+totalUnits               human=        273 AI_sum=       1,211 AI_max=        360 slot=8
+buildings                human=         39 AI_sum=         228 AI_max=        122 slot=8
+builder                  human=         26 AI_sum=          69 AI_max=         27 slot=8
+landFactory              human=         22 AI_sum=          19 AI_max=          9 slot=8
+heavyTank                human=        208 AI_sum=          17 AI_max=          5 slot=0
+amphibiousJet            human=          0 AI_sum=          29 AI_max=         14 slot=2
+mobileCombat             human=        208 AI_sum=         831 AI_max=        232 slot=0
+mobileMilitaryValue      human=    166,400 AI_sum=   2,049,450 AI_max=    829,350 slot=8
+militaryValue            human=    169,400 AI_sum=   2,853,350 AI_max=  1,263,850 slot=8
+extractorT1              human=          0 AI_sum=           0 AI_max=          0 slot=0
+extractorT2              human=          0 AI_sum=           0 AI_max=          0 slot=0
+extractorT3              human=          3 AI_sum=           0 AI_max=          0 slot=0
+extractorT3_reinforced   human=          0 AI_sum=           8 AI_max=          4 slot=8
+commandCenter            human=          1 AI_sum=           2 AI_max=          1 slot=0
+
+## 190m actual=190.0; liveAI=4
+credits                  human=  3,976,067 AI_sum=  23,488,477 AI_max= 12,489,406 slot=8
+effectiveIncome          human=        408 AI_sum=       2,394 AI_max=      1,221 slot=8
+rawIncome                human=        408 AI_sum=         647 AI_max=        330 slot=8
+totalUnits               human=        289 AI_sum=       1,211 AI_max=        360 slot=8
+buildings                human=         39 AI_sum=         228 AI_max=        122 slot=8
+builder                  human=         26 AI_sum=          69 AI_max=         27 slot=8
+landFactory              human=         22 AI_sum=          19 AI_max=          9 slot=8
+heavyTank                human=        224 AI_sum=          17 AI_max=          5 slot=0
+amphibiousJet            human=          0 AI_sum=          29 AI_max=         14 slot=2
+mobileCombat             human=        224 AI_sum=         831 AI_max=        232 slot=0
+mobileMilitaryValue      human=    179,200 AI_sum=   2,049,450 AI_max=    829,350 slot=8
+militaryValue            human=    182,200 AI_sum=   2,853,350 AI_max=  1,263,850 slot=8
+extractorT1              human=          0 AI_sum=           0 AI_max=          0 slot=0
+extractorT2              human=          0 AI_sum=           0 AI_max=          0 slot=0
+extractorT3              human=          3 AI_sum=           0 AI_max=          0 slot=0
+extractorT3_reinforced   human=          0 AI_sum=           8 AI_max=          4 slot=8
+commandCenter            human=          1 AI_sum=           2 AI_max=          1 slot=0
+
+## 200m actual=200.0; liveAI=4
+credits                  human=  4,336,102 AI_sum=  25,601,214 AI_max= 13,566,865 slot=8
+effectiveIncome          human=        408 AI_sum=       2,394 AI_max=      1,221 slot=8
+rawIncome                human=        408 AI_sum=         647 AI_max=        330 slot=8
+totalUnits               human=        289 AI_sum=       1,211 AI_max=        360 slot=8
+buildings                human=         39 AI_sum=         228 AI_max=        122 slot=8
+builder                  human=         26 AI_sum=          69 AI_max=         27 slot=8
+landFactory              human=         22 AI_sum=          19 AI_max=          9 slot=8
+heavyTank                human=        224 AI_sum=          17 AI_max=          5 slot=0
+amphibiousJet            human=          0 AI_sum=          29 AI_max=         14 slot=2
+mobileCombat             human=        224 AI_sum=         831 AI_max=        232 slot=0
+mobileMilitaryValue      human=    179,200 AI_sum=   2,049,450 AI_max=    829,350 slot=8
+militaryValue            human=    182,200 AI_sum=   2,853,350 AI_max=  1,263,850 slot=8
+extractorT1              human=          0 AI_sum=           0 AI_max=          0 slot=0
+extractorT2              human=          0 AI_sum=           0 AI_max=          0 slot=0
+extractorT3              human=          3 AI_sum=           0 AI_max=          0 slot=0
+extractorT3_reinforced   human=          0 AI_sum=           8 AI_max=          4 slot=8
+commandCenter            human=          1 AI_sum=           2 AI_max=          1 slot=0
+
+## 210m actual=210.0; liveAI=4
+credits                  human=  4,696,122 AI_sum=  27,713,304 AI_max= 14,644,114 slot=8
+effectiveIncome          human=        408 AI_sum=       2,394 AI_max=      1,221 slot=8
+rawIncome                human=        408 AI_sum=         647 AI_max=        330 slot=8
+totalUnits               human=        289 AI_sum=       1,211 AI_max=        360 slot=8
+buildings                human=         39 AI_sum=         228 AI_max=        122 slot=8
+builder                  human=         26 AI_sum=          69 AI_max=         27 slot=8
+landFactory              human=         22 AI_sum=          19 AI_max=          9 slot=8
+heavyTank                human=        224 AI_sum=          17 AI_max=          5 slot=0
+amphibiousJet            human=          0 AI_sum=          29 AI_max=         14 slot=2
+mobileCombat             human=        224 AI_sum=         831 AI_max=        232 slot=0
+mobileMilitaryValue      human=    179,200 AI_sum=   2,049,450 AI_max=    829,350 slot=8
+militaryValue            human=    182,200 AI_sum=   2,853,350 AI_max=  1,263,850 slot=8
+extractorT1              human=          0 AI_sum=           0 AI_max=          0 slot=0
+extractorT2              human=          0 AI_sum=           0 AI_max=          0 slot=0
+extractorT3              human=          3 AI_sum=           0 AI_max=          0 slot=0
+extractorT3_reinforced   human=          0 AI_sum=           8 AI_max=          4 slot=8
+commandCenter            human=          1 AI_sum=           2 AI_max=          1 slot=0
+
+AI TIME OF COLLAPSE
+slot 0: firstZero=None,lastPositive=251.36103333333332; peakIncome=903 at 90.0; peakMobileMil=710500 at 98.0
+slot 1: firstZero=32.0,lastPositive=31.0; peakIncome=329 at 9.0; peakMobileMil=60900 at 13.0
+slot 2: firstZero=None,lastPositive=251.36103333333332; peakIncome=574 at 46.0; peakMobileMil=273900 at 130.0
+slot 3: firstZero=22.0,lastPositive=21.0; peakIncome=274 at 5.0; peakMobileMil=18850 at 6.0
+slot 4: firstZero=None,lastPositive=251.36103333333332; peakIncome=873 at 55.0; peakMobileMil=282250 at 54.0
+slot 6: firstZero=38.0,lastPositive=37.0; peakIncome=218 at 7.0; peakMobileMil=25100 at 8.0
+slot 7: firstZero=55.0,lastPositive=54.0; peakIncome=344 at 52.0; peakMobileMil=71250 at 38.0
+slot 8: firstZero=None,lastPositive=251.36103333333332; peakIncome=1687 at 76.0; peakMobileMil=870950 at 85.0
+slot 9: firstZero=65.0,lastPositive=64.0; peakIncome=248 at 10.0; peakMobileMil=53850 at 21.0
+
+HUMAN FIRST REACHED
+builder: 1=>1.0m, 2=>1.0m, 5=>14.0m, 10=>40.0m, 20=>74.0m, 50=>Nonem, 100=>Nonem, 150=>Nonem, 200=>Nonem, 300=>Nonem
+landFactory: 1=>1.0m, 2=>4.0m, 5=>11.0m, 10=>17.0m, 20=>53.0m, 50=>Nonem, 100=>Nonem, 150=>Nonem, 200=>Nonem, 300=>Nonem
+heavyTank: 1=>2.0m, 2=>2.0m, 5=>3.0m, 10=>5.0m, 20=>8.0m, 50=>13.0m, 100=>28.0m, 150=>51.0m, 200=>56.0m, 300=>Nonem
+amphibiousJet: 1=>Nonem, 2=>Nonem, 5=>Nonem, 10=>Nonem, 20=>Nonem, 50=>Nonem, 100=>Nonem, 150=>Nonem, 200=>Nonem, 300=>Nonem
+extractorT1: 1=>Nonem, 2=>Nonem, 5=>Nonem, 10=>Nonem, 20=>Nonem, 50=>Nonem, 100=>Nonem, 150=>Nonem, 200=>Nonem, 300=>Nonem
+extractorT2: 1=>8.0m, 2=>9.0m, 5=>10.0m, 10=>11.0m, 20=>Nonem, 50=>Nonem, 100=>Nonem, 150=>Nonem, 200=>Nonem, 300=>Nonem
+extractorT3: 1=>25.0m, 2=>39.0m, 5=>44.0m, 10=>46.0m, 20=>Nonem, 50=>Nonem, 100=>Nonem, 150=>Nonem, 200=>Nonem, 300=>Nonem
+
+HUMAN PEAKS
+credits: 6185073.5 at 251.4
+effectiveIncome: 564 at 71.0
+totalUnits: 305 at 78.0
+mobileCombat: 231 at 92.0
+mobileMilitaryValue: 184800 at 92.0
+heavyTank: 231 at 92.0
+amphibiousJet: 0 at 0.0
+landFactory: 38 at 76.0
+builder: 27 at 175.0
+extractorT1: 0 at 0.0
+extractorT2: 18 at 34.0
+extractorT3: 18 at 49.0
+
+HUMAN COMBAT VALUE DELTAS
+  0- 10 min: mobileMil 0->22,400 (+22400), heavy 0->28, inc 18->146, credits 4000->235
+ 10- 20 min: mobileMil 22,400->54,400 (+32000), heavy 28->68, inc 146->210, credits 235->5250
+ 20- 30 min: mobileMil 54,400->77,600 (+23200), heavy 68->97, inc 210->226, credits 5250->1809
+ 30- 40 min: mobileMil 77,600->53,600 (-24000), heavy 97->67, inc 226->218, credits 1809->9264
+ 40- 50 min: mobileMil 53,600->112,000 (+58400), heavy 67->140, inc 218->428, credits 9264->7911
+ 50- 60 min: mobileMil 112,000->160,000 (+48000), heavy 140->200, inc 428->548, credits 7911->14122
+ 60- 70 min: mobileMil 160,000->89,600 (-70400), heavy 200->112, inc 548->540, credits 14122->2807
+ 70- 80 min: mobileMil 89,600->154,400 (+64800), heavy 112->193, inc 540->536, credits 2807->37484
+ 80- 90 min: mobileMil 154,400->156,800 (+2400), heavy 193->196, inc 536->418, credits 37484->128143
+ 90-100 min: mobileMil 156,800->184,000 (+27200), heavy 196->230, inc 418->448, credits 128143->426928
+100-110 min: mobileMil 184,000->184,000 (+0), heavy 230->230, inc 448->448, credits 426928->846943
+110-120 min: mobileMil 184,000->184,000 (+0), heavy 230->230, inc 448->448, credits 846943->1266928
+120-130 min: mobileMil 184,000->184,000 (+0), heavy 230->230, inc 448->448, credits 1266928->1686943
+130-140 min: mobileMil 184,000->184,000 (+0), heavy 230->230, inc 448->448, credits 1686943->2106446
+140-150 min: mobileMil 184,000->184,000 (+0), heavy 230->230, inc 448->448, credits 2106446->2501850
+150-160 min: mobileMil 184,000->184,000 (+0), heavy 230->230, inc 448->448, credits 2501850->2897051
+160-170 min: mobileMil 184,000->178,400 (-5600), heavy 230->223, inc 448->448, credits 2897051->3287536
+170-180 min: mobileMil 178,400->166,400 (-12000), heavy 223->208, inc 448->408, credits 3287536->3628946
+180-190 min: mobileMil 166,400->179,200 (+12800), heavy 208->224, inc 408->408, credits 3628946->3976067
+190-200 min: mobileMil 179,200->179,200 (+0), heavy 224->224, inc 408->408, credits 3976067->4336102
+200-210 min: mobileMil 179,200->179,200 (+0), heavy 224->224, inc 408->408, credits 4336102->4696122
+210-220 min: mobileMil 179,200->179,200 (+0), heavy 224->224, inc 408->408, credits 4696122->5056048

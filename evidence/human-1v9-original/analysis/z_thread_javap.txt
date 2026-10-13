@@ -1,0 +1,164 @@
+﻿Compiled from "SourceFile"
+public class com.corrodinggames.rts.gameFramework.z extends java.lang.Thread {
+  static int a;
+
+  public boolean b;
+
+  long c;
+
+  public synchronized strictfp void a(boolean);
+    Code:
+       0: aload_0
+       1: iload_1
+       2: putfield      #25                 // Field b:Z
+       5: return
+
+  public strictfp com.corrodinggames.rts.gameFramework.z();
+    Code:
+       0: aload_0
+       1: new           #9                  // class java/lang/StringBuilder
+       4: dup
+       5: invokespecial #33                 // Method java/lang/StringBuilder."<init>":()V
+       8: ldc           #2                  // String GameThread
+      10: invokevirtual #35                 // Method java/lang/StringBuilder.append:(Ljava/lang/String;)Ljava/lang/StringBuilder;
+      13: getstatic     #24                 // Field a:I
+      16: invokevirtual #34                 // Method java/lang/StringBuilder.append:(I)Ljava/lang/StringBuilder;
+      19: invokevirtual #36                 // Method java/lang/StringBuilder.toString:()Ljava/lang/String;
+      22: invokespecial #39                 // Method java/lang/Thread."<init>":(Ljava/lang/String;)V
+      25: aload_0
+      26: iconst_1
+      27: putfield      #25                 // Field b:Z
+      30: getstatic     #24                 // Field a:I
+      33: iconst_1
+      34: iadd
+      35: putstatic     #24                 // Field a:I
+      38: return
+
+  public strictfp void run();
+    Code:
+       0: invokestatic  #30                 // Method com/corrodinggames/rts/gameFramework/l.aq:()V
+       3: getstatic     #22                 // Field com/corrodinggames/rts/gameFramework/l.aU:Z
+       6: ifne          14
+       9: bipush        -4
+      11: invokestatic  #27                 // Method android/os/Process.setThreadPriority:(I)V
+      14: fconst_1
+      15: fstore_1
+      16: aload_0
+      17: invokevirtual #31                 // Method a:()V
+      20: aload_0
+      21: getfield      #26                 // Field c:J
+      24: lstore_2
+      25: invokestatic  #28                 // Method com/corrodinggames/rts/gameFramework/l.B:()Lcom/corrodinggames/rts/gameFramework/l;
+      28: astore        4
+      30: aload_0
+      31: getfield      #25                 // Field b:Z
+      34: ifeq          223
+      37: invokestatic  #38                 // Method java/lang/System.nanoTime:()J
+      40: lstore        5
+      42: aload_0
+      43: getfield      #26                 // Field c:J
+      46: lstore_2
+      47: aload_0
+      48: invokevirtual #31                 // Method a:()V
+      51: aload_0
+      52: getfield      #26                 // Field c:J
+      55: lload_2
+      56: lsub
+      57: l2f
+      58: ldc           #1                  // float 0.060000002f
+      60: fmul
+      61: fstore_1
+      62: aload_0
+      63: getfield      #26                 // Field c:J
+      66: lload_2
+      67: lsub
+      68: l2i
+      69: istore        7
+      71: aload         4
+      73: fload_1
+      74: iload         7
+      76: invokevirtual #29                 // Method com/corrodinggames/rts/gameFramework/l.a:(FI)V
+      79: aload         4
+      81: getfield      #23                 // Field com/corrodinggames/rts/gameFramework/l.bQ:Lcom/corrodinggames/rts/gameFramework/SettingsEngine;
+      84: getfield      #20                 // Field com/corrodinggames/rts/gameFramework/SettingsEngine.batterySaving:Z
+      87: ifne          90
+      90: aload         4
+      92: getfield      #23                 // Field com/corrodinggames/rts/gameFramework/l.bQ:Lcom/corrodinggames/rts/gameFramework/SettingsEngine;
+      95: getfield      #20                 // Field com/corrodinggames/rts/gameFramework/SettingsEngine.batterySaving:Z
+      98: ifeq          109
+     101: ldc2_w        #16                 // long 32258064l
+     104: lstore        8
+     106: goto          133
+     109: aload         4
+     111: getfield      #23                 // Field com/corrodinggames/rts/gameFramework/l.bQ:Lcom/corrodinggames/rts/gameFramework/SettingsEngine;
+     114: getfield      #21                 // Field com/corrodinggames/rts/gameFramework/SettingsEngine.highRefreshRate:Z
+     117: ifeq          128
+     120: ldc2_w        #12                 // long 3333333l
+     123: lstore        8
+     125: goto          133
+     128: ldc2_w        #14                 // long 16393442l
+     131: lstore        8
+     133: lload         8
+     135: invokestatic  #38                 // Method java/lang/System.nanoTime:()J
+     138: lload         5
+     140: lsub
+     141: lsub
+     142: l2f
+     143: invokestatic  #32                 // Method java/lang/Math.round:(F)I
+     146: i2l
+     147: lstore        10
+     149: lload         10
+     151: lconst_0
+     152: lcmp
+     153: ifle          220
+     156: invokestatic  #38                 // Method java/lang/System.nanoTime:()J
+     159: lstore        12
+     161: invokestatic  #38                 // Method java/lang/System.nanoTime:()J
+     164: lload         12
+     166: lsub
+     167: lstore        14
+     169: lload         14
+     171: lload         10
+     173: lcmp
+     174: ifgt          220
+     177: lload         14
+     179: lconst_0
+     180: lcmp
+     181: ifge          187
+     184: goto          220
+     187: lload         10
+     189: lload         14
+     191: lsub
+     192: l2d
+     193: ldc2_w        #18                 // double 1000000.0d
+     196: ddiv
+     197: d2l
+     198: lstore        16
+     200: lload         16
+     202: lconst_1
+     203: lcmp
+     204: ifle          220
+     207: lload         16
+     209: invokestatic  #40                 // Method java/lang/Thread.sleep:(J)V
+     212: goto          217
+     215: astore        18
+     217: goto          161
+     220: goto          30
+     223: return
+    Exception table:
+       from    to  target type
+         207   212   215   Class java/lang/Exception
+
+  public strictfp void a();
+    Code:
+       0: aload_0
+       1: invokestatic  #37                 // Method java/lang/System.currentTimeMillis:()J
+       4: putfield      #26                 // Field c:J
+       7: return
+
+  static strictfp {};
+    Code:
+       0: iconst_0
+       1: putstatic     #24                 // Field a:I
+       4: return
+}

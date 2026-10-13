@@ -1,0 +1,22 @@
+java.net.SocketTimeoutException: Connect timed out
+	at java.base/sun.nio.ch.NioSocketImpl.timedFinishConnect(NioSocketImpl.java:546)
+	at java.base/sun.nio.ch.NioSocketImpl.connect(NioSocketImpl.java:597)
+	at java.base/java.net.Socket.connect(Socket.java:585)
+	at java.base/sun.net.NetworkClient.doConnect(NetworkClient.java:177)
+	at java.base/sun.net.www.http.HttpClient.openServer(HttpClient.java:474)
+	at java.base/sun.net.www.http.HttpClient.openServer(HttpClient.java:569)
+	at java.base/sun.net.www.http.HttpClient.parseHTTP(HttpClient.java:709)
+	at java.base/sun.net.www.protocol.http.HttpURLConnection.getInputStream0(HttpURLConnection.java:1610)
+	at java.base/sun.net.www.protocol.http.HttpURLConnection.getInputStream(HttpURLConnection.java:1515)
+	at java.base/java.net.HttpURLConnection.getResponseCode(HttpURLConnection.java:527)
+	at io.rwagent.client.AgentClient.request(AgentClient.java:64)
+	at io.rwagent.client.RuntimeAcceleration.request(RuntimeAcceleration.java:32)
+	at io.rwagent.client.RuntimeAcceleration.fetch(RuntimeAcceleration.java:35)
+	at io.rwagent.client.BattleClient.optionalGet(BattleClient.java:5446)
+	at io.rwagent.client.BattleClient.optionalGet(BattleClient.java:5438)
+	at io.rwagent.client.BattleClient.get(BattleClient.java:5505)
+	at io.rwagent.client.BattleClient.observe(BattleClient.java:5155)
+	at io.rwagent.client.BattleClient.run(BattleClient.java:758)
+	at io.rwagent.client.BattleClient.main(BattleClient.java:683)
+FAIL / ONGOING: java.net.SocketTimeoutException: Connect timed out
+Report: G:\deepseek 工作台\游戏环境\RW-Agent-Octopus-G6-2026-10-12-R16\runs\20261012-025410-21228\rw-agent-reports\battle-1791744852268-66dbf0d2.jsonl.gz

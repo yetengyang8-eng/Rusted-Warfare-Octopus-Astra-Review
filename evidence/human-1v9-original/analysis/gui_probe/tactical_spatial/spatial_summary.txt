@@ -1,0 +1,218 @@
+source G:\deepseek 工作台\_analysis\human_1v9_20261012\gui_probe snapshots 373 threshold connected heavy distance=285; fronts considered distinct if centroid>=800 apart; major>=8 heavies
+All statistics are per-observation snapshots, not AI General assignments.
+== GAME 10.0 heavy 28 jets 0 enemy 509 AA turrets 57 major groups 0 independent fronts 0
+== GAME 20.04 heavy 67 jets 0 enemy 656 AA turrets 68 major groups 2 independent fronts 2
+   heavy_group 25 center 2179 2669 radius 175
+   heavy_group 21 center 6010 2514 radius 144
+== GAME 30.0 heavy 97 jets 0 enemy 624 AA turrets 64 major groups 4 independent fronts 3
+   heavy_group 40 center 2097 3308 radius 167
+   heavy_group 17 center 6081 2775 radius 273
+   heavy_group 11 center 3723 2327 radius 153
+   heavy_group 9 center 1552 3291 radius 154
+== GAME 40.05 heavy 67 jets 0 enemy 681 AA turrets 62 major groups 5 independent fronts 5
+   heavy_group 18 center 5947 3093 radius 292
+   heavy_group 18 center 1925 3078 radius 432
+   heavy_group 10 center 3362 2978 radius 134
+   heavy_group 9 center 5033 2809 radius 130
+   heavy_group 8 center 6960 152 radius 130
+== GAME 50.05 heavy 140 jets 0 enemy 738 AA turrets 64 major groups 5 independent fronts 4
+   heavy_group 83 center 6046 2587 radius 945
+   heavy_group 10 center 2820 3041 radius 269
+   heavy_group 9 center 3238 2740 radius 117
+   heavy_group 8 center 6556 198 radius 88
+   heavy_group 8 center 1510 3114 radius 118
+== GAME 60.06 heavy 199 jets 0 enemy 668 AA turrets 66 major groups 4 independent fronts 4
+   heavy_group 59 center 2020 3196 radius 769
+   heavy_group 44 center 5102 1861 radius 416
+   heavy_group 40 center 6022 3395 radius 449
+   heavy_group 18 center 6733 2118 radius 572
+== GAME 70.02 heavy 112 jets 0 enemy 618 AA turrets 54 major groups 3 independent fronts 3
+   heavy_group 49 center 2347 2680 radius 625
+   heavy_group 22 center 5928 4269 radius 250
+   heavy_group 11 center 4926 4200 radius 150
+== GAME 80.04 heavy 251 jets 0 enemy 595 AA turrets 53 major groups 6 independent fronts 5
+   heavy_group 150 center 3044 4160 radius 461
+   heavy_group 28 center 2249 2422 radius 233
+   heavy_group 12 center 5114 3770 radius 203
+   heavy_group 12 center 5776 1505 radius 222
+   heavy_group 8 center 4672 3134 radius 60
+   heavy_group 8 center 5202 2812 radius 281
+== GAME 90.02 heavy 114 jets 0 enemy 605 AA turrets 51 major groups 3 independent fronts 3
+   heavy_group 39 center 6070 3837 radius 523
+   heavy_group 34 center 1991 2742 radius 595
+   heavy_group 8 center 6499 380 radius 371
+== GAME 100.01 heavy 151 jets 0 enemy 632 AA turrets 53 major groups 5 independent fronts 4
+   heavy_group 46 center 2123 3413 radius 748
+   heavy_group 16 center 3220 3591 radius 476
+   heavy_group 11 center 6611 420 radius 615
+   heavy_group 9 center 2050 2539 radius 172
+   heavy_group 8 center 1637 3232 radius 86
+== GAME 110.05 heavy 230 jets 0 enemy 690 AA turrets 57 major groups 7 independent fronts 6
+   heavy_group 53 center 1959 3102 radius 430
+   heavy_group 28 center 4779 4205 radius 503
+   heavy_group 20 center 4001 3914 radius 172
+   heavy_group 18 center 5951 3836 radius 332
+   heavy_group 15 center 3428 3980 radius 303
+   heavy_group 15 center 2893 3916 radius 153
+   heavy_group 13 center 5041 2931 radius 400
+== GAME 120.0 heavy 200 jets 0 enemy 632 AA turrets 49 major groups 9 independent fronts 9
+   heavy_group 45 center 3868 3926 radius 725
+   heavy_group 16 center 1492 3231 radius 262
+   heavy_group 14 center 2590 4392 radius 151
+   heavy_group 13 center 5939 3946 radius 135
+   heavy_group 13 center 5025 4314 radius 113
+   heavy_group 11 center 6203 2210 radius 374
+   heavy_group 10 center 5350 2774 radius 451
+   heavy_group 9 center 2012 2544 radius 182
+== GAME 130.04 heavy 190 jets 0 enemy 496 AA turrets 43 major groups 6 independent fronts 6
+   heavy_group 36 center 3339 4660 radius 161
+   heavy_group 24 center 1794 3663 radius 400
+   heavy_group 21 center 2058 5347 radius 193
+   heavy_group 19 center 4179 4544 radius 216
+   heavy_group 10 center 5326 2777 radius 303
+   heavy_group 9 center 6291 2328 radius 349
+== GAME 140.0 heavy 189 jets 0 enemy 369 AA turrets 34 major groups 7 independent fronts 7
+   heavy_group 38 center 4946 4327 radius 529
+   heavy_group 21 center 2393 4774 radius 555
+   heavy_group 19 center 1968 5638 radius 285
+   heavy_group 18 center 3401 5016 radius 260
+   heavy_group 12 center 4867 1100 radius 133
+   heavy_group 12 center 1025 5737 radius 136
+   heavy_group 11 center 675 4793 radius 192
+== GAME 150.04 heavy 122 jets 0 enemy 302 AA turrets 26 major groups 4 independent fronts 3
+   heavy_group 22 center 3003 5002 radius 316
+   heavy_group 21 center 5080 4720 radius 128
+   heavy_group 18 center 3649 5315 radius 153
+   heavy_group 12 center 1175 1174 radius 212
+== GAME 160.03 heavy 147 jets 0 enemy 270 AA turrets 25 major groups 7 independent fronts 6
+   heavy_group 23 center 3782 3879 radius 157
+   heavy_group 21 center 1785 1766 radius 440
+   heavy_group 18 center 3076 5680 radius 311
+   heavy_group 17 center 5034 4183 radius 413
+   heavy_group 15 center 2887 1755 radius 74
+   heavy_group 12 center 2159 5266 radius 215
+   heavy_group 11 center 3555 4453 radius 200
+   per_enemy summary
+    slot 0 count 216 antiAirTurret 22 buildings 98 top [('antiAirTurretFlak', 10), ('c_turret_t3_gun', 9), ('hoverTank', 8), ('mechBunker', 8), ('c_antiAirTurretT3', 7)]
+    slot 4 count 52 antiAirTurret 3 buildings 14 top [('mechMissile', 7), ('gunShip', 5), ('scout', 4), ('dropship', 3), ('c_turret_t3_gun', 2)]
+    slot 8 count 2 antiAirTurret 0 buildings 1 top [('seaFactory', 1), ('battleShip', 1)]
+== GAME 165.04 heavy 201 jets 0 enemy 284 AA turrets 26 major groups 8 independent fronts 8
+   heavy_group 80 center 4364 4700 radius 695
+   heavy_group 17 center 3799 6129 radius 249
+   heavy_group 15 center 3518 1032 radius 561
+   heavy_group 13 center 3231 2360 radius 144
+   heavy_group 12 center 2528 5806 radius 299
+   heavy_group 11 center 6040 4146 radius 276
+   heavy_group 10 center 989 2017 radius 65
+   heavy_group 8 center 5909 246 radius 369
+   per_enemy summary
+    slot 0 count 219 antiAirTurret 22 buildings 98 top [('mechBunker', 14), ('antiAirTurretFlak', 12), ('c_antiAirTurretT3', 9), ('c_turret_t3_gun', 9), ('combatEngineer', 8)]
+    slot 4 count 63 antiAirTurret 4 buildings 16 top [('gunShip', 6), ('mechMissile', 5), ('scout', 5), ('heavyHoverTank', 4), ('c_tank', 3)]
+    slot 8 count 2 antiAirTurret 0 buildings 1 top [('seaFactory', 1), ('battleShip', 1)]
+== GAME 170.04 heavy 193 jets 8 enemy 271 AA turrets 19 major groups 6 independent fronts 5
+   heavy_group 80 center 4475 5392 radius 415
+   heavy_group 30 center 3447 6250 radius 414
+   heavy_group 24 center 5197 5303 radius 145
+   heavy_group 17 center 2241 4214 radius 538
+   heavy_group 13 center 6335 4072 radius 80
+   heavy_group 8 center 3140 2397 radius 201
+   per_enemy summary
+    slot 0 count 178 antiAirTurret 16 buildings 71 top [('c_turret_t3_gun', 9), ('c_antiAirTurretT3', 8), ('mechBunker', 8), ('mechLightning', 8), ('antiAirTurretFlak', 7)]
+    slot 4 count 91 antiAirTurret 3 buildings 15 top [('scout', 8), ('mechMissile', 5), ('gunShip', 5), ('lightSub', 5), ('missileShip', 5)]
+    slot 8 count 2 antiAirTurret 0 buildings 1 top [('seaFactory', 1), ('battleShip', 1)]
+   min_dist_to_antiAirTurret_by_jet median 1485 p10 1276 near600 0 of 8
+== GAME 175.03 heavy 156 jets 70 enemy 252 AA turrets 12 major groups 4 independent fronts 4
+   heavy_group 48 center 6585 4555 radius 138
+   heavy_group 48 center 5261 5474 radius 305
+   heavy_group 13 center 1132 1374 radius 280
+   heavy_group 9 center 4398 1735 radius 61
+   per_enemy summary
+    slot 0 count 174 antiAirTurret 9 buildings 53 top [('mechLightning', 11), ('mechBunker', 9), ('mechMinigun', 7), ('lightSub', 6), ('c_artillery', 6)]
+    slot 4 count 76 antiAirTurret 3 buildings 15 top [('scout', 6), ('gunShip', 5), ('lightSub', 5), ('mechMissile', 4), ('lightGunship', 3)]
+    slot 8 count 2 antiAirTurret 0 buildings 1 top [('seaFactory', 1), ('battleShip', 1)]
+   min_dist_to_antiAirTurret_by_jet median 710 p10 636 near600 0 of 70
+== GAME 180.03 heavy 166 jets 137 enemy 166 AA turrets 9 major groups 8 independent fronts 8
+   heavy_group 45 center 5945 5258 radius 564
+   heavy_group 15 center 1861 2805 radius 396
+   heavy_group 14 center 3395 6462 radius 361
+   heavy_group 13 center 1318 1333 radius 333
+   heavy_group 12 center 4730 4033 radius 252
+   heavy_group 11 center 1423 5425 radius 341
+   heavy_group 10 center 5770 3117 radius 225
+   heavy_group 8 center 4209 5703 radius 252
+   per_enemy summary
+    slot 0 count 159 antiAirTurret 9 buildings 53 top [('mechLightning', 9), ('mechBunker', 8), ('lightSub', 6), ('antiAirTurretFlak', 5), ('c_turret_t3_gun', 5)]
+    slot 4 count 6 antiAirTurret 0 buildings 1 top [('c_artillery', 1), ('mechGun', 1), ('missileTank', 1), ('heavyArtillery', 1), ('lightSub', 1)]
+    slot 8 count 1 antiAirTurret 0 buildings 1 top [('seaFactory', 1)]
+   min_dist_to_antiAirTurret_by_jet median 3099 p10 2843 near600 0 of 137
+== GAME 185.02 heavy 171 jets 129 enemy 25 AA turrets 0 major groups 9 independent fronts 9
+   heavy_group 44 center 5997 5218 radius 511
+   heavy_group 13 center 1389 1307 radius 436
+   heavy_group 12 center 4836 4014 radius 320
+   heavy_group 10 center 5771 3101 radius 240
+   heavy_group 10 center 1585 3308 radius 125
+   heavy_group 10 center 1790 5667 radius 363
+   heavy_group 10 center 1494 2219 radius 112
+   heavy_group 9 center 951 4004 radius 46
+   per_enemy summary
+    slot 0 count 23 antiAirTurret 0 buildings 2 top [('lightSub', 7), ('attackSubmarine', 6), ('heavySub', 3), ('mechFlame', 1), ('builder', 1)]
+    slot 4 count 1 antiAirTurret 0 buildings 0 top [('lightSub', 1)]
+    slot 8 count 1 antiAirTurret 0 buildings 1 top [('seaFactory', 1)]
+== GAME 186.05 heavy 235 jets 139 enemy 20 AA turrets 0 major groups 13 independent fronts 11
+   heavy_group 44 center 5956 5244 radius 548
+   heavy_group 20 center 4031 3663 radius 621
+   heavy_group 15 center 5963 1911 radius 421
+   heavy_group 13 center 1307 1154 radius 443
+   heavy_group 13 center 2838 5136 radius 241
+   heavy_group 12 center 4804 4014 radius 205
+   heavy_group 12 center 2112 5115 radius 244
+   heavy_group 11 center 1608 5551 radius 310
+   per_enemy summary
+    slot 0 count 19 antiAirTurret 0 buildings 0 top [('lightSub', 6), ('attackSubmarine', 6), ('heavySub', 3), ('mechFlame', 1), ('mechLightning', 1)]
+    slot 8 count 1 antiAirTurret 0 buildings 1 top [('seaFactory', 1)]
+==MULTIFRONT COUNTS
+0-30: n=45 >=2fronts=34 >=3fronts=10 median_heavy=65
+30-60: n=60 >=2fronts=60 >=3fronts=58 median_heavy=91.5
+60-90: n=60 >=2fronts=60 >=3fronts=57 median_heavy=134.0
+90-120: n=60 >=2fronts=60 >=3fronts=59 median_heavy=186.5
+120-150: n=60 >=2fronts=60 >=3fronts=59 median_heavy=165.0
+150-165: n=30 >=2fronts=30 >=3fronts=30 median_heavy=155.0
+165-186.2: n=43 >=2fronts=43 >=3fronts=43 median_heavy=176
+==HEAVY 5 MINUTE FLOW: new unit IDs, absent IDs, stock
+   0.0->   5.0 stock   0-> 11 new= 11 absent=  0 overlap=  0
+   5.0->  10.0 stock  11-> 28 new= 22 absent=  5 overlap=  6
+  10.0->  15.0 stock  28-> 66 new= 51 absent= 13 overlap= 15
+  15.0->  20.0 stock  66-> 67 new= 53 absent= 52 overlap= 14
+  20.0->  25.0 stock  67-> 83 new= 60 absent= 44 overlap= 23
+  25.0->  30.0 stock  83-> 97 new= 70 absent= 56 overlap= 27
+  30.0->  35.0 stock  97-> 71 new= 55 absent= 81 overlap= 16
+  35.0->  40.0 stock  71-> 67 new= 47 absent= 51 overlap= 20
+  40.0->  45.0 stock  67-> 66 new= 52 absent= 53 overlap= 14
+  45.0->  50.0 stock  66->140 new= 88 absent= 14 overlap= 52
+  50.0->  55.0 stock 140->178 new= 89 absent= 51 overlap= 89
+  55.0->  60.1 stock 178->199 new=152 absent=131 overlap= 47
+  60.1->  65.0 stock 199->131 new=124 absent=192 overlap=  7
+  65.0->  70.0 stock 131->112 new= 96 absent=115 overlap= 16
+  70.0->  75.0 stock 112->162 new=152 absent=102 overlap= 10
+  75.0->  80.0 stock 162->251 new=165 absent= 76 overlap= 86
+  80.0->  85.0 stock 251->136 new=108 absent=223 overlap= 28
+  85.0->  90.0 stock 136->114 new= 93 absent=115 overlap= 21
+  90.0->  95.0 stock 114->176 new=114 absent= 52 overlap= 62
+  95.0-> 100.0 stock 176->151 new=102 absent=127 overlap= 49
+ 100.0-> 105.0 stock 151->146 new= 94 absent= 99 overlap= 52
+ 105.0-> 110.0 stock 146->230 new=180 absent= 96 overlap= 50
+ 110.0-> 115.0 stock 230->249 new=169 absent=150 overlap= 80
+ 115.0-> 120.0 stock 249->200 new=124 absent=173 overlap= 76
+ 120.0-> 125.0 stock 200->234 new=157 absent=123 overlap= 77
+ 125.0-> 130.0 stock 234->190 new=137 absent=181 overlap= 53
+ 130.0-> 135.0 stock 190->148 new= 99 absent=141 overlap= 49
+ 135.0-> 140.0 stock 148->189 new=151 absent=110 overlap= 38
+ 140.0-> 145.0 stock 189-> 96 new= 56 absent=149 overlap= 40
+ 145.0-> 150.0 stock  96->122 new= 92 absent= 66 overlap= 30
+ 150.0-> 155.0 stock 122->169 new=126 absent= 79 overlap= 43
+ 155.0-> 160.0 stock 169->147 new=133 absent=155 overlap= 14
+ 160.0-> 165.0 stock 147->201 new=155 absent=101 overlap= 46
+ 165.0-> 170.0 stock 201->193 new=166 absent=174 overlap= 27
+ 170.0-> 175.0 stock 193->156 new=102 absent=139 overlap= 54
+ 175.0-> 180.0 stock 156->166 new= 40 absent= 30 overlap=126
+ 180.0-> 185.0 stock 166->171 new= 19 absent= 14 overlap=152

@@ -1,0 +1,58 @@
+Observations are consecutive 30second snapshots, repeat exposures of same jet NOT independent. Distance to building containing "antiAir" in its type is a LOWER-BOUND proxy of AA threat. Unknown AA mobile not included. Missing unit IDs no longer present anywhere on next snapshot.
+nearest-AA          <350 exposures=  286 lostNextSample=  56 fraction= 19.6% nearestEnemy<=650=  286 lostWithEnemyNear=56
+nearest-AA       350-649 exposures=  326 lostNextSample=  51 fraction= 15.6% nearestEnemy<=650=  326 lostWithEnemyNear=51
+nearest-AA      650-1199 exposures=  479 lostNextSample=  69 fraction= 14.4% nearestEnemy<=650=  340 lostWithEnemyNear=65
+nearest-AA     1200-2399 exposures=  875 lostNextSample=  20 fraction=  2.3% nearestEnemy<=650=  323 lostWithEnemyNear=8
+nearest-AA        >=2400 exposures=  686 lostNextSample=   8 fraction=  1.2% nearestEnemy<=650=  162 lostWithEnemyNear=8
+nearest-AA no AA building exposures=  260 lostNextSample=   0 fraction=  0.0% nearestEnemy<=650=   93 lostWithEnemyNear=0
+AA disappearance context Counter({'aa_disappeared': 49, 'heavy_near650': 37, 'jet_near650': 16, 'both_near650': 7})
+AA disappearance examples first 60
+{'minute': 165.04, 'slot': 4, 'type': 'c_antiAirTurret', 'pos': (3560, 2140), 'jet': None, 'heavy': 338}
+{'minute': 165.53, 'slot': 0, 'type': 'c_antiAirTurretT3', 'pos': (5180, 5360), 'jet': None, 'heavy': 241}
+{'minute': 165.53, 'slot': 0, 'type': 'antiAirTurretFlak', 'pos': (5440, 5300), 'jet': None, 'heavy': 496}
+{'minute': 166.02, 'slot': 0, 'type': 'antiAirTurretFlak', 'pos': (5480, 5180), 'jet': None, 'heavy': 210}
+{'minute': 166.51, 'slot': 0, 'type': 'c_antiAirTurret', 'pos': (3760, 6500), 'jet': None, 'heavy': 263}
+{'minute': 167.05, 'slot': 0, 'type': 'antiAirTurretFlak', 'pos': (5800, 5440), 'jet': None, 'heavy': 382}
+{'minute': 168.52, 'slot': 0, 'type': 'c_antiAirTurretT3', 'pos': (4480, 5580), 'jet': None, 'heavy': 455}
+{'minute': 168.52, 'slot': 0, 'type': 'antiAirTurretFlak', 'pos': (4300, 5620), 'jet': None, 'heavy': 360}
+{'minute': 168.52, 'slot': 0, 'type': 'antiAirTurretFlak', 'pos': (4280, 5520), 'jet': None, 'heavy': 283}
+{'minute': 168.52, 'slot': 4, 'type': 'c_antiAirTurret', 'pos': (6120, 2760), 'jet': None, 'heavy': 144}
+{'minute': 170.04, 'slot': 0, 'type': 'c_antiAirTurretT3', 'pos': (5900, 5440), 'jet': 3136, 'heavy': 638}
+{'minute': 170.57, 'slot': 0, 'type': 'antiAirTurretFlak', 'pos': (6020, 5320), 'jet': 3228, 'heavy': 175}
+{'minute': 170.57, 'slot': 0, 'type': 'c_antiAirTurretT2', 'pos': (6040, 5480), 'jet': 3282, 'heavy': 219}
+{'minute': 170.57, 'slot': 4, 'type': 'c_antiAirTurret', 'pos': (4120, 3600), 'jet': 1687, 'heavy': 458}
+{'minute': 171.0, 'slot': 0, 'type': 'antiAirTurretFlak', 'pos': (5920, 4960), 'jet': 2911, 'heavy': 178}
+{'minute': 171.55, 'slot': 0, 'type': 'c_antiAirTurret', 'pos': (5200, 3940), 'jet': 2181, 'heavy': 204}
+{'minute': 172.03, 'slot': 0, 'type': 'c_antiAirTurret', 'pos': (5360, 4240), 'jet': 2607, 'heavy': 143}
+{'minute': 172.03, 'slot': 0, 'type': 'c_antiAirTurretT2', 'pos': (5400, 4380), 'jet': 2642, 'heavy': 217}
+{'minute': 172.52, 'slot': 0, 'type': 'c_antiAirTurretT3', 'pos': (6120, 5060), 'jet': 3152, 'heavy': 224}
+{'minute': 172.52, 'slot': 0, 'type': 'c_antiAirTurretT3', 'pos': (5940, 4800), 'jet': 2952, 'heavy': 93}
+{'minute': 172.52, 'slot': 4, 'type': 'c_antiAirTurret', 'pos': (3620, 3760), 'jet': 990, 'heavy': 700}
+{'minute': 173.01, 'slot': 0, 'type': 'c_antiAirTurret', 'pos': (5300, 5560), 'jet': 1669, 'heavy': 278}
+{'minute': 174.05, 'slot': 0, 'type': 'c_antiAirTurret', 'pos': (5840, 5360), 'jet': 445, 'heavy': 192}
+{'minute': 174.05, 'slot': 0, 'type': 'c_antiAirTurret', 'pos': (6100, 5280), 'jet': 589, 'heavy': 83}
+{'minute': 174.05, 'slot': 0, 'type': 'c_antiAirTurret', 'pos': (5940, 5380), 'jet': 439, 'heavy': 153}
+{'minute': 174.05, 'slot': 0, 'type': 'c_antiAirTurret', 'pos': (920, 4520), 'jet': 396, 'heavy': 1600}
+{'minute': 174.54, 'slot': 0, 'type': 'c_antiAirTurretT3', 'pos': (1360, 3900), 'jet': 1272, 'heavy': 100}
+{'minute': 176.55, 'slot': 0, 'type': 'c_antiAirTurret', 'pos': (3600, 6440), 'jet': 1847, 'heavy': 428}
+{'minute': 176.55, 'slot': 0, 'type': 'c_antiAirTurret', 'pos': (4380, 5460), 'jet': 1497, 'heavy': 187}
+{'minute': 177.04, 'slot': 0, 'type': 'c_antiAirTurret', 'pos': (3520, 6260), 'jet': 1562, 'heavy': 187}
+{'minute': 177.04, 'slot': 0, 'type': 'c_antiAirTurret', 'pos': (4600, 5560), 'jet': 1742, 'heavy': 61}
+{'minute': 177.04, 'slot': 0, 'type': 'c_antiAirTurret', 'pos': (3560, 6620), 'jet': 1907, 'heavy': 247}
+{'minute': 178.02, 'slot': 0, 'type': 'c_antiAirTurret', 'pos': (6060, 5280), 'jet': 1803, 'heavy': 187}
+{'minute': 178.02, 'slot': 0, 'type': 'c_antiAirTurret', 'pos': (6180, 5240), 'jet': 1677, 'heavy': 298}
+{'minute': 178.51, 'slot': 0, 'type': 'c_antiAirTurretT2', 'pos': (6140, 5380), 'jet': 309, 'heavy': 127}
+{'minute': 179.05, 'slot': 4, 'type': 'c_antiAirTurretT3', 'pos': (7860, 3860), 'jet': 633, 'heavy': 1542}
+{'minute': 179.05, 'slot': 4, 'type': 'c_antiAirTurretT2', 'pos': (7800, 3960), 'jet': 517, 'heavy': 1470}
+{'minute': 179.05, 'slot': 4, 'type': 'c_antiAirTurretT2', 'pos': (7740, 3980), 'jet': 470, 'heavy': 1408}
+{'minute': 179.54, 'slot': 4, 'type': 'c_antiAirTurret', 'pos': (5840, 3280), 'jet': 1509, 'heavy': 310}
+{'minute': 181.01, 'slot': 0, 'type': 'antiAirTurretFlak', 'pos': (7520, 7140), 'jet': 865, 'heavy': 2278}
+{'minute': 181.01, 'slot': 0, 'type': 'c_antiAirTurretT3', 'pos': (7740, 6840), 'jet': 580, 'heavy': 2237}
+{'minute': 181.5, 'slot': 0, 'type': 'antiAirTurretFlak', 'pos': (7560, 7320), 'jet': 134, 'heavy': 2465}
+{'minute': 182.04, 'slot': 0, 'type': 'antiAirTurretFlak', 'pos': (6480, 7300), 'jet': 204, 'heavy': 1902}
+{'minute': 182.04, 'slot': 0, 'type': 'c_antiAirTurretT3', 'pos': (6640, 7300), 'jet': 115, 'heavy': 1950}
+{'minute': 182.04, 'slot': 0, 'type': 'antiAirTurretFlak', 'pos': (6860, 7340), 'jet': 55, 'heavy': 2071}
+{'minute': 184.05, 'slot': 0, 'type': 'c_antiAirTurretT3', 'pos': (3440, 7360), 'jet': 493, 'heavy': 576}
+{'minute': 184.05, 'slot': 0, 'type': 'c_antiAirTurretT3', 'pos': (3460, 7280), 'jet': 411, 'heavy': 493}
+{'minute': 184.54, 'slot': 0, 'type': 'antiAirTurretFlak', 'pos': (3240, 7320), 'jet': 99, 'heavy': 436}
+{'minute': 184.54, 'slot': 0, 'type': 'c_antiAirTurret', 'pos': (7800, 7180), 'jet': 2083, 'heavy': 2522}

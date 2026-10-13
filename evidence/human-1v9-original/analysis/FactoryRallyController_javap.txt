@@ -1,0 +1,589 @@
+﻿Compiled from "FactoryRallyController.java"
+public final class rw.camerafollow.FactoryRallyController {
+  private static final java.util.Map<com.corrodinggames.rts.game.units.y, rw.camerafollow.FactoryRallyController$Birth> pending;
+
+  private static com.corrodinggames.rts.gameFramework.l session;
+
+  private static java.lang.Object map;
+
+  private static com.corrodinggames.rts.game.n player;
+
+  private static int lastFrame;
+
+  private static java.lang.reflect.Field factoryField;
+
+  private static java.lang.reflect.Field rallyField;
+
+  private static java.lang.reflect.Field commandUnits;
+
+  private static boolean warned;
+
+  private rw.camerafollow.FactoryRallyController();
+    Code:
+       0: aload_0
+       1: invokespecial #1                  // Method java/lang/Object."<init>":()V
+       4: return
+
+  public static void toggle();
+    Code:
+       0: ldc           #7                  // String gameplay.factoryRally
+       2: getstatic     #9                  // Field rw/camerafollow/OverlaySettings.factoryRally:Z
+       5: ifne          12
+       8: iconst_1
+       9: goto          13
+      12: iconst_0
+      13: invokestatic  #15                 // Method java/lang/Boolean.toString:(Z)Ljava/lang/String;
+      16: invokestatic  #21                 // Method rw/camerafollow/OverlaySettings.save:(Ljava/lang/String;Ljava/lang/String;)Z
+      19: ifeq          80
+      22: getstatic     #25                 // Field pending:Ljava/util/Map;
+      25: invokeinterface #31,  1           // InterfaceMethod java/util/Map.clear:()V
+      30: getstatic     #9                  // Field rw/camerafollow/OverlaySettings.factoryRally:Z
+      33: ifeq          41
+      36: ldc           #36                 // String 穿厂已开启：之后新生产的本方单位自动向集结点移动。
+      38: goto          43
+      41: ldc           #38                 // String 穿厂已关闭：之后出厂沿用原版路线，已发出的移动指令保留。
+      43: invokestatic  #40                 // Method rw/camerafollow/ToolSettingsPanel.message:(Ljava/lang/String;)V
+      46: new           #46                 // class java/lang/StringBuilder
+      49: dup
+      50: invokespecial #48                 // Method java/lang/StringBuilder."<init>":()V
+      53: ldc           #49                 // String Factory rally
+      55: invokevirtual #51                 // Method java/lang/StringBuilder.append:(Ljava/lang/String;)Ljava/lang/StringBuilder;
+      58: getstatic     #9                  // Field rw/camerafollow/OverlaySettings.factoryRally:Z
+      61: ifeq          69
+      64: ldc           #55                 // String enabled
+      66: goto          71
+      69: ldc           #57                 // String disabled
+      71: invokevirtual #51                 // Method java/lang/StringBuilder.append:(Ljava/lang/String;)Ljava/lang/StringBuilder;
+      74: invokevirtual #59                 // Method java/lang/StringBuilder.toString:()Ljava/lang/String;
+      77: invokestatic  #62                 // Method rw/camerafollow/AgentLog.info:(Ljava/lang/String;)V
+      80: return
+
+  public static java.lang.String label();
+    Code:
+       0: new           #46                 // class java/lang/StringBuilder
+       3: dup
+       4: invokespecial #48                 // Method java/lang/StringBuilder."<init>":()V
+       7: ldc           #67                 // String 集结点穿厂：
+       9: invokevirtual #51                 // Method java/lang/StringBuilder.append:(Ljava/lang/String;)Ljava/lang/StringBuilder;
+      12: getstatic     #9                  // Field rw/camerafollow/OverlaySettings.factoryRally:Z
+      15: ifeq          23
+      18: ldc           #69                 // String 开
+      20: goto          25
+      23: ldc           #71                 // String 关
+      25: invokevirtual #51                 // Method java/lang/StringBuilder.append:(Ljava/lang/String;)Ljava/lang/StringBuilder;
+      28: invokevirtual #59                 // Method java/lang/StringBuilder.toString:()Ljava/lang/String;
+      31: areturn
+
+  public static java.lang.String description();
+    Code:
+       0: ldc           #73                 // String 开启后，新单位直接向首个集结点穿厂，再依次执行后续集结点。关闭时沿用原版出口。高延迟、慢速或大型单位仍可能受原版碰撞时限影响；回放与观战不自动下令。
+       2: areturn
+
+  static void reset();
+    Code:
+       0: getstatic     #25                 // Field pending:Ljava/util/Map;
+       3: invokeinterface #31,  1           // InterfaceMethod java/util/Map.clear:()V
+       8: invokestatic  #75                 // Method rw/camerafollow/FactoryRouteController.reset:()V
+      11: aconst_null
+      12: putstatic     #80                 // Field session:Lcom/corrodinggames/rts/gameFramework/l;
+      15: aconst_null
+      16: putstatic     #84                 // Field map:Ljava/lang/Object;
+      19: aconst_null
+      20: putstatic     #88                 // Field player:Lcom/corrodinggames/rts/game/n;
+      23: iconst_m1
+      24: putstatic     #92                 // Field lastFrame:I
+      27: return
+
+  static com.corrodinggames.rts.game.n local(com.corrodinggames.rts.gameFramework.l);
+    Code:
+       0: aload_0
+       1: getfield      #96                 // Field com/corrodinggames/rts/gameFramework/l.bX:Lcom/corrodinggames/rts/gameFramework/j/ad;
+       4: ifnull        27
+       7: aload_0
+       8: getfield      #96                 // Field com/corrodinggames/rts/gameFramework/l.bX:Lcom/corrodinggames/rts/gameFramework/j/ad;
+      11: getfield      #102                // Field com/corrodinggames/rts/gameFramework/j/ad.z:Lcom/corrodinggames/rts/game/n;
+      14: ifnull        27
+      17: aload_0
+      18: getfield      #96                 // Field com/corrodinggames/rts/gameFramework/l.bX:Lcom/corrodinggames/rts/gameFramework/j/ad;
+      21: getfield      #102                // Field com/corrodinggames/rts/gameFramework/j/ad.z:Lcom/corrodinggames/rts/game/n;
+      24: goto          31
+      27: aload_0
+      28: getfield      #107                // Field com/corrodinggames/rts/gameFramework/l.bs:Lcom/corrodinggames/rts/game/n;
+      31: areturn
+
+  static boolean context(com.corrodinggames.rts.gameFramework.l);
+    Code:
+       0: aload_0
+       1: ifnull        49
+       4: aload_0
+       5: getfield      #110                // Field com/corrodinggames/rts/gameFramework/l.bL:Lcom/corrodinggames/rts/game/b/b;
+       8: ifnull        49
+      11: aload_0
+      12: getfield      #114                // Field com/corrodinggames/rts/gameFramework/l.bv:Z
+      15: ifne          49
+      18: aload_0
+      19: getfield      #117                // Field com/corrodinggames/rts/gameFramework/l.cf:Lcom/corrodinggames/rts/gameFramework/c;
+      22: ifnull        49
+      25: aload_0
+      26: getfield      #96                 // Field com/corrodinggames/rts/gameFramework/l.bX:Lcom/corrodinggames/rts/gameFramework/j/ad;
+      29: ifnull        49
+      32: aload_0
+      33: getfield      #121                // Field com/corrodinggames/rts/gameFramework/l.cb:Lcom/corrodinggames/rts/gameFramework/ba;
+      36: ifnull        49
+      39: aload_0
+      40: getfield      #121                // Field com/corrodinggames/rts/gameFramework/l.cb:Lcom/corrodinggames/rts/gameFramework/ba;
+      43: invokevirtual #125                // Method com/corrodinggames/rts/gameFramework/ba.j:()Z
+      46: ifeq          54
+      49: invokestatic  #131                // Method reset:()V
+      52: iconst_0
+      53: ireturn
+      54: aload_0
+      55: invokestatic  #132                // Method local:(Lcom/corrodinggames/rts/gameFramework/l;)Lcom/corrodinggames/rts/game/n;
+      58: astore_1
+      59: aload_1
+      60: ifnull        105
+      63: aload_1
+      64: getfield      #136                // Field com/corrodinggames/rts/game/n.k:I
+      67: iflt          105
+      70: aload_1
+      71: invokevirtual #141                // Method com/corrodinggames/rts/game/n.b:()Z
+      74: ifne          105
+      77: aload_1
+      78: getfield      #144                // Field com/corrodinggames/rts/game/n.r:I
+      81: iflt          105
+      84: aload_1
+      85: getfield      #147                // Field com/corrodinggames/rts/game/n.w:Z
+      88: ifne          105
+      91: aload_1
+      92: getfield      #150                // Field com/corrodinggames/rts/game/n.F:Z
+      95: ifne          105
+      98: aload_1
+      99: getfield      #153                // Field com/corrodinggames/rts/game/n.G:Z
+     102: ifeq          110
+     105: invokestatic  #131                // Method reset:()V
+     108: iconst_0
+     109: ireturn
+     110: getstatic     #80                 // Field session:Lcom/corrodinggames/rts/gameFramework/l;
+     113: aload_0
+     114: if_acmpne     144
+     117: getstatic     #84                 // Field map:Ljava/lang/Object;
+     120: aload_0
+     121: getfield      #110                // Field com/corrodinggames/rts/gameFramework/l.bL:Lcom/corrodinggames/rts/game/b/b;
+     124: if_acmpne     144
+     127: getstatic     #88                 // Field player:Lcom/corrodinggames/rts/game/n;
+     130: aload_1
+     131: if_acmpne     144
+     134: aload_0
+     135: getfield      #156                // Field com/corrodinggames/rts/gameFramework/l.bx:I
+     138: getstatic     #92                 // Field lastFrame:I
+     141: if_icmpge     162
+     144: invokestatic  #131                // Method reset:()V
+     147: aload_0
+     148: putstatic     #80                 // Field session:Lcom/corrodinggames/rts/gameFramework/l;
+     151: aload_0
+     152: getfield      #110                // Field com/corrodinggames/rts/gameFramework/l.bL:Lcom/corrodinggames/rts/game/b/b;
+     155: putstatic     #84                 // Field map:Ljava/lang/Object;
+     158: aload_1
+     159: putstatic     #88                 // Field player:Lcom/corrodinggames/rts/game/n;
+     162: aload_0
+     163: getfield      #156                // Field com/corrodinggames/rts/gameFramework/l.bx:I
+     166: putstatic     #92                 // Field lastFrame:I
+     169: iconst_1
+     170: ireturn
+
+  public static void afterExitOrders(java.lang.Object, com.corrodinggames.rts.game.units.am);
+    Code:
+       0: getstatic     #9                  // Field rw/camerafollow/OverlaySettings.factoryRally:Z
+       3: ifne          13
+       6: getstatic     #159                // Field rw/camerafollow/OverlaySettings.factoryRoute:Z
+       9: ifne          13
+      12: return
+      13: invokestatic  #162                // Method com/corrodinggames/rts/gameFramework/l.B:()Lcom/corrodinggames/rts/gameFramework/l;
+      16: astore_2
+      17: aload_2
+      18: invokestatic  #166                // Method context:(Lcom/corrodinggames/rts/gameFramework/l;)Z
+      21: ifeq          38
+      24: aload_1
+      25: instanceof    #170                // class com/corrodinggames/rts/game/units/y
+      28: ifeq          38
+      31: aload_1
+      32: getfield      #172                // Field com/corrodinggames/rts/game/units/am.bY:Z
+      35: ifeq          39
+      38: return
+      39: getstatic     #177                // Field factoryField:Ljava/lang/reflect/Field;
+      42: ifnonnull     93
+      45: ldc           #181                // String com.corrodinggames.rts.game.units.d.k
+      47: invokestatic  #183                // Method java/lang/Class.forName:(Ljava/lang/String;)Ljava/lang/Class;
+      50: astore_3
+      51: aload_3
+      52: ldc           #189                // String a
+      54: invokevirtual #191                // Method java/lang/Class.getDeclaredField:(Ljava/lang/String;)Ljava/lang/reflect/Field;
+      57: putstatic     #177                // Field factoryField:Ljava/lang/reflect/Field;
+      60: getstatic     #177                // Field factoryField:Ljava/lang/reflect/Field;
+      63: iconst_1
+      64: invokevirtual #195                // Method java/lang/reflect/Field.setAccessible:(Z)V
+      67: aload_3
+      68: ldc           #201                // String b
+      70: invokevirtual #202                // Method java/lang/Class.getField:(Ljava/lang/String;)Ljava/lang/reflect/Field;
+      73: putstatic     #205                // Field rallyField:Ljava/lang/reflect/Field;
+      76: ldc           #208                // class com/corrodinggames/rts/gameFramework/e
+      78: ldc           #210                // String v
+      80: invokevirtual #191                // Method java/lang/Class.getDeclaredField:(Ljava/lang/String;)Ljava/lang/reflect/Field;
+      83: putstatic     #212                // Field commandUnits:Ljava/lang/reflect/Field;
+      86: getstatic     #212                // Field commandUnits:Ljava/lang/reflect/Field;
+      89: iconst_1
+      90: invokevirtual #195                // Method java/lang/reflect/Field.setAccessible:(Z)V
+      93: getstatic     #177                // Field factoryField:Ljava/lang/reflect/Field;
+      96: aload_0
+      97: invokevirtual #215                // Method java/lang/reflect/Field.get:(Ljava/lang/Object;)Ljava/lang/Object;
+     100: checkcast     #170                // class com/corrodinggames/rts/game/units/y
+     103: astore_3
+     104: aload_1
+     105: checkcast     #170                // class com/corrodinggames/rts/game/units/y
+     108: astore        4
+     110: aload_3
+     111: ifnull        175
+     114: aload_3
+     115: invokevirtual #219                // Method com/corrodinggames/rts/game/units/y.bI:()Z
+     118: ifeq          175
+     121: aload_3
+     122: getfield      #222                // Field com/corrodinggames/rts/game/units/y.bX:Lcom/corrodinggames/rts/game/n;
+     125: getstatic     #88                 // Field player:Lcom/corrodinggames/rts/game/n;
+     128: if_acmpne     175
+     131: aload         4
+     133: getfield      #222                // Field com/corrodinggames/rts/game/units/y.bX:Lcom/corrodinggames/rts/game/n;
+     136: getstatic     #88                 // Field player:Lcom/corrodinggames/rts/game/n;
+     139: if_acmpne     175
+     142: aload         4
+     144: getfield      #224                // Field com/corrodinggames/rts/game/units/y.bu:Lcom/corrodinggames/rts/game/units/am;
+     147: aload_3
+     148: if_acmpne     175
+     151: aload         4
+     153: invokestatic  #228                // Method usable:(Lcom/corrodinggames/rts/game/units/y;)Z
+     156: ifeq          175
+     159: aload         4
+     161: invokevirtual #219                // Method com/corrodinggames/rts/game/units/y.bI:()Z
+     164: ifne          175
+     167: aload         4
+     169: invokevirtual #232                // Method com/corrodinggames/rts/game/units/y.cW:()Z
+     172: ifeq          176
+     175: return
+     176: getstatic     #205                // Field rallyField:Ljava/lang/reflect/Field;
+     179: aload_0
+     180: invokevirtual #215                // Method java/lang/reflect/Field.get:(Ljava/lang/Object;)Ljava/lang/Object;
+     183: checkcast     #235                // class android/graphics/PointF
+     186: astore        5
+     188: aload         5
+     190: invokestatic  #237                // Method rw/camerafollow/FactoryRouteController.finite:(Landroid/graphics/PointF;)Z
+     193: ifne          197
+     196: return
+     197: aload_3
+     198: aload         5
+     200: invokestatic  #241                // Method rw/camerafollow/FactoryRouteController.snapshot:(Lcom/corrodinggames/rts/game/units/y;Landroid/graphics/PointF;)Ljava/util/List;
+     203: astore        6
+     205: getstatic     #9                  // Field rw/camerafollow/OverlaySettings.factoryRally:Z
+     208: ifne          223
+     211: aload         6
+     213: invokeinterface #245,  1          // InterfaceMethod java/util/List.size:()I
+     218: iconst_2
+     219: if_icmpge     223
+     222: return
+     223: getstatic     #25                 // Field pending:Ljava/util/Map;
+     226: aload         4
+     228: invokeinterface #251,  2          // InterfaceMethod java/util/Map.containsKey:(Ljava/lang/Object;)Z
+     233: ifne          275
+     236: getstatic     #25                 // Field pending:Ljava/util/Map;
+     239: invokeinterface #255,  1          // InterfaceMethod java/util/Map.size:()I
+     244: sipush        4096
+     247: if_icmpge     275
+     250: getstatic     #25                 // Field pending:Ljava/util/Map;
+     253: aload         4
+     255: new           #256                // class rw/camerafollow/FactoryRallyController$Birth
+     258: dup
+     259: aload         4
+     261: aload_3
+     262: aload         5
+     264: aload         6
+     266: invokespecial #258                // Method rw/camerafollow/FactoryRallyController$Birth."<init>":(Lcom/corrodinggames/rts/game/units/y;Lcom/corrodinggames/rts/game/units/y;Landroid/graphics/PointF;Ljava/util/List;)V
+     269: invokeinterface #261,  3          // InterfaceMethod java/util/Map.put:(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
+     274: pop
+     275: goto          283
+     278: astore_2
+     279: aload_2
+     280: invokestatic  #267                // Method fail:(Ljava/lang/Throwable;)V
+     283: return
+    Exception table:
+       from    to  target type
+          13    38   278   Class java/lang/Throwable
+          39   175   278   Class java/lang/Throwable
+         176   196   278   Class java/lang/Throwable
+         197   222   278   Class java/lang/Throwable
+         223   275   278   Class java/lang/Throwable
+
+  static void flush();
+    Code:
+       0: invokestatic  #162                // Method com/corrodinggames/rts/gameFramework/l.B:()Lcom/corrodinggames/rts/gameFramework/l;
+       3: astore_0
+       4: aload_0
+       5: invokestatic  #166                // Method context:(Lcom/corrodinggames/rts/gameFramework/l;)Z
+       8: ifne          12
+      11: return
+      12: invokestatic  #271                // Method rw/camerafollow/FactoryRouteController.prune:()V
+      15: getstatic     #25                 // Field pending:Ljava/util/Map;
+      18: invokeinterface #274,  1          // InterfaceMethod java/util/Map.isEmpty:()Z
+      23: ifeq          27
+      26: return
+      27: new           #277                // class java/util/ArrayList
+      30: dup
+      31: getstatic     #25                 // Field pending:Ljava/util/Map;
+      34: invokeinterface #279,  1          // InterfaceMethod java/util/Map.values:()Ljava/util/Collection;
+      39: invokespecial #283                // Method java/util/ArrayList."<init>":(Ljava/util/Collection;)V
+      42: astore_1
+      43: getstatic     #25                 // Field pending:Ljava/util/Map;
+      46: invokeinterface #31,  1           // InterfaceMethod java/util/Map.clear:()V
+      51: aload_1
+      52: invokeinterface #286,  1          // InterfaceMethod java/util/List.iterator:()Ljava/util/Iterator;
+      57: astore_2
+      58: aload_2
+      59: invokeinterface #290,  1          // InterfaceMethod java/util/Iterator.hasNext:()Z
+      64: ifeq          310
+      67: aload_2
+      68: invokeinterface #295,  1          // InterfaceMethod java/util/Iterator.next:()Ljava/lang/Object;
+      73: checkcast     #256                // class rw/camerafollow/FactoryRallyController$Birth
+      76: astore_3
+      77: aload_3
+      78: getfield      #299                // Field rw/camerafollow/FactoryRallyController$Birth.unit:Lcom/corrodinggames/rts/game/units/y;
+      81: astore        4
+      83: getstatic     #9                  // Field rw/camerafollow/OverlaySettings.factoryRally:Z
+      86: ifne          108
+      89: getstatic     #159                // Field rw/camerafollow/OverlaySettings.factoryRoute:Z
+      92: ifeq          58
+      95: aload_3
+      96: getfield      #303                // Field rw/camerafollow/FactoryRallyController$Birth.plan:Ljava/util/List;
+      99: invokeinterface #245,  1          // InterfaceMethod java/util/List.size:()I
+     104: iconst_2
+     105: if_icmplt     58
+     108: aload         4
+     110: invokestatic  #228                // Method usable:(Lcom/corrodinggames/rts/game/units/y;)Z
+     113: ifeq          58
+     116: aload         4
+     118: getfield      #307                // Field com/corrodinggames/rts/game/units/y.bY:Z
+     121: ifeq          58
+     124: aload         4
+     126: getfield      #222                // Field com/corrodinggames/rts/game/units/y.bX:Lcom/corrodinggames/rts/game/n;
+     129: getstatic     #88                 // Field player:Lcom/corrodinggames/rts/game/n;
+     132: if_acmpne     58
+     135: aload         4
+     137: getfield      #224                // Field com/corrodinggames/rts/game/units/y.bu:Lcom/corrodinggames/rts/game/units/am;
+     140: aload_3
+     141: getfield      #308                // Field rw/camerafollow/FactoryRallyController$Birth.factory:Lcom/corrodinggames/rts/game/units/y;
+     144: if_acmpne     58
+     147: aload_3
+     148: invokevirtual #311                // Method rw/camerafollow/FactoryRallyController$Birth.sameOrders:()Z
+     151: ifeq          58
+     154: aload_0
+     155: aload         4
+     157: invokestatic  #314                // Method hasQueuedCommand:(Lcom/corrodinggames/rts/gameFramework/l;Lcom/corrodinggames/rts/game/units/y;)Z
+     160: ifeq          166
+     163: goto          58
+     166: new           #277                // class java/util/ArrayList
+     169: dup
+     170: invokespecial #318                // Method java/util/ArrayList."<init>":()V
+     173: astore        5
+     175: getstatic     #9                  // Field rw/camerafollow/OverlaySettings.factoryRally:Z
+     178: ifeq          185
+     181: aconst_null
+     182: goto          189
+     185: aload_3
+     186: getfield      #319                // Field rw/camerafollow/FactoryRallyController$Birth.exit:Landroid/graphics/PointF;
+     189: astore        6
+     191: aload         6
+     193: ifnull        206
+     196: aload         5
+     198: aload         6
+     200: invokeinterface #323,  2          // InterfaceMethod java/util/List.add:(Ljava/lang/Object;)Z
+     205: pop
+     206: aload         5
+     208: aload_3
+     209: getfield      #303                // Field rw/camerafollow/FactoryRallyController$Birth.plan:Ljava/util/List;
+     212: invokeinterface #326,  2          // InterfaceMethod java/util/List.addAll:(Ljava/util/Collection;)Z
+     217: pop
+     218: iconst_0
+     219: istore        7
+     221: iload         7
+     223: aload         5
+     225: invokeinterface #245,  1          // InterfaceMethod java/util/List.size:()I
+     230: if_icmpge     307
+     233: aload         5
+     235: iload         7
+     237: invokeinterface #330,  2          // InterfaceMethod java/util/List.get:(I)Ljava/lang/Object;
+     242: checkcast     #235                // class android/graphics/PointF
+     245: astore        8
+     247: aload_0
+     248: getfield      #117                // Field com/corrodinggames/rts/gameFramework/l.cf:Lcom/corrodinggames/rts/gameFramework/c;
+     251: getstatic     #88                 // Field player:Lcom/corrodinggames/rts/game/n;
+     254: invokevirtual #333                // Method com/corrodinggames/rts/gameFramework/c.a:(Lcom/corrodinggames/rts/game/n;)Lcom/corrodinggames/rts/gameFramework/e;
+     257: astore        9
+     259: aload         9
+     261: aload         4
+     263: invokevirtual #338                // Method com/corrodinggames/rts/gameFramework/e.a:(Lcom/corrodinggames/rts/game/units/y;)V
+     266: aload         9
+     268: aload         8
+     270: getfield      #341                // Field android/graphics/PointF.a:F
+     273: aload         8
+     275: getfield      #343                // Field android/graphics/PointF.b:F
+     278: invokevirtual #345                // Method com/corrodinggames/rts/gameFramework/e.a:(FF)V
+     281: aload         9
+     283: iload         7
+     285: ifle          292
+     288: iconst_1
+     289: goto          293
+     292: iconst_0
+     293: putfield      #348                // Field com/corrodinggames/rts/gameFramework/e.e:Z
+     296: aload         9
+     298: invokestatic  #351                // Method rw/camerafollow/MatchTelemetry.assist:(Lcom/corrodinggames/rts/gameFramework/e;)V
+     301: iinc          7, 1
+     304: goto          221
+     307: goto          58
+     310: goto          326
+     313: astore_0
+     314: getstatic     #25                 // Field pending:Ljava/util/Map;
+     317: invokeinterface #31,  1           // InterfaceMethod java/util/Map.clear:()V
+     322: aload_0
+     323: invokestatic  #267                // Method fail:(Ljava/lang/Throwable;)V
+     326: return
+    Exception table:
+       from    to  target type
+           0    11   313   Class java/lang/Throwable
+          12    26   313   Class java/lang/Throwable
+          27   310   313   Class java/lang/Throwable
+
+  private static boolean usable(com.corrodinggames.rts.game.units.y);
+    Code:
+       0: aload_0
+       1: getfield      #357                // Field com/corrodinggames/rts/game/units/y.ej:Z
+       4: ifne          50
+       7: aload_0
+       8: getfield      #360                // Field com/corrodinggames/rts/game/units/y.bV:Z
+      11: ifne          50
+      14: aload_0
+      15: getfield      #363                // Field com/corrodinggames/rts/game/units/y.cm:F
+      18: fconst_1
+      19: fcmpl
+      20: iflt          50
+      23: aload_0
+      24: getfield      #366                // Field com/corrodinggames/rts/game/units/y.cl:F
+      27: fconst_0
+      28: fcmpl
+      29: ifle          50
+      32: aload_0
+      33: getfield      #369                // Field com/corrodinggames/rts/game/units/y.cN:Lcom/corrodinggames/rts/game/units/am;
+      36: ifnonnull     50
+      39: aload_0
+      40: getfield      #372                // Field com/corrodinggames/rts/game/units/y.cO:Lcom/corrodinggames/rts/game/units/y;
+      43: ifnonnull     50
+      46: iconst_1
+      47: goto          51
+      50: iconst_0
+      51: ireturn
+
+  static boolean isFactory(com.corrodinggames.rts.game.units.y);
+    Code:
+       0: ldc_w         #375                // String com.corrodinggames.rts.game.units.d.l
+       3: invokestatic  #183                // Method java/lang/Class.forName:(Ljava/lang/String;)Ljava/lang/Class;
+       6: aload_0
+       7: invokevirtual #377                // Method java/lang/Class.isInstance:(Ljava/lang/Object;)Z
+      10: ireturn
+      11: astore_1
+      12: iconst_0
+      13: ireturn
+    Exception table:
+       from    to  target type
+           0    10    11   Class java/lang/ClassNotFoundException
+
+  private static boolean hasQueuedCommand(com.corrodinggames.rts.gameFramework.l, com.corrodinggames.rts.game.units.y) throws java.lang.IllegalAccessException;
+    Code:
+       0: iconst_3
+       1: anewarray     #2                  // class java/lang/Object
+       4: dup
+       5: iconst_0
+       6: aload_0
+       7: getfield      #117                // Field com/corrodinggames/rts/gameFramework/l.cf:Lcom/corrodinggames/rts/gameFramework/c;
+      10: getfield      #382                // Field com/corrodinggames/rts/gameFramework/c.b:Ljava/util/ArrayList;
+      13: aastore
+      14: dup
+      15: iconst_1
+      16: aload_0
+      17: getfield      #117                // Field com/corrodinggames/rts/gameFramework/l.cf:Lcom/corrodinggames/rts/gameFramework/c;
+      20: getfield      #385                // Field com/corrodinggames/rts/gameFramework/c.c:Ljava/util/ArrayList;
+      23: aastore
+      24: dup
+      25: iconst_2
+      26: aload_0
+      27: getfield      #117                // Field com/corrodinggames/rts/gameFramework/l.cf:Lcom/corrodinggames/rts/gameFramework/c;
+      30: getfield      #388                // Field com/corrodinggames/rts/gameFramework/c.d:Ljava/util/ArrayList;
+      33: aastore
+      34: astore_2
+      35: aload_2
+      36: arraylength
+      37: istore_3
+      38: iconst_0
+      39: istore        4
+      41: iload         4
+      43: iload_3
+      44: if_icmpge     123
+      47: aload_2
+      48: iload         4
+      50: aaload
+      51: astore        5
+      53: aload         5
+      55: checkcast     #246                // class java/util/List
+      58: invokeinterface #286,  1          // InterfaceMethod java/util/List.iterator:()Ljava/util/Iterator;
+      63: astore        6
+      65: aload         6
+      67: invokeinterface #290,  1          // InterfaceMethod java/util/Iterator.hasNext:()Z
+      72: ifeq          117
+      75: aload         6
+      77: invokeinterface #295,  1          // InterfaceMethod java/util/Iterator.next:()Ljava/lang/Object;
+      82: astore        7
+      84: aload         7
+      86: instanceof    #208                // class com/corrodinggames/rts/gameFramework/e
+      89: ifeq          114
+      92: getstatic     #212                // Field commandUnits:Ljava/lang/reflect/Field;
+      95: aload         7
+      97: invokevirtual #215                // Method java/lang/reflect/Field.get:(Ljava/lang/Object;)Ljava/lang/Object;
+     100: checkcast     #246                // class java/util/List
+     103: aload_1
+     104: invokeinterface #391,  2          // InterfaceMethod java/util/List.contains:(Ljava/lang/Object;)Z
+     109: ifeq          114
+     112: iconst_1
+     113: ireturn
+     114: goto          65
+     117: iinc          4, 1
+     120: goto          41
+     123: iconst_0
+     124: ireturn
+
+  private static void fail(java.lang.Throwable);
+    Code:
+       0: aload_0
+       1: invokestatic  #394                // Method rw/camerafollow/AgentLog.rethrowIfFatal:(Ljava/lang/Throwable;)V
+       4: getstatic     #397                // Field warned:Z
+       7: ifne          21
+      10: iconst_1
+      11: putstatic     #397                // Field warned:Z
+      14: ldc_w         #400                // String Factory rally skipped; native exit behavior retained
+      17: aload_0
+      18: invokestatic  #402                // Method rw/camerafollow/AgentLog.error:(Ljava/lang/String;Ljava/lang/Throwable;)V
+      21: return
+
+  static {};
+    Code:
+       0: new           #406                // class java/util/LinkedHashMap
+       3: dup
+       4: invokespecial #408                // Method java/util/LinkedHashMap."<init>":()V
+       7: putstatic     #25                 // Field pending:Ljava/util/Map;
+      10: iconst_m1
+      11: putstatic     #92                 // Field lastFrame:I
+      14: return
+}

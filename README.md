@@ -33,3 +33,8 @@
 4. 把证据等级、复现入口、已确认/待验证结论区分记录，不把日志 receipt 当作实际抵达和击杀。
 
 原项目历史仓库：`yetengyang8-eng/Rusted-Warfare-Agent`。本仓库为**独立审查副本**，不替代、不改写原工程仓库及当前工作区未提交改动。
+
+## Complete raw evidence (Git LFS)
+
+- [Complete artifact index](review/FULL_EVIDENCE_INDEX.md): raw run traces, native validation archives, original human replay/map and unit snapshots.
+- After cloning, run git lfs pull to obtain large files.

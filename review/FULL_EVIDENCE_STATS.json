@@ -1,0 +1,27 @@
+{
+  "files": 138,
+  "totalBytes": 1530382880,
+  "groupBytes": {
+    "evidence/native-raw/R12": 499467853,
+    "evidence/native-raw/R15": 146728331,
+    "evidence/native-raw/R16": 8370792,
+    "evidence/native-raw/R9": 398344436,
+    "evidence/validation-archives/R12_native_validation_inventory.json": 61579,
+    "evidence/validation-archives/R12_native_validation_text_and_trace.zip": 164773011,
+    "evidence/validation-archives/R15_native_validation_inventory.json": 39388,
+    "evidence/validation-archives/R15_native_validation_text_and_trace.zip": 57590096,
+    "evidence/validation-archives/R16_native_validation_inventory.json": 42482,
+    "evidence/validation-archives/R16_native_validation_text_and_trace.zip": 123418822,
+    "evidence/validation-archives/R9_native_validation_inventory.json": 95551,
+    "evidence/validation-archives/R9_native_validation_text_and_trace.zip": 101598066,
+    "evidence/human-1v9-original/10p 西班牙混战 by MP97 [v1.15] (12 Oct 2026 17.57.12).replay": 19097955,
+    "evidence/human-1v9-original/10p西班牙混战_GUI全程采样验收与后期兵种转型_2026-10-13.md": 6524,
+    "evidence/human-1v9-original/10p西班牙混战_原始实战遥测复盘与自动路线校正_2026-10-13.md": 8354,
+    "evidence/human-1v9-original/10p西班牙混战_空间战术与两栖威胁复盘_2026-10-13.md": 13079,
+    "evidence/human-1v9-original/10p西班牙混战_首轮回放复盘_2026-10-12.md": 12426,
+    "evidence/human-1v9-original/[10p] 10p 西班牙混战_by_MP97.tmx": 365704,
+    "evidence/human-1v9-original/agent 思维架构 仓库 4.txt": 10300,
+    "evidence/human-1v9-original/analysis": 10334578,
+    "evidence/human-1v9-original/工程师 思路.txt": 3553
+  }
+}

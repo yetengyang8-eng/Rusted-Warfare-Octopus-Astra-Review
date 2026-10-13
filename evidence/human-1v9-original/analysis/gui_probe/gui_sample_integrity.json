@@ -1,0 +1,94 @@
+{
+  "units": {
+    "bytes": 24427192,
+    "rows": 305746,
+    "invalid": 0,
+    "timestamps": 376,
+    "first": 0,
+    "last": 11250015,
+    "monotone": true,
+    "slots": {
+      "-1": 33314,
+      "1": 1968,
+      "3": 797,
+      "5": 84571,
+      "9": 1873,
+      "7": 4610,
+      "4": 35890,
+      "8": 53336,
+      "6": 997,
+      "0": 60931,
+      "2": 27459
+    },
+    "topTypes": [
+      [
+        "heavyTank",
+        54712
+      ],
+      [
+        "tree",
+        33314
+      ],
+      [
+        "landFactory",
+        17334
+      ],
+      [
+        "builder",
+        14997
+      ],
+      [
+        "repairbay",
+        6176
+      ],
+      [
+        "antiAirTurretFlak",
+        5925
+      ],
+      [
+        "c_antiAirTurretT3",
+        5895
+      ],
+      [
+        "mechMissile",
+        5764
+      ]
+    ],
+    "sha256": "d6dd33d57381c292d85469780fd772691a686322f81abf5ca32b977fd5f11be5"
+  },
+  "players": {
+    "bytes": 260567,
+    "rows": 4512,
+    "invalid": 0,
+    "timestamps": 376,
+    "first": 0,
+    "last": 11250015,
+    "monotone": true,
+    "slots": {
+      "-1": 376,
+      "-2": 376,
+      "0": 376,
+      "1": 376,
+      "2": 376,
+      "3": 376,
+      "4": 376,
+      "5": 376,
+      "6": 376,
+      "7": 376,
+      "8": 376,
+      "9": 376
+    },
+    "topTypes": [],
+    "sha256": "67d6e692815db9d195935d517de9ae3df08990c3bc8722ffcad1d55c1002defd"
+  },
+  "log": {
+    "bytes": 32214827,
+    "checksumEvents": 17544,
+    "matchingEvents": 17544,
+    "nonmatchingEvents": 0,
+    "ended": 1,
+    "lastChecksum": "2026-10-13 01:17:54.924: Replay: checksum: checksums are matching frameNumber:690090",
+    "errors": [],
+    "maxCommandId": 105267
+  }
+}

@@ -1,0 +1,70 @@
+{
+  "schemaVersion": 1,
+  "createdUtc": "2026-10-05T12:46:40.309114+00:00",
+  "gameDirectoryReadOnly": "G:\\deepseek 工作台\\游戏环境\\RW-Agent-Octopus-G6-2026-10-05-R9\\game",
+  "candidateJar": "G:\\deepseek 工作台\\游戏环境\\RW-Agent-Octopus-G6-2026-10-05-R9\\game\\rw-agent-bootstrap.jar",
+  "candidateSha256": "9cd0b8a345c9b23ed0d763859019bb50555829d83e206dc06de5c5cf22b8250a",
+  "gameLibSha256": "8a550a37e2d8a5430866090d4e7d5892f9010b47f52a5a09350fc66c620deec9",
+  "workDirectory": "G:\\deepseek 工作台\\游戏环境\\RW-Agent-Octopus-G6-2026-10-05-R9\\runs\\20261005-204640-25476",
+  "cli": {
+    "game_dir": "G:\\deepseek 工作台\\游戏环境\\RW-Agent-Octopus-G6-2026-10-05-R9\\game",
+    "jar": "G:\\deepseek 工作台\\游戏环境\\RW-Agent-Octopus-G6-2026-10-05-R9\\game\\rw-agent-bootstrap.jar",
+    "seconds": 7200,
+    "wall_seconds": 14400,
+    "port": 47691,
+    "wait": 0,
+    "no_wait": false,
+    "start_game": false,
+    "require_same_bridge": true,
+    "java": "G:\\deepseek 工作台\\游戏环境\\RW-Agent-Octopus-G6-2026-10-05-R9\\jvm64\\bin\\java.exe",
+    "output_root": "G:\\deepseek 工作台\\游戏环境\\RW-Agent-Octopus-G6-2026-10-05-R9\\runs",
+    "html": true,
+    "property": [
+      "rwagent.reportMode=compact",
+      "rwagent.reportGzip=true",
+      "rwagent.g6=true"
+    ]
+  },
+  "mode": "attach-existing-game",
+  "clientClass": "io.rwagent.client.BattleClient",
+  "sessionId": "c3c51f64-fd6f-4cda-adbf-0423ba8c5cc5",
+  "initialBridge": {
+    "status": "ok",
+    "version": "0.07-alpha1",
+    "port": 47691,
+    "strategyContractVersion": 1,
+    "allowCommands": true,
+    "provenance": {
+      "agentVersion": "0.07-alpha1",
+      "agentJar": "G:\\deepseek 工作台\\游戏环境\\RW-Agent-Octopus-G6-2026-10-05-R9\\game\\rw-agent-bootstrap.jar",
+      "agentJarSha256": "9cd0b8a345c9b23ed0d763859019bb50555829d83e206dc06de5c5cf22b8250a",
+      "gameLibJar": "G:\\deepseek 工作台\\游戏环境\\RW-Agent-Octopus-G6-2026-10-05-R9\\game\\game-lib.jar",
+      "gameLibJarSha256": "8a550a37e2d8a5430866090d4e7d5892f9010b47f52a5a09350fc66c620deec9",
+      "workingDirectory": "G:\\deepseek 工作台\\游戏环境\\RW-Agent-Octopus-G6-2026-10-05-R9\\game",
+      "reportDirectory": "G:\\deepseek 工作台\\游戏环境\\RW-Agent-Octopus-G6-2026-10-05-R9\\game\\rw-agent-reports",
+      "osName": "Windows 10",
+      "javaVersion": "13"
+    }
+  },
+  "bridgeJarSha256": "9cd0b8a345c9b23ed0d763859019bb50555829d83e206dc06de5c5cf22b8250a",
+  "binaryCompatibility": "SAME_BINARY",
+  "initialFrame": 1106,
+  "clientCommand": [
+    "G:\\deepseek 工作台\\游戏环境\\RW-Agent-Octopus-G6-2026-10-05-R9\\jvm64\\bin\\java.exe",
+    "-Dfile.encoding=UTF-8",
+    "-Drwagent.port=47691",
+    "-Drwagent.g5=true",
+    "-Drwagent.runtimeAdaptive=true",
+    "-Drwagent.pollMs=500",
+    "-Drwagent.battleSafetyGameSeconds=7200",
+    "-Drwagent.battleSafetyWallSeconds=14400",
+    "-Drwagent.reportMode=compact",
+    "-Drwagent.reportGzip=true",
+    "-Drwagent.g6=true",
+    "-cp",
+    "G:\\deepseek 工作台\\游戏环境\\RW-Agent-Octopus-G6-2026-10-05-R9\\game\\rw-agent-bootstrap.jar",
+    "io.rwagent.client.BattleClient",
+    "7200"
+  ],
+  "clientPid": 28076
+}

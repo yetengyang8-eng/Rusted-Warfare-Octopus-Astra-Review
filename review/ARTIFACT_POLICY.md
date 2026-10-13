@@ -12,3 +12,7 @@ R15 单独自然样本在：
 **源代码事实**取自固定 Git 树，**可执行二进制事实**用 SHA256 固定，**实际运行事实**必须引用真实原生日志/后帧；Git 仓库中的一份 Handoff 不自动等价于胜利或验证。
 
 如 Astra 只能访问远端 GitHub，可先完成源码差异审查。需要巨型原始 battle 数据时应在用户授权的 Desktop Commander 环境访问原文件，不应假装仓库已上传全量原生日志。
+
+## 2026-10-13 upload extension
+
+The previously excluded raw run files, native validation traces and the human original replay are now included in the private repo using Git LFS; see [full index](FULL_EVIDENCE_INDEX.md). A prior statement about keeping these out of GitHub is superseded by this section. Only proprietary game/JVM/third-party assets and credentials are excluded, with local restoration supported.

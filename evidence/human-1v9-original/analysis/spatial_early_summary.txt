@@ -1,0 +1,147 @@
+SAMPLES [(0, 559), (5, 842), (10, 872), (15, 909), (20, 927), (25, 888), (30, 882), (35, 844), (40, 900), (45, 902), (50, 1007), (55, 992), (60, 1008), (65, 860), (70, 879), (75, 902)]
+STARTING COMMAND CENTERS:
+slot 1 team 1 xy (1110.0, 1130.0)
+slot 3 team 3 xy (5710.0, 1810.0)
+slot 5 team 5 xy (7370.0, 1950.0)
+slot 9 team 9 xy (1490.0, 3010.0)
+slot 7 team 7 xy (3490.0, 3890.0)
+slot 4 team 4 xy (6230.0, 3930.0)
+slot 8 team 8 xy (970.0, 4170.0)
+slot 6 team 6 xy (3150.0, 5370.0)
+slot 0 team 0 xy (4370.0, 5610.0)
+slot 2 team 2 xy (3450.0, 6690.0)
+
+=== 0 min HUMAN heavy=0 total=1 center=(None, None) enemy_nearest=None AIunits=558
+ slot -1 alive 549 mobileAttack 0 CC [] nearestHeavyToEnemy None
+ slot 0 alive 1 mobileAttack 0 CC [(4370, 5610)] nearestHeavyToEnemy None
+ slot 1 alive 1 mobileAttack 0 CC [(1110, 1130)] nearestHeavyToEnemy None
+ slot 2 alive 1 mobileAttack 0 CC [(3450, 6690)] nearestHeavyToEnemy None
+ slot 3 alive 1 mobileAttack 0 CC [(5710, 1810)] nearestHeavyToEnemy None
+ slot 4 alive 1 mobileAttack 0 CC [(6230, 3930)] nearestHeavyToEnemy None
+ slot 6 alive 1 mobileAttack 0 CC [(3150, 5370)] nearestHeavyToEnemy None
+ slot 7 alive 1 mobileAttack 0 CC [(3490, 3890)] nearestHeavyToEnemy None
+ slot 8 alive 1 mobileAttack 0 CC [(970, 4170)] nearestHeavyToEnemy None
+ slot 9 alive 1 mobileAttack 0 CC [(1490, 3010)] nearestHeavyToEnemy None
+=== 5 min HUMAN heavy=11 total=25 center=(6596, 1997) enemy_nearest=114 AIunits=817
+ slot -1 alive 452 mobileAttack 0 CC [] nearestHeavyToEnemy None
+ slot 0 alive 59 mobileAttack 25 CC [(4370, 5610)] nearestHeavyToEnemy 3449
+ slot 1 alive 51 mobileAttack 32 CC [(1110, 1130)] nearestHeavyToEnemy 3963
+ slot 2 alive 38 mobileAttack 19 CC [(3450, 6690)] nearestHeavyToEnemy 5025
+ slot 3 alive 45 mobileAttack 14 CC [(5710, 1810)] nearestHeavyToEnemy 114
+ slot 4 alive 39 mobileAttack 20 CC [(6230, 3930)] nearestHeavyToEnemy 1478
+ slot 6 alive 25 mobileAttack 12 CC [(3150, 5370)] nearestHeavyToEnemy 3549
+ slot 7 alive 31 mobileAttack 12 CC [(3490, 3890)] nearestHeavyToEnemy 1861
+ slot 8 alive 48 mobileAttack 20 CC [(970, 4170)] nearestHeavyToEnemy 1328
+ slot 9 alive 29 mobileAttack 10 CC [(1490, 3010)] nearestHeavyToEnemy 4928
+=== 10 min HUMAN heavy=28 total=51 center=(4679, 2126) enemy_nearest=158 AIunits=821
+ slot -1 alive 312 mobileAttack 0 CC [] nearestHeavyToEnemy None
+ slot 0 alive 77 mobileAttack 32 CC [(4370, 5610)] nearestHeavyToEnemy 2135
+ slot 1 alive 71 mobileAttack 41 CC [(1110, 1130)] nearestHeavyToEnemy 289
+ slot 2 alive 59 mobileAttack 39 CC [(3450, 6690)] nearestHeavyToEnemy 2765
+ slot 3 alive 22 mobileAttack 12 CC [] nearestHeavyToEnemy 540
+ slot 4 alive 84 mobileAttack 46 CC [(6230, 3930)] nearestHeavyToEnemy 650
+ slot 6 alive 19 mobileAttack 8 CC [(3150, 5370)] nearestHeavyToEnemy 2450
+ slot 7 alive 64 mobileAttack 33 CC [(3490, 3890)] nearestHeavyToEnemy 158
+ slot 8 alive 84 mobileAttack 39 CC [(970, 4170)] nearestHeavyToEnemy 1838
+ slot 9 alive 29 mobileAttack 13 CC [(1490, 3010)] nearestHeavyToEnemy 1645
+=== 15 min HUMAN heavy=66 total=100 center=(3649, 2043) enemy_nearest=16 AIunits=809
+ slot -1 alive 210 mobileAttack 0 CC [] nearestHeavyToEnemy None
+ slot 0 alive 93 mobileAttack 37 CC [(4370, 5610)] nearestHeavyToEnemy 1984
+ slot 1 alive 52 mobileAttack 23 CC [(1110, 1130)] nearestHeavyToEnemy 16
+ slot 2 alive 102 mobileAttack 61 CC [(3450, 6690)] nearestHeavyToEnemy 2788
+ slot 3 alive 3 mobileAttack 3 CC [] nearestHeavyToEnemy 1507
+ slot 4 alive 152 mobileAttack 89 CC [(6230, 3930)] nearestHeavyToEnemy 342
+ slot 6 alive 19 mobileAttack 9 CC [(3150, 5370)] nearestHeavyToEnemy 2499
+ slot 7 alive 44 mobileAttack 20 CC [(3490, 3890)] nearestHeavyToEnemy 766
+ slot 8 alive 95 mobileAttack 37 CC [(970, 4170)] nearestHeavyToEnemy 971
+ slot 9 alive 39 mobileAttack 20 CC [(1490, 3010)] nearestHeavyToEnemy 79
+=== 20 min HUMAN heavy=68 total=105 center=(4143, 2363) enemy_nearest=137 AIunits=822
+ slot -1 alive 170 mobileAttack 0 CC [] nearestHeavyToEnemy None
+ slot 0 alive 100 mobileAttack 37 CC [(4370, 5610)] nearestHeavyToEnemy 1633
+ slot 1 alive 17 mobileAttack 4 CC [] nearestHeavyToEnemy 555
+ slot 2 alive 112 mobileAttack 58 CC [(3450, 6690)] nearestHeavyToEnemy 2871
+ slot 3 alive 1 mobileAttack 1 CC [] nearestHeavyToEnemy 1514
+ slot 4 alive 180 mobileAttack 92 CC [(6230, 3930)] nearestHeavyToEnemy 137
+ slot 6 alive 10 mobileAttack 2 CC [(3150, 5370)] nearestHeavyToEnemy 2590
+ slot 7 alive 32 mobileAttack 13 CC [(3490, 3890)] nearestHeavyToEnemy 979
+ slot 8 alive 159 mobileAttack 72 CC [(970, 4170)] nearestHeavyToEnemy 651
+ slot 9 alive 41 mobileAttack 21 CC [(1490, 3010)] nearestHeavyToEnemy 183
+=== 25 min HUMAN heavy=83 total=120 center=(3444, 2738) enemy_nearest=108 AIunits=768
+ slot -1 alive 130 mobileAttack 0 CC [] nearestHeavyToEnemy None
+ slot 0 alive 121 mobileAttack 64 CC [(4370, 5610)] nearestHeavyToEnemy 2067
+ slot 1 alive 3 mobileAttack 3 CC [] nearestHeavyToEnemy 2112
+ slot 2 alive 108 mobileAttack 57 CC [(3450, 6690)] nearestHeavyToEnemy 2668
+ slot 4 alive 167 mobileAttack 88 CC [(6230, 3930)] nearestHeavyToEnemy 108
+ slot 6 alive 11 mobileAttack 2 CC [(3150, 5370)] nearestHeavyToEnemy 2063
+ slot 7 alive 43 mobileAttack 25 CC [(3490, 3890)] nearestHeavyToEnemy 731
+ slot 8 alive 171 mobileAttack 79 CC [(970, 4170)] nearestHeavyToEnemy 139
+ slot 9 alive 14 mobileAttack 14 CC [] nearestHeavyToEnemy 326
+=== 30 min HUMAN heavy=97 total=138 center=(3464, 2780) enemy_nearest=145 AIunits=744
+ slot -1 alive 121 mobileAttack 0 CC [] nearestHeavyToEnemy None
+ slot 0 alive 80 mobileAttack 24 CC [(4370, 5610)] nearestHeavyToEnemy 3025
+ slot 1 alive 2 mobileAttack 2 CC [] nearestHeavyToEnemy 542
+ slot 2 alive 111 mobileAttack 58 CC [(3450, 6690)] nearestHeavyToEnemy 2144
+ slot 4 alive 156 mobileAttack 80 CC [(6230, 3930)] nearestHeavyToEnemy 145
+ slot 6 alive 12 mobileAttack 6 CC [(3150, 5370)] nearestHeavyToEnemy 1907
+ slot 7 alive 43 mobileAttack 24 CC [(3490, 3890)] nearestHeavyToEnemy 1249
+ slot 8 alive 213 mobileAttack 105 CC [(970, 4170)] nearestHeavyToEnemy 212
+ slot 9 alive 6 mobileAttack 6 CC [] nearestHeavyToEnemy 441
+=== 35 min HUMAN heavy=71 total=112 center=(4481, 2096) enemy_nearest=43 AIunits=732
+ slot -1 alive 109 mobileAttack 0 CC [] nearestHeavyToEnemy None
+ slot 0 alive 124 mobileAttack 64 CC [(4370, 5610)] nearestHeavyToEnemy 1893
+ slot 2 alive 100 mobileAttack 47 CC [(3450, 6690)] nearestHeavyToEnemy 2514
+ slot 4 alive 139 mobileAttack 55 CC [(6230, 3930)] nearestHeavyToEnemy 124
+ slot 6 alive 6 mobileAttack 4 CC [] nearestHeavyToEnemy 2057
+ slot 7 alive 51 mobileAttack 30 CC [(3490, 3890)] nearestHeavyToEnemy 825
+ slot 8 alive 200 mobileAttack 97 CC [(970, 4170)] nearestHeavyToEnemy 43
+ slot 9 alive 3 mobileAttack 3 CC [] nearestHeavyToEnemy 478
+=== 40 min HUMAN heavy=67 total=114 center=(4505, 2578) enemy_nearest=125 AIunits=786
+ slot -1 alive 103 mobileAttack 0 CC [] nearestHeavyToEnemy None
+ slot 0 alive 121 mobileAttack 64 CC [(4370, 5610)] nearestHeavyToEnemy 2046
+ slot 2 alive 115 mobileAttack 64 CC [(3450, 6690)] nearestHeavyToEnemy 2738
+ slot 4 alive 190 mobileAttack 100 CC [(6230, 3930)] nearestHeavyToEnemy 125
+ slot 7 alive 45 mobileAttack 21 CC [(3490, 3890)] nearestHeavyToEnemy 626
+ slot 8 alive 210 mobileAttack 98 CC [(970, 4170)] nearestHeavyToEnemy 238
+ slot 9 alive 2 mobileAttack 2 CC [] nearestHeavyToEnemy 378
+=== 45 min HUMAN heavy=66 total=110 center=(4486, 2389) enemy_nearest=128 AIunits=792
+ slot -1 alive 94 mobileAttack 0 CC [] nearestHeavyToEnemy None
+ slot 0 alive 105 mobileAttack 46 CC [(4370, 5610)] nearestHeavyToEnemy 2398
+ slot 2 alive 120 mobileAttack 66 CC [(3450, 6690)] nearestHeavyToEnemy 2266
+ slot 4 alive 214 mobileAttack 121 CC [(6230, 3930)] nearestHeavyToEnemy 128
+ slot 7 alive 48 mobileAttack 29 CC [(3490, 3890)] nearestHeavyToEnemy 857
+ slot 8 alive 209 mobileAttack 107 CC [(970, 4170)] nearestHeavyToEnemy 248
+ slot 9 alive 2 mobileAttack 2 CC [] nearestHeavyToEnemy 294
+=== 50 min HUMAN heavy=140 total=186 center=(4890, 2381) enemy_nearest=199 AIunits=821
+ slot -1 alive 91 mobileAttack 0 CC [] nearestHeavyToEnemy None
+ slot 0 alive 109 mobileAttack 49 CC [(4370, 5610)] nearestHeavyToEnemy 2350
+ slot 2 alive 127 mobileAttack 77 CC [(3450, 6690)] nearestHeavyToEnemy 2296
+ slot 4 alive 197 mobileAttack 106 CC [(6230, 3930)] nearestHeavyToEnemy 199
+ slot 7 alive 55 mobileAttack 33 CC [(3490, 3890)] nearestHeavyToEnemy 793
+ slot 8 alive 240 mobileAttack 129 CC [(970, 4170)] nearestHeavyToEnemy 647
+ slot 9 alive 2 mobileAttack 2 CC [] nearestHeavyToEnemy 341
+=== 55 min HUMAN heavy=179 total=245 center=(4685, 2510) enemy_nearest=134 AIunits=747
+ slot -1 alive 76 mobileAttack 0 CC [] nearestHeavyToEnemy None
+ slot 0 alive 102 mobileAttack 40 CC [(4370, 5610)] nearestHeavyToEnemy 1644
+ slot 2 alive 123 mobileAttack 74 CC [(3450, 6690)] nearestHeavyToEnemy 2387
+ slot 4 alive 214 mobileAttack 116 CC [(6230, 3930)] nearestHeavyToEnemy 134
+ slot 8 alive 230 mobileAttack 116 CC [(970, 4170)] nearestHeavyToEnemy 399
+ slot 9 alive 2 mobileAttack 2 CC [] nearestHeavyToEnemy 513
+=== 60 min HUMAN heavy=200 total=263 center=(4083, 2552) enemy_nearest=105 AIunits=745
+ slot -1 alive 74 mobileAttack 0 CC [] nearestHeavyToEnemy None
+ slot 0 alive 107 mobileAttack 47 CC [(4370, 5610)] nearestHeavyToEnemy 1401
+ slot 2 alive 133 mobileAttack 81 CC [(3450, 6690)] nearestHeavyToEnemy 1943
+ slot 4 alive 189 mobileAttack 83 CC [] nearestHeavyToEnemy 105
+ slot 8 alive 240 mobileAttack 123 CC [(970, 4170)] nearestHeavyToEnemy 125
+ slot 9 alive 2 mobileAttack 2 CC [] nearestHeavyToEnemy 520
+=== 65 min HUMAN heavy=131 total=204 center=(4120, 2806) enemy_nearest=39 AIunits=656
+ slot -1 alive 72 mobileAttack 0 CC [] nearestHeavyToEnemy None
+ slot 0 alive 114 mobileAttack 56 CC [(4370, 5610)] nearestHeavyToEnemy 769
+ slot 2 alive 122 mobileAttack 72 CC [(3450, 6690)] nearestHeavyToEnemy 2382
+ slot 4 alive 100 mobileAttack 39 CC [] nearestHeavyToEnemy 121
+ slot 8 alive 248 mobileAttack 125 CC [(970, 4170)] nearestHeavyToEnemy 39
+=== 70 min HUMAN heavy=112 total=194 center=(3639, 2971) enemy_nearest=160 AIunits=685
+ slot -1 alive 68 mobileAttack 0 CC [] nearestHeavyToEnemy None
+ slot 0 alive 132 mobileAttack 74 CC [(4370, 5610)] nearestHeavyToEnemy 893
+ slot 2 alive 135 mobileAttack 82 CC [(3450, 6690)] nearestHeavyToEnemy 1361
+ slot 4 alive 74 mobileAttack 39 CC [] nearestHeavyToEnemy 160
+ slot 8 alive 276 mobileAttack 130 CC [(970, 4170)] nearestHeavyToEnemy 163

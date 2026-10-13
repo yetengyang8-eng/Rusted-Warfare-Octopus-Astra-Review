@@ -1,0 +1,46 @@
+Nearest tuple (median distance, 10th percentile, number of jets within 650 world units); AA count includes only building whose type has antiAir substring, is a lower bound on actual air threats.
+== minute 155.04 jet 0 heavy 169 own factories 45 extractors 33 enemy AA 25 AA_slot0 24 AA_slot4 1 enemy_build 115 enemy_total 253
+   JET CENTER None medianHP% None dist AA (None, None, None) dist otherBuilding (None, None, None) dist enemyAny (None, None, None) dist heavy (None, None, None)
+== minute 160.03 jet 0 heavy 147 own factories 36 extractors 35 enemy AA 25 AA_slot0 22 AA_slot4 3 enemy_build 113 enemy_total 270
+   JET CENTER None medianHP% None dist AA (None, None, None) dist otherBuilding (None, None, None) dist enemyAny (None, None, None) dist heavy (None, None, None)
+== minute 165.04 jet 0 heavy 201 own factories 35 extractors 37 enemy AA 26 AA_slot0 22 AA_slot4 4 enemy_build 115 enemy_total 284
+   JET CENTER None medianHP% None dist AA (None, None, None) dist otherBuilding (None, None, None) dist enemyAny (None, None, None) dist heavy (None, None, None)
+== minute 166.02 jet 0 heavy 191 own factories 35 extractors 39 enemy AA 23 AA_slot0 20 AA_slot4 3 enemy_build 102 enemy_total 263
+   JET CENTER None medianHP% None dist AA (None, None, None) dist otherBuilding (None, None, None) dist enemyAny (None, None, None) dist heavy (None, None, None)
+== minute 167.05 jet 0 heavy 176 own factories 35 extractors 40 enemy AA 22 AA_slot0 19 AA_slot4 3 enemy_build 103 enemy_total 261
+   JET CENTER None medianHP% None dist AA (None, None, None) dist otherBuilding (None, None, None) dist enemyAny (None, None, None) dist heavy (None, None, None)
+== minute 168.03 jet 0 heavy 213 own factories 35 extractors 37 enemy AA 23 AA_slot0 19 AA_slot4 4 enemy_build 104 enemy_total 266
+   JET CENTER None medianHP% None dist AA (None, None, None) dist otherBuilding (None, None, None) dist enemyAny (None, None, None) dist heavy (None, None, None)
+== minute 169.01 jet 0 heavy 186 own factories 35 extractors 37 enemy AA 19 AA_slot0 16 AA_slot4 3 enemy_build 91 enemy_total 257
+   JET CENTER None medianHP% None dist AA (None, None, None) dist otherBuilding (None, None, None) dist enemyAny (None, None, None) dist heavy (None, None, None)
+== minute 170.04 jet 8 heavy 193 own factories 35 extractors 39 enemy AA 19 AA_slot0 16 AA_slot4 3 enemy_build 87 enemy_total 271
+   JET CENTER (2652, 4647) medianHP% 100.0 dist AA (1485, 1276, 0) dist otherBuilding (1823, 1621, 0) dist enemyAny (1091, 957, 0) dist heavy (315, 108, 8)
+== minute 171.0 jet 21 heavy 175 own factories 32 extractors 38 enemy AA 18 AA_slot0 15 AA_slot4 3 enemy_build 84 enemy_total 265
+   JET CENTER (2729, 4617) medianHP% 100.0 dist AA (1558, 1319, 0) dist otherBuilding (1892, 1670, 0) dist enemyAny (1000, 822, 0) dist heavy (438, 211, 21)
+== minute 172.03 jet 23 heavy 161 own factories 32 extractors 36 enemy AA 17 AA_slot0 14 AA_slot4 3 enemy_build 82 enemy_total 262
+   JET CENTER (2335, 4502) medianHP% 100.0 dist AA (1098, 1060, 0) dist otherBuilding (1427, 1392, 0) dist enemyAny (135, 87, 23) dist heavy (701, 379, 4)
+== minute 173.01 jet 56 heavy 158 own factories 32 extractors 37 enemy AA 14 AA_slot0 11 AA_slot4 3 enemy_build 80 enemy_total 261
+   JET CENTER (3744, 4492) medianHP% 100.0 dist AA (1809, 1669, 0) dist otherBuilding (1686, 1558, 0) dist enemyAny (1280, 671, 0) dist heavy (498, 180, 55)
+== minute 174.05 jet 71 heavy 156 own factories 32 extractors 39 enemy AA 17 AA_slot0 14 AA_slot4 3 enemy_build 78 enemy_total 256
+   JET CENTER (4779, 5522) medianHP% 100.0 dist AA (581, 453, 53) dist otherBuilding (604, 451, 49) dist enemyAny (566, 421, 56) dist heavy (677, 501, 27)
+== minute 175.03 jet 70 heavy 156 own factories 32 extractors 42 enemy AA 12 AA_slot0 9 AA_slot4 3 enemy_build 69 enemy_total 252
+   JET CENTER (5890, 4506) medianHP% 100.0 dist AA (710, 638, 11) dist otherBuilding (676, 619, 21) dist enemyAny (165, 110, 49) dist heavy (566, 503, 49)
+== minute 177.04 jet 85 heavy 188 own factories 32 extractors 40 enemy AA 18 AA_slot0 15 AA_slot4 3 enemy_build 79 enemy_total 252
+   JET CENTER (3780, 4495) medianHP% 100.0 dist AA (1754, 291, 18) dist otherBuilding (1680, 343, 19) dist enemyAny (662, 267, 42) dist heavy (544, 309, 54)
+== minute 180.03 jet 137 heavy 166 own factories 32 extractors 42 enemy AA 9 AA_slot0 9 AA_slot4 0 enemy_build 55 enemy_total 166
+   JET CENTER (6601, 3922) medianHP% 100.0 dist AA (3099, 2843, 0) dist otherBuilding (2248, 2033, 0) dist enemyAny (734, 564, 31) dist heavy (2005, 386, 38)
+== minute 182.04 jet 143 heavy 179 own factories 32 extractors 44 enemy AA 6 AA_slot0 6 AA_slot4 0 enemy_build 36 enemy_total 116
+   JET CENTER (6014, 6214) medianHP% 97.8 dist AA (343, 125, 77) dist otherBuilding (235, 32, 90) dist enemyAny (142, 21, 92) dist heavy (1807, 242, 44)
+== minute 184.05 jet 121 heavy 175 own factories 32 extractors 47 enemy AA 4 AA_slot0 4 AA_slot4 0 enemy_build 21 enemy_total 60
+   JET CENTER (4412, 6751) medianHP% 100.0 dist AA (1168, 515, 37) dist otherBuilding (509, 353, 89) dist enemyAny (494, 246, 90) dist heavy (940, 83, 51)
+== minute 185.02 jet 129 heavy 171 own factories 32 extractors 48 enemy AA 0 AA_slot0 0 AA_slot4 0 enemy_build 3 enemy_total 25
+   JET CENTER (3669, 6659) medianHP% 100.0 dist AA (None, None, None) dist otherBuilding (4354, 2321, 7) dist enemyAny (523, 349, 93) dist heavy (423, 251, 114)
+== minute 186.05 jet 139 heavy 235 own factories 32 extractors 48 enemy AA 0 AA_slot0 0 AA_slot4 0 enemy_build 1 enemy_total 20
+   JET CENTER (1666, 5497) medianHP% 100.0 dist AA (None, None, None) dist otherBuilding (5823, 4106, 2) dist enemyAny (3429, 1471, 3) dist heavy (1340, 322, 18)
+==ID FLOW Jets every 5 mins
+160.03 to 165.04 JETS 0 -> 0 new 0 absent 0
+165.04 to 170.04 JETS 0 -> 8 new 8 absent 0
+170.04 to 175.03 JETS 8 -> 70 new 66 absent 4
+175.03 to 180.03 JETS 70 -> 137 new 109 absent 42
+180.03 to 185.02 JETS 137 -> 129 new 97 absent 105
+COMPLETE

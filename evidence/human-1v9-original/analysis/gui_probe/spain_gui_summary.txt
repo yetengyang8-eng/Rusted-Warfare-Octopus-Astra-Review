@@ -1,0 +1,97 @@
+GUI faithful replay sample summary
+source G:\deepseek 工作台\_analysis\human_1v9_20261012\steam_exact_gui_clone\replay_probe_output
+player sample times 375 last game minute 187.00668333333334 units rows read 305161
+FIRST LAST 0 11220401
+GAME 0m actual=0.000, frame=0, Ares units=1 AI units=9
+ Ares credits=4000.0 income=18 defeated=false
+ Ares types [('commandCenter', 1)]
+ Others {0: (1, 67), 1: (1, 67), 2: (1, 67), 3: (1, 67), 4: (1, 67), 6: (1, 67), 7: (1, 67), 8: (1, 67), 9: (1, 67)}
+GAME 10m actual=10.000, frame=37500, Ares units=51 AI units=509
+ Ares credits=235.0 income=146 defeated=false
+ Ares types [('heavyTank', 28), ('extractorT1', 7), ('extractorT2', 6), ('builder', 4), ('landFactory', 3), ('repairbay', 2), ('commandCenter', 1)]
+ Others {0: (77, 437), 1: (71, 300), 2: (59, 241), 3: (22, 74), 4: (84, 470), 6: (19, 215), 7: (64, 222), 8: (84, 370), 9: (29, 248)}
+GAME 20m actual=20.037, frame=75139, Ares units=104 AI units=656
+ Ares credits=356.5 income=210 defeated=false
+ Ares types [('heavyTank', 67), ('extractorT2', 16), ('landFactory', 14), ('builder', 4), ('repairbay', 2), ('commandCenter', 1)]
+ Others {0: (99, 477), 1: (18, 30), 2: (115, 403), 3: (1, 0), 4: (181, 633), 6: (10, 141), 7: (30, 215), 8: (160, 640), 9: (42, 241)}
+GAME 30m actual=30.003, frame=112513, Ares units=138 AI units=624
+ Ares credits=1893.5 income=226 defeated=false
+ Ares types [('heavyTank', 97), ('landFactory', 14), ('extractorT2', 13), ('builder', 5), ('extractorT1', 5), ('repairbay', 2), ('commandCenter', 1), ('extractorT3', 1)]
+ Others {0: (80, 433), 1: (2, 0), 2: (111, 422), 3: (0, 0), 4: (156, 522), 6: (12, 215), 7: (43, 222), 8: (214, 803), 9: (6, 0)}
+GAME 40m actual=40.047, frame=150176, Ares units=114 AI units=681
+ Ares credits=616.5 income=218 defeated=false
+ Ares types [('heavyTank', 67), ('landFactory', 14), ('builder', 13), ('extractorT2', 12), ('extractorT1', 3), ('extractorT3', 2), ('repairbay', 2), ('commandCenter', 1)]
+ Others {0: (121, 611), 1: (0, 0), 2: (115, 500), 3: (0, 0), 4: (190, 714), 6: (0, 0), 7: (44, 270), 8: (209, 907), 9: (2, 0)}
+GAME 50m actual=50.048, frame=187679, Ares units=186 AI units=738
+ Ares credits=9787.5 income=428 defeated=false
+ Ares types [('heavyTank', 140), ('extractorT3', 15), ('landFactory', 14), ('builder', 6), ('repairbay', 5), ('extractorT3_reinforced', 4), ('commandCenter', 1), ('extractorT3_overclocked', 1)]
+ Others {0: (108, 525), 1: (0, 0), 2: (127, 500), 3: (0, 0), 4: (202, 747), 6: (0, 0), 7: (55, 289), 8: (244, 1084), 9: (2, 0)}
+GAME 60m actual=60.057, frame=225212, Ares units=262 AI units=668
+ Ares credits=2686.5 income=548 defeated=false
+ Ares types [('heavyTank', 199), ('landFactory', 29), ('extractorT3_overclocked', 13), ('repairbay', 10), ('extractorT3_reinforced', 5), ('builder', 3), ('extractorT3', 2), ('commandCenter', 1)]
+ Others {0: (106, 633), 1: (0, 0), 2: (136, 507), 3: (0, 0), 4: (186, 844), 6: (0, 0), 7: (0, 0), 8: (238, 1125), 9: (2, 0)}
+GAME 70m actual=70.024, frame=262590, Ares units=194 AI units=618
+ Ares credits=4079.5 income=548 defeated=false
+ Ares types [('heavyTank', 112), ('landFactory', 35), ('repairbay', 15), ('extractorT3_overclocked', 13), ('builder', 10), ('extractorT3', 4), ('extractorT3_reinforced', 2), ('commandCenter', 1), ('extractorT2', 1), ('extractorT1', 1)]
+ Others {0: (133, 648), 1: (0, 0), 2: (135, 529), 3: (0, 0), 4: (74, 189), 6: (0, 0), 7: (0, 0), 8: (276, 1406), 9: (0, 0)}
+GAME 80m actual=80.043, frame=300161, Ares units=342 AI units=595
+ Ares credits=2972.0 income=516 defeated=false
+ Ares types [('heavyTank', 251), ('landFactory', 37), ('builder', 17), ('repairbay', 15), ('extractorT3_overclocked', 9), ('extractorT3', 7), ('extractorT3_reinforced', 4), ('commandCenter', 1), ('extractorT1', 1)]
+ Others {0: (174, 836), 1: (0, 0), 2: (77, 392), 3: (0, 0), 4: (77, 133), 6: (0, 0), 7: (0, 0), 8: (267, 1228), 9: (0, 0)}
+GAME 90m actual=90.019, frame=337572, Ares units=203 AI units=605
+ Ares credits=5830.5 income=448 defeated=false
+ Ares types [('heavyTank', 114), ('landFactory', 36), ('builder', 18), ('repairbay', 14), ('extractorT3', 9), ('extractorT3_overclocked', 5), ('extractorT3_reinforced', 4), ('commandCenter', 1), ('extractorT1', 1), ('extractorT2', 1)]
+ Others {0: (200, 973), 1: (0, 0), 2: (79, 440), 3: (0, 0), 4: (67, 126), 6: (0, 0), 7: (0, 0), 8: (259, 1177), 9: (0, 0)}
+GAME 100m actual=100.009, frame=375035, Ares units=231 AI units=632
+ Ares credits=10479.5 income=570 defeated=false
+ Ares types [('heavyTank', 151), ('landFactory', 36), ('repairbay', 11), ('extractorT3', 11), ('extractorT3_reinforced', 7), ('builder', 7), ('extractorT3_overclocked', 6), ('commandCenter', 1), ('extractorT2', 1)]
+ Others {0: (214, 1043), 1: (0, 0), 2: (114, 496), 3: (0, 0), 4: (68, 126), 6: (0, 0), 7: (0, 0), 8: (236, 1036), 9: (0, 0)}
+GAME 110m actual=110.048, frame=412680, Ares units=310 AI units=690
+ Ares credits=5330.0 income=544 defeated=false
+ Ares types [('heavyTank', 230), ('landFactory', 31), ('repairbay', 12), ('extractorT3', 12), ('builder', 10), ('extractorT3_reinforced', 6), ('extractorT3_overclocked', 5), ('extractorT1', 3), ('commandCenter', 1)]
+ Others {0: (226, 1114), 1: (0, 0), 2: (128, 474), 3: (0, 0), 4: (87, 126), 6: (0, 0), 7: (0, 0), 8: (249, 1043), 9: (0, 0)}
+GAME 120m actual=120.005, frame=450017, Ares units=282 AI units=632
+ Ares credits=1254.5 income=618 defeated=false
+ Ares types [('heavyTank', 200), ('landFactory', 31), ('repairbay', 13), ('extractorT3_reinforced', 11), ('extractorT3', 10), ('builder', 10), ('extractorT3_overclocked', 6), ('commandCenter', 1)]
+ Others {0: (234, 1273), 1: (0, 0), 2: (114, 448), 3: (0, 0), 4: (89, 126), 6: (0, 0), 7: (0, 0), 8: (195, 740), 9: (0, 0)}
+GAME 130m actual=130.038, frame=487642, Ares units=272 AI units=496
+ Ares credits=9130.0 income=660 defeated=false
+ Ares types [('heavyTank', 190), ('landFactory', 32), ('builder', 13), ('extractorT3_overclocked', 9), ('extractorT3_reinforced', 9), ('extractorT3', 9), ('repairbay', 8), ('commandCenter', 1), ('extractorT2', 1)]
+ Others {0: (255, 1214), 1: (0, 0), 2: (58, 300), 3: (0, 0), 4: (89, 130), 6: (0, 0), 7: (0, 0), 8: (94, 437), 9: (0, 0)}
+GAME 140m actual=140.004, frame=524973, Ares units=291 AI units=369
+ Ares credits=9234.5 income=644 defeated=false
+ Ares types [('heavyTank', 189), ('landFactory', 42), ('builder', 19), ('extractorT3_overclocked', 9), ('repairbay', 8), ('extractorT3_reinforced', 8), ('extractorT3', 7), ('extractorT1', 6), ('extractorT2', 2), ('commandCenter', 1)]
+ Others {0: (232, 1284), 1: (0, 0), 2: (42, 226), 3: (0, 0), 4: (81, 137), 6: (0, 0), 7: (0, 0), 8: (14, 0), 9: (0, 0)}
+GAME 150m actual=150.036, frame=560379, Ares units=218 AI units=302
+ Ares credits=2866.5 income=710 defeated=false
+ Ares types [('heavyTank', 122), ('landFactory', 49), ('extractorT3', 12), ('builder', 9), ('extractorT3_overclocked', 8), ('extractorT3_reinforced', 7), ('extractorT2', 6), ('repairbay', 4), ('commandCenter', 1)]
+ Others {0: (230, 992), 1: (0, 0), 2: (0, 0), 3: (0, 0), 4: (66, 130), 6: (0, 0), 7: (0, 0), 8: (6, 0), 9: (0, 0)}
+GAME 160m actual=160.032, frame=595659, Ares units=237 AI units=270
+ Ares credits=3478.5 income=766 defeated=false
+ Ares types [('heavyTank', 147), ('landFactory', 36), ('extractorT3', 18), ('builder', 14), ('extractorT3_overclocked', 8), ('extractorT3_reinforced', 6), ('repairbay', 4), ('extractorT1', 2), ('commandCenter', 1), ('extractorT2', 1)]
+ Others {0: (216, 907), 1: (0, 0), 2: (0, 0), 3: (0, 0), 4: (52, 130), 6: (0, 0), 7: (0, 0), 8: (2, 0), 9: (0, 0)}
+GAME 170m actual=170.042, frame=630987, Ares units=302 AI units=271
+ Ares credits=9037.0 income=835 defeated=false
+ Ares types [('heavyTank', 193), ('landFactory', 35), ('extractorT3', 20), ('builder', 13), ('extractorT3_overclocked', 8), ('repairbay', 8), ('amphibiousJet', 8), ('extractorT3_reinforced', 6), ('combatEngineer', 5), ('extractorT2', 3), ('extractorT1', 2), ('commandCenter', 1)]
+ Others {0: (178, 485), 1: (0, 0), 2: (0, 0), 3: (0, 0), 4: (91, 126), 6: (0, 0), 7: (0, 0), 8: (2, 0), 9: (0, 0)}
+GAME 180m actual=180.032, frame=666246, Ares units=429 AI units=166
+ Ares credits=13639.0 income=1011 defeated=false
+ Ares types [('heavyTank', 166), ('amphibiousJet', 137), ('builder', 39), ('landFactory', 32), ('extractorT3_overclocked', 18), ('extractorT3', 15), ('repairbay', 7), ('extractorT3_reinforced', 5), ('combatEngineer', 5), ('extractorT2', 4), ('commandCenter', 1)]
+ Others {0: (159, 400), 1: (0, 0), 2: (0, 0), 3: (0, 0), 4: (6, 0), 6: (0, 0), 7: (0, 0), 8: (1, 0), 9: (0, 0)}
+GAME 190m actual=187.007, frame=690864, Ares units=532 AI units=19
+ Ares credits=126108.0 income=1402 defeated=false
+ Ares types [('heavyTank', 235), ('amphibiousJet', 166), ('extractorT3_overclocked', 42), ('builder', 39), ('landFactory', 32), ('repairbay', 7), ('extractorT3_reinforced', 5), ('combatEngineer', 4), ('commandCenter', 1), ('extractorT3', 1)]
+ Others {0: (19, 0), 1: (0, 0), 2: (0, 0), 3: (0, 0), 4: (0, 0), 6: (0, 0), 7: (0, 0), 8: (0, 0), 9: (0, 0)}
+--- PLAYER SAMPLE END ---
+-2 credits=4000.0 income=0 defeated=false
+-1 credits=4000.0 income=0 defeated=false
+0 credits=3214.4 income=0 defeated=false
+1 credits=377.1 income=0 defeated=false
+2 credits=4099.9 income=0 defeated=false
+3 credits=14058.3 income=0 defeated=false
+4 credits=4673.5 income=0 defeated=false
+5 credits=126108.0 income=1402 defeated=false
+6 credits=228871.1 income=0 defeated=false
+7 credits=20166.2 income=0 defeated=false
+8 credits=160.9 income=0 defeated=false
+9 credits=4096.7 income=0 defeated=false

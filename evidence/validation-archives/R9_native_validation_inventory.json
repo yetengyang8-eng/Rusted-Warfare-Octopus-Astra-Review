@@ -1,0 +1,3074 @@
+{
+  "version": "R9",
+  "source": "G:\\deepseek 工作台\\_validation\\octopus-r9-20261005",
+  "included": [
+    {
+      "path": "audit_human.py",
+      "size": 3365
+    },
+    {
+      "path": "build_focused.ps1",
+      "size": 2213
+    },
+    {
+      "path": "builder/audit_builder.py",
+      "size": 2642
+    },
+    {
+      "path": "builder/G51ProspectIntegrationHarness.log",
+      "size": 154
+    },
+    {
+      "path": "builder/G6CapitalPolicyHarness.log",
+      "size": 183
+    },
+    {
+      "path": "builder/G6EndgameHarness.log",
+      "size": 176
+    },
+    {
+      "path": "builder/human-builder-causes.json",
+      "size": 37987
+    },
+    {
+      "path": "builder/R4ConstructionHarness.log",
+      "size": 164
+    },
+    {
+      "path": "builder/R7BuilderDemandHarness.log",
+      "size": 157
+    },
+    {
+      "path": "builder/R8BuilderWorkHarness.log",
+      "size": 193
+    },
+    {
+      "path": "builder/R9BuilderCoverageHarness.log",
+      "size": 159
+    },
+    {
+      "path": "compatibility-focused-g1/local_crisis-trace-on-stderr.log",
+      "size": 0
+    },
+    {
+      "path": "compatibility-focused-g1/local_crisis-trace-on-stdout.log",
+      "size": 158
+    },
+    {
+      "path": "compatibility-focused-g1/ordinary_production-trace-off-normalized.json",
+      "size": 11926954
+    },
+    {
+      "path": "compatibility-focused-g1/ordinary_production-trace-off-stderr.log",
+      "size": 0
+    },
+    {
+      "path": "compatibility-focused-g1/ordinary_production-trace-off-stdout.log",
+      "size": 158
+    },
+    {
+      "path": "compatibility-focused-g1/ordinary_production-trace-off.jsonl",
+      "size": 7090562
+    },
+    {
+      "path": "compatibility-focused-g1/ordinary_production-trace-on-normalized.json",
+      "size": 12311980
+    },
+    {
+      "path": "compatibility-focused-g1/ordinary_production-trace-on-stderr.log",
+      "size": 0
+    },
+    {
+      "path": "compatibility-focused-g1/ordinary_production-trace-on-stdout.log",
+      "size": 158
+    },
+    {
+      "path": "compatibility-focused-g1/ordinary_production-trace-on.jsonl",
+      "size": 19924600
+    },
+    {
+      "path": "compatibility-focused-g1/recon-trace-off-normalized.json",
+      "size": 480832
+    },
+    {
+      "path": "compatibility-focused-g1/recon-trace-off-stderr.log",
+      "size": 0
+    },
+    {
+      "path": "compatibility-focused-g1/recon-trace-off-stdout.log",
+      "size": 180
+    },
+    {
+      "path": "compatibility-focused-g1/recon-trace-off.jsonl",
+      "size": 305888
+    },
+    {
+      "path": "compatibility-focused-g1/recon-trace-on-normalized.json",
+      "size": 498995
+    },
+    {
+      "path": "compatibility-focused-g1/recon-trace-on-stderr.log",
+      "size": 0
+    },
+    {
+      "path": "compatibility-focused-g1/recon-trace-on-stdout.log",
+      "size": 180
+    },
+    {
+      "path": "compatibility-focused-g1/recon-trace-on.jsonl",
+      "size": 885129
+    },
+    {
+      "path": "compatibility-focused-g1/strategy_provider-trace-off-normalized.json",
+      "size": 1716830
+    },
+    {
+      "path": "compatibility-focused-g1/strategy_provider-trace-off-stderr.log",
+      "size": 0
+    },
+    {
+      "path": "compatibility-focused-g1/strategy_provider-trace-off-stdout.log",
+      "size": 158
+    },
+    {
+      "path": "compatibility-focused-g1/strategy_provider-trace-off.jsonl",
+      "size": 1089495
+    },
+    {
+      "path": "compatibility-focused-g1/strategy_provider-trace-on-normalized.json",
+      "size": 1734949
+    },
+    {
+      "path": "compatibility-focused-g1/strategy_provider-trace-on-stderr.log",
+      "size": 0
+    },
+    {
+      "path": "compatibility-focused-g1/strategy_provider-trace-on-stdout.log",
+      "size": 158
+    },
+    {
+      "path": "compatibility-focused-g1/strategy_provider-trace-on.jsonl",
+      "size": 5424227
+    },
+    {
+      "path": "compatibility-focused-g1-legacy/local_crisis-pre-g1-normalized.json",
+      "size": 416213
+    },
+    {
+      "path": "compatibility-focused-g1-legacy/local_crisis-pre-g1-stderr.log",
+      "size": 136
+    },
+    {
+      "path": "compatibility-focused-g1-legacy/local_crisis-pre-g1-stdout.log",
+      "size": 158
+    },
+    {
+      "path": "compatibility-focused-g1-legacy/local_crisis-pre-g1.jsonl",
+      "size": 249907
+    },
+    {
+      "path": "compatibility-focused-g1-legacy/local_crisis-trace-off-normalized.json",
+      "size": 416196
+    },
+    {
+      "path": "compatibility-focused-g1-legacy/local_crisis-trace-off-stderr.log",
+      "size": 136
+    },
+    {
+      "path": "compatibility-focused-g1-legacy/local_crisis-trace-off-stdout.log",
+      "size": 158
+    },
+    {
+      "path": "compatibility-focused-g1-legacy/local_crisis-trace-off.jsonl",
+      "size": 249907
+    },
+    {
+      "path": "compatibility-focused-g1-legacy/local_crisis-trace-on-normalized.json",
+      "size": 416195
+    },
+    {
+      "path": "compatibility-focused-g1-legacy/local_crisis-trace-on-stderr.log",
+      "size": 136
+    },
+    {
+      "path": "compatibility-focused-g1-legacy/local_crisis-trace-on-stdout.log",
+      "size": 158
+    },
+    {
+      "path": "compatibility-focused-g1-legacy/local_crisis-trace-on.jsonl",
+      "size": 1277909
+    },
+    {
+      "path": "compatibility-focused-g1-legacy/ordinary_production-pre-g1-normalized.json",
+      "size": 4024257
+    },
+    {
+      "path": "compatibility-focused-g1-legacy/ordinary_production-pre-g1-stderr.log",
+      "size": 0
+    },
+    {
+      "path": "compatibility-focused-g1-legacy/ordinary_production-pre-g1-stdout.log",
+      "size": 294
+    },
+    {
+      "path": "compatibility-focused-g1-legacy/ordinary_production-pre-g1.jsonl",
+      "size": 2234611
+    },
+    {
+      "path": "compatibility-focused-g1-legacy/ordinary_production-trace-off-normalized.json",
+      "size": 4024240
+    },
+    {
+      "path": "compatibility-focused-g1-legacy/ordinary_production-trace-off-stderr.log",
+      "size": 0
+    },
+    {
+      "path": "compatibility-focused-g1-legacy/ordinary_production-trace-off-stdout.log",
+      "size": 294
+    },
+    {
+      "path": "compatibility-focused-g1-legacy/ordinary_production-trace-off.jsonl",
+      "size": 2234611
+    },
+    {
+      "path": "compatibility-focused-g1-legacy/ordinary_production-trace-on-normalized.json",
+      "size": 4024239
+    },
+    {
+      "path": "compatibility-focused-g1-legacy/ordinary_production-trace-on-stderr.log",
+      "size": 0
+    },
+    {
+      "path": "compatibility-focused-g1-legacy/ordinary_production-trace-on-stdout.log",
+      "size": 294
+    },
+    {
+      "path": "compatibility-focused-g1-legacy/ordinary_production-trace-on.jsonl",
+      "size": 8834136
+    },
+    {
+      "path": "compatibility-focused-g1-legacy/recon-pre-g1-normalized.json",
+      "size": 156496
+    },
+    {
+      "path": "compatibility-focused-g1-legacy/recon-pre-g1-stderr.log",
+      "size": 0
+    },
+    {
+      "path": "compatibility-focused-g1-legacy/recon-pre-g1-stdout.log",
+      "size": 311
+    },
+    {
+      "path": "compatibility-focused-g1-legacy/recon-pre-g1.jsonl",
+      "size": 94516
+    },
+    {
+      "path": "compatibility-focused-g1-legacy/recon-trace-off-normalized.json",
+      "size": 156479
+    },
+    {
+      "path": "compatibility-focused-g1-legacy/recon-trace-off-stderr.log",
+      "size": 0
+    },
+    {
+      "path": "compatibility-focused-g1-legacy/recon-trace-off-stdout.log",
+      "size": 311
+    },
+    {
+      "path": "compatibility-focused-g1-legacy/recon-trace-off.jsonl",
+      "size": 94516
+    },
+    {
+      "path": "compatibility-focused-g1-legacy/recon-trace-on-normalized.json",
+      "size": 156478
+    },
+    {
+      "path": "compatibility-focused-g1-legacy/recon-trace-on-stderr.log",
+      "size": 0
+    },
+    {
+      "path": "compatibility-focused-g1-legacy/recon-trace-on-stdout.log",
+      "size": 311
+    },
+    {
+      "path": "compatibility-focused-g1-legacy/recon-trace-on.jsonl",
+      "size": 475892
+    },
+    {
+      "path": "compatibility-focused-g1-legacy/strategy_provider-pre-g1-normalized.json",
+      "size": 828463
+    },
+    {
+      "path": "compatibility-focused-g1-legacy/strategy_provider-pre-g1-stderr.log",
+      "size": 0
+    },
+    {
+      "path": "compatibility-focused-g1-legacy/strategy_provider-pre-g1-stdout.log",
+      "size": 294
+    },
+    {
+      "path": "compatibility-focused-g1-legacy/strategy_provider-pre-g1.jsonl",
+      "size": 505420
+    },
+    {
+      "path": "compatibility-focused-g1-legacy/strategy_provider-trace-off-normalized.json",
+      "size": 828446
+    },
+    {
+      "path": "compatibility-focused-g1-legacy/strategy_provider-trace-off-stderr.log",
+      "size": 0
+    },
+    {
+      "path": "compatibility-focused-g1-legacy/strategy_provider-trace-off-stdout.log",
+      "size": 294
+    },
+    {
+      "path": "compatibility-focused-g1-legacy/strategy_provider-trace-off.jsonl",
+      "size": 505421
+    },
+    {
+      "path": "compatibility-focused-g1-legacy/strategy_provider-trace-on-normalized.json",
+      "size": 828445
+    },
+    {
+      "path": "compatibility-focused-g1-legacy/strategy_provider-trace-on-stderr.log",
+      "size": 0
+    },
+    {
+      "path": "compatibility-focused-g1-legacy/strategy_provider-trace-on-stdout.log",
+      "size": 294
+    },
+    {
+      "path": "compatibility-focused-g1-legacy/strategy_provider-trace-on.jsonl",
+      "size": 3610037
+    },
+    {
+      "path": "compatibility-focused-legacy.log",
+      "size": 640
+    },
+    {
+      "path": "compatibility-focused-wrong-environment.log",
+      "size": 11413
+    },
+    {
+      "path": "compatibility-focused.log",
+      "size": 11413
+    },
+    {
+      "path": "delivery-final.log",
+      "size": 4132
+    },
+    {
+      "path": "delivery-verification.json",
+      "size": 1000
+    },
+    {
+      "path": "final-verification/final-full/exit-code.txt",
+      "size": 3
+    },
+    {
+      "path": "final-verification/final-full/g1-four-path/local_crisis-pre-g1-normalized.json",
+      "size": 416213
+    },
+    {
+      "path": "final-verification/final-full/g1-four-path/local_crisis-pre-g1-stderr.log",
+      "size": 136
+    },
+    {
+      "path": "final-verification/final-full/g1-four-path/local_crisis-pre-g1-stdout.log",
+      "size": 199
+    },
+    {
+      "path": "final-verification/final-full/g1-four-path/local_crisis-pre-g1.jsonl",
+      "size": 249907
+    },
+    {
+      "path": "final-verification/final-full/g1-four-path/local_crisis-trace-off-normalized.json",
+      "size": 416243
+    },
+    {
+      "path": "final-verification/final-full/g1-four-path/local_crisis-trace-off-stderr.log",
+      "size": 136
+    },
+    {
+      "path": "final-verification/final-full/g1-four-path/local_crisis-trace-off-stdout.log",
+      "size": 199
+    },
+    {
+      "path": "final-verification/final-full/g1-four-path/local_crisis-trace-off.jsonl",
+      "size": 249907
+    },
+    {
+      "path": "final-verification/final-full/g1-four-path/local_crisis-trace-on-normalized.json",
+      "size": 416242
+    },
+    {
+      "path": "final-verification/final-full/g1-four-path/local_crisis-trace-on-stderr.log",
+      "size": 136
+    },
+    {
+      "path": "final-verification/final-full/g1-four-path/local_crisis-trace-on-stdout.log",
+      "size": 199
+    },
+    {
+      "path": "final-verification/final-full/g1-four-path/local_crisis-trace-on.jsonl",
+      "size": 1277909
+    },
+    {
+      "path": "final-verification/final-full/g1-four-path/ordinary_production-pre-g1-normalized.json",
+      "size": 4024257
+    },
+    {
+      "path": "final-verification/final-full/g1-four-path/ordinary_production-pre-g1-stderr.log",
+      "size": 0
+    },
+    {
+      "path": "final-verification/final-full/g1-four-path/ordinary_production-pre-g1-stdout.log",
+      "size": 335
+    },
+    {
+      "path": "final-verification/final-full/g1-four-path/ordinary_production-pre-g1.jsonl",
+      "size": 2234611
+    },
+    {
+      "path": "final-verification/final-full/g1-four-path/ordinary_production-trace-off-normalized.json",
+      "size": 4026149
+    },
+    {
+      "path": "final-verification/final-full/g1-four-path/ordinary_production-trace-off-stderr.log",
+      "size": 0
+    },
+    {
+      "path": "final-verification/final-full/g1-four-path/ordinary_production-trace-off-stdout.log",
+      "size": 335
+    },
+    {
+      "path": "final-verification/final-full/g1-four-path/ordinary_production-trace-off.jsonl",
+      "size": 2236131
+    },
+    {
+      "path": "final-verification/final-full/g1-four-path/ordinary_production-trace-on-normalized.json",
+      "size": 4026148
+    },
+    {
+      "path": "final-verification/final-full/g1-four-path/ordinary_production-trace-on-stderr.log",
+      "size": 0
+    },
+    {
+      "path": "final-verification/final-full/g1-four-path/ordinary_production-trace-on-stdout.log",
+      "size": 335
+    },
+    {
+      "path": "final-verification/final-full/g1-four-path/ordinary_production-trace-on.jsonl",
+      "size": 8835656
+    },
+    {
+      "path": "final-verification/final-full/g1-four-path/recon-pre-g1-normalized.json",
+      "size": 156496
+    },
+    {
+      "path": "final-verification/final-full/g1-four-path/recon-pre-g1-stderr.log",
+      "size": 0
+    },
+    {
+      "path": "final-verification/final-full/g1-four-path/recon-pre-g1-stdout.log",
+      "size": 343
+    },
+    {
+      "path": "final-verification/final-full/g1-four-path/recon-pre-g1.jsonl",
+      "size": 94516
+    },
+    {
+      "path": "final-verification/final-full/g1-four-path/recon-trace-off-normalized.json",
+      "size": 156526
+    },
+    {
+      "path": "final-verification/final-full/g1-four-path/recon-trace-off-stderr.log",
+      "size": 0
+    },
+    {
+      "path": "final-verification/final-full/g1-four-path/recon-trace-off-stdout.log",
+      "size": 343
+    },
+    {
+      "path": "final-verification/final-full/g1-four-path/recon-trace-off.jsonl",
+      "size": 94515
+    },
+    {
+      "path": "final-verification/final-full/g1-four-path/recon-trace-on-normalized.json",
+      "size": 156525
+    },
+    {
+      "path": "final-verification/final-full/g1-four-path/recon-trace-on-stderr.log",
+      "size": 0
+    },
+    {
+      "path": "final-verification/final-full/g1-four-path/recon-trace-on-stdout.log",
+      "size": 343
+    },
+    {
+      "path": "final-verification/final-full/g1-four-path/recon-trace-on.jsonl",
+      "size": 475892
+    },
+    {
+      "path": "final-verification/final-full/g1-four-path/strategy_provider-pre-g1-normalized.json",
+      "size": 828463
+    },
+    {
+      "path": "final-verification/final-full/g1-four-path/strategy_provider-pre-g1-stderr.log",
+      "size": 0
+    },
+    {
+      "path": "final-verification/final-full/g1-four-path/strategy_provider-pre-g1-stdout.log",
+      "size": 335
+    },
+    {
+      "path": "final-verification/final-full/g1-four-path/strategy_provider-pre-g1.jsonl",
+      "size": 505420
+    },
+    {
+      "path": "final-verification/final-full/g1-four-path/strategy_provider-trace-off-normalized.json",
+      "size": 828493
+    },
+    {
+      "path": "final-verification/final-full/g1-four-path/strategy_provider-trace-off-stderr.log",
+      "size": 0
+    },
+    {
+      "path": "final-verification/final-full/g1-four-path/strategy_provider-trace-off-stdout.log",
+      "size": 335
+    },
+    {
+      "path": "final-verification/final-full/g1-four-path/strategy_provider-trace-off.jsonl",
+      "size": 505420
+    },
+    {
+      "path": "final-verification/final-full/g1-four-path/strategy_provider-trace-on-normalized.json",
+      "size": 828492
+    },
+    {
+      "path": "final-verification/final-full/g1-four-path/strategy_provider-trace-on-stderr.log",
+      "size": 0
+    },
+    {
+      "path": "final-verification/final-full/g1-four-path/strategy_provider-trace-on-stdout.log",
+      "size": 335
+    },
+    {
+      "path": "final-verification/final-full/g1-four-path/strategy_provider-trace-on.jsonl",
+      "size": 3610037
+    },
+    {
+      "path": "final-verification/final-full/g2-four-path/local_crisis-ff693c8-http.json",
+      "size": 259252
+    },
+    {
+      "path": "final-verification/final-full/g2-four-path/local_crisis-ff693c8-outcomes.json",
+      "size": 420435
+    },
+    {
+      "path": "final-verification/final-full/g2-four-path/local_crisis-ff693c8.jsonl",
+      "size": 620014
+    },
+    {
+      "path": "final-verification/final-full/g2-four-path/local_crisis-g2-off-http.json",
+      "size": 259252
+    },
+    {
+      "path": "final-verification/final-full/g2-four-path/local_crisis-g2-off-outcomes.json",
+      "size": 420494
+    },
+    {
+      "path": "final-verification/final-full/g2-four-path/local_crisis-g2-off.jsonl",
+      "size": 620118
+    },
+    {
+      "path": "final-verification/final-full/g2-four-path/local_crisis-g2-on-http.json",
+      "size": 259252
+    },
+    {
+      "path": "final-verification/final-full/g2-four-path/local_crisis-g2-on-outcomes.json",
+      "size": 420492
+    },
+    {
+      "path": "final-verification/final-full/g2-four-path/local_crisis-g2-on.jsonl",
+      "size": 1277908
+    },
+    {
+      "path": "final-verification/final-full/g2-four-path/ordinary_production-ff693c8-http.json",
+      "size": 3142677
+    },
+    {
+      "path": "final-verification/final-full/g2-four-path/ordinary_production-ff693c8-outcomes.json",
+      "size": 4036071
+    },
+    {
+      "path": "final-verification/final-full/g2-four-path/ordinary_production-ff693c8.jsonl",
+      "size": 5024861
+    },
+    {
+      "path": "final-verification/final-full/g2-four-path/ordinary_production-g2-off-http.json",
+      "size": 3142677
+    },
+    {
+      "path": "final-verification/final-full/g2-four-path/ordinary_production-g2-off-outcomes.json",
+      "size": 4037994
+    },
+    {
+      "path": "final-verification/final-full/g2-four-path/ordinary_production-g2-off.jsonl",
+      "size": 5026561
+    },
+    {
+      "path": "final-verification/final-full/g2-four-path/ordinary_production-g2-on-http.json",
+      "size": 3142677
+    },
+    {
+      "path": "final-verification/final-full/g2-four-path/ordinary_production-g2-on-outcomes.json",
+      "size": 4037991
+    },
+    {
+      "path": "final-verification/final-full/g2-four-path/ordinary_production-g2-on.jsonl",
+      "size": 8835655
+    },
+    {
+      "path": "final-verification/final-full/g2-four-path/recon-ff693c8-http.json",
+      "size": 128108
+    },
+    {
+      "path": "final-verification/final-full/g2-four-path/recon-ff693c8-native-stamps-http.json",
+      "size": 127551
+    },
+    {
+      "path": "final-verification/final-full/g2-four-path/recon-ff693c8-native-stamps-outcomes.json",
+      "size": 157761
+    },
+    {
+      "path": "final-verification/final-full/g2-four-path/recon-ff693c8-native-stamps.jsonl",
+      "size": 284424
+    },
+    {
+      "path": "final-verification/final-full/g2-four-path/recon-ff693c8-outcomes.json",
+      "size": 158358
+    },
+    {
+      "path": "final-verification/final-full/g2-four-path/recon-ff693c8.jsonl",
+      "size": 284872
+    },
+    {
+      "path": "final-verification/final-full/g2-four-path/recon-g2-off-http.json",
+      "size": 128108
+    },
+    {
+      "path": "final-verification/final-full/g2-four-path/recon-g2-off-native-stamps-http.json",
+      "size": 127551
+    },
+    {
+      "path": "final-verification/final-full/g2-four-path/recon-g2-off-native-stamps-outcomes.json",
+      "size": 157822
+    },
+    {
+      "path": "final-verification/final-full/g2-four-path/recon-g2-off-native-stamps.jsonl",
+      "size": 284424
+    },
+    {
+      "path": "final-verification/final-full/g2-four-path/recon-g2-off-outcomes.json",
+      "size": 158418
+    },
+    {
+      "path": "final-verification/final-full/g2-four-path/recon-g2-off.jsonl",
+      "size": 284872
+    },
+    {
+      "path": "final-verification/final-full/g2-four-path/recon-g2-on-http.json",
+      "size": 128108
+    },
+    {
+      "path": "final-verification/final-full/g2-four-path/recon-g2-on-native-stamps-http.json",
+      "size": 127551
+    },
+    {
+      "path": "final-verification/final-full/g2-four-path/recon-g2-on-native-stamps-outcomes.json",
+      "size": 157820
+    },
+    {
+      "path": "final-verification/final-full/g2-four-path/recon-g2-on-native-stamps.jsonl",
+      "size": 785466
+    },
+    {
+      "path": "final-verification/final-full/g2-four-path/recon-g2-on-outcomes.json",
+      "size": 158416
+    },
+    {
+      "path": "final-verification/final-full/g2-four-path/recon-g2-on.jsonl",
+      "size": 785967
+    },
+    {
+      "path": "final-verification/final-full/g2-four-path/recon-guard-networked-ff693c8-http.json",
+      "size": 14961
+    },
+    {
+      "path": "final-verification/final-full/g2-four-path/recon-guard-networked-ff693c8-outcomes.json",
+      "size": 29199
+    },
+    {
+      "path": "final-verification/final-full/g2-four-path/recon-guard-networked-ff693c8.jsonl",
+      "size": 55791
+    },
+    {
+      "path": "final-verification/final-full/g2-four-path/recon-guard-networked-g2-off-http.json",
+      "size": 14961
+    },
+    {
+      "path": "final-verification/final-full/g2-four-path/recon-guard-networked-g2-off-outcomes.json",
+      "size": 29259
+    },
+    {
+      "path": "final-verification/final-full/g2-four-path/recon-guard-networked-g2-off.jsonl",
+      "size": 55791
+    },
+    {
+      "path": "final-verification/final-full/g2-four-path/recon-guard-networked-http.json",
+      "size": 14961
+    },
+    {
+      "path": "final-verification/final-full/g2-four-path/recon-guard-networked-outcomes.json",
+      "size": 29257
+    },
+    {
+      "path": "final-verification/final-full/g2-four-path/recon-guard-networked.jsonl",
+      "size": 145672
+    },
+    {
+      "path": "final-verification/final-full/g2-four-path/recon-guard-replay-ff693c8-http.json",
+      "size": 14961
+    },
+    {
+      "path": "final-verification/final-full/g2-four-path/recon-guard-replay-ff693c8-outcomes.json",
+      "size": 29199
+    },
+    {
+      "path": "final-verification/final-full/g2-four-path/recon-guard-replay-ff693c8.jsonl",
+      "size": 55791
+    },
+    {
+      "path": "final-verification/final-full/g2-four-path/recon-guard-replay-g2-off-http.json",
+      "size": 14961
+    },
+    {
+      "path": "final-verification/final-full/g2-four-path/recon-guard-replay-g2-off-outcomes.json",
+      "size": 29259
+    },
+    {
+      "path": "final-verification/final-full/g2-four-path/recon-guard-replay-g2-off.jsonl",
+      "size": 55791
+    },
+    {
+      "path": "final-verification/final-full/g2-four-path/recon-guard-replay-http.json",
+      "size": 14961
+    },
+    {
+      "path": "final-verification/final-full/g2-four-path/recon-guard-replay-outcomes.json",
+      "size": 29257
+    },
+    {
+      "path": "final-verification/final-full/g2-four-path/recon-guard-replay.jsonl",
+      "size": 145672
+    },
+    {
+      "path": "final-verification/final-full/g2-four-path/recon-guard-rollback-ff693c8-http.json",
+      "size": 14959
+    },
+    {
+      "path": "final-verification/final-full/g2-four-path/recon-guard-rollback-ff693c8-outcomes.json",
+      "size": 29170
+    },
+    {
+      "path": "final-verification/final-full/g2-four-path/recon-guard-rollback-ff693c8.jsonl",
+      "size": 55922
+    },
+    {
+      "path": "final-verification/final-full/g2-four-path/recon-guard-rollback-g2-off-http.json",
+      "size": 14959
+    },
+    {
+      "path": "final-verification/final-full/g2-four-path/recon-guard-rollback-g2-off-outcomes.json",
+      "size": 29230
+    },
+    {
+      "path": "final-verification/final-full/g2-four-path/recon-guard-rollback-g2-off.jsonl",
+      "size": 55922
+    },
+    {
+      "path": "final-verification/final-full/g2-four-path/recon-guard-rollback-http.json",
+      "size": 14959
+    },
+    {
+      "path": "final-verification/final-full/g2-four-path/recon-guard-rollback-outcomes.json",
+      "size": 29228
+    },
+    {
+      "path": "final-verification/final-full/g2-four-path/recon-guard-rollback.jsonl",
+      "size": 145803
+    },
+    {
+      "path": "final-verification/final-full/g2-four-path/recon-guard-session-ff693c8-http.json",
+      "size": 15861
+    },
+    {
+      "path": "final-verification/final-full/g2-four-path/recon-guard-session-ff693c8-outcomes.json",
+      "size": 31104
+    },
+    {
+      "path": "final-verification/final-full/g2-four-path/recon-guard-session-ff693c8.jsonl",
+      "size": 64317
+    },
+    {
+      "path": "final-verification/final-full/g2-four-path/recon-guard-session-g2-off-http.json",
+      "size": 15861
+    },
+    {
+      "path": "final-verification/final-full/g2-four-path/recon-guard-session-g2-off-outcomes.json",
+      "size": 31164
+    },
+    {
+      "path": "final-verification/final-full/g2-four-path/recon-guard-session-g2-off.jsonl",
+      "size": 64317
+    },
+    {
+      "path": "final-verification/final-full/g2-four-path/recon-guard-session-http.json",
+      "size": 15861
+    },
+    {
+      "path": "final-verification/final-full/g2-four-path/recon-guard-session-outcomes.json",
+      "size": 31162
+    },
+    {
+      "path": "final-verification/final-full/g2-four-path/recon-guard-session.jsonl",
+      "size": 159301
+    },
+    {
+      "path": "final-verification/final-full/g2-four-path/strategy_provider-ff693c8-http.json",
+      "size": 547548
+    },
+    {
+      "path": "final-verification/final-full/g2-four-path/strategy_provider-ff693c8-outcomes.json",
+      "size": 1191959
+    },
+    {
+      "path": "final-verification/final-full/g2-four-path/strategy_provider-ff693c8.jsonl",
+      "size": 1667995
+    },
+    {
+      "path": "final-verification/final-full/g2-four-path/strategy_provider-g2-off-http.json",
+      "size": 547548
+    },
+    {
+      "path": "final-verification/final-full/g2-four-path/strategy_provider-g2-off-outcomes.json",
+      "size": 1192019
+    },
+    {
+      "path": "final-verification/final-full/g2-four-path/strategy_provider-g2-off.jsonl",
+      "size": 1671843
+    },
+    {
+      "path": "final-verification/final-full/g2-four-path/strategy_provider-g2-on-http.json",
+      "size": 547548
+    },
+    {
+      "path": "final-verification/final-full/g2-four-path/strategy_provider-g2-on-outcomes.json",
+      "size": 1192016
+    },
+    {
+      "path": "final-verification/final-full/g2-four-path/strategy_provider-g2-on.jsonl",
+      "size": 3610036
+    },
+    {
+      "path": "final-verification/final-full/g3-enabled-g4-disabled/accepted-g2-throughput.json",
+      "size": 13841
+    },
+    {
+      "path": "final-verification/final-full/g3-enabled-g4-disabled/accepted-g2-throughput.jsonl",
+      "size": 808973
+    },
+    {
+      "path": "final-verification/final-full/g3-enabled-g4-disabled/accepted-g2-throughput.stdout.log",
+      "size": 312
+    },
+    {
+      "path": "final-verification/final-full/g3-enabled-g4-disabled/g3-cost-g1-only.json",
+      "size": 16811
+    },
+    {
+      "path": "final-verification/final-full/g3-enabled-g4-disabled/g3-cost-g1-only.jsonl",
+      "size": 645898
+    },
+    {
+      "path": "final-verification/final-full/g3-enabled-g4-disabled/g3-cost-g1-only.stdout.log",
+      "size": 312
+    },
+    {
+      "path": "final-verification/final-full/g3-enabled-g4-disabled/g3-cost-trace-off-diagnostics-off.json",
+      "size": 16839
+    },
+    {
+      "path": "final-verification/final-full/g3-enabled-g4-disabled/g3-cost-trace-off-diagnostics-off.jsonl",
+      "size": 57912
+    },
+    {
+      "path": "final-verification/final-full/g3-enabled-g4-disabled/g3-cost-trace-off-diagnostics-off.stdout.log",
+      "size": 312
+    },
+    {
+      "path": "final-verification/final-full/g3-enabled-g4-disabled/g3-cost-trace-on.json",
+      "size": 16810
+    },
+    {
+      "path": "final-verification/final-full/g3-enabled-g4-disabled/g3-cost-trace-on.jsonl",
+      "size": 1154911
+    },
+    {
+      "path": "final-verification/final-full/g3-enabled-g4-disabled/g3-cost-trace-on.stdout.log",
+      "size": 312
+    },
+    {
+      "path": "final-verification/final-full/g3-enabled-g4-disabled/g3-credits.json",
+      "size": 13930
+    },
+    {
+      "path": "final-verification/final-full/g3-enabled-g4-disabled/g3-credits.jsonl",
+      "size": 1012169
+    },
+    {
+      "path": "final-verification/final-full/g3-enabled-g4-disabled/g3-credits.stdout.log",
+      "size": 312
+    },
+    {
+      "path": "final-verification/final-full/g3-enabled-g4-disabled/g3-jumps.json",
+      "size": 16792
+    },
+    {
+      "path": "final-verification/final-full/g3-enabled-g4-disabled/g3-jumps.jsonl",
+      "size": 1154911
+    },
+    {
+      "path": "final-verification/final-full/g3-enabled-g4-disabled/g3-jumps.stdout.log",
+      "size": 312
+    },
+    {
+      "path": "final-verification/final-full/g3-enabled-g4-disabled/g3-slots.json",
+      "size": 13933
+    },
+    {
+      "path": "final-verification/final-full/g3-enabled-g4-disabled/g3-slots.jsonl",
+      "size": 1015539
+    },
+    {
+      "path": "final-verification/final-full/g3-enabled-g4-disabled/g3-slots.stdout.log",
+      "size": 312
+    },
+    {
+      "path": "final-verification/final-full/g3-enabled-g4-disabled/g3-throughput.json",
+      "size": 16815
+    },
+    {
+      "path": "final-verification/final-full/g3-enabled-g4-disabled/g3-throughput.jsonl",
+      "size": 1154911
+    },
+    {
+      "path": "final-verification/final-full/g3-enabled-g4-disabled/g3-throughput.stdout.log",
+      "size": 312
+    },
+    {
+      "path": "final-verification/final-full/g3-enabled-g4-disabled/legacy-gate-current-jar.json",
+      "size": 13900
+    },
+    {
+      "path": "final-verification/final-full/g3-enabled-g4-disabled/legacy-gate-current-jar.jsonl",
+      "size": 811005
+    },
+    {
+      "path": "final-verification/final-full/g3-enabled-g4-disabled/legacy-gate-current-jar.stdout.log",
+      "size": 312
+    },
+    {
+      "path": "final-verification/final-full/g3-enabled-g4-disabled/test_engineer_provider-test_complete_underwater_response_requires_ready_product_and_observed_mode-http.json",
+      "size": 560792
+    },
+    {
+      "path": "final-verification/final-full/g3-enabled-g4-disabled/test_engineer_provider-test_complete_underwater_response_requires_ready_product_and_observed_mode-native-queues-http.json",
+      "size": 561340
+    },
+    {
+      "path": "final-verification/final-full/g3-enabled-g4-disabled/test_engineer_provider-test_complete_underwater_response_requires_ready_product_and_observed_mode-native-queues.jsonl",
+      "size": 4454506
+    },
+    {
+      "path": "final-verification/final-full/g3-enabled-g4-disabled/test_engineer_provider-test_complete_underwater_response_requires_ready_product_and_observed_mode-native-queues.stdout.log",
+      "size": 304
+    },
+    {
+      "path": "final-verification/final-full/g3-enabled-g4-disabled/test_engineer_provider-test_complete_underwater_response_requires_ready_product_and_observed_mode.jsonl",
+      "size": 4453910
+    },
+    {
+      "path": "final-verification/final-full/g3-enabled-g4-disabled/test_engineer_provider-test_complete_underwater_response_requires_ready_product_and_observed_mode.stdout.log",
+      "size": 304
+    },
+    {
+      "path": "final-verification/final-full/g3-enabled-g4-disabled/test_engineer_provider-test_funding_holds_native_quote_then_releases_on_accepted_build-http.json",
+      "size": 557039
+    },
+    {
+      "path": "final-verification/final-full/g3-enabled-g4-disabled/test_engineer_provider-test_funding_holds_native_quote_then_releases_on_accepted_build.jsonl",
+      "size": 4351855
+    },
+    {
+      "path": "final-verification/final-full/g3-enabled-g4-disabled/test_engineer_provider-test_funding_holds_native_quote_then_releases_on_accepted_build.stdout.log",
+      "size": 304
+    },
+    {
+      "path": "final-verification/final-full/g3-enabled-g4-disabled/test_local_army-test_contact_loss_returns_and_releases_without_claiming_kill-http.json",
+      "size": 258118
+    },
+    {
+      "path": "final-verification/final-full/g3-enabled-g4-disabled/test_local_army-test_contact_loss_returns_and_releases_without_claiming_kill.jsonl",
+      "size": 1350032
+    },
+    {
+      "path": "final-verification/final-full/g3-enabled-g4-disabled/test_local_army-test_contact_loss_returns_and_releases_without_claiming_kill.stdout.log",
+      "size": 197
+    },
+    {
+      "path": "final-verification/final-full/g3-enabled-g4-disabled/test_production_capacity-test_army_limit_cannot_spend_investment_reserve-http.json",
+      "size": 2695569
+    },
+    {
+      "path": "final-verification/final-full/g3-enabled-g4-disabled/test_production_capacity-test_army_limit_cannot_spend_investment_reserve.jsonl",
+      "size": 10151271
+    },
+    {
+      "path": "final-verification/final-full/g3-enabled-g4-disabled/test_production_capacity-test_army_limit_cannot_spend_investment_reserve.stdout.log",
+      "size": 304
+    },
+    {
+      "path": "final-verification/final-full/g3-enabled-g4-disabled/test_recon_client-test_lost_factory_uses_one_unit_and_requires_own_evidence_before_clear-http.json",
+      "size": 125730
+    },
+    {
+      "path": "final-verification/final-full/g3-enabled-g4-disabled/test_recon_client-test_lost_factory_uses_one_unit_and_requires_own_evidence_before_clear.jsonl",
+      "size": 499871
+    },
+    {
+      "path": "final-verification/final-full/g3-enabled-g4-disabled/test_recon_client-test_lost_factory_uses_one_unit_and_requires_own_evidence_before_clear.stdout.log",
+      "size": 312
+    },
+    {
+      "path": "final-verification/final-full/g3-enabled-g4-disabled/test_surplus_spending-test_near_target_rich_economy_invests_when_local_payback_window_is_long-native-queues-http.json",
+      "size": 860404
+    },
+    {
+      "path": "final-verification/final-full/g3-enabled-g4-disabled/test_surplus_spending-test_near_target_rich_economy_invests_when_local_payback_window_is_long-native-queues.jsonl",
+      "size": 3074652
+    },
+    {
+      "path": "final-verification/final-full/g3-enabled-g4-disabled/test_surplus_spending-test_near_target_rich_economy_invests_when_local_payback_window_is_long-native-queues.stdout.log",
+      "size": 304
+    },
+    {
+      "path": "final-verification/final-full/g4-enabled-mainloop/empty/True/battle.jsonl",
+      "size": 940937
+    },
+    {
+      "path": "final-verification/final-full/g4-enabled-mainloop/empty/True/process.txt",
+      "size": 304
+    },
+    {
+      "path": "final-verification/final-full/g4-enabled-mainloop/seeded/False/battle.jsonl",
+      "size": 304508
+    },
+    {
+      "path": "final-verification/final-full/g4-enabled-mainloop/seeded/False/process.txt",
+      "size": 304
+    },
+    {
+      "path": "final-verification/final-full/g4-enabled-mainloop/seeded/True/battle.jsonl",
+      "size": 1206769
+    },
+    {
+      "path": "final-verification/final-full/g4-enabled-mainloop/seeded/True/process.txt",
+      "size": 304
+    },
+    {
+      "path": "final-verification/final-full/g5-mainloop/chunk_cache_read_probe/battle.jsonl",
+      "size": 0
+    },
+    {
+      "path": "final-verification/final-full/g5-mainloop/chunk_cache_read_probe/fixture.json",
+      "size": 4552
+    },
+    {
+      "path": "final-verification/final-full/g5-mainloop/chunk_cache_read_probe/process.txt",
+      "size": 2238
+    },
+    {
+      "path": "final-verification/final-full/g5-mainloop/g41-reused/g5_first_formation/battle.jsonl",
+      "size": 3797628
+    },
+    {
+      "path": "final-verification/final-full/g5-mainloop/g41-reused/g5_first_formation/fixture.json",
+      "size": 38174
+    },
+    {
+      "path": "final-verification/final-full/g5-mainloop/g41-reused/g5_first_formation/process.txt",
+      "size": 313
+    },
+    {
+      "path": "final-verification/final-full/g5-mainloop/overflow/battle.jsonl",
+      "size": 2932453
+    },
+    {
+      "path": "final-verification/final-full/g5-mainloop/overflow/fixture.json",
+      "size": 30341
+    },
+    {
+      "path": "final-verification/final-full/g5-mainloop/overflow/process.txt",
+      "size": 312
+    },
+    {
+      "path": "final-verification/final-full/g5-mainloop/pressure/battle.jsonl",
+      "size": 5780318
+    },
+    {
+      "path": "final-verification/final-full/g5-mainloop/pressure/fixture.json",
+      "size": 58517
+    },
+    {
+      "path": "final-verification/final-full/g5-mainloop/pressure/process.txt",
+      "size": 312
+    },
+    {
+      "path": "final-verification/final-full/transcript.txt",
+      "size": 46820
+    },
+    {
+      "path": "final-verification/prepare_final.py",
+      "size": 1256
+    },
+    {
+      "path": "final-verification/run-final.ps1",
+      "size": 2241
+    },
+    {
+      "path": "final-verification/runner.log",
+      "size": 497870
+    },
+    {
+      "path": "final-verification/tested-inputs.json",
+      "size": 30347
+    },
+    {
+      "path": "final-verification-v2/final-full/exit-code.txt",
+      "size": 3
+    },
+    {
+      "path": "final-verification-v2/final-full/g1-four-path/local_crisis-pre-g1-normalized.json",
+      "size": 416213
+    },
+    {
+      "path": "final-verification-v2/final-full/g1-four-path/local_crisis-pre-g1-stderr.log",
+      "size": 136
+    },
+    {
+      "path": "final-verification-v2/final-full/g1-four-path/local_crisis-pre-g1-stdout.log",
+      "size": 202
+    },
+    {
+      "path": "final-verification-v2/final-full/g1-four-path/local_crisis-pre-g1.jsonl",
+      "size": 249907
+    },
+    {
+      "path": "final-verification-v2/final-full/g1-four-path/local_crisis-trace-off-normalized.json",
+      "size": 416246
+    },
+    {
+      "path": "final-verification-v2/final-full/g1-four-path/local_crisis-trace-off-stderr.log",
+      "size": 136
+    },
+    {
+      "path": "final-verification-v2/final-full/g1-four-path/local_crisis-trace-off-stdout.log",
+      "size": 202
+    },
+    {
+      "path": "final-verification-v2/final-full/g1-four-path/local_crisis-trace-off.jsonl",
+      "size": 249907
+    },
+    {
+      "path": "final-verification-v2/final-full/g1-four-path/local_crisis-trace-on-normalized.json",
+      "size": 416245
+    },
+    {
+      "path": "final-verification-v2/final-full/g1-four-path/local_crisis-trace-on-stderr.log",
+      "size": 136
+    },
+    {
+      "path": "final-verification-v2/final-full/g1-four-path/local_crisis-trace-on-stdout.log",
+      "size": 202
+    },
+    {
+      "path": "final-verification-v2/final-full/g1-four-path/local_crisis-trace-on.jsonl",
+      "size": 1277909
+    },
+    {
+      "path": "final-verification-v2/final-full/g1-four-path/ordinary_production-pre-g1-normalized.json",
+      "size": 4024257
+    },
+    {
+      "path": "final-verification-v2/final-full/g1-four-path/ordinary_production-pre-g1-stderr.log",
+      "size": 0
+    },
+    {
+      "path": "final-verification-v2/final-full/g1-four-path/ordinary_production-pre-g1-stdout.log",
+      "size": 338
+    },
+    {
+      "path": "final-verification-v2/final-full/g1-four-path/ordinary_production-pre-g1.jsonl",
+      "size": 2234611
+    },
+    {
+      "path": "final-verification-v2/final-full/g1-four-path/ordinary_production-trace-off-normalized.json",
+      "size": 4024290
+    },
+    {
+      "path": "final-verification-v2/final-full/g1-four-path/ordinary_production-trace-off-stderr.log",
+      "size": 0
+    },
+    {
+      "path": "final-verification-v2/final-full/g1-four-path/ordinary_production-trace-off-stdout.log",
+      "size": 338
+    },
+    {
+      "path": "final-verification-v2/final-full/g1-four-path/ordinary_production-trace-off.jsonl",
+      "size": 2234611
+    },
+    {
+      "path": "final-verification-v2/final-full/g1-four-path/ordinary_production-trace-on-normalized.json",
+      "size": 4024289
+    },
+    {
+      "path": "final-verification-v2/final-full/g1-four-path/ordinary_production-trace-on-stderr.log",
+      "size": 0
+    },
+    {
+      "path": "final-verification-v2/final-full/g1-four-path/ordinary_production-trace-on-stdout.log",
+      "size": 338
+    },
+    {
+      "path": "final-verification-v2/final-full/g1-four-path/ordinary_production-trace-on.jsonl",
+      "size": 8834136
+    },
+    {
+      "path": "final-verification-v2/final-full/g1-four-path/recon-pre-g1-normalized.json",
+      "size": 156496
+    },
+    {
+      "path": "final-verification-v2/final-full/g1-four-path/recon-pre-g1-stderr.log",
+      "size": 0
+    },
+    {
+      "path": "final-verification-v2/final-full/g1-four-path/recon-pre-g1-stdout.log",
+      "size": 346
+    },
+    {
+      "path": "final-verification-v2/final-full/g1-four-path/recon-pre-g1.jsonl",
+      "size": 94516
+    },
+    {
+      "path": "final-verification-v2/final-full/g1-four-path/recon-trace-off-normalized.json",
+      "size": 156529
+    },
+    {
+      "path": "final-verification-v2/final-full/g1-four-path/recon-trace-off-stderr.log",
+      "size": 0
+    },
+    {
+      "path": "final-verification-v2/final-full/g1-four-path/recon-trace-off-stdout.log",
+      "size": 346
+    },
+    {
+      "path": "final-verification-v2/final-full/g1-four-path/recon-trace-off.jsonl",
+      "size": 94516
+    },
+    {
+      "path": "final-verification-v2/final-full/g1-four-path/recon-trace-on-normalized.json",
+      "size": 156528
+    },
+    {
+      "path": "final-verification-v2/final-full/g1-four-path/recon-trace-on-stderr.log",
+      "size": 0
+    },
+    {
+      "path": "final-verification-v2/final-full/g1-four-path/recon-trace-on-stdout.log",
+      "size": 346
+    },
+    {
+      "path": "final-verification-v2/final-full/g1-four-path/recon-trace-on.jsonl",
+      "size": 475892
+    },
+    {
+      "path": "final-verification-v2/final-full/g1-four-path/strategy_provider-pre-g1-normalized.json",
+      "size": 828463
+    },
+    {
+      "path": "final-verification-v2/final-full/g1-four-path/strategy_provider-pre-g1-stderr.log",
+      "size": 0
+    },
+    {
+      "path": "final-verification-v2/final-full/g1-four-path/strategy_provider-pre-g1-stdout.log",
+      "size": 338
+    },
+    {
+      "path": "final-verification-v2/final-full/g1-four-path/strategy_provider-pre-g1.jsonl",
+      "size": 505421
+    },
+    {
+      "path": "final-verification-v2/final-full/g1-four-path/strategy_provider-trace-off-normalized.json",
+      "size": 828496
+    },
+    {
+      "path": "final-verification-v2/final-full/g1-four-path/strategy_provider-trace-off-stderr.log",
+      "size": 0
+    },
+    {
+      "path": "final-verification-v2/final-full/g1-four-path/strategy_provider-trace-off-stdout.log",
+      "size": 338
+    },
+    {
+      "path": "final-verification-v2/final-full/g1-four-path/strategy_provider-trace-off.jsonl",
+      "size": 505420
+    },
+    {
+      "path": "final-verification-v2/final-full/g1-four-path/strategy_provider-trace-on-normalized.json",
+      "size": 828495
+    },
+    {
+      "path": "final-verification-v2/final-full/g1-four-path/strategy_provider-trace-on-stderr.log",
+      "size": 0
+    },
+    {
+      "path": "final-verification-v2/final-full/g1-four-path/strategy_provider-trace-on-stdout.log",
+      "size": 338
+    },
+    {
+      "path": "final-verification-v2/final-full/g1-four-path/strategy_provider-trace-on.jsonl",
+      "size": 3610036
+    },
+    {
+      "path": "final-verification-v2/final-full/g2-four-path/local_crisis-ff693c8-http.json",
+      "size": 259252
+    },
+    {
+      "path": "final-verification-v2/final-full/g2-four-path/local_crisis-ff693c8-outcomes.json",
+      "size": 420437
+    },
+    {
+      "path": "final-verification-v2/final-full/g2-four-path/local_crisis-ff693c8.jsonl",
+      "size": 620014
+    },
+    {
+      "path": "final-verification-v2/final-full/g2-four-path/local_crisis-g2-off-http.json",
+      "size": 259252
+    },
+    {
+      "path": "final-verification-v2/final-full/g2-four-path/local_crisis-g2-off-outcomes.json",
+      "size": 420503
+    },
+    {
+      "path": "final-verification-v2/final-full/g2-four-path/local_crisis-g2-off.jsonl",
+      "size": 620118
+    },
+    {
+      "path": "final-verification-v2/final-full/g2-four-path/local_crisis-g2-on-http.json",
+      "size": 259252
+    },
+    {
+      "path": "final-verification-v2/final-full/g2-four-path/local_crisis-g2-on-outcomes.json",
+      "size": 420501
+    },
+    {
+      "path": "final-verification-v2/final-full/g2-four-path/local_crisis-g2-on.jsonl",
+      "size": 1277909
+    },
+    {
+      "path": "final-verification-v2/final-full/g2-four-path/ordinary_production-ff693c8-http.json",
+      "size": 3142677
+    },
+    {
+      "path": "final-verification-v2/final-full/g2-four-path/ordinary_production-ff693c8-outcomes.json",
+      "size": 4036074
+    },
+    {
+      "path": "final-verification-v2/final-full/g2-four-path/ordinary_production-ff693c8.jsonl",
+      "size": 5024861
+    },
+    {
+      "path": "final-verification-v2/final-full/g2-four-path/ordinary_production-g2-off-http.json",
+      "size": 3142677
+    },
+    {
+      "path": "final-verification-v2/final-full/g2-four-path/ordinary_production-g2-off-outcomes.json",
+      "size": 4036140
+    },
+    {
+      "path": "final-verification-v2/final-full/g2-four-path/ordinary_production-g2-off.jsonl",
+      "size": 5025041
+    },
+    {
+      "path": "final-verification-v2/final-full/g2-four-path/ordinary_production-g2-on-http.json",
+      "size": 3142677
+    },
+    {
+      "path": "final-verification-v2/final-full/g2-four-path/ordinary_production-g2-on-outcomes.json",
+      "size": 4036138
+    },
+    {
+      "path": "final-verification-v2/final-full/g2-four-path/ordinary_production-g2-on.jsonl",
+      "size": 8834136
+    },
+    {
+      "path": "final-verification-v2/final-full/g2-four-path/recon-ff693c8-http.json",
+      "size": 128108
+    },
+    {
+      "path": "final-verification-v2/final-full/g2-four-path/recon-ff693c8-native-stamps-http.json",
+      "size": 127551
+    },
+    {
+      "path": "final-verification-v2/final-full/g2-four-path/recon-ff693c8-native-stamps-outcomes.json",
+      "size": 157764
+    },
+    {
+      "path": "final-verification-v2/final-full/g2-four-path/recon-ff693c8-native-stamps.jsonl",
+      "size": 284424
+    },
+    {
+      "path": "final-verification-v2/final-full/g2-four-path/recon-ff693c8-outcomes.json",
+      "size": 158362
+    },
+    {
+      "path": "final-verification-v2/final-full/g2-four-path/recon-ff693c8.jsonl",
+      "size": 284872
+    },
+    {
+      "path": "final-verification-v2/final-full/g2-four-path/recon-g2-off-http.json",
+      "size": 128108
+    },
+    {
+      "path": "final-verification-v2/final-full/g2-four-path/recon-g2-off-native-stamps-http.json",
+      "size": 127551
+    },
+    {
+      "path": "final-verification-v2/final-full/g2-four-path/recon-g2-off-native-stamps-outcomes.json",
+      "size": 157830
+    },
+    {
+      "path": "final-verification-v2/final-full/g2-four-path/recon-g2-off-native-stamps.jsonl",
+      "size": 284424
+    },
+    {
+      "path": "final-verification-v2/final-full/g2-four-path/recon-g2-off-outcomes.json",
+      "size": 158427
+    },
+    {
+      "path": "final-verification-v2/final-full/g2-four-path/recon-g2-off.jsonl",
+      "size": 284872
+    },
+    {
+      "path": "final-verification-v2/final-full/g2-four-path/recon-g2-on-http.json",
+      "size": 128108
+    },
+    {
+      "path": "final-verification-v2/final-full/g2-four-path/recon-g2-on-native-stamps-http.json",
+      "size": 127551
+    },
+    {
+      "path": "final-verification-v2/final-full/g2-four-path/recon-g2-on-native-stamps-outcomes.json",
+      "size": 157828
+    },
+    {
+      "path": "final-verification-v2/final-full/g2-four-path/recon-g2-on-native-stamps.jsonl",
+      "size": 785466
+    },
+    {
+      "path": "final-verification-v2/final-full/g2-four-path/recon-g2-on-outcomes.json",
+      "size": 158425
+    },
+    {
+      "path": "final-verification-v2/final-full/g2-four-path/recon-g2-on.jsonl",
+      "size": 785967
+    },
+    {
+      "path": "final-verification-v2/final-full/g2-four-path/recon-guard-networked-ff693c8-http.json",
+      "size": 14961
+    },
+    {
+      "path": "final-verification-v2/final-full/g2-four-path/recon-guard-networked-ff693c8-outcomes.json",
+      "size": 29202
+    },
+    {
+      "path": "final-verification-v2/final-full/g2-four-path/recon-guard-networked-ff693c8.jsonl",
+      "size": 55791
+    },
+    {
+      "path": "final-verification-v2/final-full/g2-four-path/recon-guard-networked-g2-off-http.json",
+      "size": 14961
+    },
+    {
+      "path": "final-verification-v2/final-full/g2-four-path/recon-guard-networked-g2-off-outcomes.json",
+      "size": 29268
+    },
+    {
+      "path": "final-verification-v2/final-full/g2-four-path/recon-guard-networked-g2-off.jsonl",
+      "size": 55791
+    },
+    {
+      "path": "final-verification-v2/final-full/g2-four-path/recon-guard-networked-http.json",
+      "size": 14961
+    },
+    {
+      "path": "final-verification-v2/final-full/g2-four-path/recon-guard-networked-outcomes.json",
+      "size": 29266
+    },
+    {
+      "path": "final-verification-v2/final-full/g2-four-path/recon-guard-networked.jsonl",
+      "size": 145672
+    },
+    {
+      "path": "final-verification-v2/final-full/g2-four-path/recon-guard-replay-ff693c8-http.json",
+      "size": 14961
+    },
+    {
+      "path": "final-verification-v2/final-full/g2-four-path/recon-guard-replay-ff693c8-outcomes.json",
+      "size": 29203
+    },
+    {
+      "path": "final-verification-v2/final-full/g2-four-path/recon-guard-replay-ff693c8.jsonl",
+      "size": 55791
+    },
+    {
+      "path": "final-verification-v2/final-full/g2-four-path/recon-guard-replay-g2-off-http.json",
+      "size": 14961
+    },
+    {
+      "path": "final-verification-v2/final-full/g2-four-path/recon-guard-replay-g2-off-outcomes.json",
+      "size": 29268
+    },
+    {
+      "path": "final-verification-v2/final-full/g2-four-path/recon-guard-replay-g2-off.jsonl",
+      "size": 55791
+    },
+    {
+      "path": "final-verification-v2/final-full/g2-four-path/recon-guard-replay-http.json",
+      "size": 14961
+    },
+    {
+      "path": "final-verification-v2/final-full/g2-four-path/recon-guard-replay-outcomes.json",
+      "size": 29267
+    },
+    {
+      "path": "final-verification-v2/final-full/g2-four-path/recon-guard-replay.jsonl",
+      "size": 145672
+    },
+    {
+      "path": "final-verification-v2/final-full/g2-four-path/recon-guard-rollback-ff693c8-http.json",
+      "size": 14959
+    },
+    {
+      "path": "final-verification-v2/final-full/g2-four-path/recon-guard-rollback-ff693c8-outcomes.json",
+      "size": 29172
+    },
+    {
+      "path": "final-verification-v2/final-full/g2-four-path/recon-guard-rollback-ff693c8.jsonl",
+      "size": 55922
+    },
+    {
+      "path": "final-verification-v2/final-full/g2-four-path/recon-guard-rollback-g2-off-http.json",
+      "size": 14959
+    },
+    {
+      "path": "final-verification-v2/final-full/g2-four-path/recon-guard-rollback-g2-off-outcomes.json",
+      "size": 29238
+    },
+    {
+      "path": "final-verification-v2/final-full/g2-four-path/recon-guard-rollback-g2-off.jsonl",
+      "size": 55922
+    },
+    {
+      "path": "final-verification-v2/final-full/g2-four-path/recon-guard-rollback-http.json",
+      "size": 14959
+    },
+    {
+      "path": "final-verification-v2/final-full/g2-four-path/recon-guard-rollback-outcomes.json",
+      "size": 29236
+    },
+    {
+      "path": "final-verification-v2/final-full/g2-four-path/recon-guard-rollback.jsonl",
+      "size": 145803
+    },
+    {
+      "path": "final-verification-v2/final-full/g2-four-path/recon-guard-session-ff693c8-http.json",
+      "size": 15861
+    },
+    {
+      "path": "final-verification-v2/final-full/g2-four-path/recon-guard-session-ff693c8-outcomes.json",
+      "size": 31106
+    },
+    {
+      "path": "final-verification-v2/final-full/g2-four-path/recon-guard-session-ff693c8.jsonl",
+      "size": 64317
+    },
+    {
+      "path": "final-verification-v2/final-full/g2-four-path/recon-guard-session-g2-off-http.json",
+      "size": 15861
+    },
+    {
+      "path": "final-verification-v2/final-full/g2-four-path/recon-guard-session-g2-off-outcomes.json",
+      "size": 31172
+    },
+    {
+      "path": "final-verification-v2/final-full/g2-four-path/recon-guard-session-g2-off.jsonl",
+      "size": 64317
+    },
+    {
+      "path": "final-verification-v2/final-full/g2-four-path/recon-guard-session-http.json",
+      "size": 15861
+    },
+    {
+      "path": "final-verification-v2/final-full/g2-four-path/recon-guard-session-outcomes.json",
+      "size": 31170
+    },
+    {
+      "path": "final-verification-v2/final-full/g2-four-path/recon-guard-session.jsonl",
+      "size": 159301
+    },
+    {
+      "path": "final-verification-v2/final-full/g2-four-path/strategy_provider-ff693c8-http.json",
+      "size": 547548
+    },
+    {
+      "path": "final-verification-v2/final-full/g2-four-path/strategy_provider-ff693c8-outcomes.json",
+      "size": 1191961
+    },
+    {
+      "path": "final-verification-v2/final-full/g2-four-path/strategy_provider-ff693c8.jsonl",
+      "size": 1667995
+    },
+    {
+      "path": "final-verification-v2/final-full/g2-four-path/strategy_provider-g2-off-http.json",
+      "size": 547548
+    },
+    {
+      "path": "final-verification-v2/final-full/g2-four-path/strategy_provider-g2-off-outcomes.json",
+      "size": 1192027
+    },
+    {
+      "path": "final-verification-v2/final-full/g2-four-path/strategy_provider-g2-off.jsonl",
+      "size": 1671843
+    },
+    {
+      "path": "final-verification-v2/final-full/g2-four-path/strategy_provider-g2-on-http.json",
+      "size": 547548
+    },
+    {
+      "path": "final-verification-v2/final-full/g2-four-path/strategy_provider-g2-on-outcomes.json",
+      "size": 1192025
+    },
+    {
+      "path": "final-verification-v2/final-full/g2-four-path/strategy_provider-g2-on.jsonl",
+      "size": 3610037
+    },
+    {
+      "path": "final-verification-v2/final-full/g3-enabled-g4-disabled/accepted-g2-throughput.json",
+      "size": 13829
+    },
+    {
+      "path": "final-verification-v2/final-full/g3-enabled-g4-disabled/accepted-g2-throughput.jsonl",
+      "size": 808973
+    },
+    {
+      "path": "final-verification-v2/final-full/g3-enabled-g4-disabled/accepted-g2-throughput.stdout.log",
+      "size": 315
+    },
+    {
+      "path": "final-verification-v2/final-full/g3-enabled-g4-disabled/g3-cost-g1-only.json",
+      "size": 16824
+    },
+    {
+      "path": "final-verification-v2/final-full/g3-enabled-g4-disabled/g3-cost-g1-only.jsonl",
+      "size": 645898
+    },
+    {
+      "path": "final-verification-v2/final-full/g3-enabled-g4-disabled/g3-cost-g1-only.stdout.log",
+      "size": 315
+    },
+    {
+      "path": "final-verification-v2/final-full/g3-enabled-g4-disabled/g3-cost-trace-off-diagnostics-off.json",
+      "size": 16851
+    },
+    {
+      "path": "final-verification-v2/final-full/g3-enabled-g4-disabled/g3-cost-trace-off-diagnostics-off.jsonl",
+      "size": 57912
+    },
+    {
+      "path": "final-verification-v2/final-full/g3-enabled-g4-disabled/g3-cost-trace-off-diagnostics-off.stdout.log",
+      "size": 315
+    },
+    {
+      "path": "final-verification-v2/final-full/g3-enabled-g4-disabled/g3-cost-trace-on.json",
+      "size": 16823
+    },
+    {
+      "path": "final-verification-v2/final-full/g3-enabled-g4-disabled/g3-cost-trace-on.jsonl",
+      "size": 1154911
+    },
+    {
+      "path": "final-verification-v2/final-full/g3-enabled-g4-disabled/g3-cost-trace-on.stdout.log",
+      "size": 315
+    },
+    {
+      "path": "final-verification-v2/final-full/g3-enabled-g4-disabled/g3-credits.json",
+      "size": 13937
+    },
+    {
+      "path": "final-verification-v2/final-full/g3-enabled-g4-disabled/g3-credits.jsonl",
+      "size": 1012169
+    },
+    {
+      "path": "final-verification-v2/final-full/g3-enabled-g4-disabled/g3-credits.stdout.log",
+      "size": 315
+    },
+    {
+      "path": "final-verification-v2/final-full/g3-enabled-g4-disabled/g3-jumps.json",
+      "size": 16819
+    },
+    {
+      "path": "final-verification-v2/final-full/g3-enabled-g4-disabled/g3-jumps.jsonl",
+      "size": 1154911
+    },
+    {
+      "path": "final-verification-v2/final-full/g3-enabled-g4-disabled/g3-jumps.stdout.log",
+      "size": 315
+    },
+    {
+      "path": "final-verification-v2/final-full/g3-enabled-g4-disabled/g3-slots.json",
+      "size": 13948
+    },
+    {
+      "path": "final-verification-v2/final-full/g3-enabled-g4-disabled/g3-slots.jsonl",
+      "size": 1015539
+    },
+    {
+      "path": "final-verification-v2/final-full/g3-enabled-g4-disabled/g3-slots.stdout.log",
+      "size": 315
+    },
+    {
+      "path": "final-verification-v2/final-full/g3-enabled-g4-disabled/g3-throughput.json",
+      "size": 16823
+    },
+    {
+      "path": "final-verification-v2/final-full/g3-enabled-g4-disabled/g3-throughput.jsonl",
+      "size": 1154911
+    },
+    {
+      "path": "final-verification-v2/final-full/g3-enabled-g4-disabled/g3-throughput.stdout.log",
+      "size": 315
+    },
+    {
+      "path": "final-verification-v2/final-full/g3-enabled-g4-disabled/legacy-gate-current-jar.json",
+      "size": 13902
+    },
+    {
+      "path": "final-verification-v2/final-full/g3-enabled-g4-disabled/legacy-gate-current-jar.jsonl",
+      "size": 811005
+    },
+    {
+      "path": "final-verification-v2/final-full/g3-enabled-g4-disabled/legacy-gate-current-jar.stdout.log",
+      "size": 315
+    },
+    {
+      "path": "final-verification-v2/final-full/g3-enabled-g4-disabled/test_engineer_provider-test_complete_underwater_response_requires_ready_product_and_observed_mode-http.json",
+      "size": 560792
+    },
+    {
+      "path": "final-verification-v2/final-full/g3-enabled-g4-disabled/test_engineer_provider-test_complete_underwater_response_requires_ready_product_and_observed_mode-native-queues-http.json",
+      "size": 561340
+    },
+    {
+      "path": "final-verification-v2/final-full/g3-enabled-g4-disabled/test_engineer_provider-test_complete_underwater_response_requires_ready_product_and_observed_mode-native-queues.jsonl",
+      "size": 4454506
+    },
+    {
+      "path": "final-verification-v2/final-full/g3-enabled-g4-disabled/test_engineer_provider-test_complete_underwater_response_requires_ready_product_and_observed_mode-native-queues.stdout.log",
+      "size": 307
+    },
+    {
+      "path": "final-verification-v2/final-full/g3-enabled-g4-disabled/test_engineer_provider-test_complete_underwater_response_requires_ready_product_and_observed_mode.jsonl",
+      "size": 4453910
+    },
+    {
+      "path": "final-verification-v2/final-full/g3-enabled-g4-disabled/test_engineer_provider-test_complete_underwater_response_requires_ready_product_and_observed_mode.stdout.log",
+      "size": 307
+    },
+    {
+      "path": "final-verification-v2/final-full/g3-enabled-g4-disabled/test_engineer_provider-test_funding_holds_native_quote_then_releases_on_accepted_build-http.json",
+      "size": 557039
+    },
+    {
+      "path": "final-verification-v2/final-full/g3-enabled-g4-disabled/test_engineer_provider-test_funding_holds_native_quote_then_releases_on_accepted_build.jsonl",
+      "size": 4351856
+    },
+    {
+      "path": "final-verification-v2/final-full/g3-enabled-g4-disabled/test_engineer_provider-test_funding_holds_native_quote_then_releases_on_accepted_build.stdout.log",
+      "size": 307
+    },
+    {
+      "path": "final-verification-v2/final-full/g3-enabled-g4-disabled/test_local_army-test_contact_loss_returns_and_releases_without_claiming_kill-http.json",
+      "size": 258118
+    },
+    {
+      "path": "final-verification-v2/final-full/g3-enabled-g4-disabled/test_local_army-test_contact_loss_returns_and_releases_without_claiming_kill.jsonl",
+      "size": 1350032
+    },
+    {
+      "path": "final-verification-v2/final-full/g3-enabled-g4-disabled/test_local_army-test_contact_loss_returns_and_releases_without_claiming_kill.stdout.log",
+      "size": 200
+    },
+    {
+      "path": "final-verification-v2/final-full/g3-enabled-g4-disabled/test_production_capacity-test_army_limit_cannot_spend_investment_reserve-http.json",
+      "size": 2695569
+    },
+    {
+      "path": "final-verification-v2/final-full/g3-enabled-g4-disabled/test_production_capacity-test_army_limit_cannot_spend_investment_reserve.jsonl",
+      "size": 10151271
+    },
+    {
+      "path": "final-verification-v2/final-full/g3-enabled-g4-disabled/test_production_capacity-test_army_limit_cannot_spend_investment_reserve.stdout.log",
+      "size": 307
+    },
+    {
+      "path": "final-verification-v2/final-full/g3-enabled-g4-disabled/test_recon_client-test_lost_factory_uses_one_unit_and_requires_own_evidence_before_clear-http.json",
+      "size": 125730
+    },
+    {
+      "path": "final-verification-v2/final-full/g3-enabled-g4-disabled/test_recon_client-test_lost_factory_uses_one_unit_and_requires_own_evidence_before_clear.jsonl",
+      "size": 499871
+    },
+    {
+      "path": "final-verification-v2/final-full/g3-enabled-g4-disabled/test_recon_client-test_lost_factory_uses_one_unit_and_requires_own_evidence_before_clear.stdout.log",
+      "size": 315
+    },
+    {
+      "path": "final-verification-v2/final-full/g3-enabled-g4-disabled/test_surplus_spending-test_near_target_rich_economy_invests_when_local_payback_window_is_long-native-queues-http.json",
+      "size": 860404
+    },
+    {
+      "path": "final-verification-v2/final-full/g3-enabled-g4-disabled/test_surplus_spending-test_near_target_rich_economy_invests_when_local_payback_window_is_long-native-queues.jsonl",
+      "size": 3074652
+    },
+    {
+      "path": "final-verification-v2/final-full/g3-enabled-g4-disabled/test_surplus_spending-test_near_target_rich_economy_invests_when_local_payback_window_is_long-native-queues.stdout.log",
+      "size": 307
+    },
+    {
+      "path": "final-verification-v2/final-full/g4-enabled-mainloop/empty/True/battle.jsonl",
+      "size": 940937
+    },
+    {
+      "path": "final-verification-v2/final-full/g4-enabled-mainloop/empty/True/process.txt",
+      "size": 307
+    },
+    {
+      "path": "final-verification-v2/final-full/g4-enabled-mainloop/seeded/False/battle.jsonl",
+      "size": 304508
+    },
+    {
+      "path": "final-verification-v2/final-full/g4-enabled-mainloop/seeded/False/process.txt",
+      "size": 307
+    },
+    {
+      "path": "final-verification-v2/final-full/g4-enabled-mainloop/seeded/True/battle.jsonl",
+      "size": 1206768
+    },
+    {
+      "path": "final-verification-v2/final-full/g4-enabled-mainloop/seeded/True/process.txt",
+      "size": 307
+    },
+    {
+      "path": "final-verification-v2/final-full/g5-mainloop/chunk_cache_read_probe/battle.jsonl",
+      "size": 0
+    },
+    {
+      "path": "final-verification-v2/final-full/g5-mainloop/chunk_cache_read_probe/fixture.json",
+      "size": 4561
+    },
+    {
+      "path": "final-verification-v2/final-full/g5-mainloop/chunk_cache_read_probe/process.txt",
+      "size": 2238
+    },
+    {
+      "path": "final-verification-v2/final-full/g5-mainloop/g41-reused/g5_first_formation/battle.jsonl",
+      "size": 3796419
+    },
+    {
+      "path": "final-verification-v2/final-full/g5-mainloop/g41-reused/g5_first_formation/fixture.json",
+      "size": 38177
+    },
+    {
+      "path": "final-verification-v2/final-full/g5-mainloop/g41-reused/g5_first_formation/process.txt",
+      "size": 316
+    },
+    {
+      "path": "final-verification-v2/final-full/g5-mainloop/overflow/battle.jsonl",
+      "size": 2932462
+    },
+    {
+      "path": "final-verification-v2/final-full/g5-mainloop/overflow/fixture.json",
+      "size": 30346
+    },
+    {
+      "path": "final-verification-v2/final-full/g5-mainloop/overflow/process.txt",
+      "size": 315
+    },
+    {
+      "path": "final-verification-v2/final-full/g5-mainloop/pressure/battle.jsonl",
+      "size": 5780671
+    },
+    {
+      "path": "final-verification-v2/final-full/g5-mainloop/pressure/fixture.json",
+      "size": 58524
+    },
+    {
+      "path": "final-verification-v2/final-full/g5-mainloop/pressure/process.txt",
+      "size": 315
+    },
+    {
+      "path": "final-verification-v2/final-full/transcript.txt",
+      "size": 43898
+    },
+    {
+      "path": "final-verification-v2/prepare_final.py",
+      "size": 1256
+    },
+    {
+      "path": "final-verification-v2/run-final.ps1",
+      "size": 2241
+    },
+    {
+      "path": "final-verification-v2/runner.log",
+      "size": 495362
+    },
+    {
+      "path": "final-verification-v2/tested-inputs.json",
+      "size": 30347
+    },
+    {
+      "path": "finish_delivery.py",
+      "size": 4669
+    },
+    {
+      "path": "G6CapitalPolicyHarness.log",
+      "size": 75
+    },
+    {
+      "path": "human-r8-summary.json",
+      "size": 1247273
+    },
+    {
+      "path": "human_causes.py",
+      "size": 2628
+    },
+    {
+      "path": "invest/INTEGRATION.md",
+      "size": 6070
+    },
+    {
+      "path": "invest/raw-air-execution.json",
+      "size": 8481
+    },
+    {
+      "path": "invest/raw-air-plans.json",
+      "size": 8840
+    },
+    {
+      "path": "invest/raw-investment-evidence.json",
+      "size": 31187
+    },
+    {
+      "path": "invest/raw-output.txt",
+      "size": 23058
+    },
+    {
+      "path": "invest/raw_air_execution.py",
+      "size": 1039
+    },
+    {
+      "path": "invest/raw_invest.py",
+      "size": 2808
+    },
+    {
+      "path": "invest/raw_plans.py",
+      "size": 1069
+    },
+    {
+      "path": "last_batch.py",
+      "size": 447
+    },
+    {
+      "path": "native-validation/native-delivery/closure/closure-native-invest-battle.jsonl",
+      "size": 197742
+    },
+    {
+      "path": "native-validation/native-delivery/closure/closure-native-recovery-battle.jsonl",
+      "size": 251535
+    },
+    {
+      "path": "native-validation/native-delivery/closure/g5-closure-native-summary.json",
+      "size": 150
+    },
+    {
+      "path": "native-validation/native-delivery/closure/g5-native-fixture.jsonl",
+      "size": 4720
+    },
+    {
+      "path": "native-validation/native-delivery/closure.log",
+      "size": 14497
+    },
+    {
+      "path": "native-validation/native-delivery/competition/competition-battle.jsonl",
+      "size": 346929
+    },
+    {
+      "path": "native-validation/native-delivery/competition/competition-fixture.jsonl",
+      "size": 2904
+    },
+    {
+      "path": "native-validation/native-delivery/competition/competition-summary.json",
+      "size": 271
+    },
+    {
+      "path": "native-validation/native-delivery/competition.log",
+      "size": 12736
+    },
+    {
+      "path": "native-validation/native-delivery/exit-code.txt",
+      "size": 3
+    },
+    {
+      "path": "native-validation/native-delivery/G3SpainTerrainNativeHarness/spain-battle.jsonl",
+      "size": 302128
+    },
+    {
+      "path": "native-validation/native-delivery/G3SpainTerrainNativeHarness/spain-fixture.jsonl",
+      "size": 19282
+    },
+    {
+      "path": "native-validation/native-delivery/G3SpainTerrainNativeHarness/spain-summary.json",
+      "size": 597
+    },
+    {
+      "path": "native-validation/native-delivery/G3SpainTerrainNativeHarness.log",
+      "size": 29056
+    },
+    {
+      "path": "native-validation/native-delivery/g51/g5-native-66-battle.jsonl",
+      "size": 530792
+    },
+    {
+      "path": "native-validation/native-delivery/g51/g5-native-birth-battle.jsonl",
+      "size": 2835043
+    },
+    {
+      "path": "native-validation/native-delivery/g51/g5-native-fixture.jsonl",
+      "size": 72866
+    },
+    {
+      "path": "native-validation/native-delivery/g51/g5-native-independent-battle.jsonl",
+      "size": 717379
+    },
+    {
+      "path": "native-validation/native-delivery/g51/g51-native-air-battle.jsonl",
+      "size": 868563
+    },
+    {
+      "path": "native-validation/native-delivery/g51/g51-native-summary.json",
+      "size": 171
+    },
+    {
+      "path": "native-validation/native-delivery/g51.log",
+      "size": 88128
+    },
+    {
+      "path": "native-validation/native-delivery/g53/g5-native-fixture.jsonl",
+      "size": 3803
+    },
+    {
+      "path": "native-validation/native-delivery/g53/g53-continuous-above-target-battle.jsonl",
+      "size": 691414
+    },
+    {
+      "path": "native-validation/native-delivery/g53/g53-explicit-commitment-battle.jsonl",
+      "size": 545684
+    },
+    {
+      "path": "native-validation/native-delivery/g53.log",
+      "size": 13516
+    },
+    {
+      "path": "native-validation/native-delivery/g54/g5-native-fixture.jsonl",
+      "size": 9315
+    },
+    {
+      "path": "native-validation/native-delivery/g54/g54-independent-native-actors-battle.jsonl",
+      "size": 2198917
+    },
+    {
+      "path": "native-validation/native-delivery/g54/production-construction-battle.jsonl",
+      "size": 127876
+    },
+    {
+      "path": "native-validation/native-delivery/g54.log",
+      "size": 27556
+    },
+    {
+      "path": "native-validation/native-delivery/g55/g5-native-fixture.jsonl",
+      "size": 4055
+    },
+    {
+      "path": "native-validation/native-delivery/g55/g55-heavy-continuous-battle.jsonl",
+      "size": 288622
+    },
+    {
+      "path": "native-validation/native-delivery/g55/g55-opening-scout-battle.jsonl",
+      "size": 154063
+    },
+    {
+      "path": "native-validation/native-delivery/g55/g55-scout-to-tech-battle.jsonl",
+      "size": 152586
+    },
+    {
+      "path": "native-validation/native-delivery/g55.log",
+      "size": 13743
+    },
+    {
+      "path": "native-validation/native-delivery/G6NativeEndgameHarness/g5-native-fixture.jsonl",
+      "size": 13117
+    },
+    {
+      "path": "native-validation/native-delivery/G6NativeEndgameHarness/g6-air-formation-battle.jsonl",
+      "size": 388412
+    },
+    {
+      "path": "native-validation/native-delivery/G6NativeEndgameHarness/g6-fabricator-build-battle.jsonl",
+      "size": 221058
+    },
+    {
+      "path": "native-validation/native-delivery/G6NativeEndgameHarness/g6-overlapping-air-cost-battle.jsonl",
+      "size": 300464
+    },
+    {
+      "path": "native-validation/native-delivery/G6NativeEndgameHarness/g6-upgrade-fabricatorT1-battle.jsonl",
+      "size": 198940
+    },
+    {
+      "path": "native-validation/native-delivery/G6NativeEndgameHarness/g6-upgrade-fabricatorT2-battle.jsonl",
+      "size": 199105
+    },
+    {
+      "path": "native-validation/native-delivery/G6NativeEndgameHarness.log",
+      "size": 22674
+    },
+    {
+      "path": "native-validation/native-delivery/modes/modes-battle.jsonl",
+      "size": 997663
+    },
+    {
+      "path": "native-validation/native-delivery/modes/modes-fixture.jsonl",
+      "size": 11294
+    },
+    {
+      "path": "native-validation/native-delivery/modes/modes-summary.json",
+      "size": 259
+    },
+    {
+      "path": "native-validation/native-delivery/modes.log",
+      "size": 21108
+    },
+    {
+      "path": "native-validation/native-delivery/order-reuse/g5-native-fixture.jsonl",
+      "size": 9347
+    },
+    {
+      "path": "native-validation/native-delivery/order-reuse/g53-native-joining-reuse-battle.jsonl",
+      "size": 332468
+    },
+    {
+      "path": "native-validation/native-delivery/order-reuse/g53-native-order-reuse-summary.json",
+      "size": 232
+    },
+    {
+      "path": "native-validation/native-delivery/order-reuse/g53-native-retreat-reuse-battle.jsonl",
+      "size": 575422
+    },
+    {
+      "path": "native-validation/native-delivery/order-reuse.log",
+      "size": 19927
+    },
+    {
+      "path": "native-validation/native-delivery/production/production-abundant-battle.jsonl",
+      "size": 827868
+    },
+    {
+      "path": "native-validation/native-delivery/production/production-construction-battle.jsonl",
+      "size": 128123
+    },
+    {
+      "path": "native-validation/native-delivery/production/production-credits-battle.jsonl",
+      "size": 508877
+    },
+    {
+      "path": "native-validation/native-delivery/production/production-fixture.jsonl",
+      "size": 9678
+    },
+    {
+      "path": "native-validation/native-delivery/production/production-slots-battle.jsonl",
+      "size": 511805
+    },
+    {
+      "path": "native-validation/native-delivery/production/production-summary.json",
+      "size": 270
+    },
+    {
+      "path": "native-validation/native-delivery/production.log",
+      "size": 19145
+    },
+    {
+      "path": "native-validation/native-delivery/R9NativeLongRunHarness/g5-native-fixture.jsonl",
+      "size": 993
+    },
+    {
+      "path": "native-validation/native-delivery/R9NativeLongRunHarness/r9-delayed-native-queue-battle.jsonl",
+      "size": 292755
+    },
+    {
+      "path": "native-validation/native-delivery/R9NativeLongRunHarness-fixed/g5-native-fixture.jsonl",
+      "size": 1988
+    },
+    {
+      "path": "native-validation/native-delivery/R9NativeLongRunHarness-fixed/r9-delayed-native-queue-battle.jsonl",
+      "size": 352716
+    },
+    {
+      "path": "native-validation/native-delivery/R9NativeLongRunHarness-fixed/summary.json",
+      "size": 198
+    },
+    {
+      "path": "native-validation/native-delivery/R9NativeLongRunHarness-fixed.log",
+      "size": 11894
+    },
+    {
+      "path": "native-validation/native-delivery/R9NativeLongRunHarness.fixture-setup-failure.log",
+      "size": 14543
+    },
+    {
+      "path": "native-validation/native-delivery/R9NativeLongRunHarness.log",
+      "size": 14543
+    },
+    {
+      "path": "native-validation/native-final/closure/closure-native-invest-battle.jsonl",
+      "size": 197742
+    },
+    {
+      "path": "native-validation/native-final/closure/closure-native-recovery-battle.jsonl",
+      "size": 251535
+    },
+    {
+      "path": "native-validation/native-final/closure/g5-closure-native-summary.json",
+      "size": 150
+    },
+    {
+      "path": "native-validation/native-final/closure/g5-native-fixture.jsonl",
+      "size": 4714
+    },
+    {
+      "path": "native-validation/native-final/closure.log",
+      "size": 14491
+    },
+    {
+      "path": "native-validation/native-final/competition/competition-battle.jsonl",
+      "size": 346929
+    },
+    {
+      "path": "native-validation/native-final/competition/competition-fixture.jsonl",
+      "size": 2898
+    },
+    {
+      "path": "native-validation/native-final/competition/competition-summary.json",
+      "size": 268
+    },
+    {
+      "path": "native-validation/native-final/competition.log",
+      "size": 12731
+    },
+    {
+      "path": "native-validation/native-final/exit-code.txt",
+      "size": 3
+    },
+    {
+      "path": "native-validation/native-final/G3SpainTerrainNativeHarness/spain-battle.jsonl",
+      "size": 302128
+    },
+    {
+      "path": "native-validation/native-final/G3SpainTerrainNativeHarness/spain-fixture.jsonl",
+      "size": 19279
+    },
+    {
+      "path": "native-validation/native-final/G3SpainTerrainNativeHarness/spain-summary.json",
+      "size": 597
+    },
+    {
+      "path": "native-validation/native-final/G3SpainTerrainNativeHarness.log",
+      "size": 29054
+    },
+    {
+      "path": "native-validation/native-final/g51/g5-native-66-battle.jsonl",
+      "size": 530792
+    },
+    {
+      "path": "native-validation/native-final/g51/g5-native-birth-battle.jsonl",
+      "size": 2835043
+    },
+    {
+      "path": "native-validation/native-final/g51/g5-native-fixture.jsonl",
+      "size": 72854
+    },
+    {
+      "path": "native-validation/native-final/g51/g5-native-independent-battle.jsonl",
+      "size": 717379
+    },
+    {
+      "path": "native-validation/native-final/g51/g51-native-air-battle.jsonl",
+      "size": 868563
+    },
+    {
+      "path": "native-validation/native-final/g51/g51-native-summary.json",
+      "size": 171
+    },
+    {
+      "path": "native-validation/native-final/g51.log",
+      "size": 88116
+    },
+    {
+      "path": "native-validation/native-final/g53/g5-native-fixture.jsonl",
+      "size": 3797
+    },
+    {
+      "path": "native-validation/native-final/g53/g53-continuous-above-target-battle.jsonl",
+      "size": 691414
+    },
+    {
+      "path": "native-validation/native-final/g53/g53-explicit-commitment-battle.jsonl",
+      "size": 545684
+    },
+    {
+      "path": "native-validation/native-final/g53.log",
+      "size": 13511
+    },
+    {
+      "path": "native-validation/native-final/g54/g5-native-fixture.jsonl",
+      "size": 9309
+    },
+    {
+      "path": "native-validation/native-final/g54/g54-independent-native-actors-battle.jsonl",
+      "size": 2198917
+    },
+    {
+      "path": "native-validation/native-final/g54/production-construction-battle.jsonl",
+      "size": 127876
+    },
+    {
+      "path": "native-validation/native-final/g54.log",
+      "size": 27551
+    },
+    {
+      "path": "native-validation/native-final/g55/g5-native-fixture.jsonl",
+      "size": 4046
+    },
+    {
+      "path": "native-validation/native-final/g55/g55-heavy-continuous-battle.jsonl",
+      "size": 288622
+    },
+    {
+      "path": "native-validation/native-final/g55/g55-opening-scout-battle.jsonl",
+      "size": 154063
+    },
+    {
+      "path": "native-validation/native-final/g55/g55-scout-to-tech-battle.jsonl",
+      "size": 152586
+    },
+    {
+      "path": "native-validation/native-final/g55.log",
+      "size": 13734
+    },
+    {
+      "path": "native-validation/native-final/G6NativeEndgameHarness/g5-native-fixture.jsonl",
+      "size": 13102
+    },
+    {
+      "path": "native-validation/native-final/G6NativeEndgameHarness/g6-air-formation-battle.jsonl",
+      "size": 388412
+    },
+    {
+      "path": "native-validation/native-final/G6NativeEndgameHarness/g6-fabricator-build-battle.jsonl",
+      "size": 221058
+    },
+    {
+      "path": "native-validation/native-final/G6NativeEndgameHarness/g6-overlapping-air-cost-battle.jsonl",
+      "size": 300464
+    },
+    {
+      "path": "native-validation/native-final/G6NativeEndgameHarness/g6-upgrade-fabricatorT1-battle.jsonl",
+      "size": 198940
+    },
+    {
+      "path": "native-validation/native-final/G6NativeEndgameHarness/g6-upgrade-fabricatorT2-battle.jsonl",
+      "size": 199105
+    },
+    {
+      "path": "native-validation/native-final/G6NativeEndgameHarness.log",
+      "size": 22659
+    },
+    {
+      "path": "native-validation/native-final/modes/modes-battle.jsonl",
+      "size": 997663
+    },
+    {
+      "path": "native-validation/native-final/modes/modes-fixture.jsonl",
+      "size": 11288
+    },
+    {
+      "path": "native-validation/native-final/modes/modes-summary.json",
+      "size": 256
+    },
+    {
+      "path": "native-validation/native-final/modes.log",
+      "size": 21103
+    },
+    {
+      "path": "native-validation/native-final/order-reuse/g5-native-fixture.jsonl",
+      "size": 9341
+    },
+    {
+      "path": "native-validation/native-final/order-reuse/g53-native-joining-reuse-battle.jsonl",
+      "size": 332468
+    },
+    {
+      "path": "native-validation/native-final/order-reuse/g53-native-order-reuse-summary.json",
+      "size": 232
+    },
+    {
+      "path": "native-validation/native-final/order-reuse/g53-native-retreat-reuse-battle.jsonl",
+      "size": 575422
+    },
+    {
+      "path": "native-validation/native-final/order-reuse.log",
+      "size": 19919
+    },
+    {
+      "path": "native-validation/native-final/production/production-abundant-battle.jsonl",
+      "size": 827868
+    },
+    {
+      "path": "native-validation/native-final/production/production-construction-battle.jsonl",
+      "size": 128123
+    },
+    {
+      "path": "native-validation/native-final/production/production-credits-battle.jsonl",
+      "size": 508877
+    },
+    {
+      "path": "native-validation/native-final/production/production-fixture.jsonl",
+      "size": 9663
+    },
+    {
+      "path": "native-validation/native-final/production/production-slots-battle.jsonl",
+      "size": 511805
+    },
+    {
+      "path": "native-validation/native-final/production/production-summary.json",
+      "size": 267
+    },
+    {
+      "path": "native-validation/native-final/production.log",
+      "size": 19127
+    },
+    {
+      "path": "native-validation/native-final/R9NativeLongRunHarness/g5-native-fixture.jsonl",
+      "size": 1979
+    },
+    {
+      "path": "native-validation/native-final/R9NativeLongRunHarness/r9-delayed-native-queue-battle.jsonl",
+      "size": 352716
+    },
+    {
+      "path": "native-validation/native-final/R9NativeLongRunHarness/summary.json",
+      "size": 198
+    },
+    {
+      "path": "native-validation/native-final/R9NativeLongRunHarness.log",
+      "size": 11887
+    },
+    {
+      "path": "native-validation/native-work/crashes.txt",
+      "size": 292
+    },
+    {
+      "path": "native-validation/native-work/preferences.ini",
+      "size": 4831
+    },
+    {
+      "path": "native-validation/native-work/res/anim/mainfadein.xml",
+      "size": 269
+    },
+    {
+      "path": "native-validation/native-work/res/anim/splashfadeout.xml",
+      "size": 304
+    },
+    {
+      "path": "native-validation/native-work/res/drawable/backrepeat.xml",
+      "size": 148
+    },
+    {
+      "path": "native-validation/native-work/res/drawable/border_shadow.xml",
+      "size": 751
+    },
+    {
+      "path": "native-validation/native-work/res/drawable/btn_dropdown.xml",
+      "size": 1139
+    },
+    {
+      "path": "native-validation/native-work/res/drawable/cell_shape.xml",
+      "size": 255
+    },
+    {
+      "path": "native-validation/native-work/res/drawable/custombutton.xml",
+      "size": 569
+    },
+    {
+      "path": "native-validation/native-work/res/drawable/icon_round.xml",
+      "size": 224
+    },
+    {
+      "path": "native-validation/native-work/res/drawable/rounded_border.xml",
+      "size": 340
+    },
+    {
+      "path": "native-validation/native-work/res/layout/alert_chat.xml",
+      "size": 757
+    },
+    {
+      "path": "native-validation/native-work/res/layout/credits.xml",
+      "size": 936
+    },
+    {
+      "path": "native-validation/native-work/res/layout/intro_screen.xml",
+      "size": 423
+    },
+    {
+      "path": "native-validation/native-work/res/layout/level_options_popup.xml",
+      "size": 2590
+    },
+    {
+      "path": "native-validation/native-work/res/layout/level_select.xml",
+      "size": 4247
+    },
+    {
+      "path": "native-validation/native-work/res/layout/level_select_grid.xml",
+      "size": 4634
+    },
+    {
+      "path": "native-validation/native-work/res/layout/load_level.xml",
+      "size": 1061
+    },
+    {
+      "path": "native-validation/native-work/res/layout/main.xml",
+      "size": 580
+    },
+    {
+      "path": "native-validation/native-work/res/layout/menu.xml",
+      "size": 5047
+    },
+    {
+      "path": "native-validation/native-work/res/layout/mods.xml",
+      "size": 3108
+    },
+    {
+      "path": "native-validation/native-work/res/layout/multiplayer_battleroom.xml",
+      "size": 11417
+    },
+    {
+      "path": "native-validation/native-work/res/layout/multiplayer_battleroom_gameoptions.xml",
+      "size": 6169
+    },
+    {
+      "path": "native-validation/native-work/res/layout/multiplayer_battleroom_playerpopup.xml",
+      "size": 8119
+    },
+    {
+      "path": "native-validation/native-work/res/layout/multiplayer_lobby.xml",
+      "size": 17509
+    },
+    {
+      "path": "native-validation/native-work/res/layout/multiplayer_lobby_hostgame.xml",
+      "size": 3054
+    },
+    {
+      "path": "native-validation/native-work/res/layout/new_mission_starter.xml",
+      "size": 3300
+    },
+    {
+      "path": "native-validation/native-work/res/layout/quick_help.xml",
+      "size": 931
+    },
+    {
+      "path": "native-validation/native-work/res/layout/replay_select.xml",
+      "size": 1862
+    },
+    {
+      "path": "native-validation/native-work/res/layout/settings.xml",
+      "size": 24957
+    },
+    {
+      "path": "native-validation/native-work/res/layout/settings_keyboard.xml",
+      "size": 3188
+    },
+    {
+      "path": "native-validation/native-work/res/values/arrays.xml",
+      "size": 2078
+    },
+    {
+      "path": "native-validation/native-work/res/values/attrs.xml",
+      "size": 658
+    },
+    {
+      "path": "native-validation/native-work/res/values/color.xml",
+      "size": 288
+    },
+    {
+      "path": "native-validation/native-work/res/values/strings.xml",
+      "size": 4551
+    },
+    {
+      "path": "native-validation/native-work/res/values/styles.xml",
+      "size": 2781
+    },
+    {
+      "path": "native-validation/native-work/res/values/themes.xml",
+      "size": 277
+    },
+    {
+      "path": "native-validation/native-work/res/xml/provider_paths.xml",
+      "size": 157
+    },
+    {
+      "path": "native-validation/native-work/rw-agent-bootstrap.log",
+      "size": 80039
+    },
+    {
+      "path": "native-validation/run-native-final.ps1",
+      "size": 2762
+    },
+    {
+      "path": "native-validation/run-native.ps1",
+      "size": 2765
+    },
+    {
+      "path": "native-validation/runner-final.log",
+      "size": 0
+    },
+    {
+      "path": "native-validation/runner.log",
+      "size": 0
+    },
+    {
+      "path": "NativeCreditWitnessHarness.log",
+      "size": 44
+    },
+    {
+      "path": "natural-final-analysis.log",
+      "size": 520058
+    },
+    {
+      "path": "natural-final-details.log",
+      "size": 21759
+    },
+    {
+      "path": "natural-live-analysis.log",
+      "size": 5179
+    },
+    {
+      "path": "prepare_native.py",
+      "size": 883
+    },
+    {
+      "path": "r9_natural_details.py",
+      "size": 4331
+    },
+    {
+      "path": "R9AirInvestmentHarness.log",
+      "size": 75
+    },
+    {
+      "path": "R9BuilderCoverageHarness.log",
+      "size": 51
+    },
+    {
+      "path": "R9NativeLongRunHarness.java",
+      "size": 2479
+    },
+    {
+      "path": "R9ProductionTimeoutHarness.log",
+      "size": 84
+    },
+    {
+      "path": "R9SiegeLifecycleHarness.log",
+      "size": 41
+    },
+    {
+      "path": "root-focused-2.log",
+      "size": 2736
+    },
+    {
+      "path": "root-focused-3.log",
+      "size": 2539
+    },
+    {
+      "path": "root-focused-final.log",
+      "size": 2539
+    },
+    {
+      "path": "root-focused.log",
+      "size": 2684
+    },
+    {
+      "path": "siege/CommanderBudgetHarness.log",
+      "size": 39
+    },
+    {
+      "path": "siege/compile-final.log",
+      "size": 174
+    },
+    {
+      "path": "siege/derive.py",
+      "size": 2063
+    },
+    {
+      "path": "siege/ForceControllerHarness.log",
+      "size": 39
+    },
+    {
+      "path": "siege/G51TacticalHarness.log",
+      "size": 35
+    },
+    {
+      "path": "siege/G52FightHarness.log",
+      "size": 181
+    },
+    {
+      "path": "siege/G52FightZonesHarness.log",
+      "size": 37
+    },
+    {
+      "path": "siege/G55OperationsHarness.log",
+      "size": 46
+    },
+    {
+      "path": "siege/G5CombatHarness.log",
+      "size": 32
+    },
+    {
+      "path": "siege/G5CommanderHarness.log",
+      "size": 36
+    },
+    {
+      "path": "siege/human-inside-base-holds.json",
+      "size": 13264
+    },
+    {
+      "path": "siege/human-siege-transitions.json",
+      "size": 954151
+    },
+    {
+      "path": "siege/inside.py",
+      "size": 2559
+    },
+    {
+      "path": "siege/r8-source/GeneralCombatDirector.java",
+      "size": 60437
+    },
+    {
+      "path": "siege/R8BaseAdmissionHarness.log",
+      "size": 39
+    },
+    {
+      "path": "siege/R8FrontierContinuationHarness.log",
+      "size": 45
+    },
+    {
+      "path": "siege/R9SiegeLifecycleHarness-r8-red.log",
+      "size": 418
+    },
+    {
+      "path": "siege/R9SiegeLifecycleHarness.log",
+      "size": 41
+    },
+    {
+      "path": "siege/validation-summary.json",
+      "size": 960
+    },
+    {
+      "path": "spain-final-4800/client.err.log",
+      "size": 0
+    },
+    {
+      "path": "spain-final-4800/client.log",
+      "size": 208
+    },
+    {
+      "path": "spain-final-4800/engine.err.log",
+      "size": 0
+    },
+    {
+      "path": "spain-final-4800/engine.log",
+      "size": 4232968
+    },
+    {
+      "path": "spain-final-4800/final-state.json",
+      "size": 289222
+    },
+    {
+      "path": "spain-final-4800/initial-state.json",
+      "size": 808
+    },
+    {
+      "path": "spain-final-4800/input.json",
+      "size": 550
+    },
+    {
+      "path": "spain-final-4800/last-batch.json",
+      "size": 328
+    },
+    {
+      "path": "spain-final-4800/monitor.jsonl",
+      "size": 32419
+    },
+    {
+      "path": "spain-final-4800/natural-live-prefix.json",
+      "size": 28044
+    },
+    {
+      "path": "spain-final-4800/natural-summary.json",
+      "size": 547126
+    },
+    {
+      "path": "spain-final-4800/r9-details.json",
+      "size": 76768
+    },
+    {
+      "path": "spain-final-4800/result.json",
+      "size": 159
+    },
+    {
+      "path": "spain-final-4800/work/preferences.ini",
+      "size": 4831
+    },
+    {
+      "path": "spain-final-4800/work/res/anim/mainfadein.xml",
+      "size": 269
+    },
+    {
+      "path": "spain-final-4800/work/res/anim/splashfadeout.xml",
+      "size": 304
+    },
+    {
+      "path": "spain-final-4800/work/res/drawable/backrepeat.xml",
+      "size": 148
+    },
+    {
+      "path": "spain-final-4800/work/res/drawable/border_shadow.xml",
+      "size": 751
+    },
+    {
+      "path": "spain-final-4800/work/res/drawable/btn_dropdown.xml",
+      "size": 1139
+    },
+    {
+      "path": "spain-final-4800/work/res/drawable/cell_shape.xml",
+      "size": 255
+    },
+    {
+      "path": "spain-final-4800/work/res/drawable/custombutton.xml",
+      "size": 569
+    },
+    {
+      "path": "spain-final-4800/work/res/drawable/icon_round.xml",
+      "size": 224
+    },
+    {
+      "path": "spain-final-4800/work/res/drawable/rounded_border.xml",
+      "size": 340
+    },
+    {
+      "path": "spain-final-4800/work/res/layout/alert_chat.xml",
+      "size": 757
+    },
+    {
+      "path": "spain-final-4800/work/res/layout/credits.xml",
+      "size": 936
+    },
+    {
+      "path": "spain-final-4800/work/res/layout/intro_screen.xml",
+      "size": 423
+    },
+    {
+      "path": "spain-final-4800/work/res/layout/level_options_popup.xml",
+      "size": 2590
+    },
+    {
+      "path": "spain-final-4800/work/res/layout/level_select.xml",
+      "size": 4247
+    },
+    {
+      "path": "spain-final-4800/work/res/layout/level_select_grid.xml",
+      "size": 4634
+    },
+    {
+      "path": "spain-final-4800/work/res/layout/load_level.xml",
+      "size": 1061
+    },
+    {
+      "path": "spain-final-4800/work/res/layout/main.xml",
+      "size": 580
+    },
+    {
+      "path": "spain-final-4800/work/res/layout/menu.xml",
+      "size": 5047
+    },
+    {
+      "path": "spain-final-4800/work/res/layout/mods.xml",
+      "size": 3108
+    },
+    {
+      "path": "spain-final-4800/work/res/layout/multiplayer_battleroom.xml",
+      "size": 11417
+    },
+    {
+      "path": "spain-final-4800/work/res/layout/multiplayer_battleroom_gameoptions.xml",
+      "size": 6169
+    },
+    {
+      "path": "spain-final-4800/work/res/layout/multiplayer_battleroom_playerpopup.xml",
+      "size": 8119
+    },
+    {
+      "path": "spain-final-4800/work/res/layout/multiplayer_lobby.xml",
+      "size": 17509
+    },
+    {
+      "path": "spain-final-4800/work/res/layout/multiplayer_lobby_hostgame.xml",
+      "size": 3054
+    },
+    {
+      "path": "spain-final-4800/work/res/layout/new_mission_starter.xml",
+      "size": 3300
+    },
+    {
+      "path": "spain-final-4800/work/res/layout/quick_help.xml",
+      "size": 931
+    },
+    {
+      "path": "spain-final-4800/work/res/layout/replay_select.xml",
+      "size": 1862
+    },
+    {
+      "path": "spain-final-4800/work/res/layout/settings.xml",
+      "size": 24957
+    },
+    {
+      "path": "spain-final-4800/work/res/layout/settings_keyboard.xml",
+      "size": 3188
+    },
+    {
+      "path": "spain-final-4800/work/res/values/arrays.xml",
+      "size": 2078
+    },
+    {
+      "path": "spain-final-4800/work/res/values/attrs.xml",
+      "size": 658
+    },
+    {
+      "path": "spain-final-4800/work/res/values/color.xml",
+      "size": 288
+    },
+    {
+      "path": "spain-final-4800/work/res/values/strings.xml",
+      "size": 4551
+    },
+    {
+      "path": "spain-final-4800/work/res/values/styles.xml",
+      "size": 2781
+    },
+    {
+      "path": "spain-final-4800/work/res/values/themes.xml",
+      "size": 277
+    },
+    {
+      "path": "spain-final-4800/work/res/xml/provider_paths.xml",
+      "size": 157
+    },
+    {
+      "path": "spain-final-4800/work/runtime.json",
+      "size": 476
+    },
+    {
+      "path": "spain-final-4800/work/rw-agent-bootstrap.log",
+      "size": 4197846
+    },
+    {
+      "path": "spain-final-4800/work/rw-agent-reports/battle-1791189103308-1c41d2a9.jsonl.gz",
+      "size": 87134397
+    },
+    {
+      "path": "spain-final-runner.log",
+      "size": 34217
+    },
+    {
+      "path": "spain_natural.py",
+      "size": 4819
+    },
+    {
+      "path": "summarize_natural.py",
+      "size": 6707
+    },
+    {
+      "path": "update_kit.py",
+      "size": 1066
+    },
+    {
+      "path": "verify_delivery.py",
+      "size": 2606
+    }
+  ],
+  "skippedByCategory": {
+    "duplicate-source/game/runtime": 8135,
+    "nontextthirdparty": 1034
+  }
+}

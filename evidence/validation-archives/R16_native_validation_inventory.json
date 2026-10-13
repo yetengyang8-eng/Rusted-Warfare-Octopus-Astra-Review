@@ -1,0 +1,1558 @@
+{
+  "version": "R16",
+  "source": "G:\\deepseek 工作台\\_validation\\octopus-r16-ground-20261012",
+  "included": [
+    {
+      "path": "air-isolation.json",
+      "size": 1036
+    },
+    {
+      "path": "analyse_human.py",
+      "size": 3282
+    },
+    {
+      "path": "base-cases.json",
+      "size": 20158
+    },
+    {
+      "path": "base_cases.py",
+      "size": 2417
+    },
+    {
+      "path": "baseline/compile.log",
+      "size": 139
+    },
+    {
+      "path": "baseline/R15AirClearanceHarness.log",
+      "size": 76
+    },
+    {
+      "path": "baseline/R9BuilderCoverageHarness.log",
+      "size": 51
+    },
+    {
+      "path": "baseline/R9SiegeLifecycleHarness.log",
+      "size": 41
+    },
+    {
+      "path": "baseline/test-compile.log",
+      "size": 1274
+    },
+    {
+      "path": "candidate/compile.log",
+      "size": 139
+    },
+    {
+      "path": "candidate/G5CombatHarness.log",
+      "size": 32
+    },
+    {
+      "path": "candidate/R15AirClearanceHarness.log",
+      "size": 76
+    },
+    {
+      "path": "candidate/R8BaseAdmissionHarness.log",
+      "size": 39
+    },
+    {
+      "path": "candidate/R9BuilderCoverageHarness.log",
+      "size": 51
+    },
+    {
+      "path": "candidate/R9SiegeLifecycleHarness.log",
+      "size": 41
+    },
+    {
+      "path": "candidate/test-compile.log",
+      "size": 1274
+    },
+    {
+      "path": "event-samples.json",
+      "size": 911642
+    },
+    {
+      "path": "final-full/exit-code.txt",
+      "size": 3
+    },
+    {
+      "path": "final-full/g1-four-path/local_crisis-pre-g1-normalized.json",
+      "size": 416213
+    },
+    {
+      "path": "final-full/g1-four-path/local_crisis-pre-g1-stderr.log",
+      "size": 136
+    },
+    {
+      "path": "final-full/g1-four-path/local_crisis-pre-g1-stdout.log",
+      "size": 188
+    },
+    {
+      "path": "final-full/g1-four-path/local_crisis-pre-g1.jsonl",
+      "size": 249907
+    },
+    {
+      "path": "final-full/g1-four-path/local_crisis-trace-off-normalized.json",
+      "size": 416231
+    },
+    {
+      "path": "final-full/g1-four-path/local_crisis-trace-off-stderr.log",
+      "size": 136
+    },
+    {
+      "path": "final-full/g1-four-path/local_crisis-trace-off-stdout.log",
+      "size": 188
+    },
+    {
+      "path": "final-full/g1-four-path/local_crisis-trace-off.jsonl",
+      "size": 278995
+    },
+    {
+      "path": "final-full/g1-four-path/local_crisis-trace-on-normalized.json",
+      "size": 416230
+    },
+    {
+      "path": "final-full/g1-four-path/local_crisis-trace-on-stderr.log",
+      "size": 136
+    },
+    {
+      "path": "final-full/g1-four-path/local_crisis-trace-on-stdout.log",
+      "size": 188
+    },
+    {
+      "path": "final-full/g1-four-path/local_crisis-trace-on.jsonl",
+      "size": 1307913
+    },
+    {
+      "path": "final-full/g1-four-path/ordinary_production-pre-g1-normalized.json",
+      "size": 4024257
+    },
+    {
+      "path": "final-full/g1-four-path/ordinary_production-pre-g1-stderr.log",
+      "size": 0
+    },
+    {
+      "path": "final-full/g1-four-path/ordinary_production-pre-g1-stdout.log",
+      "size": 324
+    },
+    {
+      "path": "final-full/g1-four-path/ordinary_production-pre-g1.jsonl",
+      "size": 2234611
+    },
+    {
+      "path": "final-full/g1-four-path/ordinary_production-trace-off-normalized.json",
+      "size": 4024275
+    },
+    {
+      "path": "final-full/g1-four-path/ordinary_production-trace-off-stderr.log",
+      "size": 0
+    },
+    {
+      "path": "final-full/g1-four-path/ordinary_production-trace-off-stdout.log",
+      "size": 324
+    },
+    {
+      "path": "final-full/g1-four-path/ordinary_production-trace-off.jsonl",
+      "size": 2234611
+    },
+    {
+      "path": "final-full/g1-four-path/ordinary_production-trace-on-normalized.json",
+      "size": 4024274
+    },
+    {
+      "path": "final-full/g1-four-path/ordinary_production-trace-on-stderr.log",
+      "size": 0
+    },
+    {
+      "path": "final-full/g1-four-path/ordinary_production-trace-on-stdout.log",
+      "size": 324
+    },
+    {
+      "path": "final-full/g1-four-path/ordinary_production-trace-on.jsonl",
+      "size": 8804103
+    },
+    {
+      "path": "final-full/g1-four-path/recon-pre-g1-normalized.json",
+      "size": 156496
+    },
+    {
+      "path": "final-full/g1-four-path/recon-pre-g1-stderr.log",
+      "size": 0
+    },
+    {
+      "path": "final-full/g1-four-path/recon-pre-g1-stdout.log",
+      "size": 332
+    },
+    {
+      "path": "final-full/g1-four-path/recon-pre-g1.jsonl",
+      "size": 94516
+    },
+    {
+      "path": "final-full/g1-four-path/recon-trace-off-normalized.json",
+      "size": 156514
+    },
+    {
+      "path": "final-full/g1-four-path/recon-trace-off-stderr.log",
+      "size": 0
+    },
+    {
+      "path": "final-full/g1-four-path/recon-trace-off-stdout.log",
+      "size": 332
+    },
+    {
+      "path": "final-full/g1-four-path/recon-trace-off.jsonl",
+      "size": 94516
+    },
+    {
+      "path": "final-full/g1-four-path/recon-trace-on-normalized.json",
+      "size": 156513
+    },
+    {
+      "path": "final-full/g1-four-path/recon-trace-on-stderr.log",
+      "size": 0
+    },
+    {
+      "path": "final-full/g1-four-path/recon-trace-on-stdout.log",
+      "size": 332
+    },
+    {
+      "path": "final-full/g1-four-path/recon-trace-on.jsonl",
+      "size": 475891
+    },
+    {
+      "path": "final-full/g1-four-path/strategy_provider-pre-g1-normalized.json",
+      "size": 828463
+    },
+    {
+      "path": "final-full/g1-four-path/strategy_provider-pre-g1-stderr.log",
+      "size": 0
+    },
+    {
+      "path": "final-full/g1-four-path/strategy_provider-pre-g1-stdout.log",
+      "size": 324
+    },
+    {
+      "path": "final-full/g1-four-path/strategy_provider-pre-g1.jsonl",
+      "size": 505421
+    },
+    {
+      "path": "final-full/g1-four-path/strategy_provider-trace-off-normalized.json",
+      "size": 828481
+    },
+    {
+      "path": "final-full/g1-four-path/strategy_provider-trace-off-stderr.log",
+      "size": 0
+    },
+    {
+      "path": "final-full/g1-four-path/strategy_provider-trace-off-stdout.log",
+      "size": 324
+    },
+    {
+      "path": "final-full/g1-four-path/strategy_provider-trace-off.jsonl",
+      "size": 543437
+    },
+    {
+      "path": "final-full/g1-four-path/strategy_provider-trace-on-normalized.json",
+      "size": 828480
+    },
+    {
+      "path": "final-full/g1-four-path/strategy_provider-trace-on-stderr.log",
+      "size": 0
+    },
+    {
+      "path": "final-full/g1-four-path/strategy_provider-trace-on-stdout.log",
+      "size": 324
+    },
+    {
+      "path": "final-full/g1-four-path/strategy_provider-trace-on.jsonl",
+      "size": 3682749
+    },
+    {
+      "path": "final-full/g2-four-path/local_crisis-ff693c8-http.json",
+      "size": 259252
+    },
+    {
+      "path": "final-full/g2-four-path/local_crisis-ff693c8-outcomes.json",
+      "size": 420422
+    },
+    {
+      "path": "final-full/g2-four-path/local_crisis-ff693c8.jsonl",
+      "size": 620014
+    },
+    {
+      "path": "final-full/g2-four-path/local_crisis-g2-off-http.json",
+      "size": 259252
+    },
+    {
+      "path": "final-full/g2-four-path/local_crisis-g2-off-outcomes.json",
+      "size": 420458
+    },
+    {
+      "path": "final-full/g2-four-path/local_crisis-g2-off.jsonl",
+      "size": 650122
+    },
+    {
+      "path": "final-full/g2-four-path/local_crisis-g2-on-http.json",
+      "size": 259252
+    },
+    {
+      "path": "final-full/g2-four-path/local_crisis-g2-on-outcomes.json",
+      "size": 420456
+    },
+    {
+      "path": "final-full/g2-four-path/local_crisis-g2-on.jsonl",
+      "size": 1307913
+    },
+    {
+      "path": "final-full/g2-four-path/ordinary_production-ff693c8-http.json",
+      "size": 3142677
+    },
+    {
+      "path": "final-full/g2-four-path/ordinary_production-ff693c8-outcomes.json",
+      "size": 4036060
+    },
+    {
+      "path": "final-full/g2-four-path/ordinary_production-ff693c8.jsonl",
+      "size": 5024861
+    },
+    {
+      "path": "final-full/g2-four-path/ordinary_production-g2-off-http.json",
+      "size": 3142677
+    },
+    {
+      "path": "final-full/g2-four-path/ordinary_production-g2-off-outcomes.json",
+      "size": 4036096
+    },
+    {
+      "path": "final-full/g2-four-path/ordinary_production-g2-off.jsonl",
+      "size": 5025957
+    },
+    {
+      "path": "final-full/g2-four-path/ordinary_production-g2-on-http.json",
+      "size": 3142677
+    },
+    {
+      "path": "final-full/g2-four-path/ordinary_production-g2-on-outcomes.json",
+      "size": 4036094
+    },
+    {
+      "path": "final-full/g2-four-path/ordinary_production-g2-on.jsonl",
+      "size": 8804103
+    },
+    {
+      "path": "final-full/g2-four-path/recon-ff693c8-http.json",
+      "size": 128108
+    },
+    {
+      "path": "final-full/g2-four-path/recon-ff693c8-native-stamps-http.json",
+      "size": 127551
+    },
+    {
+      "path": "final-full/g2-four-path/recon-ff693c8-native-stamps-outcomes.json",
+      "size": 157750
+    },
+    {
+      "path": "final-full/g2-four-path/recon-ff693c8-native-stamps.jsonl",
+      "size": 284424
+    },
+    {
+      "path": "final-full/g2-four-path/recon-ff693c8-outcomes.json",
+      "size": 158347
+    },
+    {
+      "path": "final-full/g2-four-path/recon-ff693c8.jsonl",
+      "size": 284872
+    },
+    {
+      "path": "final-full/g2-four-path/recon-g2-off-http.json",
+      "size": 128108
+    },
+    {
+      "path": "final-full/g2-four-path/recon-g2-off-native-stamps-http.json",
+      "size": 127551
+    },
+    {
+      "path": "final-full/g2-four-path/recon-g2-off-native-stamps-outcomes.json",
+      "size": 157785
+    },
+    {
+      "path": "final-full/g2-four-path/recon-g2-off-native-stamps.jsonl",
+      "size": 284424
+    },
+    {
+      "path": "final-full/g2-four-path/recon-g2-off-outcomes.json",
+      "size": 158383
+    },
+    {
+      "path": "final-full/g2-four-path/recon-g2-off.jsonl",
+      "size": 284872
+    },
+    {
+      "path": "final-full/g2-four-path/recon-g2-on-http.json",
+      "size": 128108
+    },
+    {
+      "path": "final-full/g2-four-path/recon-g2-on-native-stamps-http.json",
+      "size": 127551
+    },
+    {
+      "path": "final-full/g2-four-path/recon-g2-on-native-stamps-outcomes.json",
+      "size": 157783
+    },
+    {
+      "path": "final-full/g2-four-path/recon-g2-on-native-stamps.jsonl",
+      "size": 785466
+    },
+    {
+      "path": "final-full/g2-four-path/recon-g2-on-outcomes.json",
+      "size": 158381
+    },
+    {
+      "path": "final-full/g2-four-path/recon-g2-on.jsonl",
+      "size": 785967
+    },
+    {
+      "path": "final-full/g2-four-path/recon-guard-networked-ff693c8-http.json",
+      "size": 14961
+    },
+    {
+      "path": "final-full/g2-four-path/recon-guard-networked-ff693c8-outcomes.json",
+      "size": 29188
+    },
+    {
+      "path": "final-full/g2-four-path/recon-guard-networked-ff693c8.jsonl",
+      "size": 55791
+    },
+    {
+      "path": "final-full/g2-four-path/recon-guard-networked-g2-off-http.json",
+      "size": 14961
+    },
+    {
+      "path": "final-full/g2-four-path/recon-guard-networked-g2-off-outcomes.json",
+      "size": 29428
+    },
+    {
+      "path": "final-full/g2-four-path/recon-guard-networked-g2-off.jsonl",
+      "size": 55791
+    },
+    {
+      "path": "final-full/g2-four-path/recon-guard-networked-http.json",
+      "size": 14961
+    },
+    {
+      "path": "final-full/g2-four-path/recon-guard-networked-outcomes.json",
+      "size": 29426
+    },
+    {
+      "path": "final-full/g2-four-path/recon-guard-networked.jsonl",
+      "size": 145672
+    },
+    {
+      "path": "final-full/g2-four-path/recon-guard-replay-ff693c8-http.json",
+      "size": 14961
+    },
+    {
+      "path": "final-full/g2-four-path/recon-guard-replay-ff693c8-outcomes.json",
+      "size": 29188
+    },
+    {
+      "path": "final-full/g2-four-path/recon-guard-replay-ff693c8.jsonl",
+      "size": 55791
+    },
+    {
+      "path": "final-full/g2-four-path/recon-guard-replay-g2-off-http.json",
+      "size": 14961
+    },
+    {
+      "path": "final-full/g2-four-path/recon-guard-replay-g2-off-outcomes.json",
+      "size": 29427
+    },
+    {
+      "path": "final-full/g2-four-path/recon-guard-replay-g2-off.jsonl",
+      "size": 55791
+    },
+    {
+      "path": "final-full/g2-four-path/recon-guard-replay-http.json",
+      "size": 14961
+    },
+    {
+      "path": "final-full/g2-four-path/recon-guard-replay-outcomes.json",
+      "size": 29426
+    },
+    {
+      "path": "final-full/g2-four-path/recon-guard-replay.jsonl",
+      "size": 145672
+    },
+    {
+      "path": "final-full/g2-four-path/recon-guard-rollback-ff693c8-http.json",
+      "size": 14959
+    },
+    {
+      "path": "final-full/g2-four-path/recon-guard-rollback-ff693c8-outcomes.json",
+      "size": 29157
+    },
+    {
+      "path": "final-full/g2-four-path/recon-guard-rollback-ff693c8.jsonl",
+      "size": 55922
+    },
+    {
+      "path": "final-full/g2-four-path/recon-guard-rollback-g2-off-http.json",
+      "size": 14959
+    },
+    {
+      "path": "final-full/g2-four-path/recon-guard-rollback-g2-off-outcomes.json",
+      "size": 29397
+    },
+    {
+      "path": "final-full/g2-four-path/recon-guard-rollback-g2-off.jsonl",
+      "size": 55922
+    },
+    {
+      "path": "final-full/g2-four-path/recon-guard-rollback-http.json",
+      "size": 14959
+    },
+    {
+      "path": "final-full/g2-four-path/recon-guard-rollback-outcomes.json",
+      "size": 29395
+    },
+    {
+      "path": "final-full/g2-four-path/recon-guard-rollback.jsonl",
+      "size": 145803
+    },
+    {
+      "path": "final-full/g2-four-path/recon-guard-session-ff693c8-http.json",
+      "size": 15861
+    },
+    {
+      "path": "final-full/g2-four-path/recon-guard-session-ff693c8-outcomes.json",
+      "size": 31091
+    },
+    {
+      "path": "final-full/g2-four-path/recon-guard-session-ff693c8.jsonl",
+      "size": 64317
+    },
+    {
+      "path": "final-full/g2-four-path/recon-guard-session-g2-off-http.json",
+      "size": 15861
+    },
+    {
+      "path": "final-full/g2-four-path/recon-guard-session-g2-off-outcomes.json",
+      "size": 31329
+    },
+    {
+      "path": "final-full/g2-four-path/recon-guard-session-g2-off.jsonl",
+      "size": 64317
+    },
+    {
+      "path": "final-full/g2-four-path/recon-guard-session-http.json",
+      "size": 15861
+    },
+    {
+      "path": "final-full/g2-four-path/recon-guard-session-outcomes.json",
+      "size": 31327
+    },
+    {
+      "path": "final-full/g2-four-path/recon-guard-session.jsonl",
+      "size": 159301
+    },
+    {
+      "path": "final-full/g2-four-path/strategy_provider-ff693c8-http.json",
+      "size": 547548
+    },
+    {
+      "path": "final-full/g2-four-path/strategy_provider-ff693c8-outcomes.json",
+      "size": 1191947
+    },
+    {
+      "path": "final-full/g2-four-path/strategy_provider-ff693c8.jsonl",
+      "size": 1667995
+    },
+    {
+      "path": "final-full/g2-four-path/strategy_provider-g2-off-http.json",
+      "size": 547548
+    },
+    {
+      "path": "final-full/g2-four-path/strategy_provider-g2-off-outcomes.json",
+      "size": 1191983
+    },
+    {
+      "path": "final-full/g2-four-path/strategy_provider-g2-off.jsonl",
+      "size": 1744555
+    },
+    {
+      "path": "final-full/g2-four-path/strategy_provider-g2-on-http.json",
+      "size": 547548
+    },
+    {
+      "path": "final-full/g2-four-path/strategy_provider-g2-on-outcomes.json",
+      "size": 1191981
+    },
+    {
+      "path": "final-full/g2-four-path/strategy_provider-g2-on.jsonl",
+      "size": 3682749
+    },
+    {
+      "path": "final-full/g3-enabled-g4-disabled/accepted-g2-throughput.json",
+      "size": 13830
+    },
+    {
+      "path": "final-full/g3-enabled-g4-disabled/accepted-g2-throughput.jsonl",
+      "size": 808973
+    },
+    {
+      "path": "final-full/g3-enabled-g4-disabled/accepted-g2-throughput.stdout.log",
+      "size": 301
+    },
+    {
+      "path": "final-full/g3-enabled-g4-disabled/g3-cost-g1-only.json",
+      "size": 16789
+    },
+    {
+      "path": "final-full/g3-enabled-g4-disabled/g3-cost-g1-only.jsonl",
+      "size": 646742
+    },
+    {
+      "path": "final-full/g3-enabled-g4-disabled/g3-cost-g1-only.stdout.log",
+      "size": 301
+    },
+    {
+      "path": "final-full/g3-enabled-g4-disabled/g3-cost-trace-off-diagnostics-off.json",
+      "size": 16809
+    },
+    {
+      "path": "final-full/g3-enabled-g4-disabled/g3-cost-trace-off-diagnostics-off.jsonl",
+      "size": 57912
+    },
+    {
+      "path": "final-full/g3-enabled-g4-disabled/g3-cost-trace-off-diagnostics-off.stdout.log",
+      "size": 301
+    },
+    {
+      "path": "final-full/g3-enabled-g4-disabled/g3-cost-trace-on.json",
+      "size": 16786
+    },
+    {
+      "path": "final-full/g3-enabled-g4-disabled/g3-cost-trace-on.jsonl",
+      "size": 1151336
+    },
+    {
+      "path": "final-full/g3-enabled-g4-disabled/g3-cost-trace-on.stdout.log",
+      "size": 301
+    },
+    {
+      "path": "final-full/g3-enabled-g4-disabled/g3-credits.json",
+      "size": 13900
+    },
+    {
+      "path": "final-full/g3-enabled-g4-disabled/g3-credits.jsonl",
+      "size": 1008594
+    },
+    {
+      "path": "final-full/g3-enabled-g4-disabled/g3-credits.stdout.log",
+      "size": 301
+    },
+    {
+      "path": "final-full/g3-enabled-g4-disabled/g3-jumps.json",
+      "size": 16781
+    },
+    {
+      "path": "final-full/g3-enabled-g4-disabled/g3-jumps.jsonl",
+      "size": 1151336
+    },
+    {
+      "path": "final-full/g3-enabled-g4-disabled/g3-jumps.stdout.log",
+      "size": 301
+    },
+    {
+      "path": "final-full/g3-enabled-g4-disabled/g3-slots.json",
+      "size": 13912
+    },
+    {
+      "path": "final-full/g3-enabled-g4-disabled/g3-slots.jsonl",
+      "size": 1011964
+    },
+    {
+      "path": "final-full/g3-enabled-g4-disabled/g3-slots.stdout.log",
+      "size": 301
+    },
+    {
+      "path": "final-full/g3-enabled-g4-disabled/g3-throughput.json",
+      "size": 16784
+    },
+    {
+      "path": "final-full/g3-enabled-g4-disabled/g3-throughput.jsonl",
+      "size": 1151336
+    },
+    {
+      "path": "final-full/g3-enabled-g4-disabled/g3-throughput.stdout.log",
+      "size": 301
+    },
+    {
+      "path": "final-full/g3-enabled-g4-disabled/legacy-gate-current-jar.json",
+      "size": 13862
+    },
+    {
+      "path": "final-full/g3-enabled-g4-disabled/legacy-gate-current-jar.jsonl",
+      "size": 807430
+    },
+    {
+      "path": "final-full/g3-enabled-g4-disabled/legacy-gate-current-jar.stdout.log",
+      "size": 301
+    },
+    {
+      "path": "final-full/g3-enabled-g4-disabled/test_engineer_provider-test_complete_underwater_response_requires_ready_product_and_observed_mode-http.json",
+      "size": 560792
+    },
+    {
+      "path": "final-full/g3-enabled-g4-disabled/test_engineer_provider-test_complete_underwater_response_requires_ready_product_and_observed_mode-native-queues-http.json",
+      "size": 561340
+    },
+    {
+      "path": "final-full/g3-enabled-g4-disabled/test_engineer_provider-test_complete_underwater_response_requires_ready_product_and_observed_mode-native-queues.jsonl",
+      "size": 4582585
+    },
+    {
+      "path": "final-full/g3-enabled-g4-disabled/test_engineer_provider-test_complete_underwater_response_requires_ready_product_and_observed_mode-native-queues.stdout.log",
+      "size": 293
+    },
+    {
+      "path": "final-full/g3-enabled-g4-disabled/test_engineer_provider-test_complete_underwater_response_requires_ready_product_and_observed_mode.jsonl",
+      "size": 4581989
+    },
+    {
+      "path": "final-full/g3-enabled-g4-disabled/test_engineer_provider-test_complete_underwater_response_requires_ready_product_and_observed_mode.stdout.log",
+      "size": 293
+    },
+    {
+      "path": "final-full/g3-enabled-g4-disabled/test_engineer_provider-test_funding_holds_native_quote_then_releases_on_accepted_build-http.json",
+      "size": 557039
+    },
+    {
+      "path": "final-full/g3-enabled-g4-disabled/test_engineer_provider-test_funding_holds_native_quote_then_releases_on_accepted_build.jsonl",
+      "size": 4473823
+    },
+    {
+      "path": "final-full/g3-enabled-g4-disabled/test_engineer_provider-test_funding_holds_native_quote_then_releases_on_accepted_build.stdout.log",
+      "size": 293
+    },
+    {
+      "path": "final-full/g3-enabled-g4-disabled/test_local_army-test_contact_loss_returns_and_releases_without_claiming_kill-http.json",
+      "size": 258118
+    },
+    {
+      "path": "final-full/g3-enabled-g4-disabled/test_local_army-test_contact_loss_returns_and_releases_without_claiming_kill.jsonl",
+      "size": 1383535
+    },
+    {
+      "path": "final-full/g3-enabled-g4-disabled/test_local_army-test_contact_loss_returns_and_releases_without_claiming_kill.stdout.log",
+      "size": 186
+    },
+    {
+      "path": "final-full/g3-enabled-g4-disabled/test_production_capacity-test_army_limit_cannot_spend_investment_reserve-http.json",
+      "size": 2695569
+    },
+    {
+      "path": "final-full/g3-enabled-g4-disabled/test_production_capacity-test_army_limit_cannot_spend_investment_reserve.jsonl",
+      "size": 10123028
+    },
+    {
+      "path": "final-full/g3-enabled-g4-disabled/test_production_capacity-test_army_limit_cannot_spend_investment_reserve.stdout.log",
+      "size": 293
+    },
+    {
+      "path": "final-full/g3-enabled-g4-disabled/test_recon_client-test_lost_factory_uses_one_unit_and_requires_own_evidence_before_clear-http.json",
+      "size": 125730
+    },
+    {
+      "path": "final-full/g3-enabled-g4-disabled/test_recon_client-test_lost_factory_uses_one_unit_and_requires_own_evidence_before_clear.jsonl",
+      "size": 499871
+    },
+    {
+      "path": "final-full/g3-enabled-g4-disabled/test_recon_client-test_lost_factory_uses_one_unit_and_requires_own_evidence_before_clear.stdout.log",
+      "size": 301
+    },
+    {
+      "path": "final-full/g3-enabled-g4-disabled/test_surplus_spending-test_near_target_rich_economy_invests_when_local_payback_window_is_long-native-queues-http.json",
+      "size": 860404
+    },
+    {
+      "path": "final-full/g3-enabled-g4-disabled/test_surplus_spending-test_near_target_rich_economy_invests_when_local_payback_window_is_long-native-queues.jsonl",
+      "size": 3231471
+    },
+    {
+      "path": "final-full/g3-enabled-g4-disabled/test_surplus_spending-test_near_target_rich_economy_invests_when_local_payback_window_is_long-native-queues.stdout.log",
+      "size": 293
+    },
+    {
+      "path": "final-full/g4-enabled-mainloop/empty/True/battle.jsonl",
+      "size": 959935
+    },
+    {
+      "path": "final-full/g4-enabled-mainloop/empty/True/process.txt",
+      "size": 293
+    },
+    {
+      "path": "final-full/g4-enabled-mainloop/seeded/False/battle.jsonl",
+      "size": 323389
+    },
+    {
+      "path": "final-full/g4-enabled-mainloop/seeded/False/process.txt",
+      "size": 293
+    },
+    {
+      "path": "final-full/g4-enabled-mainloop/seeded/True/battle.jsonl",
+      "size": 1231431
+    },
+    {
+      "path": "final-full/g4-enabled-mainloop/seeded/True/process.txt",
+      "size": 293
+    },
+    {
+      "path": "final-full/g5-mainloop/chunk_cache_read_probe/battle.jsonl",
+      "size": 0
+    },
+    {
+      "path": "final-full/g5-mainloop/chunk_cache_read_probe/fixture.json",
+      "size": 4527
+    },
+    {
+      "path": "final-full/g5-mainloop/chunk_cache_read_probe/process.txt",
+      "size": 2249
+    },
+    {
+      "path": "final-full/g5-mainloop/g41-reused/g5_first_formation/battle.jsonl",
+      "size": 3838400
+    },
+    {
+      "path": "final-full/g5-mainloop/g41-reused/g5_first_formation/fixture.json",
+      "size": 38162
+    },
+    {
+      "path": "final-full/g5-mainloop/g41-reused/g5_first_formation/process.txt",
+      "size": 302
+    },
+    {
+      "path": "final-full/g5-mainloop/overflow/battle.jsonl",
+      "size": 3382713
+    },
+    {
+      "path": "final-full/g5-mainloop/overflow/fixture.json",
+      "size": 42526
+    },
+    {
+      "path": "final-full/g5-mainloop/overflow/process.txt",
+      "size": 301
+    },
+    {
+      "path": "final-full/g5-mainloop/pressure/battle.jsonl",
+      "size": 5852627
+    },
+    {
+      "path": "final-full/g5-mainloop/pressure/fixture.json",
+      "size": 60806
+    },
+    {
+      "path": "final-full/g5-mainloop/pressure/process.txt",
+      "size": 301
+    },
+    {
+      "path": "final-full/transcript.txt",
+      "size": 710681
+    },
+    {
+      "path": "finalize_evidence.py",
+      "size": 5176
+    },
+    {
+      "path": "focused/compile.log",
+      "size": 139
+    },
+    {
+      "path": "focused/R16BuilderRegionHarness.log",
+      "size": 360
+    },
+    {
+      "path": "focused/R16GroundBaseHarness.log",
+      "size": 47
+    },
+    {
+      "path": "focused/test-compile.log",
+      "size": 1274
+    },
+    {
+      "path": "focused-final/compile.log",
+      "size": 139
+    },
+    {
+      "path": "focused-final/G6CapitalPolicyHarness.log",
+      "size": 75
+    },
+    {
+      "path": "focused-final/R15AirClearanceHarness.log",
+      "size": 76
+    },
+    {
+      "path": "focused-final/R16BuilderRegionHarness.log",
+      "size": 49
+    },
+    {
+      "path": "focused-final/R16GroundBaseHarness.log",
+      "size": 47
+    },
+    {
+      "path": "focused-final/R9BuilderCoverageHarness.log",
+      "size": 51
+    },
+    {
+      "path": "focused-final/R9SiegeLifecycleHarness.log",
+      "size": 41
+    },
+    {
+      "path": "focused-final/test-compile.log",
+      "size": 1274
+    },
+    {
+      "path": "focused.py",
+      "size": 1932
+    },
+    {
+      "path": "full-corrected/compile.log",
+      "size": 0
+    },
+    {
+      "path": "full-corrected/G55OperationsHarness.log",
+      "size": 46
+    },
+    {
+      "path": "ground-transitions.jsonl",
+      "size": 26936031
+    },
+    {
+      "path": "human-audit.json",
+      "size": 124058
+    },
+    {
+      "path": "old-builder-expected-failure.txt",
+      "size": 375
+    },
+    {
+      "path": "old-ground-expected-failure.txt",
+      "size": 382
+    },
+    {
+      "path": "prepare.py",
+      "size": 1001
+    },
+    {
+      "path": "rerun_corrected.py",
+      "size": 1100
+    },
+    {
+      "path": "run-final.ps1",
+      "size": 2241
+    },
+    {
+      "path": "source-inputs.json",
+      "size": 46992
+    },
+    {
+      "path": "spain-r15-normal-p5/work/res/anim/mainfadein.xml",
+      "size": 269
+    },
+    {
+      "path": "spain-r15-normal-p5/work/res/anim/splashfadeout.xml",
+      "size": 304
+    },
+    {
+      "path": "spain-r15-normal-p5/work/res/drawable/backrepeat.xml",
+      "size": 148
+    },
+    {
+      "path": "spain-r15-normal-p5/work/res/drawable/border_shadow.xml",
+      "size": 751
+    },
+    {
+      "path": "spain-r15-normal-p5/work/res/drawable/btn_dropdown.xml",
+      "size": 1139
+    },
+    {
+      "path": "spain-r15-normal-p5/work/res/drawable/cell_shape.xml",
+      "size": 255
+    },
+    {
+      "path": "spain-r15-normal-p5/work/res/drawable/custombutton.xml",
+      "size": 569
+    },
+    {
+      "path": "spain-r15-normal-p5/work/res/drawable/icon_round.xml",
+      "size": 224
+    },
+    {
+      "path": "spain-r15-normal-p5/work/res/drawable/rounded_border.xml",
+      "size": 340
+    },
+    {
+      "path": "spain-r15-normal-p5/work/res/layout/alert_chat.xml",
+      "size": 757
+    },
+    {
+      "path": "spain-r15-normal-p5/work/res/layout/credits.xml",
+      "size": 936
+    },
+    {
+      "path": "spain-r15-normal-p5/work/res/layout/intro_screen.xml",
+      "size": 423
+    },
+    {
+      "path": "spain-r15-normal-p5/work/res/layout/level_options_popup.xml",
+      "size": 2590
+    },
+    {
+      "path": "spain-r15-normal-p5/work/res/layout/level_select.xml",
+      "size": 4247
+    },
+    {
+      "path": "spain-r15-normal-p5/work/res/layout/level_select_grid.xml",
+      "size": 4634
+    },
+    {
+      "path": "spain-r15-normal-p5/work/res/layout/load_level.xml",
+      "size": 1061
+    },
+    {
+      "path": "spain-r15-normal-p5/work/res/layout/main.xml",
+      "size": 580
+    },
+    {
+      "path": "spain-r15-normal-p5/work/res/layout/menu.xml",
+      "size": 5047
+    },
+    {
+      "path": "spain-r15-normal-p5/work/res/layout/mods.xml",
+      "size": 3108
+    },
+    {
+      "path": "spain-r15-normal-p5/work/res/layout/multiplayer_battleroom.xml",
+      "size": 11417
+    },
+    {
+      "path": "spain-r15-normal-p5/work/res/layout/multiplayer_battleroom_gameoptions.xml",
+      "size": 6169
+    },
+    {
+      "path": "spain-r15-normal-p5/work/res/layout/multiplayer_battleroom_playerpopup.xml",
+      "size": 8119
+    },
+    {
+      "path": "spain-r15-normal-p5/work/res/layout/multiplayer_lobby.xml",
+      "size": 17509
+    },
+    {
+      "path": "spain-r15-normal-p5/work/res/layout/multiplayer_lobby_hostgame.xml",
+      "size": 3054
+    },
+    {
+      "path": "spain-r15-normal-p5/work/res/layout/new_mission_starter.xml",
+      "size": 3300
+    },
+    {
+      "path": "spain-r15-normal-p5/work/res/layout/quick_help.xml",
+      "size": 931
+    },
+    {
+      "path": "spain-r15-normal-p5/work/res/layout/replay_select.xml",
+      "size": 1862
+    },
+    {
+      "path": "spain-r15-normal-p5/work/res/layout/settings.xml",
+      "size": 24957
+    },
+    {
+      "path": "spain-r15-normal-p5/work/res/layout/settings_keyboard.xml",
+      "size": 3188
+    },
+    {
+      "path": "spain-r15-normal-p5/work/res/values/arrays.xml",
+      "size": 2078
+    },
+    {
+      "path": "spain-r15-normal-p5/work/res/values/attrs.xml",
+      "size": 658
+    },
+    {
+      "path": "spain-r15-normal-p5/work/res/values/color.xml",
+      "size": 288
+    },
+    {
+      "path": "spain-r15-normal-p5/work/res/values/strings.xml",
+      "size": 4551
+    },
+    {
+      "path": "spain-r15-normal-p5/work/res/values/styles.xml",
+      "size": 2781
+    },
+    {
+      "path": "spain-r15-normal-p5/work/res/values/themes.xml",
+      "size": 277
+    },
+    {
+      "path": "spain-r15-normal-p5/work/res/xml/provider_paths.xml",
+      "size": 157
+    },
+    {
+      "path": "spain-r15-normal-p5-console.txt",
+      "size": 545
+    },
+    {
+      "path": "spain-r15-normal-p5-v2/client.err.log",
+      "size": 0
+    },
+    {
+      "path": "spain-r15-normal-p5-v2/client.log",
+      "size": 202
+    },
+    {
+      "path": "spain-r15-normal-p5-v2/engine.err.log",
+      "size": 0
+    },
+    {
+      "path": "spain-r15-normal-p5-v2/engine.log",
+      "size": 1507232
+    },
+    {
+      "path": "spain-r15-normal-p5-v2/final-state.json",
+      "size": 92539
+    },
+    {
+      "path": "spain-r15-normal-p5-v2/initial-state.json",
+      "size": 831
+    },
+    {
+      "path": "spain-r15-normal-p5-v2/input.json",
+      "size": 568
+    },
+    {
+      "path": "spain-r15-normal-p5-v2/monitor.jsonl",
+      "size": 3606247
+    },
+    {
+      "path": "spain-r15-normal-p5-v2/result.json",
+      "size": 159
+    },
+    {
+      "path": "spain-r15-normal-p5-v2/work/native-bootstrap.json",
+      "size": 1520
+    },
+    {
+      "path": "spain-r15-normal-p5-v2/work/preferences.ini",
+      "size": 4831
+    },
+    {
+      "path": "spain-r15-normal-p5-v2/work/res/anim/mainfadein.xml",
+      "size": 269
+    },
+    {
+      "path": "spain-r15-normal-p5-v2/work/res/anim/splashfadeout.xml",
+      "size": 304
+    },
+    {
+      "path": "spain-r15-normal-p5-v2/work/res/drawable/backrepeat.xml",
+      "size": 148
+    },
+    {
+      "path": "spain-r15-normal-p5-v2/work/res/drawable/border_shadow.xml",
+      "size": 751
+    },
+    {
+      "path": "spain-r15-normal-p5-v2/work/res/drawable/btn_dropdown.xml",
+      "size": 1139
+    },
+    {
+      "path": "spain-r15-normal-p5-v2/work/res/drawable/cell_shape.xml",
+      "size": 255
+    },
+    {
+      "path": "spain-r15-normal-p5-v2/work/res/drawable/custombutton.xml",
+      "size": 569
+    },
+    {
+      "path": "spain-r15-normal-p5-v2/work/res/drawable/icon_round.xml",
+      "size": 224
+    },
+    {
+      "path": "spain-r15-normal-p5-v2/work/res/drawable/rounded_border.xml",
+      "size": 340
+    },
+    {
+      "path": "spain-r15-normal-p5-v2/work/res/layout/alert_chat.xml",
+      "size": 757
+    },
+    {
+      "path": "spain-r15-normal-p5-v2/work/res/layout/credits.xml",
+      "size": 936
+    },
+    {
+      "path": "spain-r15-normal-p5-v2/work/res/layout/intro_screen.xml",
+      "size": 423
+    },
+    {
+      "path": "spain-r15-normal-p5-v2/work/res/layout/level_options_popup.xml",
+      "size": 2590
+    },
+    {
+      "path": "spain-r15-normal-p5-v2/work/res/layout/level_select.xml",
+      "size": 4247
+    },
+    {
+      "path": "spain-r15-normal-p5-v2/work/res/layout/level_select_grid.xml",
+      "size": 4634
+    },
+    {
+      "path": "spain-r15-normal-p5-v2/work/res/layout/load_level.xml",
+      "size": 1061
+    },
+    {
+      "path": "spain-r15-normal-p5-v2/work/res/layout/main.xml",
+      "size": 580
+    },
+    {
+      "path": "spain-r15-normal-p5-v2/work/res/layout/menu.xml",
+      "size": 5047
+    },
+    {
+      "path": "spain-r15-normal-p5-v2/work/res/layout/mods.xml",
+      "size": 3108
+    },
+    {
+      "path": "spain-r15-normal-p5-v2/work/res/layout/multiplayer_battleroom.xml",
+      "size": 11417
+    },
+    {
+      "path": "spain-r15-normal-p5-v2/work/res/layout/multiplayer_battleroom_gameoptions.xml",
+      "size": 6169
+    },
+    {
+      "path": "spain-r15-normal-p5-v2/work/res/layout/multiplayer_battleroom_playerpopup.xml",
+      "size": 8119
+    },
+    {
+      "path": "spain-r15-normal-p5-v2/work/res/layout/multiplayer_lobby.xml",
+      "size": 17509
+    },
+    {
+      "path": "spain-r15-normal-p5-v2/work/res/layout/multiplayer_lobby_hostgame.xml",
+      "size": 3054
+    },
+    {
+      "path": "spain-r15-normal-p5-v2/work/res/layout/new_mission_starter.xml",
+      "size": 3300
+    },
+    {
+      "path": "spain-r15-normal-p5-v2/work/res/layout/quick_help.xml",
+      "size": 931
+    },
+    {
+      "path": "spain-r15-normal-p5-v2/work/res/layout/replay_select.xml",
+      "size": 1862
+    },
+    {
+      "path": "spain-r15-normal-p5-v2/work/res/layout/settings.xml",
+      "size": 24957
+    },
+    {
+      "path": "spain-r15-normal-p5-v2/work/res/layout/settings_keyboard.xml",
+      "size": 3188
+    },
+    {
+      "path": "spain-r15-normal-p5-v2/work/res/values/arrays.xml",
+      "size": 2078
+    },
+    {
+      "path": "spain-r15-normal-p5-v2/work/res/values/attrs.xml",
+      "size": 658
+    },
+    {
+      "path": "spain-r15-normal-p5-v2/work/res/values/color.xml",
+      "size": 288
+    },
+    {
+      "path": "spain-r15-normal-p5-v2/work/res/values/strings.xml",
+      "size": 4551
+    },
+    {
+      "path": "spain-r15-normal-p5-v2/work/res/values/styles.xml",
+      "size": 2781
+    },
+    {
+      "path": "spain-r15-normal-p5-v2/work/res/values/themes.xml",
+      "size": 277
+    },
+    {
+      "path": "spain-r15-normal-p5-v2/work/res/xml/provider_paths.xml",
+      "size": 157
+    },
+    {
+      "path": "spain-r15-normal-p5-v2/work/runtime.json",
+      "size": 489
+    },
+    {
+      "path": "spain-r15-normal-p5-v2/work/rw-agent-bootstrap.log",
+      "size": 1481389
+    },
+    {
+      "path": "spain-r15-normal-p5-v2/work/rw-agent-reports/battle-1791743035955-dc9a3fc0.jsonl.gz",
+      "size": 53333869
+    },
+    {
+      "path": "spain-r15-normal-p5-v2/work/rw-agent-reports/battle-latest.json",
+      "size": 669993
+    },
+    {
+      "path": "spain-r15-normal-p5-v2-console.txt",
+      "size": 108229
+    },
+    {
+      "path": "spain-r15-normal-p5-v2-summary.json",
+      "size": 31185
+    },
+    {
+      "path": "spain-r16-normal-p5/client.err.log",
+      "size": 0
+    },
+    {
+      "path": "spain-r16-normal-p5/client.log",
+      "size": 219
+    },
+    {
+      "path": "spain-r16-normal-p5/engine.err.log",
+      "size": 0
+    },
+    {
+      "path": "spain-r16-normal-p5/engine.log",
+      "size": 2736917
+    },
+    {
+      "path": "spain-r16-normal-p5/final-state.json",
+      "size": 142401
+    },
+    {
+      "path": "spain-r16-normal-p5/initial-state.json",
+      "size": 831
+    },
+    {
+      "path": "spain-r16-normal-p5/input.json",
+      "size": 568
+    },
+    {
+      "path": "spain-r16-normal-p5/monitor.jsonl",
+      "size": 12957534
+    },
+    {
+      "path": "spain-r16-normal-p5/result.json",
+      "size": 159
+    },
+    {
+      "path": "spain-r16-normal-p5/work/native-bootstrap.json",
+      "size": 1520
+    },
+    {
+      "path": "spain-r16-normal-p5/work/preferences.ini",
+      "size": 4831
+    },
+    {
+      "path": "spain-r16-normal-p5/work/res/anim/mainfadein.xml",
+      "size": 269
+    },
+    {
+      "path": "spain-r16-normal-p5/work/res/anim/splashfadeout.xml",
+      "size": 304
+    },
+    {
+      "path": "spain-r16-normal-p5/work/res/drawable/backrepeat.xml",
+      "size": 148
+    },
+    {
+      "path": "spain-r16-normal-p5/work/res/drawable/border_shadow.xml",
+      "size": 751
+    },
+    {
+      "path": "spain-r16-normal-p5/work/res/drawable/btn_dropdown.xml",
+      "size": 1139
+    },
+    {
+      "path": "spain-r16-normal-p5/work/res/drawable/cell_shape.xml",
+      "size": 255
+    },
+    {
+      "path": "spain-r16-normal-p5/work/res/drawable/custombutton.xml",
+      "size": 569
+    },
+    {
+      "path": "spain-r16-normal-p5/work/res/drawable/icon_round.xml",
+      "size": 224
+    },
+    {
+      "path": "spain-r16-normal-p5/work/res/drawable/rounded_border.xml",
+      "size": 340
+    },
+    {
+      "path": "spain-r16-normal-p5/work/res/layout/alert_chat.xml",
+      "size": 757
+    },
+    {
+      "path": "spain-r16-normal-p5/work/res/layout/credits.xml",
+      "size": 936
+    },
+    {
+      "path": "spain-r16-normal-p5/work/res/layout/intro_screen.xml",
+      "size": 423
+    },
+    {
+      "path": "spain-r16-normal-p5/work/res/layout/level_options_popup.xml",
+      "size": 2590
+    },
+    {
+      "path": "spain-r16-normal-p5/work/res/layout/level_select.xml",
+      "size": 4247
+    },
+    {
+      "path": "spain-r16-normal-p5/work/res/layout/level_select_grid.xml",
+      "size": 4634
+    },
+    {
+      "path": "spain-r16-normal-p5/work/res/layout/load_level.xml",
+      "size": 1061
+    },
+    {
+      "path": "spain-r16-normal-p5/work/res/layout/main.xml",
+      "size": 580
+    },
+    {
+      "path": "spain-r16-normal-p5/work/res/layout/menu.xml",
+      "size": 5047
+    },
+    {
+      "path": "spain-r16-normal-p5/work/res/layout/mods.xml",
+      "size": 3108
+    },
+    {
+      "path": "spain-r16-normal-p5/work/res/layout/multiplayer_battleroom.xml",
+      "size": 11417
+    },
+    {
+      "path": "spain-r16-normal-p5/work/res/layout/multiplayer_battleroom_gameoptions.xml",
+      "size": 6169
+    },
+    {
+      "path": "spain-r16-normal-p5/work/res/layout/multiplayer_battleroom_playerpopup.xml",
+      "size": 8119
+    },
+    {
+      "path": "spain-r16-normal-p5/work/res/layout/multiplayer_lobby.xml",
+      "size": 17509
+    },
+    {
+      "path": "spain-r16-normal-p5/work/res/layout/multiplayer_lobby_hostgame.xml",
+      "size": 3054
+    },
+    {
+      "path": "spain-r16-normal-p5/work/res/layout/new_mission_starter.xml",
+      "size": 3300
+    },
+    {
+      "path": "spain-r16-normal-p5/work/res/layout/quick_help.xml",
+      "size": 931
+    },
+    {
+      "path": "spain-r16-normal-p5/work/res/layout/replay_select.xml",
+      "size": 1862
+    },
+    {
+      "path": "spain-r16-normal-p5/work/res/layout/settings.xml",
+      "size": 24957
+    },
+    {
+      "path": "spain-r16-normal-p5/work/res/layout/settings_keyboard.xml",
+      "size": 3188
+    },
+    {
+      "path": "spain-r16-normal-p5/work/res/values/arrays.xml",
+      "size": 2078
+    },
+    {
+      "path": "spain-r16-normal-p5/work/res/values/attrs.xml",
+      "size": 658
+    },
+    {
+      "path": "spain-r16-normal-p5/work/res/values/color.xml",
+      "size": 288
+    },
+    {
+      "path": "spain-r16-normal-p5/work/res/values/strings.xml",
+      "size": 4551
+    },
+    {
+      "path": "spain-r16-normal-p5/work/res/values/styles.xml",
+      "size": 2781
+    },
+    {
+      "path": "spain-r16-normal-p5/work/res/values/themes.xml",
+      "size": 277
+    },
+    {
+      "path": "spain-r16-normal-p5/work/res/xml/provider_paths.xml",
+      "size": 157
+    },
+    {
+      "path": "spain-r16-normal-p5/work/runtime.json",
+      "size": 486
+    },
+    {
+      "path": "spain-r16-normal-p5/work/rw-agent-bootstrap.log",
+      "size": 2707491
+    },
+    {
+      "path": "spain-r16-normal-p5/work/rw-agent-reports/battle-1791742972406-737aa4b2.jsonl.gz",
+      "size": 64184434
+    },
+    {
+      "path": "spain-r16-normal-p5/work/rw-agent-reports/battle-latest.json",
+      "size": 1079318
+    },
+    {
+      "path": "spain-r16-normal-p5-console.txt",
+      "size": 140165
+    },
+    {
+      "path": "spain-r16-normal-p5-summary.json",
+      "size": 59220
+    },
+    {
+      "path": "spain_natural.py",
+      "size": 5502
+    },
+    {
+      "path": "summarize.py",
+      "size": 3996
+    },
+    {
+      "path": "test-adjusted/compile.log",
+      "size": 139
+    },
+    {
+      "path": "test-adjusted/G55OperationsHarness.log",
+      "size": 46
+    },
+    {
+      "path": "test-adjusted/test-compile.log",
+      "size": 1274
+    },
+    {
+      "path": "update_state.py",
+      "size": 3692
+    }
+  ],
+  "skippedByCategory": {
+    "duplicate-source/game/runtime": 6325,
+    "nontextthirdparty": 1855
+  }
+}

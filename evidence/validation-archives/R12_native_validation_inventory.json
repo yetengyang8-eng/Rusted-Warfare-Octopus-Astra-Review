@@ -1,0 +1,2082 @@
+{
+  "version": "R12",
+  "source": "G:\\deepseek 工作台\\_validation\\octopus-r12-builder-20261011",
+  "included": [
+    {
+      "path": "baseline-repro.log",
+      "size": 395
+    },
+    {
+      "path": "baseline-test-compile.log",
+      "size": 255
+    },
+    {
+      "path": "build_focused.ps1",
+      "size": 1963
+    },
+    {
+      "path": "builder-last-inspection.json.txt",
+      "size": 25079
+    },
+    {
+      "path": "builder-timeline.jsonl",
+      "size": 15562282
+    },
+    {
+      "path": "builder_natural_details.py",
+      "size": 4895
+    },
+    {
+      "path": "corrected-full/final-full/exit-code.txt",
+      "size": 3
+    },
+    {
+      "path": "corrected-full/final-full/g1-four-path/local_crisis-pre-g1-normalized.json",
+      "size": 416213
+    },
+    {
+      "path": "corrected-full/final-full/g1-four-path/local_crisis-pre-g1-stderr.log",
+      "size": 136
+    },
+    {
+      "path": "corrected-full/final-full/g1-four-path/local_crisis-pre-g1-stdout.log",
+      "size": 204
+    },
+    {
+      "path": "corrected-full/final-full/g1-four-path/local_crisis-pre-g1.jsonl",
+      "size": 249906
+    },
+    {
+      "path": "corrected-full/final-full/g1-four-path/local_crisis-trace-off-normalized.json",
+      "size": 416248
+    },
+    {
+      "path": "corrected-full/final-full/g1-four-path/local_crisis-trace-off-stderr.log",
+      "size": 136
+    },
+    {
+      "path": "corrected-full/final-full/g1-four-path/local_crisis-trace-off-stdout.log",
+      "size": 204
+    },
+    {
+      "path": "corrected-full/final-full/g1-four-path/local_crisis-trace-off.jsonl",
+      "size": 249906
+    },
+    {
+      "path": "corrected-full/final-full/g1-four-path/local_crisis-trace-on-normalized.json",
+      "size": 416247
+    },
+    {
+      "path": "corrected-full/final-full/g1-four-path/local_crisis-trace-on-stderr.log",
+      "size": 136
+    },
+    {
+      "path": "corrected-full/final-full/g1-four-path/local_crisis-trace-on-stdout.log",
+      "size": 204
+    },
+    {
+      "path": "corrected-full/final-full/g1-four-path/local_crisis-trace-on.jsonl",
+      "size": 1278825
+    },
+    {
+      "path": "corrected-full/final-full/g1-four-path/ordinary_production-pre-g1-normalized.json",
+      "size": 4024257
+    },
+    {
+      "path": "corrected-full/final-full/g1-four-path/ordinary_production-pre-g1-stderr.log",
+      "size": 0
+    },
+    {
+      "path": "corrected-full/final-full/g1-four-path/ordinary_production-pre-g1-stdout.log",
+      "size": 340
+    },
+    {
+      "path": "corrected-full/final-full/g1-four-path/ordinary_production-pre-g1.jsonl",
+      "size": 2234611
+    },
+    {
+      "path": "corrected-full/final-full/g1-four-path/ordinary_production-trace-off-normalized.json",
+      "size": 4024292
+    },
+    {
+      "path": "corrected-full/final-full/g1-four-path/ordinary_production-trace-off-stderr.log",
+      "size": 0
+    },
+    {
+      "path": "corrected-full/final-full/g1-four-path/ordinary_production-trace-off-stdout.log",
+      "size": 340
+    },
+    {
+      "path": "corrected-full/final-full/g1-four-path/ordinary_production-trace-off.jsonl",
+      "size": 2234611
+    },
+    {
+      "path": "corrected-full/final-full/g1-four-path/ordinary_production-trace-on-normalized.json",
+      "size": 4024291
+    },
+    {
+      "path": "corrected-full/final-full/g1-four-path/ordinary_production-trace-on-stderr.log",
+      "size": 0
+    },
+    {
+      "path": "corrected-full/final-full/g1-four-path/ordinary_production-trace-on-stdout.log",
+      "size": 340
+    },
+    {
+      "path": "corrected-full/final-full/g1-four-path/ordinary_production-trace-on.jsonl",
+      "size": 8835052
+    },
+    {
+      "path": "corrected-full/final-full/g1-four-path/recon-pre-g1-normalized.json",
+      "size": 156496
+    },
+    {
+      "path": "corrected-full/final-full/g1-four-path/recon-pre-g1-stderr.log",
+      "size": 0
+    },
+    {
+      "path": "corrected-full/final-full/g1-four-path/recon-pre-g1-stdout.log",
+      "size": 348
+    },
+    {
+      "path": "corrected-full/final-full/g1-four-path/recon-pre-g1.jsonl",
+      "size": 94516
+    },
+    {
+      "path": "corrected-full/final-full/g1-four-path/recon-trace-off-normalized.json",
+      "size": 156531
+    },
+    {
+      "path": "corrected-full/final-full/g1-four-path/recon-trace-off-stderr.log",
+      "size": 0
+    },
+    {
+      "path": "corrected-full/final-full/g1-four-path/recon-trace-off-stdout.log",
+      "size": 348
+    },
+    {
+      "path": "corrected-full/final-full/g1-four-path/recon-trace-off.jsonl",
+      "size": 94516
+    },
+    {
+      "path": "corrected-full/final-full/g1-four-path/recon-trace-on-normalized.json",
+      "size": 156530
+    },
+    {
+      "path": "corrected-full/final-full/g1-four-path/recon-trace-on-stderr.log",
+      "size": 0
+    },
+    {
+      "path": "corrected-full/final-full/g1-four-path/recon-trace-on-stdout.log",
+      "size": 348
+    },
+    {
+      "path": "corrected-full/final-full/g1-four-path/recon-trace-on.jsonl",
+      "size": 475892
+    },
+    {
+      "path": "corrected-full/final-full/g1-four-path/strategy_provider-pre-g1-normalized.json",
+      "size": 828463
+    },
+    {
+      "path": "corrected-full/final-full/g1-four-path/strategy_provider-pre-g1-stderr.log",
+      "size": 0
+    },
+    {
+      "path": "corrected-full/final-full/g1-four-path/strategy_provider-pre-g1-stdout.log",
+      "size": 340
+    },
+    {
+      "path": "corrected-full/final-full/g1-four-path/strategy_provider-pre-g1.jsonl",
+      "size": 505421
+    },
+    {
+      "path": "corrected-full/final-full/g1-four-path/strategy_provider-trace-off-normalized.json",
+      "size": 828498
+    },
+    {
+      "path": "corrected-full/final-full/g1-four-path/strategy_provider-trace-off-stderr.log",
+      "size": 0
+    },
+    {
+      "path": "corrected-full/final-full/g1-four-path/strategy_provider-trace-off-stdout.log",
+      "size": 340
+    },
+    {
+      "path": "corrected-full/final-full/g1-four-path/strategy_provider-trace-off.jsonl",
+      "size": 505420
+    },
+    {
+      "path": "corrected-full/final-full/g1-four-path/strategy_provider-trace-on-normalized.json",
+      "size": 828497
+    },
+    {
+      "path": "corrected-full/final-full/g1-four-path/strategy_provider-trace-on-stderr.log",
+      "size": 0
+    },
+    {
+      "path": "corrected-full/final-full/g1-four-path/strategy_provider-trace-on-stdout.log",
+      "size": 340
+    },
+    {
+      "path": "corrected-full/final-full/g1-four-path/strategy_provider-trace-on.jsonl",
+      "size": 3644732
+    },
+    {
+      "path": "corrected-full/final-full/g2-four-path/local_crisis-ff693c8-http.json",
+      "size": 259252
+    },
+    {
+      "path": "corrected-full/final-full/g2-four-path/local_crisis-ff693c8-outcomes.json",
+      "size": 420439
+    },
+    {
+      "path": "corrected-full/final-full/g2-four-path/local_crisis-ff693c8.jsonl",
+      "size": 620014
+    },
+    {
+      "path": "corrected-full/final-full/g2-four-path/local_crisis-g2-off-http.json",
+      "size": 259252
+    },
+    {
+      "path": "corrected-full/final-full/g2-four-path/local_crisis-g2-off-outcomes.json",
+      "size": 420509
+    },
+    {
+      "path": "corrected-full/final-full/g2-four-path/local_crisis-g2-off.jsonl",
+      "size": 621034
+    },
+    {
+      "path": "corrected-full/final-full/g2-four-path/local_crisis-g2-on-http.json",
+      "size": 259252
+    },
+    {
+      "path": "corrected-full/final-full/g2-four-path/local_crisis-g2-on-outcomes.json",
+      "size": 420507
+    },
+    {
+      "path": "corrected-full/final-full/g2-four-path/local_crisis-g2-on.jsonl",
+      "size": 1278825
+    },
+    {
+      "path": "corrected-full/final-full/g2-four-path/ordinary_production-ff693c8-http.json",
+      "size": 3142677
+    },
+    {
+      "path": "corrected-full/final-full/g2-four-path/ordinary_production-ff693c8-outcomes.json",
+      "size": 4036077
+    },
+    {
+      "path": "corrected-full/final-full/g2-four-path/ordinary_production-ff693c8.jsonl",
+      "size": 5024861
+    },
+    {
+      "path": "corrected-full/final-full/g2-four-path/ordinary_production-g2-off-http.json",
+      "size": 3142677
+    },
+    {
+      "path": "corrected-full/final-full/g2-four-path/ordinary_production-g2-off-outcomes.json",
+      "size": 4036147
+    },
+    {
+      "path": "corrected-full/final-full/g2-four-path/ordinary_production-g2-off.jsonl",
+      "size": 5025957
+    },
+    {
+      "path": "corrected-full/final-full/g2-four-path/ordinary_production-g2-on-http.json",
+      "size": 3142677
+    },
+    {
+      "path": "corrected-full/final-full/g2-four-path/ordinary_production-g2-on-outcomes.json",
+      "size": 4036145
+    },
+    {
+      "path": "corrected-full/final-full/g2-four-path/ordinary_production-g2-on.jsonl",
+      "size": 8835051
+    },
+    {
+      "path": "corrected-full/final-full/g2-four-path/recon-ff693c8-http.json",
+      "size": 128108
+    },
+    {
+      "path": "corrected-full/final-full/g2-four-path/recon-ff693c8-native-stamps-http.json",
+      "size": 127551
+    },
+    {
+      "path": "corrected-full/final-full/g2-four-path/recon-ff693c8-native-stamps-outcomes.json",
+      "size": 157766
+    },
+    {
+      "path": "corrected-full/final-full/g2-four-path/recon-ff693c8-native-stamps.jsonl",
+      "size": 284424
+    },
+    {
+      "path": "corrected-full/final-full/g2-four-path/recon-ff693c8-outcomes.json",
+      "size": 158364
+    },
+    {
+      "path": "corrected-full/final-full/g2-four-path/recon-ff693c8.jsonl",
+      "size": 284872
+    },
+    {
+      "path": "corrected-full/final-full/g2-four-path/recon-g2-off-http.json",
+      "size": 128108
+    },
+    {
+      "path": "corrected-full/final-full/g2-four-path/recon-g2-off-native-stamps-http.json",
+      "size": 127551
+    },
+    {
+      "path": "corrected-full/final-full/g2-four-path/recon-g2-off-native-stamps-outcomes.json",
+      "size": 157837
+    },
+    {
+      "path": "corrected-full/final-full/g2-four-path/recon-g2-off-native-stamps.jsonl",
+      "size": 284424
+    },
+    {
+      "path": "corrected-full/final-full/g2-four-path/recon-g2-off-outcomes.json",
+      "size": 158433
+    },
+    {
+      "path": "corrected-full/final-full/g2-four-path/recon-g2-off.jsonl",
+      "size": 284872
+    },
+    {
+      "path": "corrected-full/final-full/g2-four-path/recon-g2-on-http.json",
+      "size": 128108
+    },
+    {
+      "path": "corrected-full/final-full/g2-four-path/recon-g2-on-native-stamps-http.json",
+      "size": 127551
+    },
+    {
+      "path": "corrected-full/final-full/g2-four-path/recon-g2-on-native-stamps-outcomes.json",
+      "size": 157835
+    },
+    {
+      "path": "corrected-full/final-full/g2-four-path/recon-g2-on-native-stamps.jsonl",
+      "size": 785466
+    },
+    {
+      "path": "corrected-full/final-full/g2-four-path/recon-g2-on-outcomes.json",
+      "size": 158431
+    },
+    {
+      "path": "corrected-full/final-full/g2-four-path/recon-g2-on.jsonl",
+      "size": 785966
+    },
+    {
+      "path": "corrected-full/final-full/g2-four-path/recon-guard-networked-ff693c8-http.json",
+      "size": 14961
+    },
+    {
+      "path": "corrected-full/final-full/g2-four-path/recon-guard-networked-ff693c8-outcomes.json",
+      "size": 29204
+    },
+    {
+      "path": "corrected-full/final-full/g2-four-path/recon-guard-networked-ff693c8.jsonl",
+      "size": 55791
+    },
+    {
+      "path": "corrected-full/final-full/g2-four-path/recon-guard-networked-g2-off-http.json",
+      "size": 14961
+    },
+    {
+      "path": "corrected-full/final-full/g2-four-path/recon-guard-networked-g2-off-outcomes.json",
+      "size": 29274
+    },
+    {
+      "path": "corrected-full/final-full/g2-four-path/recon-guard-networked-g2-off.jsonl",
+      "size": 55791
+    },
+    {
+      "path": "corrected-full/final-full/g2-four-path/recon-guard-networked-http.json",
+      "size": 14961
+    },
+    {
+      "path": "corrected-full/final-full/g2-four-path/recon-guard-networked-outcomes.json",
+      "size": 29272
+    },
+    {
+      "path": "corrected-full/final-full/g2-four-path/recon-guard-networked.jsonl",
+      "size": 145672
+    },
+    {
+      "path": "corrected-full/final-full/g2-four-path/recon-guard-replay-ff693c8-http.json",
+      "size": 14961
+    },
+    {
+      "path": "corrected-full/final-full/g2-four-path/recon-guard-replay-ff693c8-outcomes.json",
+      "size": 29205
+    },
+    {
+      "path": "corrected-full/final-full/g2-four-path/recon-guard-replay-ff693c8.jsonl",
+      "size": 55791
+    },
+    {
+      "path": "corrected-full/final-full/g2-four-path/recon-guard-replay-g2-off-http.json",
+      "size": 14961
+    },
+    {
+      "path": "corrected-full/final-full/g2-four-path/recon-guard-replay-g2-off-outcomes.json",
+      "size": 29275
+    },
+    {
+      "path": "corrected-full/final-full/g2-four-path/recon-guard-replay-g2-off.jsonl",
+      "size": 55791
+    },
+    {
+      "path": "corrected-full/final-full/g2-four-path/recon-guard-replay-http.json",
+      "size": 14961
+    },
+    {
+      "path": "corrected-full/final-full/g2-four-path/recon-guard-replay-outcomes.json",
+      "size": 29273
+    },
+    {
+      "path": "corrected-full/final-full/g2-four-path/recon-guard-replay.jsonl",
+      "size": 145672
+    },
+    {
+      "path": "corrected-full/final-full/g2-four-path/recon-guard-rollback-ff693c8-http.json",
+      "size": 14959
+    },
+    {
+      "path": "corrected-full/final-full/g2-four-path/recon-guard-rollback-ff693c8-outcomes.json",
+      "size": 29175
+    },
+    {
+      "path": "corrected-full/final-full/g2-four-path/recon-guard-rollback-ff693c8.jsonl",
+      "size": 55922
+    },
+    {
+      "path": "corrected-full/final-full/g2-four-path/recon-guard-rollback-g2-off-http.json",
+      "size": 14959
+    },
+    {
+      "path": "corrected-full/final-full/g2-four-path/recon-guard-rollback-g2-off-outcomes.json",
+      "size": 29245
+    },
+    {
+      "path": "corrected-full/final-full/g2-four-path/recon-guard-rollback-g2-off.jsonl",
+      "size": 55922
+    },
+    {
+      "path": "corrected-full/final-full/g2-four-path/recon-guard-rollback-http.json",
+      "size": 14959
+    },
+    {
+      "path": "corrected-full/final-full/g2-four-path/recon-guard-rollback-outcomes.json",
+      "size": 29243
+    },
+    {
+      "path": "corrected-full/final-full/g2-four-path/recon-guard-rollback.jsonl",
+      "size": 145803
+    },
+    {
+      "path": "corrected-full/final-full/g2-four-path/recon-guard-session-ff693c8-http.json",
+      "size": 15861
+    },
+    {
+      "path": "corrected-full/final-full/g2-four-path/recon-guard-session-ff693c8-outcomes.json",
+      "size": 31109
+    },
+    {
+      "path": "corrected-full/final-full/g2-four-path/recon-guard-session-ff693c8.jsonl",
+      "size": 64317
+    },
+    {
+      "path": "corrected-full/final-full/g2-four-path/recon-guard-session-g2-off-http.json",
+      "size": 15861
+    },
+    {
+      "path": "corrected-full/final-full/g2-four-path/recon-guard-session-g2-off-outcomes.json",
+      "size": 31178
+    },
+    {
+      "path": "corrected-full/final-full/g2-four-path/recon-guard-session-g2-off.jsonl",
+      "size": 64317
+    },
+    {
+      "path": "corrected-full/final-full/g2-four-path/recon-guard-session-http.json",
+      "size": 15861
+    },
+    {
+      "path": "corrected-full/final-full/g2-four-path/recon-guard-session-outcomes.json",
+      "size": 31176
+    },
+    {
+      "path": "corrected-full/final-full/g2-four-path/recon-guard-session.jsonl",
+      "size": 159301
+    },
+    {
+      "path": "corrected-full/final-full/g2-four-path/strategy_provider-ff693c8-http.json",
+      "size": 547548
+    },
+    {
+      "path": "corrected-full/final-full/g2-four-path/strategy_provider-ff693c8-outcomes.json",
+      "size": 1191964
+    },
+    {
+      "path": "corrected-full/final-full/g2-four-path/strategy_provider-ff693c8.jsonl",
+      "size": 1667995
+    },
+    {
+      "path": "corrected-full/final-full/g2-four-path/strategy_provider-g2-off-http.json",
+      "size": 547548
+    },
+    {
+      "path": "corrected-full/final-full/g2-four-path/strategy_provider-g2-off-outcomes.json",
+      "size": 1192034
+    },
+    {
+      "path": "corrected-full/final-full/g2-four-path/strategy_provider-g2-off.jsonl",
+      "size": 1706539
+    },
+    {
+      "path": "corrected-full/final-full/g2-four-path/strategy_provider-g2-on-http.json",
+      "size": 547548
+    },
+    {
+      "path": "corrected-full/final-full/g2-four-path/strategy_provider-g2-on-outcomes.json",
+      "size": 1192032
+    },
+    {
+      "path": "corrected-full/final-full/g2-four-path/strategy_provider-g2-on.jsonl",
+      "size": 3644733
+    },
+    {
+      "path": "corrected-full/final-full/g3-enabled-g4-disabled/accepted-g2-throughput.json",
+      "size": 13816
+    },
+    {
+      "path": "corrected-full/final-full/g3-enabled-g4-disabled/accepted-g2-throughput.jsonl",
+      "size": 808973
+    },
+    {
+      "path": "corrected-full/final-full/g3-enabled-g4-disabled/accepted-g2-throughput.stdout.log",
+      "size": 317
+    },
+    {
+      "path": "corrected-full/final-full/g3-enabled-g4-disabled/g3-cost-g1-only.json",
+      "size": 16813
+    },
+    {
+      "path": "corrected-full/final-full/g3-enabled-g4-disabled/g3-cost-g1-only.jsonl",
+      "size": 646742
+    },
+    {
+      "path": "corrected-full/final-full/g3-enabled-g4-disabled/g3-cost-g1-only.stdout.log",
+      "size": 317
+    },
+    {
+      "path": "corrected-full/final-full/g3-enabled-g4-disabled/g3-cost-trace-off-diagnostics-off.json",
+      "size": 16838
+    },
+    {
+      "path": "corrected-full/final-full/g3-enabled-g4-disabled/g3-cost-trace-off-diagnostics-off.jsonl",
+      "size": 57911
+    },
+    {
+      "path": "corrected-full/final-full/g3-enabled-g4-disabled/g3-cost-trace-off-diagnostics-off.stdout.log",
+      "size": 317
+    },
+    {
+      "path": "corrected-full/final-full/g3-enabled-g4-disabled/g3-cost-trace-on.json",
+      "size": 16811
+    },
+    {
+      "path": "corrected-full/final-full/g3-enabled-g4-disabled/g3-cost-trace-on.jsonl",
+      "size": 1155755
+    },
+    {
+      "path": "corrected-full/final-full/g3-enabled-g4-disabled/g3-cost-trace-on.stdout.log",
+      "size": 317
+    },
+    {
+      "path": "corrected-full/final-full/g3-enabled-g4-disabled/g3-credits.json",
+      "size": 13925
+    },
+    {
+      "path": "corrected-full/final-full/g3-enabled-g4-disabled/g3-credits.jsonl",
+      "size": 1013013
+    },
+    {
+      "path": "corrected-full/final-full/g3-enabled-g4-disabled/g3-credits.stdout.log",
+      "size": 317
+    },
+    {
+      "path": "corrected-full/final-full/g3-enabled-g4-disabled/g3-jumps.json",
+      "size": 16807
+    },
+    {
+      "path": "corrected-full/final-full/g3-enabled-g4-disabled/g3-jumps.jsonl",
+      "size": 1155755
+    },
+    {
+      "path": "corrected-full/final-full/g3-enabled-g4-disabled/g3-jumps.stdout.log",
+      "size": 317
+    },
+    {
+      "path": "corrected-full/final-full/g3-enabled-g4-disabled/g3-slots.json",
+      "size": 13939
+    },
+    {
+      "path": "corrected-full/final-full/g3-enabled-g4-disabled/g3-slots.jsonl",
+      "size": 1016383
+    },
+    {
+      "path": "corrected-full/final-full/g3-enabled-g4-disabled/g3-slots.stdout.log",
+      "size": 317
+    },
+    {
+      "path": "corrected-full/final-full/g3-enabled-g4-disabled/g3-throughput.json",
+      "size": 16806
+    },
+    {
+      "path": "corrected-full/final-full/g3-enabled-g4-disabled/g3-throughput.jsonl",
+      "size": 1155755
+    },
+    {
+      "path": "corrected-full/final-full/g3-enabled-g4-disabled/g3-throughput.stdout.log",
+      "size": 317
+    },
+    {
+      "path": "corrected-full/final-full/g3-enabled-g4-disabled/legacy-gate-current-jar.json",
+      "size": 13900
+    },
+    {
+      "path": "corrected-full/final-full/g3-enabled-g4-disabled/legacy-gate-current-jar.jsonl",
+      "size": 811849
+    },
+    {
+      "path": "corrected-full/final-full/g3-enabled-g4-disabled/legacy-gate-current-jar.stdout.log",
+      "size": 317
+    },
+    {
+      "path": "corrected-full/final-full/g3-enabled-g4-disabled/test_engineer_provider-test_complete_underwater_response_requires_ready_product_and_observed_mode-http.json",
+      "size": 560792
+    },
+    {
+      "path": "corrected-full/final-full/g3-enabled-g4-disabled/test_engineer_provider-test_complete_underwater_response_requires_ready_product_and_observed_mode-native-queues-http.json",
+      "size": 561340
+    },
+    {
+      "path": "corrected-full/final-full/g3-enabled-g4-disabled/test_engineer_provider-test_complete_underwater_response_requires_ready_product_and_observed_mode-native-queues.jsonl",
+      "size": 4525784
+    },
+    {
+      "path": "corrected-full/final-full/g3-enabled-g4-disabled/test_engineer_provider-test_complete_underwater_response_requires_ready_product_and_observed_mode-native-queues.stdout.log",
+      "size": 309
+    },
+    {
+      "path": "corrected-full/final-full/g3-enabled-g4-disabled/test_engineer_provider-test_complete_underwater_response_requires_ready_product_and_observed_mode.jsonl",
+      "size": 4525189
+    },
+    {
+      "path": "corrected-full/final-full/g3-enabled-g4-disabled/test_engineer_provider-test_complete_underwater_response_requires_ready_product_and_observed_mode.stdout.log",
+      "size": 309
+    },
+    {
+      "path": "corrected-full/final-full/g3-enabled-g4-disabled/test_engineer_provider-test_funding_holds_native_quote_then_releases_on_accepted_build-http.json",
+      "size": 557039
+    },
+    {
+      "path": "corrected-full/final-full/g3-enabled-g4-disabled/test_engineer_provider-test_funding_holds_native_quote_then_releases_on_accepted_build.jsonl",
+      "size": 4417023
+    },
+    {
+      "path": "corrected-full/final-full/g3-enabled-g4-disabled/test_engineer_provider-test_funding_holds_native_quote_then_releases_on_accepted_build.stdout.log",
+      "size": 309
+    },
+    {
+      "path": "corrected-full/final-full/g3-enabled-g4-disabled/test_local_army-test_contact_loss_returns_and_releases_without_claiming_kill-http.json",
+      "size": 258118
+    },
+    {
+      "path": "corrected-full/final-full/g3-enabled-g4-disabled/test_local_army-test_contact_loss_returns_and_releases_without_claiming_kill.jsonl",
+      "size": 1350876
+    },
+    {
+      "path": "corrected-full/final-full/g3-enabled-g4-disabled/test_local_army-test_contact_loss_returns_and_releases_without_claiming_kill.stdout.log",
+      "size": 202
+    },
+    {
+      "path": "corrected-full/final-full/g3-enabled-g4-disabled/test_production_capacity-test_army_limit_cannot_spend_investment_reserve-http.json",
+      "size": 2695569
+    },
+    {
+      "path": "corrected-full/final-full/g3-enabled-g4-disabled/test_production_capacity-test_army_limit_cannot_spend_investment_reserve.jsonl",
+      "size": 10152114
+    },
+    {
+      "path": "corrected-full/final-full/g3-enabled-g4-disabled/test_production_capacity-test_army_limit_cannot_spend_investment_reserve.stdout.log",
+      "size": 309
+    },
+    {
+      "path": "corrected-full/final-full/g3-enabled-g4-disabled/test_recon_client-test_lost_factory_uses_one_unit_and_requires_own_evidence_before_clear-http.json",
+      "size": 125730
+    },
+    {
+      "path": "corrected-full/final-full/g3-enabled-g4-disabled/test_recon_client-test_lost_factory_uses_one_unit_and_requires_own_evidence_before_clear.jsonl",
+      "size": 499871
+    },
+    {
+      "path": "corrected-full/final-full/g3-enabled-g4-disabled/test_recon_client-test_lost_factory_uses_one_unit_and_requires_own_evidence_before_clear.stdout.log",
+      "size": 317
+    },
+    {
+      "path": "corrected-full/final-full/g3-enabled-g4-disabled/test_surplus_spending-test_near_target_rich_economy_invests_when_local_payback_window_is_long-native-queues-http.json",
+      "size": 860404
+    },
+    {
+      "path": "corrected-full/final-full/g3-enabled-g4-disabled/test_surplus_spending-test_near_target_rich_economy_invests_when_local_payback_window_is_long-native-queues.jsonl",
+      "size": 3074652
+    },
+    {
+      "path": "corrected-full/final-full/g3-enabled-g4-disabled/test_surplus_spending-test_near_target_rich_economy_invests_when_local_payback_window_is_long-native-queues.stdout.log",
+      "size": 309
+    },
+    {
+      "path": "corrected-full/final-full/g4-enabled-mainloop/empty/True/battle.jsonl",
+      "size": 959935
+    },
+    {
+      "path": "corrected-full/final-full/g4-enabled-mainloop/empty/True/process.txt",
+      "size": 309
+    },
+    {
+      "path": "corrected-full/final-full/g4-enabled-mainloop/seeded/False/battle.jsonl",
+      "size": 323388
+    },
+    {
+      "path": "corrected-full/final-full/g4-enabled-mainloop/seeded/False/process.txt",
+      "size": 309
+    },
+    {
+      "path": "corrected-full/final-full/g4-enabled-mainloop/seeded/True/battle.jsonl",
+      "size": 1231431
+    },
+    {
+      "path": "corrected-full/final-full/g4-enabled-mainloop/seeded/True/process.txt",
+      "size": 309
+    },
+    {
+      "path": "corrected-full/final-full/g5-mainloop/chunk_cache_read_probe/battle.jsonl",
+      "size": 0
+    },
+    {
+      "path": "corrected-full/final-full/g5-mainloop/chunk_cache_read_probe/fixture.json",
+      "size": 4578
+    },
+    {
+      "path": "corrected-full/final-full/g5-mainloop/chunk_cache_read_probe/process.txt",
+      "size": 2249
+    },
+    {
+      "path": "corrected-full/final-full/g5-mainloop/g41-reused/g5_first_formation/battle.jsonl",
+      "size": 3837579
+    },
+    {
+      "path": "corrected-full/final-full/g5-mainloop/g41-reused/g5_first_formation/fixture.json",
+      "size": 38179
+    },
+    {
+      "path": "corrected-full/final-full/g5-mainloop/g41-reused/g5_first_formation/process.txt",
+      "size": 318
+    },
+    {
+      "path": "corrected-full/final-full/g5-mainloop/overflow/battle.jsonl",
+      "size": 3381525
+    },
+    {
+      "path": "corrected-full/final-full/g5-mainloop/overflow/fixture.json",
+      "size": 42560
+    },
+    {
+      "path": "corrected-full/final-full/g5-mainloop/overflow/process.txt",
+      "size": 317
+    },
+    {
+      "path": "corrected-full/final-full/g5-mainloop/pressure/battle.jsonl",
+      "size": 6226569
+    },
+    {
+      "path": "corrected-full/final-full/g5-mainloop/pressure/fixture.json",
+      "size": 68440
+    },
+    {
+      "path": "corrected-full/final-full/g5-mainloop/pressure/process.txt",
+      "size": 317
+    },
+    {
+      "path": "corrected-full/final-full/transcript.txt",
+      "size": 46380
+    },
+    {
+      "path": "corrected-full/full-run-console.log",
+      "size": 541976
+    },
+    {
+      "path": "corrected-full/prepare_final.py",
+      "size": 1256
+    },
+    {
+      "path": "corrected-full/run-final.ps1",
+      "size": 2241
+    },
+    {
+      "path": "corrected-full/tested-inputs.json",
+      "size": 32136
+    },
+    {
+      "path": "deliver_evidence.py",
+      "size": 9084
+    },
+    {
+      "path": "delivery-final.log",
+      "size": 3924
+    },
+    {
+      "path": "delivery-postcommit.log",
+      "size": 3924
+    },
+    {
+      "path": "final-full/exit-code.txt",
+      "size": 3
+    },
+    {
+      "path": "final-full/g1-four-path/local_crisis-pre-g1-normalized.json",
+      "size": 416213
+    },
+    {
+      "path": "final-full/g1-four-path/local_crisis-pre-g1-stderr.log",
+      "size": 136
+    },
+    {
+      "path": "final-full/g1-four-path/local_crisis-pre-g1-stdout.log",
+      "size": 189
+    },
+    {
+      "path": "final-full/g1-four-path/local_crisis-pre-g1.jsonl",
+      "size": 249907
+    },
+    {
+      "path": "final-full/g1-four-path/local_crisis-trace-off-normalized.json",
+      "size": 416232
+    },
+    {
+      "path": "final-full/g1-four-path/local_crisis-trace-off-stderr.log",
+      "size": 136
+    },
+    {
+      "path": "final-full/g1-four-path/local_crisis-trace-off-stdout.log",
+      "size": 189
+    },
+    {
+      "path": "final-full/g1-four-path/local_crisis-trace-off.jsonl",
+      "size": 249907
+    },
+    {
+      "path": "final-full/g1-four-path/local_crisis-trace-on-normalized.json",
+      "size": 416231
+    },
+    {
+      "path": "final-full/g1-four-path/local_crisis-trace-on-stderr.log",
+      "size": 136
+    },
+    {
+      "path": "final-full/g1-four-path/local_crisis-trace-on-stdout.log",
+      "size": 189
+    },
+    {
+      "path": "final-full/g1-four-path/local_crisis-trace-on.jsonl",
+      "size": 1278825
+    },
+    {
+      "path": "final-full/g1-four-path/ordinary_production-pre-g1-normalized.json",
+      "size": 4024257
+    },
+    {
+      "path": "final-full/g1-four-path/ordinary_production-pre-g1-stderr.log",
+      "size": 0
+    },
+    {
+      "path": "final-full/g1-four-path/ordinary_production-pre-g1-stdout.log",
+      "size": 325
+    },
+    {
+      "path": "final-full/g1-four-path/ordinary_production-pre-g1.jsonl",
+      "size": 2234611
+    },
+    {
+      "path": "final-full/g1-four-path/ordinary_production-trace-off-normalized.json",
+      "size": 4024276
+    },
+    {
+      "path": "final-full/g1-four-path/ordinary_production-trace-off-stderr.log",
+      "size": 0
+    },
+    {
+      "path": "final-full/g1-four-path/ordinary_production-trace-off-stdout.log",
+      "size": 325
+    },
+    {
+      "path": "final-full/g1-four-path/ordinary_production-trace-off.jsonl",
+      "size": 2234611
+    },
+    {
+      "path": "final-full/g1-four-path/ordinary_production-trace-on-normalized.json",
+      "size": 4024275
+    },
+    {
+      "path": "final-full/g1-four-path/ordinary_production-trace-on-stderr.log",
+      "size": 0
+    },
+    {
+      "path": "final-full/g1-four-path/ordinary_production-trace-on-stdout.log",
+      "size": 325
+    },
+    {
+      "path": "final-full/g1-four-path/ordinary_production-trace-on.jsonl",
+      "size": 8835052
+    },
+    {
+      "path": "final-full/g1-four-path/recon-pre-g1-normalized.json",
+      "size": 156496
+    },
+    {
+      "path": "final-full/g1-four-path/recon-pre-g1-stderr.log",
+      "size": 0
+    },
+    {
+      "path": "final-full/g1-four-path/recon-pre-g1-stdout.log",
+      "size": 333
+    },
+    {
+      "path": "final-full/g1-four-path/recon-pre-g1.jsonl",
+      "size": 94516
+    },
+    {
+      "path": "final-full/g1-four-path/recon-trace-off-normalized.json",
+      "size": 156515
+    },
+    {
+      "path": "final-full/g1-four-path/recon-trace-off-stderr.log",
+      "size": 0
+    },
+    {
+      "path": "final-full/g1-four-path/recon-trace-off-stdout.log",
+      "size": 333
+    },
+    {
+      "path": "final-full/g1-four-path/recon-trace-off.jsonl",
+      "size": 94516
+    },
+    {
+      "path": "final-full/g1-four-path/recon-trace-on-normalized.json",
+      "size": 156514
+    },
+    {
+      "path": "final-full/g1-four-path/recon-trace-on-stderr.log",
+      "size": 0
+    },
+    {
+      "path": "final-full/g1-four-path/recon-trace-on-stdout.log",
+      "size": 333
+    },
+    {
+      "path": "final-full/g1-four-path/recon-trace-on.jsonl",
+      "size": 475892
+    },
+    {
+      "path": "final-full/g1-four-path/strategy_provider-pre-g1-normalized.json",
+      "size": 828463
+    },
+    {
+      "path": "final-full/g1-four-path/strategy_provider-pre-g1-stderr.log",
+      "size": 0
+    },
+    {
+      "path": "final-full/g1-four-path/strategy_provider-pre-g1-stdout.log",
+      "size": 325
+    },
+    {
+      "path": "final-full/g1-four-path/strategy_provider-pre-g1.jsonl",
+      "size": 505421
+    },
+    {
+      "path": "final-full/g1-four-path/strategy_provider-trace-off-normalized.json",
+      "size": 828482
+    },
+    {
+      "path": "final-full/g1-four-path/strategy_provider-trace-off-stderr.log",
+      "size": 0
+    },
+    {
+      "path": "final-full/g1-four-path/strategy_provider-trace-off-stdout.log",
+      "size": 325
+    },
+    {
+      "path": "final-full/g1-four-path/strategy_provider-trace-off.jsonl",
+      "size": 505421
+    },
+    {
+      "path": "final-full/g1-four-path/strategy_provider-trace-on-normalized.json",
+      "size": 828481
+    },
+    {
+      "path": "final-full/g1-four-path/strategy_provider-trace-on-stderr.log",
+      "size": 0
+    },
+    {
+      "path": "final-full/g1-four-path/strategy_provider-trace-on-stdout.log",
+      "size": 325
+    },
+    {
+      "path": "final-full/g1-four-path/strategy_provider-trace-on.jsonl",
+      "size": 3644732
+    },
+    {
+      "path": "final-full/g2-four-path/local_crisis-ff693c8-http.json",
+      "size": 259252
+    },
+    {
+      "path": "final-full/g2-four-path/local_crisis-ff693c8-outcomes.json",
+      "size": 420424
+    },
+    {
+      "path": "final-full/g2-four-path/local_crisis-ff693c8.jsonl",
+      "size": 620014
+    },
+    {
+      "path": "final-full/g2-four-path/local_crisis-g2-off-http.json",
+      "size": 259252
+    },
+    {
+      "path": "final-full/g2-four-path/local_crisis-g2-off-outcomes.json",
+      "size": 420462
+    },
+    {
+      "path": "final-full/g2-four-path/local_crisis-g2-off.jsonl",
+      "size": 621034
+    },
+    {
+      "path": "final-full/g2-four-path/local_crisis-g2-on-http.json",
+      "size": 259252
+    },
+    {
+      "path": "final-full/g2-four-path/local_crisis-g2-on-outcomes.json",
+      "size": 420460
+    },
+    {
+      "path": "final-full/g2-four-path/local_crisis-g2-on.jsonl",
+      "size": 1278825
+    },
+    {
+      "path": "final-full/g2-four-path/ordinary_production-ff693c8-http.json",
+      "size": 3142677
+    },
+    {
+      "path": "final-full/g2-four-path/ordinary_production-ff693c8-outcomes.json",
+      "size": 4036060
+    },
+    {
+      "path": "final-full/g2-four-path/ordinary_production-ff693c8.jsonl",
+      "size": 5024861
+    },
+    {
+      "path": "final-full/g2-four-path/ordinary_production-g2-off-http.json",
+      "size": 3142677
+    },
+    {
+      "path": "final-full/g2-four-path/ordinary_production-g2-off-outcomes.json",
+      "size": 4036098
+    },
+    {
+      "path": "final-full/g2-four-path/ordinary_production-g2-off.jsonl",
+      "size": 5025957
+    },
+    {
+      "path": "final-full/g2-four-path/ordinary_production-g2-on-http.json",
+      "size": 3142677
+    },
+    {
+      "path": "final-full/g2-four-path/ordinary_production-g2-on-outcomes.json",
+      "size": 4036097
+    },
+    {
+      "path": "final-full/g2-four-path/ordinary_production-g2-on.jsonl",
+      "size": 8835052
+    },
+    {
+      "path": "final-full/g2-four-path/recon-ff693c8-http.json",
+      "size": 128108
+    },
+    {
+      "path": "final-full/g2-four-path/recon-ff693c8-native-stamps-http.json",
+      "size": 127551
+    },
+    {
+      "path": "final-full/g2-four-path/recon-ff693c8-native-stamps-outcomes.json",
+      "size": 157751
+    },
+    {
+      "path": "final-full/g2-four-path/recon-ff693c8-native-stamps.jsonl",
+      "size": 284423
+    },
+    {
+      "path": "final-full/g2-four-path/recon-ff693c8-outcomes.json",
+      "size": 158347
+    },
+    {
+      "path": "final-full/g2-four-path/recon-ff693c8.jsonl",
+      "size": 284872
+    },
+    {
+      "path": "final-full/g2-four-path/recon-g2-off-http.json",
+      "size": 128108
+    },
+    {
+      "path": "final-full/g2-four-path/recon-g2-off-native-stamps-http.json",
+      "size": 127551
+    },
+    {
+      "path": "final-full/g2-four-path/recon-g2-off-native-stamps-outcomes.json",
+      "size": 157789
+    },
+    {
+      "path": "final-full/g2-four-path/recon-g2-off-native-stamps.jsonl",
+      "size": 284424
+    },
+    {
+      "path": "final-full/g2-four-path/recon-g2-off-outcomes.json",
+      "size": 158385
+    },
+    {
+      "path": "final-full/g2-four-path/recon-g2-off.jsonl",
+      "size": 284872
+    },
+    {
+      "path": "final-full/g2-four-path/recon-g2-on-http.json",
+      "size": 128108
+    },
+    {
+      "path": "final-full/g2-four-path/recon-g2-on-native-stamps-http.json",
+      "size": 127551
+    },
+    {
+      "path": "final-full/g2-four-path/recon-g2-on-native-stamps-outcomes.json",
+      "size": 157787
+    },
+    {
+      "path": "final-full/g2-four-path/recon-g2-on-native-stamps.jsonl",
+      "size": 785466
+    },
+    {
+      "path": "final-full/g2-four-path/recon-g2-on-outcomes.json",
+      "size": 158383
+    },
+    {
+      "path": "final-full/g2-four-path/recon-g2-on.jsonl",
+      "size": 785967
+    },
+    {
+      "path": "final-full/g2-four-path/recon-guard-networked-ff693c8-http.json",
+      "size": 14961
+    },
+    {
+      "path": "final-full/g2-four-path/recon-guard-networked-ff693c8-outcomes.json",
+      "size": 29189
+    },
+    {
+      "path": "final-full/g2-four-path/recon-guard-networked-ff693c8.jsonl",
+      "size": 55791
+    },
+    {
+      "path": "final-full/g2-four-path/recon-guard-networked-g2-off-http.json",
+      "size": 14961
+    },
+    {
+      "path": "final-full/g2-four-path/recon-guard-networked-g2-off-outcomes.json",
+      "size": 29227
+    },
+    {
+      "path": "final-full/g2-four-path/recon-guard-networked-g2-off.jsonl",
+      "size": 55791
+    },
+    {
+      "path": "final-full/g2-four-path/recon-guard-networked-http.json",
+      "size": 14961
+    },
+    {
+      "path": "final-full/g2-four-path/recon-guard-networked-outcomes.json",
+      "size": 29225
+    },
+    {
+      "path": "final-full/g2-four-path/recon-guard-networked.jsonl",
+      "size": 145672
+    },
+    {
+      "path": "final-full/g2-four-path/recon-guard-replay-ff693c8-http.json",
+      "size": 14961
+    },
+    {
+      "path": "final-full/g2-four-path/recon-guard-replay-ff693c8-outcomes.json",
+      "size": 29188
+    },
+    {
+      "path": "final-full/g2-four-path/recon-guard-replay-ff693c8.jsonl",
+      "size": 55791
+    },
+    {
+      "path": "final-full/g2-four-path/recon-guard-replay-g2-off-http.json",
+      "size": 14961
+    },
+    {
+      "path": "final-full/g2-four-path/recon-guard-replay-g2-off-outcomes.json",
+      "size": 29226
+    },
+    {
+      "path": "final-full/g2-four-path/recon-guard-replay-g2-off.jsonl",
+      "size": 55791
+    },
+    {
+      "path": "final-full/g2-four-path/recon-guard-replay-http.json",
+      "size": 14961
+    },
+    {
+      "path": "final-full/g2-four-path/recon-guard-replay-outcomes.json",
+      "size": 29224
+    },
+    {
+      "path": "final-full/g2-four-path/recon-guard-replay.jsonl",
+      "size": 145672
+    },
+    {
+      "path": "final-full/g2-four-path/recon-guard-rollback-ff693c8-http.json",
+      "size": 14959
+    },
+    {
+      "path": "final-full/g2-four-path/recon-guard-rollback-ff693c8-outcomes.json",
+      "size": 29159
+    },
+    {
+      "path": "final-full/g2-four-path/recon-guard-rollback-ff693c8.jsonl",
+      "size": 55922
+    },
+    {
+      "path": "final-full/g2-four-path/recon-guard-rollback-g2-off-http.json",
+      "size": 14959
+    },
+    {
+      "path": "final-full/g2-four-path/recon-guard-rollback-g2-off-outcomes.json",
+      "size": 29197
+    },
+    {
+      "path": "final-full/g2-four-path/recon-guard-rollback-g2-off.jsonl",
+      "size": 55922
+    },
+    {
+      "path": "final-full/g2-four-path/recon-guard-rollback-http.json",
+      "size": 14959
+    },
+    {
+      "path": "final-full/g2-four-path/recon-guard-rollback-outcomes.json",
+      "size": 29195
+    },
+    {
+      "path": "final-full/g2-four-path/recon-guard-rollback.jsonl",
+      "size": 145803
+    },
+    {
+      "path": "final-full/g2-four-path/recon-guard-session-ff693c8-http.json",
+      "size": 15861
+    },
+    {
+      "path": "final-full/g2-four-path/recon-guard-session-ff693c8-outcomes.json",
+      "size": 31093
+    },
+    {
+      "path": "final-full/g2-four-path/recon-guard-session-ff693c8.jsonl",
+      "size": 64317
+    },
+    {
+      "path": "final-full/g2-four-path/recon-guard-session-g2-off-http.json",
+      "size": 15861
+    },
+    {
+      "path": "final-full/g2-four-path/recon-guard-session-g2-off-outcomes.json",
+      "size": 31131
+    },
+    {
+      "path": "final-full/g2-four-path/recon-guard-session-g2-off.jsonl",
+      "size": 64317
+    },
+    {
+      "path": "final-full/g2-four-path/recon-guard-session-http.json",
+      "size": 15861
+    },
+    {
+      "path": "final-full/g2-four-path/recon-guard-session-outcomes.json",
+      "size": 31129
+    },
+    {
+      "path": "final-full/g2-four-path/recon-guard-session.jsonl",
+      "size": 159301
+    },
+    {
+      "path": "final-full/g2-four-path/strategy_provider-ff693c8-http.json",
+      "size": 547548
+    },
+    {
+      "path": "final-full/g2-four-path/strategy_provider-ff693c8-outcomes.json",
+      "size": 1191947
+    },
+    {
+      "path": "final-full/g2-four-path/strategy_provider-ff693c8.jsonl",
+      "size": 1667994
+    },
+    {
+      "path": "final-full/g2-four-path/strategy_provider-g2-off-http.json",
+      "size": 547548
+    },
+    {
+      "path": "final-full/g2-four-path/strategy_provider-g2-off-outcomes.json",
+      "size": 1191985
+    },
+    {
+      "path": "final-full/g2-four-path/strategy_provider-g2-off.jsonl",
+      "size": 1706539
+    },
+    {
+      "path": "final-full/g2-four-path/strategy_provider-g2-on-http.json",
+      "size": 547548
+    },
+    {
+      "path": "final-full/g2-four-path/strategy_provider-g2-on-outcomes.json",
+      "size": 1191983
+    },
+    {
+      "path": "final-full/g2-four-path/strategy_provider-g2-on.jsonl",
+      "size": 3644733
+    },
+    {
+      "path": "final-full/g3-enabled-g4-disabled/accepted-g2-throughput.json",
+      "size": 13819
+    },
+    {
+      "path": "final-full/g3-enabled-g4-disabled/accepted-g2-throughput.jsonl",
+      "size": 808973
+    },
+    {
+      "path": "final-full/g3-enabled-g4-disabled/accepted-g2-throughput.stdout.log",
+      "size": 302
+    },
+    {
+      "path": "final-full/g3-enabled-g4-disabled/g3-cost-g1-only.json",
+      "size": 16802
+    },
+    {
+      "path": "final-full/g3-enabled-g4-disabled/g3-cost-g1-only.jsonl",
+      "size": 646742
+    },
+    {
+      "path": "final-full/g3-enabled-g4-disabled/g3-cost-g1-only.stdout.log",
+      "size": 302
+    },
+    {
+      "path": "final-full/g3-enabled-g4-disabled/g3-cost-trace-off-diagnostics-off.json",
+      "size": 16804
+    },
+    {
+      "path": "final-full/g3-enabled-g4-disabled/g3-cost-trace-off-diagnostics-off.jsonl",
+      "size": 57912
+    },
+    {
+      "path": "final-full/g3-enabled-g4-disabled/g3-cost-trace-off-diagnostics-off.stdout.log",
+      "size": 302
+    },
+    {
+      "path": "final-full/g3-enabled-g4-disabled/g3-cost-trace-on.json",
+      "size": 16796
+    },
+    {
+      "path": "final-full/g3-enabled-g4-disabled/g3-cost-trace-on.jsonl",
+      "size": 1155755
+    },
+    {
+      "path": "final-full/g3-enabled-g4-disabled/g3-cost-trace-on.stdout.log",
+      "size": 302
+    },
+    {
+      "path": "final-full/g3-enabled-g4-disabled/g3-credits.json",
+      "size": 13891
+    },
+    {
+      "path": "final-full/g3-enabled-g4-disabled/g3-credits.jsonl",
+      "size": 1013013
+    },
+    {
+      "path": "final-full/g3-enabled-g4-disabled/g3-credits.stdout.log",
+      "size": 302
+    },
+    {
+      "path": "final-full/g3-enabled-g4-disabled/g3-jumps.json",
+      "size": 16787
+    },
+    {
+      "path": "final-full/g3-enabled-g4-disabled/g3-jumps.jsonl",
+      "size": 1155755
+    },
+    {
+      "path": "final-full/g3-enabled-g4-disabled/g3-jumps.stdout.log",
+      "size": 302
+    },
+    {
+      "path": "final-full/g3-enabled-g4-disabled/g3-slots.json",
+      "size": 13911
+    },
+    {
+      "path": "final-full/g3-enabled-g4-disabled/g3-slots.jsonl",
+      "size": 1016383
+    },
+    {
+      "path": "final-full/g3-enabled-g4-disabled/g3-slots.stdout.log",
+      "size": 302
+    },
+    {
+      "path": "final-full/g3-enabled-g4-disabled/g3-throughput.json",
+      "size": 16785
+    },
+    {
+      "path": "final-full/g3-enabled-g4-disabled/g3-throughput.jsonl",
+      "size": 1155755
+    },
+    {
+      "path": "final-full/g3-enabled-g4-disabled/g3-throughput.stdout.log",
+      "size": 302
+    },
+    {
+      "path": "final-full/g3-enabled-g4-disabled/legacy-gate-current-jar.json",
+      "size": 13863
+    },
+    {
+      "path": "final-full/g3-enabled-g4-disabled/legacy-gate-current-jar.jsonl",
+      "size": 811849
+    },
+    {
+      "path": "final-full/g3-enabled-g4-disabled/legacy-gate-current-jar.stdout.log",
+      "size": 302
+    },
+    {
+      "path": "final-full/g3-enabled-g4-disabled/test_engineer_provider-test_complete_underwater_response_requires_ready_product_and_observed_mode-http.json",
+      "size": 560792
+    },
+    {
+      "path": "final-full/g3-enabled-g4-disabled/test_engineer_provider-test_complete_underwater_response_requires_ready_product_and_observed_mode-native-queues-http.json",
+      "size": 561340
+    },
+    {
+      "path": "final-full/g3-enabled-g4-disabled/test_engineer_provider-test_complete_underwater_response_requires_ready_product_and_observed_mode-native-queues.jsonl",
+      "size": 4525785
+    },
+    {
+      "path": "final-full/g3-enabled-g4-disabled/test_engineer_provider-test_complete_underwater_response_requires_ready_product_and_observed_mode-native-queues.stdout.log",
+      "size": 294
+    },
+    {
+      "path": "final-full/g3-enabled-g4-disabled/test_engineer_provider-test_complete_underwater_response_requires_ready_product_and_observed_mode.jsonl",
+      "size": 4525189
+    },
+    {
+      "path": "final-full/g3-enabled-g4-disabled/test_engineer_provider-test_complete_underwater_response_requires_ready_product_and_observed_mode.stdout.log",
+      "size": 294
+    },
+    {
+      "path": "final-full/g3-enabled-g4-disabled/test_engineer_provider-test_funding_holds_native_quote_then_releases_on_accepted_build-http.json",
+      "size": 557039
+    },
+    {
+      "path": "final-full/g3-enabled-g4-disabled/test_engineer_provider-test_funding_holds_native_quote_then_releases_on_accepted_build.jsonl",
+      "size": 4417023
+    },
+    {
+      "path": "final-full/g3-enabled-g4-disabled/test_engineer_provider-test_funding_holds_native_quote_then_releases_on_accepted_build.stdout.log",
+      "size": 294
+    },
+    {
+      "path": "final-full/g3-enabled-g4-disabled/test_local_army-test_contact_loss_returns_and_releases_without_claiming_kill-http.json",
+      "size": 258118
+    },
+    {
+      "path": "final-full/g3-enabled-g4-disabled/test_local_army-test_contact_loss_returns_and_releases_without_claiming_kill.jsonl",
+      "size": 1350875
+    },
+    {
+      "path": "final-full/g3-enabled-g4-disabled/test_local_army-test_contact_loss_returns_and_releases_without_claiming_kill.stdout.log",
+      "size": 187
+    },
+    {
+      "path": "final-full/g3-enabled-g4-disabled/test_production_capacity-test_army_limit_cannot_spend_investment_reserve-http.json",
+      "size": 2695569
+    },
+    {
+      "path": "final-full/g3-enabled-g4-disabled/test_production_capacity-test_army_limit_cannot_spend_investment_reserve.jsonl",
+      "size": 10152114
+    },
+    {
+      "path": "final-full/g3-enabled-g4-disabled/test_production_capacity-test_army_limit_cannot_spend_investment_reserve.stdout.log",
+      "size": 294
+    },
+    {
+      "path": "final-full/g3-enabled-g4-disabled/test_recon_client-test_lost_factory_uses_one_unit_and_requires_own_evidence_before_clear-http.json",
+      "size": 125730
+    },
+    {
+      "path": "final-full/g3-enabled-g4-disabled/test_recon_client-test_lost_factory_uses_one_unit_and_requires_own_evidence_before_clear.jsonl",
+      "size": 499870
+    },
+    {
+      "path": "final-full/g3-enabled-g4-disabled/test_recon_client-test_lost_factory_uses_one_unit_and_requires_own_evidence_before_clear.stdout.log",
+      "size": 302
+    },
+    {
+      "path": "final-full/g3-enabled-g4-disabled/test_surplus_spending-test_near_target_rich_economy_invests_when_local_payback_window_is_long-native-queues-http.json",
+      "size": 860404
+    },
+    {
+      "path": "final-full/g3-enabled-g4-disabled/test_surplus_spending-test_near_target_rich_economy_invests_when_local_payback_window_is_long-native-queues.jsonl",
+      "size": 3074652
+    },
+    {
+      "path": "final-full/g3-enabled-g4-disabled/test_surplus_spending-test_near_target_rich_economy_invests_when_local_payback_window_is_long-native-queues.stdout.log",
+      "size": 294
+    },
+    {
+      "path": "final-full/g4-enabled-mainloop/empty/True/battle.jsonl",
+      "size": 959935
+    },
+    {
+      "path": "final-full/g4-enabled-mainloop/empty/True/process.txt",
+      "size": 294
+    },
+    {
+      "path": "final-full/g4-enabled-mainloop/seeded/False/battle.jsonl",
+      "size": 323388
+    },
+    {
+      "path": "final-full/g4-enabled-mainloop/seeded/False/process.txt",
+      "size": 294
+    },
+    {
+      "path": "final-full/g4-enabled-mainloop/seeded/True/battle.jsonl",
+      "size": 1231431
+    },
+    {
+      "path": "final-full/g4-enabled-mainloop/seeded/True/process.txt",
+      "size": 294
+    },
+    {
+      "path": "final-full/g5-mainloop/chunk_cache_read_probe/battle.jsonl",
+      "size": 0
+    },
+    {
+      "path": "final-full/g5-mainloop/chunk_cache_read_probe/fixture.json",
+      "size": 4531
+    },
+    {
+      "path": "final-full/g5-mainloop/chunk_cache_read_probe/process.txt",
+      "size": 2250
+    },
+    {
+      "path": "final-full/g5-mainloop/g41-reused/g5_first_formation/battle.jsonl",
+      "size": 3837590
+    },
+    {
+      "path": "final-full/g5-mainloop/g41-reused/g5_first_formation/fixture.json",
+      "size": 38163
+    },
+    {
+      "path": "final-full/g5-mainloop/g41-reused/g5_first_formation/process.txt",
+      "size": 303
+    },
+    {
+      "path": "final-full/g5-mainloop/overflow/battle.jsonl",
+      "size": 3381504
+    },
+    {
+      "path": "final-full/g5-mainloop/overflow/fixture.json",
+      "size": 42528
+    },
+    {
+      "path": "final-full/g5-mainloop/overflow/process.txt",
+      "size": 302
+    },
+    {
+      "path": "final-full/g5-mainloop/pressure/battle.jsonl",
+      "size": 6226531
+    },
+    {
+      "path": "final-full/g5-mainloop/pressure/fixture.json",
+      "size": 68408
+    },
+    {
+      "path": "final-full/g5-mainloop/pressure/process.txt",
+      "size": 302
+    },
+    {
+      "path": "final-full/transcript.txt",
+      "size": 46735
+    },
+    {
+      "path": "focused-final.log",
+      "size": 2164
+    },
+    {
+      "path": "focused-first.log",
+      "size": 2208
+    },
+    {
+      "path": "focused-second.log",
+      "size": 2052
+    },
+    {
+      "path": "focused-third.log",
+      "size": 2163
+    },
+    {
+      "path": "full-run-console.log",
+      "size": 540808
+    },
+    {
+      "path": "human-command-summary.json",
+      "size": 1744
+    },
+    {
+      "path": "human-derived.json",
+      "size": 561166
+    },
+    {
+      "path": "human-input.jsonl.gz.partial",
+      "size": 79943862
+    },
+    {
+      "path": "human-inspection.log",
+      "size": 3897
+    },
+    {
+      "path": "human_command_summary.py",
+      "size": 904
+    },
+    {
+      "path": "inspect_builder.py",
+      "size": 4275
+    },
+    {
+      "path": "kit-preparation.json",
+      "size": 1830
+    },
+    {
+      "path": "local-work-samples.txt",
+      "size": 27195
+    },
+    {
+      "path": "native-builder.log",
+      "size": 19921
+    },
+    {
+      "path": "native-work/res/anim/mainfadein.xml",
+      "size": 269
+    },
+    {
+      "path": "native-work/res/anim/splashfadeout.xml",
+      "size": 304
+    },
+    {
+      "path": "native-work/res/drawable/backrepeat.xml",
+      "size": 148
+    },
+    {
+      "path": "native-work/res/drawable/border_shadow.xml",
+      "size": 751
+    },
+    {
+      "path": "native-work/res/drawable/btn_dropdown.xml",
+      "size": 1139
+    },
+    {
+      "path": "native-work/res/drawable/cell_shape.xml",
+      "size": 255
+    },
+    {
+      "path": "native-work/res/drawable/custombutton.xml",
+      "size": 569
+    },
+    {
+      "path": "native-work/res/drawable/icon_round.xml",
+      "size": 224
+    },
+    {
+      "path": "native-work/res/drawable/rounded_border.xml",
+      "size": 340
+    },
+    {
+      "path": "native-work/res/layout/alert_chat.xml",
+      "size": 757
+    },
+    {
+      "path": "native-work/res/layout/credits.xml",
+      "size": 936
+    },
+    {
+      "path": "native-work/res/layout/intro_screen.xml",
+      "size": 423
+    },
+    {
+      "path": "native-work/res/layout/level_options_popup.xml",
+      "size": 2590
+    },
+    {
+      "path": "native-work/res/layout/level_select.xml",
+      "size": 4247
+    },
+    {
+      "path": "native-work/res/layout/level_select_grid.xml",
+      "size": 4634
+    },
+    {
+      "path": "native-work/res/layout/load_level.xml",
+      "size": 1061
+    },
+    {
+      "path": "native-work/res/layout/main.xml",
+      "size": 580
+    },
+    {
+      "path": "native-work/res/layout/menu.xml",
+      "size": 5047
+    },
+    {
+      "path": "native-work/res/layout/mods.xml",
+      "size": 3108
+    },
+    {
+      "path": "native-work/res/layout/multiplayer_battleroom.xml",
+      "size": 11417
+    },
+    {
+      "path": "native-work/res/layout/multiplayer_battleroom_gameoptions.xml",
+      "size": 6169
+    },
+    {
+      "path": "native-work/res/layout/multiplayer_battleroom_playerpopup.xml",
+      "size": 8119
+    },
+    {
+      "path": "native-work/res/layout/multiplayer_lobby.xml",
+      "size": 17509
+    },
+    {
+      "path": "native-work/res/layout/multiplayer_lobby_hostgame.xml",
+      "size": 3054
+    },
+    {
+      "path": "native-work/res/layout/new_mission_starter.xml",
+      "size": 3300
+    },
+    {
+      "path": "native-work/res/layout/quick_help.xml",
+      "size": 931
+    },
+    {
+      "path": "native-work/res/layout/replay_select.xml",
+      "size": 1862
+    },
+    {
+      "path": "native-work/res/layout/settings.xml",
+      "size": 24957
+    },
+    {
+      "path": "native-work/res/layout/settings_keyboard.xml",
+      "size": 3188
+    },
+    {
+      "path": "native-work/res/values/arrays.xml",
+      "size": 2078
+    },
+    {
+      "path": "native-work/res/values/attrs.xml",
+      "size": 658
+    },
+    {
+      "path": "native-work/res/values/color.xml",
+      "size": 288
+    },
+    {
+      "path": "native-work/res/values/strings.xml",
+      "size": 4551
+    },
+    {
+      "path": "native-work/res/values/styles.xml",
+      "size": 2781
+    },
+    {
+      "path": "native-work/res/values/themes.xml",
+      "size": 277
+    },
+    {
+      "path": "native-work/res/xml/provider_paths.xml",
+      "size": 157
+    },
+    {
+      "path": "native-work/rw-agent-bootstrap.log",
+      "size": 4878
+    },
+    {
+      "path": "natural-builder-final-analysis.log",
+      "size": 988
+    },
+    {
+      "path": "natural-builder-live-analysis.log",
+      "size": 860
+    },
+    {
+      "path": "prepare_final.py",
+      "size": 1256
+    },
+    {
+      "path": "r4-corrected-focused.log",
+      "size": 56
+    },
+    {
+      "path": "run-final.ps1",
+      "size": 2241
+    },
+    {
+      "path": "spain-hard-console.log",
+      "size": 22199
+    },
+    {
+      "path": "spain-hard-final/builder-details.json",
+      "size": 77104
+    },
+    {
+      "path": "spain-hard-final/client.err.log",
+      "size": 0
+    },
+    {
+      "path": "spain-hard-final/client.log",
+      "size": 217
+    },
+    {
+      "path": "spain-hard-final/engine.err.log",
+      "size": 0
+    },
+    {
+      "path": "spain-hard-final/engine.log",
+      "size": 1715568
+    },
+    {
+      "path": "spain-hard-final/final-state.json",
+      "size": 48054
+    },
+    {
+      "path": "spain-hard-final/initial-state.json",
+      "size": 808
+    },
+    {
+      "path": "spain-hard-final/input.json",
+      "size": 550
+    },
+    {
+      "path": "spain-hard-final/monitor.jsonl",
+      "size": 20843
+    },
+    {
+      "path": "spain-hard-final/result.json",
+      "size": 159
+    },
+    {
+      "path": "spain-hard-final/work/preferences.ini",
+      "size": 4831
+    },
+    {
+      "path": "spain-hard-final/work/res/anim/mainfadein.xml",
+      "size": 269
+    },
+    {
+      "path": "spain-hard-final/work/res/anim/splashfadeout.xml",
+      "size": 304
+    },
+    {
+      "path": "spain-hard-final/work/res/drawable/backrepeat.xml",
+      "size": 148
+    },
+    {
+      "path": "spain-hard-final/work/res/drawable/border_shadow.xml",
+      "size": 751
+    },
+    {
+      "path": "spain-hard-final/work/res/drawable/btn_dropdown.xml",
+      "size": 1139
+    },
+    {
+      "path": "spain-hard-final/work/res/drawable/cell_shape.xml",
+      "size": 255
+    },
+    {
+      "path": "spain-hard-final/work/res/drawable/custombutton.xml",
+      "size": 569
+    },
+    {
+      "path": "spain-hard-final/work/res/drawable/icon_round.xml",
+      "size": 224
+    },
+    {
+      "path": "spain-hard-final/work/res/drawable/rounded_border.xml",
+      "size": 340
+    },
+    {
+      "path": "spain-hard-final/work/res/layout/alert_chat.xml",
+      "size": 757
+    },
+    {
+      "path": "spain-hard-final/work/res/layout/credits.xml",
+      "size": 936
+    },
+    {
+      "path": "spain-hard-final/work/res/layout/intro_screen.xml",
+      "size": 423
+    },
+    {
+      "path": "spain-hard-final/work/res/layout/level_options_popup.xml",
+      "size": 2590
+    },
+    {
+      "path": "spain-hard-final/work/res/layout/level_select.xml",
+      "size": 4247
+    },
+    {
+      "path": "spain-hard-final/work/res/layout/level_select_grid.xml",
+      "size": 4634
+    },
+    {
+      "path": "spain-hard-final/work/res/layout/load_level.xml",
+      "size": 1061
+    },
+    {
+      "path": "spain-hard-final/work/res/layout/main.xml",
+      "size": 580
+    },
+    {
+      "path": "spain-hard-final/work/res/layout/menu.xml",
+      "size": 5047
+    },
+    {
+      "path": "spain-hard-final/work/res/layout/mods.xml",
+      "size": 3108
+    },
+    {
+      "path": "spain-hard-final/work/res/layout/multiplayer_battleroom.xml",
+      "size": 11417
+    },
+    {
+      "path": "spain-hard-final/work/res/layout/multiplayer_battleroom_gameoptions.xml",
+      "size": 6169
+    },
+    {
+      "path": "spain-hard-final/work/res/layout/multiplayer_battleroom_playerpopup.xml",
+      "size": 8119
+    },
+    {
+      "path": "spain-hard-final/work/res/layout/multiplayer_lobby.xml",
+      "size": 17509
+    },
+    {
+      "path": "spain-hard-final/work/res/layout/multiplayer_lobby_hostgame.xml",
+      "size": 3054
+    },
+    {
+      "path": "spain-hard-final/work/res/layout/new_mission_starter.xml",
+      "size": 3300
+    },
+    {
+      "path": "spain-hard-final/work/res/layout/quick_help.xml",
+      "size": 931
+    },
+    {
+      "path": "spain-hard-final/work/res/layout/replay_select.xml",
+      "size": 1862
+    },
+    {
+      "path": "spain-hard-final/work/res/layout/settings.xml",
+      "size": 24957
+    },
+    {
+      "path": "spain-hard-final/work/res/layout/settings_keyboard.xml",
+      "size": 3188
+    },
+    {
+      "path": "spain-hard-final/work/res/values/arrays.xml",
+      "size": 2078
+    },
+    {
+      "path": "spain-hard-final/work/res/values/attrs.xml",
+      "size": 658
+    },
+    {
+      "path": "spain-hard-final/work/res/values/color.xml",
+      "size": 288
+    },
+    {
+      "path": "spain-hard-final/work/res/values/strings.xml",
+      "size": 4551
+    },
+    {
+      "path": "spain-hard-final/work/res/values/styles.xml",
+      "size": 2781
+    },
+    {
+      "path": "spain-hard-final/work/res/values/themes.xml",
+      "size": 277
+    },
+    {
+      "path": "spain-hard-final/work/res/xml/provider_paths.xml",
+      "size": 157
+    },
+    {
+      "path": "spain-hard-final/work/runtime.json",
+      "size": 474
+    },
+    {
+      "path": "spain-hard-final/work/rw-agent-bootstrap.log",
+      "size": 1686299
+    },
+    {
+      "path": "spain-hard-final/work/rw-agent-reports/battle-1791659212982-bcb85ed8.jsonl.gz",
+      "size": 74731604
+    },
+    {
+      "path": "spain_natural.py",
+      "size": 4894
+    },
+    {
+      "path": "summarize_natural.py",
+      "size": 6707
+    },
+    {
+      "path": "tested-inputs.json",
+      "size": 32136
+    },
+    {
+      "path": "write_handoff.py",
+      "size": 12340
+    }
+  ],
+  "skippedByCategory": {
+    "nontextthirdparty": 752,
+    "duplicate-source/game/runtime": 7622
+  }
+}
