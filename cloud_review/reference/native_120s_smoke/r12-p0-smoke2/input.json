@@ -1,0 +1,15 @@
+{
+  "version": "R12",
+  "sourceCommit": "eef352fafdf1392a588a1b7be41d8003c2512531",
+  "jarSha256": "61d8a341b3fff0445e67978d7deb2a6d4e349589e683a1f35afc35c9317b98cf",
+  "gameLibSha256": "8a550a37e2d8a5430866090d4e7d5892f9010b47f52a5a09350fc66c620deec9",
+  "mapSha256": "342db6d8a8b8320b6a271b9e3c8a4c29c96a203e206c4be690c44bbef5882746",
+  "speed": 5,
+  "difficulty": 0,
+  "playerId": 0,
+  "durationGameSeconds": 120,
+  "wallSafetySeconds": 220,
+  "nativePositionMutation": false,
+  "fixture": false,
+  "desktopTouched": false
+}

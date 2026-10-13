@@ -2,7 +2,7 @@
 
 **2026-10-13 · 公开审查仓库 · 八套版本独立冻结 · 原始实验数据与真实对局证据**
 
-**Astra 请从 [审查任务书](review/ASTRA_START_HERE.md) 开始，再阅读 [回归问题](review/REGRESSION_QUESTIONS.md)、[全部证据清单](review/FULL_EVIDENCE_INDEX.md)。** 本仓库不是 R16 的成功公告，而是让真实效果、失败记录与代码差异可以复核。
+**云端 Astra（无法访问用户本地）的最新 R12/R16 陆军任务，请直接从 [云端专用任务书](cloud_review/ASTRA_R12_R16_CLOUD_PROMPT.md) 开始，并使用 [仓库内运行入口](cloud_review/README.md)。** 其他项目级资料仍见 [总审查说明](review/ASTRA_START_HERE.md)、[回归问题](review/REGRESSION_QUESTIONS.md) 和 [全部证据清单](review/FULL_EVIDENCE_INDEX.md)。 本仓库不是 R16 的成功公告，而是让真实效果、失败记录与代码差异可以复核。
 
 ## 版本和可核查成绩
 

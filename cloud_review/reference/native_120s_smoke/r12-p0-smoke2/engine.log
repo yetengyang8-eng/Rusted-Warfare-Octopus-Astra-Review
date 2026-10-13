@@ -1,0 +1,227 @@
+2026-10-13 12:41:34.789: GameEngine:GameEngine()
+2026-10-13 12:41:34.794: Created new gameEngine of:com.corrodinggames.rts.game.i
+2026-10-13 12:41:34.794: --- ----------------- ----
+2026-10-13 12:41:34.794: --- GameEngine:init() ----
+2026-10-13 12:41:34.794: --- ----------------- ----
+2026-10-13 12:41:34.797: Version:v1.15
+2026-10-13 12:41:34.803: ------- createIndex -------
+2026-10-13 12:41:34.804: c:
+2026-10-13 12:41:34.805: densityScaleRaw*densityScaleMultiplier: 1.0
+2026-10-13 12:41:34.806: packageName:dedicatedServer
+2026-10-13 12:41:34.812: slickToAndroidCodes: Could not find keycode for: NUMLOCK, RWIN, CONVERT, STOP, AX, UNDERLINE, DELETE, NOCONVERT, APPS, DECIMAL, SCROLL, END, KANJI, NUMPADDECIMAL, LWIN, CIRCUMFLEX, UNLABELED, F14, F13, COLON, F15, CAPITAL, 
+2026-10-13 12:41:34.814: gdxToAndroidCodes: Could not find keycode for: END, META_ALT_LEFT_ON, COLON, ANY_KEY, META_SHIFT_RIGHT_ON, 
+2026-10-13 12:41:34.814: gdxToSlickCodes: Could not find keycode for: MEDIA_REWIND, MEDIA_PLAY_PAUSE, BUTTON_SELECT, CENTER, BUTTON_X, BUTTON_Z, BUTTON_Y, MEDIA_PREVIOUS, SWITCH_CHARSET, SEARCH, META_ALT_ON, CAMERA, SHIFT_LEFT, BUTTON_START, MUTE, CALL, PICTSYMBOLS, FOCUS, VOLUME_DOWN, ENVELOPE, BUTTON_L2, BUTTON_L1, META_SHIFT_ON, NUM, SOFT_RIGHT, NOTIFICATION, STAR, MENU, DPAD_CENTER, BUTTON_R2, BUTTON_R1, BUTTON_THUMBL, MEDIA_FAST_FORWARD, BUTTON_THUMBR, EXPLORER, BACKSPACE, ENDCALL, FORWARD_DEL, BUTTON_MODE, SYM, SOFT_LEFT, PLUS, MEDIA_NEXT, META_ALT_LEFT_ON, MEDIA_STOP, VOLUME_UP, POUND, META_SHIFT_LEFT_ON, DEL, ANY_KEY, BUTTON_C, SHIFT_RIGHT, BUTTON_B, BUTTON_A, HEADSETHOOK, META_SHIFT_RIGHT_ON, UNKNOWN, CLEAR, 
+2026-10-13 12:41:34.815: getControllerCount:0
+2026-10-13 12:41:34.818: densityScale(): 1.0
+2026-10-13 12:41:34.822: Locale: default targetLocale:zh_CN
+2026-10-13 12:41:34.822: Locale: default targetLocale ISO3:zho
+2026-10-13 12:41:34.832: Locale: Using Strings_zh_cn.properties as locale
+2026-10-13 12:41:34.842: Locale.init took:13.953ms
+2026-10-13 12:41:34.883: AudioEngine took:2.534ms
+2026-10-13 12:41:34.889: We have an initial screen size, can do early setup of image buffers
+2026-10-13 12:41:34.889: Density size changed now: 1.0, refreshing fonts
+2026-10-13 12:41:34.898: Creating minimap image buffers..
+2026-10-13 12:41:34.900: PathEngine:We have 20 cores, creating extra solvers
+2026-10-13 12:41:34.909: smallTextPaint size: 12.0
+2026-10-13 12:41:34.920: disabledSteam - loadWorkshopMods
+2026-10-13 12:41:34.930: FileLoader: isDirectory: file doesn't exist:mods/units
+2026-10-13 12:41:34.930: Modded Custom '/SD/mods/units' directory not found
+2026-10-13 12:41:34.930: loading mod custom units at:builtin_mods
+2026-10-13 12:41:34.933: openAssetCached: Cache miss for: builtin_mods/mega_builders/mod-info.txt
+2026-10-13 12:41:34.933: openAssetCached: Reading: builtin_mods/mega_builders/mod-info.txt
+2026-10-13 12:41:34.936: Wrote cache file at: G:\deepseek 工作台\_validation\astra_cloud_adapter_smoke_20261013\r12-p0-smoke2\work\cache\mods-info.cachedata\builtin_mods%47mega_builders%47mod-info.txt.data
+2026-10-13 12:41:34.938: Wrote cache file at: G:\deepseek 工作台\_validation\astra_cloud_adapter_smoke_20261013\r12-p0-smoke2\work\cache\mods-info.cachedata\builtin_mods%47mega_builders%47mod-info.txt.meta
+2026-10-13 12:41:34.941: loading mod custom units at:builtin_mods_enabled
+2026-10-13 12:41:34.942: ========= Mods ===========
+2026-10-13 12:41:34.942: Number of mods:1
+2026-10-13 12:41:34.942: Mod: 'Mega Builders
+2026-10-13 12:41:34.942: ================================
+2026-10-13 12:41:34.942: Disabling all new mods for first/new load
+2026-10-13 12:41:34.942: Loading mod selection
+2026-10-13 12:41:34.946: smoothFog load took:0.534ms
+2026-10-13 12:41:34.960: loadAllUnits took:12.783ms
+2026-10-13 12:41:34.961: disabledSteam - loadWorkshopMods
+2026-10-13 12:41:34.961: FileLoader: isDirectory: file doesn't exist:mods/units
+2026-10-13 12:41:34.961: Modded Custom '/SD/mods/units' directory not found
+2026-10-13 12:41:34.961: loading mod custom units at:builtin_mods
+2026-10-13 12:41:34.962: loading mod custom units at:builtin_mods_enabled
+2026-10-13 12:41:34.962: ========= Mods ===========
+2026-10-13 12:41:34.962: Number of mods:1
+2026-10-13 12:41:34.962: Mod: 'Mega Builders
+2026-10-13 12:41:34.962: ================================
+2026-10-13 12:41:35.242: Setting missingPlaceHolder
+2026-10-13 12:41:35.379: ==Timing==
+2026-10-13 12:41:35.379: imageLoad: 0.239ms
+2026-10-13 12:41:35.379: imageLoadOrGet: 84.508ms
+2026-10-13 12:41:35.379: soundLoad: 0ms
+2026-10-13 12:41:35.379: soundLoadOrGet: 0.192ms
+2026-10-13 12:41:35.379: iniParse: 33.966ms
+2026-10-13 12:41:35.379: unitParse: 329.017ms
+2026-10-13 12:41:35.379: iniOpen: 33.669ms
+2026-10-13 12:41:35.379: iniClose: 0.153ms
+2026-10-13 12:41:35.379: iniSetup: 27.362ms
+2026-10-13 12:41:35.379: actionParse: 60.908ms
+2026-10-13 12:41:35.379: unitParsePartA: 176.355ms
+2026-10-13 12:41:35.379: unitParsePartB: 202.712ms
+2026-10-13 12:41:35.379: unitParsePartC: 287.889ms
+2026-10-13 12:41:35.379: unitParsePartD: 292.969ms
+2026-10-13 12:41:35.379: enableAll: 
+2026-10-13 12:41:35.412: Done loading custom units. image cacheHits:402 image cacheMisses:305 (in: 449.0699ms)
+2026-10-13 12:41:35.412: ========= Mods data loaded ===========
+2026-10-13 12:41:35.412: Number of mods:1
+2026-10-13 12:41:35.416: Mod: 'Mega Builders' - Memory use:0.00 mb  (disabled)
+2026-10-13 12:41:35.416: ================================
+2026-10-13 12:41:35.434: CustomUnits took:472.719ms
+2026-10-13 12:41:35.434: isOverLiquid called without map loaded
+2026-10-13 12:41:35.434: isOverLiquid called without map loaded
+2026-10-13 12:41:35.434: isOverLiquid called without map loaded
+2026-10-13 12:41:35.434: isOverLiquid called without map loaded
+2026-10-13 12:41:35.435: allUnitsChecksum took:0.517ms
+2026-10-13 12:41:35.452: Init completed
+2026-10-13 12:41:35.452: Loading took:648.352ms
+2026-10-13 12:41:35.461: --- setStoppedIfNotInGameThread ---
+2026-10-13 12:41:35.461: --- setStopped ---
+2026-10-13 12:41:35.461: gameThread already null
+2026-10-13 12:41:35.462: Music:pause()
+2026-10-13 12:41:35.480: enableAll: 
+2026-10-13 12:41:35.480: Music:pause() synchronized
+2026-10-13 12:41:35.488:  --- Loading map ---
+2026-10-13 12:41:35.488: Mapfile: assets/maps/menu_background/menu1.tmx
+2026-10-13 12:41:35.488: ---- Loading map data ----
+2026-10-13 12:41:35.556: Map size: 160, 160
+2026-10-13 12:41:35.557: Setting up team fog..
+2026-10-13 12:41:35.590: FileLoader: Could not find asset:assets/tilesets/../../decoration.tsx
+2026-10-13 12:41:35.591: FileLoader: Could not find asset:assets/tilesets/../../decoration.tsx
+2026-10-13 12:41:35.591: FileLoader: Could not find asset:assets/tilesets/../decoration.tsx
+2026-10-13 12:41:35.595: MapLayer create: Ground
+2026-10-13 12:41:35.600: MapLayer create: Items
+2026-10-13 12:41:35.605: MapLayer create: Units
+2026-10-13 12:41:35.615: Map type: mission
+2026-10-13 12:41:35.624: Found 13 map triggers
+2026-10-13 12:41:35.625: global Seed: 817541048
+2026-10-13 12:41:35.625: getMapLevel for :maps/menu_background/menu1.tmx file:menu1.tmx
+2026-10-13 12:41:35.625: StateEngine: get(maps/menu_background/menu1.tmx)=null  (key=maps/menu_background/menu1.tmx)
+2026-10-13 12:41:35.626: PathEngine: Setting up map costs
+2026-10-13 12:41:35.663: PathEngine: Ready
+2026-10-13 12:41:35.665: selectAnyOnScreenBuilder: found builder
+2026-10-13 12:41:35.773: loadAMenuMap took:320.446ms
+2026-10-13 12:41:35.774: --- setStoppedIfNotInGameThread ---
+2026-10-13 12:41:35.774: --- setStopped ---
+2026-10-13 12:41:35.774: gameThread already null
+2026-10-13 12:41:35.792: enableAll: 
+2026-10-13 12:41:35.797: Team(id: 0, name:null):Being replaced
+2026-10-13 12:41:35.797: Team(id: 1, name:null):Being replaced
+2026-10-13 12:41:35.797: Team(id: 2, name:null):Being replaced
+2026-10-13 12:41:35.797: Team(id: 3, name:null):Being replaced
+2026-10-13 12:41:35.798: Team(id: 4, name:null):Being replaced
+2026-10-13 12:41:35.798: Team(id: 5, name:null):Being replaced
+2026-10-13 12:41:35.798: Team(id: 6, name:null):Being replaced
+2026-10-13 12:41:35.799: Team(id: 7, name:null):Being replaced
+2026-10-13 12:41:35.799:  --- Loading map ---
+2026-10-13 12:41:35.799: Mapfile: assets/maps/skirmish/[10p] Spain MP97.tmx
+2026-10-13 12:41:35.799: ---- Loading map data ----
+2026-10-13 12:41:35.808: Map size: 400, 370
+2026-10-13 12:41:35.808: Setting up team fog..
+2026-10-13 12:41:35.818: MapLayer create: Ground
+2026-10-13 12:41:35.837: MapLayer create: Items
+2026-10-13 12:41:35.854: MapLayer create: items
+2026-10-13 12:41:35.869: MapLayer create: Items
+2026-10-13 12:41:35.885: MapLayer create: Units
+2026-10-13 12:41:35.910: Map type: skirmish
+2026-10-13 12:41:35.910: Found 0 map triggers
+2026-10-13 12:41:35.910: global Seed: 30438558
+2026-10-13 12:41:35.911: there are 10 units on this map and 549 trees
+2026-10-13 12:41:35.911: getMapLevel for :maps/skirmish/[10p] Spain MP97.tmx file:[10p] Spain MP97.tmx
+2026-10-13 12:41:35.911: StateEngine: get(maps/skirmish/[10p] Spain MP97.tmx)=null  (key=maps/skirmish/[10p] Spain MP97.tmx)
+2026-10-13 12:41:35.911: PathEngine: Setting up map costs
+2026-10-13 12:41:35.975: PathEngine: Ready
+2026-10-13 12:41:35.975: selectAnyOnScreenBuilder: no builder found
+2026-10-13 12:41:35.977: Building smoothFog_cache
+2026-10-13 12:41:35.980: Saving settings to: G:\deepseek 工作台\_validation\astra_cloud_adapter_smoke_20261013\r12-p0-smoke2\work\preferences.ini
+2026-10-13 12:41:36.191 [RW-Agent] Local Agent API ready at http://127.0.0.1:14608
+2026-10-13 12:41:36.195 [RW-Agent] Provenance {"agentVersion":"0.07-alpha1","agentJar":"G:\\deepseek 工作台\\_validation\\astra_cloud_adapter_smoke_20261013\\r12-p0-smoke2\\work\\rw-agent-bootstrap.jar","agentJarSha256":"61d8a341b3fff0445e67978d7deb2a6d4e349589e683a1f35afc35c9317b98cf","gameLibJar":"G:\\deepseek 工作台\\_validation\\astra_cloud_adapter_smoke_20261013\\r12-p0-smoke2\\work\\game-lib.jar","gameLibJarSha256":"8a550a37e2d8a5430866090d4e7d5892f9010b47f52a5a09350fc66c620deec9","workingDirectory":"G:\\deepseek 工作台\\_validation\\astra_cloud_adapter_smoke_20261013\\r12-p0-smoke2\\work","reportDirectory":"G:\\deepseek 工作台\\_validation\\astra_cloud_adapter_smoke_20261013\\r12-p0-smoke2\\work\\rw-agent-reports","osName":"Windows 11","javaVersion":"17.0.20.1"}
+RW_HEADLESS_READY map=maps/skirmish/[10p] Spain MP97.tmx port=14608 fog=los seed=30438558
+2026-10-13 12:41:36.203: Saving settings to: G:\deepseek 工作台\_validation\astra_cloud_adapter_smoke_20261013\r12-p0-smoke2\work\preferences.ini
+2026-10-13 12:41:36.226: Saving settings to: G:\deepseek 工作台\_validation\astra_cloud_adapter_smoke_20261013\r12-p0-smoke2\work\preferences.ini
+2026-10-13 12:41:36.621 [RW-Agent] Queued economy: /command/produce-builder unit=477 request=e565b064-1b07-43b8-8db9-b22e2a384abe,"type":"builder","actionClass":"l","builderCost":500
+2026-10-13 12:41:37.279: reportProblem: Lockup detected in music subsystem
+2026-10-13 12:41:37.279: alert:Lockup detected in music subsystem
+2026-10-13 12:41:38.464 [RW-Agent] Queued move: request=72f8d7f1-2307-4142-bda6-3d43adc6671e unit=569 target=(4470.0,5630.0) frame=676
+2026-10-13 12:41:38.713 [RW-Agent] Queued economy: /command/build-factory unit=569 request=ee7549c5-e1b8-4ca3-b18c-af40e4e82eec,"targetX":4470.000,"targetY":5630.000,"type":"landFactory"
+2026-10-13 12:41:42.584 [RW-Agent] Queued move: request=42a059ac-f045-4f77-9f16-c863527c6fdf unit=569 target=(4490.0,5510.0) frame=1912
+2026-10-13 12:41:42.978 [RW-Agent] Queued economy: /command/build-extractor unit=569 request=bed24203-e04a-48ff-a03e-5fbee2a12b39,"targetX":4490.000,"targetY":5510.000,"type":"extractorT1"
+2026-10-13 12:41:44.515 [RW-Agent] Queued move: request=24cde235-a6a5-4a0c-aa2f-38fcd3a35f94 unit=602 target=(4469.982,5636.522) frame=2492
+2026-10-13 12:41:46.664 [RW-Agent] Queued move: request=a3648b19-5f93-4461-8d85-67bc38503990 unit=569 target=(4210.0,5650.0) frame=3136
+2026-10-13 12:41:47.678 [RW-Agent] Queued economy: /command/build-extractor unit=569 request=9729c8e1-6abd-417d-8624-5edfc1e19e60,"targetX":4210.000,"targetY":5650.000,"type":"extractorT1"
+2026-10-13 12:41:51.582 [RW-Agent] Queued move: request=71aef78c-d36b-4919-a30b-4d354d7ef825 unit=569 target=(4150.0,4910.0) frame=4612
+2026-10-13 12:41:52.237 [RW-Agent] Queued move: request=c7f2d38f-5d13-4315-8593-8fb037e24625 unit=602 target=(4430.0,5510.0) frame=4808
+2026-10-13 12:41:52.428 [RW-Agent] Queued move: request=7c13aaa6-8a4c-499b-a847-350f796b6d2b unit=602 target=(4430.0,5490.0) frame=4866
+2026-10-13 12:41:52.506 [RW-Agent] Queued move: request=ace58772-0269-45fa-b62f-2ea2f887f743 unit=602 target=(4430.0,5470.0) frame=4889
+2026-10-13 12:41:52.600 [RW-Agent] Queued move: request=3eedb336-ad8a-44a1-ab07-c1fd11ad3964 unit=602 target=(4430.0,5450.0) frame=4917
+2026-10-13 12:41:52.677 [RW-Agent] Queued move: request=e53cb38f-93c9-4a22-907d-d3880dd6c784 unit=602 target=(4430.0,5430.0) frame=4940
+2026-10-13 12:41:52.740 [RW-Agent] Queued move: request=dc4a919f-658e-451d-9cf7-aa84fc6a9e48 unit=602 target=(4430.0,5390.0) frame=4962
+2026-10-13 12:41:52.803 [RW-Agent] Queued move: request=ff950807-288a-42c8-9182-db5dab38aec0 unit=602 target=(4430.0,5370.0) frame=4981
+2026-10-13 12:41:52.878 [RW-Agent] Queued move: request=6ea1f3d8-5f48-4d84-8b6a-d435b1fc62f3 unit=602 target=(4430.0,5350.0) frame=5001
+2026-10-13 12:41:52.988 [RW-Agent] Queued move: request=e1e092d8-7286-476f-8bc3-b4838d1d20ef unit=602 target=(4430.0,5330.0) frame=5036
+2026-10-13 12:41:53.081 [RW-Agent] Queued move: request=d110d471-648e-4a06-85d4-1cf3ef3f254a unit=602 target=(4430.0,5310.0) frame=5061
+2026-10-13 12:41:53.159 [RW-Agent] Queued move: request=351c555f-3d35-4b58-93a7-7d8ea87d1b56 unit=602 target=(4430.0,5270.0) frame=5085
+2026-10-13 12:41:53.223 [RW-Agent] Queued move: request=86d0cd89-d4ee-4055-b289-a71598de32a7 unit=602 target=(4430.0,5250.0) frame=5107
+2026-10-13 12:41:54.021 [RW-Agent] Queued move: request=6ba03278-ee2e-41e1-836c-ddd3208198ea unit=602 target=(4430.0,5130.0) frame=5343
+2026-10-13 12:41:54.193 [RW-Agent] Queued move: request=334c5ee5-a3f4-4b2d-b070-5a920e39f5b1 unit=602 target=(4430.0,5110.0) frame=5396
+2026-10-13 12:41:54.271 [RW-Agent] Queued move: request=d69b8fb5-095d-4d2e-ae2a-6ea0e0efe795 unit=602 target=(4430.0,5090.0) frame=5422
+2026-10-13 12:41:54.350 [RW-Agent] Queued move: request=652a4b93-d129-4906-a5ab-f865b20c49a1 unit=602 target=(4430.0,5070.0) frame=5442
+2026-10-13 12:41:54.414 [RW-Agent] Queued move: request=c33720f3-0fc1-44e3-9881-c0906089424a unit=602 target=(4430.0,5050.0) frame=5465
+2026-10-13 12:41:54.492 [RW-Agent] Queued move: request=026518f9-90a4-43b8-8d77-fa70579a2167 unit=602 target=(4430.0,5030.0) frame=5485
+2026-10-13 12:41:54.588 [RW-Agent] Queued move: request=963a7227-9fa3-4699-9cf5-a779a1cba25e unit=602 target=(4430.0,5010.0) frame=5513
+2026-10-13 12:41:54.650 [RW-Agent] Queued move: request=f17e3341-e2e9-4fa8-ac8f-2518dd5f5b70 unit=602 target=(4430.0,4970.0) frame=5533
+2026-10-13 12:41:54.840 [RW-Agent] Queued move: request=31bab598-30be-4195-8f49-0821ee7a2713 unit=569 target=(4090.0,4810.0) frame=5592
+2026-10-13 12:41:54.919 [RW-Agent] Queued move: request=218a5a6c-8119-4786-90ec-5065fd77a744 unit=602 target=(4430.0,4910.0) frame=5613
+2026-10-13 12:41:54.983 [RW-Agent] Queued move: request=bd00a3f8-94fd-4865-a60e-163f180d8907 unit=602 target=(4430.0,4870.0) frame=5634
+2026-10-13 12:41:55.077 [RW-Agent] Queued economy: /command/build-extractor unit=569 request=6927636f-0834-42e2-8ce5-e3e13f03e79d,"targetX":4090.000,"targetY":4810.000,"type":"extractorT1"
+2026-10-13 12:41:55.704 [RW-Agent] Queued move: request=6ddbe8ed-4a8e-4f1e-a788-c14a66cdad69 unit=602 target=(4430.0,4750.0) frame=5849
+2026-10-13 12:41:55.970 [RW-Agent] Queued move: request=4165e937-5a81-4e0b-b967-3e372689a92a unit=602 target=(4430.0,4710.0) frame=5931
+2026-10-13 12:41:56.030 [RW-Agent] Queued move: request=50dcee67-3805-48cf-a1e8-ed50661b2571 unit=602 target=(4430.0,4690.0) frame=5950
+2026-10-13 12:41:56.093 [RW-Agent] Queued move: request=7118b93c-6c6e-4bc9-9df9-d6d064aa9ddb unit=602 target=(4430.0,4670.0) frame=5965
+2026-10-13 12:41:56.155 [RW-Agent] Queued move: request=bdacf46e-400f-4bb7-8421-0dcf2fb27086 unit=602 target=(4430.0,4650.0) frame=5986
+2026-10-13 12:41:56.218 [RW-Agent] Queued move: request=9b018658-a7e3-4976-a28d-ec2752651f9f unit=602 target=(4430.0,4630.0) frame=6006
+2026-10-13 12:41:56.296 [RW-Agent] Queued move: request=25f01fc0-31aa-4ffd-9180-f2a3c966f90a unit=602 target=(4430.0,4610.0) frame=6026
+2026-10-13 12:41:56.360 [RW-Agent] Queued move: request=a6a908c7-b031-4420-9d29-956a231ace7c unit=602 target=(4430.0,4590.0) frame=6046
+2026-10-13 12:41:56.422 [RW-Agent] Queued move: request=9a1ead88-24ed-446c-a707-b0fe3abcf29c unit=602 target=(4430.0,4570.0) frame=6067
+2026-10-13 12:41:56.500 [RW-Agent] Queued move: request=e6482a9e-a684-46c1-b2df-5b6985116e1d unit=602 target=(4430.0,4550.0) frame=6087
+2026-10-13 12:41:56.561 [RW-Agent] Queued move: request=45492605-5b0c-48cb-8361-8fe91f411e12 unit=602 target=(4430.0,4530.0) frame=6106
+2026-10-13 12:41:56.640 [RW-Agent] Queued move: request=2ae51d52-bbad-4e43-b9ea-b92052317d1d unit=602 target=(4430.0,4510.0) frame=6129
+2026-10-13 12:41:56.700 [RW-Agent] Queued move: request=aa9a80b6-1d0d-4d7e-b117-480e1a78c074 unit=602 target=(4430.0,4490.0) frame=6149
+2026-10-13 12:41:57.325 [RW-Agent] Queued move: request=ed51c9a0-7e8b-4852-846b-6c940b805483 unit=602 target=(4430.0,4370.0) frame=6336
+2026-10-13 12:41:57.528 [RW-Agent] Queued move: request=e7c2e1f6-23ac-42ed-8d55-e3fc6f449fd2 unit=602 target=(4430.0,4350.0) frame=6395
+2026-10-13 12:41:57.590 [RW-Agent] Queued move: request=62de741b-6c8c-4959-a985-9b814a5ee5f9 unit=602 target=(4430.0,4330.0) frame=6416
+2026-10-13 12:41:57.653 [RW-Agent] Queued move: request=343120b0-3940-412a-8501-f928cd3e521b unit=602 target=(4430.0,4310.0) frame=6435
+2026-10-13 12:41:57.716 [RW-Agent] Queued move: request=9e15ea05-4a81-4638-a204-4b44dd7b5c61 unit=602 target=(4430.0,4290.0) frame=6452
+2026-10-13 12:41:57.779 [RW-Agent] Queued move: request=5ce8261e-be84-4427-9869-166b9a685429 unit=602 target=(4430.0,4270.0) frame=6472
+2026-10-13 12:41:57.872 [RW-Agent] Queued move: request=8ac8f6ee-d5b5-4b07-aeae-78fa4766f4f7 unit=602 target=(4430.0,4250.0) frame=6499
+2026-10-13 12:41:57.951 [RW-Agent] Queued move: request=5884c7dd-5a96-4f33-a8a2-5f6f73c12192 unit=602 target=(4430.0,4230.0) frame=6524
+2026-10-13 12:41:58.013 [RW-Agent] Queued move: request=1ad820d1-4418-46f9-97c0-942bb5c6dc39 unit=602 target=(4430.0,4210.0) frame=6542
+2026-10-13 12:41:58.075 [RW-Agent] Queued move: request=2f5f2808-297f-4753-91c9-f815b9247fde unit=602 target=(4430.0,4190.0) frame=6560
+2026-10-13 12:41:58.136 [RW-Agent] Queued move: request=b2ffed5c-0d69-4089-ba4a-577ab88bbb65 unit=602 target=(4430.0,4170.0) frame=6579
+2026-10-13 12:41:58.213 [RW-Agent] Queued move: request=7d720367-04a6-49b7-a183-11dcd0441858 unit=602 target=(4430.0,4150.0) frame=6601
+2026-10-13 12:41:58.294 [RW-Agent] Queued move: request=e16e3e87-1148-4f82-ba8e-671d38e147fb unit=602 target=(4430.0,4130.0) frame=6627
+2026-10-13 12:41:58.375 [RW-Agent] Queued move: request=5abd4b87-1f6f-4d3b-8a2d-00a8e3f8dd79 unit=602 target=(4430.0,4110.0) frame=6652
+2026-10-13 12:41:58.921 [RW-Agent] Queued move: request=77e12738-c72c-4d2d-a7f0-e261cdea526b unit=569 target=(3330.0,4710.0) frame=6815
+2026-10-13 12:41:59.078 [RW-Agent] Queued move: request=88f855e4-1ae1-4c3f-a6fd-9204e2c396c7 unit=602 target=(4430.0,3990.0) frame=6860
+2026-10-13 12:41:59.297 [RW-Agent] Queued move: request=3a89088e-c8b7-457d-969f-f6d3ea7851be unit=602 target=(4430.0,3970.0) frame=6926
+2026-10-13 12:41:59.374 [RW-Agent] Queued move: request=0826a8dd-e1ab-4896-aee2-cb6c4a2e3967 unit=602 target=(4430.0,3950.0) frame=6950
+2026-10-13 12:41:59.453 [RW-Agent] Queued move: request=645b1b8d-f2a7-4857-8f96-23fe226b9d09 unit=602 target=(4430.0,3910.0) frame=6973
+2026-10-13 12:41:59.548 [RW-Agent] Queued move: request=f14e5942-66ea-4462-aeaa-17be74b10df0 unit=602 target=(4430.0,3890.0) frame=7001
+2026-10-13 12:41:59.627 [RW-Agent] Queued move: request=f9fc1ac5-5604-410f-9911-09a756a010e4 unit=602 target=(4430.0,3870.0) frame=7027
+2026-10-13 12:41:59.736 [RW-Agent] Queued move: request=8762ab35-79c4-4f1a-8f3b-9f932c786fbc unit=602 target=(4430.0,3850.0) frame=7058
+2026-10-13 12:41:59.814 [RW-Agent] Queued move: request=eb050aeb-b758-4f7d-8614-61801ddb8add unit=602 target=(4430.0,3810.0) frame=7081
+2026-10-13 12:41:59.894 [RW-Agent] Queued move: request=f468bce9-a401-4569-846f-8dde5ed6864a unit=602 target=(4430.0,3790.0) frame=7109
+2026-10-13 12:41:59.971 [RW-Agent] Queued move: request=9d609cec-a420-425c-8033-2d42c9e5f02c unit=602 target=(4430.0,3770.0) frame=7131
+2026-10-13 12:42:00.051 [RW-Agent] Queued move: request=25c8a219-85e3-4a63-85b7-74f0bf395e14 unit=602 target=(4430.0,3750.0) frame=7152
+2026-10-13 12:42:00.112 [RW-Agent] Queued move: request=d6a6a03e-18f8-4b15-b4bf-21d48ebf038f unit=602 target=(4430.0,3730.0) frame=7173
+2026-10-13 12:42:00.253 [RW-Agent] Queued move: request=8737310e-a5ae-4707-8507-52e62a7d2536 unit=731 target=(5190.0,5450.0) frame=7213
+2026-10-13 12:42:00.912 [RW-Agent] Queued move: request=cc1a7cea-3c4b-4ff6-8b81-1afae7332821 unit=602 target=(4430.0,3610.0) frame=7411
+2026-10-13 12:42:01.161 [RW-Agent] Queued move: request=09124f7e-9487-4aa9-92e1-0311a1ff6e5f unit=602 target=(4430.0,3590.0) frame=7485
+2026-10-13 12:42:01.286 [RW-Agent] Queued move: request=46a76001-a0e6-4d2f-b088-1e89ca289464 unit=602 target=(4430.0,3550.0) frame=7523
+2026-10-13 12:42:01.382 [RW-Agent] Queued move: request=c439a0ef-fc2f-48b5-bc4c-2ea887e4d306 unit=602 target=(4430.0,3510.0) frame=7552
+2026-10-13 12:42:01.508 [RW-Agent] Queued move: request=60f891db-56cd-4812-b12e-95cd77753ff9 unit=602 target=(4430.0,3490.0) frame=7589
+RW_HEADLESS_FINISHED status=STOP_REQUESTED ticks=7679 frame=7679 gameTimeMs=122864 wallSeconds=25.6093176

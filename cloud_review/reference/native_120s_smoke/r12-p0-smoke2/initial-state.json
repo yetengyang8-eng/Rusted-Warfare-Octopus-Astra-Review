@@ -1,0 +1,50 @@
+{
+  "status": "running",
+  "schemaVersion": 1,
+  "sessionId": "3aeb719f-4a2a-4205-8b85-8ca2be8978ff",
+  "map": {
+    "width": 8000.0,
+    "height": 7400.0,
+    "tilesWide": 400,
+    "tilesHigh": 370,
+    "tileWidth": 20,
+    "tileHeight": 20
+  },
+  "frame": 0,
+  "gameTimeMs": 0,
+  "networked": false,
+  "replay": false,
+  "player": {
+    "teamId": 0,
+    "name": "Player",
+    "credits": 4000.0
+  },
+  "match": {
+    "outcome": "ONGOING",
+    "nativeVictory": false,
+    "nativeDefeat": false,
+    "ownTeamVictory": false,
+    "ownTeamDefeated": false,
+    "ownTeamWipedOut": false,
+    "source": "native_result_screen"
+  },
+  "ownUnits": [
+    {
+      "id": 477,
+      "type": "commandCenter",
+      "x": 4370.0,
+      "y": 5610.0,
+      "hp": 4000.0,
+      "maxHp": 4000.0,
+      "buildProgress": 1.0,
+      "productionQueue": 0,
+      "dead": false,
+      "mobile": false,
+      "canAttack": true,
+      "building": true,
+      "techLevel": 1,
+      "orderType": null,
+      "guardTargetId": null
+    }
+  ]
+}

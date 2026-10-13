@@ -1,0 +1,20 @@
+{
+  "oldJarSha": "d0530e5d7e294d391f2252109393054ec7b3cd382e30b0446ef028dab01b7aba",
+  "candidateJarSha": "3a1eeb33725c93279818e90a9812e21bfb0bbf04f079407143835054d8ee8ad5",
+  "classEquality": {
+    "io/rwagent/client/AirGeneralController$1.class": true,
+    "io/rwagent/client/AirGeneralController$ContactArea.class": true,
+    "io/rwagent/client/AirGeneralController$Member.class": true,
+    "io/rwagent/client/AirGeneralController$RouteLeg.class": true,
+    "io/rwagent/client/AirGeneralController.class": true,
+    "io/rwagent/client/AirResponsePolicy$Need.class": true,
+    "io/rwagent/client/AirResponsePolicy.class": true,
+    "io/rwagent/client/CombatProfiles$Profile.class": true,
+    "io/rwagent/client/CombatProfiles.class": true,
+    "io/rwagent/client/FightEstimate.class": true,
+    "io/rwagent/client/TargetCatalog$1.class": true,
+    "io/rwagent/client/TargetCatalog$Decision.class": true,
+    "io/rwagent/client/TargetCatalog$Unit.class": true,
+    "io/rwagent/client/TargetCatalog.class": true
+  }
+}
